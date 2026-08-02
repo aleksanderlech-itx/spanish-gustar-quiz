@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Starter Project",
-  description: "A clean starting point for building your site.",
+  title: "Spanish Gustar Quiz",
+  description: "Practise Spanish verbs that work like gustar in the present, simple past and simple future.",
   other: {
     "codex-preview": "development",
   },
