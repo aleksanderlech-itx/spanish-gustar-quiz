@@ -77,6 +77,11 @@ const STORAGE_KEY = "gustar-quiz-progress-v1";
 
 const shuffle = <T,>(items: T[]) => [...items].sort(() => Math.random() - 0.5);
 const normalize = (value: string) => value.trim().toLocaleLowerCase("es");
+const getMissedIds = (items: Result[]) => {
+  const latest = new Map<number, boolean>();
+  items.forEach((item) => item.questionIds.forEach((id) => latest.set(id, item.missedIds.includes(id))));
+  return [...latest].filter(([, missed]) => missed).map(([id]) => id);
+};
 
 export default function Home() {
   const [history, setHistory] = useState<Result[]>([]);
@@ -88,19 +93,20 @@ export default function Home() {
   const inputs = useRef<Array<HTMLInputElement | null>>([]);
 
   const usedIds = useMemo(() => new Set(history.flatMap((item) => item.questionIds)), [history]);
-  const missedIds = useMemo(() => {
-    const latest = new Map<number, boolean>();
-    history.forEach((item) => item.questionIds.forEach((id) => latest.set(id, item.missedIds.includes(id))));
-    return [...latest].filter(([, missed]) => missed).map(([id]) => id);
-  }, [history]);
+  const missedIds = useMemo(() => getMissedIds(history), [history]);
 
   const startRound = (missedOnly = practiceMissed, sourceHistory = history) => {
     const sourceUsed = new Set(sourceHistory.flatMap((item) => item.questionIds));
-    let pool = missedOnly ? QUESTIONS.filter((q) => missedIds.includes(q.id)) : QUESTIONS.filter((q) => !sourceUsed.has(q.id));
+    const sourceMissed = getMissedIds(sourceHistory);
+    if (missedOnly && sourceMissed.length === 0) {
+      missedOnly = false;
+      setPracticeMissed(false);
+    }
+    let pool = missedOnly ? QUESTIONS.filter((q) => sourceMissed.includes(q.id)) : QUESTIONS.filter((q) => !sourceUsed.has(q.id));
     if (pool.length < 5 && !missedOnly) pool = QUESTIONS;
-    if (pool.length === 0) pool = QUESTIONS;
-    setRound(shuffle(pool).slice(0, 5));
-    setAnswers(Array(5).fill(""));
+    const selected = shuffle(pool).slice(0, 5);
+    setRound(selected);
+    setAnswers(Array(selected.length).fill(""));
     setChecked(false);
     setTimeout(() => inputs.current[0]?.focus(), 0);
   };
@@ -126,8 +132,8 @@ export default function Home() {
     event.preventDefault();
     if (checked || answers.some((answer) => !answer.trim())) return;
     const missed = round.filter((q, i) => normalize(answers[i]) !== q.answer).map((q) => q.id);
-    const score = 5 - missed.length;
-    const result: Result = { date: new Date().toISOString(), score, percent: score * 20, questionIds: round.map((q) => q.id), answers, missedIds: missed };
+    const score = round.length - missed.length;
+    const result: Result = { date: new Date().toISOString(), score, percent: Math.round((score / round.length) * 100), questionIds: round.map((q) => q.id), answers, missedIds: missed };
     const next = [...history, result];
     setHistory(next);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
@@ -141,14 +147,16 @@ export default function Home() {
     startRound(false, []);
   };
 
-  if (!hydrated || round.length < 5) return <main className="loading">Preparing your quiz…</main>;
+  if (!hydrated || round.length === 0) return <main className="loading">Preparing your quiz…</main>;
+
+  const roundPercent = checked ? Math.round((correct / round.length) * 100) : 0;
 
   return (
     <main className="app-shell">
       <header className="hero">
         <p className="eyebrow">Present tense practice</p>
         <h1>Spanish verbs that work like <em>gustar</em></h1>
-        <div className="round-meta">Round {history.length + (checked ? 0 : 1)} <span>·</span> 5 questions</div>
+        <div className="round-meta">{practiceMissed ? "Missed-answer practice" : `Round ${history.length + (checked ? 0 : 1)}`} <span>·</span> {round.length} question{round.length === 1 ? "" : "s"}</div>
         <div className="progress" aria-label={`${completedUnique} of 150 sentences completed`}><span style={{ width: `${Math.max(3, (completedUnique / 150) * 100)}%` }} /></div>
       </header>
 
@@ -159,8 +167,8 @@ export default function Home() {
       </section>
 
       {checked && <section className="result-card" aria-live="polite">
-        <div className="score-ring"><strong>{correct * 20}%</strong><span>{correct}/5 correct</span></div>
-        <div><p className="result-label">Round complete</p><h2>{correct === 5 ? "Excellent work." : correct >= 4 ? "Very good." : correct >= 3 ? "Good start." : "Keep practising."}</h2><p>Review any corrections below, then continue with five new sentences.</p></div>
+        <div className="score-ring"><strong>{roundPercent}%</strong><span>{correct}/{round.length} correct</span></div>
+        <div><p className="result-label">{practiceMissed ? "Review complete" : "Round complete"}</p><h2>{roundPercent === 100 ? "Excellent work." : roundPercent >= 80 ? "Very good." : roundPercent >= 60 ? "Good start." : "Keep practising."}</h2><p>{practiceMissed ? "Correct answers leave your missed list. Any remaining mistakes stay ready for another review." : "Review any corrections below, then continue with new sentences."}</p></div>
       </section>}
 
       <form onSubmit={submit}>
@@ -180,7 +188,7 @@ export default function Home() {
                   autoComplete="off"
                   spellCheck={false}
                   onChange={(event) => setAnswers((current) => current.map((value, i) => i === index ? event.target.value : value))}
-                  onKeyDown={(event) => { if (event.key === "Enter" && index < 4) { event.preventDefault(); inputs.current[index + 1]?.focus(); } }}
+                  onKeyDown={(event) => { if (event.key === "Enter" && index < round.length - 1) { event.preventDefault(); inputs.current[index + 1]?.focus(); } }}
                   aria-invalid={isWrong || undefined}
                 />
                 <span>{question.after}</span>
@@ -193,15 +201,15 @@ export default function Home() {
         </div>
 
         <div className="action-bar">
-          <div className="action-copy">{checked ? "Your result has been saved on this device." : answers.filter(Boolean).length === 5 ? "Ready to check." : `${answers.filter((a) => a.trim()).length} of 5 answered`}</div>
-          {!checked ? <button className="primary" disabled={answers.some((answer) => !answer.trim())}>Check answers</button> : <button type="button" className="primary" onClick={() => startRound()}>Next 5 sentences</button>}
+          <div className="action-copy">{checked ? "Your result has been saved on this device." : answers.filter(Boolean).length === round.length ? "Ready to check." : `${answers.filter((a) => a.trim()).length} of ${round.length} answered`}</div>
+          {!checked ? <button className="primary" disabled={answers.some((answer) => !answer.trim())}>Check answers</button> : <button type="button" className="primary" onClick={() => startRound()}>{practiceMissed && missedIds.length ? "Continue missed practice" : "Next 5 sentences"}</button>}
         </div>
       </form>
 
       <section className="stats">
         <div className="stats-heading"><div><p className="eyebrow">Your progress</p><h2>Practice history</h2></div><button className="text-button" onClick={reset}>Reset progress</button></div>
         <div className="stat-grid"><div><strong>{history.length}</strong><span>Rounds completed</span></div><div><strong>{average}%</strong><span>Average score</span></div><div><strong>{best}%</strong><span>Best score</span></div><div><strong>{completedUnique}/150</strong><span>Sentences seen</span></div></div>
-        <div className="practice-row"><div><strong>Incorrect-answer practice</strong><span>{missedIds.length ? `${missedIds.length} sentence${missedIds.length === 1 ? "" : "s"} ready to review` : "No missed sentences waiting"}</span></div><button type="button" className="secondary" disabled={!missedIds.length} onClick={() => { setPracticeMissed(true); startRound(true); }}>Practise missed answers</button></div>
+        <div className={`practice-row ${practiceMissed ? "active-practice" : ""}`}><div><strong>Incorrect-answer practice</strong><span>{missedIds.length ? `${missedIds.length} sentence${missedIds.length === 1 ? "" : "s"} ready to review` : "No missed sentences waiting"}</span></div><button type="button" className="secondary" disabled={!missedIds.length || practiceMissed} onClick={() => { setPracticeMissed(true); startRound(true); }}>{practiceMissed ? "Practising missed answers" : "Practise missed answers"}</button></div>
       </section>
       <footer>150 present-tense sentences · Progress stays in this browser</footer>
     </main>
