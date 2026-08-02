@@ -40,6 +40,14 @@ h1 em { color:var(--primary); font-weight:inherit; }
 .question-card.correct { border-color:#8ec8ab; background:var(--green-bg); }.question-card.correct input { border-color:var(--green); }
 .question-card.wrong { border-color:#eeaaa4; background:var(--red-bg); }.question-card.wrong input { border-color:var(--red); }
 .feedback { width:100%; margin:2px 0 0; font-family:Inter,sans-serif; font-size:13px; line-height:1.45; color:var(--green); }.wrong .feedback { color:var(--red); }
+.translation-control { width:100%; margin-top:5px; font-family:Inter,sans-serif; }
+.translation-switch { display:inline-flex; align-items:center; gap:9px; padding:4px 0; border:0; color:var(--muted); background:transparent; font-size:12px; font-weight:700; }
+.translation-switch:hover { color:var(--primary); }
+.switch-track { position:relative; display:inline-block; width:30px; height:17px; border-radius:999px; background:#c9ced9; transition:background .16s ease; }
+.switch-track span { position:absolute; top:3px; left:3px; width:11px; height:11px; border-radius:50%; background:#fff; box-shadow:0 1px 3px rgba(23,32,51,.25); transition:transform .16s ease; }
+.translation-switch[aria-checked="true"] .switch-track { background:var(--primary); }
+.translation-switch[aria-checked="true"] .switch-track span { transform:translateX(13px); }
+.translation-text { margin:6px 0 0; padding:10px 13px; border-left:3px solid var(--coral); border-radius:0 8px 8px 0; color:#4e5668; background:#f7f7fa; font-family:Georgia,"Times New Roman",serif; font-size:16px; line-height:1.45; }
 .action-bar { position:sticky; bottom:0; z-index:5; display:flex; align-items:center; justify-content:space-between; gap:20px; margin:22px -18px 0; padding:18px; border:1px solid var(--border); border-radius:14px; background:rgba(255,255,255,.94); box-shadow:0 8px 28px rgba(23,32,51,.13); backdrop-filter:blur(14px); }
 .action-copy { padding-left:8px; color:var(--muted); font-size:14px; }
 .primary,.secondary { min-height:52px; padding:0 25px; border:0; border-radius:10px; font-weight:750; transition:background .14s,transform .14s,opacity .14s; }

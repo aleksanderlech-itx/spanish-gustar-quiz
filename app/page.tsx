@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { TRANSLATIONS } from "./translations";
 
 type Question = {
   id: number;
@@ -9,6 +10,7 @@ type Question = {
   infinitive: string;
   answer: string;
   explanation: string;
+  translation: string;
 };
 
 type Result = {
@@ -70,6 +72,7 @@ const QUESTIONS: Question[] = Object.entries(banks).flatMap(([infinitive, rows])
     infinitive,
     answer: forms[infinitive][number === "s" ? 0 : 1],
     explanation: `${subject.charAt(0).toUpperCase() + subject.slice(1)} ${number === "s" ? "is singular (or an infinitive activity)" : "is plural"}, so use “${forms[infinitive][number === "s" ? 0 : 1]}”.`,
+    translation: TRANSLATIONS[Object.entries(banks).slice(0, Object.keys(banks).indexOf(infinitive)).reduce((n, [, r]) => n + r.length, 0) + index],
   }))
 );
 
@@ -89,6 +92,7 @@ export default function Home() {
   const [answers, setAnswers] = useState<string[]>(Array(5).fill(""));
   const [checked, setChecked] = useState(false);
   const [practiceMissed, setPracticeMissed] = useState(false);
+  const [shownTranslations, setShownTranslations] = useState<Set<number>>(new Set());
   const [hydrated, setHydrated] = useState(false);
   const inputs = useRef<Array<HTMLInputElement | null>>([]);
 
@@ -107,6 +111,7 @@ export default function Home() {
     const selected = shuffle(pool).slice(0, 5);
     setRound(selected);
     setAnswers(Array(selected.length).fill(""));
+    setShownTranslations(new Set());
     setChecked(false);
     setTimeout(() => inputs.current[0]?.focus(), 0);
   };
@@ -194,6 +199,23 @@ export default function Home() {
                 <span>{question.after}</span>
                 {isWrong && <p className="feedback"><strong>Correct: {question.answer}.</strong> {question.explanation}</p>}
                 {isCorrect && <p className="feedback">Correct.</p>}
+                <div className="translation-control">
+                  <button
+                    type="button"
+                    role="switch"
+                    aria-checked={shownTranslations.has(question.id)}
+                    className="translation-switch"
+                    onClick={() => setShownTranslations((current) => {
+                      const next = new Set(current);
+                      if (next.has(question.id)) next.delete(question.id); else next.add(question.id);
+                      return next;
+                    })}
+                  >
+                    <span className="switch-track"><span /></span>
+                    {shownTranslations.has(question.id) ? "Hide translation" : "Show translation"}
+                  </button>
+                  {shownTranslations.has(question.id) && <p className="translation-text" lang="en">{question.translation}</p>}
+                </div>
               </div>
               <span className="verb-chip">{question.infinitive}</span>
             </article>;
