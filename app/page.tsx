@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { TRANSLATIONS } from "./translations";
+import { availableQuestions, filterQuestions, getMissedIds, normalizeAnswer, restartSelectedHistory, ruleForTense, scoreRound, type QuizFilters, type QuizResult } from "./quiz-logic";
 
 type Question = {
   id: number;
@@ -15,18 +16,8 @@ type Question = {
   level: "basic" | "intermediate" | "advanced";
 };
 
-type Result = {
-  date: string;
-  score: number;
-  percent: number;
-  questionIds: number[];
-  answers: string[];
-  missedIds: number[];
-  mode?: "regular" | "review";
-  tense?: Question["tense"];
-};
-
-type Filters = { tense: "all" | Question["tense"]; level: "all" | Question["level"]; verb: "all" | string };
+type Result = QuizResult;
+type Filters = QuizFilters;
 
 const forms: Record<string, [string, string]> = {
   gustar: ["gusta", "gustan"],
@@ -104,6 +95,9 @@ const tenseTranslations = {
     "Yesterday, the quality of the service mattered to me.", "Yesterday, small details mattered to Luis.", "Yesterday, I was missing a ticket to Madrid.", "Yesterday, Clara was missing two documents.",
     "Yesterday, I had one week of holiday left.", "Yesterday, Raúl had three questions left.", "Yesterday, my back hurt.", "Yesterday, Carmen's knees hurt.",
     "Yesterday, this idea seemed interesting to me.", "Yesterday, these hotels seemed expensive to Laura.",
+    "Yesterday, travelling without rushing delighted us.", "Yesterday, learning about other cultures interested us.", "Yesterday, waiting a long time bothered us.",
+    "Yesterday, arriving on time mattered to us.", "Yesterday, we still had to finish the last exercise.", "Yesterday, we still had to book the hotel.",
+    "Yesterday, walking in those boots hurt us.", "Yesterday, practising every day seemed useful to us.", "Yesterday, Marta liked Colombian coffee.",
   ],
   future: [
     "Tomorrow, Marta will like Colombian coffee.", "Tomorrow, I will like rock concerts.", "Tomorrow, I will love this band.", "Tomorrow, Elena will love local markets.",
@@ -111,23 +105,27 @@ const tenseTranslations = {
     "Tomorrow, the quality of the service will matter to me.", "Tomorrow, small details will matter to Luis.", "Tomorrow, I will be missing a ticket to Madrid.", "Tomorrow, Clara will be missing two documents.",
     "Tomorrow, I will have one week of holiday left.", "Tomorrow, Raúl will have three questions left.", "Tomorrow, my back will hurt.", "Tomorrow, Carmen's knees will hurt.",
     "Tomorrow, this idea will seem interesting to me.", "Tomorrow, these hotels will seem expensive to Laura.",
+    "Tomorrow, travelling without rushing will delight us.", "Tomorrow, learning about other cultures will interest us.", "Tomorrow, waiting a long time will bother us.",
+    "Tomorrow, arriving on time will matter to us.", "Tomorrow, we will still have to finish the last exercise.", "Tomorrow, we will still have to book the hotel.",
+    "Tomorrow, walking in those boots will hurt us.", "Tomorrow, practising every day will seem useful to us.", "Tomorrow, Marta will like Colombian coffee.",
   ],
 };
 
 const TENSE_QUESTIONS: Question[] = (["past", "future"] as const).flatMap((tense, tenseIndex) =>
-  Object.keys(forms).flatMap((infinitive, verbIndex) => ([0, 1] as const).map((numberIndex) => {
-    const source = QUESTIONS.filter((q) => q.infinitive === infinitive)[numberIndex];
+  Object.keys(forms).flatMap((infinitive, verbIndex) => ([0, 1, 2] as const).map((sourceIndex) => {
+    const source = QUESTIONS.filter((q) => q.infinitive === infinitive)[sourceIndex];
+    const numberIndex = source.answer === forms[infinitive][0] ? 0 : 1;
     const answer = tenseForms[tense][infinitive][numberIndex];
     const marker = tense === "past" ? "Ayer" : "Mañana";
     return {
       ...source,
-      id: 151 + tenseIndex * 18 + verbIndex * 2 + numberIndex,
+      id: 151 + tenseIndex * 27 + verbIndex * 3 + sourceIndex,
       before: `${marker}, ${source.before.charAt(0).toLocaleLowerCase("es")}${source.before.slice(1)}`,
       answer,
       tense,
-      level: "advanced",
+      level: (["basic", "intermediate", "advanced"] as const)[sourceIndex],
       explanation: `${source.explanation.split(", so use")[0]}, so the ${tense === "past" ? "simple past" : "simple future"} form is “${answer}”.`,
-      translation: tenseTranslations[tense][verbIndex * 2 + numberIndex],
+      translation: sourceIndex < 2 ? tenseTranslations[tense][verbIndex * 2 + sourceIndex] : tenseTranslations[tense][18 + verbIndex],
     };
   }))
 );
@@ -138,12 +136,7 @@ const STORAGE_KEY = "gustar-quiz-progress-v1";
 const FILTER_KEY = "gustar-quiz-filters-v1";
 
 const shuffle = <T,>(items: T[]) => [...items].sort(() => Math.random() - 0.5);
-const normalize = (value: string) => value.trim().toLocaleLowerCase("es");
-const getMissedIds = (items: Result[]) => {
-  const latest = new Map<number, boolean>();
-  items.forEach((item) => item.questionIds.forEach((id) => latest.set(id, item.missedIds.includes(id))));
-  return [...latest].filter(([, missed]) => missed).map(([id]) => id);
-};
+const normalize = normalizeAnswer;
 
 export default function Home() {
   const [history, setHistory] = useState<Result[]>([]);
@@ -161,22 +154,22 @@ export default function Home() {
 
   const regularHistory = useMemo(() => history.filter((item) => item.mode !== "review"), [history]);
   const reviewHistory = useMemo(() => history.filter((item) => item.mode === "review"), [history]);
-  const filteredQuestions = useMemo(() => ALL_QUESTIONS.filter((q) =>
-    (filters.tense === "all" || q.tense === filters.tense) &&
-    (filters.level === "all" || q.level === filters.level) &&
-    (filters.verb === "all" || q.infinitive === filters.verb)
-  ), [filters]);
+  const filteredQuestions = useMemo(() => filterQuestions(ALL_QUESTIONS, filters), [filters]);
   const usedIds = useMemo(() => new Set(regularHistory.flatMap((item) => item.questionIds)), [regularHistory]);
   const missedIds = useMemo(() => getMissedIds(history), [history]);
+  const filteredMissedIds = useMemo(() => {
+    const selected = new Set(filteredQuestions.map((question) => question.id));
+    return missedIds.filter((id) => selected.has(id));
+  }, [filteredQuestions, missedIds]);
+  const rule = useMemo(() => ruleForTense(filters.tense), [filters.tense]);
 
   const startRound = (missedOnly = practiceMissed, sourceHistory = history, sourceQuestions = filteredQuestions) => {
-    const sourceUsed = new Set(sourceHistory.filter((item) => item.mode !== "review").flatMap((item) => item.questionIds));
-    const sourceMissed = getMissedIds(sourceHistory);
-    if (missedOnly && sourceMissed.length === 0) {
+    let pool = availableQuestions(sourceQuestions, sourceHistory, missedOnly);
+    if (missedOnly && pool.length === 0) {
       missedOnly = false;
       setPracticeMissed(false);
+      pool = availableQuestions(sourceQuestions, sourceHistory, false);
     }
-    const pool = missedOnly ? ALL_QUESTIONS.filter((q) => sourceMissed.includes(q.id)) : sourceQuestions.filter((q) => !sourceUsed.has(q.id));
     if (!missedOnly && pool.length === 0) { setCycleComplete(true); return; }
     setCycleComplete(false);
     const selected = shuffle(pool).slice(0, 5);
@@ -192,7 +185,7 @@ export default function Home() {
     const initial = saved ? (JSON.parse(saved) as Result[]) : [];
     const savedFilters = localStorage.getItem(FILTER_KEY);
     const initialFilters = savedFilters ? JSON.parse(savedFilters) as Filters : { tense: "present", level: "all", verb: "all" };
-    const initialQuestions = ALL_QUESTIONS.filter((q) => (initialFilters.tense === "all" || q.tense === initialFilters.tense) && (initialFilters.level === "all" || q.level === initialFilters.level) && (initialFilters.verb === "all" || q.infinitive === initialFilters.verb));
+    const initialQuestions = filterQuestions(ALL_QUESTIONS, initialFilters);
     const used = new Set(initial.filter((item) => item.mode !== "review").flatMap((item) => item.questionIds));
     const pool = initialQuestions.filter((q) => !used.has(q.id));
     queueMicrotask(() => {
@@ -221,9 +214,8 @@ export default function Home() {
   const submit = (event: FormEvent) => {
     event.preventDefault();
     if (checked || answers.some((answer) => !answer.trim())) return;
-    const missed = round.filter((q, i) => normalize(answers[i]) !== q.answer).map((q) => q.id);
-    const score = round.length - missed.length;
-    const result: Result = { date: new Date().toISOString(), score, percent: Math.round((score / round.length) * 100), questionIds: round.map((q) => q.id), answers, missedIds: missed, mode: practiceMissed ? "review" : "regular", tense: round[0]?.tense };
+    const { missedIds: missed, score, percent } = scoreRound(round, answers);
+    const result: Result = { date: new Date().toISOString(), score, percent, questionIds: round.map((q) => q.id), answers, missedIds: missed, mode: practiceMissed ? "review" : "regular", tense: round[0]?.tense };
     const next = [...history, result];
     setHistory(next);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
@@ -242,12 +234,12 @@ export default function Home() {
     setFilters(next);
     localStorage.setItem(FILTER_KEY, JSON.stringify(next));
     setPracticeMissed(false);
-    const nextQuestions = ALL_QUESTIONS.filter((q) => (next.tense === "all" || q.tense === next.tense) && (next.level === "all" || q.level === next.level) && (next.verb === "all" || q.infinitive === next.verb));
+    const nextQuestions = filterQuestions(ALL_QUESTIONS, next);
     startRound(false, history, nextQuestions);
   };
 
   const restartCycle = () => {
-    const retained = history.filter((item) => item.mode === "review");
+    const retained = restartSelectedHistory(history, new Set(filteredQuestions.map((question) => question.id)));
     setHistory(retained);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(retained));
     setCycleComplete(false);
@@ -267,7 +259,7 @@ export default function Home() {
       if (!Array.isArray(data.history)) throw new Error();
       setHistory(data.history); localStorage.setItem(STORAGE_KEY, JSON.stringify(data.history));
       if (data.filters) { setFilters(data.filters); localStorage.setItem(FILTER_KEY, JSON.stringify(data.filters)); }
-      startRound(false, data.history, ALL_QUESTIONS.filter((q) => !data.filters || (data.filters.tense === "all" || q.tense === data.filters.tense) && (data.filters.level === "all" || q.level === data.filters.level) && (data.filters.verb === "all" || q.infinitive === data.filters.verb)));
+      startRound(false, data.history, data.filters ? filterQuestions(ALL_QUESTIONS, data.filters) : ALL_QUESTIONS);
     } catch { window.alert("This is not a valid Spanish Gustar Quiz progress file."); }
   };
 
@@ -293,11 +285,11 @@ export default function Home() {
 
       <section className="rule-card">
         <span className="rule-mark" />
-        <div><strong>The verb agrees with the thing, not the person.</strong><p>One thing or an activity uses the singular. Several things use the plural.</p></div>
-        <div className="examples"><span>Me <b>gusta</b> viajar.</span><span>Me <b>gustan</b> los viajes.</span></div>
+        <div><strong>{rule.title}</strong><p>{rule.body}</p></div>
+        <div className="examples"><span>{rule.singular}</span><span>{rule.plural}</span></div>
       </section>
 
-      {cycleComplete && <section className="completion-card" aria-live="polite"><p className="eyebrow">Set completed</p><h2>You completed all {filteredQuestions.length} selected sentences.</h2><p>Your results are saved. Restart this set or review the answers you missed.</p><div><button type="button" className="primary" onClick={restartCycle}>Restart selected set</button><button type="button" className="secondary" disabled={!missedIds.length} onClick={() => { setPracticeMissed(true); setCycleComplete(false); startRound(true); }}>Practise missed answers</button></div></section>}
+      {cycleComplete && <section className="completion-card" aria-live="polite"><p className="eyebrow">Set completed</p><h2>You completed all {filteredQuestions.length} selected sentences.</h2><p>Your results are saved. Restart this set or review the answers you missed.</p><div><button type="button" className="primary" onClick={restartCycle}>Restart selected set</button><button type="button" className="secondary" disabled={!filteredMissedIds.length} onClick={() => { setPracticeMissed(true); setCycleComplete(false); startRound(true); }}>Practise filtered missed answers</button></div></section>}
 
       {!cycleComplete && checked && <section className="result-card" aria-live="polite">
         <div className="score-ring"><strong>{roundPercent}%</strong><span>{correct}/{round.length} correct</span></div>
@@ -352,7 +344,7 @@ export default function Home() {
 
         <div className="action-bar">
           <div className="action-copy">{checked ? "Your result has been saved on this device." : answers.filter(Boolean).length === round.length ? "Ready to check." : `${answers.filter((a) => a.trim()).length} of ${round.length} answered`}</div>
-          {!checked ? <button className="primary" disabled={answers.some((answer) => !answer.trim())}>Check answers</button> : <button type="button" className="primary" onClick={() => startRound()}>{practiceMissed && missedIds.length ? "Continue missed practice" : "Next 5 sentences"}</button>}
+          {!checked ? <button className="primary" disabled={answers.some((answer) => !answer.trim())}>Check answers</button> : <button type="button" className="primary" onClick={() => startRound()}>{practiceMissed && filteredMissedIds.length ? "Continue missed practice" : "Next selected sentences"}</button>}
         </div>
       </form>}
 
@@ -360,7 +352,7 @@ export default function Home() {
         <div className="stats-heading"><div><p className="eyebrow">Your progress</p><h2>Practice history</h2></div><button className="text-button" onClick={reset}>Reset progress</button></div>
         <div className="stat-grid"><div><strong>{regularHistory.length}</strong><span>Regular rounds</span></div><div><strong>{average}%</strong><span>Regular average</span></div><div><strong>{best}%</strong><span>Regular best</span></div><div><strong>{completedUnique}/{ALL_QUESTIONS.length}</strong><span>Sentences seen</span></div></div>
         <div className="review-summary"><span><strong>{reviewHistory.length}</strong> review rounds</span><span><strong>{missedIds.length}</strong> answers still to master</span></div>
-        <div className={`practice-row ${practiceMissed ? "active-practice" : ""}`}><div><strong>Incorrect-answer practice</strong><span>{missedIds.length ? `${missedIds.length} sentence${missedIds.length === 1 ? "" : "s"} ready to review` : "No missed sentences waiting"}</span></div><button type="button" className="secondary" disabled={!missedIds.length || practiceMissed} onClick={() => { setPracticeMissed(true); startRound(true); }}>{practiceMissed ? "Practising missed answers" : "Practise missed answers"}</button></div>
+        <div className={`practice-row ${practiceMissed ? "active-practice" : ""}`}><div><strong>Incorrect-answer practice</strong><span>{filteredMissedIds.length ? `${filteredMissedIds.length} missed sentence${filteredMissedIds.length === 1 ? "" : "s"} match the selected filters` : missedIds.length ? `No missed answers match these filters (${missedIds.length} saved overall)` : "No missed sentences waiting"}</span></div><button type="button" className="secondary" disabled={!filteredMissedIds.length || practiceMissed} onClick={() => { setPracticeMissed(true); startRound(true); }}>{practiceMissed ? "Practising missed answers" : "Practise filtered missed answers"}</button></div>
         <div className="insights"><div><strong>Weak areas</strong>{weakVerbs.length ? weakVerbs.map(([verb, value]) => <span key={verb}>{verb}: {value.misses} missed of {value.attempts}</span>) : <span>No recurring mistakes yet.</span>}</div><div className="data-actions"><strong>Move progress between devices</strong><span>Download a backup, then import it in another browser.</span><div><button type="button" className="text-button" onClick={exportProgress}>Download progress</button><button type="button" className="text-button" onClick={() => importRef.current?.click()}>Import progress</button><input className="sr-only" ref={importRef} type="file" accept="application/json" onChange={(event) => importProgress(event.target.files?.[0])} /></div></div></div>
         <button type="button" className="history-toggle" onClick={() => setShowHistory((value) => !value)}>{showHistory ? "Hide detailed history" : "Show detailed history"}</button>
         {showHistory && <div className="history-list">{[...history].reverse().map((result, index) => <article key={`${result.date}-${index}`}><div><strong>{result.mode === "review" ? "Review" : "Regular round"} · {result.percent}%</strong><span>{new Date(result.date).toLocaleString()}</span></div><ul>{result.questionIds.map((id, questionIndex) => { const question = ALL_QUESTIONS.find((q) => q.id === id); if (!question) return null; const missed = result.missedIds.includes(id); return <li className={missed ? "missed" : ""} key={id}><span>{question.before} <b>{question.answer}</b> {question.after}</span><small>Your answer: {result.answers[questionIndex] || "No answer"}</small></li>; })}</ul></article>)}</div>}
