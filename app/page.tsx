@@ -370,6 +370,9 @@ export default function Home() {
                 <span>{question.after}</span>
                 {isWrong && <p className="feedback"><strong>Correct: {question.answer}.</strong> {question.explanation}</p>}
                 {isCorrect && <p className="feedback">Correct.</p>}
+                <div className="verb-row">
+                  <span className="verb-chip">Verb: {question.infinitive}</span>
+                </div>
                 <div className="translation-control">
                   <button
                     type="button"
@@ -388,7 +391,6 @@ export default function Home() {
                   {shownTranslations.has(question.id) && <p className="translation-text" lang={translationLanguage}>{question.translations[translationLanguage]}</p>}
                 </div>
               </div>
-              {(checked || shownTranslations.has(question.id)) && <span className="verb-chip">{question.infinitive}</span>}
             </article>;
           })}
         </div>
