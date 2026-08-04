@@ -134,6 +134,8 @@ export default function Home() {
   const [showHistory, setShowHistory] = useState(false);
   const [translationLanguage, setTranslationLanguage] = useState<"en" | "pl">("en");
   const [syncState, setSyncState] = useState<"checking" | "signed-out" | "synced" | "saving" | "error">("checking");
+  const [activeQuestion, setActiveQuestion] = useState(0);
+  const [isSpeaking, setIsSpeaking] = useState(false);
   const importRef = useRef<HTMLInputElement | null>(null);
   const inputs = useRef<Array<HTMLInputElement | null>>([]);
 
@@ -160,6 +162,7 @@ export default function Home() {
     const selected = shuffle(pool).slice(0, 5);
     setRound(selected);
     setAnswers(Array(selected.length).fill(""));
+    setActiveQuestion(0);
     setShownTranslations(new Set());
     setChecked(false);
     setTimeout(() => inputs.current[0]?.focus(), 0);
@@ -191,7 +194,7 @@ export default function Home() {
       const used = new Set(merged.filter((item) => item.mode !== "review").flatMap((item) => item.questionIds));
       const pool = initialQuestions.filter((q) => !used.has(q.id));
       setHistory(merged); setFilters(initialFilters); setTranslationLanguage(savedLanguage);
-      setRound(shuffle(pool.length ? pool : initialQuestions).slice(0, 5)); setHydrated(true);
+      setRound(shuffle(pool.length ? pool : initialQuestions).slice(0, 5)); setActiveQuestion(0); setHydrated(true);
     };
     void initialise();
   }, []);
@@ -235,6 +238,20 @@ export default function Home() {
     setHistory(next);
     void persistProgress(next);
     setChecked(true);
+  };
+
+  const speakCurrentQuestion = () => {
+    if (!("speechSynthesis" in window) || !round[activeQuestion]) return;
+    window.speechSynthesis.cancel();
+    const question = round[activeQuestion];
+    const answerIsRevealed = checked || shownTranslations.has(question.id);
+    const text = `${question.before} ${answerIsRevealed ? question.answer : "espacio"} ${question.after}`;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "es-ES";
+    utterance.onstart = () => setIsSpeaking(true);
+    utterance.onend = () => setIsSpeaking(false);
+    utterance.onerror = () => setIsSpeaking(false);
+    window.speechSynthesis.speak(utterance);
   };
 
   const reset = () => {
@@ -284,14 +301,20 @@ export default function Home() {
   if (!hydrated || round.length === 0) return <main className="loading">Preparing your quiz…</main>;
 
   const roundPercent = checked ? Math.round((correct / round.length) * 100) : 0;
+  const currentAnswered = Boolean(answers[activeQuestion]?.trim());
+  const canGoForward = checked || currentAnswered;
+  const isLastQuestion = activeQuestion === round.length - 1;
 
   return (
     <main className="app-shell">
       <header className="hero">
-        <p className="eyebrow">Spanish grammar practice</p>
+        <div className="hero-topline">
+          <p className="eyebrow">Spanish grammar practice</p>
+          <button type="button" className="listen-button" onClick={speakCurrentQuestion} aria-label="Listen to the current Spanish sentence">{isSpeaking ? "Playing…" : "Listen"}</button>
+        </div>
         <h1>Spanish verbs that work like <em>gustar</em></h1>
         <div className="round-meta">{practiceMissed ? "Missed-answer practice" : `Round ${regularHistory.length + (checked ? 0 : 1)}`} <span>·</span> {round.length} question{round.length === 1 ? "" : "s"}</div>
-        <div className="progress" aria-label={`${filteredSeen} of ${filteredQuestions.length} selected sentences completed`}><span style={{ width: `${Math.max(3, (filteredSeen / Math.max(1, filteredQuestions.length)) * 100)}%` }} /></div>
+        <div className="set-progress"><span>{filteredSeen} of {filteredQuestions.length} selected sentences completed</span><div className="progress"><span style={{ width: `${Math.max(3, (filteredSeen / Math.max(1, filteredQuestions.length)) * 100)}%` }} /></div></div>
       </header>
 
       <section className="filters" aria-label="Practice options">
@@ -314,15 +337,19 @@ export default function Home() {
         <div><p className="result-label">{practiceMissed ? "Review complete" : "Round complete"}</p><h2>{roundPercent === 100 ? "Excellent work." : roundPercent >= 80 ? "Very good." : roundPercent >= 60 ? "Good start." : "Keep practising."}</h2><p>{practiceMissed ? "Correct answers leave your missed list. Any remaining mistakes stay ready for another review." : "Review any corrections below, then continue with new sentences."}</p></div>
       </section>}
 
-      {!cycleComplete && <form onSubmit={submit}>
+      {!cycleComplete && <form onSubmit={submit} className="quiz-form">
+        <div className="question-progress" role="progressbar" aria-valuemin={1} aria-valuemax={round.length} aria-valuenow={activeQuestion + 1} aria-label={`Question ${activeQuestion + 1} of ${round.length}`}>
+          <strong>{checked ? "Review" : "Question"} {activeQuestion + 1} of {round.length}</strong>
+          <div>{round.map((question, index) => <span key={question.id} className={`${index === activeQuestion ? "active" : ""} ${answers[index]?.trim() ? "answered" : ""} ${checked && normalize(answers[index]) === question.answer ? "correct" : ""} ${checked && normalize(answers[index]) !== question.answer ? "wrong" : ""}`} />)}</div>
+        </div>
         <div className="questions">
           {round.map((question, index) => {
             const isCorrect = checked && normalize(answers[index]) === question.answer;
             const isWrong = checked && !isCorrect;
-            return <article className={`question-card ${isCorrect ? "correct" : ""} ${isWrong ? "wrong" : ""}`} key={question.id}>
+            return <article hidden={index !== activeQuestion} aria-hidden={index !== activeQuestion} className={`question-card ${isCorrect ? "correct" : ""} ${isWrong ? "wrong" : ""}`} key={question.id}>
               <span className="number">{index + 1}</span>
               <div className="sentence-wrap">
-                <label htmlFor={`answer-${index}`}><span className="sr-only">Question {index + 1}, form of {question.infinitive}</span><span>{question.before} </span></label>
+                <label htmlFor={`answer-${index}`}><span className="sr-only">Question {index + 1}, enter the missing verb</span><span>{question.before} </span></label>
                 <input
                   id={`answer-${index}`}
                   ref={(node) => { inputs.current[index] = node; }}
@@ -331,7 +358,13 @@ export default function Home() {
                   autoComplete="off"
                   spellCheck={false}
                   onChange={(event) => setAnswers((current) => current.map((value, i) => i === index ? event.target.value : value))}
-                  onKeyDown={(event) => { if (event.key === "Enter" && index < round.length - 1) { event.preventDefault(); inputs.current[index + 1]?.focus(); } }}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" && !checked && index < round.length - 1 && answers[index]?.trim()) {
+                      event.preventDefault();
+                      setActiveQuestion(index + 1);
+                      setTimeout(() => inputs.current[index + 1]?.focus(), 0);
+                    }
+                  }}
                   aria-invalid={isWrong || undefined}
                 />
                 <span>{question.after}</span>
@@ -355,14 +388,18 @@ export default function Home() {
                   {shownTranslations.has(question.id) && <p className="translation-text" lang={translationLanguage}>{question.translations[translationLanguage]}</p>}
                 </div>
               </div>
-              <span className="verb-chip">{question.infinitive}</span>
+              {(checked || shownTranslations.has(question.id)) && <span className="verb-chip">{question.infinitive}</span>}
             </article>;
           })}
         </div>
 
         <div className="action-bar">
-          <div className="action-copy">{checked ? "Your result has been saved on this device." : answers.filter(Boolean).length === round.length ? "Ready to check." : `${answers.filter((a) => a.trim()).length} of ${round.length} answered`}</div>
-          {!checked ? <button className="primary" disabled={answers.some((answer) => !answer.trim())}>Check answers</button> : <button type="button" className="primary" onClick={() => startRound()}>{practiceMissed && filteredMissedIds.length ? "Continue missed practice" : "Next selected sentences"}</button>}
+          <button type="button" className="back-button" disabled={activeQuestion === 0} onClick={() => setActiveQuestion((index) => Math.max(0, index - 1))}>Back</button>
+          <div className="action-copy">{checked ? `${correct} of ${round.length} correct` : `${answers.filter((answer) => answer.trim()).length} of ${round.length} answered`}</div>
+          {!checked && !isLastQuestion && <button type="button" className="primary" disabled={!canGoForward} onClick={() => { setActiveQuestion((index) => Math.min(round.length - 1, index + 1)); setTimeout(() => inputs.current[activeQuestion + 1]?.focus(), 0); }}>Next</button>}
+          {!checked && isLastQuestion && <button className="primary" disabled={!currentAnswered || answers.some((answer) => !answer.trim())}>Check answers</button>}
+          {checked && !isLastQuestion && <button type="button" className="primary" onClick={() => setActiveQuestion((index) => Math.min(round.length - 1, index + 1))}>Next answer</button>}
+          {checked && isLastQuestion && <button type="button" className="primary" onClick={() => startRound()}>{practiceMissed && filteredMissedIds.length ? "Continue missed practice" : "Next selected sentences"}</button>}
         </div>
       </form>}
 
