@@ -96,6 +96,17 @@ const COMPLEX_QUESTIONS: Question[] = COMPLEX_QUESTION_SEEDS.map(([before, after
 }));
 
 const ALL_QUESTIONS = [...QUESTIONS, ...COMPLEX_QUESTIONS];
+const CURRENT_QUESTION_IDS = new Set(ALL_QUESTIONS.map((question) => question.id));
+
+const presentOnlyHistory = (items: Result[]) => items.flatMap((result) => {
+  const kept = result.questionIds.map((id, index) => ({ id, index })).filter(({ id }) => CURRENT_QUESTION_IDS.has(id));
+  if (!kept.length) return [];
+  const questionIds = kept.map(({ id }) => id);
+  const answers = kept.map(({ index }) => result.answers[index] ?? "");
+  const missedIds = result.missedIds.filter((id) => CURRENT_QUESTION_IDS.has(id));
+  const score = questionIds.length - missedIds.length;
+  return [{ ...result, questionIds, answers, missedIds, score, percent: Math.round((score / questionIds.length) * 100), tense: "present" as const }];
+});
 
 const STORAGE_KEY = "gustar-quiz-progress-v1";
 const FILTER_KEY = "gustar-quiz-filters-v1";
@@ -162,13 +173,13 @@ export default function Home() {
     const initialFilters: Filters = { level: storedFilters.level ?? "all", verb: storedFilters.verb ?? "all" };
     const savedLanguage = localStorage.getItem(LANGUAGE_KEY) === "pl" ? "pl" : "en";
     const initialise = async () => {
-      let merged = initial;
+      let merged = presentOnlyHistory(initial);
       try {
         const response = await fetch("/api/progress", { cache: "no-store" });
         if (response.status === 401) setSyncState("signed-out");
         else if (response.ok) {
           const data = await response.json() as { progress?: { history?: Result[] } | null };
-          merged = mergeHistory(initial, data.progress?.history ?? []);
+          merged = presentOnlyHistory(mergeHistory(initial, data.progress?.history ?? []));
           localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
           setSyncState("synced");
           if (merged.length !== (data.progress?.history?.length ?? 0)) {
@@ -263,9 +274,10 @@ export default function Home() {
     try {
       const data = JSON.parse(await file.text()) as { history?: Result[]; filters?: Filters };
       if (!Array.isArray(data.history)) throw new Error();
-      setHistory(data.history); void persistProgress(data.history, data.filters ?? filters);
+      const importedHistory = presentOnlyHistory(data.history);
+      setHistory(importedHistory); void persistProgress(importedHistory, data.filters ?? filters);
       if (data.filters) { setFilters(data.filters); localStorage.setItem(FILTER_KEY, JSON.stringify(data.filters)); }
-      startRound(false, data.history, data.filters ? filterQuestions(ALL_QUESTIONS, data.filters) : ALL_QUESTIONS);
+      startRound(false, importedHistory, data.filters ? filterQuestions(ALL_QUESTIONS, data.filters) : ALL_QUESTIONS);
     } catch { window.alert("This is not a valid Spanish Gustar Quiz progress file."); }
   };
 
