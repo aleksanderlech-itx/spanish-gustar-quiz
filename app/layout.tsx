@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Spanish Gustar Quiz",
-  description: "Practise Spanish verbs that work like gustar in the present, simple past and simple future.",
+  description: "Practise Spanish verbs that work like gustar with present-tense sentences from basic to advanced.",
   other: {
     "codex-preview": "development",
   },

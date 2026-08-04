@@ -2,7 +2,8 @@
 
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { TRANSLATIONS } from "./translations";
-import { POLISH_TENSE_TRANSLATIONS, POLISH_TRANSLATIONS } from "./polish-translations";
+import { POLISH_TRANSLATIONS } from "./polish-translations";
+import { COMPLEX_QUESTION_SEEDS } from "./complex-questions";
 import { availableQuestions, filterQuestions, getMissedIds, normalizeAnswer, restartSelectedHistory, ruleForTense, scoreRound, type QuizFilters, type QuizResult } from "./quiz-logic";
 
 type Question = {
@@ -16,7 +17,7 @@ type Question = {
   subjectNumber: "singular" | "plural";
   isActivity: boolean;
   indirectObject: string;
-  tense: "present" | "past" | "future";
+  tense: "present";
   level: "basic" | "intermediate" | "advanced";
 };
 
@@ -85,65 +86,16 @@ const QUESTIONS: Question[] = Object.entries(banks).flatMap(([infinitive, rows])
   }))
 );
 
-const tenseForms: Record<"past" | "future", Record<string, [string, string]>> = {
-  past: {
-    gustar: ["gustó", "gustaron"], encantar: ["encantó", "encantaron"], interesar: ["interesó", "interesaron"],
-    molestar: ["molestó", "molestaron"], importar: ["importó", "importaron"], faltar: ["faltó", "faltaron"],
-    quedar: ["quedó", "quedaron"], doler: ["dolió", "dolieron"], parecer: ["pareció", "parecieron"],
-  },
-  future: {
-    gustar: ["gustará", "gustarán"], encantar: ["encantará", "encantarán"], interesar: ["interesará", "interesarán"],
-    molestar: ["molestará", "molestarán"], importar: ["importará", "importarán"], faltar: ["faltará", "faltarán"],
-    quedar: ["quedará", "quedarán"], doler: ["dolerá", "dolerán"], parecer: ["parecerá", "parecerán"],
-  },
-};
+const COMPLEX_QUESTIONS: Question[] = COMPLEX_QUESTION_SEEDS.map(([before, after, infinitive, answer, subjectNumber, indirectObject, en, pl], index) => ({
+  id: 1001 + index,
+  before, after, infinitive, answer,
+  explanation: `${subjectNumber === "singular" ? "The grammatical subject is a single thing, clause, or activity" : "The grammatical subject contains several things"}, so use “${answer}”.`,
+  translations: { en, pl }, subjectNumber, indirectObject,
+  isActivity: subjectNumber === "singular" && /\b(que|ar|er|ir)\b/i.test(after),
+  tense: "present", level: "advanced",
+}));
 
-const tenseTranslations = {
-  past: [
-    "Yesterday, Marta liked Colombian coffee.", "Yesterday, I liked rock concerts.", "Yesterday, I loved this band.", "Yesterday, Elena loved local markets.",
-    "Yesterday, I was interested in Spanish history.", "Yesterday, Daniel was interested in languages.", "Yesterday, the street noise bothered me.", "Yesterday, bright lights bothered Sara.",
-    "Yesterday, the quality of the service mattered to me.", "Yesterday, small details mattered to Luis.", "Yesterday, I was missing a ticket to Madrid.", "Yesterday, Clara was missing two documents.",
-    "Yesterday, I had one week of holiday left.", "Yesterday, Raúl had three questions left.", "Yesterday, my back hurt.", "Yesterday, Carmen's knees hurt.",
-    "Yesterday, this idea seemed interesting to me.", "Yesterday, these hotels seemed expensive to Laura.",
-    "Yesterday, travelling without rushing delighted us.", "Yesterday, learning about other cultures interested us.", "Yesterday, waiting a long time bothered us.",
-    "Yesterday, arriving on time mattered to us.", "Yesterday, we still had to finish the last exercise.", "Yesterday, we still had to book the hotel.",
-    "Yesterday, walking in those boots hurt us.", "Yesterday, practising every day seemed useful to us.", "Yesterday, Marta liked Colombian coffee.",
-  ],
-  future: [
-    "Tomorrow, Marta will like Colombian coffee.", "Tomorrow, I will like rock concerts.", "Tomorrow, I will love this band.", "Tomorrow, Elena will love local markets.",
-    "Tomorrow, I will be interested in Spanish history.", "Tomorrow, Daniel will be interested in languages.", "Tomorrow, the street noise will bother me.", "Tomorrow, bright lights will bother Sara.",
-    "Tomorrow, the quality of the service will matter to me.", "Tomorrow, small details will matter to Luis.", "Tomorrow, I will be missing a ticket to Madrid.", "Tomorrow, Clara will be missing two documents.",
-    "Tomorrow, I will have one week of holiday left.", "Tomorrow, Raúl will have three questions left.", "Tomorrow, my back will hurt.", "Tomorrow, Carmen's knees will hurt.",
-    "Tomorrow, this idea will seem interesting to me.", "Tomorrow, these hotels will seem expensive to Laura.",
-    "Tomorrow, travelling without rushing will delight us.", "Tomorrow, learning about other cultures will interest us.", "Tomorrow, waiting a long time will bother us.",
-    "Tomorrow, arriving on time will matter to us.", "Tomorrow, we will still have to finish the last exercise.", "Tomorrow, we will still have to book the hotel.",
-    "Tomorrow, walking in those boots will hurt us.", "Tomorrow, practising every day will seem useful to us.", "Tomorrow, Marta will like Colombian coffee.",
-  ],
-};
-
-const TENSE_QUESTIONS: Question[] = (["past", "future"] as const).flatMap((tense, tenseIndex) =>
-  Object.keys(forms).flatMap((infinitive, verbIndex) => ([0, 1, 2] as const).map((sourceIndex) => {
-    const source = QUESTIONS.filter((q) => q.infinitive === infinitive)[sourceIndex];
-    const numberIndex = source.answer === forms[infinitive][0] ? 0 : 1;
-    const answer = tenseForms[tense][infinitive][numberIndex];
-    const marker = tense === "past" ? "Ayer" : "Mañana";
-    return {
-      ...source,
-      id: 151 + tenseIndex * 27 + verbIndex * 3 + sourceIndex,
-      before: `${marker}, ${source.before.charAt(0).toLocaleLowerCase("es")}${source.before.slice(1)}`,
-      answer,
-      tense,
-      level: (["basic", "intermediate", "advanced"] as const)[sourceIndex],
-      explanation: `${source.explanation.split(", so use")[0]}, so the ${tense === "past" ? "simple past" : "simple future"} form is “${answer}”.`,
-      translations: {
-        en: sourceIndex < 2 ? tenseTranslations[tense][verbIndex * 2 + sourceIndex] : tenseTranslations[tense][18 + verbIndex],
-        pl: sourceIndex < 2 ? POLISH_TENSE_TRANSLATIONS[tense][verbIndex * 2 + sourceIndex] : POLISH_TENSE_TRANSLATIONS[tense][18 + verbIndex],
-      },
-    };
-  }))
-);
-
-const ALL_QUESTIONS = [...QUESTIONS, ...TENSE_QUESTIONS];
+const ALL_QUESTIONS = [...QUESTIONS, ...COMPLEX_QUESTIONS];
 
 const STORAGE_KEY = "gustar-quiz-progress-v1";
 const FILTER_KEY = "gustar-quiz-filters-v1";
@@ -166,7 +118,7 @@ export default function Home() {
   const [practiceMissed, setPracticeMissed] = useState(false);
   const [shownTranslations, setShownTranslations] = useState<Set<number>>(new Set());
   const [hydrated, setHydrated] = useState(false);
-  const [filters, setFilters] = useState<Filters>({ tense: "present", level: "all", verb: "all" });
+  const [filters, setFilters] = useState<Filters>({ level: "all", verb: "all" });
   const [cycleComplete, setCycleComplete] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const [translationLanguage, setTranslationLanguage] = useState<"en" | "pl">("en");
@@ -183,7 +135,7 @@ export default function Home() {
     const selected = new Set(filteredQuestions.map((question) => question.id));
     return missedIds.filter((id) => selected.has(id));
   }, [filteredQuestions, missedIds]);
-  const rule = useMemo(() => ruleForTense(filters.tense), [filters.tense]);
+  const rule = useMemo(() => ruleForTense(), []);
 
   const startRound = (missedOnly = practiceMissed, sourceHistory = history, sourceQuestions = filteredQuestions) => {
     let pool = availableQuestions(sourceQuestions, sourceHistory, missedOnly);
@@ -206,7 +158,8 @@ export default function Home() {
     const saved = localStorage.getItem(STORAGE_KEY);
     const initial = saved ? (JSON.parse(saved) as Result[]) : [];
     const savedFilters = localStorage.getItem(FILTER_KEY);
-    const initialFilters = savedFilters ? JSON.parse(savedFilters) as Filters : { tense: "present", level: "all", verb: "all" };
+    const storedFilters = savedFilters ? JSON.parse(savedFilters) as Partial<Filters> : {};
+    const initialFilters: Filters = { level: storedFilters.level ?? "all", verb: storedFilters.verb ?? "all" };
     const savedLanguage = localStorage.getItem(LANGUAGE_KEY) === "pl" ? "pl" : "en";
     const initialise = async () => {
       let merged = initial;
@@ -330,7 +283,6 @@ export default function Home() {
       </header>
 
       <section className="filters" aria-label="Practice options">
-        <label>Tense<select value={filters.tense} onChange={(event) => applyFilters({ ...filters, tense: event.target.value as Filters["tense"] })}><option value="present">Present</option><option value="past">Simple past</option><option value="future">Simple future</option><option value="all">All tenses</option></select></label>
         <label>Difficulty<select value={filters.level} onChange={(event) => applyFilters({ ...filters, level: event.target.value as Filters["level"] })}><option value="all">All levels</option><option value="basic">Basic</option><option value="intermediate">Intermediate</option><option value="advanced">Advanced</option></select></label>
         <label>Verb<select value={filters.verb} onChange={(event) => applyFilters({ ...filters, verb: event.target.value })}><option value="all">All verbs</option>{Object.keys(forms).map((verb) => <option value={verb} key={verb}>{verb}</option>)}</select></label>
         <label>Translation<select value={translationLanguage} onChange={(event) => { const language = event.target.value as "en" | "pl"; setTranslationLanguage(language); localStorage.setItem(LANGUAGE_KEY, language); }}><option value="en">English</option><option value="pl">Polski</option></select></label>
@@ -411,7 +363,7 @@ export default function Home() {
         <button type="button" className="history-toggle" onClick={() => setShowHistory((value) => !value)}>{showHistory ? "Hide detailed history" : "Show detailed history"}</button>
         {showHistory && <div className="history-list">{[...history].reverse().map((result, index) => <article key={`${result.date}-${index}`}><div><strong>{result.mode === "review" ? "Review" : "Regular round"} · {result.percent}%</strong><span>{new Date(result.date).toLocaleString()}</span></div><ul>{result.questionIds.map((id, questionIndex) => { const question = ALL_QUESTIONS.find((q) => q.id === id); if (!question) return null; const missed = result.missedIds.includes(id); return <li className={missed ? "missed" : ""} key={id}><span>{question.before} <b>{question.answer}</b> {question.after}</span><small>Your answer: {result.answers[questionIndex] || "No answer"}</small></li>; })}</ul></article>)}</div>}
       </section>
-      <footer>{ALL_QUESTIONS.length} sentences across present, simple past and simple future · English and Polish translations · {syncState === "synced" ? "Progress synchronized" : "Progress saved in this browser"}</footer>
+      <footer>{ALL_QUESTIONS.length} present-tense sentences · English and Polish translations · {syncState === "synced" ? "Progress synchronized" : "Progress saved in this browser"}</footer>
     </main>
   );
 }

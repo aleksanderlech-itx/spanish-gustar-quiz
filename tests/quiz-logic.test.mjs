@@ -4,9 +4,9 @@ import { availableQuestions, filterQuestions, getMissedIds, restartSelectedHisto
 
 const questions = [
   { id: 1, infinitive: "gustar", answer: "gusta", tense: "present", level: "basic" },
-  { id: 2, infinitive: "gustar", answer: "gustaron", tense: "past", level: "intermediate" },
-  { id: 3, infinitive: "doler", answer: "dolerán", tense: "future", level: "advanced" },
-  { id: 4, infinitive: "gustar", answer: "gustó", tense: "past", level: "basic" },
+  { id: 2, infinitive: "gustar", answer: "gustan", tense: "present", level: "intermediate" },
+  { id: 3, infinitive: "doler", answer: "duelen", tense: "present", level: "advanced" },
+  { id: 4, infinitive: "gustar", answer: "gusta", tense: "present", level: "basic" },
 ];
 
 const history = [{
@@ -14,14 +14,14 @@ const history = [{
   questionIds: [1, 2], answers: ["gusta", "gustó"], missedIds: [2], mode: "regular", tense: "present",
 }];
 
-test("filters combine tense, level and verb without incompatible empty defaults", () => {
-  assert.deepEqual(filterQuestions(questions, { tense: "past", level: "basic", verb: "gustar" }).map((q) => q.id), [4]);
-  assert.deepEqual(filterQuestions(questions, { tense: "future", level: "advanced", verb: "doler" }).map((q) => q.id), [3]);
+test("filters combine level and verb", () => {
+  assert.deepEqual(filterQuestions(questions, { level: "basic", verb: "gustar" }).map((q) => q.id), [1, 4]);
+  assert.deepEqual(filterQuestions(questions, { level: "advanced", verb: "doler" }).map((q) => q.id), [3]);
 });
 
 test("scores trimmed, case-insensitive answers and reports missed IDs", () => {
-  assert.deepEqual(scoreRound(questions.slice(0, 2), [" GUSTA ", "gustaron"]), { missedIds: [], score: 2, percent: 100 });
-  assert.deepEqual(scoreRound(questions.slice(0, 2), ["gustan", "gustaron"]), { missedIds: [1], score: 1, percent: 50 });
+  assert.deepEqual(scoreRound(questions.slice(0, 2), [" GUSTA ", "gustan"]), { missedIds: [], score: 2, percent: 100 });
+  assert.deepEqual(scoreRound(questions.slice(0, 2), ["gustan", "gustan"]), { missedIds: [1], score: 1, percent: 50 });
 });
 
 test("regular rounds avoid seen questions while review is limited to filtered missed questions", () => {
@@ -42,8 +42,7 @@ test("restarting a selected set preserves unrelated regular and all review histo
   assert.equal(restarted[2].mode, "review");
 });
 
-test("learning guidance changes with the selected tense", () => {
-  assert.match(ruleForTense("past").singular, /gustó/);
-  assert.match(ruleForTense("future").plural, /gustarán/);
-  assert.match(ruleForTense("all").body, /present, completed past, or future/);
+test("learning guidance covers complex present-tense subjects", () => {
+  assert.match(ruleForTense().body, /clause/);
+  assert.match(ruleForTense().plural, /gustan/);
 });

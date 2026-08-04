@@ -1,4 +1,4 @@
-export type QuizTense = "present" | "past" | "future";
+export type QuizTense = "present";
 export type QuizLevel = "basic" | "intermediate" | "advanced";
 
 export type QuizQuestion = {
@@ -21,7 +21,6 @@ export type QuizResult = {
 };
 
 export type QuizFilters = {
-  tense: "all" | QuizTense;
   level: "all" | QuizLevel;
   verb: "all" | string;
 };
@@ -30,7 +29,6 @@ export const normalizeAnswer = (value: string) => value.trim().toLocaleLowerCase
 
 export const filterQuestions = <T extends QuizQuestion>(questions: T[], filters: QuizFilters) =>
   questions.filter((question) =>
-    (filters.tense === "all" || question.tense === filters.tense) &&
     (filters.level === "all" || question.level === filters.level) &&
     (filters.verb === "all" || question.infinitive === filters.verb));
 
@@ -66,9 +64,6 @@ export const restartSelectedHistory = (history: QuizResult[], selectedIds: Set<n
   return [{ ...result, questionIds, answers, missedIds, score, percent: Math.round((score / questionIds.length) * 100) }];
 });
 
-export const ruleForTense = (tense: QuizFilters["tense"]) => {
-  if (tense === "past") return { title: "Use the preterite for a completed past reaction.", body: "One thing or an activity uses the third-person singular. Several things use the third-person plural.", singular: "Ayer me gustó el viaje.", plural: "Ayer me gustaron los viajes." };
-  if (tense === "future") return { title: "Use the simple future for a future reaction.", body: "Keep the full infinitive and add the third-person singular or plural future ending.", singular: "Me gustará el viaje.", plural: "Me gustarán los viajes." };
-  if (tense === "all") return { title: "The tense shows when; agreement shows how many.", body: "Choose present, completed past, or future, then match the verb to the singular or plural thing.", singular: "Me gusta · me gustó · me gustará", plural: "Me gustan · me gustaron · me gustarán" };
-  return { title: "The verb agrees with the thing, not the person.", body: "One thing or an activity uses the singular. Several things use the plural.", singular: "Me gusta viajar.", plural: "Me gustan los viajes." };
+export const ruleForTense = () => {
+  return { title: "The verb agrees with the thing, not the person.", body: "One thing, a clause, or an activity uses the singular. Several things use the plural, even when the subject follows the verb.", singular: "Me gusta viajar.", plural: "Me gustan los viajes." };
 };
