@@ -195,6 +195,25 @@ export default function Home() {
     void initialise();
   }, []);
 
+  useEffect(() => {
+    const viewport = window.visualViewport;
+    if (!viewport) return;
+
+    const keepActionsAboveKeyboard = () => {
+      const keyboardInset = Math.max(0, window.innerHeight - viewport.height - viewport.offsetTop);
+      document.documentElement.style.setProperty("--keyboard-inset", `${keyboardInset}px`);
+    };
+
+    keepActionsAboveKeyboard();
+    viewport.addEventListener("resize", keepActionsAboveKeyboard);
+    viewport.addEventListener("scroll", keepActionsAboveKeyboard);
+    return () => {
+      viewport.removeEventListener("resize", keepActionsAboveKeyboard);
+      viewport.removeEventListener("scroll", keepActionsAboveKeyboard);
+      document.documentElement.style.removeProperty("--keyboard-inset");
+    };
+  }, []);
+
   const persistProgress = async (nextHistory: Result[], nextFilters = filters) => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(nextHistory));
     if (syncState !== "synced" && syncState !== "saving") return;
@@ -362,7 +381,7 @@ export default function Home() {
                 {isWrong && <p className="feedback"><strong>Correct: {question.answer}.</strong> {question.explanation}</p>}
                 {isCorrect && <p className="feedback">Correct.</p>}
                 <div className="verb-row">
-                  <span className="verb-chip">Verb: {question.infinitive}</span>
+                  <span className="verb-chip">{question.infinitive}</span>
                 </div>
                 <div className="translation-control">
                   <button

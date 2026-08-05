@@ -38,6 +38,7 @@ test("mobile quiz design keeps the answer field and actions inside the viewport"
   assert.match(css, /\.sentence-wrap input[^}]*max-width:100%/s);
   assert.match(css, /@media \(max-width:760px\)[\s\S]*\.sentence-wrap input[^}]*width:100%/);
   assert.match(css, /@media \(max-width:760px\)[\s\S]*\.action-bar[^}]*position:fixed/);
+  assert.match(css, /@media \(max-width:760px\)[\s\S]*\.action-bar[^}]*bottom:var\(--keyboard-inset\)/);
   assert.match(css, /\.translation-switch[^}]*min-height:44px/);
 });
 
@@ -45,6 +46,6 @@ test("quiz presents one question at a time and always shows the infinitive above
   const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
   assert.match(page, /hidden=\{index !== activeQuestion\}/);
   assert.match(page, /Question"\} \{activeQuestion \+ 1\} of \{round\.length\}/);
-  assert.match(page, /<div className="verb-row">\s*<span className="verb-chip">Verb: \{question\.infinitive\}<\/span>\s*<\/div>\s*<div className="translation-control">/);
+  assert.match(page, /<div className="verb-row">\s*<span className="verb-chip">\{question\.infinitive\}<\/span>\s*<\/div>\s*<div className="translation-control">/);
   assert.match(page, /className="listen-button"/);
 });
