@@ -321,12 +321,6 @@ export default function Home() {
         </div>
       </details>
 
-      <section className="rule-card">
-        <span className="rule-mark" />
-        <div><strong>{rule.title}</strong><p>{rule.body}</p></div>
-        <div className="examples"><span>{rule.singular}</span><span>{rule.plural}</span></div>
-      </section>
-
       {cycleComplete && <section className="completion-card" aria-live="polite"><p className="eyebrow">Set completed</p><h2>You completed all {filteredQuestions.length} selected sentences.</h2><p>Your results are saved. Restart this set or review the answers you missed.</p><div><button type="button" className="primary" onClick={restartCycle}>Restart selected set</button><button type="button" className="secondary" disabled={!filteredMissedIds.length} onClick={() => { setPracticeMissed(true); setCycleComplete(false); startRound(true); }}>Practise filtered missed answers</button></div></section>}
 
       {!cycleComplete && checked && <section className="result-card" aria-live="polite">
@@ -401,6 +395,12 @@ export default function Home() {
           {checked && isLastQuestion && <button type="button" className="primary" onClick={() => startRound()}>{practiceMissed && filteredMissedIds.length ? "Continue missed practice" : "Next selected sentences"}</button>}
         </div>
       </form>}
+
+      <section className="rule-card">
+        <span className="rule-mark" />
+        <div><strong>{rule.title}</strong><p>{rule.body}</p></div>
+        <div className="examples"><span>{rule.singular}</span><span>{rule.plural}</span></div>
+      </section>
 
       <section className="stats">
         <div className="stats-heading"><div><p className="eyebrow">Your progress</p><h2>Practice history</h2></div><button className="text-button" onClick={reset}>Reset progress</button></div>
