@@ -2,7 +2,6 @@
 
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { TRANSLATIONS } from "./translations";
-import { POLISH_TRANSLATIONS } from "./polish-translations";
 import { COMPLEX_QUESTION_SEEDS } from "./complex-questions";
 import { availableQuestions, filterQuestions, getMissedIds, normalizeAnswer, restartSelectedHistory, ruleForTense, scoreRound, type QuizFilters, type QuizResult } from "./quiz-logic";
 
@@ -76,7 +75,7 @@ const QUESTIONS: Question[] = Object.entries(banks).flatMap(([infinitive, rows])
     explanation: `${subject.charAt(0).toUpperCase() + subject.slice(1)} ${number === "s" ? "is singular (or an infinitive activity)" : "is plural"}, so use “${forms[infinitive][number === "s" ? 0 : 1]}”.`,
     translations: {
       en: TRANSLATIONS[Object.entries(banks).slice(0, Object.keys(banks).indexOf(infinitive)).reduce((n, [, r]) => n + r.length, 0) + index],
-      pl: POLISH_TRANSLATIONS[Object.entries(banks).slice(0, Object.keys(banks).indexOf(infinitive)).reduce((n, [, r]) => n + r.length, 0) + index],
+      pl: "",
     },
     subjectNumber: number === "s" ? "singular" : "plural",
     isActivity: subject.startsWith("the activity"),
@@ -110,7 +109,6 @@ const presentOnlyHistory = (items: Result[]) => items.flatMap((result) => {
 
 const STORAGE_KEY = "gustar-quiz-progress-v1";
 const FILTER_KEY = "gustar-quiz-filters-v1";
-const LANGUAGE_KEY = "gustar-quiz-language-v1";
 
 const shuffle = <T,>(items: T[]) => [...items].sort(() => Math.random() - 0.5);
 const normalize = normalizeAnswer;
@@ -132,7 +130,6 @@ export default function Home() {
   const [filters, setFilters] = useState<Filters>({ level: "all", verb: "all" });
   const [cycleComplete, setCycleComplete] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
-  const [translationLanguage, setTranslationLanguage] = useState<"en" | "pl">("en");
   const [syncState, setSyncState] = useState<"checking" | "signed-out" | "synced" | "saving" | "error">("checking");
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [isSpeaking, setIsSpeaking] = useState(false);
@@ -174,7 +171,6 @@ export default function Home() {
     const savedFilters = localStorage.getItem(FILTER_KEY);
     const storedFilters = savedFilters ? JSON.parse(savedFilters) as Partial<Filters> : {};
     const initialFilters: Filters = { level: storedFilters.level ?? "all", verb: storedFilters.verb ?? "all" };
-    const savedLanguage = localStorage.getItem(LANGUAGE_KEY) === "pl" ? "pl" : "en";
     const initialise = async () => {
       let merged = presentOnlyHistory(initial);
       try {
@@ -193,7 +189,7 @@ export default function Home() {
       const initialQuestions = filterQuestions(ALL_QUESTIONS, initialFilters);
       const used = new Set(merged.filter((item) => item.mode !== "review").flatMap((item) => item.questionIds));
       const pool = initialQuestions.filter((q) => !used.has(q.id));
-      setHistory(merged); setFilters(initialFilters); setTranslationLanguage(savedLanguage);
+      setHistory(merged); setFilters(initialFilters);
       setRound(shuffle(pool.length ? pool : initialQuestions).slice(0, 5)); setActiveQuestion(0); setHydrated(true);
     };
     void initialise();
@@ -317,12 +313,13 @@ export default function Home() {
         <div className="set-progress"><span>{filteredSeen} of {filteredQuestions.length} selected sentences completed</span><div className="progress"><span style={{ width: `${Math.max(3, (filteredSeen / Math.max(1, filteredQuestions.length)) * 100)}%` }} /></div></div>
       </header>
 
-      <section className="filters" aria-label="Practice options">
-        <label>Difficulty<select value={filters.level} onChange={(event) => applyFilters({ ...filters, level: event.target.value as Filters["level"] })}><option value="all">All levels</option><option value="basic">Basic</option><option value="intermediate">Intermediate</option><option value="advanced">Advanced</option></select></label>
-        <label>Verb<select value={filters.verb} onChange={(event) => applyFilters({ ...filters, verb: event.target.value })}><option value="all">All verbs</option>{Object.keys(forms).map((verb) => <option value={verb} key={verb}>{verb}</option>)}</select></label>
-        <label>Translation<select value={translationLanguage} onChange={(event) => { const language = event.target.value as "en" | "pl"; setTranslationLanguage(language); localStorage.setItem(LANGUAGE_KEY, language); }}><option value="en">English</option><option value="pl">Polski</option></select></label>
-        <span>{filteredQuestions.length} sentences selected</span>
-      </section>
+      <details className="filters" aria-label="Practice options">
+        <summary><strong>Filters</strong><span>{filteredQuestions.length} sentences selected</span></summary>
+        <div className="filter-fields">
+          <label>Difficulty<select value={filters.level} onChange={(event) => applyFilters({ ...filters, level: event.target.value as Filters["level"] })}><option value="all">All levels</option><option value="basic">Basic</option><option value="intermediate">Intermediate</option><option value="advanced">Advanced</option></select></label>
+          <label>Verb<select value={filters.verb} onChange={(event) => applyFilters({ ...filters, verb: event.target.value })}><option value="all">All verbs</option>{Object.keys(forms).map((verb) => <option value={verb} key={verb}>{verb}</option>)}</select></label>
+        </div>
+      </details>
 
       <section className="rule-card">
         <span className="rule-mark" />
@@ -388,7 +385,7 @@ export default function Home() {
                     <span className="switch-track"><span /></span>
                     {shownTranslations.has(question.id) ? "Hide translation" : "Show translation"}
                   </button>
-                  {shownTranslations.has(question.id) && <p className="translation-text" lang={translationLanguage}>{question.translations[translationLanguage]}</p>}
+                  {shownTranslations.has(question.id) && <p className="translation-text" lang="en">{question.translations.en}</p>}
                 </div>
               </div>
             </article>;
@@ -414,7 +411,7 @@ export default function Home() {
         <button type="button" className="history-toggle" onClick={() => setShowHistory((value) => !value)}>{showHistory ? "Hide detailed history" : "Show detailed history"}</button>
         {showHistory && <div className="history-list">{[...history].reverse().map((result, index) => <article key={`${result.date}-${index}`}><div><strong>{result.mode === "review" ? "Review" : "Regular round"} · {result.percent}%</strong><span>{new Date(result.date).toLocaleString()}</span></div><ul>{result.questionIds.map((id, questionIndex) => { const question = ALL_QUESTIONS.find((q) => q.id === id); if (!question) return null; const missed = result.missedIds.includes(id); return <li className={missed ? "missed" : ""} key={id}><span>{question.before} <b>{question.answer}</b> {question.after}</span><small>Your answer: {result.answers[questionIndex] || "No answer"}</small></li>; })}</ul></article>)}</div>}
       </section>
-      <footer>{ALL_QUESTIONS.length} present-tense sentences · English and Polish translations · {syncState === "synced" ? "Progress synchronized" : "Progress saved in this browser"}</footer>
+      <footer>{ALL_QUESTIONS.length} present-tense sentences · English translations · {syncState === "synced" ? "Progress synchronized" : "Progress saved in this browser"}</footer>
     </main>
   );
 }
