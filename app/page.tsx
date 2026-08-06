@@ -144,7 +144,6 @@ export default function Home() {
   const [answers, setAnswers] = useState<string[]>(Array(5).fill(""));
   const [checked, setChecked] = useState(false);
   const [practiceMissed, setPracticeMissed] = useState(false);
-  const [shownTranslations, setShownTranslations] = useState<Set<number>>(new Set());
   const [shownExplanations, setShownExplanations] = useState<Set<number>>(new Set());
   const [hydrated, setHydrated] = useState(false);
   const [filters, setFilters] = useState<Filters>({ level: "all", verb: "all" });
@@ -180,7 +179,6 @@ export default function Home() {
     setRound(selected);
     setAnswers(Array(selected.length).fill(""));
     setActiveQuestion(0);
-    setShownTranslations(new Set());
     setShownExplanations(new Set());
     setChecked(false);
     setTimeout(() => inputs.current[0]?.focus(), 0);
@@ -280,8 +278,7 @@ export default function Home() {
     if (!("speechSynthesis" in window) || !round[activeQuestion]) return;
     window.speechSynthesis.cancel();
     const question = round[activeQuestion];
-    const answerIsRevealed = checked || shownTranslations.has(question.id);
-    const text = `${question.before} ${answerIsRevealed ? question.answer : "espacio"} ${question.after}`;
+    const text = `${question.before} ${checked ? question.answer : "espacio"} ${question.after}`;
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "es-ES";
     utterance.onstart = () => setIsSpeaking(true);
@@ -406,21 +403,7 @@ export default function Home() {
                   <span className="verb-chip">{question.infinitive}</span>
                 </div>
                 <div className="translation-control">
-                  <button
-                    type="button"
-                    role="switch"
-                    aria-checked={shownTranslations.has(question.id)}
-                    className="translation-switch"
-                    onClick={() => setShownTranslations((current) => {
-                      const next = new Set(current);
-                      if (next.has(question.id)) next.delete(question.id); else next.add(question.id);
-                      return next;
-                    })}
-                  >
-                    <span className="switch-track"><span /></span>
-                    {shownTranslations.has(question.id) ? "Hide translation" : "Show translation"}
-                  </button>
-                  {shownTranslations.has(question.id) && <p className="translation-text" lang="en">{question.translations.en}</p>}
+                  <p className="translation-text" lang="en">{question.translations.en}</p>
                   <button
                     type="button"
                     role="switch"
