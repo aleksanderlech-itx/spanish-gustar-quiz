@@ -400,7 +400,7 @@ export default function Home() {
                   placeholder="pronoun + verb"
                 />
                 <span>{question.after}</span>
-                {isWrong && <p className="feedback"><strong>Correct: {question.answer}.</strong> {question.explanation}</p>}
+                {isWrong && <p className="feedback"><strong>Correct: {question.answer}.</strong></p>}
                 {isCorrect && <p className="feedback">Correct.</p>}
                 <div className="verb-row">
                   <span className="verb-chip">{question.infinitive}</span>
