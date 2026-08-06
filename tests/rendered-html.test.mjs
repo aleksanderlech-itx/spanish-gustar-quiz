@@ -44,11 +44,13 @@ test("mobile quiz design keeps the answer field and actions inside the viewport"
 
 test("quiz presents one question at a time and always shows the infinitive above translation", async () => {
   const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const data = await readFile(new URL("../app/quiz-data.ts", import.meta.url), "utf8");
   assert.match(page, /hidden=\{index !== activeQuestion\}/);
   assert.match(page, /Question"\} \{activeQuestion \+ 1\} of \{round\.length\}/);
   assert.match(page, /<div className="verb-row">\s*<span className="verb-chip">\{question\.infinitive\}<\/span>\s*<\/div>\s*<div className="translation-control">/);
   assert.match(page, /className="listen-button"/);
   assert.match(page, /enter the missing object pronoun and verb/);
   assert.match(page, /Show explanation/);
-  assert.match(page, /answer: `\$\{objectPronoun\} \$\{verbAnswer\}`/);
+  assert.match(data, /answer: `\$\{objectPronoun\} \$\{verbAnswer\}`/);
+  assert.doesNotMatch(page, /const QUESTION_BANKS|const COMPLEX_QUESTIONS|TRANSLATIONS/);
 });

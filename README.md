@@ -106,3 +106,6 @@ The timeout defaults can be overridden for a controlled canary with `SITES_INSTA
 
 - [vinext Documentation](https://github.com/cloudflare/vinext)
 - [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+# Spanish Gustar Quiz
+
+The quiz is implemented as a reusable, data-driven template. See [TEMPLATE-HANDOVER.md](TEMPLATE-HANDOVER.md) for the content files, reuse workflow and verification checklist.
