@@ -48,4 +48,7 @@ test("quiz presents one question at a time and always shows the infinitive above
   assert.match(page, /Question"\} \{activeQuestion \+ 1\} of \{round\.length\}/);
   assert.match(page, /<div className="verb-row">\s*<span className="verb-chip">\{question\.infinitive\}<\/span>\s*<\/div>\s*<div className="translation-control">/);
   assert.match(page, /className="listen-button"/);
+  assert.match(page, /enter the missing object pronoun and verb/);
+  assert.match(page, /Show explanation/);
+  assert.match(page, /answer: `\$\{objectPronoun\} \$\{verbAnswer\}`/);
 });

@@ -11,6 +11,8 @@ type Question = {
   after: string;
   infinitive: string;
   answer: string;
+  verbAnswer: string;
+  objectPronoun: string;
   explanation: string;
   translations: { en: string; pl: string };
   subjectNumber: "singular" | "plural";
@@ -66,33 +68,50 @@ const banks: Record<string, Array<[string, string, "s" | "p", string]>> = {
 };
 
 const QUESTIONS: Question[] = Object.entries(banks).flatMap(([infinitive, rows]) =>
-  rows.map(([before, after, number, subject], index) => ({
+  rows.map(([before, after, number, subject], index) => {
+    const pronounMatch = before.match(/\b(me|te|le|nos|les)\b/i);
+    const objectPronoun = pronounMatch?.[1]?.toLocaleLowerCase("es") ?? "";
+    const promptBefore = pronounMatch
+      ? `${before.slice(0, pronounMatch.index)}${before.slice((pronounMatch.index ?? 0) + pronounMatch[0].length)}`.trimEnd()
+      : before;
+    const verbAnswer = forms[infinitive][number === "s" ? 0 : 1];
+    return {
     id: Object.entries(banks).slice(0, Object.keys(banks).indexOf(infinitive)).reduce((n, [, r]) => n + r.length, 0) + index + 1,
-    before,
+    before: promptBefore,
     after,
     infinitive,
-    answer: forms[infinitive][number === "s" ? 0 : 1],
-    explanation: `${subject.charAt(0).toUpperCase() + subject.slice(1)} ${number === "s" ? "is singular (or an infinitive activity)" : "is plural"}, so use “${forms[infinitive][number === "s" ? 0 : 1]}”.`,
+    answer: `${objectPronoun} ${verbAnswer}`,
+    verbAnswer,
+    objectPronoun,
+    explanation: `Use “${objectPronoun}” as the indirect object pronoun. ${subject.charAt(0).toUpperCase() + subject.slice(1)} ${number === "s" ? "is singular (or an infinitive activity)" : "is plural"}, so the verb is “${verbAnswer}”.`,
     translations: {
       en: TRANSLATIONS[Object.entries(banks).slice(0, Object.keys(banks).indexOf(infinitive)).reduce((n, [, r]) => n + r.length, 0) + index],
       pl: "",
     },
     subjectNumber: number === "s" ? "singular" : "plural",
     isActivity: subject.startsWith("the activity"),
-    indirectObject: before.match(/\b(me|te|le|nos|les)\b/i)?.[1]?.toLocaleLowerCase("es") ?? "other",
+    indirectObject: objectPronoun,
     tense: "present",
     level: (index < Math.ceil(rows.length / 3) ? "basic" : index < Math.ceil((rows.length * 2) / 3) ? "intermediate" : "advanced") as Question["level"],
-  }))
+    };
+  })
 );
 
-const COMPLEX_QUESTIONS: Question[] = COMPLEX_QUESTION_SEEDS.map(([before, after, infinitive, answer, subjectNumber, indirectObject, en, pl], index) => ({
-  id: 1001 + index,
-  before, after, infinitive, answer,
-  explanation: `${subjectNumber === "singular" ? "The grammatical subject is a single thing, clause, or activity" : "The grammatical subject contains several things"}, so use “${answer}”.`,
-  translations: { en, pl }, subjectNumber, indirectObject,
-  isActivity: subjectNumber === "singular" && /\b(que|ar|er|ir)\b/i.test(after),
-  tense: "present", level: "advanced",
-}));
+const COMPLEX_QUESTIONS: Question[] = COMPLEX_QUESTION_SEEDS.map(([before, after, infinitive, verbAnswer, subjectNumber, indirectObject, en, pl], index) => {
+  const pronounMatch = before.match(/\b(me|te|le|nos|les)\b/i);
+  const objectPronoun = pronounMatch?.[1]?.toLocaleLowerCase("es") ?? indirectObject;
+  const promptBefore = pronounMatch
+    ? `${before.slice(0, pronounMatch.index)}${before.slice((pronounMatch.index ?? 0) + pronounMatch[0].length)}`.trimEnd()
+    : before;
+  return {
+    id: 1001 + index,
+    before: promptBefore, after, infinitive, answer: `${objectPronoun} ${verbAnswer}`, verbAnswer, objectPronoun,
+    explanation: `Use “${objectPronoun}” as the indirect object pronoun. ${subjectNumber === "singular" ? "The grammatical subject is a single thing, clause, or activity" : "The grammatical subject contains several things"}, so the verb is “${verbAnswer}”.`,
+    translations: { en, pl }, subjectNumber, indirectObject: objectPronoun,
+    isActivity: subjectNumber === "singular" && /\b(que|ar|er|ir)\b/i.test(after),
+    tense: "present", level: "advanced",
+  };
+});
 
 const ALL_QUESTIONS = [...QUESTIONS, ...COMPLEX_QUESTIONS];
 const CURRENT_QUESTION_IDS = new Set(ALL_QUESTIONS.map((question) => question.id));
@@ -126,6 +145,7 @@ export default function Home() {
   const [checked, setChecked] = useState(false);
   const [practiceMissed, setPracticeMissed] = useState(false);
   const [shownTranslations, setShownTranslations] = useState<Set<number>>(new Set());
+  const [shownExplanations, setShownExplanations] = useState<Set<number>>(new Set());
   const [hydrated, setHydrated] = useState(false);
   const [filters, setFilters] = useState<Filters>({ level: "all", verb: "all" });
   const [cycleComplete, setCycleComplete] = useState(false);
@@ -161,6 +181,7 @@ export default function Home() {
     setAnswers(Array(selected.length).fill(""));
     setActiveQuestion(0);
     setShownTranslations(new Set());
+    setShownExplanations(new Set());
     setChecked(false);
     setTimeout(() => inputs.current[0]?.focus(), 0);
   };
@@ -359,7 +380,7 @@ export default function Home() {
             return <article hidden={index !== activeQuestion} aria-hidden={index !== activeQuestion} className={`question-card ${isCorrect ? "correct" : ""} ${isWrong ? "wrong" : ""}`} key={question.id}>
               <span className="number">{index + 1}</span>
               <div className="sentence-wrap">
-                <label htmlFor={`answer-${index}`}><span className="sr-only">Question {index + 1}, enter the missing verb</span><span>{question.before} </span></label>
+                <label htmlFor={`answer-${index}`}><span className="sr-only">Question {index + 1}, enter the missing object pronoun and verb</span><span>{question.before} </span></label>
                 <input
                   id={`answer-${index}`}
                   ref={(node) => { inputs.current[index] = node; }}
@@ -376,6 +397,7 @@ export default function Home() {
                     }
                   }}
                   aria-invalid={isWrong || undefined}
+                  placeholder="pronoun + verb"
                 />
                 <span>{question.after}</span>
                 {isWrong && <p className="feedback"><strong>Correct: {question.answer}.</strong> {question.explanation}</p>}
@@ -399,6 +421,21 @@ export default function Home() {
                     {shownTranslations.has(question.id) ? "Hide translation" : "Show translation"}
                   </button>
                   {shownTranslations.has(question.id) && <p className="translation-text" lang="en">{question.translations.en}</p>}
+                  <button
+                    type="button"
+                    role="switch"
+                    aria-checked={shownExplanations.has(question.id)}
+                    className="translation-switch"
+                    onClick={() => setShownExplanations((current) => {
+                      const next = new Set(current);
+                      if (next.has(question.id)) next.delete(question.id); else next.add(question.id);
+                      return next;
+                    })}
+                  >
+                    <span className="switch-track"><span /></span>
+                    {shownExplanations.has(question.id) ? "Hide explanation" : "Show explanation"}
+                  </button>
+                  {shownExplanations.has(question.id) && <p className="explanation-text">{question.explanation}</p>}
                 </div>
               </div>
             </article>;
