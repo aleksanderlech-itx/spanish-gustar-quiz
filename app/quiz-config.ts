@@ -1,0 +1,35 @@
+import { ALL_QUESTIONS, VERB_FORMS } from "./quiz-data";
+import { SER_ESTAR_FORMS, SER_ESTAR_QUESTIONS } from "./ser-estar-data";
+import { ruleForTense } from "./quiz-logic";
+import type { Question } from "./quiz-data";
+
+export type QuizId = "gustar" | "ser-estar";
+
+export const QUIZ_CONFIG = {
+  gustar: {
+    title: "Spanish Gustar Quiz",
+    eyebrow: "Gustar patterns",
+    heading: "Build the sentence, prove the rule.",
+    copy: "Practise Spanish verbs that work like gustar with short, original sentences.",
+    questions: ALL_QUESTIONS,
+    forms: VERB_FORMS,
+    storageKey: "gustar-quiz-progress-v1",
+    filterKey: "gustar-quiz-filters-v1",
+    backupName: "spanish-gustar-quiz-progress.json",
+    sources: [],
+    rule: ruleForTense(),
+  },
+  "ser-estar": {
+    title: "Ser vs Estar Quiz",
+    eyebrow: "Ser vs estar",
+    heading: "Name the state. Notice the frame.",
+    copy: "Choose ser or estar through descriptions, locations, events and changing states.",
+    questions: SER_ESTAR_QUESTIONS,
+    forms: SER_ESTAR_FORMS,
+    storageKey: "ser-estar-quiz-progress-v1",
+    filterKey: "ser-estar-quiz-filters-v1",
+    backupName: "spanish-ser-estar-quiz-progress.json",
+    sources: [{ label: "Instituto Cervantes: ser y estar", href: "https://cvc.cervantes.es/ensenanza/ese/programa_17/aprendiz_17.htm" }, { label: "Instituto Cervantes: actividad B1", href: "https://cvc.cervantes.es/ensenanza/actividades_ave/nivelii/ficha_20.htm" }],
+    rule: { title: "Ser frames what something is. Estar frames how or where it is now.", body: "Use ser for identity, origin, material, time and defining qualities. Use estar for location, condition and a state linked to a situation.", singular: "La camisa es azul.", plural: "La camisa está mojada." },
+  },
+} satisfies Record<QuizId, { title: string; eyebrow: string; heading: string; copy: string; questions: Question[]; forms: Record<string, [string, string]>; storageKey: string; filterKey: string; backupName: string; sources: Array<{ label: string; href: string }>; rule: ReturnType<typeof ruleForTense> }>;

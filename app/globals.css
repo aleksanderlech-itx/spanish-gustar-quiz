@@ -185,6 +185,56 @@ p {
   font-weight: 700;
 }
 
+.quiz-switch {
+  position: relative;
+}
+
+.quiz-switch summary {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--muted);
+  background: var(--surface);
+  cursor: pointer;
+  list-style: none;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.quiz-switch summary::-webkit-details-marker { display: none; }
+
+.quiz-switch nav {
+  position: absolute;
+  top: calc(100% + 9px);
+  right: 0;
+  z-index: 20;
+  display: grid;
+  min-width: 170px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: 0 16px 35px rgba(18, 39, 58, .16);
+}
+
+.quiz-switch nav a {
+  padding: 10px 12px;
+  border-radius: 9px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.quiz-switch nav a:hover,
+.quiz-switch nav a[aria-current="page"] {
+  color: var(--primary-dark);
+  background: var(--primary-soft);
+}
+
 .listen-button {
   padding: 0 12px;
 }
