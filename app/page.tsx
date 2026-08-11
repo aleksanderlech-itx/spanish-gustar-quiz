@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
-import Link from "next/link";
 import { type Question } from "./quiz-data";
 import { availableQuestions, filterQuestions, getMissedIds, normalizeAnswer, restartSelectedHistory, scoreRound, type QuizFilters, type QuizResult } from "./quiz-logic";
 import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
@@ -39,8 +38,11 @@ const mergeHistory = (local: Result[], remote: Result[]) => {
   return [...unique.values()].sort((a, b) => a.date.localeCompare(b.date));
 };
 
+const quizIdFromLocation = (): QuizId =>
+  typeof window !== "undefined" && new URLSearchParams(window.location.search).get("quiz") === "ser-estar" ? "ser-estar" : "gustar";
+
 export default function Home() {
-  const [quizId] = useState<QuizId>(() => typeof window !== "undefined" && new URLSearchParams(window.location.search).get("quiz") === "ser-estar" ? "ser-estar" : "gustar");
+  const [quizId, setQuizId] = useState<QuizId>(quizIdFromLocation);
   const quiz = QUIZ_CONFIG[quizId];
   const { questions, forms, storageKey, filterKey } = quiz;
   const answerLabel = quizId === "ser-estar" ? "enter the missing verb" : "enter the missing object pronoun and verb";
@@ -61,6 +63,13 @@ export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
   const importRef = useRef<HTMLInputElement | null>(null);
   const inputs = useRef<Array<HTMLInputElement | null>>([]);
+
+  const switchQuiz = (nextQuizId: QuizId) => {
+    if (nextQuizId === quizId) return;
+    window.history.pushState(null, "", nextQuizId === "ser-estar" ? "/?quiz=ser-estar" : "/?quiz=gustar");
+    setQuizId(nextQuizId);
+    setHydrated(false);
+  };
 
   const regularHistory = useMemo(() => history.filter((item) => item.mode !== "review"), [history]);
   const reviewHistory = useMemo(() => history.filter((item) => item.mode === "review"), [history]);
@@ -120,6 +129,20 @@ export default function Home() {
     };
     void initialise();
   }, [filterKey, questions, storageKey]);
+
+  useEffect(() => {
+    const syncQuizFromUrl = () => {
+      const nextQuizId = quizIdFromLocation();
+      setQuizId((currentQuizId) => {
+        if (currentQuizId === nextQuizId) return currentQuizId;
+        setHydrated(false);
+        return nextQuizId;
+      });
+    };
+
+    window.addEventListener("popstate", syncQuizFromUrl);
+    return () => window.removeEventListener("popstate", syncQuizFromUrl);
+  }, []);
 
   useEffect(() => {
     const viewport = window.visualViewport;
@@ -267,10 +290,12 @@ export default function Home() {
               <span className="switch-track" aria-hidden="true"><span /></span>
             </button>
             <details className="quiz-switch">
-              <summary aria-label="Switch quiz" title="Switch quiz">⌄</summary>
+              <summary aria-label="Switch quiz" title="Switch quiz">
+                <span className="quiz-icon" aria-hidden="true"><span /><span /></span>
+              </summary>
               <nav aria-label="Other quizzes">
-                <Link href="/?quiz=gustar" aria-current={quizId === "gustar" ? "page" : undefined}>Gustar</Link>
-                <Link href="/?quiz=ser-estar" aria-current={quizId === "ser-estar" ? "page" : undefined}>Ser vs Estar</Link>
+                <button type="button" aria-current={quizId === "gustar" ? "page" : undefined} onClick={() => switchQuiz("gustar")}>Gustar</button>
+                <button type="button" aria-current={quizId === "ser-estar" ? "page" : undefined} onClick={() => switchQuiz("ser-estar")}>Ser vs Estar</button>
               </nav>
             </details>
             <button type="button" className="listen-button" onClick={speakCurrentQuestion} aria-label="Listen to the current Spanish sentence">{isSpeaking ? "Playing" : "Listen"}</button>

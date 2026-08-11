@@ -51,6 +51,10 @@ test("quiz presents one question at a time and always shows the infinitive above
   assert.match(page, /const \[answerMode, setAnswerMode\]/);
   assert.match(page, /className="choice-grid"/);
   assert.match(page, /className="listen-button"/);
+  assert.match(page, /const \[quizId, setQuizId\]/);
+  assert.match(page, /className="quiz-icon"/);
+  assert.match(page, /onClick=\{\(\) => switchQuiz\("gustar"\)\}/);
+  assert.doesNotMatch(page, /<summary[^>]*>⌄<\/summary>/);
   assert.match(page, /enter the missing object pronoun and verb/);
   assert.match(page, /Show explanation/);
   assert.match(data, /answer: `\$\{objectPronoun\} \$\{verbAnswer\}`/);
