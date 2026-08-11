@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1785754242414,
+      "tag": "0000_round_wendell_vaughn",
+      "breakpoints": true
+    }
+  ]
+}

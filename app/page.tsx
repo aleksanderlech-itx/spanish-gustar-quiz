@@ -1,0 +1,349 @@
+"use client";
+
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { ALL_QUESTIONS, VERB_FORMS, type Question } from "./quiz-data";
+import { availableQuestions, filterQuestions, getMissedIds, normalizeAnswer, restartSelectedHistory, ruleForTense, scoreRound, type QuizFilters, type QuizResult } from "./quiz-logic";
+
+type Result = QuizResult;
+type Filters = QuizFilters;
+
+const CURRENT_QUESTION_IDS = new Set(ALL_QUESTIONS.map((question) => question.id));
+
+const presentOnlyHistory = (items: Result[]) => items.flatMap((result) => {
+  const kept = result.questionIds.map((id, index) => ({ id, index })).filter(({ id }) => CURRENT_QUESTION_IDS.has(id));
+  if (!kept.length) return [];
+  const questionIds = kept.map(({ id }) => id);
+  const answers = kept.map(({ index }) => result.answers[index] ?? "");
+  const missedIds = result.missedIds.filter((id) => CURRENT_QUESTION_IDS.has(id));
+  const score = questionIds.length - missedIds.length;
+  return [{ ...result, questionIds, answers, missedIds, score, percent: Math.round((score / questionIds.length) * 100), tense: "present" as const }];
+});
+
+const STORAGE_KEY = "gustar-quiz-progress-v1";
+const FILTER_KEY = "gustar-quiz-filters-v1";
+
+const shuffle = <T,>(items: T[]) => [...items].sort(() => Math.random() - 0.5);
+const normalize = normalizeAnswer;
+
+const mergeHistory = (local: Result[], remote: Result[]) => {
+  const unique = new Map<string, Result>();
+  [...remote, ...local].forEach((item) => unique.set(`${item.date}|${item.mode ?? "regular"}|${item.questionIds.join(",")}`, item));
+  return [...unique.values()].sort((a, b) => a.date.localeCompare(b.date));
+};
+
+export default function Home() {
+  const [history, setHistory] = useState<Result[]>([]);
+  const [round, setRound] = useState<Question[]>([]);
+  const [answers, setAnswers] = useState<string[]>(Array(5).fill(""));
+  const [checked, setChecked] = useState(false);
+  const [practiceMissed, setPracticeMissed] = useState(false);
+  const [shownExplanations, setShownExplanations] = useState<Set<number>>(new Set());
+  const [hydrated, setHydrated] = useState(false);
+  const [filters, setFilters] = useState<Filters>({ level: "all", verb: "all" });
+  const [cycleComplete, setCycleComplete] = useState(false);
+  const [showHistory, setShowHistory] = useState(false);
+  const [syncState, setSyncState] = useState<"checking" | "signed-out" | "synced" | "saving" | "error">("checking");
+  const [activeQuestion, setActiveQuestion] = useState(0);
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const importRef = useRef<HTMLInputElement | null>(null);
+  const inputs = useRef<Array<HTMLInputElement | null>>([]);
+
+  const regularHistory = useMemo(() => history.filter((item) => item.mode !== "review"), [history]);
+  const reviewHistory = useMemo(() => history.filter((item) => item.mode === "review"), [history]);
+  const filteredQuestions = useMemo(() => filterQuestions(ALL_QUESTIONS, filters), [filters]);
+  const usedIds = useMemo(() => new Set(regularHistory.flatMap((item) => item.questionIds)), [regularHistory]);
+  const missedIds = useMemo(() => getMissedIds(history), [history]);
+  const filteredMissedIds = useMemo(() => {
+    const selected = new Set(filteredQuestions.map((question) => question.id));
+    return missedIds.filter((id) => selected.has(id));
+  }, [filteredQuestions, missedIds]);
+  const rule = useMemo(() => ruleForTense(), []);
+
+  const startRound = (missedOnly = practiceMissed, sourceHistory = history, sourceQuestions = filteredQuestions) => {
+    let pool = availableQuestions(sourceQuestions, sourceHistory, missedOnly);
+    if (missedOnly && pool.length === 0) {
+      missedOnly = false;
+      setPracticeMissed(false);
+      pool = availableQuestions(sourceQuestions, sourceHistory, false);
+    }
+    if (!missedOnly && pool.length === 0) { setCycleComplete(true); return; }
+    setCycleComplete(false);
+    const selected = shuffle(pool).slice(0, 5);
+    setRound(selected);
+    setAnswers(Array(selected.length).fill(""));
+    setActiveQuestion(0);
+    setShownExplanations(new Set());
+    setChecked(false);
+    setTimeout(() => inputs.current[0]?.focus(), 0);
+  };
+
+  useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    const initial = saved ? (JSON.parse(saved) as Result[]) : [];
+    const savedFilters = localStorage.getItem(FILTER_KEY);
+    const storedFilters = savedFilters ? JSON.parse(savedFilters) as Partial<Filters> : {};
+    const initialFilters: Filters = { level: storedFilters.level ?? "all", verb: storedFilters.verb ?? "all" };
+    const initialise = async () => {
+      let merged = presentOnlyHistory(initial);
+      try {
+        const response = await fetch("/api/progress", { cache: "no-store" });
+        if (response.status === 401) setSyncState("signed-out");
+        else if (response.ok) {
+          const data = await response.json() as { progress?: { history?: Result[] } | null };
+          merged = presentOnlyHistory(mergeHistory(initial, data.progress?.history ?? []));
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+          setSyncState("synced");
+          if (merged.length !== (data.progress?.history?.length ?? 0)) {
+            await fetch("/api/progress", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ history: merged, filters: initialFilters }) });
+          }
+        } else setSyncState("error");
+      } catch { setSyncState("error"); }
+      const initialQuestions = filterQuestions(ALL_QUESTIONS, initialFilters);
+      const used = new Set(merged.filter((item) => item.mode !== "review").flatMap((item) => item.questionIds));
+      const pool = initialQuestions.filter((q) => !used.has(q.id));
+      setHistory(merged); setFilters(initialFilters);
+      setRound(shuffle(pool.length ? pool : initialQuestions).slice(0, 5)); setActiveQuestion(0); setHydrated(true);
+    };
+    void initialise();
+  }, []);
+
+  useEffect(() => {
+    const viewport = window.visualViewport;
+    if (!viewport) return;
+
+    const keepActionsAboveKeyboard = () => {
+      const keyboardInset = Math.max(0, window.innerHeight - viewport.height - viewport.offsetTop);
+      document.documentElement.style.setProperty("--keyboard-inset", `${keyboardInset}px`);
+    };
+
+    keepActionsAboveKeyboard();
+    viewport.addEventListener("resize", keepActionsAboveKeyboard);
+    viewport.addEventListener("scroll", keepActionsAboveKeyboard);
+    return () => {
+      viewport.removeEventListener("resize", keepActionsAboveKeyboard);
+      viewport.removeEventListener("scroll", keepActionsAboveKeyboard);
+      document.documentElement.style.removeProperty("--keyboard-inset");
+    };
+  }, []);
+
+  const persistProgress = async (nextHistory: Result[], nextFilters = filters) => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(nextHistory));
+    if (syncState !== "synced" && syncState !== "saving") return;
+    setSyncState("saving");
+    try {
+      const response = await fetch("/api/progress", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ history: nextHistory, filters: nextFilters }) });
+      setSyncState(response.ok ? "synced" : response.status === 401 ? "signed-out" : "error");
+    } catch { setSyncState("error"); }
+  };
+
+  const correct = checked ? round.filter((q, i) => normalize(answers[i]) === q.answer).length : 0;
+  const average = regularHistory.length ? Math.round(regularHistory.reduce((sum, r) => sum + r.percent, 0) / regularHistory.length) : 0;
+  const best = regularHistory.length ? Math.max(...regularHistory.map((r) => r.percent)) : 0;
+  const completedUnique = usedIds.size;
+  const filteredSeen = filteredQuestions.filter((q) => usedIds.has(q.id)).length;
+  const weakAreas = useMemo(() => {
+    const totals = new Map<string, { attempts: number; misses: number }>();
+    const record = (key: string, missed: boolean) => { const value = totals.get(key) ?? { attempts: 0, misses: 0 }; value.attempts += 1; if (missed) value.misses += 1; totals.set(key, value); };
+    regularHistory.forEach((result) => result.questionIds.forEach((id) => {
+      const question = ALL_QUESTIONS.find((q) => q.id === id); if (!question) return;
+      const missed = result.missedIds.includes(id);
+      record(`Verb: ${question.infinitive}`, missed);
+      record(`Tense: ${question.tense}`, missed);
+      record(`Agreement: ${question.subjectNumber}`, missed);
+      record(question.isActivity ? "Subject: infinitive activity" : "Subject: noun", missed);
+      record(`Pronoun: ${question.indirectObject}`, missed);
+    }));
+    return [...totals].filter(([, value]) => value.misses).sort((a, b) => (b[1].misses / b[1].attempts) - (a[1].misses / a[1].attempts)).slice(0, 6);
+  }, [regularHistory]);
+
+  const submit = (event: FormEvent) => {
+    event.preventDefault();
+    if (checked || answers.some((answer) => !answer.trim())) return;
+    const { missedIds: missed, score, percent } = scoreRound(round, answers);
+    const result: Result = { date: new Date().toISOString(), score, percent, questionIds: round.map((q) => q.id), answers, missedIds: missed, mode: practiceMissed ? "review" : "regular", tense: round[0]?.tense };
+    const next = [...history, result];
+    setHistory(next);
+    void persistProgress(next);
+    setChecked(true);
+  };
+
+  const speakCurrentQuestion = () => {
+    if (!("speechSynthesis" in window) || !round[activeQuestion]) return;
+    window.speechSynthesis.cancel();
+    const question = round[activeQuestion];
+    const text = `${question.before} ${checked ? question.answer : "espacio"} ${question.after}`;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "es-ES";
+    utterance.onstart = () => setIsSpeaking(true);
+    utterance.onend = () => setIsSpeaking(false);
+    utterance.onerror = () => setIsSpeaking(false);
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const reset = () => {
+    if (!window.confirm("Delete all quiz history and missed answers? This cannot be undone.")) return;
+    localStorage.removeItem(STORAGE_KEY);
+    setHistory([]);
+    void persistProgress([]);
+    setPracticeMissed(false);
+    startRound(false, []);
+  };
+
+  const applyFilters = (next: Filters) => {
+    setFilters(next);
+    localStorage.setItem(FILTER_KEY, JSON.stringify(next));
+    if (syncState === "synced") void persistProgress(history, next);
+    setPracticeMissed(false);
+    const nextQuestions = filterQuestions(ALL_QUESTIONS, next);
+    startRound(false, history, nextQuestions);
+  };
+
+  const restartCycle = () => {
+    const retained = restartSelectedHistory(history, new Set(filteredQuestions.map((question) => question.id)));
+    setHistory(retained);
+    void persistProgress(retained);
+    setCycleComplete(false);
+    startRound(false, retained);
+  };
+
+  const exportProgress = () => {
+    const blob = new Blob([JSON.stringify({ version: 1, history, filters }, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a"); link.href = url; link.download = "spanish-gustar-quiz-progress.json"; link.click(); URL.revokeObjectURL(url);
+  };
+
+  const importProgress = async (file?: File) => {
+    if (!file) return;
+    try {
+      const data = JSON.parse(await file.text()) as { history?: Result[]; filters?: Filters };
+      if (!Array.isArray(data.history)) throw new Error();
+      const importedHistory = presentOnlyHistory(data.history);
+      setHistory(importedHistory); void persistProgress(importedHistory, data.filters ?? filters);
+      if (data.filters) { setFilters(data.filters); localStorage.setItem(FILTER_KEY, JSON.stringify(data.filters)); }
+      startRound(false, importedHistory, data.filters ? filterQuestions(ALL_QUESTIONS, data.filters) : ALL_QUESTIONS);
+    } catch { window.alert("This is not a valid Spanish Gustar Quiz progress file."); }
+  };
+
+  if (!hydrated || round.length === 0) return <main className="loading">Preparing your quiz…</main>;
+
+  const roundPercent = checked ? Math.round((correct / round.length) * 100) : 0;
+  const currentAnswered = Boolean(answers[activeQuestion]?.trim());
+  const canGoForward = checked || currentAnswered;
+  const isLastQuestion = activeQuestion === round.length - 1;
+
+  return (
+    <main className="app-shell">
+      <header className="hero">
+        <div className="hero-topline">
+          <p className="eyebrow">Spanish grammar practice</p>
+          <button type="button" className="listen-button" onClick={speakCurrentQuestion} aria-label="Listen to the current Spanish sentence">{isSpeaking ? "Playing…" : "Listen"}</button>
+        </div>
+        <h1>Spanish verbs that work like <em>gustar</em></h1>
+        <div className="round-meta">{practiceMissed ? "Missed-answer practice" : `Round ${regularHistory.length + (checked ? 0 : 1)}`} <span>·</span> {round.length} question{round.length === 1 ? "" : "s"}</div>
+        <div className="set-progress"><span>{filteredSeen} of {filteredQuestions.length} selected sentences completed</span><div className="progress"><span style={{ width: `${Math.max(3, (filteredSeen / Math.max(1, filteredQuestions.length)) * 100)}%` }} /></div></div>
+      </header>
+
+      <details className="filters" aria-label="Practice options">
+        <summary><strong>Filters</strong><span>{filteredQuestions.length} sentences selected</span></summary>
+        <div className="filter-fields">
+          <label>Difficulty<select value={filters.level} onChange={(event) => applyFilters({ ...filters, level: event.target.value as Filters["level"] })}><option value="all">All levels</option><option value="basic">Basic</option><option value="intermediate">Intermediate</option><option value="advanced">Advanced</option></select></label>
+          <label>Verb<select value={filters.verb} onChange={(event) => applyFilters({ ...filters, verb: event.target.value })}><option value="all">All verbs</option>{Object.keys(VERB_FORMS).map((verb) => <option value={verb} key={verb}>{verb}</option>)}</select></label>
+        </div>
+      </details>
+
+      {cycleComplete && <section className="completion-card" aria-live="polite"><p className="eyebrow">Set completed</p><h2>You completed all {filteredQuestions.length} selected sentences.</h2><p>Your results are saved. Restart this set or review the answers you missed.</p><div><button type="button" className="primary" onClick={restartCycle}>Restart selected set</button><button type="button" className="secondary" disabled={!filteredMissedIds.length} onClick={() => { setPracticeMissed(true); setCycleComplete(false); startRound(true); }}>Practise filtered missed answers</button></div></section>}
+
+      {!cycleComplete && checked && <section className="result-card" aria-live="polite">
+        <div className="score-ring"><strong>{roundPercent}%</strong><span>{correct}/{round.length} correct</span></div>
+        <div><p className="result-label">{practiceMissed ? "Review complete" : "Round complete"}</p><h2>{roundPercent === 100 ? "Excellent work." : roundPercent >= 80 ? "Very good." : roundPercent >= 60 ? "Good start." : "Keep practising."}</h2><p>{practiceMissed ? "Correct answers leave your missed list. Any remaining mistakes stay ready for another review." : "Review any corrections below, then continue with new sentences."}</p></div>
+      </section>}
+
+      {!cycleComplete && <form onSubmit={submit} className="quiz-form">
+        <div className="question-progress" role="progressbar" aria-valuemin={1} aria-valuemax={round.length} aria-valuenow={activeQuestion + 1} aria-label={`Question ${activeQuestion + 1} of ${round.length}`}>
+          <strong>{checked ? "Review" : "Question"} {activeQuestion + 1} of {round.length}</strong>
+          <div>{round.map((question, index) => <span key={question.id} className={`${index === activeQuestion ? "active" : ""} ${answers[index]?.trim() ? "answered" : ""} ${checked && normalize(answers[index]) === question.answer ? "correct" : ""} ${checked && normalize(answers[index]) !== question.answer ? "wrong" : ""}`} />)}</div>
+        </div>
+        <div className="questions">
+          {round.map((question, index) => {
+            const isCorrect = checked && normalize(answers[index]) === question.answer;
+            const isWrong = checked && !isCorrect;
+            return <article hidden={index !== activeQuestion} aria-hidden={index !== activeQuestion} className={`question-card ${isCorrect ? "correct" : ""} ${isWrong ? "wrong" : ""}`} key={question.id}>
+              <span className="number">{index + 1}</span>
+              <div className="sentence-wrap">
+                <label htmlFor={`answer-${index}`}><span className="sr-only">Question {index + 1}, enter the missing object pronoun and verb</span><span>{question.before} </span></label>
+                <input
+                  id={`answer-${index}`}
+                  ref={(node) => { inputs.current[index] = node; }}
+                  value={answers[index]}
+                  disabled={checked}
+                  autoComplete="off"
+                  spellCheck={false}
+                  onChange={(event) => setAnswers((current) => current.map((value, i) => i === index ? event.target.value : value))}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" && !checked && index < round.length - 1 && answers[index]?.trim()) {
+                      event.preventDefault();
+                      setActiveQuestion(index + 1);
+                      setTimeout(() => inputs.current[index + 1]?.focus(), 0);
+                    }
+                  }}
+                  aria-invalid={isWrong || undefined}
+                  placeholder="pronoun + verb"
+                />
+                <span>{question.after}</span>
+                {isWrong && <p className="feedback"><strong>Correct: {question.answer}.</strong></p>}
+                {isCorrect && <p className="feedback">Correct.</p>}
+                <div className="verb-row">
+                  <span className="verb-chip">{question.infinitive}</span>
+                </div>
+                <div className="translation-control">
+                  <p className="translation-text" lang="en">{question.translations.en}</p>
+                  <button
+                    type="button"
+                    role="switch"
+                    aria-checked={shownExplanations.has(question.id)}
+                    className="translation-switch"
+                    onClick={() => setShownExplanations((current) => {
+                      const next = new Set(current);
+                      if (next.has(question.id)) next.delete(question.id); else next.add(question.id);
+                      return next;
+                    })}
+                  >
+                    <span className="switch-track"><span /></span>
+                    {shownExplanations.has(question.id) ? "Hide explanation" : "Show explanation"}
+                  </button>
+                  {shownExplanations.has(question.id) && <p className="explanation-text">{question.explanation}</p>}
+                </div>
+              </div>
+            </article>;
+          })}
+        </div>
+
+        <div className="action-bar">
+          <button type="button" className="back-button" disabled={activeQuestion === 0} onClick={() => setActiveQuestion((index) => Math.max(0, index - 1))}>Back</button>
+          <div className="action-copy">{checked ? `${correct} of ${round.length} correct` : `${answers.filter((answer) => answer.trim()).length} of ${round.length} answered`}</div>
+          {!checked && !isLastQuestion && <button type="button" className="primary" disabled={!canGoForward} onClick={() => { setActiveQuestion((index) => Math.min(round.length - 1, index + 1)); setTimeout(() => inputs.current[activeQuestion + 1]?.focus(), 0); }}>Next</button>}
+          {!checked && isLastQuestion && <button className="primary" disabled={!currentAnswered || answers.some((answer) => !answer.trim())}>Check answers</button>}
+          {checked && !isLastQuestion && <button type="button" className="primary" onClick={() => setActiveQuestion((index) => Math.min(round.length - 1, index + 1))}>Next answer</button>}
+          {checked && isLastQuestion && <button type="button" className="primary" onClick={() => startRound()}>{practiceMissed && filteredMissedIds.length ? "Continue missed practice" : "Next selected sentences"}</button>}
+        </div>
+      </form>}
+
+      <section className="rule-card">
+        <span className="rule-mark" />
+        <div><strong>{rule.title}</strong><p>{rule.body}</p></div>
+        <div className="examples"><span>{rule.singular}</span><span>{rule.plural}</span></div>
+      </section>
+
+      <section className="stats">
+        <div className="stats-heading"><div><p className="eyebrow">Your progress</p><h2>Practice history</h2></div><button className="text-button" onClick={reset}>Reset progress</button></div>
+        <div className="stat-grid"><div><strong>{regularHistory.length}</strong><span>Regular rounds</span></div><div><strong>{average}%</strong><span>Regular average</span></div><div><strong>{best}%</strong><span>Regular best</span></div><div><strong>{completedUnique}/{ALL_QUESTIONS.length}</strong><span>Sentences seen</span></div></div>
+        <div className="review-summary"><span><strong>{reviewHistory.length}</strong> review rounds</span><span><strong>{missedIds.length}</strong> answers still to master</span></div>
+        <div className={`practice-row ${practiceMissed ? "active-practice" : ""}`}><div><strong>Incorrect-answer practice</strong><span>{filteredMissedIds.length ? `${filteredMissedIds.length} missed sentence${filteredMissedIds.length === 1 ? "" : "s"} match the selected filters` : missedIds.length ? `No missed answers match these filters (${missedIds.length} saved overall)` : "No missed sentences waiting"}</span></div><button type="button" className="secondary" disabled={!filteredMissedIds.length || practiceMissed} onClick={() => { setPracticeMissed(true); startRound(true); }}>{practiceMissed ? "Practising missed answers" : "Practise filtered missed answers"}</button></div>
+        <div className="insights"><div><strong>Weak areas</strong>{weakAreas.length ? weakAreas.map(([area, value]) => <span key={area}>{area}: {Math.round((value.misses / value.attempts) * 100)}% missed ({value.misses}/{value.attempts})</span>) : <span>No recurring mistakes yet.</span>}</div><div className="data-actions"><strong>Progress synchronization</strong><span>{syncState === "signed-out" ? "Sign in with ChatGPT to keep progress synchronized across your devices." : syncState === "saving" ? "Saving your latest progress…" : syncState === "synced" ? "Progress is synchronized automatically across signed-in devices." : syncState === "checking" ? "Checking synchronization…" : "Synchronization is temporarily unavailable. Your progress is still saved in this browser."}</span><div>{syncState === "signed-out" && <a className="text-button" href="/signin-with-chatgpt?return_to=%2F">Sign in with ChatGPT</a>}<button type="button" className="text-button" onClick={exportProgress}>Download backup</button><button type="button" className="text-button" onClick={() => importRef.current?.click()}>Import backup</button><input className="sr-only" ref={importRef} type="file" accept="application/json" onChange={(event) => importProgress(event.target.files?.[0])} /></div></div></div>
+        <button type="button" className="history-toggle" onClick={() => setShowHistory((value) => !value)}>{showHistory ? "Hide detailed history" : "Show detailed history"}</button>
+        {showHistory && <div className="history-list">{[...history].reverse().map((result, index) => <article key={`${result.date}-${index}`}><div><strong>{result.mode === "review" ? "Review" : "Regular round"} · {result.percent}%</strong><span>{new Date(result.date).toLocaleString()}</span></div><ul>{result.questionIds.map((id, questionIndex) => { const question = ALL_QUESTIONS.find((q) => q.id === id); if (!question) return null; const missed = result.missedIds.includes(id); return <li className={missed ? "missed" : ""} key={id}><span>{question.before} <b>{question.answer}</b> {question.after}</span><small>Your answer: {result.answers[questionIndex] || "No answer"}</small></li>; })}</ul></article>)}</div>}
+      </section>
+      <footer>{ALL_QUESTIONS.length} present-tense sentences · English translations · {syncState === "synced" ? "Progress synchronized" : "Progress saved in this browser"}</footer>
+    </main>
+  );
+}

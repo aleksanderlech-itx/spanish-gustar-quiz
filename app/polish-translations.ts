@@ -1,0 +1,40 @@
+const groups = [
+  [
+    "Marcie podoba się kolumbijska kawa.", "Lubię koncerty rockowe.", "Lubisz podróżować pociągiem?", "Podoba nam się ta hiszpańska piosenka.", "Moi rodzice lubią małe miasta.", "On lub ona nie lubi wcześnie wstawać.", "Juan lubi pikantne jedzenie.", "Podobają się państwu te ćwiczenia?", "Lubią chodzić po górach.", "Lubię stare filmy.", "Laura lubi tańczyć salsę.", "Nie lubimy dużych hoteli.", "Podoba mu lub jej się ta niebieska kurtka?", "Dzieci lubią krótkie opowiadania.", "Lubisz gotować dla przyjaciół.", "Lubię muzykę na żywo.", "Pedro i Ana lubią trasy rowerowe.", "Lubimy uczyć się języków.", "Podoba im się nowa restauracja?", "Nie podobają ci się te czarne buty.", "Lubi pan lub pani czytać przed snem.", "Lubię spokojne niedziele.", "Carlos lubi czeskie piwo.", "Lubimy długie wycieczki.", "Lubisz pracować z domu?", "Podoba im się ta dzielnica.", "Nie lubię nocnych lotów.", "Pablo lubi pływać w morzu.", "Lubią państwo paellę?", "Podobają im się te fotografie.", "Lubimy wychodzić w piątki.", "Podoba ci się klimat Hiszpanii.", "Sofía lubi książki historyczne.", "Lubię jeździć spokojnymi drogami.", "Podobają mu lub jej się lekcje hiszpańskiego?"
+  ],
+  [
+    "Uwielbiam ten zespół.", "Elena uwielbia lokalne targi.", "Uwielbiamy podróżować bez pośpiechu.", "Uwielbiasz te tapas?", "Dzieci uwielbiają czekoladę.", "On lub ona uwielbia tańczyć flamenco.", "Uwielbiają państwo północne plaże.", "Uwielbiam gitarę elektryczną.", "Uwielbiają piesze wędrówki.", "Uwielbiamy białe miasteczka?", "Julia uwielbia tę powieść.", "Uwielbiasz długie śniadania.", "Moi przyjaciele uwielbiają wspólnie gotować.", "Uwielbiam góry.", "Uwielbia pan lub pani sztukę nowoczesną.", "Uwielbiamy słuchać muzyki na żywo.", "Uwielbiają te widoki?", "Roberto uwielbia starą architekturę.", "Uwielbiają państwo podróże rowerowe.", "Uwielbiasz uczyć się nowych słów."
+  ],
+  [
+    "Interesuje mnie historia Hiszpanii.", "Daniela interesują języki.", "Interesuje nas poznawanie innych kultur.", "Interesują cię te wiadomości?", "Interesuje ich kolarstwo.", "Nie interesuje go lub jej rozmowa o polityce.", "Interesują państwa małe muzea.", "Interesuje mnie technologia.", "Interesuje ich poznawanie nowych ludzi.", "Interesują nas te kursy?", "Paulę interesuje fotografia.", "Interesują cię filmy dokumentalne.", "Moich kolegów interesuje doskonalenie hiszpańskiego.", "Interesują mnie historyczne trasy.", "Interesuje pana lub panią nowy projekt.", "Interesuje nas zrozumienie gramatyki.", "Interesują ich te propozycje?", "Tomása interesuje ekonomia.", "Interesują państwa sporty górskie.", "Interesuje cię czytanie po hiszpańsku."
+  ],
+  [
+    "Przeszkadza mi hałas z ulicy.", "Sarze przeszkadzają jaskrawe światła.", "Przeszkadza nam długie czekanie.", "Przeszkadzają ci te komentarze?", "Przeszkadza im dym.", "Nie przeszkadza mu lub jej praca w soboty.", "Przeszkadzają państwu wysokie ceny.", "Przeszkadza mi zbyt głośna muzyka.", "Przeszkadza im tak wczesne wstawanie.", "Przeszkadzają nam te przerwy?", "Davidowi przeszkadza zimno.", "Przeszkadzają ci loty z przesiadkami.", "Moim sąsiadom przeszkadza słuchanie psa w nocy.", "Przeszkadzają mi ciemne pokoje.", "Przeszkadza panu lub pani ten zapach?"
+  ],
+  [
+    "Liczy się dla mnie jakość obsługi.", "Luisowi zależy na drobnych szczegółach.", "Zależy nam na przybyciu na czas.", "Czy te różnice mają dla ciebie znaczenie?", "Liczy się dla nich końcowy wynik.", "Nie ma dla niego lub niej znaczenia praca w pojedynkę.", "Elastyczne godziny są dla państwa ważne.", "Liczy się dla mnie opinia rodziny.", "Zależy im na aktywności.", "Czy te zmiany mają dla nas znaczenie?", "Evie zależy na środowisku.", "Warunki podróży są dla ciebie ważne.", "Moim kolegom zależy na dobrym zakończeniu projektu.", "Liczą się dla mnie jasne odpowiedzi.", "Czy ta decyzja ma dla pana lub pani znaczenie?"
+  ],
+  [
+    "Brakuje mi biletu do Madrytu.", "Clarze brakuje dwóch dokumentów.", "Pozostało nam dokończyć ostatnie ćwiczenie.", "Brakuje ci tych stron?", "Brakuje im trochę czasu.", "Musi jeszcze więcej ćwiczyć.", "Brakuje państwu biletów na koncert.", "Brakuje mi dobrego plecaka.", "Pozostało im odwiedzić dwa miasta.", "Brakuje nam kilku krzeseł?"
+  ],
+  [
+    "Został mi tydzień urlopu.", "Raúlowi zostały trzy pytania.", "Pozostało nam zarezerwować hotel.", "Czy te spodnie dobrze na tobie leżą?", "Zostało im mało pieniędzy.", "Pozostało mu lub jej przygotować kolację.", "Zostały państwu dwa wolne dni.", "Ta koszula dobrze na mnie leży.", "Pozostało im przejechać dziesięć kilometrów.", "Zostało nam wystarczająco dużo butelek wody?"
+  ],
+  [
+    "Bolą mnie plecy.", "Carmen bolą kolana.", "Chodzenie w tych butach sprawia nam ból.", "Bolą cię ramiona?", "Boli ich głowa.", "Wchodzenie po schodach sprawia mu lub jej ból.", "Bolą państwa stopy.", "Boli mnie prawa ręka.", "Wykonywanie tego ruchu sprawia im ból.", "Bolą nas nogi po bieganiu?", "Andrésa boli gardło.", "Bolą cię palce.", "Spanie na podłodze sprawia ból moim przyjaciołom.", "Bolą mnie nadgarstki.", "Boli pana lub panią szyja?"
+  ],
+  [
+    "Ten pomysł wydaje mi się interesujący.", "Te hotele wydają się Laurze drogie.", "Codzienne ćwiczenie wydaje nam się przydatne.", "Czy te instrukcje wydają ci się jasne?", "Ta propozycja wydaje im się dobra.", "Prowadzenie nocą wydaje mu lub jej się trudne.", "Ćwiczenia wydają się państwu długie.", "To rozwiązanie wydaje mi się idealne.", "Wcześniejsze wyjście wydaje im się lepsze.", "Czy te odpowiedzi wydają nam się poprawne?"
+  ]
+];
+
+export const POLISH_TRANSLATIONS = groups.flat();
+
+export const POLISH_TENSE_TRANSLATIONS = {
+  past: [
+    "Wczoraj Marcie spodobała się kolumbijska kawa.", "Wczoraj podobały mi się koncerty rockowe.", "Wczoraj uwielbiałem ten zespół.", "Wczoraj Elena uwielbiała lokalne targi.", "Wczoraj interesowała mnie historia Hiszpanii.", "Wczoraj Daniela interesowały języki.", "Wczoraj przeszkadzał mi hałas z ulicy.", "Wczoraj Sarze przeszkadzały jaskrawe światła.", "Wczoraj liczyła się dla mnie jakość obsługi.", "Wczoraj Luisowi zależało na drobnych szczegółach.", "Wczoraj brakowało mi biletu do Madrytu.", "Wczoraj Clarze brakowało dwóch dokumentów.", "Wczoraj został mi tydzień urlopu.", "Wczoraj Raúlowi zostały trzy pytania.", "Wczoraj bolały mnie plecy.", "Wczoraj Carmen bolały kolana.", "Wczoraj ten pomysł wydał mi się interesujący.", "Wczoraj te hotele wydały się Laurze drogie.", "Wczoraj zachwyciło nas podróżowanie bez pośpiechu.", "Wczoraj zainteresowało nas poznawanie innych kultur.", "Wczoraj przeszkadzało nam długie czekanie.", "Wczoraj zależało nam na przybyciu na czas.", "Wczoraj pozostało nam dokończyć ostatnie ćwiczenie.", "Wczoraj pozostało nam zarezerwować hotel.", "Wczoraj chodzenie w tych butach sprawiało nam ból.", "Wczoraj codzienne ćwiczenie wydało nam się przydatne.", "Wczoraj Marcie spodobała się kolumbijska kawa."
+  ],
+  future: [
+    "Jutro Marcie spodoba się kolumbijska kawa.", "Jutro spodobają mi się koncerty rockowe.", "Jutro zachwyci mnie ten zespół.", "Jutro Elenę zachwycą lokalne targi.", "Jutro zainteresuje mnie historia Hiszpanii.", "Jutro Daniela zainteresują języki.", "Jutro będzie mi przeszkadzał hałas z ulicy.", "Jutro Sarze będą przeszkadzały jaskrawe światła.", "Jutro będzie się dla mnie liczyć jakość obsługi.", "Jutro Luisowi będzie zależeć na drobnych szczegółach.", "Jutro będzie mi brakować biletu do Madrytu.", "Jutro Clarze będzie brakować dwóch dokumentów.", "Jutro zostanie mi tydzień urlopu.", "Jutro Raúlowi zostaną trzy pytania.", "Jutro będą mnie boleć plecy.", "Jutro Carmen będą boleć kolana.", "Jutro ten pomysł wyda mi się interesujący.", "Jutro te hotele wydadzą się Laurze drogie.", "Jutro zachwyci nas podróżowanie bez pośpiechu.", "Jutro zainteresuje nas poznawanie innych kultur.", "Jutro będzie nam przeszkadzać długie czekanie.", "Jutro będzie nam zależeć na przybyciu na czas.", "Jutro pozostanie nam dokończyć ostatnie ćwiczenie.", "Jutro pozostanie nam zarezerwować hotel.", "Jutro chodzenie w tych butach będzie sprawiać nam ból.", "Jutro codzienne ćwiczenie wyda nam się przydatne.", "Jutro Marcie spodoba się kolumbijska kawa."
+  ]
+};
