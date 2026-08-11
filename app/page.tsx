@@ -25,7 +25,7 @@ const normalize = normalizeAnswer;
 const PRONOUNS = ["me", "te", "le", "nos", "les"];
 
 const answerChoicesFor = (question: Question, forms: Record<string, [string, string]>) => {
-  if (question.infinitive === "ser / estar") return ["ser", "estar"];
+  if (question.infinitive === "ser / estar") return [question.answer, question.objectPronoun].filter(Boolean);
   const choices = new Set<string>([question.answer]);
   const verbForms = forms[question.infinitive] ?? [question.verbAnswer, question.verbAnswer];
   choices.add(`${question.objectPronoun} ${verbForms.find((form) => form !== question.verbAnswer) ?? question.verbAnswer}`);
