@@ -24,6 +24,15 @@ const FILTER_KEY = "gustar-quiz-filters-v1";
 
 const shuffle = <T,>(items: T[]) => [...items].sort(() => Math.random() - 0.5);
 const normalize = normalizeAnswer;
+const PRONOUNS = ["me", "te", "le", "nos", "les"];
+
+const answerChoicesFor = (question: Question) => {
+  const choices = new Set<string>([question.answer]);
+  const forms = VERB_FORMS[question.infinitive] ?? [question.verbAnswer, question.verbAnswer];
+  choices.add(`${question.objectPronoun} ${forms.find((form) => form !== question.verbAnswer) ?? question.verbAnswer}`);
+  PRONOUNS.filter((pronoun) => pronoun !== question.objectPronoun).forEach((pronoun) => choices.add(`${pronoun} ${question.verbAnswer}`));
+  return [...choices].slice(0, 4);
+};
 
 const mergeHistory = (local: Result[], remote: Result[]) => {
   const unique = new Map<string, Result>();
@@ -45,6 +54,8 @@ export default function Home() {
   const [syncState, setSyncState] = useState<"checking" | "signed-out" | "synced" | "saving" | "error">("checking");
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [answerMode, setAnswerMode] = useState<"choose" | "type">("type");
+  const [darkMode, setDarkMode] = useState(false);
   const importRef = useRef<HTMLInputElement | null>(null);
   const inputs = useRef<Array<HTMLInputElement | null>>([]);
 
@@ -125,6 +136,11 @@ export default function Home() {
       document.documentElement.style.removeProperty("--keyboard-inset");
     };
   }, []);
+
+  useEffect(() => {
+    document.body.classList.toggle("dark", darkMode);
+    return () => document.body.classList.remove("dark");
+  }, [darkMode]);
 
   const persistProgress = async (nextHistory: Result[], nextFilters = filters) => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(nextHistory));
@@ -235,10 +251,24 @@ export default function Home() {
     <main className="app-shell">
       <header className="hero">
         <div className="hero-topline">
-          <p className="eyebrow">Spanish grammar practice</p>
-          <button type="button" className="listen-button" onClick={speakCurrentQuestion} aria-label="Listen to the current Spanish sentence">{isSpeaking ? "Playing…" : "Listen"}</button>
+          <div className="brand">
+            <span className="brand-mark">ES</span>
+            <div>
+              <p className="brand-title">Spanish Quiz Studio</p>
+              <p className="brand-subtitle">Reusable practice engine</p>
+            </div>
+          </div>
+          <div className="header-actions">
+            <button type="button" className="mode-switch" aria-pressed={darkMode} onClick={() => setDarkMode((value) => !value)}>
+              Dark
+              <span className="switch-track" aria-hidden="true"><span /></span>
+            </button>
+            <button type="button" className="listen-button" onClick={speakCurrentQuestion} aria-label="Listen to the current Spanish sentence">{isSpeaking ? "Playing" : "Listen"}</button>
+          </div>
         </div>
-        <h1>Spanish verbs that work like <em>gustar</em></h1>
+        <p className="eyebrow">Practice engine</p>
+        <h1>Build the sentence, prove the rule.</h1>
+        <p className="hero-copy">A topic-neutral quiz shell for Spanish patterns. Swap the lesson, keep the round flow: prompt, answer, explanation, review, and progress.</p>
         <div className="round-meta">{practiceMissed ? "Missed-answer practice" : `Round ${regularHistory.length + (checked ? 0 : 1)}`} <span>·</span> {round.length} question{round.length === 1 ? "" : "s"}</div>
         <div className="set-progress"><span>{filteredSeen} of {filteredQuestions.length} selected sentences completed</span><div className="progress"><span style={{ width: `${Math.max(3, (filteredSeen / Math.max(1, filteredQuestions.length)) * 100)}%` }} /></div></div>
       </header>
@@ -263,38 +293,60 @@ export default function Home() {
           <strong>{checked ? "Review" : "Question"} {activeQuestion + 1} of {round.length}</strong>
           <div>{round.map((question, index) => <span key={question.id} className={`${index === activeQuestion ? "active" : ""} ${answers[index]?.trim() ? "answered" : ""} ${checked && normalize(answers[index]) === question.answer ? "correct" : ""} ${checked && normalize(answers[index]) !== question.answer ? "wrong" : ""}`} />)}</div>
         </div>
+        <div className="answer-mode" aria-label="Answer mode">
+          <button type="button" className={answerMode === "choose" ? "active" : ""} onClick={() => setAnswerMode("choose")}>Choose</button>
+          <button type="button" className={answerMode === "type" ? "active" : ""} onClick={() => setAnswerMode("type")}>Type</button>
+        </div>
         <div className="questions">
           {round.map((question, index) => {
             const isCorrect = checked && normalize(answers[index]) === question.answer;
             const isWrong = checked && !isCorrect;
+            const answerChoices = answerChoicesFor(question);
             return <article hidden={index !== activeQuestion} aria-hidden={index !== activeQuestion} className={`question-card ${isCorrect ? "correct" : ""} ${isWrong ? "wrong" : ""}`} key={question.id}>
               <span className="number">{index + 1}</span>
               <div className="sentence-wrap">
                 <label htmlFor={`answer-${index}`}><span className="sr-only">Question {index + 1}, enter the missing object pronoun and verb</span><span>{question.before} </span></label>
-                <input
-                  id={`answer-${index}`}
-                  ref={(node) => { inputs.current[index] = node; }}
-                  value={answers[index]}
-                  disabled={checked}
-                  autoComplete="off"
-                  spellCheck={false}
-                  onChange={(event) => setAnswers((current) => current.map((value, i) => i === index ? event.target.value : value))}
-                  onKeyDown={(event) => {
-                    if (event.key === "Enter" && !checked && index < round.length - 1 && answers[index]?.trim()) {
-                      event.preventDefault();
-                      setActiveQuestion(index + 1);
-                      setTimeout(() => inputs.current[index + 1]?.focus(), 0);
-                    }
-                  }}
-                  aria-invalid={isWrong || undefined}
-                  placeholder="pronoun + verb"
-                />
+                {answerMode === "type" && <input
+                    id={`answer-${index}`}
+                    ref={(node) => { inputs.current[index] = node; }}
+                    value={answers[index]}
+                    disabled={checked}
+                    autoComplete="off"
+                    spellCheck={false}
+                    onChange={(event) => setAnswers((current) => current.map((value, i) => i === index ? event.target.value : value))}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" && !checked && index < round.length - 1 && answers[index]?.trim()) {
+                        event.preventDefault();
+                        setActiveQuestion(index + 1);
+                        setTimeout(() => inputs.current[index + 1]?.focus(), 0);
+                      }
+                    }}
+                    aria-invalid={isWrong || undefined}
+                    placeholder="pronoun + verb"
+                  />}
+                {answerMode === "choose" && <span className={`answer-slot ${answers[index] ? "filled" : ""} ${isCorrect ? "correct" : ""} ${isWrong ? "wrong" : ""}`}>{answers[index] || "pronoun + verb"}</span>}
                 <span>{question.after}</span>
                 {isWrong && <p className="feedback"><strong>Correct: {question.answer}.</strong></p>}
                 {isCorrect && <p className="feedback">Correct.</p>}
                 <div className="verb-row">
                   <span className="verb-chip">{question.infinitive}</span>
                 </div>
+                {answerMode === "choose" && <div className="choice-grid" aria-label={`Answer choices for question ${index + 1}`}>
+                  {answerChoices.map((choice) => {
+                    const selected = answers[index] === choice;
+                    const correctChoice = checked && choice === question.answer;
+                    const wrongChoice = checked && selected && choice !== question.answer;
+                    return <button
+                      type="button"
+                      key={choice}
+                      className={`${selected ? "selected" : ""} ${correctChoice ? "correct" : ""} ${wrongChoice ? "wrong" : ""}`}
+                      disabled={checked}
+                      onClick={() => setAnswers((current) => current.map((value, i) => i === index ? choice : value))}
+                    >
+                      {choice}
+                    </button>;
+                  })}
+                </div>}
                 <div className="translation-control">
                   <p className="translation-text" lang="en">{question.translations.en}</p>
                   <button
