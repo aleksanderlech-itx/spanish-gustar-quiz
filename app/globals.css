@@ -705,7 +705,7 @@ h1 em {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  min-height: 40px;
+  min-height: 44px;
   padding: 4px 6px 4px 0;
   border: 0;
   color: var(--muted);

@@ -35,11 +35,11 @@ test("renders development preview metadata", async () => {
 
 test("mobile quiz design keeps the answer field and actions inside the viewport", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
-  assert.match(css, /\.sentence-wrap input[^}]*max-width:100%/s);
-  assert.match(css, /@media \(max-width:760px\)[\s\S]*\.sentence-wrap input[^}]*width:100%/);
-  assert.match(css, /@media \(max-width:760px\)[\s\S]*\.action-bar[^}]*position:fixed/);
-  assert.match(css, /@media \(max-width:760px\)[\s\S]*\.action-bar[^}]*bottom:var\(--keyboard-inset\)/);
-  assert.match(css, /\.translation-switch[^}]*min-height:44px/);
+  assert.match(css, /\.sentence-wrap input[^}]*max-width:\s*100%/s);
+  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*\.sentence-wrap input[^}]*width:\s*100%/);
+  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*\.action-bar[^}]*position:\s*fixed/);
+  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*\.action-bar[^}]*bottom:\s*var\(--keyboard-inset\)/);
+  assert.match(css, /\.translation-switch[^}]*min-height:\s*44px/);
 });
 
 test("quiz presents one question at a time and always shows the infinitive above translation", async () => {
@@ -47,7 +47,9 @@ test("quiz presents one question at a time and always shows the infinitive above
   const data = await readFile(new URL("../app/quiz-data.ts", import.meta.url), "utf8");
   assert.match(page, /hidden=\{index !== activeQuestion\}/);
   assert.match(page, /Question"\} \{activeQuestion \+ 1\} of \{round\.length\}/);
-  assert.match(page, /<div className="verb-row">\s*<span className="verb-chip">\{question\.infinitive\}<\/span>\s*<\/div>\s*<div className="translation-control">/);
+  assert.match(page, /<div className="verb-row">\s*<span className="verb-chip">\{question\.infinitive\}<\/span>\s*<\/div>[\s\S]*<div className="translation-control">/);
+  assert.match(page, /const \[answerMode, setAnswerMode\]/);
+  assert.match(page, /className="choice-grid"/);
   assert.match(page, /className="listen-button"/);
   assert.match(page, /enter the missing object pronoun and verb/);
   assert.match(page, /Show explanation/);
