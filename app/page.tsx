@@ -63,6 +63,7 @@ export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
   const importRef = useRef<HTMLInputElement | null>(null);
   const inputs = useRef<Array<HTMLInputElement | null>>([]);
+  const activeQuestionCard = useRef<HTMLElement | null>(null);
   const [choiceSets, setChoiceSets] = useState<Record<number, string[]>>({});
 
   const switchQuiz = (nextQuizId: QuizId) => {
@@ -151,9 +152,15 @@ export default function Home() {
     const viewport = window.visualViewport;
     if (!viewport) return;
 
+    const scrollQuestionToTop = () => {
+      if (document.activeElement?.tagName !== "INPUT") return;
+      activeQuestionCard.current?.scrollIntoView({ block: "start", behavior: "smooth" });
+    };
+
     const keepActionsAboveKeyboard = () => {
       const keyboardInset = Math.max(0, window.innerHeight - viewport.height - viewport.offsetTop);
       document.documentElement.style.setProperty("--keyboard-inset", `${keyboardInset}px`);
+      if (keyboardInset > 100) window.requestAnimationFrame(scrollQuestionToTop);
     };
 
     keepActionsAboveKeyboard();
@@ -301,7 +308,7 @@ export default function Home() {
                 <button type="button" aria-current={quizId === "ser-estar" ? "page" : undefined} onClick={() => switchQuiz("ser-estar")}>Ser vs Estar</button>
               </nav>
             </details>
-            <button type="button" className="listen-button" onClick={speakCurrentQuestion} aria-label="Listen to the current Spanish sentence">{isSpeaking ? "Playing" : "Listen"}</button>
+            <button type="button" className="listen-button" onClick={speakCurrentQuestion} aria-label="Listen to the current Spanish sentence"><span className="listen-icon" aria-hidden="true" />{isSpeaking ? "Playing" : "Listen"}</button>
           </div>
         </div>
         <p className="eyebrow">{quiz.eyebrow}</p>
@@ -340,7 +347,7 @@ export default function Home() {
             const isCorrect = checked && normalize(answers[index]) === question.answer;
             const isWrong = checked && !isCorrect;
             const answerChoices = choiceSets[question.id] ?? answerChoicesFor(question, forms);
-            return <article hidden={index !== activeQuestion} aria-hidden={index !== activeQuestion} className={`question-card ${isCorrect ? "correct" : ""} ${isWrong ? "wrong" : ""}`} key={question.id}>
+            return <article ref={index === activeQuestion ? activeQuestionCard : undefined} hidden={index !== activeQuestion} aria-hidden={index !== activeQuestion} className={`question-card ${isCorrect ? "correct" : ""} ${isWrong ? "wrong" : ""}`} key={question.id}>
               <span className="number">{index + 1}</span>
               <div className="sentence-wrap">
                 <label htmlFor={`answer-${index}`}><span className="sr-only">Question {index + 1}, {answerLabel}</span><span>{question.before} </span></label>

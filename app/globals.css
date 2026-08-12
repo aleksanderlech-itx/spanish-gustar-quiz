@@ -269,7 +269,44 @@ p {
 }
 
 .listen-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
   padding: 0 12px;
+}
+
+.listen-icon {
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+}
+
+.listen-icon::before {
+  content: "";
+  position: absolute;
+  left: 1px;
+  top: 5px;
+  width: 5px;
+  height: 7px;
+  border-radius: 1px;
+  background: currentColor;
+}
+
+.listen-icon::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 3px;
+  width: 8px;
+  height: 10px;
+  border: 2px solid currentColor;
+  border-left: 0;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-radius: 0 10px 10px 0;
 }
 
 .mode-switch {
@@ -1200,9 +1237,11 @@ footer {
 
   .listen-button {
     width: 42px;
-    overflow: hidden;
     padding: 0;
-    color: transparent;
+  }
+
+  .listen-button::before {
+    content: none;
   }
 
   .listen-button::before {
