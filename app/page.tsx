@@ -24,12 +24,12 @@ const normalize = normalizeAnswer;
 const PRONOUNS = ["me", "te", "le", "nos", "les"];
 
 const answerChoicesFor = (question: Question, forms: Record<string, [string, string]>) => {
-  if (question.infinitive === "ser / estar") return [question.answer, question.objectPronoun].filter(Boolean);
+  if (question.infinitive === "ser / estar") return shuffle([question.answer, question.objectPronoun].filter(Boolean));
   const choices = new Set<string>([question.answer]);
   const verbForms = forms[question.infinitive] ?? [question.verbAnswer, question.verbAnswer];
   choices.add(`${question.objectPronoun} ${verbForms.find((form) => form !== question.verbAnswer) ?? question.verbAnswer}`);
   PRONOUNS.filter((pronoun) => pronoun !== question.objectPronoun).forEach((pronoun) => choices.add(`${pronoun} ${question.verbAnswer}`));
-  return [...choices].slice(0, 4);
+  return shuffle([...choices].slice(0, 4));
 };
 
 const mergeHistory = (local: Result[], remote: Result[]) => {
@@ -63,6 +63,7 @@ export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
   const importRef = useRef<HTMLInputElement | null>(null);
   const inputs = useRef<Array<HTMLInputElement | null>>([]);
+  const [choiceSets, setChoiceSets] = useState<Record<number, string[]>>({});
 
   const switchQuiz = (nextQuizId: QuizId) => {
     if (nextQuizId === quizId) return;
@@ -94,6 +95,7 @@ export default function Home() {
     const selected = shuffle(pool).slice(0, 5);
     setRound(selected);
     setAnswers(Array(selected.length).fill(""));
+    setChoiceSets(Object.fromEntries(selected.map((question) => [question.id, answerChoicesFor(question, forms)])));
     setActiveQuestion(0);
     setShownExplanations(new Set());
     setChecked(false);
@@ -124,11 +126,12 @@ export default function Home() {
       const initialQuestions = filterQuestions(questions, initialFilters);
       const used = new Set(merged.filter((item) => item.mode !== "review").flatMap((item) => item.questionIds));
       const pool = initialQuestions.filter((q) => !used.has(q.id));
+      const selected = shuffle(pool.length ? pool : initialQuestions).slice(0, 5);
       setHistory(merged); setFilters(initialFilters);
-      setRound(shuffle(pool.length ? pool : initialQuestions).slice(0, 5)); setActiveQuestion(0); setHydrated(true);
+      setRound(selected); setChoiceSets(Object.fromEntries(selected.map((question) => [question.id, answerChoicesFor(question, forms)]))); setActiveQuestion(0); setHydrated(true);
     };
     void initialise();
-  }, [filterKey, questions, storageKey]);
+  }, [filterKey, forms, questions, storageKey]);
 
   useEffect(() => {
     const syncQuizFromUrl = () => {
@@ -336,7 +339,7 @@ export default function Home() {
           {round.map((question, index) => {
             const isCorrect = checked && normalize(answers[index]) === question.answer;
             const isWrong = checked && !isCorrect;
-            const answerChoices = answerChoicesFor(question, forms);
+            const answerChoices = choiceSets[question.id] ?? answerChoicesFor(question, forms);
             return <article hidden={index !== activeQuestion} aria-hidden={index !== activeQuestion} className={`question-card ${isCorrect ? "correct" : ""} ${isWrong ? "wrong" : ""}`} key={question.id}>
               <span className="number">{index + 1}</span>
               <div className="sentence-wrap">
