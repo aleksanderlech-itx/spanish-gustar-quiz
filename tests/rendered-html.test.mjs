@@ -42,6 +42,8 @@ test("mobile quiz design keeps the answer field and actions inside the viewport"
   assert.match(css, /\.translation-switch[^}]*min-height:\s*44px/);
   assert.match(css, /html\s*\{[^}]*overflow-x:\s*hidden/s);
   assert.match(css, /body\s*\{[^}]*overflow-x:\s*hidden/s);
+  assert.doesNotMatch(css, /\.listen-icon/);
+  assert.doesNotMatch(css, /clip-path:\s*polygon/);
 });
 
 test("quiz presents one question at a time and always shows the infinitive above translation", async () => {
@@ -53,7 +55,9 @@ test("quiz presents one question at a time and always shows the infinitive above
   assert.match(page, /const \[answerMode, setAnswerMode\]/);
   assert.match(page, /className="choice-grid"/);
   assert.match(page, /className=\{`listen-button \$\{isSpeaking \? "playing" : ""\}`\}/);
-  assert.match(page, /className=\{darkMode \? "theme-icon sun-icon" : "theme-icon moon-icon"\}/);
+  assert.match(page, /<svg className="header-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none">/);
+  assert.match(page, /<circle cx="12" cy="12" r="4\.5" \/>/);
+  assert.match(page, /M4 9\.25h4\.1L13\.5 5v14l-5\.4-4\.25H4Z/);
   assert.doesNotMatch(page, />Dark\s*</);
   assert.doesNotMatch(page, />\{isSpeaking \? "Playing" : "Listen"\}<\/button>/);
   assert.match(page, /const \[quizId, setQuizId\]/);

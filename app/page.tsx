@@ -296,7 +296,16 @@ export default function Home() {
           </div>
           <div className="header-actions">
             <button type="button" className="mode-switch" aria-pressed={darkMode} aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"} onClick={() => setDarkMode((value) => !value)}>
-              <span className={darkMode ? "theme-icon sun-icon" : "theme-icon moon-icon"} aria-hidden="true" />
+              {darkMode ? (
+                <svg className="header-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="4.5" />
+                  <path d="M12 2.5v2.25M12 19.25v2.25M4.57 4.57l1.59 1.59M17.84 17.84l1.59 1.59M2.5 12h2.25M19.25 12h2.25M4.57 19.43l1.59-1.59M17.84 6.16l1.59-1.59" />
+                </svg>
+              ) : (
+                <svg className="header-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                  <path d="M20.25 14.48A7.7 7.7 0 0 1 9.52 3.75 8.55 8.55 0 1 0 20.25 14.48Z" />
+                </svg>
+              )}
               <span className="sr-only">{darkMode ? "Switch to light mode" : "Switch to dark mode"}</span>
             </button>
             <details className="quiz-switch">
@@ -308,7 +317,13 @@ export default function Home() {
                 <button type="button" aria-current={quizId === "ser-estar" ? "page" : undefined} onClick={() => switchQuiz("ser-estar")}>Ser vs Estar</button>
               </nav>
             </details>
-            <button type="button" className={`listen-button ${isSpeaking ? "playing" : ""}`} onClick={speakCurrentQuestion} aria-label="Listen to the current Spanish sentence"><span className="listen-icon" aria-hidden="true" /><span className="sr-only">{isSpeaking ? "Playing current Spanish sentence" : "Listen to the current Spanish sentence"}</span></button>
+            <button type="button" className={`listen-button ${isSpeaking ? "playing" : ""}`} onClick={speakCurrentQuestion} aria-label="Listen to the current Spanish sentence">
+              <svg className="header-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                <path d="M4 9.25h4.1L13.5 5v14l-5.4-4.25H4Z" />
+                <path d="M16.5 8.25a5 5 0 0 1 0 7.5M18.9 5.85a8.4 8.4 0 0 1 0 12.3" />
+              </svg>
+              <span className="sr-only">{isSpeaking ? "Playing current Spanish sentence" : "Listen to the current Spanish sentence"}</span>
+            </button>
           </div>
         </div>
         <p className="eyebrow">{quiz.eyebrow}</p>
