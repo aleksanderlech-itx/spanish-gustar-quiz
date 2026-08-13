@@ -295,9 +295,9 @@ export default function Home() {
             </div>
           </div>
           <div className="header-actions">
-            <button type="button" className="mode-switch" aria-pressed={darkMode} onClick={() => setDarkMode((value) => !value)}>
-              Dark
-              <span className="switch-track" aria-hidden="true"><span /></span>
+            <button type="button" className="mode-switch" aria-pressed={darkMode} aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"} onClick={() => setDarkMode((value) => !value)}>
+              <span className={darkMode ? "theme-icon sun-icon" : "theme-icon moon-icon"} aria-hidden="true" />
+              <span className="sr-only">{darkMode ? "Switch to light mode" : "Switch to dark mode"}</span>
             </button>
             <details className="quiz-switch">
               <summary aria-label="Switch quiz" title="Switch quiz">
@@ -308,7 +308,7 @@ export default function Home() {
                 <button type="button" aria-current={quizId === "ser-estar" ? "page" : undefined} onClick={() => switchQuiz("ser-estar")}>Ser vs Estar</button>
               </nav>
             </details>
-            <button type="button" className="listen-button" onClick={speakCurrentQuestion} aria-label="Listen to the current Spanish sentence"><span className="listen-icon" aria-hidden="true" />{isSpeaking ? "Playing" : "Listen"}</button>
+            <button type="button" className={`listen-button ${isSpeaking ? "playing" : ""}`} onClick={speakCurrentQuestion} aria-label="Listen to the current Spanish sentence"><span className="listen-icon" aria-hidden="true" /><span className="sr-only">{isSpeaking ? "Playing current Spanish sentence" : "Listen to the current Spanish sentence"}</span></button>
           </div>
         </div>
         <p className="eyebrow">{quiz.eyebrow}</p>

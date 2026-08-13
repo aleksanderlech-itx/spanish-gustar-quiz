@@ -40,6 +40,8 @@ test("mobile quiz design keeps the answer field and actions inside the viewport"
   assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*\.action-bar[^}]*position:\s*fixed/);
   assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*\.action-bar[^}]*bottom:\s*var\(--keyboard-inset\)/);
   assert.match(css, /\.translation-switch[^}]*min-height:\s*44px/);
+  assert.match(css, /html\s*\{[^}]*overflow-x:\s*hidden/s);
+  assert.match(css, /body\s*\{[^}]*overflow-x:\s*hidden/s);
 });
 
 test("quiz presents one question at a time and always shows the infinitive above translation", async () => {
@@ -50,7 +52,10 @@ test("quiz presents one question at a time and always shows the infinitive above
   assert.match(page, /<div className="verb-row">\s*<span className="verb-chip">\{question\.infinitive\}<\/span>\s*<\/div>[\s\S]*<div className="translation-control">/);
   assert.match(page, /const \[answerMode, setAnswerMode\]/);
   assert.match(page, /className="choice-grid"/);
-  assert.match(page, /className="listen-button"/);
+  assert.match(page, /className=\{`listen-button \$\{isSpeaking \? "playing" : ""\}`\}/);
+  assert.match(page, /className=\{darkMode \? "theme-icon sun-icon" : "theme-icon moon-icon"\}/);
+  assert.doesNotMatch(page, />Dark\s*</);
+  assert.doesNotMatch(page, />\{isSpeaking \? "Playing" : "Listen"\}<\/button>/);
   assert.match(page, /const \[quizId, setQuizId\]/);
   assert.match(page, /className="quiz-icon"/);
   assert.match(page, /onClick=\{\(\) => switchQuiz\("gustar"\)\}/);

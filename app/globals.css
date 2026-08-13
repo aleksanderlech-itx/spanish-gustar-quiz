@@ -54,10 +54,12 @@ body.dark {
 
 html {
   background: var(--paper);
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
+  overflow-x: hidden;
   color: var(--ink);
   background:
     linear-gradient(90deg, rgba(29, 92, 115, .07) 1px, transparent 1px),
@@ -171,18 +173,20 @@ p {
 .header-actions {
   display: flex;
   align-items: center;
+  flex: 0 0 auto;
   gap: 8px;
 }
 
 .listen-button,
 .mode-switch {
+  display: inline-grid;
+  width: 42px;
   min-height: 42px;
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: 50%;
   background: var(--surface);
   color: var(--ink);
-  font-size: 13px;
-  font-weight: 700;
+  place-items: center;
 }
 
 .quiz-switch {
@@ -269,82 +273,84 @@ p {
 }
 
 .listen-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  padding: 0 12px;
+  padding: 0;
 }
 
 .listen-icon {
   position: relative;
   display: inline-block;
-  width: 16px;
-  height: 16px;
-  flex: 0 0 16px;
+  width: 20px;
+  height: 20px;
+  color: currentColor;
 }
 
 .listen-icon::before {
   content: "";
   position: absolute;
   left: 1px;
-  top: 5px;
-  width: 5px;
+  top: 7px;
+  width: 6px;
   height: 7px;
-  border-radius: 1px;
+  clip-path: polygon(0 25%, 42% 25%, 100% 0, 100% 100%, 42% 75%, 0 75%);
   background: currentColor;
 }
 
 .listen-icon::after {
   content: "";
   position: absolute;
-  left: 5px;
-  top: 3px;
+  left: 9px;
+  top: 4px;
   width: 8px;
-  height: 10px;
+  height: 12px;
   border: 2px solid currentColor;
   border-left: 0;
   border-top-color: transparent;
   border-bottom-color: transparent;
-  border-radius: 0 10px 10px 0;
+  border-radius: 0 12px 12px 0;
+}
+
+.listen-button.playing {
+  color: var(--primary-dark);
+  background: var(--primary-soft);
 }
 
 .mode-switch {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border-radius: 999px;
-  padding: 0 10px 0 12px;
+  padding: 0;
 }
 
-.switch-track {
+.theme-icon {
   position: relative;
-  display: inline-block;
-  width: 34px;
-  height: 20px;
-  border-radius: 999px;
-  background: #dfe8bd;
+  display: block;
+  width: 19px;
+  height: 19px;
 }
 
-.switch-track span {
+.moon-icon {
+  border-radius: 50%;
+  box-shadow: inset 6px -4px 0 currentColor;
+}
+
+.sun-icon {
+  border: 2px solid currentColor;
+  border-radius: 50%;
+}
+
+.sun-icon::before,
+.sun-icon::after {
+  content: "";
   position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 14px;
-  height: 14px;
+  inset: -5px 7px;
+  width: 2px;
+  background: currentColor;
   border-radius: 999px;
-  background: var(--primary);
-  box-shadow: 0 1px 4px rgba(21, 31, 45, .18);
-  transition: transform .16s ease, background .16s ease;
 }
 
-body.dark .mode-switch .switch-track {
-  background: #23465c;
+.sun-icon::after {
+  transform: rotate(90deg);
 }
 
-body.dark .mode-switch .switch-track span {
-  transform: translateX(14px);
-  background: var(--success);
+body.dark .mode-switch {
+  color: var(--success);
 }
 
 .eyebrow {
@@ -1235,21 +1241,6 @@ footer {
     display: none;
   }
 
-  .listen-button {
-    width: 42px;
-    padding: 0;
-  }
-
-  .listen-button::before {
-    content: none;
-  }
-
-  .listen-button::before {
-    content: "♪";
-    color: var(--ink);
-    font-size: 16px;
-  }
-
   .filter-fields {
     grid-template-columns: 1fr;
   }
@@ -1355,15 +1346,23 @@ footer {
     width: min(100% - 24px, 1160px);
   }
 
-  .mode-switch {
-    width: 42px;
-    overflow: hidden;
-    padding: 0 4px;
-    color: transparent;
+  .hero-topline {
+    gap: 8px;
   }
 
-  .mode-switch .switch-track {
-    flex: 0 0 auto;
+  .header-actions {
+    gap: 6px;
+  }
+
+  .listen-button,
+  .mode-switch,
+  .quiz-switch summary {
+    width: 38px;
+    min-height: 38px;
+  }
+
+  .quiz-switch summary {
+    height: 38px;
   }
 
   .question-progress strong {
