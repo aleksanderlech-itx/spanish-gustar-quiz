@@ -14,7 +14,7 @@ export type Question = {
   subjectNumber: "singular" | "plural";
   isActivity: boolean;
   indirectObject: string;
-  tense: "present";
+  tense: "present" | "preterite" | "imperfect";
   level: "basic" | "intermediate" | "advanced";
 };
 

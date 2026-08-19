@@ -24,7 +24,7 @@ const normalize = normalizeAnswer;
 const PRONOUNS = ["me", "te", "le", "nos", "les"];
 
 const answerChoicesFor = (question: Question, forms: Record<string, [string, string]>) => {
-  if (question.infinitive === "ser / estar") return shuffle([question.answer, question.objectPronoun].filter(Boolean));
+  if (question.infinitive === "ser / estar" || question.infinitive === "preterite / imperfect") return shuffle([question.answer, question.objectPronoun].filter(Boolean));
   const choices = new Set<string>([question.answer]);
   const verbForms = forms[question.infinitive] ?? [question.verbAnswer, question.verbAnswer];
   choices.add(`${question.objectPronoun} ${verbForms.find((form) => form !== question.verbAnswer) ?? question.verbAnswer}`);
@@ -38,14 +38,16 @@ const mergeHistory = (local: Result[], remote: Result[]) => {
   return [...unique.values()].sort((a, b) => a.date.localeCompare(b.date));
 };
 
-const quizIdFromLocation = (): QuizId =>
-  typeof window !== "undefined" && new URLSearchParams(window.location.search).get("quiz") === "ser-estar" ? "ser-estar" : "gustar";
+const quizIdFromLocation = (): QuizId => {
+  const value = typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("quiz") : null;
+  return value === "ser-estar" || value === "preterite-imperfect" ? value : "gustar";
+};
 
 export default function Home() {
   const [quizId, setQuizId] = useState<QuizId>(quizIdFromLocation);
   const quiz = QUIZ_CONFIG[quizId];
   const { questions, forms, storageKey, filterKey } = quiz;
-  const answerLabel = quizId === "ser-estar" ? "enter the missing verb" : "enter the missing object pronoun and verb";
+  const answerLabel = quizId === "gustar" ? "enter the missing object pronoun and verb" : "enter the missing verb";
   const [history, setHistory] = useState<Result[]>([]);
   const [round, setRound] = useState<Question[]>([]);
   const [answers, setAnswers] = useState<string[]>(Array(5).fill(""));
@@ -68,7 +70,7 @@ export default function Home() {
 
   const switchQuiz = (nextQuizId: QuizId) => {
     if (nextQuizId === quizId) return;
-    window.history.pushState(null, "", nextQuizId === "ser-estar" ? "/?quiz=ser-estar" : "/?quiz=gustar");
+    window.history.pushState(null, "", nextQuizId === "gustar" ? "/" : `/?quiz=${nextQuizId}`);
     setQuizId(nextQuizId);
     setHydrated(false);
   };
@@ -315,6 +317,7 @@ export default function Home() {
               <nav aria-label="Other quizzes">
                 <button type="button" aria-current={quizId === "gustar" ? "page" : undefined} onClick={() => switchQuiz("gustar")}>Gustar</button>
                 <button type="button" aria-current={quizId === "ser-estar" ? "page" : undefined} onClick={() => switchQuiz("ser-estar")}>Ser vs Estar</button>
+                <button type="button" aria-current={quizId === "preterite-imperfect" ? "page" : undefined} onClick={() => switchQuiz("preterite-imperfect")}>Preterite vs Imperfect</button>
               </nav>
             </details>
             <button type="button" className={`listen-button ${isSpeaking ? "playing" : ""}`} onClick={speakCurrentQuestion} aria-label="Listen to the current Spanish sentence">
@@ -382,9 +385,9 @@ export default function Home() {
                       }
                     }}
                     aria-invalid={isWrong || undefined}
-                    placeholder={quizId === "ser-estar" ? "ser / estar" : "pronoun + verb"}
+                    placeholder={quizId === "gustar" ? "pronoun + verb" : "verb form"}
                   />}
-                {answerMode === "choose" && <span className={`answer-slot ${answers[index] ? "filled" : ""} ${isCorrect ? "correct" : ""} ${isWrong ? "wrong" : ""}`}>{answers[index] || (quizId === "ser-estar" ? "ser / estar" : "pronoun + verb")}</span>}
+                {answerMode === "choose" && <span className={`answer-slot ${answers[index] ? "filled" : ""} ${isCorrect ? "correct" : ""} ${isWrong ? "wrong" : ""}`}>{answers[index] || (quizId === "gustar" ? "pronoun + verb" : "verb form")}</span>}
                 <span>{question.after}</span>
                 {isWrong && <p className="feedback"><strong>Correct: {question.answer}.</strong></p>}
                 {isCorrect && <p className="feedback">Correct.</p>}
@@ -455,7 +458,7 @@ export default function Home() {
         <button type="button" className="history-toggle" onClick={() => setShowHistory((value) => !value)}>{showHistory ? "Hide detailed history" : "Show detailed history"}</button>
         {showHistory && <div className="history-list">{[...history].reverse().map((result, index) => <article key={`${result.date}-${index}`}><div><strong>{result.mode === "review" ? "Review" : "Regular round"} · {result.percent}%</strong><span>{new Date(result.date).toLocaleString()}</span></div><ul>{result.questionIds.map((id, questionIndex) => { const question = questions.find((q) => q.id === id); if (!question) return null; const missed = result.missedIds.includes(id); return <li className={missed ? "missed" : ""} key={id}><span>{question.before} <b>{question.answer}</b> {question.after}</span><small>Your answer: {result.answers[questionIndex] || "No answer"}</small></li>; })}</ul></article>)}</div>}
       </section>
-      <footer>{questions.length} original present-tense sentences · English translations · {syncState === "synced" ? "Progress synchronized" : "Progress saved in this browser"}{quiz.sources.length > 0 && <span className="sources"> · Sources: {quiz.sources.map((source, index) => <span key={source.href}>{index > 0 && ", "}<a href={source.href} target="_blank" rel="noreferrer">{source.label}</a></span>)}</span>}</footer>
+      <footer>{questions.length} original {quizId === "preterite-imperfect" ? "past-tense" : "present-tense"} sentences · English translations · {syncState === "synced" ? "Progress synchronized" : "Progress saved in this browser"}{quiz.sources.length > 0 && <span className="sources"> · Sources: {quiz.sources.map((source, index) => <span key={source.href}>{index > 0 && ", "}<a href={source.href} target="_blank" rel="noreferrer">{source.label}</a></span>)}</span>}</footer>
     </main>
   );
 }

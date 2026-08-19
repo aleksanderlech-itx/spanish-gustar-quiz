@@ -1,9 +1,10 @@
 import { ALL_QUESTIONS, VERB_FORMS } from "./quiz-data";
+import { PRETERITE_IMPERFECT_FORMS, PRETERITE_IMPERFECT_QUESTIONS } from "./preterite-imperfect-data";
 import { SER_ESTAR_FORMS, SER_ESTAR_QUESTIONS } from "./ser-estar-data";
 import { ruleForTense } from "./quiz-logic";
 import type { Question } from "./quiz-data";
 
-export type QuizId = "gustar" | "ser-estar";
+export type QuizId = "gustar" | "ser-estar" | "preterite-imperfect";
 
 export const QUIZ_CONFIG = {
   gustar: {
@@ -31,5 +32,18 @@ export const QUIZ_CONFIG = {
     backupName: "spanish-ser-estar-quiz-progress.json",
     sources: [{ label: "Instituto Cervantes: ser y estar", href: "https://cvc.cervantes.es/ensenanza/ese/programa_17/aprendiz_17.htm" }, { label: "Instituto Cervantes: actividad B1", href: "https://cvc.cervantes.es/ensenanza/actividades_ave/nivelii/ficha_20.htm" }],
     rule: { title: "Ser frames what something is. Estar frames how or where it is now.", body: "Use ser for identity, origin, material, time and defining qualities. Use estar for location, condition and a state linked to a situation.", singular: "La camisa es azul.", plural: "La camisa está mojada." },
+  },
+  "preterite-imperfect": {
+    title: "Preterite vs Imperfect Quiz",
+    eyebrow: "Preterite vs imperfect",
+    heading: "Choose the past-tense frame.",
+    copy: "Practise completed actions, repeated habits, background scenes and interruptions.",
+    questions: PRETERITE_IMPERFECT_QUESTIONS,
+    forms: PRETERITE_IMPERFECT_FORMS,
+    storageKey: "preterite-imperfect-quiz-progress-v1",
+    filterKey: "preterite-imperfect-quiz-filters-v1",
+    backupName: "spanish-preterite-imperfect-quiz-progress.json",
+    sources: [],
+    rule: { title: "Preterite completes the event. Imperfect describes the frame.", body: "Use preterite for completed actions, sequences, starts and changes. Use imperfect for habits, ongoing actions, background details and repeated past situations.", singular: "Ayer fui al mercado.", plural: "De niño iba al parque." },
   },
 } satisfies Record<QuizId, { title: string; eyebrow: string; heading: string; copy: string; questions: Question[]; forms: Record<string, [string, string]>; storageKey: string; filterKey: string; backupName: string; sources: Array<{ label: string; href: string }>; rule: ReturnType<typeof ruleForTense> }>;

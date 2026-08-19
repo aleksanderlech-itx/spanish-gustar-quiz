@@ -1,4 +1,4 @@
-export type QuizTense = "present";
+export type QuizTense = "present" | "preterite" | "imperfect";
 export type QuizLevel = "basic" | "intermediate" | "advanced";
 
 export type QuizQuestion = {
