@@ -66,6 +66,10 @@ test("quiz presents one question at a time and always shows the infinitive above
   assert.match(page, /onClick=\{\(\) => switchQuiz\("preterite-imperfect"\)\}/);
   assert.match(page, /Preterite vs Imperfect/);
   assert.match(page, /value === "ser-estar" \|\| value === "preterite-imperfect"/);
+  assert.match(page, /const \[showConjugations, setShowConjugations\]/);
+  assert.match(page, /Show verb chart/);
+  assert.match(page, /role="dialog"/);
+  assert.match(page, /PRETERITE_IMPERFECT_CONJUGATIONS\.map/);
   assert.doesNotMatch(page, /<summary[^>]*>⌄<\/summary>/);
   assert.match(page, /enter the missing object pronoun and verb/);
   assert.match(page, /Show explanation/);

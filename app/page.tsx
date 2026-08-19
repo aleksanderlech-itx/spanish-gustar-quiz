@@ -4,6 +4,7 @@ import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { type Question } from "./quiz-data";
 import { availableQuestions, filterQuestions, getMissedIds, normalizeAnswer, restartSelectedHistory, scoreRound, type QuizFilters, type QuizResult } from "./quiz-logic";
 import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
+import { PRETERITE_IMPERFECT_CONJUGATIONS } from "./preterite-imperfect-data";
 
 type Result = QuizResult;
 type Filters = QuizFilters;
@@ -63,6 +64,7 @@ export default function Home() {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [answerMode, setAnswerMode] = useState<"choose" | "type">("type");
   const [darkMode, setDarkMode] = useState(false);
+  const [showConjugations, setShowConjugations] = useState(false);
   const importRef = useRef<HTMLInputElement | null>(null);
   const inputs = useRef<Array<HTMLInputElement | null>>([]);
   const activeQuestionCard = useRef<HTMLElement | null>(null);
@@ -360,6 +362,41 @@ export default function Home() {
           <button type="button" className={answerMode === "choose" ? "active" : ""} onClick={() => setAnswerMode("choose")}>Choose</button>
           <button type="button" className={answerMode === "type" ? "active" : ""} onClick={() => setAnswerMode("type")}>Type</button>
         </div>
+        {quizId === "preterite-imperfect" && <div className="conjugation-help-row">
+          <button type="button" className="conjugation-help-button" aria-haspopup="dialog" aria-expanded={showConjugations} onClick={() => setShowConjugations(true)}>
+            Show verb chart
+          </button>
+        </div>}
+        {quizId === "preterite-imperfect" && showConjugations && <div className="conjugation-modal-backdrop" role="presentation" onClick={() => setShowConjugations(false)}>
+          <section className="conjugation-modal" role="dialog" aria-modal="true" aria-labelledby="conjugation-modal-title" onClick={(event) => event.stopPropagation()}>
+            <div className="conjugation-modal-header">
+              <div>
+                <p className="eyebrow">Verb chart</p>
+                <h2 id="conjugation-modal-title">Preterite vs Imperfect</h2>
+              </div>
+              <button type="button" className="conjugation-close" aria-label="Close verb chart" onClick={() => setShowConjugations(false)}>×</button>
+            </div>
+            <p className="conjugation-note">Use this chart while answering. Preterite marks completed events. Imperfect marks habits, background and ongoing action.</p>
+            <div className="conjugation-table-wrap">
+              <table className="conjugation-table">
+                <thead>
+                  <tr><th>Verb</th><th>Subject</th><th>Preterite</th><th>Imperfect</th></tr>
+                </thead>
+                <tbody>
+                  {PRETERITE_IMPERFECT_CONJUGATIONS.map((row) => (
+                    <tr key={`${row.infinitive}-${row.subject}`}>
+                      <th scope="row">{row.infinitive}</th>
+                      <td>{row.subject}</td>
+                      <td>{row.preterite}</td>
+                      <td>{row.imperfect}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <button type="button" className="primary conjugation-done" onClick={() => setShowConjugations(false)}>Close chart</button>
+          </section>
+        </div>}
         <div className="questions">
           {round.map((question, index) => {
             const isCorrect = checked && normalize(answers[index]) === question.answer;

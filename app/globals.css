@@ -591,6 +591,135 @@ h1 em {
   box-shadow: 0 5px 14px rgba(52, 82, 91, .1);
 }
 
+.conjugation-help-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: -4px 14px 14px;
+}
+
+.conjugation-help-button {
+  min-height: 40px;
+  padding: 0 13px;
+  border: 1px solid color-mix(in srgb, var(--primary) 42%, var(--line));
+  border-radius: 999px;
+  color: var(--primary-dark);
+  background: var(--primary-soft);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.conjugation-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: start center;
+  padding: 18px 14px;
+  background: color-mix(in srgb, var(--ink) 42%, transparent);
+  backdrop-filter: blur(4px);
+}
+
+.conjugation-modal {
+  width: min(100%, 760px);
+  max-height: min(72vh, 620px);
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 6px);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 28px 70px rgba(18, 39, 58, .28);
+}
+
+.conjugation-modal-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 18px 12px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.conjugation-modal h2 {
+  margin: 0;
+  font-size: clamp(20px, 4vw, 28px);
+}
+
+.conjugation-close {
+  display: grid;
+  width: 42px;
+  min-height: 42px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  font-size: 26px;
+  line-height: 1;
+}
+
+.conjugation-note {
+  margin: 0;
+  padding: 14px 18px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.conjugation-table-wrap {
+  overflow-x: auto;
+  padding: 0 18px 18px;
+}
+
+.conjugation-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: 15px;
+}
+
+.conjugation-table th,
+.conjugation-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+.conjugation-table tr:last-child th,
+.conjugation-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.conjugation-table thead th {
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.conjugation-table tbody th {
+  color: var(--accent);
+}
+
+.conjugation-table tbody td:nth-child(3),
+.conjugation-table tbody td:nth-child(4) {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.conjugation-done {
+  display: block;
+  width: calc(100% - 36px);
+  margin: 0 18px 18px;
+}
+
 .questions {
   padding: 0 14px 14px;
 }
@@ -1219,6 +1348,29 @@ footer {
 
   .choice-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .conjugation-help-row {
+    justify-content: stretch;
+  }
+
+  .conjugation-help-button {
+    width: 100%;
+  }
+
+  .conjugation-modal-backdrop {
+    position: fixed;
+    z-index: 40;
+    align-items: start;
+    padding: 14px 12px calc(14px + env(safe-area-inset-bottom));
+  }
+
+  .conjugation-modal {
+    max-height: calc(100dvh - 28px - env(safe-area-inset-bottom));
+  }
+
+  .conjugation-table {
+    min-width: 520px;
   }
 
   .action-bar {

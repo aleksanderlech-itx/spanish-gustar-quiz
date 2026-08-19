@@ -52,3 +52,15 @@ export const PRETERITE_IMPERFECT_QUESTIONS: Question[] = templates.map((template
 export const PRETERITE_IMPERFECT_FORMS: Record<string, [string, string]> = {
   "preterite / imperfect": ["preterite", "imperfect"],
 };
+
+export const PRETERITE_IMPERFECT_CONJUGATIONS = [
+  { infinitive: "ir", subject: "yo", preterite: "fui", imperfect: "iba" },
+  { infinitive: "ir", subject: "nosotros", preterite: "fuimos", imperfect: "íbamos" },
+  { infinitive: "preparar", subject: "ella", preterite: "preparó", imperfect: "preparaba" },
+  { infinitive: "salir", subject: "nosotros", preterite: "salimos", imperfect: "salíamos" },
+  { infinitive: "llegar", subject: "él", preterite: "llegó", imperfect: "llegaba" },
+  { infinitive: "vivir", subject: "ella", preterite: "vivió", imperfect: "vivía" },
+  { infinitive: "explicar", subject: "él", preterite: "explicó", imperfect: "explicaba" },
+  { infinitive: "ponerse", subject: "él", preterite: "se puso", imperfect: "se ponía" },
+  { infinitive: "empezar", subject: "ella", preterite: "empezó", imperfect: "empezaba" },
+];
