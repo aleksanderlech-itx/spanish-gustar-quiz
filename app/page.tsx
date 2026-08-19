@@ -25,7 +25,7 @@ const normalize = normalizeAnswer;
 const PRONOUNS = ["me", "te", "le", "nos", "les"];
 
 const answerChoicesFor = (question: Question, forms: Record<string, [string, string]>) => {
-  if (question.infinitive === "ser / estar" || question.infinitive === "preterite / imperfect") return shuffle([question.answer, question.objectPronoun].filter(Boolean));
+  if (question.infinitive === "ser / estar" || question.tense === "preterite" || question.tense === "imperfect") return shuffle([question.answer, question.objectPronoun].filter(Boolean));
   const choices = new Set<string>([question.answer]);
   const verbForms = forms[question.infinitive] ?? [question.verbAnswer, question.verbAnswer];
   choices.add(`${question.objectPronoun} ${verbForms.find((form) => form !== question.verbAnswer) ?? question.verbAnswer}`);
@@ -286,6 +286,7 @@ export default function Home() {
   const currentAnswered = Boolean(answers[activeQuestion]?.trim());
   const canGoForward = checked || currentAnswered;
   const isLastQuestion = activeQuestion === round.length - 1;
+  const activeConjugations = PRETERITE_IMPERFECT_CONJUGATIONS[round[activeQuestion]?.infinitive] ?? [];
 
   return (
     <main className="app-shell">
@@ -372,7 +373,7 @@ export default function Home() {
             <div className="conjugation-modal-header">
               <div>
                 <p className="eyebrow">Verb chart</p>
-                <h2 id="conjugation-modal-title">Preterite vs Imperfect</h2>
+                <h2 id="conjugation-modal-title">{round[activeQuestion]?.infinitive}: Preterite vs Imperfect</h2>
               </div>
               <button type="button" className="conjugation-close" aria-label="Close verb chart" onClick={() => setShowConjugations(false)}>×</button>
             </div>
@@ -383,9 +384,9 @@ export default function Home() {
                   <tr><th>Verb</th><th>Subject</th><th>Preterite</th><th>Imperfect</th></tr>
                 </thead>
                 <tbody>
-                  {PRETERITE_IMPERFECT_CONJUGATIONS.map((row) => (
-                    <tr key={`${row.infinitive}-${row.subject}`}>
-                      <th scope="row">{row.infinitive}</th>
+                  {activeConjugations.map((row) => (
+                    <tr key={`${round[activeQuestion]?.infinitive}-${row.subject}`}>
+                      <th scope="row">{round[activeQuestion]?.infinitive}</th>
                       <td>{row.subject}</td>
                       <td>{row.preterite}</td>
                       <td>{row.imperfect}</td>

@@ -69,7 +69,8 @@ test("quiz presents one question at a time and always shows the infinitive above
   assert.match(page, /const \[showConjugations, setShowConjugations\]/);
   assert.match(page, /Show verb chart/);
   assert.match(page, /role="dialog"/);
-  assert.match(page, /PRETERITE_IMPERFECT_CONJUGATIONS\.map/);
+  assert.match(page, /PRETERITE_IMPERFECT_CONJUGATIONS\[round\[activeQuestion\]\?\.infinitive\]/);
+  assert.match(page, /activeConjugations\.map/);
   assert.doesNotMatch(page, /<summary[^>]*>⌄<\/summary>/);
   assert.match(page, /enter the missing object pronoun and verb/);
   assert.match(page, /Show explanation/);
