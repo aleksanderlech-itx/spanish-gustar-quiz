@@ -1,15 +1,42 @@
-# vinext-starter
+# Spanish Quiz Studio
 
-A clean full-stack starter running on
-[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
-Drizzle support.
+Reusable, mobile-first Spanish grammar quiz engine deployed through Cloudflare
+Pages at [spanish-quizz.es](https://spanish-quizz.es).
+
+The current quiz collection includes Gustar, Ser vs Estar, and Preterite vs
+Imperfect. Quiz content is separated from shared scoring, navigation, audio,
+progress, and responsive UI so additional lessons can reuse the same shell.
 
 ## Prerequisites
 
 - Node.js `>=22.13.0`
 - Linux with `flock`, `curl`, and GNU `timeout`
 
-## Sites Lifecycle
+## Cloudflare Pages deployment
+
+The repository is ready for Cloudflare Pages deployment through its existing
+Sites hosting manifest at `.openai/hosting.json`. The custom domain is not
+stored in application code because Cloudflare owns DNS and Pages domain
+bindings.
+
+In Cloudflare Dashboard:
+
+1. Create or open a Pages project connected to
+   `aleksanderlech-itx/spanish-gustar-quiz`.
+2. Use the repository's build command, `npm run build`, and Node.js `22.13.0`
+   or newer.
+3. Add `spanish-quizz.es` under Pages project **Custom domains**.
+4. If the domain is not already managed by Cloudflare, apply the DNS records
+   Cloudflare provides. If it is managed there, Cloudflare can create the
+   required record automatically.
+5. After the certificate becomes active, verify both the apex domain and any
+   `www` redirect configured in the dashboard.
+
+The application metadata now publishes `https://spanish-quizz.es` as its
+canonical URL and Open Graph URL. DNS, certificate issuance, GitHub connection,
+and custom-domain attachment still require Cloudflare account access.
+
+## Sites lifecycle
 
 The Sites lifecycle CLI runs the locked dependency install before returning this checkout. Edit the source under `app/`, then checkpoint when a coherent milestone is ready to inspect or share. The remote Sites builder runs `npm run build` against the pushed commit. Do not repeat install or build as a normal pre-checkpoint step.
 

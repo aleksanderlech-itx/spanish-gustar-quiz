@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Atkinson_Hyperlegible, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { SITE_CONFIG } from "./site-config";
 
 const atkinson = Atkinson_Hyperlegible({
   variable: "--font-atkinson",
@@ -14,8 +15,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Spanish Gustar Quiz",
-  description: "Practise Spanish verbs that work like gustar with present-tense sentences from basic to advanced.",
+  metadataBase: new URL(SITE_CONFIG.url),
+  title: {
+    default: "Spanish Quiz Studio",
+    template: "%s | Spanish Quiz Studio",
+  },
+  description: SITE_CONFIG.description,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: SITE_CONFIG.url,
+    siteName: SITE_CONFIG.name,
+    title: SITE_CONFIG.name,
+    description: SITE_CONFIG.description,
+  },
   other: {
     "codex-preview": "development",
   },
