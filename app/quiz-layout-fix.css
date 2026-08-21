@@ -1,0 +1,86 @@
+.sentence-wrap {
+  display: block;
+  min-width: 0;
+  padding-right: 30px;
+  color: var(--ink);
+  font-size: clamp(24px, 5.8vw, 34px);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.sentence-wrap label,
+.sentence-wrap label > span,
+.sentence-wrap > span:not(.answer-slot) {
+  display: inline;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.sentence-wrap input,
+.answer-slot {
+  display: inline-block;
+  width: clamp(150px, 32vw, 220px);
+  max-width: 100%;
+  min-width: 0;
+  margin: 0 .14em;
+  vertical-align: baseline;
+  font-size: inherit;
+}
+
+.answer-slot {
+  width: auto;
+  min-width: 150px;
+}
+
+.feedback,
+.verb-row,
+.translation-control,
+.choice-grid {
+  display: block;
+  width: 100%;
+}
+
+.feedback {
+  margin-top: 14px;
+}
+
+.verb-row {
+  margin-top: 14px;
+}
+
+.choice-grid {
+  margin-top: 14px;
+}
+
+.translation-control {
+  margin-top: 14px;
+}
+
+@media (max-width: 600px) {
+  .sentence-wrap {
+    padding-right: 20px;
+    font-size: 24px;
+    line-height: 1.35;
+  }
+
+  .sentence-wrap input,
+  .answer-slot {
+    width: clamp(130px, 46vw, 180px);
+    max-width: calc(100vw - 90px);
+    min-width: 0;
+  }
+}
+
+@media (max-width: 380px) {
+  .sentence-wrap {
+    font-size: 22px;
+  }
+
+  .sentence-wrap input,
+  .answer-slot {
+    width: 140px;
+    max-width: calc(100vw - 76px);
+  }
+}
