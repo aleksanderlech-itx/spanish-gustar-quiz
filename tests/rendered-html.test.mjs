@@ -50,6 +50,7 @@ test("mobile quiz design keeps the answer field and actions inside the viewport"
   assert.match(css, /\.sentence-wrap input:focus[^}]*box-shadow:\s*0 0 0 3px/s);
   assert.match(css, /\.answer-slot[^}]*min-height:\s*48px/);
   assert.match(css, /\.answer-slot[^}]*padding:\s*7px 11px/);
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.question-card\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)/);
   assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.sentence-wrap \{[^}]*display:\s*block/);
   assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.sentence-wrap input[^}]*display:\s*inline-block/);
   assert.doesNotMatch(css, /\.sentence-wrap input,\s*\.answer-slot\s*\{[^}]*flex:\s*1 0 100%/s);

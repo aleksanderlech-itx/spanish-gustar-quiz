@@ -1345,7 +1345,7 @@ footer {
   }
 
   .question-card {
-    grid-template-columns: 34px minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     padding: 16px 12px;
   }
 
