@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Atkinson_Hyperlegible } from "next/font/google";
 import "./globals.css";
+import "./issue-5-design.css";
+import QuizSelector from "./quiz-selector";
 import { SITE_CONFIG } from "./site-config";
 
 const atkinson = Atkinson_Hyperlegible({
@@ -43,6 +45,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${atkinson.variable} antialiased`}>
+        <QuizSelector />
         {children}
       </body>
     </html>
