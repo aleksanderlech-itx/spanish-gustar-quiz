@@ -73,6 +73,18 @@ export default function Home() {
   const switchQuiz = (nextQuizId: QuizId) => {
     if (nextQuizId === quizId) return;
     window.history.pushState(null, "", nextQuizId === "gustar" ? "/" : `/?quiz=${nextQuizId}`);
+    setHistory([]);
+    setRound([]);
+    setAnswers([]);
+    setChecked(false);
+    setPracticeMissed(false);
+    setShownExplanations(new Set());
+    setFilters({ level: "all", verb: "all" });
+    setCycleComplete(false);
+    setShowHistory(false);
+    setActiveQuestion(0);
+    setChoiceSets({});
+    setSyncState("checking");
     setQuizId(nextQuizId);
     setHydrated(false);
   };
