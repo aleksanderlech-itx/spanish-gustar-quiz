@@ -230,46 +230,6 @@ body.dark {
   font-weight: 700;
 }
 
-.sentence-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 8px 6px;
-  padding-right: 30px;
-  font-size: clamp(24px, 5.8vw, 34px);
-  line-height: 1.35;
-}
-
-.sentence-wrap label,
-.sentence-wrap > span:not(.answer-slot),
-.sentence-wrap input,
-.answer-slot {
-  font-size: inherit;
-}
-
-.sentence-wrap input {
-  min-width: min(250px, 100%);
-  min-height: 52px;
-  padding: 8px 12px;
-  border: 0;
-  border-bottom: 2px solid var(--primary);
-  border-radius: 8px 8px 0 0;
-  background: color-mix(in srgb, var(--primary-soft) 52%, var(--surface));
-  color: var(--ink);
-  outline: none;
-}
-
-.sentence-wrap input:focus {
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 18%, transparent);
-}
-
-.answer-slot {
-  min-height: 48px;
-  padding: 7px 11px;
-  border-bottom: 2px solid var(--primary);
-  background: var(--primary-soft);
-}
-
 .feedback {
   flex-basis: 100%;
   margin: 8px 0 0;
@@ -615,16 +575,6 @@ body.dark .quiz-library-start {
   .question-card {
     min-height: 280px;
     padding: 24px 18px 20px;
-  }
-
-  .sentence-wrap {
-    padding-right: 20px;
-    font-size: 24px;
-  }
-
-  .sentence-wrap input {
-    width: 100%;
-    min-width: 0;
   }
 
   .result-card {

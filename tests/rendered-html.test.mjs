@@ -35,10 +35,29 @@ test("renders development preview metadata", async () => {
 
 test("mobile quiz design keeps the answer field and actions inside the viewport", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const issueCss = await readFile(new URL("../app/issue-5-design.css", import.meta.url), "utf8");
   assert.match(css, /\.sentence-wrap input[^}]*max-width:\s*100%/s);
-  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*\.sentence-wrap input[^}]*width:\s*100%/);
-  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*\.action-bar[^}]*position:\s*fixed/);
-  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*\.action-bar[^}]*bottom:\s*var\(--keyboard-inset\)/);
+  assert.doesNotMatch(css, /@media \(max-width:\s*760px\)/);
+  assert.match(css, /\.sentence-wrap \{[^}]*display:\s*flex/s);
+  assert.match(css, /\.sentence-wrap \{[^}]*gap:\s*8px 6px[^}]*padding-right:\s*30px/s);
+  assert.match(css, /\.sentence-wrap \{[^}]*font-size:\s*clamp\(24px,\s*5\.8vw,\s*34px\)/s);
+  assert.match(css, /\.sentence-wrap \{[^}]*line-height:\s*1\.35/s);
+  assert.match(css, /\.sentence-wrap input[^}]*min-height:\s*52px/);
+  assert.match(css, /\.sentence-wrap input[^}]*min-width:\s*min\(250px,\s*100%\)/s);
+  assert.match(css, /\.sentence-wrap input[^}]*padding:\s*8px 12px/);
+  assert.match(css, /\.sentence-wrap input[^}]*border-bottom:\s*2px solid var\(--primary\)/s);
+  assert.match(css, /\.sentence-wrap input[^}]*background:\s*color-mix/);
+  assert.match(css, /\.sentence-wrap input:focus[^}]*box-shadow:\s*0 0 0 3px/s);
+  assert.match(css, /\.answer-slot[^}]*min-height:\s*48px/);
+  assert.match(css, /\.answer-slot[^}]*padding:\s*7px 11px/);
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.question-card\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)/);
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.sentence-wrap \{[^}]*display:\s*block/);
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.sentence-wrap input[^}]*display:\s*inline-block/);
+  assert.doesNotMatch(css, /\.sentence-wrap input,\s*\.answer-slot\s*\{[^}]*flex:\s*1 0 100%/s);
+  assert.doesNotMatch(issueCss, /^\.sentence-wrap\b/m);
+  assert.doesNotMatch(issueCss, /\.sentence-wrap input/);
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.action-bar[^}]*position:\s*fixed/);
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.action-bar[^}]*bottom:\s*var\(--keyboard-inset\)/);
   assert.match(css, /\.translation-switch[^}]*min-height:\s*44px/);
   assert.match(css, /html\s*\{[^}]*overflow-x:\s*hidden/s);
   assert.match(css, /body\s*\{[^}]*overflow-x:\s*hidden/s);
