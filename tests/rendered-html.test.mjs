@@ -62,6 +62,9 @@ test("quiz presents one question at a time and always shows the infinitive above
   assert.doesNotMatch(page, />\{isSpeaking \? "Playing" : "Listen"\}<\/button>/);
   assert.match(page, /const \[quizId, setQuizId\]/);
   assert.match(page, /className="quiz-icon"/);
+  assert.match(page, /setRound\(\[\]\);\s*setAnswers\(\[\]\);\s*setChecked\(false\);/);
+  assert.match(page, /setPracticeMissed\(false\);\s*setShownExplanations\(new Set\(\)\);/);
+  assert.match(page, /setFilters\(\{ level: "all", verb: "all" \}\);\s*setCycleComplete\(false\);/);
   assert.match(page, /onClick=\{\(\) => switchQuiz\("gustar"\)\}/);
   assert.match(page, /onClick=\{\(\) => switchQuiz\("preterite-imperfect"\)\}/);
   assert.match(page, /Preterite vs Imperfect/);
