@@ -11,7 +11,9 @@ This contract records the observable behavior shared by the grammar quizzes and 
 
 - The quiz library is the common entry point. Opening a quiz preserves its own progress namespace.
 - Grammar answers are saved at round submission. Flashcard recall is saved immediately after each assessment.
-- Flashcards marked `Still learning` are prioritized in the next round, followed by unseen cards and then remembered cards.
+- Flashcards use five Leitner boxes. Correct recall advances one box, up to Box 5; incorrect recall returns the card to Box 1.
+- Box intervals are immediate, 1 day, 3 days, 7 days, and 14 days. A session contains due cards first, then unseen cards, up to 20 cards.
+- Existing binary flashcard progress migrates automatically: remembered cards enter Box 2 and cards still being learned enter Box 1.
 - Returning to the library never deletes or resets progress.
 
 ## Interaction

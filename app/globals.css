@@ -287,6 +287,75 @@ summary:focus-visible {
   padding: 0 20px;
 }
 
+.leitner-stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.leitner-stats div {
+  position: relative;
+  padding: 15px 8px;
+  border-right: 1px solid var(--line);
+  text-align: center;
+}
+
+.leitner-stats div:last-child {
+  border-right: 0;
+}
+
+.leitner-stats div::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: var(--box-color, var(--danger));
+  content: "";
+}
+
+.leitner-stats div:nth-child(2) { --box-color: var(--accent); }
+.leitner-stats div:nth-child(3) { --box-color: var(--primary); }
+.leitner-stats div:nth-child(4) { --box-color: color-mix(in srgb, var(--primary) 48%, var(--success)); }
+.leitner-stats div:nth-child(5) { --box-color: var(--success); }
+
+.leitner-stats strong,
+.leitner-stats span {
+  display: block;
+}
+
+.leitner-stats strong {
+  margin: 4px 0 2px;
+  font-size: 24px;
+}
+
+.leitner-stats span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.leitner-box-label {
+  color: var(--ink) !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+.leitner-note {
+  margin: 12px 0 0;
+  padding: 13px 15px;
+  border: 1px solid color-mix(in srgb, var(--line) 78%, transparent);
+  border-radius: var(--radius);
+  color: var(--muted);
+  background: var(--panel);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.leitner-note strong {
+  color: var(--ink);
+}
+
 @media (max-width: 560px) {
   .flashcard {
     min-height: 330px;
@@ -310,6 +379,12 @@ summary:focus-visible {
 
   .flashcard-stats div {
     padding: 13px 8px;
+  }
+
+  .leitner-stats {
+    grid-template-columns: repeat(5, minmax(62px, 1fr));
+    overflow-x: auto;
+    scrollbar-gutter: stable;
   }
 }
 

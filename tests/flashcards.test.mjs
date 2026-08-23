@@ -13,13 +13,15 @@ test("flashcard corpus contains 500 unique ranked verbs", () => {
   });
 });
 
-test("flashcard interface reveals answers before recording recall", async () => {
+test("flashcard interface reveals answers before recording Leitner progress", async () => {
   const { readFile } = await import("node:fs/promises");
   const source = await readFile(new URL("../app/flashcards.tsx", import.meta.url), "utf8");
   assert.match(source, /aria-expanded=\{revealed\}/);
   assert.match(source, /disabled=\{!revealed\}/);
   assert.match(source, /recordAnswer\(false\)/);
   assert.match(source, /recordAnswer\(true\)/);
-  assert.match(source, /spanish-flashcards-progress-v1/);
-  assert.match(source, /Cards you are still learning return first/);
+  assert.match(source, /spanish-flashcards-leitner-v2/);
+  assert.match(source, /REVIEW_INTERVAL_DAYS.*1: 0.*2: 1.*3: 3.*4: 7.*5: 14/s);
+  assert.match(source, /Math\.min\(5, \(previous\?\.box \?\? 1\) \+ 1\)/);
+  assert.match(source, /Back to Box 1/);
 });
