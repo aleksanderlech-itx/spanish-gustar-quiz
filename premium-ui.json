@@ -1,0 +1,10 @@
+{
+  "profile": "product-admin",
+  "sourceRoots": ["app"],
+  "locale": "en",
+  "requiredCapabilities": ["Select/Listbox", "Form"],
+  "ownership": {
+    "Select/Listbox": "native",
+    "Form": "app/page.tsx"
+  }
+}

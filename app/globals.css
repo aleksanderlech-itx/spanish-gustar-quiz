@@ -89,6 +89,13 @@ button {
   cursor: pointer;
 }
 
+button:focus-visible,
+a:focus-visible,
+summary:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--primary) 42%, transparent);
+  outline-offset: 3px;
+}
+
 [hidden] {
   display: none !important;
 }
@@ -98,6 +105,218 @@ button {
   display: grid;
   place-items: center;
   color: var(--muted);
+}
+
+.flashcard-shell {
+  width: min(100% - 32px, 760px);
+}
+
+.flashcard-hero {
+  gap: 16px;
+}
+
+.flashcard-home {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.flashcard-progress-copy {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.flashcard-stage {
+  position: relative;
+  display: grid;
+  gap: 14px;
+}
+
+.flashcard {
+  display: grid;
+  min-height: 360px;
+  width: 100%;
+  place-content: center;
+  gap: 20px;
+  padding: 36px 28px;
+  border: 2px solid color-mix(in srgb, var(--primary) 42%, var(--line));
+  border-radius: var(--radius);
+  color: var(--ink);
+  background: var(--quiz-surface);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.flashcard:hover:not(.revealed) {
+  border-color: var(--primary);
+}
+
+.flashcard-rank,
+.flashcard-prompt {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+.flashcard-rank {
+  text-transform: uppercase;
+}
+
+.flashcard > strong {
+  color: var(--primary-dark);
+  font-size: clamp(46px, 10vw, 76px);
+  line-height: 1;
+}
+
+.flashcard-answer {
+  display: grid;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.flashcard-answer b {
+  font-size: clamp(24px, 5vw, 34px);
+}
+
+.flashcard-answer span {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.flashcard-listen {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-self: center;
+  gap: 8px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--primary-dark);
+  background: var(--surface);
+  font-weight: 700;
+}
+
+.flashcard-listen svg,
+.flashcard-actions svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.flashcard-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.flashcard-actions.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.flashcard-actions button {
+  display: inline-flex;
+  min-height: 54px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border-radius: var(--radius);
+  font-weight: 700;
+}
+
+.flashcard-again {
+  border: 1px solid var(--danger);
+  color: var(--danger);
+  background: var(--danger-soft);
+}
+
+.flashcard-known {
+  border: 1px solid color-mix(in srgb, var(--success) 64%, var(--line));
+  color: var(--ink);
+  background: var(--success-soft);
+}
+
+.flashcard-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.flashcard-stats div {
+  padding: 16px;
+  border-right: 1px solid var(--line);
+  text-align: center;
+}
+
+.flashcard-stats div:last-child {
+  border-right: 0;
+}
+
+.flashcard-stats strong,
+.flashcard-stats span {
+  display: block;
+}
+
+.flashcard-stats strong {
+  font-size: 25px;
+}
+
+.flashcard-stats span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.flashcard-complete .primary {
+  min-width: 190px;
+  padding: 0 20px;
+}
+
+@media (max-width: 560px) {
+  .flashcard {
+    min-height: 330px;
+    padding: 30px 18px;
+  }
+
+  .flashcard-progress-copy {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .flashcard-actions {
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
+    padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
+    background: var(--footer);
+    backdrop-filter: blur(16px);
+  }
+
+  .flashcard-stats div {
+    padding: 13px 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flashcard-actions {
+    transition: none;
+  }
 }
 
 .app-shell {

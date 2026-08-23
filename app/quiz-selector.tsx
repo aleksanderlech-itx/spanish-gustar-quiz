@@ -5,6 +5,7 @@ import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
 
 type StoredResult = { questionIds?: number[] };
 type QuizProgress = { completed: number; total: number; percent: number };
+type LibraryQuizId = QuizId | "flashcards";
 
 const QUIZ_IDS = Object.keys(QUIZ_CONFIG) as QuizId[];
 
@@ -32,6 +33,17 @@ const readProgress = (quizId: QuizId): QuizProgress => {
   }
 };
 
+const readFlashcardProgress = (): QuizProgress => {
+  try {
+    const raw = window.localStorage.getItem("spanish-flashcards-progress-v1");
+    const saved = raw ? JSON.parse(raw) as Record<string, unknown> : {};
+    const completed = Object.keys(saved).length;
+    return { completed, total: 500, percent: Math.round((completed / 500) * 100) };
+  } catch {
+    return { completed: 0, total: 500, percent: 0 };
+  }
+};
+
 export default function QuizSelector() {
   const [open, setOpen] = useState(false);
   const [ready, setReady] = useState(false);
@@ -43,6 +55,8 @@ export default function QuizSelector() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+    // Browser storage is unavailable during the server render.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setProgress(Object.fromEntries(QUIZ_IDS.map((id) => [id, readProgress(id)])) as Record<QuizId, QuizProgress>);
     setOpen(params.get("play") !== "1");
     setReady(true);
@@ -63,6 +77,12 @@ export default function QuizSelector() {
     [progress],
   );
 
+  const flashcardProgress = ready ? readFlashcardProgress() : { completed: 0, total: 500, percent: 0 };
+  const libraryItems: Array<{ id: LibraryQuizId; title: string; eyebrow: string; copy: string; unit: string; progress: QuizProgress; href: string }> = [
+    ...QUIZ_IDS.map((id) => ({ id, title: QUIZ_CONFIG[id].title.replace(" Quiz", ""), eyebrow: QUIZ_CONFIG[id].eyebrow, copy: QUIZ_CONFIG[id].copy, unit: "sentences", progress: progress[id], href: quizPath(id) })),
+    { id: "flashcards", title: "Spanish Verb Flashcards", eyebrow: "Vocabulary recall", copy: "Learn 500 common Spanish verbs with English meanings and short example sentences.", unit: "verbs", progress: flashcardProgress, href: "/?quiz=flashcards&play=1" },
+  ];
+
   if (!ready || !open) return null;
 
   return (
@@ -80,26 +100,25 @@ export default function QuizSelector() {
       </header>
 
       <section className="quiz-card-grid" aria-label="Available quizzes">
-        {QUIZ_IDS.map((id) => {
-          const item = QUIZ_CONFIG[id];
-          const itemProgress = progress[id];
+        {libraryItems.map((item) => {
+          const itemProgress = item.progress;
           const hasProgress = itemProgress.completed > 0;
 
           return (
-            <article className="quiz-library-card" key={id}>
+            <article className="quiz-library-card" key={item.id}>
               <div className="quiz-library-card-top">
                 <div>
                   <p className="quiz-library-eyebrow">{item.eyebrow}</p>
-                  <h2>{item.title.replace(" Quiz", "")}</h2>
+                  <h2>{item.title}</h2>
                 </div>
-                <span className="quiz-count">{itemProgress.total} sentences</span>
+                <span className="quiz-count">{itemProgress.total} {item.unit}</span>
               </div>
 
               <p className="quiz-library-copy">{item.copy}</p>
 
               <div className="quiz-library-progress">
                 <div className="quiz-library-progress-copy">
-                  <span>{itemProgress.completed} of {itemProgress.total} completed</span>
+                  <span>{itemProgress.completed} of {itemProgress.total} studied</span>
                   <strong>{itemProgress.percent}%</strong>
                 </div>
                 <div className="quiz-library-progress-track" aria-hidden="true">
@@ -107,7 +126,7 @@ export default function QuizSelector() {
                 </div>
               </div>
 
-              <a className="quiz-library-start" href={quizPath(id)}>
+              <a className="quiz-library-start" href={item.href}>
                 {hasProgress ? "Continue" : "Start"}
               </a>
             </article>

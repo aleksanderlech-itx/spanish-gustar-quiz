@@ -5,6 +5,7 @@ import { type Question } from "./quiz-data";
 import { availableQuestions, filterQuestions, getMissedIds, normalizeAnswer, restartSelectedHistory, scoreRound, type QuizFilters, type QuizResult } from "./quiz-logic";
 import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
 import { PRETERITE_IMPERFECT_CONJUGATIONS } from "./preterite-imperfect-data";
+import Flashcards from "./flashcards";
 
 type Result = QuizResult;
 type Filters = QuizFilters;
@@ -44,7 +45,7 @@ const quizIdFromLocation = (): QuizId => {
   return value === "ser-estar" || value === "preterite-imperfect" ? value : "gustar";
 };
 
-export default function Home() {
+function GrammarQuiz() {
   const [quizId, setQuizId] = useState<QuizId>(quizIdFromLocation);
   const quiz = QUIZ_CONFIG[quizId];
   const { questions, forms, storageKey, filterKey } = quiz;
@@ -366,7 +367,7 @@ export default function Home() {
         <div><p className="result-label">{practiceMissed ? "Review complete" : "Round complete"}</p><h2>{roundPercent === 100 ? "Excellent work." : roundPercent >= 80 ? "Very good." : roundPercent >= 60 ? "Good start." : "Keep practising."}</h2><p>{practiceMissed ? "Correct answers leave your missed list. Any remaining mistakes stay ready for another review." : "Review any corrections below, then continue with new sentences."}</p></div>
       </section>}
 
-      {!cycleComplete && <form onSubmit={submit} className="quiz-form">
+      {!cycleComplete && <form onSubmit={submit} className="quiz-form" noValidate>
         <div className="question-progress" role="progressbar" aria-valuemin={1} aria-valuemax={round.length} aria-valuenow={activeQuestion + 1} aria-label={`Question ${activeQuestion + 1} of ${round.length}`}>
           <strong>{checked ? "Review" : "Question"} {activeQuestion + 1} of {round.length}</strong>
           <div>{round.map((question, index) => <span key={question.id} className={`${index === activeQuestion ? "active" : ""} ${answers[index]?.trim() ? "answered" : ""} ${checked && normalize(answers[index]) === question.answer ? "correct" : ""} ${checked && normalize(answers[index]) !== question.answer ? "wrong" : ""}`} />)}</div>
@@ -511,4 +512,10 @@ export default function Home() {
       <footer>{questions.length} original {quizId === "preterite-imperfect" ? "past-tense" : "present-tense"} sentences · English translations · {syncState === "synced" ? "Progress synchronized" : "Progress saved in this browser"}{quiz.sources.length > 0 && <span className="sources"> · Sources: {quiz.sources.map((source, index) => <span key={source.href}>{index > 0 && ", "}<a href={source.href} target="_blank" rel="noreferrer">{source.label}</a></span>)}</span>}</footer>
     </main>
   );
+}
+
+export default function Home() {
+  const [showFlashcards] = useState(() => typeof window !== "undefined" && new URLSearchParams(window.location.search).get("quiz") === "flashcards");
+
+  return showFlashcards ? <Flashcards /> : <GrammarQuiz />;
 }
