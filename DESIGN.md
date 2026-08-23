@@ -47,7 +47,7 @@ Use the shared 8px radius for panels and controls. Circular controls are reserve
 
 ## Components
 
-Flashcards reveal their answer in place. Assessment controls appear only after reveal and use both a symbol and a visible label.
+Flashcards reveal their answer in place. Assessment controls appear only after reveal and use both a symbol and a visible label. Leitner progress is presented as five compact, equally weighted boxes so review cadence is visible without competing with the active card.
 
 ## Do's and Don'ts
 
