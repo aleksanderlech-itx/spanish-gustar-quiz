@@ -35,7 +35,7 @@ const readProgress = (quizId: QuizId): QuizProgress => {
 
 const readFlashcardProgress = (): QuizProgress => {
   try {
-    const raw = window.localStorage.getItem("spanish-flashcards-progress-v1");
+    const raw = window.localStorage.getItem("spanish-flashcards-leitner-v2") ?? window.localStorage.getItem("spanish-flashcards-progress-v1");
     const saved = raw ? JSON.parse(raw) as Record<string, unknown> : {};
     const completed = Object.keys(saved).length;
     return { completed, total: 500, percent: Math.round((completed / 500) * 100) };
