@@ -540,10 +540,10 @@ p {
   display: grid;
   min-width: 170px;
   padding: 6px;
-  border: 1px solid var(--line);
+  border: 2px solid var(--ink);
   border-radius: 14px;
   background: var(--surface);
-  box-shadow: 0 16px 35px rgba(18, 39, 58, .16);
+  box-shadow: 4px 4px 0 var(--ink);
 }
 
 .quiz-switch nav button {
@@ -909,19 +909,18 @@ h1 em {
   display: grid;
   place-items: start center;
   padding: 18px 14px;
-  background: color-mix(in srgb, var(--ink) 42%, transparent);
-  backdrop-filter: blur(4px);
+  background: var(--paper);
 }
 
 .conjugation-modal {
   width: min(100%, 760px);
   max-height: min(72vh, 620px);
   overflow: auto;
-  border: 1px solid var(--line);
+  border: 2px solid var(--ink);
   border-radius: calc(var(--radius) + 6px);
   background: var(--surface);
   color: var(--ink);
-  box-shadow: 0 28px 70px rgba(18, 39, 58, .28);
+  box-shadow: 4px 4px 0 var(--ink);
 }
 
 .conjugation-modal-header {

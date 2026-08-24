@@ -119,8 +119,14 @@ export default function Flashcards() {
       ) : (
         <section className="flashcard-stage" aria-live="polite">
           <button type="button" className={`flashcard ${revealed ? "revealed" : ""}`} onClick={() => setRevealed(true)} aria-expanded={revealed}>
-            <span className="flashcard-rank">Box {currentBox} · Verb {card.rank}</span><strong lang="es">{card.spanish}</strong>
-            {revealed ? <span className="flashcard-answer"><b lang="en">{card.english}</b><span lang="es">{card.example}</span></span> : <span className="flashcard-prompt">Think of the English meaning, then reveal</span>}
+            <span className="flashcard-inner">
+              <span className="flashcard-face flashcard-front" aria-hidden={revealed}>
+                <span className="flashcard-rank">Box {currentBox} · Verb {card.rank}</span><strong lang="es">{card.spanish}</strong><span className="flashcard-prompt">Think of the English meaning, then reveal</span>
+              </span>
+              <span className="flashcard-face flashcard-back" aria-hidden={!revealed}>
+                <span className="flashcard-rank">Box {currentBox} · Verb {card.rank}</span><strong lang="es">{card.spanish}</strong><span className="flashcard-answer"><b lang="en">{card.english}</b><span lang="es">{card.example}</span></span>
+              </span>
+            </span>
           </button>
           <button type="button" className="flashcard-listen" onClick={speak} aria-label={`Listen to ${card.spanish}`}><svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M4 9.25h4.1L13.5 5v14l-5.4-4.25H4Z"/><path d="M16.5 8.25a5 5 0 0 1 0 7.5M18.9 5.85a8.4 8.4 0 0 1 0 12.3"/></svg>Listen</button>
           <div className={`flashcard-actions ${revealed ? "visible" : ""}`} aria-hidden={!revealed}>
