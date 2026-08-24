@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "spanish-quiz-studio",
+  "name": "spanish-gustar-quiz",
   "main": "dist/server/index.js",
   "compatibility_date": "2026-08-20",
   "compatibility_flags": ["nodejs_compat"],
@@ -14,10 +14,10 @@
   },
   "env": {
     "staging": {
-      "name": "spanish-quiz-studio-staging"
+      "name": "spanish-gustar-quiz-staging"
     },
     "production": {
-      "name": "spanish-quiz-studio"
+      "name": "spanish-gustar-quiz"
     }
   }
 }
