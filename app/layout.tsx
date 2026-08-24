@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
-import { Atkinson_Hyperlegible } from "next/font/google";
+import { Fraunces, Karla } from "next/font/google";
 import "./globals.css";
 import "./issue-5-design.css";
 import "./quiz-layout-fix.css";
 import QuizSelector from "./quiz-selector";
 import { SITE_CONFIG } from "./site-config";
 
-const atkinson = Atkinson_Hyperlegible({
-  variable: "--font-atkinson",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["500", "600", "700"],
+});
+
+const karla = Karla({
+  variable: "--font-karla",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -45,7 +51,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${atkinson.variable} antialiased`}>
+      <body className={`${fraunces.variable} ${karla.variable} antialiased`}>
         <QuizSelector />
         {children}
       </body>

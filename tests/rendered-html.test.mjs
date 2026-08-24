@@ -65,6 +65,22 @@ test("mobile quiz design keeps the answer field and actions inside the viewport"
   assert.doesNotMatch(css, /clip-path:\s*polygon/);
 });
 
+test("editorial design owns typography, solid surfaces, and hard depth", async () => {
+  const layout = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
+  const designCss = await readFile(new URL("../app/quiz-layout-fix.css", import.meta.url), "utf8");
+  const baseCss = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(layout, /Fraunces/);
+  assert.match(layout, /Karla/);
+  assert.match(designCss, /--paper:\s*#f4f0ea/);
+  assert.match(designCss, /--hard-shadow:\s*4px 4px 0 #2c2b29/);
+  assert.match(designCss, /border:\s*2px solid var\(--ink\)/);
+  assert.match(designCss, /box-shadow:\s*var\(--hard-shadow\)/);
+  assert.match(designCss, /\.flashcard-face > strong\s*\{[\s\S]*font-size:\s*clamp\(46px,\s*10vw,\s*76px\)/);
+  assert.match(baseCss, /\.conjugation-modal-backdrop\s*\{[\s\S]*background:\s*var\(--paper\)/);
+  assert.doesNotMatch(designCss, /\.flashcard-face > strong[\s\S]*box-shadow:\s*0/);
+  assert.doesNotMatch(designCss, /background(?:-image)?:\s*linear-gradient/);
+});
+
 test("quiz presents one question at a time and always shows the infinitive above translation", async () => {
   const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
   const data = await readFile(new URL("../app/quiz-data.ts", import.meta.url), "utf8");

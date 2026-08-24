@@ -42,3 +42,5 @@ next-env.d.ts
 /work/
 /.codex-tmp/
 /.vinext/fonts/atkinson-hyperlegible-*/
+/.vinext/fonts/fraunces-*/
+/.vinext/fonts/karla-*/

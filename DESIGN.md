@@ -1,37 +1,54 @@
 ---
 version: alpha
 colors:
-  paper: "#f8fbeb"
-  surface: "#ffffff"
-  ink: "#151f2d"
-  primary: "#1d5c73"
-  success: "#bfd52f"
-  danger: "#b84d59"
+  paper: "#f4f0ea"
+  surface: "#fffdf9"
+  ink: "#2c2b29"
+  primary: "#00625d"
+  secondary: "#a23d2e"
+  success: "#869d7a"
+  danger: "#ba1a1a"
 typography:
-  sans:
-    fontFamily: "Atkinson Hyperlegible, system-ui, sans-serif"
+  display:
+    fontFamily: "Fraunces, Georgia, serif"
+  body:
+    fontFamily: "Karla, system-ui, sans-serif"
 rounded:
   DEFAULT: "8px"
 spacing:
   unit: "4px"
 components:
   questionCard:
-    emphasis: "primary elevated learning surface"
+    backgroundColor: "surface"
+    textColor: "ink"
   supportingPanel:
-    emphasis: "quiet translucent surface"
+    backgroundColor: "paper"
+    textColor: "ink"
+  primaryAction:
+    backgroundColor: "primary"
+    textColor: "surface"
+  secondaryAction:
+    backgroundColor: "secondary"
+    textColor: "surface"
+  successState:
+    backgroundColor: "success"
+    textColor: "ink"
+  dangerState:
+    backgroundColor: "danger"
+    textColor: "surface"
 ---
 
 ## Overview
 
-Spanish Quiz Studio uses the Citrus Graph light theme and Harbor Night dark theme. It is a mobile-first language-learning tool. The active exercise is the single visually elevated surface; settings and progress remain quieter.
+Spanish Quiz Studio uses the Editorial Boutique system from `docs/design.md`. It is a mobile-first language-learning tool. The active exercise is the single visually elevated surface; settings and progress remain quieter.
 
 ## Colors
 
-Teal identifies primary actions, lime identifies successful progress, and muted red identifies material still to learn. Semantic meaning is never conveyed by color alone. Runtime ownership remains in `app/globals.css`.
+Teal identifies primary actions, terracotta identifies secondary emphasis, sage identifies successful progress, and red identifies material still to learn. Semantic meaning is never conveyed by color alone. Runtime ownership remains in `app/quiz-layout-fix.css`.
 
 ## Typography
 
-Atkinson Hyperlegible supports quick comparison between Spanish prompts and English answers. Exercise text uses stronger scale and weight than interface labels.
+Fraunces carries display headings and action labels. Karla carries Spanish prompts, English answers, filters, metadata, and supporting copy.
 
 ## Layout
 
@@ -39,7 +56,7 @@ Keep the compact header and one-exercise-per-screen flow. Primary actions remain
 
 ## Elevation & Depth
 
-Only the active question or flashcard receives the strong product shadow. Supporting panels use borders and translucent fills.
+Only the active question or flashcard receives a hard 4px offset shadow. Supporting panels use solid paper surfaces and borders without Gaussian shadows.
 
 ## Shapes
 
