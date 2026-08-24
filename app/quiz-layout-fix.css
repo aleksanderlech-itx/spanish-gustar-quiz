@@ -523,6 +523,41 @@ body.dark {
   background: var(--success-soft);
 }
 
+/* Editorial Boutique: finish the shared surfaces that predate this system. */
+.quiz-switch summary,
+.quiz-icon span,
+.stat-grid,
+.insights > div,
+.history-list article {
+  border: 2px solid var(--ink);
+  background: var(--paper-white);
+  box-shadow: none;
+}
+
+.quiz-switch summary {
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.quiz-switch summary:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.sentence-wrap input {
+  background: var(--primary-soft);
+}
+
+.choice-grid button.correct,
+.choice-grid button.wrong {
+  border-color: var(--ink);
+}
+
+.stat-grid div,
+.insights > div,
+.history-list article {
+  border-color: var(--ink);
+}
+
 @media (max-width: 600px) {
   .flashcard {
     min-height: 78vh;
