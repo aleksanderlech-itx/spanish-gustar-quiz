@@ -11,5 +11,13 @@
   },
   "observability": {
     "enabled": true
+  },
+  "env": {
+    "staging": {
+      "name": "spanish-quiz-studio-staging"
+    },
+    "production": {
+      "name": "spanish-quiz-studio"
+    }
   }
 }
