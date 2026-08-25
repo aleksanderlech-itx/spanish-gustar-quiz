@@ -23,8 +23,18 @@ This contract records the observable behavior shared by the grammar quizzes and 
 - Type mode uses a real text input (`autoCapitalize="none" autoCorrect="off" spellCheck={false}
   lang="es"`) with an accent row (`á é í ó ú ñ`) that inserts at the input's caret position, not the
   end. Checking is a no-op on empty/whitespace input. Answer comparison always goes through
-  `normalizeAnswer`, in both modes. The "Stuck? Open the conjugation chart" affordance and the
-  in-round quiz switcher are not present yet — the chart screen ships in a later update.
+  `normalizeAnswer`, in both modes. Type mode's "Stuck? Open the conjugation chart" opens
+  `app/verb-chart.tsx` in a new tab (scoped to the current question's verb), rather than navigating
+  away and losing the in-progress round, which is not yet saved to history. The in-round quiz
+  switcher is not present — switching quizzes now happens from the board.
+- The verb conjugation chart (`app/verb-chart.tsx`) only shows a real six-pronoun paradigm for
+  preterite/imperfect verbs, where that data exists. Gustar-pattern verbs are impersonal (they never
+  conjugate for "yo, tú..."), so they get a singular/plural block instead. The ser/estar quiz compares
+  two different verbs rather than conjugating one, so its chart lists "ser" and "estar" directly. No
+  regularity badge is shown — there's no regular/irregular classification data to back one.
+  `app/speak.ts` centralizes speechSynthesis use (`es-ES`, rate 0.9, prefers a Spanish voice,
+  cancels before speaking); tapping a row speaks it and highlights only that row until it ends,
+  "Play all" queues the block's rows in order.
 - Level/verb filters, backup & restore, detailed history, weak-area insights, and "reset progress"
   are temporarily unreachable in the UI — they move into the Drawer in a later update. The
   underlying data and sync logic are unaffected; only their entry points are pending.

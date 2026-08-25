@@ -307,6 +307,12 @@ export default function Round({ quizId }: { quizId: QuizId }) {
           );
         }) : (
           <>
+            {!isSubmitted && (
+              // Opens in a new tab so the in-progress round (not yet saved to history) isn't lost mid-navigation.
+              <a className="round-stuck" href={`/?quiz=${quizId}&chart=1&verb=${encodeURIComponent(question.infinitive)}`} target="_blank" rel="noreferrer">
+                Stuck? Open the conjugation chart
+              </a>
+            )}
             <input
               ref={inputRef}
               type="text"

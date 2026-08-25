@@ -5,18 +5,24 @@ import { type QuizId } from "./quiz-config";
 import Flashcards from "./flashcards";
 import TopicDetail from "./topic-detail";
 import Round from "./round";
+import VerbChart from "./verb-chart";
 
 const quizIdFromLocation = (): QuizId => {
   const value = new URLSearchParams(window.location.search).get("quiz");
   return value === "ser-estar" || value === "preterite-imperfect" ? value : "gustar";
 };
 
-type HomeScreen = { screen: "flashcards" } | { screen: "round"; quizId: QuizId } | { screen: "detail"; quizId: QuizId };
+type HomeScreen =
+  | { screen: "flashcards" }
+  | { screen: "round"; quizId: QuizId }
+  | { screen: "chart"; quizId: QuizId; infinitive?: string }
+  | { screen: "detail"; quizId: QuizId };
 
 const homeScreenFromLocation = (): HomeScreen => {
   const params = new URLSearchParams(window.location.search);
   if (params.get("quiz") === "flashcards") return { screen: "flashcards" };
   const quizId = quizIdFromLocation();
+  if (params.get("chart") === "1") return { screen: "chart", quizId, infinitive: params.get("verb") ?? undefined };
   if (params.get("play") === "1") return { screen: "round", quizId };
   return { screen: "detail", quizId };
 };
@@ -35,5 +41,6 @@ export default function Home() {
   if (!home) return null;
   if (home.screen === "flashcards") return <Flashcards />;
   if (home.screen === "round") return <Round quizId={home.quizId} />;
+  if (home.screen === "chart") return <VerbChart quizId={home.quizId} infinitive={home.infinitive} />;
   return <TopicDetail quizId={home.quizId} />;
 }

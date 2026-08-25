@@ -79,6 +79,12 @@ export default function TopicDetail({ quizId }: { quizId: QuizId }) {
         </p>
       </section>
 
+      <Link className="topic-chart-link" href={`/?quiz=${quizId}&chart=1`}>
+        <span className="board-icon" aria-hidden="true">▦</span>
+        <span className="topic-chart-link-label">Verb conjugation chart</span>
+        <span aria-hidden="true">→</span>
+      </Link>
+
       <footer className="topic-detail-footer">
         <a className="primary topic-start" href={`/?quiz=${quizId}&play=1`}>Start round of {roundLength}</a>
       </footer>
