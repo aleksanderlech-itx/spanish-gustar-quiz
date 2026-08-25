@@ -191,8 +191,18 @@ function GrammarQuiz() {
   }, []);
 
   useEffect(() => {
-    document.body.classList.toggle("dark", darkMode);
-    return () => document.body.classList.remove("dark");
+    // Browser storage is unavailable during the server render.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setDarkMode(document.documentElement.getAttribute("data-theme") === "dark");
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", darkMode ? "dark" : "light");
+    try {
+      localStorage.setItem("spanish-quiz-theme", darkMode ? "dark" : "light");
+    } catch {
+      // Storage can be unavailable (private mode, quota); theme still applies for this load.
+    }
   }, [darkMode]);
 
   const persistProgress = async (nextHistory: Result[], nextFilters = filters) => {

@@ -38,6 +38,22 @@ components:
     textColor: "surface"
 ---
 
+## Runtime tokens (board/round redesign)
+
+`app/quiz-layout-fix.css` declares the full token set on `:root` and
+`:root[data-theme="dark"]`, and is the single runtime source of truth — the
+`colors` block above and `docs/design.md` restate it for reference only.
+Tokens added beyond the original set: `--panel`, `--panel-soft`, `--line`,
+`--primary-ink`, `--primary-soft`, `--sun`, `--sun-soft`, `--clay`,
+`--clay-soft`, `--sage`, `--sage-soft`, `--danger-soft`, `--shadow-col`,
+`--key`. `--sun` marks streaks and the current step; `--clay` replaces the
+old `--accent` role (secondary emphasis, eyebrows); `--sage` replaces the old
+`--success` role. Theme is set via `data-theme="light" | "dark"` on
+`<html>`, defaulted from `prefers-color-scheme` and persisted per user
+choice (see `app/layout.tsx`'s pre-paint script).
+
+---
+
 ## Overview
 
 Spanish Quiz Studio uses the Editorial Boutique system from `docs/design.md`. It is a mobile-first language-learning tool. The active exercise is the single visually elevated surface; settings and progress remain quieter.

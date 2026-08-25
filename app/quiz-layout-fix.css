@@ -1,54 +1,68 @@
 :root {
-  --paper: #f4f0ea;
-  --surface: #fffdf9;
-  --panel: #f7f3ed;
-  --panel-soft: #f1ede7;
-  --quiz-surface: #fffdf9;
-  --ink: #2c2b29;
-  --muted: #3f4948;
-  --line: #bec9c7;
-  --primary: #00625d;
-  --primary-dark: #00504c;
-  --primary-soft: #c5fff9;
-  --success: #869d7a;
-  --success-soft: #e7efdf;
-  --accent: #a23d2e;
-  --accent-soft: #ffdad4;
-  --danger: #ba1a1a;
-  --danger-soft: #ffdad6;
-  --footer: #fffdf9;
-  --paper-white: #fffdf9;
-  --hard-shadow: 4px 4px 0 #2c2b29;
+  /* Editorial Boutique runtime tokens — see README "Design tokens" in the
+     board/round design handoff. This block is the single source of truth;
+     DESIGN.md and docs/design.md restate these values for reference. */
+  --paper: #F5EFE4;
+  --surface: #FFFCF6;
+  --panel: #EFE7D9;
+  --panel-soft: #F7F1E6;
+  --ink: #2C2B29;
+  --muted: #6B6459;
+  --line: #DCD2C2;
+  --primary: #00625D;
+  --primary-ink: #FFFFFF;
+  --primary-soft: #C9F2EE;
+  --sun: #F2A81D;
+  --sun-soft: #FFEBC2;
+  --clay: #C4553F;
+  --clay-soft: #FBDCD2;
+  --sage: #6E8F5E;
+  --sage-soft: #E2EFD8;
+  --danger: #BA1A1A;
+  --danger-soft: #FFDAD6;
+  --shadow-col: #2C2B29;
+  --key: #FCFAF6;
+  --hard-shadow: 4px 4px 0 var(--shadow-col);
+
+  /* Aliases kept for existing rules that predate the token pass above. */
+  --quiz-surface: var(--surface);
+  --primary-dark: var(--primary);
+  --success: var(--sage);
+  --success-soft: var(--sage-soft);
+  --accent: var(--clay);
+  --accent-soft: var(--clay-soft);
+  --footer: var(--surface);
+  --paper-white: var(--surface);
+
   --font-display: var(--font-fraunces), Georgia, serif;
   --font-body: var(--font-karla), system-ui, sans-serif;
 }
 
-body.dark {
-  --paper: #1c1c18;
-  --surface: #31302d;
-  --panel: #282724;
-  --panel-soft: #24231f;
-  --quiz-surface: #31302d;
-  --ink: #f4f0ea;
-  --muted: #bec9c7;
-  --line: #6f7978;
-  --primary: #87d4ce;
-  --primary-dark: #a3f0ea;
-  --primary-soft: #00504c;
-  --success: #a3f0ea;
-  --success-soft: #315044;
-  --accent: #ffb4a7;
-  --accent-soft: #731a0f;
-  --danger: #ffb4ab;
-  --danger-soft: #93000a;
-  --footer: #31302d;
-  --paper-white: #31302d;
-  --hard-shadow: 4px 4px 0 #0f0f0d;
+:root[data-theme="dark"] {
+  --paper: #1B1A17;
+  --surface: #262420;
+  --panel: #2F2C27;
+  --panel-soft: #221F1B;
+  --ink: #F4EFE6;
+  --muted: #B5AC9C;
+  --line: #45403A;
+  --primary: #67D8D0;
+  --primary-ink: #06322F;
+  --primary-soft: #0C4A46;
+  --sun: #FFC24D;
+  --sun-soft: #4A360F;
+  --clay: #FF9C82;
+  --clay-soft: #5A2418;
+  --sage: #A9D18F;
+  --sage-soft: #2E4227;
+  --danger: #FFB4AB;
+  --danger-soft: #6B1210;
+  --shadow-col: #000000;
+  --key: #332F29;
 }
 
 html,
-body,
-body.dark {
+body {
   background: var(--paper);
 }
 
@@ -70,8 +84,7 @@ button,
   font-family: var(--font-display);
 }
 
-body,
-body.dark {
+body {
   background-image: none;
 }
 
@@ -91,19 +104,19 @@ body.dark {
 
 .question-progress > strong,
 .question-progress strong {
-  color: #ffffff;
+  color: var(--primary-ink);
 }
 
 .question-progress > div > span,
 .question-progress span {
-  background: color-mix(in srgb, #ffffff 28%, var(--primary-dark));
+  background: color-mix(in srgb, var(--primary-ink) 28%, var(--primary-dark));
 }
 
 .question-progress > div > span.active,
 .question-progress > div > span.answered,
 .question-progress span.active,
 .question-progress span.answered {
-  background: #ffffff;
+  background: var(--primary-ink);
 }
 
 .question-card {

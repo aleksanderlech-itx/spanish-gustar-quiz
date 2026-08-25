@@ -44,14 +44,27 @@ export const metadata: Metadata = {
   },
 };
 
+const THEME_PRE_PAINT_SCRIPT = `(function () {
+  try {
+    var stored = localStorage.getItem("spanish-quiz-theme");
+    var theme = stored === "light" || stored === "dark"
+      ? stored
+      : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  } catch (error) {
+    document.documentElement.setAttribute("data-theme", "light");
+  }
+})();`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" suppressHydrationWarning>
       <body className={`${fraunces.variable} ${karla.variable} antialiased`}>
+        <script suppressHydrationWarning dangerouslySetInnerHTML={{ __html: THEME_PRE_PAINT_SCRIPT }} />
         <QuizSelector />
         {children}
       </body>
