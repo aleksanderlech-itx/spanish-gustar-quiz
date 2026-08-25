@@ -71,8 +71,8 @@ test("editorial design owns typography, solid surfaces, and hard depth", async (
   const baseCss = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(layout, /Fraunces/);
   assert.match(layout, /Karla/);
-  assert.match(designCss, /--paper:\s*#f4f0ea/);
-  assert.match(designCss, /--hard-shadow:\s*4px 4px 0 #2c2b29/);
+  assert.match(designCss, /--paper:\s*#F5EFE4/);
+  assert.match(designCss, /--hard-shadow:\s*4px 4px 0 var\(--shadow-col\)/);
   assert.match(designCss, /border:\s*2px solid var\(--ink\)/);
   assert.match(designCss, /box-shadow:\s*var\(--hard-shadow\)/);
   assert.match(designCss, /\.flashcard-face > strong\s*\{[\s\S]*font-size:\s*clamp\(46px,\s*10vw,\s*76px\)/);
