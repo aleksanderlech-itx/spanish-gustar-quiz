@@ -5,6 +5,7 @@ export type BoardTileProgress = {
   percent: number;
   due: number;
   mastered: number;
+  accuracy: number;
   lastActivity: string | null;
 };
 

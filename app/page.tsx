@@ -6,8 +6,10 @@ import { availableQuestions, filterQuestions, getMissedIds, normalizeAnswer, res
 import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
 import { PRETERITE_IMPERFECT_CONJUGATIONS } from "./preterite-imperfect-data";
 import Flashcards from "./flashcards";
+import TopicDetail from "./topic-detail";
 import { useTheme } from "./use-theme";
 import { recordActivityToday } from "./streak";
+import { readTopicSettings, type RoundLength } from "./topic-settings";
 
 type Result = QuizResult;
 type Filters = QuizFilters;
@@ -66,6 +68,7 @@ function GrammarQuiz() {
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [answerMode, setAnswerMode] = useState<"choose" | "type">("type");
+  const [roundLength, setRoundLength] = useState<RoundLength>(5);
   const { theme, toggleTheme } = useTheme();
   const darkMode = theme === "dark";
   const [showConjugations, setShowConjugations] = useState(false);
@@ -113,7 +116,7 @@ function GrammarQuiz() {
     }
     if (!missedOnly && pool.length === 0) { setCycleComplete(true); return; }
     setCycleComplete(false);
-    const selected = shuffle(pool).slice(0, 5);
+    const selected = shuffle(pool).slice(0, roundLength);
     setRound(selected);
     setAnswers(Array(selected.length).fill(""));
     setChoiceSets(Object.fromEntries(selected.map((question) => [question.id, answerChoicesFor(question, forms)])));
@@ -129,6 +132,11 @@ function GrammarQuiz() {
     const savedFilters = localStorage.getItem(filterKey);
     const storedFilters = savedFilters ? JSON.parse(savedFilters) as Partial<Filters> : {};
     const initialFilters: Filters = { level: storedFilters.level ?? "all", verb: storedFilters.verb ?? "all" };
+    const topicSettings = readTopicSettings(quizId);
+    // Browser storage is unavailable during the server render.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setAnswerMode(topicSettings.mode);
+    setRoundLength(topicSettings.roundLength);
     const initialise = async () => {
       let merged = presentOnlyHistory(initial, questions);
       try {
@@ -147,12 +155,12 @@ function GrammarQuiz() {
       const initialQuestions = filterQuestions(questions, initialFilters);
       const used = new Set(merged.filter((item) => item.mode !== "review").flatMap((item) => item.questionIds));
       const pool = initialQuestions.filter((q) => !used.has(q.id));
-      const selected = shuffle(pool.length ? pool : initialQuestions).slice(0, 5);
+      const selected = shuffle(pool.length ? pool : initialQuestions).slice(0, topicSettings.roundLength);
       setHistory(merged); setFilters(initialFilters);
       setRound(selected); setChoiceSets(Object.fromEntries(selected.map((question) => [question.id, answerChoicesFor(question, forms)]))); setActiveQuestion(0); setHydrated(true);
     };
     void initialise();
-  }, [filterKey, forms, questions, storageKey]);
+  }, [filterKey, forms, questions, quizId, storageKey]);
 
   useEffect(() => {
     const syncQuizFromUrl = () => {
@@ -514,8 +522,20 @@ function GrammarQuiz() {
   );
 }
 
-export default function Home() {
-  const [showFlashcards] = useState(() => typeof window !== "undefined" && new URLSearchParams(window.location.search).get("quiz") === "flashcards");
+type HomeScreen = { screen: "flashcards" } | { screen: "round" } | { screen: "detail"; quizId: QuizId };
 
-  return showFlashcards ? <Flashcards /> : <GrammarQuiz />;
+const homeScreenFromLocation = (): HomeScreen => {
+  if (typeof window === "undefined") return { screen: "detail", quizId: "gustar" };
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("quiz") === "flashcards") return { screen: "flashcards" };
+  if (params.get("play") === "1") return { screen: "round" };
+  return { screen: "detail", quizId: quizIdFromLocation() };
+};
+
+export default function Home() {
+  const [home] = useState(homeScreenFromLocation);
+
+  if (home.screen === "flashcards") return <Flashcards />;
+  if (home.screen === "round") return <GrammarQuiz />;
+  return <TopicDetail quizId={home.quizId} />;
 }

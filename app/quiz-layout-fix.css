@@ -853,3 +853,153 @@ body {
   border: 1px solid var(--line);
   margin-top: 10px;
 }
+
+/* Topic detail — see design handoff README "Topic detail". */
+
+.topic-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.topic-back {
+  display: inline-grid;
+  width: 44px;
+  min-height: 44px;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+  place-items: center;
+  text-decoration: none;
+}
+
+.topic-detail-eyebrow {
+  margin: 0;
+  color: var(--clay);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.topic-detail h1 {
+  margin: 0 0 16px;
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.05;
+}
+
+.topic-summary-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px;
+  border: 2px solid var(--ink);
+  border-radius: 16px 26px 12px 32px;
+  background: var(--surface);
+  box-shadow: var(--hard-shadow);
+  margin-bottom: 22px;
+}
+
+.topic-summary-ring {
+  width: 84px;
+  height: 84px;
+  flex: none;
+  margin-top: 0;
+}
+
+.topic-summary-ring-inner {
+  width: 60px;
+  height: 60px;
+  font-size: 19px;
+}
+
+.topic-summary-meta {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.topic-setting {
+  margin-bottom: 20px;
+}
+
+.topic-setting > .eyebrow {
+  margin-bottom: 8px;
+}
+
+.round-length-picker {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.round-length-picker button {
+  min-height: 48px;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.round-length-picker button.active {
+  background: var(--primary-soft);
+}
+
+.mode-segmented {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.mode-segmented button {
+  flex: 1;
+  min-height: 46px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.mode-segmented button.active {
+  border-color: var(--ink);
+  background: var(--primary-soft);
+}
+
+.topic-setting-hint {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.topic-detail-footer {
+  position: sticky;
+  bottom: 0;
+  padding-top: 14px;
+  background: var(--paper);
+}
+
+.topic-start {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  background: var(--primary);
+  color: var(--primary-ink);
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 600;
+  text-decoration: none;
+}

@@ -5,7 +5,7 @@ import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
 import { useTheme } from "./use-theme";
 import { orderBoard, type BoardTileProgress } from "./board";
 import { readStreakSummary, type StreakSummary } from "./streak";
-import { getMissedIds, type QuizResult } from "./quiz-logic";
+import { emptyQuizProgress, readQuizProgress } from "./quiz-progress";
 
 type LibraryQuizId = QuizId | "flashcards";
 
@@ -29,38 +29,8 @@ const EMPTY_STREAK: StreakSummary = {
   ],
 };
 
-const quizPath = (quizId: QuizId) =>
-  quizId === "gustar" ? "/?play=1" : `/?quiz=${quizId}&play=1`;
-
-const emptyProgress = (total: number): Omit<BoardTileProgress, "id"> => ({
-  completed: 0, total, percent: 0, due: 0, mastered: 0, lastActivity: null,
-});
-
-const readProgress = (quizId: QuizId): Omit<BoardTileProgress, "id"> => {
-  const quiz = QUIZ_CONFIG[quizId];
-  const total = quiz.questions.length;
-
-  try {
-    const raw = window.localStorage.getItem(quiz.storageKey);
-    const history = raw ? (JSON.parse(raw) as QuizResult[]) : [];
-    const regular = history.filter((item) => item.mode !== "review");
-    const completed = new Set(regular.flatMap((item) => item.questionIds)).size;
-    const due = getMissedIds(history).length;
-    const mastered = Math.max(0, completed - due);
-    const lastActivity = history.length ? history[history.length - 1].date : null;
-
-    return {
-      completed,
-      total,
-      percent: total ? Math.min(100, Math.round((completed / total) * 100)) : 0,
-      due,
-      mastered,
-      lastActivity,
-    };
-  } catch {
-    return emptyProgress(total);
-  }
-};
+/** Grammar quizzes route to the topic detail screen; the round itself is `&play=1` from there. */
+const detailPath = (quizId: QuizId) => `/?quiz=${quizId}`;
 
 const FLASHCARD_TOTAL = 500;
 
@@ -84,10 +54,11 @@ const readFlashcardProgress = (): Omit<BoardTileProgress, "id"> => {
       percent: Math.round((completed / FLASHCARD_TOTAL) * 100),
       due,
       mastered,
+      accuracy: 0,
       lastActivity,
     };
   } catch {
-    return emptyProgress(FLASHCARD_TOTAL);
+    return emptyQuizProgress(FLASHCARD_TOTAL);
   }
 };
 
@@ -98,8 +69,8 @@ export default function QuizSelector() {
   const [ready, setReady] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const [items, setItems] = useState<BoardItem[]>(() => [
-    ...QUIZ_IDS.map((id) => ({ id: id as LibraryQuizId, kind: "quiz" as const, glyph: "?", title: QUIZ_CONFIG[id].title.replace(" Quiz", ""), noun: "question", href: quizPath(id), ...emptyProgress(QUIZ_CONFIG[id].questions.length) })),
-    { id: "flashcards" as LibraryQuizId, kind: "deck" as const, glyph: "▤", title: "Spanish Verb Flashcards", noun: "card", href: "/?quiz=flashcards&play=1", ...emptyProgress(FLASHCARD_TOTAL) },
+    ...QUIZ_IDS.map((id) => ({ id: id as LibraryQuizId, kind: "quiz" as const, glyph: "?", title: QUIZ_CONFIG[id].title.replace(" Quiz", ""), noun: "question", href: detailPath(id), ...emptyQuizProgress(QUIZ_CONFIG[id].questions.length) })),
+    { id: "flashcards" as LibraryQuizId, kind: "deck" as const, glyph: "▤", title: "Spanish Verb Flashcards", noun: "card", href: "/?quiz=flashcards&play=1", ...emptyQuizProgress(FLASHCARD_TOTAL) },
   ]);
   const [streak, setStreak] = useState<StreakSummary>(EMPTY_STREAK);
 
@@ -112,8 +83,8 @@ export default function QuizSelector() {
         glyph: "?",
         title: QUIZ_CONFIG[id].title.replace(" Quiz", ""),
         noun: "question",
-        href: quizPath(id),
-        ...readProgress(id),
+        href: detailPath(id),
+        ...readQuizProgress(id),
       })),
       {
         id: "flashcards",
@@ -129,7 +100,7 @@ export default function QuizSelector() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setItems(nextItems);
     setStreak(readStreakSummary());
-    setOpen(params.get("play") !== "1");
+    setOpen(!params.has("quiz") && params.get("play") !== "1");
     setReady(true);
   }, []);
 
