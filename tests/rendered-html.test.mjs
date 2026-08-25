@@ -81,37 +81,39 @@ test("editorial design owns typography, solid surfaces, and hard depth", async (
   assert.doesNotMatch(designCss, /background(?:-image)?:\s*linear-gradient/);
 });
 
-test("quiz presents one question at a time and always shows the infinitive above translation", async () => {
+test("page.tsx is a thin shell dispatching to topic detail, round, and flashcards", async () => {
   const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
-  const data = await readFile(new URL("../app/quiz-data.ts", import.meta.url), "utf8");
-  assert.match(page, /hidden=\{index !== activeQuestion\}/);
-  assert.match(page, /Question"\} \{activeQuestion \+ 1\} of \{round\.length\}/);
-  assert.match(page, /<div className="verb-row">\s*<span className="verb-chip">\{question\.infinitive\}<\/span>\s*<\/div>[\s\S]*<div className="translation-control">/);
-  assert.match(page, /const \[answerMode, setAnswerMode\]/);
-  assert.match(page, /className="choice-grid"/);
-  assert.match(page, /className=\{`listen-button \$\{isSpeaking \? "playing" : ""\}`\}/);
-  assert.match(page, /<svg className="header-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none">/);
-  assert.match(page, /<circle cx="12" cy="12" r="4\.5" \/>/);
-  assert.match(page, /M4 9\.25h4\.1L13\.5 5v14l-5\.4-4\.25H4Z/);
-  assert.doesNotMatch(page, />Dark\s*</);
-  assert.doesNotMatch(page, />\{isSpeaking \? "Playing" : "Listen"\}<\/button>/);
-  assert.match(page, /const \[quizId, setQuizId\]/);
-  assert.match(page, /className="quiz-icon"/);
-  assert.match(page, /setRound\(\[\]\);\s*setAnswers\(\[\]\);\s*setChecked\(false\);/);
-  assert.match(page, /setPracticeMissed\(false\);\s*setShownExplanations\(new Set\(\)\);/);
-  assert.match(page, /setFilters\(\{ level: "all", verb: "all" \}\);\s*setCycleComplete\(false\);/);
-  assert.match(page, /onClick=\{\(\) => switchQuiz\("gustar"\)\}/);
-  assert.match(page, /onClick=\{\(\) => switchQuiz\("preterite-imperfect"\)\}/);
-  assert.match(page, /Preterite vs Imperfect/);
-  assert.match(page, /value === "ser-estar" \|\| value === "preterite-imperfect"/);
-  assert.match(page, /const \[showConjugations, setShowConjugations\]/);
-  assert.match(page, /Show verb chart/);
-  assert.match(page, /role="dialog"/);
-  assert.match(page, /PRETERITE_IMPERFECT_CONJUGATIONS\[round\[activeQuestion\]\?\.infinitive\]/);
-  assert.match(page, /activeConjugations\.map/);
-  assert.doesNotMatch(page, /<summary[^>]*>⌄<\/summary>/);
-  assert.match(page, /enter the missing object pronoun and verb/);
-  assert.match(page, /Show explanation/);
-  assert.match(data, /answer: `\$\{objectPronoun\} \$\{verbAnswer\}`/);
+  assert.match(page, /if \(home\.screen === "flashcards"\) return <Flashcards \/>;/);
+  assert.match(page, /if \(home\.screen === "round"\) return <Round quizId=\{home\.quizId\} \/>;/);
+  assert.match(page, /return <TopicDetail quizId=\{home\.quizId\} \/>;/);
   assert.doesNotMatch(page, /const QUESTION_BANKS|const COMPLEX_QUESTIONS|TRANSLATIONS/);
+});
+
+test("round screen commits one answer at a time, recolors options, and gates Next until answered", async () => {
+  const round = await readFile(new URL("../app/round.tsx", import.meta.url), "utf8");
+  const data = await readFile(new URL("../app/quiz-data.ts", import.meta.url), "utf8");
+
+  // One tap commits; further taps on an already-answered question are ignored.
+  assert.match(round, /const commit = \(choice: string\) => \{\s*if \(isSubmitted\) return;/);
+  // Four-state option color table, driven off a single state string.
+  assert.match(round, /round-option-\$\{state\}/);
+  assert.match(round, /if \(choice === question\.answer\) return "correct";/);
+  assert.match(round, /if \(choice === picked\) return "wrong";/);
+  // Skip advances without scoring: the answer stays null and is excluded when the round is scored.
+  assert.match(round, /const skip = \(\) => \{/);
+  assert.match(round, /entry\.a !== null/);
+  // Footer Next is disabled until the current question is answered.
+  assert.match(round, /disabled=\{!isSubmitted\}/);
+  assert.match(round, /"Pick an answer" : isLast \? "See results" : "Next question"/);
+  // Score increments once per question, at commit time — not on render.
+  assert.match(round, /recordActivityToday\(\);/);
+  // Answer comparison for Choose mode reuses the existing verb-form/pronoun data, not a parallel bank.
+  assert.match(data, /answer: `\$\{objectPronoun\} \$\{verbAnswer\}`/);
+});
+
+test("topic detail persists round length and answer mode per topic", async () => {
+  const topicDetail = await readFile(new URL("../app/topic-detail.tsx", import.meta.url), "utf8");
+  assert.match(topicDetail, /const ROUND_LENGTHS: RoundLength\[\] = \[5, 10, 20\];/);
+  assert.match(topicDetail, /writeTopicSettings\(quizId, merged\)/);
+  assert.match(topicDetail, /Start round of \{roundLength\}/);
 });

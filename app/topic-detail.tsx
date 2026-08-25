@@ -36,7 +36,7 @@ export default function TopicDetail({ quizId }: { quizId: QuizId }) {
         <Link className="topic-back" href="/" aria-label="Back to board">
           <span aria-hidden="true">←</span>
         </Link>
-        <p className="topic-detail-eyebrow">{quiz.eyebrow}</p>
+        <p className="eyebrow-clay">{quiz.eyebrow}</p>
       </header>
 
       <h1>{quiz.heading}</h1>
