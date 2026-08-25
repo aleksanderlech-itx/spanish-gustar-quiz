@@ -1314,3 +1314,238 @@ body {
 .round-footer {
   padding-bottom: calc(14px + env(safe-area-inset-bottom));
 }
+
+/* Results, mistake notebook, enjoyment gate — see design handoff README "Results". */
+
+.results-screen {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100dvh - 36px);
+}
+
+.results-heading {
+  margin: 0 0 18px;
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.05;
+}
+
+.results-score-card {
+  padding: 20px;
+  border: 2px solid var(--ink);
+  border-radius: 16px 26px 12px 32px;
+  background: var(--surface);
+  box-shadow: var(--hard-shadow);
+  margin-bottom: 18px;
+}
+
+.results-score-top {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.results-score-number {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 52px;
+  font-weight: 600;
+  line-height: .9;
+}
+
+.results-score-of {
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.results-score-bar {
+  height: 12px;
+  margin-top: 14px;
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.results-score-bar > span {
+  display: block;
+  height: 100%;
+  background: var(--sage);
+}
+
+.results-streak-note {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.results-notebook {
+  padding: 16px;
+  border-radius: 26px 14px 30px 14px;
+  background: var(--panel);
+  margin-bottom: 18px;
+}
+
+.results-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.results-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  background: var(--clay-soft);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.results-notebook-footnote {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.results-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+.results-practise {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+}
+
+.results-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.results-enjoyment {
+  padding: 14px;
+  border: 2px dashed var(--line);
+  border-radius: 12px;
+  margin-top: 18px;
+}
+
+.results-enjoyment-question {
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.results-enjoyment-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.results-enjoyment-yes,
+.results-enjoyment-no {
+  flex: 1;
+  min-height: 46px;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.results-enjoyment-yes {
+  background: var(--sage-soft);
+}
+
+.results-enjoyment-no {
+  background: var(--surface);
+}
+
+.results-kofi-panel {
+  padding: 2px;
+  border: 2px solid var(--clay);
+  border-radius: 10px;
+  background: var(--clay-soft);
+}
+
+.results-kofi-panel > p {
+  margin: 10px;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.results-kofi-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  margin: 10px;
+  padding: 0 14px;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: 3px 3px 0 var(--ink);
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.results-kofi-muted {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.results-feedback-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.results-feedback-panel > p {
+  margin: 0;
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.results-feedback-send {
+  min-height: 46px;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.results-feedback-confirm {
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  color: var(--sage);
+  font-weight: 700;
+}

@@ -7,6 +7,8 @@ import { availableQuestions, getMissedIds, normalizeAnswer, scoreRound, type Qui
 import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
 import { recordActivityToday } from "./streak";
 import { readTopicSettings, type AnswerMode } from "./topic-settings";
+import { recordMistakes, ruleLabelFor } from "./notebook";
+import Results from "./results";
 
 type Result = QuizResult;
 
@@ -67,6 +69,7 @@ export default function Round({ quizId }: { quizId: QuizId }) {
   const [poolExhausted, setPoolExhausted] = useState(false);
   const [finished, setFinished] = useState(false);
   const [lastResult, setLastResult] = useState<Result | null>(null);
+  const [missedRules, setMissedRules] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const missedIds = useMemo(() => getMissedIds(history), [history]);
@@ -155,21 +158,12 @@ export default function Round({ quizId }: { quizId: QuizId }) {
 
   if (finished && lastResult) {
     return (
-      <main className="app-shell">
-        <section className="result-card" aria-live="polite">
-          <div className="score-ring"><strong>{lastResult.percent}%</strong><span>{lastResult.score}/{lastResult.questionIds.length} correct</span></div>
-          <div>
-            <p className="result-label">{practiceMissed ? "Review complete" : "Round complete"}</p>
-            <h2>{lastResult.percent >= 100 ? "Casi perfecto." : lastResult.percent >= 50 ? "Solid round." : "Worth another pass."}</h2>
-            <p>Full results, the mistake notebook and the enjoyment check-in are coming in a later update — for now, keep going or head back.</p>
-          </div>
-        </section>
-        <div className="action-bar">
-          {missedIds.length > 0 && <button type="button" className="primary" onClick={() => startRound(true, history)}>Practise the misses</button>}
-          <button type="button" className="secondary" onClick={() => startRound(false, history)}>Next round</button>
-          <Link className="back-button" href={`/?quiz=${quizId}`}>Back to topic</Link>
-        </div>
-      </main>
+      <Results
+        result={lastResult}
+        missedRuleLabels={missedRules}
+        hasMissedOverall={missedIds.length > 0}
+        onPractiseMisses={() => startRound(true, history)}
+      />
     );
   }
 
@@ -212,11 +206,15 @@ export default function Round({ quizId }: { quizId: QuizId }) {
       .map((q, i) => ({ q, a: finalAnswers[i] }))
       .filter((entry): entry is { q: Question; a: string } => entry.a !== null);
     if (committed.length === 0) {
-      setFinished(true);
+      setMissedRules([]);
       setLastResult({ date: new Date().toISOString(), score: 0, percent: 0, questionIds: [], answers: [], missedIds: [], mode: practiceMissed ? "review" : "regular" });
+      setFinished(true);
       return;
     }
     const { missedIds: missed, score, percent } = scoreRound(committed.map((c) => c.q), committed.map((c) => c.a));
+    const missedSet = new Set(missed);
+    const rules = committed.filter((c) => missedSet.has(c.q.id)).map((c) => ruleLabelFor(c.q, quizId));
+    recordMistakes(rules);
     const result: Result = {
       date: new Date().toISOString(),
       score,
@@ -231,6 +229,7 @@ export default function Round({ quizId }: { quizId: QuizId }) {
     setHistory(next);
     void persistProgress(next);
     recordActivityToday();
+    setMissedRules(rules);
     setLastResult(result);
     setFinished(true);
   };

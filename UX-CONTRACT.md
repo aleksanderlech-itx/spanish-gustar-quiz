@@ -5,6 +5,7 @@ This contract records the observable behavior shared by the grammar quizzes and 
 | Capability | Canonical owner | Source of truth | Allowed variants | Verification |
 |---|---|---|---|---|
 | Round (Choose / Type) | `app/round.tsx` | `DESIGN.md` and this contract | Choose, Type | Unit tests and production build |
+| Results | `app/results.tsx` | `DESIGN.md` and this contract | — | Unit tests and production build |
 
 ## Navigation and progress
 
@@ -27,6 +28,14 @@ This contract records the observable behavior shared by the grammar quizzes and 
 - Level/verb filters, backup & restore, detailed history, weak-area insights, and "reset progress"
   are temporarily unreachable in the UI — they move into the Drawer in a later update. The
   underlying data and sync logic are unaffected; only their entry points are pending.
+- After a round, missed questions are recorded to a per-rule mistake notebook (`app/notebook.ts`,
+  one entry per grammar point such as "Ser vs estar" or "Gustar pattern: doler") and shown as chips
+  on the results screen. "Practise the misses" restarts a round scoped to every currently-missed
+  question across the topic's history, not just this round's misses.
+- The results screen asks "Did you enjoy this round?" at most once per browser session, and not
+  again for a user who answered within the last 7 days (`app/enjoyment.ts`). The Ko-fi panel shows
+  only after a positive answer; a negative answer leads to a feedback confirmation with no network
+  call (feedback submission is a later phase).
 - Flashcards use five Leitner boxes. Correct recall advances one box, up to Box 5; incorrect recall returns the card to Box 1.
 - Box intervals are immediate, 1 day, 3 days, 7 days, and 14 days. A session contains due cards first, then unseen cards, up to 20 cards.
 - Existing binary flashcard progress migrates automatically: remembered cards enter Box 2 and cards still being learned enter Box 1.
