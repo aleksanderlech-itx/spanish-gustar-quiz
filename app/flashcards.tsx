@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { FLASHCARD_VERBS } from "./flashcards-data";
 import { useTheme } from "./use-theme";
+import { recordActivityToday } from "./streak";
 
 type LeitnerBox = 1 | 2 | 3 | 4 | 5;
 type CardRecord = { box: LeitnerBox; attempts: number; correct: number; updatedAt: string; nextReviewAt: string };
@@ -87,6 +88,7 @@ export default function Flashcards() {
     setProgress(next);
     setCurrentTime(Date.now());
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+    recordActivityToday();
     setIndex((current) => current + 1);
     setRevealed(false);
   };

@@ -7,6 +7,7 @@ import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
 import { PRETERITE_IMPERFECT_CONJUGATIONS } from "./preterite-imperfect-data";
 import Flashcards from "./flashcards";
 import { useTheme } from "./use-theme";
+import { recordActivityToday } from "./streak";
 
 type Result = QuizResult;
 type Filters = QuizFilters;
@@ -231,6 +232,7 @@ function GrammarQuiz() {
     const next = [...history, result];
     setHistory(next);
     void persistProgress(next);
+    recordActivityToday();
     setChecked(true);
   };
 
