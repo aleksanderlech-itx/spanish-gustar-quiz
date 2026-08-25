@@ -1825,3 +1825,224 @@ body {
 .verb-chart-speaker {
   opacity: .25;
 }
+
+/* Drawer — see design handoff README "Drawer". */
+
+.library-header-lead {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  width: 18px;
+}
+
+.hamburger-icon > span {
+  height: 2px;
+  background: currentColor;
+}
+
+.drawer-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(44, 43, 41, .5);
+  display: flex;
+}
+
+.drawer-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 290px;
+  max-width: 85vw;
+  height: 100%;
+  padding: 20px 18px;
+  border-right: 3px solid var(--ink);
+  background: var(--surface);
+  overflow-y: auto;
+  animation: drawer-slide-in .18s ease-out;
+}
+
+@keyframes drawer-slide-in {
+  from { transform: translateX(-16px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer-panel {
+    animation: none;
+  }
+}
+
+.drawer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.drawer-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.drawer-close {
+  display: inline-grid;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  place-items: center;
+}
+
+.drawer-summary-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  background: var(--sun-soft);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.drawer-summary-card > span:last-child {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.drawer-row-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.drawer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 52px;
+  padding: 0 14px;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.drawer-pill {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--sun);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.drawer-count {
+  min-width: 24px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--clay-soft);
+  color: var(--clay);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.drawer-row-panel {
+  margin-top: -4px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--panel-soft);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.drawer-row-panel p {
+  margin: 0;
+}
+
+.drawer-row-panel p + p {
+  margin-top: 4px;
+}
+
+.drawer-row-panel-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.drawer-action-button {
+  min-height: 44px;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.drawer-danger {
+  border-color: var(--danger);
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.drawer-kofi {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  margin-top: auto;
+  padding: 0 14px;
+  border: 2px solid var(--clay);
+  border-radius: 10px;
+  background: var(--clay-soft);
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.drawer-kofi-badge {
+  display: inline-grid;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--surface);
+  place-items: center;
+}
+
+.drawer-theme-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 52px;
+  padding: 0 14px;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background: var(--primary-soft);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.drawer-theme-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--sun);
+}

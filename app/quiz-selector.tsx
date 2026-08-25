@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
 import { useTheme } from "./use-theme";
 import { orderBoard, type BoardTileProgress } from "./board";
 import { readStreakSummary, type StreakSummary } from "./streak";
 import { emptyQuizProgress, readQuizProgress } from "./quiz-progress";
+import Drawer from "./drawer";
 
 type LibraryQuizId = QuizId | "flashcards";
 
@@ -68,6 +69,8 @@ export default function QuizSelector() {
   const [open, setOpen] = useState(false);
   const [ready, setReady] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const hamburgerRef = useRef<HTMLButtonElement | null>(null);
   const [items, setItems] = useState<BoardItem[]>(() => [
     ...QUIZ_IDS.map((id) => ({ id: id as LibraryQuizId, kind: "quiz" as const, glyph: "?", title: QUIZ_CONFIG[id].title.replace(" Quiz", ""), noun: "question", href: detailPath(id), ...emptyQuizProgress(QUIZ_CONFIG[id].questions.length) })),
     { id: "flashcards" as LibraryQuizId, kind: "deck" as const, glyph: "▤", title: "Spanish Verb Flashcards", noun: "card", href: "/?quiz=flashcards&play=1", ...emptyQuizProgress(FLASHCARD_TOTAL) },
@@ -116,10 +119,23 @@ export default function QuizSelector() {
   return (
     <main className="quiz-library board-home" aria-labelledby="quiz-library-title">
       <header className="library-header">
-        <div>
-          <p className="library-kicker">Spanish Quiz Studio</p>
-          <h1 id="quiz-library-title">Choose what to practise</h1>
-          <p className="library-intro">Short, focused rounds for the grammar points you want to improve.</p>
+        <div className="library-header-lead">
+          <button
+            type="button"
+            className="mode-switch"
+            aria-label="Open menu"
+            aria-haspopup="dialog"
+            aria-expanded={drawerOpen}
+            ref={hamburgerRef}
+            onClick={() => setDrawerOpen(true)}
+          >
+            <span className="hamburger-icon" aria-hidden="true"><span /><span /><span /></span>
+          </button>
+          <div>
+            <p className="library-kicker">Spanish Quiz Studio</p>
+            <h1 id="quiz-library-title">Choose what to practise</h1>
+            <p className="library-intro">Short, focused rounds for the grammar points you want to improve.</p>
+          </div>
         </div>
         <div className="library-header-actions">
           <button
@@ -134,6 +150,8 @@ export default function QuizSelector() {
           </button>
         </div>
       </header>
+
+      <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)} returnFocusRef={hamburgerRef} />
 
       <section className="streak-panel" aria-label={`${streak.streak} day streak`}>
         <div className="streak-panel-top">

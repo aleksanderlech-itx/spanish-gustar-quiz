@@ -35,9 +35,14 @@ This contract records the observable behavior shared by the grammar quizzes and 
   `app/speak.ts` centralizes speechSynthesis use (`es-ES`, rate 0.9, prefers a Spanish voice,
   cancels before speaking); tapping a row speaks it and highlights only that row until it ends,
   "Play all" queues the block's rows in order.
-- Level/verb filters, backup & restore, detailed history, weak-area insights, and "reset progress"
-  are temporarily unreachable in the UI — they move into the Drawer in a later update. The
-  underlying data and sync logic are unaffected; only their entry points are pending.
+- The drawer (`app/drawer.tsx`, opened from the board's hamburger button) now hosts progress &
+  history, weekly recap, the mistake notebook, backup & restore, and reset progress — each row
+  expands in place to a real, live panel rather than linking to a separate screen. Backup, restore,
+  and reset all act on every quiz's and the flashcards' storage keys together, not one at a time.
+  Level/verb filters remain unreachable in the UI; the underlying data is unaffected.
+- The drawer traps Tab focus within itself while open, moves focus into itself on open, closes on
+  Escape or a scrim tap, and returns focus to the hamburger button on close. Its slide-in animation
+  is dropped under `prefers-reduced-motion`.
 - After a round, missed questions are recorded to a per-rule mistake notebook (`app/notebook.ts`,
   one entry per grammar point such as "Ser vs estar" or "Gustar pattern: doler") and shown as chips
   on the results screen. "Practise the misses" restarts a round scoped to every currently-missed
