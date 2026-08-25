@@ -6,6 +6,7 @@ import { availableQuestions, filterQuestions, getMissedIds, normalizeAnswer, res
 import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
 import { PRETERITE_IMPERFECT_CONJUGATIONS } from "./preterite-imperfect-data";
 import Flashcards from "./flashcards";
+import { useTheme } from "./use-theme";
 
 type Result = QuizResult;
 type Filters = QuizFilters;
@@ -64,7 +65,8 @@ function GrammarQuiz() {
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [answerMode, setAnswerMode] = useState<"choose" | "type">("type");
-  const [darkMode, setDarkMode] = useState(false);
+  const { theme, toggleTheme } = useTheme();
+  const darkMode = theme === "dark";
   const [showConjugations, setShowConjugations] = useState(false);
   const importRef = useRef<HTMLInputElement | null>(null);
   const inputs = useRef<Array<HTMLInputElement | null>>([]);
@@ -190,20 +192,6 @@ function GrammarQuiz() {
     };
   }, []);
 
-  useEffect(() => {
-    // Browser storage is unavailable during the server render.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setDarkMode(document.documentElement.getAttribute("data-theme") === "dark");
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", darkMode ? "dark" : "light");
-    try {
-      localStorage.setItem("spanish-quiz-theme", darkMode ? "dark" : "light");
-    } catch {
-      // Storage can be unavailable (private mode, quota); theme still applies for this load.
-    }
-  }, [darkMode]);
 
   const persistProgress = async (nextHistory: Result[], nextFilters = filters) => {
     localStorage.setItem(storageKey, JSON.stringify(nextHistory));
@@ -323,7 +311,7 @@ function GrammarQuiz() {
             </div>
           </div>
           <div className="header-actions">
-            <button type="button" className="mode-switch" aria-pressed={darkMode} aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"} onClick={() => setDarkMode((value) => !value)}>
+            <button type="button" className="mode-switch" aria-pressed={darkMode} aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"} onClick={toggleTheme}>
               {darkMode ? (
                 <svg className="header-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none">
                   <circle cx="12" cy="12" r="4.5" />

@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
+import { useTheme } from "./use-theme";
 
 type StoredResult = { questionIds?: number[] };
 type QuizProgress = { completed: number; total: number; percent: number };
@@ -47,6 +48,7 @@ const readFlashcardProgress = (): QuizProgress => {
 export default function QuizSelector() {
   const [open, setOpen] = useState(false);
   const [ready, setReady] = useState(false);
+  const { theme, toggleTheme } = useTheme();
   const [progress, setProgress] = useState<Record<QuizId, QuizProgress>>(() => ({
     gustar: { completed: 0, total: QUIZ_CONFIG.gustar.questions.length, percent: 0 },
     "ser-estar": { completed: 0, total: QUIZ_CONFIG["ser-estar"].questions.length, percent: 0 },
@@ -93,9 +95,21 @@ export default function QuizSelector() {
           <h1 id="quiz-library-title">Choose what to practise</h1>
           <p className="library-intro">Short, focused rounds for the grammar points you want to improve.</p>
         </div>
-        <div className="library-total" aria-label={`${totalCompleted} of ${totalQuestions} sentences completed`}>
-          <strong>{totalCompleted}</strong>
-          <span>sentences completed</span>
+        <div className="library-header-actions">
+          <div className="library-total" aria-label={`${totalCompleted} of ${totalQuestions} sentences completed`}>
+            <strong>{totalCompleted}</strong>
+            <span>sentences completed</span>
+          </div>
+          <button
+            type="button"
+            className="mode-switch"
+            aria-pressed={theme === "dark"}
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            onClick={toggleTheme}
+          >
+            <span aria-hidden="true">{theme === "dark" ? "☀" : "☾"}</span>
+            <span className="sr-only">{theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}</span>
+          </button>
         </div>
       </header>
 
