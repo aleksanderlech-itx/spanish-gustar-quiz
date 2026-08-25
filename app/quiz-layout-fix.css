@@ -1261,3 +1261,56 @@ body {
     animation: none;
   }
 }
+
+/* Round screen, Type mode — see design handoff README "Round — Type mode". */
+
+.round-type-input {
+  min-height: 52px;
+  padding: 0 14px;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.round-type-input:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--primary) 42%, transparent);
+  outline-offset: 2px;
+}
+
+.round-type-input-correct {
+  border-color: var(--sage);
+  background: var(--sage-soft);
+}
+
+.round-type-input-wrong {
+  border-color: var(--danger);
+  background: var(--danger-soft);
+}
+
+.round-accent-row {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 8px 2px;
+  border-top: 2px solid var(--line);
+  background: var(--panel);
+}
+
+.round-accent-key {
+  min-width: 40px;
+  min-height: 38px;
+  flex: none;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  background: var(--sun-soft);
+  color: var(--ink);
+  font-size: 17px;
+}
+
+.round-footer {
+  padding-bottom: calc(14px + env(safe-area-inset-bottom));
+}

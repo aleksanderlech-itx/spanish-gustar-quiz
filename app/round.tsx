@@ -1,17 +1,18 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { type Question } from "./quiz-data";
-import { availableQuestions, getMissedIds, scoreRound, type QuizResult } from "./quiz-logic";
+import { availableQuestions, getMissedIds, normalizeAnswer, scoreRound, type QuizResult } from "./quiz-logic";
 import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
 import { recordActivityToday } from "./streak";
-import { readTopicSettings } from "./topic-settings";
+import { readTopicSettings, type AnswerMode } from "./topic-settings";
 
 type Result = QuizResult;
 
 const shuffle = <T,>(items: T[]) => [...items].sort(() => Math.random() - 0.5);
 const PRONOUNS = ["me", "te", "le", "nos", "les"];
+const ACCENTS = ["á", "é", "í", "ó", "ú", "ñ"];
 
 const LEVEL_BADGE: Record<Question["level"], string> = {
   basic: "A1",
@@ -57,13 +58,16 @@ export default function Round({ quizId }: { quizId: QuizId }) {
   const [syncState, setSyncState] = useState<"checking" | "signed-out" | "synced" | "saving" | "error">("checking");
   const [round, setRound] = useState<Question[]>([]);
   const [choiceSets, setChoiceSets] = useState<Record<number, string[]>>({});
+  const [mode, setMode] = useState<AnswerMode>("type");
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Array<string | null>>([]);
   const [submitted, setSubmitted] = useState<boolean[]>([]);
+  const [typed, setTyped] = useState("");
   const [practiceMissed, setPracticeMissed] = useState(false);
   const [poolExhausted, setPoolExhausted] = useState(false);
   const [finished, setFinished] = useState(false);
   const [lastResult, setLastResult] = useState<Result | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const missedIds = useMemo(() => getMissedIds(history), [history]);
 
@@ -80,14 +84,23 @@ export default function Round({ quizId }: { quizId: QuizId }) {
     setPoolExhausted(false);
     setFinished(false);
     setPracticeMissed(missedOnly);
-    const roundLength = readTopicSettings(quizId).roundLength;
-    const selected = shuffle(pool).slice(0, roundLength);
+    const topicSettings = readTopicSettings(quizId);
+    setMode(topicSettings.mode);
+    const selected = shuffle(pool).slice(0, topicSettings.roundLength);
     setRound(selected);
     setChoiceSets(Object.fromEntries(selected.map((question) => [question.id, answerChoicesFor(question, forms)])));
     setAnswers(Array(selected.length).fill(null));
     setSubmitted(Array(selected.length).fill(false));
     setIndex(0);
   };
+
+  useEffect(() => {
+    // A fresh question always starts with an empty, focused input.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setTyped("");
+    if (mode === "type") window.requestAnimationFrame(() => inputRef.current?.focus());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [index, round]);
 
   useEffect(() => {
     const saved = localStorage.getItem(storageKey);
@@ -167,11 +180,31 @@ export default function Round({ quizId }: { quizId: QuizId }) {
   const isSubmitted = submitted[index];
   const picked = answers[index];
   const isLast = index === round.length - 1;
+  const isCorrect = picked !== null && normalizeAnswer(picked) === normalizeAnswer(question.answer);
 
   const commit = (choice: string) => {
     if (isSubmitted) return;
     setAnswers((current) => current.map((value, i) => (i === index ? choice : value)));
     setSubmitted((current) => current.map((value, i) => (i === index ? true : value)));
+  };
+
+  const commitTyped = () => {
+    if (isSubmitted || !typed.trim()) return;
+    setAnswers((current) => current.map((value, i) => (i === index ? typed : value)));
+    setSubmitted((current) => current.map((value, i) => (i === index ? true : value)));
+  };
+
+  const insertAccent = (char: string) => {
+    const el = inputRef.current;
+    const start = el?.selectionStart ?? typed.length;
+    const end = el?.selectionEnd ?? typed.length;
+    const next = typed.slice(0, start) + char + typed.slice(end);
+    setTyped(next);
+    const caret = start + char.length;
+    window.requestAnimationFrame(() => {
+      el?.focus();
+      el?.setSelectionRange(caret, caret);
+    });
   };
 
   const finishRound = (finalAnswers: Array<string | null>) => {
@@ -224,6 +257,14 @@ export default function Round({ quizId }: { quizId: QuizId }) {
     return "other";
   };
 
+  const primaryAction = mode === "type" && !isSubmitted ? commitTyped : goNext;
+  const primaryDisabled = mode === "type" ? (!isSubmitted && !typed.trim()) : !isSubmitted;
+  const primaryLabel = mode === "type" && !isSubmitted
+    ? "Check"
+    : !isSubmitted
+      ? "Pick an answer"
+      : isLast ? "See results" : "Next question";
+
   return (
     <main className="round-shell">
       <header className="round-header">
@@ -242,13 +283,15 @@ export default function Round({ quizId }: { quizId: QuizId }) {
           <span className="round-level-badge">{LEVEL_BADGE[question.level]}</span>
         </div>
         <p className="round-sentence">
-          {question.before} <span className={`round-blank ${isSubmitted ? "round-blank-filled" : ""}`}>{isSubmitted ? question.answer : "?"}</span> {question.after}
+          {question.before} <span className={`round-blank ${isSubmitted ? "round-blank-filled" : ""}`}>
+            {isSubmitted ? question.answer : mode === "type" ? (typed || "?") : "?"}
+          </span> {question.after}
         </p>
         <p className="round-translation" lang="en">{question.translations.en}</p>
       </section>
 
       <section className="round-answer-area">
-        {choices.map((choice) => {
+        {mode === "choose" ? choices.map((choice) => {
           const state = optionState(choice);
           return (
             <button
@@ -263,12 +306,43 @@ export default function Round({ quizId }: { quizId: QuizId }) {
               {choice}
             </button>
           );
-        })}
+        }) : (
+          <>
+            <input
+              ref={inputRef}
+              type="text"
+              inputMode="text"
+              lang="es"
+              autoCapitalize="none"
+              autoCorrect="off"
+              spellCheck={false}
+              className={`round-type-input ${isSubmitted ? (isCorrect ? "round-type-input-correct" : "round-type-input-wrong") : ""}`}
+              value={typed}
+              disabled={isSubmitted}
+              placeholder="Type the missing form"
+              aria-label={`Type your answer for question ${index + 1}`}
+              onChange={(event) => setTyped(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  event.preventDefault();
+                  commitTyped();
+                }
+              }}
+            />
+            <div className="round-accent-row" role="group" aria-label="Accented letters">
+              {ACCENTS.map((char) => (
+                <button type="button" key={char} className="round-accent-key" disabled={isSubmitted} onClick={() => insertAccent(char)}>
+                  {char}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
 
         {isSubmitted && (
-          <div className={`round-explain ${picked === question.answer ? "round-explain-correct" : "round-explain-wrong"}`}>
-            <span className={`round-explain-label ${picked === question.answer ? "round-explain-label-correct" : "round-explain-label-wrong"}`}>
-              {picked === question.answer ? "Correct" : `Not quite — ${question.answer}`}
+          <div className={`round-explain ${isCorrect ? "round-explain-correct" : "round-explain-wrong"}`}>
+            <span className={`round-explain-label ${isCorrect ? "round-explain-label-correct" : "round-explain-label-wrong"}`}>
+              {isCorrect ? "Correct" : `Not quite — ${question.answer}`}
             </span>
             <p className="round-explain-body">{question.explanation}</p>
           </div>
@@ -277,8 +351,8 @@ export default function Round({ quizId }: { quizId: QuizId }) {
 
       <footer className="round-footer">
         <button type="button" className="round-skip" onClick={skip}>Skip</button>
-        <button type="button" className="round-next" disabled={!isSubmitted} onClick={goNext}>
-          {!isSubmitted ? "Pick an answer" : isLast ? "See results" : "Next question"}
+        <button type="button" className="round-next" disabled={primaryDisabled} onClick={primaryAction}>
+          {primaryLabel}
         </button>
       </footer>
     </main>

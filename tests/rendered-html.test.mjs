@@ -102,13 +102,31 @@ test("round screen commits one answer at a time, recolors options, and gates Nex
   // Skip advances without scoring: the answer stays null and is excluded when the round is scored.
   assert.match(round, /const skip = \(\) => \{/);
   assert.match(round, /entry\.a !== null/);
-  // Footer Next is disabled until the current question is answered.
-  assert.match(round, /disabled=\{!isSubmitted\}/);
-  assert.match(round, /"Pick an answer" : isLast \? "See results" : "Next question"/);
+  // Footer Next/Check is disabled until the current question is answered (Choose) or typed (Type).
+  assert.match(round, /const primaryDisabled = mode === "type" \? \(!isSubmitted && !typed\.trim\(\)\) : !isSubmitted;/);
+  assert.match(round, /"Pick an answer"\s*: isLast \? "See results" : "Next question";/);
   // Score increments once per question, at commit time — not on render.
   assert.match(round, /recordActivityToday\(\);/);
   // Answer comparison for Choose mode reuses the existing verb-form/pronoun data, not a parallel bank.
   assert.match(data, /answer: `\$\{objectPronoun\} \$\{verbAnswer\}`/);
+});
+
+test("round screen, Type mode: real input, caret-aware accents, Check is a no-op on whitespace, comparison via normalizeAnswer", async () => {
+  const round = await readFile(new URL("../app/round.tsx", import.meta.url), "utf8");
+
+  assert.match(round, /autoCapitalize="none"/);
+  assert.match(round, /autoCorrect="off"/);
+  assert.match(round, /spellCheck=\{false\}/);
+  assert.match(round, /lang="es"/);
+  assert.match(round, /const ACCENTS = \["á", "é", "í", "ó", "ú", "ñ"\];/);
+  // Check is a no-op on empty/whitespace input.
+  assert.match(round, /const commitTyped = \(\) => \{\s*if \(isSubmitted \|\| !typed\.trim\(\)\) return;/);
+  // Accents insert at the caret via selectionStart/selectionEnd, not appended to the end.
+  assert.match(round, /const start = el\?\.selectionStart \?\? typed\.length;/);
+  assert.match(round, /const end = el\?\.selectionEnd \?\? typed\.length;/);
+  assert.match(round, /el\?\.setSelectionRange\(caret, caret\);/);
+  // Answer comparison goes through normalizeAnswer, not raw string equality.
+  assert.match(round, /const isCorrect = picked !== null && normalizeAnswer\(picked\) === normalizeAnswer\(question\.answer\);/);
 });
 
 test("topic detail persists round length and answer mode per topic", async () => {

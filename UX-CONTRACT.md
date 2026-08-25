@@ -4,7 +4,7 @@ This contract records the observable behavior shared by the grammar quizzes and 
 
 | Capability | Canonical owner | Source of truth | Allowed variants | Verification |
 |---|---|---|---|---|
-| Round (Choose mode) | `app/round.tsx` | `DESIGN.md` and this contract | Choose (Type mode ships in a later update) | Unit tests and production build |
+| Round (Choose / Type) | `app/round.tsx` | `DESIGN.md` and this contract | Choose, Type | Unit tests and production build |
 
 ## Navigation and progress
 
@@ -19,6 +19,11 @@ This contract records the observable behavior shared by the grammar quizzes and 
   round. Flashcard recall is saved immediately after each assessment.
 - Round length (5/10/20) and answer mode (Choose/Type) are set per topic on the topic detail screen
   and persist there (`app/topic-settings.ts`); they are not yet editable mid-round.
+- Type mode uses a real text input (`autoCapitalize="none" autoCorrect="off" spellCheck={false}
+  lang="es"`) with an accent row (`á é í ó ú ñ`) that inserts at the input's caret position, not the
+  end. Checking is a no-op on empty/whitespace input. Answer comparison always goes through
+  `normalizeAnswer`, in both modes. The "Stuck? Open the conjugation chart" affordance and the
+  in-round quiz switcher are not present yet — the chart screen ships in a later update.
 - Level/verb filters, backup & restore, detailed history, weak-area insights, and "reset progress"
   are temporarily unreachable in the UI — they move into the Drawer in a later update. The
   underlying data and sync logic are unaffected; only their entry points are pending.
