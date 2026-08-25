@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { FLASHCARD_VERBS } from "./flashcards-data";
+import { useTheme } from "./use-theme";
 
 type LeitnerBox = 1 | 2 | 3 | 4 | 5;
 type CardRecord = { box: LeitnerBox; attempts: number; correct: number; updatedAt: string; nextReviewAt: string };
@@ -55,7 +56,8 @@ export default function Flashcards() {
   const [round, setRound] = useState(() => selectRound(readStoredProgress()));
   const [index, setIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+  const { theme, toggleTheme } = useTheme();
+  const darkMode = theme === "dark";
   const [currentTime, setCurrentTime] = useState(Date.now);
 
   const startRound = (source: LeitnerProgress) => {
@@ -65,11 +67,6 @@ export default function Flashcards() {
     setIndex(0);
     setRevealed(false);
   };
-
-  useEffect(() => {
-    document.body.classList.toggle("dark", darkMode);
-    return () => document.body.classList.remove("dark");
-  }, [darkMode]);
 
   const totals = useMemo(() => {
     const boxes = [1, 2, 3, 4, 5].map((box) => Object.values(progress).filter((item) => item.box === box).length);
@@ -107,7 +104,7 @@ export default function Flashcards() {
       <header className="hero flashcard-hero">
         <div className="hero-topline">
           <Link className="brand flashcard-home" href="/" aria-label="Back to quiz library"><span className="brand-mark">ES</span><span className="brand-title">Spanish Quiz Studio</span></Link>
-          <button type="button" className="mode-switch" aria-pressed={darkMode} aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"} onClick={() => setDarkMode((value) => !value)}><svg className="header-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d={darkMode ? "M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6 7 7m10 10 1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4" : "M20.25 14.48A7.7 7.7 0 0 1 9.52 3.75 8.55 8.55 0 1 0 20.25 14.48Z"} />{darkMode && <circle cx="12" cy="12" r="4" />}</svg></button>
+          <button type="button" className="mode-switch" aria-pressed={darkMode} aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"} onClick={toggleTheme}><svg className="header-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d={darkMode ? "M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6 7 7m10 10 1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4" : "M20.25 14.48A7.7 7.7 0 0 1 9.52 3.75 8.55 8.55 0 1 0 20.25 14.48Z"} />{darkMode && <circle cx="12" cy="12" r="4" />}</svg></button>
         </div>
         <div><p className="eyebrow">Leitner system · 500 essential verbs</p><h1>Recall it today. Review it at the right time.</h1><p className="hero-copy">Correct answers move forward through five boxes. A missed card returns to Box 1 for more frequent review.</p></div>
         <div className="flashcard-progress-copy"><span>{finished ? round.length : index + 1} of {round.length}</span><span>{totals.due} due · {totals.studied} studied</span></div>
