@@ -5,20 +5,25 @@ import Link from "next/link";
 import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
 import { emptyQuizProgress, readQuizProgress, type QuizProgress } from "./quiz-progress";
 import { readTopicSettings, writeTopicSettings, type AnswerMode, type RoundLength } from "./topic-settings";
+import { filterQuestions, type QuizFilters } from "./quiz-logic";
+import { readQuizFilters, writeQuizFilters } from "./quiz-filters";
 
 const ROUND_LENGTHS: RoundLength[] = [5, 10, 20];
+const LEVELS: Array<QuizFilters["level"]> = ["all", "basic", "intermediate", "advanced"];
 
 export default function TopicDetail({ quizId }: { quizId: QuizId }) {
   const quiz = QUIZ_CONFIG[quizId];
   const [progress, setProgress] = useState<QuizProgress>(() => emptyQuizProgress(quiz.questions.length));
   const [settings, setSettings] = useState(() => readTopicSettings(quizId));
+  const [filters, setFilters] = useState<QuizFilters>(() => readQuizFilters(quiz.filterKey));
 
   useEffect(() => {
     // Browser storage is unavailable during the server render.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setProgress(readQuizProgress(quizId));
     setSettings(readTopicSettings(quizId));
-  }, [quizId]);
+    setFilters(readQuizFilters(quiz.filterKey));
+  }, [quizId, quiz.filterKey]);
 
   const updateSettings = (next: Partial<{ roundLength: RoundLength; mode: AnswerMode }>) => {
     setSettings((current) => {
@@ -28,7 +33,16 @@ export default function TopicDetail({ quizId }: { quizId: QuizId }) {
     });
   };
 
-  const roundLength = Math.min(settings.roundLength, quiz.questions.length);
+  const updateFilters = (next: Partial<QuizFilters>) => {
+    setFilters((current) => {
+      const merged = { ...current, ...next };
+      writeQuizFilters(quiz.filterKey, merged);
+      return merged;
+    });
+  };
+
+  const filteredCount = filterQuestions(quiz.questions, filters).length;
+  const roundLength = Math.min(settings.roundLength, filteredCount);
 
   return (
     <main className="app-shell topic-detail">
@@ -79,6 +93,26 @@ export default function TopicDetail({ quizId }: { quizId: QuizId }) {
         </p>
       </section>
 
+      <section className="topic-setting">
+        <p className="eyebrow">Filters</p>
+        <div className="topic-filter-fields">
+          <label className="topic-filter-field">
+            <span>Difficulty</span>
+            <select value={filters.level} onChange={(event) => updateFilters({ level: event.target.value as QuizFilters["level"] })}>
+              {LEVELS.map((level) => <option value={level} key={level}>{level === "all" ? "All levels" : level[0].toUpperCase() + level.slice(1)}</option>)}
+            </select>
+          </label>
+          <label className="topic-filter-field">
+            <span>Verb</span>
+            <select value={filters.verb} onChange={(event) => updateFilters({ verb: event.target.value })}>
+              <option value="all">All verbs</option>
+              {Object.keys(quiz.forms).map((verb) => <option value={verb} key={verb}>{verb}</option>)}
+            </select>
+          </label>
+        </div>
+        <p className="topic-setting-hint">{filteredCount} sentence{filteredCount === 1 ? "" : "s"} selected</p>
+      </section>
+
       <Link className="topic-chart-link" href={`/?quiz=${quizId}&chart=1`}>
         <span className="board-icon" aria-hidden="true">▦</span>
         <span className="topic-chart-link-label">Verb conjugation chart</span>
@@ -86,7 +120,11 @@ export default function TopicDetail({ quizId }: { quizId: QuizId }) {
       </Link>
 
       <footer className="topic-detail-footer">
-        <a className="primary topic-start" href={`/?quiz=${quizId}&play=1`}>Start round of {roundLength}</a>
+        {filteredCount > 0 ? (
+          <a className="primary topic-start" href={`/?quiz=${quizId}&play=1`}>Start round of {roundLength}</a>
+        ) : (
+          <span className="primary topic-start topic-start-disabled" aria-disabled="true">No sentences match these filters</span>
+        )}
       </footer>
     </main>
   );

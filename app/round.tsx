@@ -3,10 +3,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { type Question } from "./quiz-data";
-import { availableQuestions, getMissedIds, normalizeAnswer, scoreRound, type QuizResult } from "./quiz-logic";
+import { availableQuestions, filterQuestions, getMissedIds, normalizeAnswer, scoreRound, type QuizResult } from "./quiz-logic";
 import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
 import { recordActivityToday } from "./streak";
 import { readTopicSettings, type AnswerMode } from "./topic-settings";
+import { readQuizFilters } from "./quiz-filters";
 import { recordMistakes, ruleLabelFor } from "./notebook";
 import Results from "./results";
 
@@ -75,10 +76,11 @@ export default function Round({ quizId }: { quizId: QuizId }) {
   const missedIds = useMemo(() => getMissedIds(history), [history]);
 
   const startRound = (missedOnly: boolean, sourceHistory: Result[]) => {
-    let pool = availableQuestions(questions, sourceHistory, missedOnly);
+    const filteredQuestions = filterQuestions(questions, readQuizFilters(quiz.filterKey));
+    let pool = availableQuestions(filteredQuestions, sourceHistory, missedOnly);
     if (missedOnly && pool.length === 0) {
       missedOnly = false;
-      pool = availableQuestions(questions, sourceHistory, false);
+      pool = availableQuestions(filteredQuestions, sourceHistory, false);
     }
     if (!missedOnly && pool.length === 0) {
       setPoolExhausted(true);

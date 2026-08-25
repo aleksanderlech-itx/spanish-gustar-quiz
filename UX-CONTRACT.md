@@ -39,7 +39,10 @@ This contract records the observable behavior shared by the grammar quizzes and 
   history, weekly recap, the mistake notebook, backup & restore, and reset progress — each row
   expands in place to a real, live panel rather than linking to a separate screen. Backup, restore,
   and reset all act on every quiz's and the flashcards' storage keys together, not one at a time.
-  Level/verb filters remain unreachable in the UI; the underlying data is unaffected.
+- Level/verb filters live on the topic detail screen (`app/quiz-filters.ts`, reusing each quiz's
+  pre-redesign `filterKey` and `{level, verb}` shape) and scope the round's question pool —
+  including "Practise the misses". The topic summary card's accuracy/due numbers stay scoped to
+  the whole question bank regardless of the active filter.
 - The drawer traps Tab focus within itself while open, moves focus into itself on open, closes on
   Escape or a scrim tap, and returns focus to the hamburger button on close. Its slide-in animation
   is dropped under `prefers-reduced-motion`.

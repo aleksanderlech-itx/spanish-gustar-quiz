@@ -1027,6 +1027,40 @@ body {
   text-decoration: none;
 }
 
+.topic-start-disabled {
+  background: var(--panel);
+  color: var(--muted);
+  font-size: 16px;
+  cursor: default;
+}
+
+.topic-filter-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.topic-filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.topic-filter-field select {
+  min-height: 44px;
+  padding: 0 10px;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+}
+
 /* Round screen, Choose mode — see design handoff README "Round — Choose mode". */
 
 @keyframes fadein {
