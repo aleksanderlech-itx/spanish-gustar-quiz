@@ -937,10 +937,24 @@ body {
   font-size: 19px;
 }
 
+.topic-summary-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.topic-summary-count {
+  margin: 0;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 700;
+}
+
 .topic-summary-meta {
   margin: 0;
   color: var(--muted);
   font-size: 13px;
+  line-height: 1.5;
 }
 
 .topic-setting {

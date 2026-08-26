@@ -50,10 +50,10 @@ export default function TopicDetail({ quizId }: { quizId: QuizId }) {
         <Link className="topic-back" href="/" aria-label="Back to board">
           <span aria-hidden="true">←</span>
         </Link>
-        <p className="eyebrow-clay">{quiz.eyebrow}</p>
+        <p className="eyebrow-clay">Grammar quiz</p>
       </header>
 
-      <h1>{quiz.heading}</h1>
+      <h1>{quiz.eyebrow}</h1>
 
       <section className="topic-summary-card">
         <div
@@ -62,7 +62,10 @@ export default function TopicDetail({ quizId }: { quizId: QuizId }) {
         >
           <div className="board-ring-inner topic-summary-ring-inner"><strong>{progress.percent}%</strong></div>
         </div>
-        <p className="topic-summary-meta">Accuracy {progress.accuracy}% · {progress.due} due today</p>
+        <div className="topic-summary-text">
+          <p className="topic-summary-count">{progress.completed} of {progress.total} questions</p>
+          <p className="topic-summary-meta">Accuracy {progress.accuracy}% · {progress.due} due today</p>
+        </div>
       </section>
 
       <section className="topic-setting">
