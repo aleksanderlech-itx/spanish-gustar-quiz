@@ -23,5 +23,17 @@ test("flashcard interface reveals answers before recording Leitner progress", as
   assert.match(source, /spanish-flashcards-leitner-v2/);
   assert.match(source, /REVIEW_INTERVAL_DAYS.*1: 0.*2: 1.*3: 3.*4: 7.*5: 14/s);
   assert.match(source, /Math\.min\(5, \(previous\?\.box \?\? 1\) \+ 1\)/);
-  assert.match(source, /Back to Box 1/);
+  // Both a symbol and a visible text label, per UX-CONTRACT.md.
+  assert.match(source, /<span aria-hidden="true">↺<\/span> Again/);
+  assert.match(source, /<span aria-hidden="true">✓<\/span> Knew it/);
+});
+
+test("flashcard reveal button and box dots stay accurate before assessment", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const source = await readFile(new URL("../app/flashcards.tsx", import.meta.url), "utf8");
+  // The speak button stops propagation so it doesn't flip the card.
+  assert.match(source, /event\.stopPropagation\(\);/);
+  // 5 Leitner box indicators, keyed off the box the card on screen currently sits in.
+  assert.match(source, /const boxState = \(box: LeitnerBox, currentBox: LeitnerBox\)/);
+  assert.match(source, /if \(box === currentBox\) return "current";/);
 });

@@ -1,4 +1,4 @@
-# Spanish Quiz Studio
+# Spanish Quizzes
 
 Reusable, mobile-first Spanish grammar quiz engine deployed through Cloudflare
 Pages at [spanish-quizz.es](https://spanish-quizz.es).
