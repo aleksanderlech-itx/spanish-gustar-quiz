@@ -308,7 +308,7 @@ export default function Drawer({ open, onClose, returnFocusRef }: { open: boolea
 
         <a className="drawer-kofi" href={SITE_CONFIG.kofiUrl} target="_blank" rel="noreferrer">
           <span className="drawer-kofi-badge" aria-hidden="true">☕</span>
-          <span>Help build more quizzes</span>
+          <span className="drawer-kofi-label">Help build more quizzes</span>
         </a>
 
         <button type="button" className="drawer-theme-row" onClick={toggleTheme}>
