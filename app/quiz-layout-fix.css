@@ -583,6 +583,25 @@ body {
   margin-bottom: 18px;
 }
 
+/* Board home header row: hamburger left, title centered, theme toggle right —
+   see design handoff README "Board home" header row. */
+.board-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.board-title {
+  flex: 1;
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  text-align: center;
+}
+
 .streak-panel {
   padding: 16px 18px;
   border: 2px solid var(--ink);
@@ -747,13 +766,14 @@ body {
   right: 18px;
   width: 28px;
   height: 28px;
+  background: var(--primary-soft);
 }
 
 .board-icon-quiet {
   width: 22px;
   height: 22px;
   border-color: var(--line);
-  background: transparent;
+  background: var(--surface);
 }
 
 .board-tile-pill {
@@ -850,7 +870,7 @@ body {
 
 .board-bar-quiet {
   height: 6px;
-  border: 1px solid var(--line);
+  border: 2px solid var(--line);
   margin-top: 10px;
 }
 

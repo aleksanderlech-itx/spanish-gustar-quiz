@@ -118,37 +118,29 @@ export default function QuizSelector() {
 
   return (
     <main className="quiz-library board-home" aria-labelledby="quiz-library-title">
-      <header className="library-header">
-        <div className="library-header-lead">
-          <button
-            type="button"
-            className="mode-switch"
-            aria-label="Open menu"
-            aria-haspopup="dialog"
-            aria-expanded={drawerOpen}
-            ref={hamburgerRef}
-            onClick={() => setDrawerOpen(true)}
-          >
-            <span className="hamburger-icon" aria-hidden="true"><span /><span /><span /></span>
-          </button>
-          <div>
-            <p className="library-kicker">Spanish Quiz Studio</p>
-            <h1 id="quiz-library-title">Choose what to practise</h1>
-            <p className="library-intro">Short, focused rounds for the grammar points you want to improve.</p>
-          </div>
-        </div>
-        <div className="library-header-actions">
-          <button
-            type="button"
-            className="mode-switch"
-            aria-pressed={theme === "dark"}
-            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-            onClick={toggleTheme}
-          >
-            <span aria-hidden="true">{theme === "dark" ? "☀" : "☾"}</span>
-            <span className="sr-only">{theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}</span>
-          </button>
-        </div>
+      <header className="board-header">
+        <button
+          type="button"
+          className="mode-switch"
+          aria-label="Open menu"
+          aria-haspopup="dialog"
+          aria-expanded={drawerOpen}
+          ref={hamburgerRef}
+          onClick={() => setDrawerOpen(true)}
+        >
+          <span className="hamburger-icon" aria-hidden="true"><span /><span /><span /></span>
+        </button>
+        <h1 id="quiz-library-title" className="board-title">Quiz Studio</h1>
+        <button
+          type="button"
+          className="mode-switch"
+          aria-pressed={theme === "dark"}
+          aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+          onClick={toggleTheme}
+        >
+          <span aria-hidden="true">{theme === "dark" ? "☀" : "☾"}</span>
+          <span className="sr-only">{theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}</span>
+        </button>
       </header>
 
       <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)} returnFocusRef={hamburgerRef} />
