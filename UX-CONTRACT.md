@@ -26,7 +26,12 @@ This contract records the observable behavior shared by the grammar quizzes and 
   `normalizeAnswer`, in both modes. Type mode's "Stuck? Open the conjugation chart" opens
   `app/verb-chart.tsx` in a new tab (scoped to the current question's verb), rather than navigating
   away and losing the in-progress round, which is not yet saved to history. The in-round quiz
-  switcher is not present — switching quizzes now happens from the board.
+  switcher is not present — switching quizzes now happens from the board (confirmed intentional,
+  matches the design's nav graph).
+- The round screen's height uses `100dvh` (falling back to `100vh` on browsers that don't support
+  it — declared in that order so `dvh` actually wins where supported) with a `visualViewport`
+  fallback in Type mode: a measured `--keyboard-inset` lifts the footer above the on-screen
+  keyboard on iOS Safari versions where `dvh` doesn't fully react to it.
 - The verb conjugation chart (`app/verb-chart.tsx`) only shows a real six-pronoun paradigm for
   preterite/imperfect verbs, where that data exists. Gustar-pattern verbs are impersonal (they never
   conjugate for "yo, tú..."), so they get a singular/plural block instead. The ser/estar quiz compares

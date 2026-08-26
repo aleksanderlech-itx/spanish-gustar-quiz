@@ -135,3 +135,19 @@ test("topic detail persists round length and answer mode per topic", async () =>
   assert.match(topicDetail, /writeTopicSettings\(quizId, merged\)/);
   assert.match(topicDetail, /Start round of \{roundLength\}/);
 });
+
+test("round shell's dvh fallback is ordered correctly (vh first, dvh second, so dvh actually wins where supported)", async () => {
+  const css = await readFile(new URL("../app/quiz-layout-fix.css", import.meta.url), "utf8");
+  assert.match(css, /\.round-shell \{[\s\S]*?height: 100vh;[\s\S]*?height: 100dvh;[\s\S]*?\}/);
+  assert.doesNotMatch(css, /\.round-shell \{[\s\S]*?height: 100dvh;[\s\S]*?height: 100vh;[\s\S]*?\}/);
+});
+
+test("round screen falls back to a JS-measured keyboard inset for iOS Safari, where dvh doesn't always react", async () => {
+  const round = await readFile(new URL("../app/round.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/quiz-layout-fix.css", import.meta.url), "utf8");
+  assert.match(round, /const viewport = window\.visualViewport;/);
+  assert.match(round, /document\.documentElement\.style\.setProperty\("--keyboard-inset", `\$\{inset\}px`\);/);
+  assert.match(round, /viewport\.addEventListener\("resize", updateKeyboardInset\);/);
+  assert.match(round, /document\.documentElement\.style\.removeProperty\("--keyboard-inset"\);/);
+  assert.match(css, /\.round-footer \{[\s\S]*?var\(--keyboard-inset, 0px\)[\s\S]*?\}/);
+});

@@ -108,6 +108,25 @@ export default function Round({ quizId }: { quizId: QuizId }) {
   }, [index, round]);
 
   useEffect(() => {
+    // Fallback for iOS Safari, where 100dvh doesn't always react to the on-screen keyboard:
+    // measure the gap between the layout and visual viewports and lift the footer above it.
+    const viewport = window.visualViewport;
+    if (!viewport) return;
+    const updateKeyboardInset = () => {
+      const inset = Math.max(0, window.innerHeight - viewport.height - viewport.offsetTop);
+      document.documentElement.style.setProperty("--keyboard-inset", `${inset}px`);
+    };
+    updateKeyboardInset();
+    viewport.addEventListener("resize", updateKeyboardInset);
+    viewport.addEventListener("scroll", updateKeyboardInset);
+    return () => {
+      viewport.removeEventListener("resize", updateKeyboardInset);
+      viewport.removeEventListener("scroll", updateKeyboardInset);
+      document.documentElement.style.removeProperty("--keyboard-inset");
+    };
+  }, []);
+
+  useEffect(() => {
     const saved = localStorage.getItem(storageKey);
     const initial = saved ? (JSON.parse(saved) as Result[]) : [];
     const initialise = async () => {
