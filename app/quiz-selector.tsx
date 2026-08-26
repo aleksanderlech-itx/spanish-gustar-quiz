@@ -14,11 +14,27 @@ type LibraryQuizId = QuizId | "flashcards";
 type BoardItem = BoardTileProgress & {
   id: LibraryQuizId;
   kind: "quiz" | "deck";
-  glyph: string;
   title: string;
   noun: string;
   href: string;
 };
+
+/** A checkmark reads as "quiz" without borrowing the "?" glyph, which looks like a help button. */
+const QuizIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M4 12.5l5 5L20 7" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+/** Two overlapping cards for the flashcard deck. */
+const FlashcardsIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <rect x="8" y="5" width="13" height="9" rx="1.5" stroke="currentColor" strokeWidth="2" />
+    <rect x="3" y="10" width="13" height="9" rx="1.5" stroke="currentColor" strokeWidth="2" />
+  </svg>
+);
+
+const BoardIcon = ({ kind }: { kind: "quiz" | "deck" }) => (kind === "deck" ? <FlashcardsIcon /> : <QuizIcon />);
 
 const QUIZ_IDS = Object.keys(QUIZ_CONFIG) as QuizId[];
 const EMPTY_STREAK: StreakSummary = {
@@ -78,8 +94,8 @@ export default function QuizSelector() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const hamburgerRef = useRef<HTMLButtonElement | null>(null);
   const [items, setItems] = useState<BoardItem[]>(() => [
-    ...QUIZ_IDS.map((id) => ({ id: id as LibraryQuizId, kind: "quiz" as const, glyph: "?", title: QUIZ_CONFIG[id].title.replace(" Quiz", ""), noun: "question", href: detailPath(id), ...emptyQuizProgress(QUIZ_CONFIG[id].questions.length) })),
-    { id: "flashcards" as LibraryQuizId, kind: "deck" as const, glyph: "▤", title: "Spanish Verb Flashcards", noun: "card", href: "/?quiz=flashcards&play=1", ...emptyQuizProgress(FLASHCARD_TOTAL) },
+    ...QUIZ_IDS.map((id) => ({ id: id as LibraryQuizId, kind: "quiz" as const, title: QUIZ_CONFIG[id].title.replace(" Quiz", ""), noun: "question", href: detailPath(id), ...emptyQuizProgress(QUIZ_CONFIG[id].questions.length) })),
+    { id: "flashcards" as LibraryQuizId, kind: "deck" as const, title: "Spanish Verb Flashcards", noun: "card", href: "/?quiz=flashcards&play=1", ...emptyQuizProgress(FLASHCARD_TOTAL) },
   ]);
   const [streak, setStreak] = useState<StreakSummary>(EMPTY_STREAK);
 
@@ -91,7 +107,6 @@ export default function QuizSelector() {
       ...QUIZ_IDS.map((id) => ({
         id,
         kind: "quiz" as const,
-        glyph: "?",
         title: QUIZ_CONFIG[id].title.replace(" Quiz", ""),
         noun: "question",
         href: detailPath(id),
@@ -100,7 +115,6 @@ export default function QuizSelector() {
       {
         id: "flashcards",
         kind: "deck",
-        glyph: "▤",
         title: "Spanish Verb Flashcards",
         noun: "card",
         href: "/?quiz=flashcards&play=1",
@@ -183,7 +197,7 @@ export default function QuizSelector() {
             return (
               <a className="board-tile board-tile-pinned" href={item.href} key={item.id}>
                 <span className="board-tile-pill board-tile-pill-progress">In progress</span>
-                <span className="board-icon board-icon-pinned" aria-hidden="true">{item.glyph}</span>
+                <span className="board-icon board-icon-pinned"><BoardIcon kind={item.kind} /></span>
                 <div className="board-ring" style={{ background: `conic-gradient(var(--primary) ${item.percent}%, var(--line) ${item.percent}%)` }}>
                   <div className="board-ring-inner"><strong>{item.percent}%</strong></div>
                 </div>
@@ -199,7 +213,7 @@ export default function QuizSelector() {
             return (
               <a className="board-tile board-tile-due" href={item.href} key={item.id}>
                 <div className="board-tile-top">
-                  <span className="board-icon" aria-hidden="true">{item.glyph}</span>
+                  <span className="board-icon"><BoardIcon kind={item.kind} /></span>
                   <span className="board-tile-pill board-tile-pill-due">{item.due} due</span>
                 </div>
                 <h2>{item.title}</h2>
@@ -214,7 +228,7 @@ export default function QuizSelector() {
           return (
             <a className="board-tile board-tile-quiet" href={item.href} key={item.id}>
               <div className="board-tile-top">
-                <span className="board-icon board-icon-quiet" aria-hidden="true">{item.glyph}</span>
+                <span className="board-icon board-icon-quiet"><BoardIcon kind={item.kind} /></span>
                 <span className="board-tile-note board-tile-note-quiet">nothing due</span>
               </div>
               <h2>{item.title}</h2>
