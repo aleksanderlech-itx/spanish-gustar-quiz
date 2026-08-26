@@ -7,6 +7,7 @@ import { readNotebookEntries } from "./notebook";
 import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
 import type { QuizResult } from "./quiz-logic";
 import { SITE_CONFIG } from "./site-config";
+import { computeRecentRounds, computeWeakAreas, type RecentRound, type WeakArea } from "./history";
 
 const QUIZ_IDS = Object.keys(QUIZ_CONFIG) as QuizId[];
 const FLASHCARD_KEY = "spanish-flashcards-leitner-v2";
@@ -23,28 +24,37 @@ type GlobalStats = {
 
 const emptyStats: GlobalStats = { totalRounds: 0, averageAccuracy: 0, weekRounds: 0, weekAccuracy: 0, flashcardsStudied: 0 };
 
-const readGlobalStats = (): GlobalStats => {
+type QuizHistoryEntry = { quizId: QuizId; title: string; questions: (typeof QUIZ_CONFIG)[QuizId]["questions"]; history: QuizResult[] };
+
+/** Reads every quiz's stored history once, so stats/recent-rounds/weak-areas don't each re-read storage. */
+const readAllQuizHistories = (): QuizHistoryEntry[] => QUIZ_IDS.map((id) => {
+  const quiz = QUIZ_CONFIG[id];
+  try {
+    const raw = window.localStorage.getItem(quiz.storageKey);
+    const history = raw ? (JSON.parse(raw) as QuizResult[]) : [];
+    return { quizId: id, title: quiz.title.replace(" Quiz", ""), questions: quiz.questions, history };
+  } catch {
+    // Corrupt or unavailable history for this quiz; treat it as empty rather than block the drawer.
+    return { quizId: id, title: quiz.title.replace(" Quiz", ""), questions: quiz.questions, history: [] };
+  }
+});
+
+const readGlobalStats = (byQuiz: QuizHistoryEntry[]): GlobalStats => {
   const now = Date.now();
   let totalRounds = 0;
   let totalPercentSum = 0;
   let weekRounds = 0;
   let weekPercentSum = 0;
 
-  QUIZ_IDS.forEach((id) => {
-    try {
-      const raw = window.localStorage.getItem(QUIZ_CONFIG[id].storageKey);
-      const history = raw ? (JSON.parse(raw) as QuizResult[]) : [];
-      history.forEach((item) => {
-        totalRounds += 1;
-        totalPercentSum += item.percent;
-        if (now - Date.parse(item.date) <= WEEK_MS) {
-          weekRounds += 1;
-          weekPercentSum += item.percent;
-        }
-      });
-    } catch {
-      // Corrupt or unavailable history for this quiz; skip it rather than block the drawer.
-    }
+  byQuiz.forEach(({ history }) => {
+    history.forEach((item) => {
+      totalRounds += 1;
+      totalPercentSum += item.percent;
+      if (now - Date.parse(item.date) <= WEEK_MS) {
+        weekRounds += 1;
+        weekPercentSum += item.percent;
+      }
+    });
   });
 
   let flashcardsStudied = 0;
@@ -116,6 +126,8 @@ export default function Drawer({ open, onClose, returnFocusRef }: { open: boolea
   const { theme, toggleTheme } = useTheme();
   const [expanded, setExpanded] = useState<DrawerRow | null>(null);
   const [stats, setStats] = useState<GlobalStats>(emptyStats);
+  const [recentRounds, setRecentRounds] = useState<RecentRound[]>([]);
+  const [weakAreas, setWeakAreas] = useState<WeakArea[]>([]);
   const [streakDays, setStreakDays] = useState(0);
   const [notebookCount, setNotebookCount] = useState(0);
   const [notebookRules, setNotebookRules] = useState<string[]>([]);
@@ -124,13 +136,24 @@ export default function Drawer({ open, onClose, returnFocusRef }: { open: boolea
 
   useEffect(() => {
     if (!open) return;
+    const byQuiz = readAllQuizHistories();
     // Browser storage is unavailable during the server render; this only runs once the drawer opens.
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setStats(readGlobalStats());
+    setStats(readGlobalStats(byQuiz));
+    setRecentRounds(computeRecentRounds(byQuiz));
+    setWeakAreas(computeWeakAreas(byQuiz));
     setStreakDays(readStreakSummary().streak);
     const entries = readNotebookEntries();
     setNotebookCount(entries.length);
     setNotebookRules(entries.map((entry) => entry.rule));
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [open]);
 
   useEffect(() => {
@@ -199,6 +222,34 @@ export default function Drawer({ open, onClose, returnFocusRef }: { open: boolea
             <div className="drawer-row-panel">
               <p>{stats.totalRounds} round{stats.totalRounds === 1 ? "" : "s"} played · {stats.averageAccuracy}% average accuracy</p>
               <p>{stats.flashcardsStudied} of 500 flashcards studied</p>
+
+              {weakAreas.length > 0 && (
+                <>
+                  <p className="drawer-subhead">Weak areas</p>
+                  <ul className="drawer-weak-areas">
+                    {weakAreas.map(([area, value]) => (
+                      <li key={area}>
+                        <span>{area}</span>
+                        <span>{Math.round((value.misses / value.attempts) * 100)}% missed ({value.misses}/{value.attempts})</span>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+
+              {recentRounds.length > 0 && (
+                <>
+                  <p className="drawer-subhead">Recent rounds</p>
+                  <ul className="drawer-history-list">
+                    {recentRounds.map((round, index) => (
+                      <li key={`${round.quizTitle}-${round.date}-${index}`}>
+                        <span>{round.quizTitle}{round.mode === "review" ? " (review)" : ""}</span>
+                        <span>{round.percent}% · {new Date(round.date).toLocaleDateString()}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
             </div>
           )}
 
