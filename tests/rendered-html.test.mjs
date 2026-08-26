@@ -83,10 +83,26 @@ test("editorial design owns typography, solid surfaces, and hard depth", async (
 
 test("page.tsx is a thin shell dispatching to topic detail, round, and flashcards", async () => {
   const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
-  assert.match(page, /if \(home\.screen === "flashcards"\) return <Flashcards \/>;/);
-  assert.match(page, /if \(home\.screen === "round"\) return <Round quizId=\{home\.quizId\} \/>;/);
-  assert.match(page, /return <TopicDetail quizId=\{home\.quizId\} \/>;/);
+  assert.match(page, /if \(params\.get\("quiz"\) === "flashcards"\) return <Flashcards \/>;/);
+  assert.match(page, /if \(params\.get\("play"\) === "1"\) return <Round quizId=\{quizId\} \/>;/);
+  assert.match(page, /return <TopicDetail quizId=\{quizId\} \/>;/);
+  // Reads via the router-connected useSearchParams, not a one-shot window.location.search
+  // parse — the latter left page.tsx (and QuizSelector) stuck on stale screens after any
+  // client-side Link navigation (back button, verb chart, "back to board" all broke).
+  assert.match(page, /import \{ useSearchParams \} from "next\/navigation";/);
+  assert.doesNotMatch(page, /window\.location\.search/);
   assert.doesNotMatch(page, /const QUESTION_BANKS|const COMPLEX_QUESTIONS|TRANSLATIONS/);
+});
+
+test("QuizSelector re-derives its open state from the router on every render, not just at mount", async () => {
+  const quizSelector = await readFile(new URL("../app/quiz-selector.tsx", import.meta.url), "utf8");
+  assert.match(quizSelector, /import \{ useSearchParams \} from "next\/navigation";/);
+  assert.match(quizSelector, /const params = useSearchParams\(\);/);
+  assert.match(quizSelector, /const open = !params\.has\("quiz"\) && params\.get\("play"\) !== "1";/);
+  assert.doesNotMatch(quizSelector, /window\.location\.search/);
+  // The board's progress numbers re-read from storage whenever it becomes visible
+  // again (dependent on `open`), not only once at first mount.
+  assert.match(quizSelector, /\}, \[open\]\);/);
 });
 
 test("round screen commits one answer at a time, recolors options, and gates Next until answered", async () => {

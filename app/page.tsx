@@ -1,46 +1,26 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { type QuizId } from "./quiz-config";
 import Flashcards from "./flashcards";
 import TopicDetail from "./topic-detail";
 import Round from "./round";
 import VerbChart from "./verb-chart";
 
-const quizIdFromLocation = (): QuizId => {
-  const value = new URLSearchParams(window.location.search).get("quiz");
+const quizIdFromParams = (params: URLSearchParams): QuizId => {
+  const value = params.get("quiz");
   return value === "ser-estar" || value === "preterite-imperfect" ? value : "gustar";
 };
 
-type HomeScreen =
-  | { screen: "flashcards" }
-  | { screen: "round"; quizId: QuizId }
-  | { screen: "chart"; quizId: QuizId; infinitive?: string }
-  | { screen: "detail"; quizId: QuizId };
-
-const homeScreenFromLocation = (): HomeScreen => {
-  const params = new URLSearchParams(window.location.search);
-  if (params.get("quiz") === "flashcards") return { screen: "flashcards" };
-  const quizId = quizIdFromLocation();
-  if (params.get("chart") === "1") return { screen: "chart", quizId, infinitive: params.get("verb") ?? undefined };
-  if (params.get("play") === "1") return { screen: "round", quizId };
-  return { screen: "detail", quizId };
-};
-
 export default function Home() {
-  // Which screen to show depends on window.location, which isn't available during
-  // the server render — resolve it after mount (matches QuizSelector's ready/open
-  // pattern) rather than guessing server-side and risking a hydration mismatch.
-  const [home, setHome] = useState<HomeScreen | null>(null);
+  // useSearchParams is router-connected (server: request context, client: reactive
+  // to navigation), unlike a one-shot read of the browser's own location at mount —
+  // it re-renders this on every client-side Link navigation, not just the first load.
+  const params = useSearchParams();
 
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setHome(homeScreenFromLocation());
-  }, []);
-
-  if (!home) return null;
-  if (home.screen === "flashcards") return <Flashcards />;
-  if (home.screen === "round") return <Round quizId={home.quizId} />;
-  if (home.screen === "chart") return <VerbChart quizId={home.quizId} infinitive={home.infinitive} />;
-  return <TopicDetail quizId={home.quizId} />;
+  if (params.get("quiz") === "flashcards") return <Flashcards />;
+  const quizId = quizIdFromParams(params);
+  if (params.get("chart") === "1") return <VerbChart quizId={quizId} infinitive={params.get("verb") ?? undefined} />;
+  if (params.get("play") === "1") return <Round quizId={quizId} />;
+  return <TopicDetail quizId={quizId} />;
 }

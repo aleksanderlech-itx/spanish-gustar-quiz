@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
 import { useTheme } from "./use-theme";
 import { orderBoard, type BoardTileProgress } from "./board";
@@ -66,7 +67,12 @@ const readFlashcardProgress = (): Omit<BoardTileProgress, "id"> => {
 const dueBarFill = (percent: number) => (percent >= 90 ? "var(--sage)" : "var(--primary)");
 
 export default function QuizSelector() {
-  const [open, setOpen] = useState(false);
+  // useSearchParams is router-connected, so this re-evaluates on every client-side
+  // Link navigation — a one-shot read of the browser's own location (the previous
+  // approach) only ever saw the URL at first mount, so the board stayed hidden/stale
+  // after navigating back to it from a round, chart, or results screen.
+  const params = useSearchParams();
+  const open = !params.has("quiz") && params.get("play") !== "1";
   const [ready, setReady] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -78,7 +84,9 @@ export default function QuizSelector() {
   const [streak, setStreak] = useState<StreakSummary>(EMPTY_STREAK);
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
+    // Re-reads progress every time the board becomes visible again, not just on
+    // first mount, so returning from a round shows the round's updated numbers.
+    if (!open) return;
     const nextItems: BoardItem[] = [
       ...QUIZ_IDS.map((id) => ({
         id,
@@ -103,9 +111,8 @@ export default function QuizSelector() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setItems(nextItems);
     setStreak(readStreakSummary());
-    setOpen(!params.has("quiz") && params.get("play") !== "1");
     setReady(true);
-  }, []);
+  }, [open]);
 
   useEffect(() => {
     document.body.classList.toggle("quiz-library-open", ready && open);
