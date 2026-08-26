@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
-import { PRETERITE_IMPERFECT_CONJUGATIONS } from "./preterite-imperfect-data";
+import { PRETERITE_IMPERFECT_CONJUGATIONS, PRETERITE_IMPERFECT_REGULARITY } from "./preterite-imperfect-data";
 import { speak, speakQueue } from "./speak";
 
 type ChartRow = { pronoun: string; form: string };
@@ -28,6 +28,10 @@ const blocksFor = (quizId: QuizId, infinitive: string, forms: Record<string, [st
   const [singular, plural] = forms[infinitive] ?? ["", ""];
   return [{ tenseLabel: "Present", accent: "primary", rows: [{ pronoun: "one thing / to do something", form: singular }, { pronoun: "several things", form: plural }] }];
 };
+
+/** Only preterite/imperfect has verified regular/irregular classification data — see the note above blocksFor. */
+const regularityFor = (quizId: QuizId, infinitive: string) =>
+  quizId === "preterite-imperfect" ? PRETERITE_IMPERFECT_REGULARITY[infinitive] : undefined;
 
 export default function VerbChart({ quizId, infinitive }: { quizId: QuizId; infinitive?: string }) {
   const quiz = QUIZ_CONFIG[quizId];
@@ -55,11 +59,19 @@ export default function VerbChart({ quizId, infinitive }: { quizId: QuizId; infi
       <header className="verb-chart-header">
         <Link className="round-back" href={`/?quiz=${quizId}`} aria-label="Back to topic"><span aria-hidden="true">←</span></Link>
         <h1>{infinitives.length === 1 ? infinitives[0] : quiz.title.replace(" Quiz", "")}</h1>
+        {infinitives.length === 1 && regularityFor(quizId, infinitives[0]) && (
+          <span className="verb-chart-regularity-badge">{regularityFor(quizId, infinitives[0])}</span>
+        )}
       </header>
 
       {infinitives.map((inf) => (
         <div className="verb-chart-verb" key={inf}>
-          {infinitives.length > 1 && <h2 className="verb-chart-verb-heading">{inf}</h2>}
+          {infinitives.length > 1 && (
+            <h2 className="verb-chart-verb-heading">
+              {inf}
+              {regularityFor(quizId, inf) && <span className="verb-chart-regularity-badge">{regularityFor(quizId, inf)}</span>}
+            </h2>
+          )}
           {blocksFor(quizId, inf, quiz.forms).map((block) => {
             const blockKey = `${inf}-${block.tenseLabel}`;
             return (

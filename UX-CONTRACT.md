@@ -30,8 +30,12 @@ This contract records the observable behavior shared by the grammar quizzes and 
 - The verb conjugation chart (`app/verb-chart.tsx`) only shows a real six-pronoun paradigm for
   preterite/imperfect verbs, where that data exists. Gustar-pattern verbs are impersonal (they never
   conjugate for "yo, tú..."), so they get a singular/plural block instead. The ser/estar quiz compares
-  two different verbs rather than conjugating one, so its chart lists "ser" and "estar" directly. No
-  regularity badge is shown — there's no regular/irregular classification data to back one.
+  two different verbs rather than conjugating one, so its chart lists "ser" and "estar" directly. A
+  regularity badge ("regular" / "irregular" / "spelling change") shows only for preterite/imperfect
+  verbs (`PRETERITE_IMPERFECT_REGULARITY` in `app/preterite-imperfect-data.ts`), scoped strictly to
+  that verb's behavior in those two tenses specifically — a verb irregular elsewhere (e.g. salir's
+  present-tense "salgo") can still show "regular" here. No badge is guessed for gustar or ser/estar;
+  there's no classification data that applies to them.
   `app/speak.ts` centralizes speechSynthesis use (`es-ES`, rate 0.9, prefers a Spanish voice,
   cancels before speaking); tapping a row speaks it and highlights only that row until it ends,
   "Play all" queues the block's rows in order.

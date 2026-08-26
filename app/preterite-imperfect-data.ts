@@ -120,3 +120,21 @@ export const PRETERITE_IMPERFECT_CONJUGATIONS: Record<string, Array<{ subject: s
     { subject: "ellos / ellas / ustedes", preterite: "empezaron", imperfect: "empezaban" },
   ],
 };
+
+/**
+ * Regularity scoped strictly to preterite/imperfect behavior — a verb irregular elsewhere
+ * (e.g. salir's present-tense "salgo") can still be fully regular in these two tenses.
+ * "spelling change" marks a yo-preterite orthographic shift (g→gu, c→qu, z→c before e) that
+ * keeps the same sound rather than a true stem irregularity — a distinct, real category, not a
+ * softened "irregular".
+ */
+export const PRETERITE_IMPERFECT_REGULARITY: Record<string, "regular" | "irregular" | "spelling change"> = {
+  ir: "irregular",
+  ponerse: "irregular",
+  preparar: "regular",
+  vivir: "regular",
+  salir: "regular",
+  llegar: "spelling change",
+  explicar: "spelling change",
+  empezar: "spelling change",
+};
