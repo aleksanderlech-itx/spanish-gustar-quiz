@@ -573,14 +573,19 @@ body {
   display: flex;
 }
 
+.flashcard-again,
+.flashcard-known {
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  box-shadow: var(--hard-shadow);
+}
+
 .flashcard-again {
-  border-color: var(--danger);
   color: var(--danger);
   background: var(--danger-soft);
 }
 
 .flashcard-known {
-  border-color: var(--success);
   color: var(--ink);
   background: var(--success-soft);
 }
