@@ -75,7 +75,7 @@ test("editorial design owns typography, solid surfaces, and hard depth", async (
   assert.match(designCss, /--hard-shadow:\s*4px 4px 0 var\(--shadow-col\)/);
   assert.match(designCss, /border:\s*2px solid var\(--ink\)/);
   assert.match(designCss, /box-shadow:\s*var\(--hard-shadow\)/);
-  assert.match(designCss, /\.flashcard-face > strong\s*\{[\s\S]*font-size:\s*clamp\(46px,\s*10vw,\s*76px\)/);
+  assert.match(designCss, /\.flashcard-face > strong\s*\{[\s\S]*font-size:\s*clamp\(34px,\s*9vw,\s*42px\)/);
   assert.match(baseCss, /\.conjugation-modal-backdrop\s*\{[\s\S]*background:\s*var\(--paper\)/);
   assert.doesNotMatch(designCss, /\.flashcard-face > strong[\s\S]*box-shadow:\s*0/);
   assert.doesNotMatch(designCss, /background(?:-image)?:\s*linear-gradient/);

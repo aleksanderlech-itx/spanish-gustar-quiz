@@ -501,79 +501,45 @@ body {
   box-shadow: none;
 }
 
-.flashcard-stage {
-  perspective: 1200px;
-}
-
+/* Card content is revealed by swapping which face is shown (aria-hidden), not by a
+ * 3D flip — the design has no flip animation, and the card is tall enough that a
+ * centered, always-both-rendered flip stack put the speak button (which stops
+ * propagation) right under a tap aimed at the card's visual center. */
 .flashcard {
-  min-height: 80vh;
+  min-height: 60vh;
   border: 2px solid var(--ink);
   border-radius: 16px 28px 14px 34px;
   box-shadow: var(--hard-shadow);
-  transform-style: preserve-3d;
-  transition: transform .35s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .flashcard-inner {
-  display: grid;
-  min-height: 60vh;
-  transform-style: preserve-3d;
-  transition: transform .35s ease;
-}
-
-.flashcard.revealed .flashcard-inner {
-  transform: rotateY(180deg);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .flashcard-face {
-  grid-area: 1 / 1;
-  display: grid;
-  align-content: center;
+  display: none;
+  flex-direction: column;
   gap: 20px;
-  backface-visibility: hidden;
 }
 
-.flashcard-back {
-  transform: rotateY(180deg);
-}
-
-.flashcard-answer {
-  border-top: 2px solid var(--ink);
-}
-
-.flashcard-face > strong {
-  color: var(--primary-dark);
-  font-size: clamp(46px, 10vw, 76px);
-  line-height: 1;
+.flashcard-face[aria-hidden="false"] {
+  display: flex;
 }
 
 .flashcard-again {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: var(--accent-soft);
+  border-color: var(--danger);
+  color: var(--danger);
+  background: var(--danger-soft);
 }
 
 .flashcard-known {
   border-color: var(--success);
   color: var(--ink);
   background: var(--success-soft);
-}
-
-@media (max-width: 600px) {
-  .flashcard {
-    min-height: 78vh;
-  }
-
-  .flashcard-inner {
-    min-height: 62vh;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .flashcard,
-  .flashcard-inner {
-    transition: none;
-  }
 }
 
 /* Board home — see design handoff README "Board home". */
@@ -1739,7 +1705,8 @@ body {
 }
 
 .flashcard-due-pill {
-  justify-self: start;
+  align-self: flex-start;
+  margin-top: auto;
   padding: 4px 10px;
   border: 1px solid var(--ink);
   border-radius: 999px;
