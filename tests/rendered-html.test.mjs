@@ -105,9 +105,10 @@ test("page.tsx is a thin shell dispatching to topic detail, round, and flashcard
 
 test("QuizSelector re-derives its open state from the router on every render, not just at mount", async () => {
   const quizSelector = await readFile(new URL("../app/quiz-selector.tsx", import.meta.url), "utf8");
-  assert.match(quizSelector, /import \{ useSearchParams \} from "next\/navigation";/);
+  assert.match(quizSelector, /import \{ usePathname, useSearchParams \} from "next\/navigation";/);
+  assert.match(quizSelector, /const pathname = usePathname\(\);/);
   assert.match(quizSelector, /const params = useSearchParams\(\);/);
-  assert.match(quizSelector, /const open = !params\.has\("quiz"\) && params\.get\("play"\) !== "1";/);
+  assert.match(quizSelector, /const open = pathname === "\/" && !params\.has\("quiz"\) && params\.get\("play"\) !== "1";/);
   assert.doesNotMatch(quizSelector, /window\.location\.search/);
   // The board's progress numbers re-read from storage whenever it becomes visible
   // again (dependent on `open`), not only once at first mount.
