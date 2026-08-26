@@ -1,8 +1,8 @@
 "use client";
 
-import { type MouseEvent, useMemo, useState } from "react";
+import { type MouseEvent, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { FLASHCARD_VERBS } from "./flashcards-data";
+import { FLASHCARD_VERBS, type FlashcardVerb } from "./flashcards-data";
 import { recordActivityToday } from "./streak";
 import { speak } from "./speak";
 
@@ -63,11 +63,29 @@ const selectRound = (source: LeitnerProgress, now = Date.now()) => {
 };
 
 export default function Flashcards() {
-  const [progress, setProgress] = useState<LeitnerProgress>(readStoredProgress);
-  const [round, setRound] = useState(() => selectRound(readStoredProgress()));
+  const [ready, setReady] = useState(false);
+  const [progress, setProgress] = useState<LeitnerProgress>({});
+  const [round, setRound] = useState<FlashcardVerb[]>([]);
   const [index, setIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
-  const [currentTime, setCurrentTime] = useState(Date.now);
+  const [currentTime, setCurrentTime] = useState(0);
+
+  useEffect(() => {
+    // Selecting a round reads localStorage and shuffles with Math.random — both
+    // unavailable/non-deterministic during the server render. Resolving them as
+    // useState lazy initializers (the previous approach) ran that same shuffle
+    // again on the client during hydration, so the round rendered on the server
+    // (empty progress, one random order) never matched the client's first render
+    // (a different random order), corrupting hydration for this whole screen and
+    // silently breaking the reveal tap along with it.
+    const stored = readStoredProgress();
+    const now = Date.now();
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setProgress(stored);
+    setRound(selectRound(stored, now));
+    setCurrentTime(now);
+    setReady(true);
+  }, []);
 
   const startRound = (source: LeitnerProgress) => {
     const now = Date.now();
@@ -106,6 +124,8 @@ export default function Flashcards() {
     event.stopPropagation();
     if (card) speak(card.spanish);
   };
+
+  if (!ready) return null;
 
   return (
     <main className="app-shell flashcard-shell">
