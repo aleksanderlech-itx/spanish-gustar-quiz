@@ -1,4 +1,4 @@
-# Spanish Quiz Studio UX Contract
+# Spanish Quizzes UX Contract
 
 This contract records the observable behavior shared by the grammar quizzes and flashcards.
 

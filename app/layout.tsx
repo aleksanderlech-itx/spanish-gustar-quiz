@@ -21,8 +21,8 @@ const karla = Karla({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
   title: {
-    default: "Spanish Quiz Studio",
-    template: "%s | Spanish Quiz Studio",
+    default: "Spanish Quizzes",
+    template: "%s | Spanish Quizzes",
   },
   description: SITE_CONFIG.description,
   alternates: {

@@ -56,7 +56,7 @@ choice (see `app/layout.tsx`'s pre-paint script).
 
 ## Overview
 
-Spanish Quiz Studio uses the Editorial Boutique system from `docs/design.md`. It is a mobile-first language-learning tool. The active exercise is the single visually elevated surface; settings and progress remain quieter.
+Spanish Quizzes uses the Editorial Boutique system from `docs/design.md`. It is a mobile-first language-learning tool. The active exercise is the single visually elevated surface; settings and progress remain quieter.
 
 ## Colors
 

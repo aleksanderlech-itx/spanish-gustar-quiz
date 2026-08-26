@@ -1,5 +1,5 @@
 export const SITE_CONFIG = {
-  name: "Spanish Quiz Studio",
+  name: "Spanish Quizzes",
   domain: "spanish-quizz.es",
   url: "https://spanish-quizz.es",
   description:

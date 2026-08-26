@@ -168,7 +168,7 @@ export default function QuizSelector() {
         >
           <span className="hamburger-icon" aria-hidden="true"><span /><span /><span /></span>
         </button>
-        <h1 id="quiz-library-title" className="board-title">Quiz Studio</h1>
+        <h1 id="quiz-library-title" className="board-title">Spanish Quizzes</h1>
         <button
           type="button"
           className="mode-switch"

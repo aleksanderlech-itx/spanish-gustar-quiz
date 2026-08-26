@@ -108,7 +108,7 @@ const importAllProgress = async (file: File) => {
     if (restored === 0) throw new Error("no recognised keys");
     window.location.reload();
   } catch {
-    window.alert("This is not a valid Spanish Quiz Studio backup file.");
+    window.alert("This is not a valid Spanish Quizzes backup file.");
   }
 };
 
@@ -204,7 +204,7 @@ export default function Drawer({ open, onClose, returnFocusRef }: { open: boolea
         onClick={(event) => event.stopPropagation()}
       >
         <div className="drawer-top">
-          <p className="drawer-title">Spanish Quiz Studio</p>
+          <p className="drawer-title">Spanish Quizzes</p>
           <button type="button" className="drawer-close" aria-label="Close menu" onClick={onClose}>✕</button>
         </div>
 
