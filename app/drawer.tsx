@@ -8,6 +8,7 @@ import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
 import type { QuizResult } from "./quiz-logic";
 import { SITE_CONFIG } from "./site-config";
 import { computeRecentRounds, computeWeakAreas, type RecentRound, type WeakArea } from "./history";
+import Logo from "./logo";
 
 const QUIZ_IDS = Object.keys(QUIZ_CONFIG) as QuizId[];
 const FLASHCARD_KEY = "spanish-flashcards-leitner-v2";
@@ -204,7 +205,7 @@ export default function Drawer({ open, onClose, returnFocusRef }: { open: boolea
         onClick={(event) => event.stopPropagation()}
       >
         <div className="drawer-top">
-          <p className="drawer-title">Spanish Quizzes</p>
+          <p className="drawer-title"><Logo size={24} /><span>Spanish Quizzes</span></p>
           <button type="button" className="drawer-close" aria-label="Close menu" onClick={onClose}>✕</button>
         </div>
 

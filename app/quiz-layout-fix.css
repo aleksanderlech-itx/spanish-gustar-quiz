@@ -614,13 +614,16 @@ body {
 }
 
 .board-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   flex: 1;
   margin: 0;
   color: var(--ink);
   font-family: var(--font-display);
   font-size: 17px;
   font-weight: 600;
-  text-align: center;
 }
 
 .streak-panel {
@@ -2015,6 +2018,9 @@ body {
 }
 
 .drawer-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin: 0;
   font-family: var(--font-display);
   font-size: 19px;

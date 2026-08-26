@@ -8,6 +8,7 @@ import { orderBoard, type BoardTileProgress } from "./board";
 import { readStreakSummary, type StreakSummary } from "./streak";
 import { emptyQuizProgress, readQuizProgress } from "./quiz-progress";
 import Drawer from "./drawer";
+import Logo from "./logo";
 
 type LibraryQuizId = QuizId | "flashcards";
 
@@ -168,7 +169,10 @@ export default function QuizSelector() {
         >
           <span className="hamburger-icon" aria-hidden="true"><span /><span /><span /></span>
         </button>
-        <h1 id="quiz-library-title" className="board-title">Spanish Quizzes</h1>
+        <h1 id="quiz-library-title" className="board-title">
+          <Logo size={24} />
+          <span>Spanish Quizzes</span>
+        </h1>
         <button
           type="button"
           className="mode-switch"
