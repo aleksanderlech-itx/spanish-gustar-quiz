@@ -102,7 +102,7 @@ export default function Results({
             <div className="results-kofi-panel">
               <p>Glad to hear it. Quiz Studio is free and made by one person — a coffee keeps new questions coming.</p>
               <a className="results-kofi-link" href={SITE_CONFIG.kofiUrl} target="_blank" rel="noreferrer">
-                <span>☕ Buy me a coffee</span>
+                <span>☕ Help build more quizzes</span>
                 <span className="results-kofi-muted">ko-fi</span>
               </a>
             </div>
