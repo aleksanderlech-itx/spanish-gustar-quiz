@@ -32,3 +32,11 @@
 .history-list article {
   border-color: var(--ink);
 }
+
+.drawer-help-link {
+  text-decoration: none;
+}
+
+.drawer-help-link:hover {
+  background: var(--primary-soft);
+}
