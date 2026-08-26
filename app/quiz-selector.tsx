@@ -58,9 +58,9 @@ const EMPTY_STREAK: StreakSummary = {
   streak: 0,
   completedToday: false,
   week: [
-    { letter: "L", status: "future" }, { letter: "M", status: "future" }, { letter: "X", status: "future" },
-    { letter: "J", status: "future" }, { letter: "V", status: "future" }, { letter: "S", status: "future" },
-    { letter: "D", status: "future" },
+    { letter: "Lu", status: "future" }, { letter: "Ma", status: "future" }, { letter: "Mi", status: "future" },
+    { letter: "Ju", status: "future" }, { letter: "Vi", status: "future" }, { letter: "Sá", status: "future" },
+    { letter: "Do", status: "future" },
   ],
 };
 

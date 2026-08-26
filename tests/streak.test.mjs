@@ -32,7 +32,7 @@ test("weekBars marks today distinctly and only marks past days done", () => {
   const days = new Set([daysAgo(today, 1)]); // Monday practised
   const week = weekBars(days, today);
   assert.equal(week.length, 7);
-  assert.deepEqual(week.map((day) => day.letter), ["L", "M", "X", "J", "V", "S", "D"]);
+  assert.deepEqual(week.map((day) => day.letter), ["Lu", "Ma", "Mi", "Ju", "Vi", "Sá", "Do"]);
   assert.equal(week[0].status, "done"); // Monday
   assert.equal(week[1].status, "today"); // Tuesday
   assert.ok(week.slice(2).every((day) => day.status === "future"));

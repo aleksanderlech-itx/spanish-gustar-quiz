@@ -1,5 +1,5 @@
 const STREAK_KEY = "spanish-quiz-streak-v1";
-const DAY_LETTERS = ["L", "M", "X", "J", "V", "S", "D"];
+const DAY_LETTERS = ["Lu", "Ma", "Mi", "Ju", "Vi", "Sá", "Do"];
 
 const pad = (value: number) => String(value).padStart(2, "0");
 
