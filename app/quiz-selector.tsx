@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
 import { useTheme } from "./use-theme";
 import { orderBoard, type BoardTileProgress } from "./board";
@@ -102,11 +102,12 @@ const dueBarFill = (percent: number) => (percent >= 90 ? "var(--sage)" : "var(--
 
 export default function QuizSelector() {
   // useSearchParams is router-connected, so this re-evaluates on every client-side
-  // Link navigation — a one-shot read of the browser's own location (the previous
-  // approach) only ever saw the URL at first mount, so the board stayed hidden/stale
-  // after navigating back to it from a round, chart, or results screen.
+  // Link navigation. usePathname keeps the board scoped to the home route, so
+  // content routes such as /how-to-use can use the shared root layout without
+  // rendering the board behind them.
+  const pathname = usePathname();
   const params = useSearchParams();
-  const open = !params.has("quiz") && params.get("play") !== "1";
+  const open = pathname === "/" && !params.has("quiz") && params.get("play") !== "1";
   const [ready, setReady] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const [drawerOpen, setDrawerOpen] = useState(false);
