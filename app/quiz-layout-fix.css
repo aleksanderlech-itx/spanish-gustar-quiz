@@ -766,6 +766,10 @@ body {
   height: 60%;
 }
 
+.board-icon .card-front {
+  fill: var(--surface);
+}
+
 .board-icon-pinned {
   position: absolute;
   top: 18px;
@@ -773,6 +777,10 @@ body {
   width: 28px;
   height: 28px;
   background: var(--primary-soft);
+}
+
+.board-icon-pinned .card-front {
+  fill: var(--primary-soft);
 }
 
 .board-icon-quiet {

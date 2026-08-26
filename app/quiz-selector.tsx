@@ -26,11 +26,13 @@ const QuizIcon = () => (
   </svg>
 );
 
-/** Two overlapping cards for the flashcard deck. */
+/** Two fanned, empty playing cards for the flashcard deck. The front card's fill is
+ * set in CSS (scoped per tile variant) so it occludes the back card like a real fan
+ * of cards, rather than showing both outlines crossing through each other. */
 const FlashcardsIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <rect x="8" y="5" width="13" height="9" rx="1.5" stroke="currentColor" strokeWidth="2" />
-    <rect x="3" y="10" width="13" height="9" rx="1.5" stroke="currentColor" strokeWidth="2" />
+    <rect x="3.5" y="4.5" width="12" height="16" rx="2.2" transform="rotate(-14 9.5 12.5)" stroke="currentColor" strokeWidth="2" />
+    <rect className="card-front" x="8.5" y="3.5" width="12" height="16" rx="2.2" transform="rotate(14 14.5 11.5)" stroke="currentColor" strokeWidth="2" />
   </svg>
 );
 
