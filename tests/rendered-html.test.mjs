@@ -75,10 +75,19 @@ test("editorial design owns typography, solid surfaces, and hard depth", async (
   assert.match(designCss, /--hard-shadow:\s*4px 4px 0 var\(--shadow-col\)/);
   assert.match(designCss, /border:\s*2px solid var\(--ink\)/);
   assert.match(designCss, /box-shadow:\s*var\(--hard-shadow\)/);
-  assert.match(designCss, /\.flashcard-face > strong\s*\{[\s\S]*font-size:\s*clamp\(34px,\s*9vw,\s*42px\)/);
+  assert.match(designCss, /\.flashcard-term-row strong\s*\{[\s\S]*font-size:\s*clamp\(34px,\s*9vw,\s*42px\)/);
   assert.match(baseCss, /\.conjugation-modal-backdrop\s*\{[\s\S]*background:\s*var\(--paper\)/);
-  assert.doesNotMatch(designCss, /\.flashcard-face > strong[\s\S]*box-shadow:\s*0/);
+  assert.doesNotMatch(designCss, /\.flashcard-term-row strong[\s\S]*box-shadow:\s*0/);
   assert.doesNotMatch(designCss, /background(?:-image)?:\s*linear-gradient/);
+});
+
+test("the flashcard word's font/color/size rule actually matches the DOM (the word sits inside .flashcard-term-row, not a direct child of .flashcard-face)", async () => {
+  const flashcards = await readFile(new URL("../app/flashcards.tsx", import.meta.url), "utf8");
+  // A `.flashcard-face > strong` child selector silently never matched, since the
+  // word is nested one level deeper — the whole time, it rendered with the
+  // browser's default <strong> styling (16px, no color, no Fraunces) instead.
+  assert.doesNotMatch(await readFile(new URL("../app/quiz-layout-fix.css", import.meta.url), "utf8"), /\.flashcard-face > strong/);
+  assert.match(flashcards, /className="flashcard-term-row">\s*<strong/);
 });
 
 test("page.tsx is a thin shell dispatching to topic detail, round, and flashcards", async () => {
