@@ -128,7 +128,7 @@ export default function Flashcards() {
   if (!ready) return null;
 
   return (
-    <main className="app-shell flashcard-shell">
+    <main className="flashcard-shell">
       <header className="flashcard-top-header">
         <Link className="round-back" href="/" aria-label="Back to board"><span aria-hidden="true">←</span></Link>
         <span className="flashcard-counter">Card {finished ? round.length : index + 1} of {round.length}</span>

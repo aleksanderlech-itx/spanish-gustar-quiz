@@ -501,12 +501,42 @@ body {
   box-shadow: none;
 }
 
+/* Mirrors .round-shell: a self-contained fixed-viewport-height flex column, not
+ * reliant on .app-shell's plain-width/padding box. A vh-based min-height on the
+ * card (the previous approach) only approximates "fills the screen" — it left a
+ * large, inconsistent gap above the footer on real devices/viewports whose actual
+ * available height (after browser chrome) didn't match the guessed vh value. Using
+ * min-height (not a hard height + overflow:hidden, unlike round-shell) since this
+ * screen has extra content below the card+footer (Leitner box stats, a note) that
+ * should stay reachable by a normal page scroll rather than being clipped. */
+.flashcard-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 14px 18px 22px;
+}
+
+.flashcard-stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-height: 0;
+}
+
+.flashcard-complete {
+  flex: 1;
+}
+
 /* Card content is revealed by swapping which face is shown (aria-hidden), not by a
  * 3D flip — the design has no flip animation, and the card is tall enough that a
  * centered, always-both-rendered flip stack put the speak button (which stops
  * propagation) right under a tap aimed at the card's visual center. */
 .flashcard {
-  min-height: 60vh;
+  flex: 1;
   border: 2px solid var(--ink);
   border-radius: 16px 28px 14px 34px;
   box-shadow: var(--hard-shadow);
