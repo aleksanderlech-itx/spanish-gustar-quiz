@@ -1,11 +1,16 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Karla } from "next/font/google";
+import { headers } from "next/headers";
+import Script from "next/script";
 import "./globals.css";
 import "./issue-5-design.css";
 import "./quiz-layout-fix.css";
 import "./editorial-polish.css";
 import QuizSelector from "./quiz-selector";
 import { SITE_CONFIG } from "./site-config";
+import { isProductionHost } from "./is-production-host";
+
+const GA_MEASUREMENT_ID = "G-88HEZL7EKT";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -78,15 +83,29 @@ const THEME_PRE_PAINT_SCRIPT = `(function () {
   }
 })();`;
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const host = (await headers()).get("host") ?? "";
+  const isProduction = isProductionHost(host);
+
   return (
     <html lang="es" suppressHydrationWarning>
       <body className={`${fraunces.variable} ${karla.variable} antialiased`}>
         <script suppressHydrationWarning dangerouslySetInnerHTML={{ __html: THEME_PRE_PAINT_SCRIPT }} />
+        {isProduction && (
+          <>
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} strategy="afterInteractive" />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_MEASUREMENT_ID}');`}
+            </Script>
+          </>
+        )}
         <QuizSelector />
         {children}
       </body>

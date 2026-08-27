@@ -1,15 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { SITE_CONFIG } from "./app/site-config";
-
-/** Staging (staging.spanish-quizz.es) and any other non-canonical host — Workers.dev
- * preview URLs, etc. — must never be indexed. Checked by exact hostname rather than
- * "contains staging" so an unrecognized host defaults to blocked, not allowed. */
-function isProductionHost(host: string): boolean {
-  const bareHost = host.split(":")[0]?.toLowerCase() ?? "";
-  const productionHost = new URL(SITE_CONFIG.url).hostname;
-  return bareHost === productionHost || bareHost === `www.${productionHost}`;
-}
+import { isProductionHost } from "./app/is-production-host";
 
 export function proxy(request: NextRequest) {
   const host = request.headers.get("host") ?? "";
