@@ -746,11 +746,15 @@ body {
 }
 
 .board-tile-pinned {
-  grid-column: span 2;
   border-radius: 16px 26px 12px 32px;
   background: var(--surface);
   box-shadow: var(--hard-shadow);
   padding: 18px;
+  margin-bottom: 22px;
+}
+
+.board-section-head-secondary {
+  margin-top: 4px;
 }
 
 .board-tile-due {
@@ -910,6 +914,82 @@ body {
   height: 6px;
   border: 2px solid var(--line);
   margin-top: 10px;
+}
+
+/* Board home, desktop — the mobile board (hamburger + full-bleed streak strip +
+ * 2-up tile grid) just stretched wider looked like a phone screen blown up: an
+ * unused hamburger, two oversized tiles with mostly empty card, a streak panel
+ * spanning edge to edge for four numbers. At this width there's room for the
+ * header and streak panel to sit as a persistent left rail beside the board
+ * instead, and for the in-progress quiz to read as its own full-width row
+ * rather than one half of a stretched two-up grid. No DOM change needed for
+ * the rail split — .board-home becomes the grid and the header/streak-panel
+ * are simply assigned to its first column, the same technique .app-shell
+ * already uses for its sidebar below. */
+@media (min-width: 900px) {
+  .board-home {
+    display: grid;
+    grid-template-columns: 224px minmax(0, 640px);
+    column-gap: 32px;
+    align-items: start;
+  }
+
+  .board-home .board-header {
+    grid-column: 1;
+    grid-row: 1;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+
+  .board-home .board-title {
+    order: -1;
+    width: 100%;
+    justify-content: flex-start;
+    font-size: 19px;
+  }
+
+  .board-home .streak-panel {
+    grid-column: 1;
+    grid-row: 2;
+    margin-bottom: 0;
+  }
+
+  .board-home .board-section-head,
+  .board-home .board-tile-pinned,
+  .board-home .board-grid,
+  .board-home .library-note {
+    grid-column: 2;
+  }
+
+  /* The in-progress tile has room to lay its ring beside its copy instead of
+     stacking them, now that it's a full-width row rather than half of a 2-up
+     grid. */
+  .board-home .board-tile-pinned {
+    flex-direction: row;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .board-home .board-tile-pinned .board-icon-pinned {
+    top: 14px;
+    right: 14px;
+  }
+
+  .board-home .board-tile-pinned .board-ring {
+    flex: none;
+    margin-top: 0;
+  }
+
+  .board-home .board-tile-pinned h2 {
+    margin: 0 0 4px;
+  }
+
+  /* auto-fill instead of a fixed 2-up split: tiles keep a readable width and
+     the row gains a column as the rail-adjusted content area allows, rather
+     than two tiles stretching to fill it. */
+  .board-home .board-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
 }
 
 /* Topic detail — see design handoff README "Topic detail". */

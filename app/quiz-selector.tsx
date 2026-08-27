@@ -153,6 +153,8 @@ export default function QuizSelector() {
   }, [open, ready]);
 
   const board = useMemo(() => orderBoard(items), [items]);
+  const pinnedItem = board.find((item) => item.pinned);
+  const restItems = board.filter((item) => !item.pinned);
 
   if (!ready || !open) return null;
 
@@ -213,24 +215,28 @@ export default function QuizSelector() {
         <span>sized by what&apos;s due</span>
       </div>
 
-      <section className="board-grid" aria-label="Available quizzes and decks">
-        {board.map((item) => {
-          if (item.pinned) {
-            return (
-              <a className="board-tile board-tile-pinned" href={item.href} key={item.id}>
-                <span className="board-tile-pill board-tile-pill-progress">In progress</span>
-                <span className="board-icon board-icon-pinned"><BoardIcon kind={item.kind} /></span>
-                <div className="board-ring" style={{ background: `conic-gradient(var(--primary) ${item.percent}%, var(--line) ${item.percent}%)` }}>
-                  <div className="board-ring-inner"><strong>{item.percent}%</strong></div>
-                </div>
-                <h2>{item.title}</h2>
-                <p className="board-tile-meta">
-                  {item.due} {item.noun}{item.due === 1 ? "" : "s"} due · {item.completed} of {item.total} done
-                </p>
-              </a>
-            );
-          }
+      {pinnedItem && (
+        <a className="board-tile board-tile-pinned" href={pinnedItem.href}>
+          <span className="board-tile-pill board-tile-pill-progress">In progress</span>
+          <span className="board-icon board-icon-pinned"><BoardIcon kind={pinnedItem.kind} /></span>
+          <div className="board-ring" style={{ background: `conic-gradient(var(--primary) ${pinnedItem.percent}%, var(--line) ${pinnedItem.percent}%)` }}>
+            <div className="board-ring-inner"><strong>{pinnedItem.percent}%</strong></div>
+          </div>
+          <h2>{pinnedItem.title}</h2>
+          <p className="board-tile-meta">
+            {pinnedItem.due} {pinnedItem.noun}{pinnedItem.due === 1 ? "" : "s"} due · {pinnedItem.completed} of {pinnedItem.total} done
+          </p>
+        </a>
+      )}
 
+      {pinnedItem && restItems.length > 0 && (
+        <div className="board-section-head board-section-head-secondary">
+          <p className="eyebrow">Other activities</p>
+        </div>
+      )}
+
+      <section className="board-grid" aria-label="Available quizzes and decks">
+        {restItems.map((item) => {
           if (item.due > 0) {
             return (
               <a className="board-tile board-tile-due" href={item.href} key={item.id}>
