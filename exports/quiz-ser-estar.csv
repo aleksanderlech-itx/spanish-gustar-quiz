@@ -1,0 +1,31 @@
+type,topic,spanish,english,answer_or_form,explanation_or_example,status
+quiz-ser-estar,ser / estar,Yo ___  de México.,I am from Mexico.,soy,Origin is expressed with ser.,ok
+quiz-ser-estar,ser / estar,Marta ___  médica.,Marta is a doctor.,es,Professions use ser.,ok
+quiz-ser-estar,ser / estar,Nosotros ___  estudiantes de español.,We are Spanish students.,somos,Identity and roles use ser.,ok
+quiz-ser-estar,ser / estar,La mesa ___  de madera.,The table is made of wood.,es,Material is expressed with ser.,ok
+quiz-ser-estar,ser / estar,Hoy ___  lunes.,Today is Monday.,es,Dates and days use ser.,ok
+quiz-ser-estar,ser / estar,Las llaves ___  de Ana.,The keys belong to Ana.,son,Possession uses ser de.,ok
+quiz-ser-estar,ser / estar,El concierto ___  en el teatro.,The concert is at the theatre.,es,An event location uses ser.,ok
+quiz-ser-estar,ser / estar,La ventana ___  grande y luminosa.,The window is large and bright.,es,A defining description uses ser.,ok
+quiz-ser-estar,ser / estar,Yo ___  en casa ahora.,I am at home now.,estoy,Physical location uses estar.,ok
+quiz-ser-estar,ser / estar,Las mochilas ___  debajo de la mesa.,The backpacks are under the table.,están,Physical location uses estar.,ok
+quiz-ser-estar,ser / estar,¿Cómo ___  tú esta mañana?,How are you this morning?,estás,A current state uses estar.,ok
+quiz-ser-estar,ser / estar,El café ___  caliente.,The coffee is hot.,está,A temporary state uses estar.,ok
+quiz-ser-estar,ser / estar,Mis amigos ___  cansados después del viaje.,My friends are tired after the trip.,están,A resulting state uses estar.,ok
+quiz-ser-estar,ser / estar,La puerta ___  cerrada.,The door is closed.,está,A current condition uses estar.,ok
+quiz-ser-estar,ser / estar,El museo ___  cerca de la estación.,The museum is near the station.,está,Physical location uses estar.,ok
+quiz-ser-estar,ser / estar,La sopa ___  muy buena hoy.,The soup tastes very good today.,está,A tasted or experienced result uses estar.,ok
+quiz-ser-estar,ser / estar,Mi hermano ___  listo para salir.,My brother is ready to leave.,está,Estar listo means to be ready.,ok
+quiz-ser-estar,ser / estar,Clara ___  lista y curiosa.,Clara is clever and curious.,es,Ser listo means clever or smart.,ok
+quiz-ser-estar,ser / estar,El barrio ___  tranquilo por la noche.,The neighbourhood is quiet at night.,es,A characteristic description uses ser.,ok
+quiz-ser-estar,ser / estar,El barrio ___  vacío esta noche.,The neighbourhood is empty tonight.,está,A current state uses estar.,ok
+quiz-ser-estar,ser / estar,La camisa ___  azul.,The shirt is blue.,es,Colour as a characteristic uses ser.,ok
+quiz-ser-estar,ser / estar,La camisa ___  mojada.,The shirt is wet.,está,A temporary condition uses estar.,ok
+quiz-ser-estar,ser / estar,La reunión ___  a las tres.,The meeting is at three.,es,Event time uses ser.,ok
+quiz-ser-estar,ser / estar,Los niños ___  en el jardín.,The children are in the garden.,están,People's physical location uses estar.,ok
+quiz-ser-estar,ser / estar,La película ___  aburrida para mí.,The film is boring to me.,es,Ser can present a quality of something.,ok
+quiz-ser-estar,ser / estar,Yo ___  aburrido durante la película.,I am bored during the film.,estoy,Estar describes a person's current state.,ok
+quiz-ser-estar,ser / estar,El profesor ___  enfermo esta semana.,The teacher is ill this week.,está,Health states use estar.,ok
+quiz-ser-estar,ser / estar,El profesor ___  muy paciente.,The teacher is very patient.,es,A personal characteristic uses ser.,ok
+quiz-ser-estar,ser / estar,La puerta ___  abierta porque hace calor.,The door is open because it is hot.,está,A resulting condition uses estar.,ok
+quiz-ser-estar,ser / estar,La conferencia ___  en el auditorio principal.,The conference is in the main auditorium.,es,Events use ser for their location.,ok

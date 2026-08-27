@@ -1,0 +1,17 @@
+type,topic,spanish,english,answer_or_form,explanation_or_example,status
+quiz-preterite-imperfect,ir,Ayer yo ___  al mercado.,Yesterday I went to the market.,fui,Ayer marks one completed past action. Correct tense: preterite.,ok
+quiz-preterite-imperfect,ir,"De niño, yo ___  al parque cada tarde.","As a child, I used to go to the park every afternoon.",iba,De niño and cada tarde describe a repeated past habit. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,preparar,Anoche Marta ___  la cena a las ocho.,Last night Marta prepared dinner at eight.,preparó,Anoche and a las ocho frame a completed event. Correct tense: preterite.,ok
+quiz-preterite-imperfect,preparar,"Mientras Marta ___  la cena, sonó el teléfono.","While Marta was preparing dinner, the phone rang.",preparaba,Mientras sets background action in progress. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,salir,El sábado nosotros ___  temprano.,On Saturday we left early.,salimos,El sábado points to one completed occasion. Correct tense: preterite.,ok
+quiz-preterite-imperfect,salir,Normalmente nosotros ___  temprano para la escuela.,Normally we used to leave early for school.,salíamos,Normalmente signals repeated past routine. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,llegar,"De repente, el tren ___  en la estación.","Suddenly, the train arrived at the station.",llegó,De repente introduces a completed interrupting action. Correct tense: preterite.,ok
+quiz-preterite-imperfect,llegar,El tren ___  cuando empezó la lluvia.,The train was arriving when the rain started.,llegaba,The arrival was in progress when another event happened. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,vivir,En 2020 Ana ___  en Sevilla.,In 2020 Ana lived in Seville.,vivió,A bounded time period can use preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,vivir,"Cuando la conocí, Ana ___  en Sevilla.","When I met her, Ana was living in Seville.",vivía,The living situation is background information. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,explicar,El profesor ___  la regla y luego dio ejemplos.,The teacher explained the rule and then gave examples.,explicó,A sequence of completed actions uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,explicar,El profesor ___  la regla cuando entró el director.,The teacher was explaining the rule when the principal came in.,explicaba,The explanation was ongoing background action. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,ponerse,"Al ver las noticias, Luis ___  nervioso.","When he saw the news, Luis became nervous.",se puso,A change of state at a moment uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,ponerse,"Cada vez que hablaba en público, Luis ___  nervioso.","Every time he spoke in public, Luis would get nervous.",se ponía,Cada vez que describes repeated past behavior. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,empezar,La reunión ___  a las diez.,The meeting started at ten.,empezó,A starting point is a completed event. Correct tense: preterite.,ok
+quiz-preterite-imperfect,empezar,La reunión ya ___  cuando llegué.,The meeting was already starting when I arrived.,empezaba,The starting was in progress when another action happened. Correct tense: imperfect.,ok

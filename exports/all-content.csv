@@ -1,0 +1,715 @@
+type,topic,spanish,english,answer_or_form,explanation_or_example,status
+quiz-gustar,gustar,A Marta ___ el café colombiano.,Marta likes Colombian coffee.,le gusta,"Use “le” as the indirect object pronoun. El café colombiano is singular (or an infinitive activity), so the verb is “gusta”.",ok
+quiz-gustar,gustar,___ los conciertos de rock.,I like rock concerts.,me gustan,"Use “me” as the indirect object pronoun. Los conciertos is plural, so the verb is “gustan”.",ok
+quiz-gustar,gustar,¿ ___ viajar en tren?,Do you like travelling by train?,te gusta,"Use “te” as the indirect object pronoun. The activity viajar is singular (or an infinitive activity), so the verb is “gusta”.",ok
+quiz-gustar,gustar,___ esta canción española.,We like this Spanish song.,nos gusta,"Use “nos” as the indirect object pronoun. Esta canción is singular (or an infinitive activity), so the verb is “gusta”.",ok
+quiz-gustar,gustar,A mis padres ___ las ciudades pequeñas.,My parents like small towns.,les gustan,"Use “les” as the indirect object pronoun. Las ciudades is plural, so the verb is “gustan”.",ok
+quiz-gustar,gustar,No ___ levantarse temprano.,He or she does not like getting up early.,le gusta,"Use “le” as the indirect object pronoun. The activity levantarse is singular (or an infinitive activity), so the verb is “gusta”.",ok
+quiz-gustar,gustar,A Juan ___ la comida picante.,Juan likes spicy food.,le gusta,"Use “le” as the indirect object pronoun. La comida is singular (or an infinitive activity), so the verb is “gusta”.",ok
+quiz-gustar,gustar,¿A ustedes ___ estos ejercicios?,Do you all like these exercises?,les gustan,"Use “les” as the indirect object pronoun. Estos ejercicios is plural, so the verb is “gustan”.",ok
+quiz-gustar,gustar,___ caminar por la montaña.,They like walking in the mountains.,les gusta,"Use “les” as the indirect object pronoun. The activity caminar is singular (or an infinitive activity), so the verb is “gusta”.",ok
+quiz-gustar,gustar,A mí ___ las películas antiguas.,I like old films.,me gustan,"Use “me” as the indirect object pronoun. Las películas is plural, so the verb is “gustan”.",ok
+quiz-gustar,gustar,A Laura ___ bailar salsa.,Laura likes dancing salsa.,le gusta,"Use “le” as the indirect object pronoun. The activity bailar is singular (or an infinitive activity), so the verb is “gusta”.",ok
+quiz-gustar,gustar,No ___ los hoteles grandes.,We do not like large hotels.,nos gustan,"Use “nos” as the indirect object pronoun. Los hoteles is plural, so the verb is “gustan”.",ok
+quiz-gustar,gustar,¿ ___ esta chaqueta azul?,Does he or she like this blue jacket?,le gusta,"Use “le” as the indirect object pronoun. Esta chaqueta is singular (or an infinitive activity), so the verb is “gusta”.",ok
+quiz-gustar,gustar,A los niños ___ los cuentos cortos.,The children like short stories.,les gustan,"Use “les” as the indirect object pronoun. Los cuentos is plural, so the verb is “gustan”.",ok
+quiz-gustar,gustar,___ cocinar para tus amigos.,You like cooking for your friends.,te gusta,"Use “te” as the indirect object pronoun. The activity cocinar is singular (or an infinitive activity), so the verb is “gusta”.",ok
+quiz-gustar,gustar,___ la música en directo.,I like live music.,me gusta,"Use “me” as the indirect object pronoun. La música is singular (or an infinitive activity), so the verb is “gusta”.",ok
+quiz-gustar,gustar,A Pedro y Ana ___ las rutas en bicicleta.,Pedro and Ana like cycling routes.,les gustan,"Use “les” as the indirect object pronoun. Las rutas is plural, so the verb is “gustan”.",ok
+quiz-gustar,gustar,___ aprender idiomas.,We like learning languages.,nos gusta,"Use “nos” as the indirect object pronoun. The activity aprender is singular (or an infinitive activity), so the verb is “gusta”.",ok
+quiz-gustar,gustar,¿ ___ el nuevo restaurante?,Do they like the new restaurant?,les gusta,"Use “les” as the indirect object pronoun. El restaurante is singular (or an infinitive activity), so the verb is “gusta”.",ok
+quiz-gustar,gustar,No ___ estas botas negras.,You do not like these black boots.,te gustan,"Use “te” as the indirect object pronoun. Estas botas is plural, so the verb is “gustan”.",ok
+quiz-gustar,gustar,A usted ___ leer antes de dormir.,You like reading before going to sleep.,le gusta,"Use “le” as the indirect object pronoun. The activity leer is singular (or an infinitive activity), so the verb is “gusta”.",ok
+quiz-gustar,gustar,___ los domingos tranquilos.,I like quiet Sundays.,me gustan,"Use “me” as the indirect object pronoun. Los domingos is plural, so the verb is “gustan”.",ok
+quiz-gustar,gustar,A Carlos ___ la cerveza checa.,Carlos likes Czech beer.,le gusta,"Use “le” as the indirect object pronoun. La cerveza is singular (or an infinitive activity), so the verb is “gusta”.",ok
+quiz-gustar,gustar,___ las excursiones largas.,We like long excursions.,nos gustan,"Use “nos” as the indirect object pronoun. Las excursiones is plural, so the verb is “gustan”.",ok
+quiz-gustar,gustar,¿ ___ trabajar desde casa?,Do you like working from home?,te gusta,"Use “te” as the indirect object pronoun. The activity trabajar is singular (or an infinitive activity), so the verb is “gusta”.",ok
+quiz-gustar,gustar,A ellas ___ este barrio.,They like this neighbourhood.,les gusta,"Use “les” as the indirect object pronoun. Este barrio is singular (or an infinitive activity), so the verb is “gusta”.",ok
+quiz-gustar,gustar,No ___ los vuelos nocturnos.,I do not like night flights.,me gustan,"Use “me” as the indirect object pronoun. Los vuelos is plural, so the verb is “gustan”.",ok
+quiz-gustar,gustar,A Pablo ___ nadar en el mar.,Pablo likes swimming in the sea.,le gusta,"Use “le” as the indirect object pronoun. The activity nadar is singular (or an infinitive activity), so the verb is “gusta”.",ok
+quiz-gustar,gustar,¿A ustedes ___ la paella?,Do you all like paella?,les gusta,"Use “les” as the indirect object pronoun. La paella is singular (or an infinitive activity), so the verb is “gusta”.",ok
+quiz-gustar,gustar,___ estas fotografías.,They like these photographs.,les gustan,"Use “les” as the indirect object pronoun. Estas fotografías is plural, so the verb is “gustan”.",ok
+quiz-gustar,gustar,A nosotros ___ salir los viernes.,We like going out on Fridays.,nos gusta,"Use “nos” as the indirect object pronoun. The activity salir is singular (or an infinitive activity), so the verb is “gusta”.",ok
+quiz-gustar,gustar,___ el clima de España.,You like Spain's climate.,te gusta,"Use “te” as the indirect object pronoun. El clima is singular (or an infinitive activity), so the verb is “gusta”.",ok
+quiz-gustar,gustar,A Sofía ___ los libros de historia.,Sofía likes history books.,le gustan,"Use “le” as the indirect object pronoun. Los libros is plural, so the verb is “gustan”.",ok
+quiz-gustar,gustar,___ conducir por carreteras tranquilas.,I like driving on quiet roads.,me gusta,"Use “me” as the indirect object pronoun. The activity conducir is singular (or an infinitive activity), so the verb is “gusta”.",ok
+quiz-gustar,gustar,¿ ___ las clases de español?,Does he or she like Spanish classes?,le gustan,"Use “le” as the indirect object pronoun. Las clases is plural, so the verb is “gustan”.",ok
+quiz-gustar,encantar,___ esta banda.,I love this band.,me encanta,"Use “me” as the indirect object pronoun. Esta banda is singular (or an infinitive activity), so the verb is “encanta”.",ok
+quiz-gustar,encantar,A Elena ___ los mercados locales.,Elena loves local markets.,le encantan,"Use “le” as the indirect object pronoun. Los mercados is plural, so the verb is “encantan”.",ok
+quiz-gustar,encantar,___ viajar sin prisa.,We love travelling without rushing.,nos encanta,"Use “nos” as the indirect object pronoun. The activity viajar is singular (or an infinitive activity), so the verb is “encanta”.",ok
+quiz-gustar,encantar,¿ ___ estas tapas?,Do you love these tapas?,te encantan,"Use “te” as the indirect object pronoun. Estas tapas is plural, so the verb is “encantan”.",ok
+quiz-gustar,encantar,A los niños ___ el chocolate.,The children love chocolate.,les encanta,"Use “les” as the indirect object pronoun. El chocolate is singular (or an infinitive activity), so the verb is “encanta”.",ok
+quiz-gustar,encantar,___ bailar flamenco.,He or she loves dancing flamenco.,le encanta,"Use “le” as the indirect object pronoun. The activity bailar is singular (or an infinitive activity), so the verb is “encanta”.",ok
+quiz-gustar,encantar,A ustedes ___ las playas del norte.,You all love the northern beaches.,les encantan,"Use “les” as the indirect object pronoun. Las playas is plural, so the verb is “encantan”.",ok
+quiz-gustar,encantar,A mí ___ la guitarra eléctrica.,I love the electric guitar.,me encanta,"Use “me” as the indirect object pronoun. La guitarra is singular (or an infinitive activity), so the verb is “encanta”.",ok
+quiz-gustar,encantar,___ hacer senderismo.,They love hiking.,les encanta,"Use “les” as the indirect object pronoun. The activity hacer is singular (or an infinitive activity), so the verb is “encanta”.",ok
+quiz-gustar,encantar,¿ ___ los pueblos blancos?,Do we love the white villages?,nos encantan,"Use “nos” as the indirect object pronoun. Los pueblos is plural, so the verb is “encantan”.",ok
+quiz-gustar,encantar,A Julia ___ esta novela.,Julia loves this novel.,le encanta,"Use “le” as the indirect object pronoun. Esta novela is singular (or an infinitive activity), so the verb is “encanta”.",ok
+quiz-gustar,encantar,___ los desayunos largos.,You love long breakfasts.,te encantan,"Use “te” as the indirect object pronoun. Los desayunos is plural, so the verb is “encantan”.",ok
+quiz-gustar,encantar,A mis amigos ___ cocinar juntos.,My friends love cooking together.,les encanta,"Use “les” as the indirect object pronoun. The activity cocinar is singular (or an infinitive activity), so the verb is “encanta”.",ok
+quiz-gustar,encantar,___ las montañas.,I love the mountains.,me encantan,"Use “me” as the indirect object pronoun. Las montañas is plural, so the verb is “encantan”.",ok
+quiz-gustar,encantar,A usted ___ el arte moderno.,You love modern art.,le encanta,"Use “le” as the indirect object pronoun. El arte is singular (or an infinitive activity), so the verb is “encanta”.",ok
+quiz-gustar,encantar,___ escuchar música en vivo.,We love listening to live music.,nos encanta,"Use “nos” as the indirect object pronoun. The activity escuchar is singular (or an infinitive activity), so the verb is “encanta”.",ok
+quiz-gustar,encantar,¿ ___ estas vistas?,Do they love these views?,les encantan,"Use “les” as the indirect object pronoun. Estas vistas is plural, so the verb is “encantan”.",ok
+quiz-gustar,encantar,A Roberto ___ la arquitectura antigua.,Roberto loves old architecture.,le encanta,"Use “le” as the indirect object pronoun. La arquitectura is singular (or an infinitive activity), so the verb is “encanta”.",ok
+quiz-gustar,encantar,A ustedes ___ los viajes en bicicleta.,You all love cycling trips.,les encantan,"Use “les” as the indirect object pronoun. Los viajes is plural, so the verb is “encantan”.",ok
+quiz-gustar,encantar,___ aprender palabras nuevas.,You love learning new words.,te encanta,"Use “te” as the indirect object pronoun. The activity aprender is singular (or an infinitive activity), so the verb is “encanta”.",ok
+quiz-gustar,interesar,___ la historia de España.,I am interested in Spanish history.,me interesa,"Use “me” as the indirect object pronoun. La historia is singular (or an infinitive activity), so the verb is “interesa”.",ok
+quiz-gustar,interesar,A Daniel ___ los idiomas.,Daniel is interested in languages.,le interesan,"Use “le” as the indirect object pronoun. Los idiomas is plural, so the verb is “interesan”.",ok
+quiz-gustar,interesar,___ aprender sobre otras culturas.,We are interested in learning about other cultures.,nos interesa,"Use “nos” as the indirect object pronoun. The activity aprender is singular (or an infinitive activity), so the verb is “interesa”.",ok
+quiz-gustar,interesar,¿ ___ estas noticias?,Are you interested in this news?,te interesan,"Use “te” as the indirect object pronoun. Estas noticias is plural, so the verb is “interesan”.",ok
+quiz-gustar,interesar,A ellos ___ el ciclismo.,They are interested in cycling.,les interesa,"Use “les” as the indirect object pronoun. El ciclismo is singular (or an infinitive activity), so the verb is “interesa”.",ok
+quiz-gustar,interesar,No ___ hablar de política.,He or she is not interested in talking about politics.,le interesa,"Use “le” as the indirect object pronoun. The activity hablar is singular (or an infinitive activity), so the verb is “interesa”.",ok
+quiz-gustar,interesar,A ustedes ___ los museos pequeños.,You all are interested in small museums.,les interesan,"Use “les” as the indirect object pronoun. Los museos is plural, so the verb is “interesan”.",ok
+quiz-gustar,interesar,A mí ___ la tecnología.,I am interested in technology.,me interesa,"Use “me” as the indirect object pronoun. La tecnología is singular (or an infinitive activity), so the verb is “interesa”.",ok
+quiz-gustar,interesar,___ conocer gente nueva.,They are interested in meeting new people.,les interesa,"Use “les” as the indirect object pronoun. The activity conocer is singular (or an infinitive activity), so the verb is “interesa”.",ok
+quiz-gustar,interesar,¿ ___ estos cursos?,Are we interested in these courses?,nos interesan,"Use “nos” as the indirect object pronoun. Estos cursos is plural, so the verb is “interesan”.",ok
+quiz-gustar,interesar,A Paula ___ la fotografía.,Paula is interested in photography.,le interesa,"Use “le” as the indirect object pronoun. La fotografía is singular (or an infinitive activity), so the verb is “interesa”.",ok
+quiz-gustar,interesar,___ los documentales.,You are interested in documentaries.,te interesan,"Use “te” as the indirect object pronoun. Los documentales is plural, so the verb is “interesan”.",ok
+quiz-gustar,interesar,A mis compañeros ___ mejorar su español.,My colleagues are interested in improving their Spanish.,les interesa,"Use “les” as the indirect object pronoun. The activity mejorar is singular (or an infinitive activity), so the verb is “interesa”.",ok
+quiz-gustar,interesar,___ las rutas históricas.,I am interested in historical routes.,me interesan,"Use “me” as the indirect object pronoun. Las rutas is plural, so the verb is “interesan”.",ok
+quiz-gustar,interesar,A usted ___ el proyecto nuevo.,You are interested in the new project.,le interesa,"Use “le” as the indirect object pronoun. El proyecto is singular (or an infinitive activity), so the verb is “interesa”.",ok
+quiz-gustar,interesar,___ entender la gramática.,We are interested in understanding grammar.,nos interesa,"Use “nos” as the indirect object pronoun. The activity entender is singular (or an infinitive activity), so the verb is “interesa”.",ok
+quiz-gustar,interesar,¿ ___ estas propuestas?,Are they interested in these proposals?,les interesan,"Use “les” as the indirect object pronoun. Estas propuestas is plural, so the verb is “interesan”.",ok
+quiz-gustar,interesar,A Tomás ___ la economía.,Tomás is interested in economics.,le interesa,"Use “le” as the indirect object pronoun. La economía is singular (or an infinitive activity), so the verb is “interesa”.",ok
+quiz-gustar,interesar,A ustedes ___ los deportes de montaña.,You all are interested in mountain sports.,les interesan,"Use “les” as the indirect object pronoun. Los deportes is plural, so the verb is “interesan”.",ok
+quiz-gustar,interesar,___ leer en español.,You are interested in reading in Spanish.,te interesa,"Use “te” as the indirect object pronoun. The activity leer is singular (or an infinitive activity), so the verb is “interesa”.",ok
+quiz-gustar,molestar,___ el ruido de la calle.,The street noise bothers me.,me molesta,"Use “me” as the indirect object pronoun. El ruido is singular (or an infinitive activity), so the verb is “molesta”.",ok
+quiz-gustar,molestar,A Sara ___ las luces fuertes.,Bright lights bother Sara.,le molestan,"Use “le” as the indirect object pronoun. Las luces is plural, so the verb is “molestan”.",ok
+quiz-gustar,molestar,___ esperar mucho tiempo.,Waiting a long time bothers us.,nos molesta,"Use “nos” as the indirect object pronoun. The activity esperar is singular (or an infinitive activity), so the verb is “molesta”.",ok
+quiz-gustar,molestar,¿ ___ estos comentarios?,Do these comments bother you?,te molestan,"Use “te” as the indirect object pronoun. Estos comentarios is plural, so the verb is “molestan”.",ok
+quiz-gustar,molestar,A ellos ___ el humo.,Smoke bothers them.,les molesta,"Use “les” as the indirect object pronoun. El humo is singular (or an infinitive activity), so the verb is “molesta”.",ok
+quiz-gustar,molestar,No ___ trabajar los sábados.,Working on Saturdays does not bother him or her.,le molesta,"Use “le” as the indirect object pronoun. The activity trabajar is singular (or an infinitive activity), so the verb is “molesta”.",ok
+quiz-gustar,molestar,A ustedes ___ los precios altos.,High prices bother you all.,les molestan,"Use “les” as the indirect object pronoun. Los precios is plural, so the verb is “molestan”.",ok
+quiz-gustar,molestar,A mí ___ la música demasiado alta.,Music that is too loud bothers me.,me molesta,"Use “me” as the indirect object pronoun. La música is singular (or an infinitive activity), so the verb is “molesta”.",ok
+quiz-gustar,molestar,___ levantarse tan temprano.,Getting up so early bothers them.,les molesta,"Use “les” as the indirect object pronoun. The activity levantarse is singular (or an infinitive activity), so the verb is “molesta”.",ok
+quiz-gustar,molestar,¿ ___ estas interrupciones?,Do these interruptions bother us?,nos molestan,"Use “nos” as the indirect object pronoun. Estas interrupciones is plural, so the verb is “molestan”.",ok
+quiz-gustar,molestar,A David ___ el frío.,The cold bothers David.,le molesta,"Use “le” as the indirect object pronoun. El frío is singular (or an infinitive activity), so the verb is “molesta”.",ok
+quiz-gustar,molestar,___ los vuelos con escalas.,Flights with connections bother you.,te molestan,"Use “te” as the indirect object pronoun. Los vuelos is plural, so the verb is “molestan”.",ok
+quiz-gustar,molestar,A mis vecinos ___ oír al perro por la noche.,Hearing the dog at night bothers my neighbours.,les molesta,"Use “les” as the indirect object pronoun. The activity oír is singular (or an infinitive activity), so the verb is “molesta”.",ok
+quiz-gustar,molestar,___ las habitaciones oscuras.,Dark rooms bother me.,me molestan,"Use “me” as the indirect object pronoun. Las habitaciones is plural, so the verb is “molestan”.",ok
+quiz-gustar,molestar,A usted ___ este olor.,Does this smell bother you?,le molesta,"Use “le” as the indirect object pronoun. Este olor is singular (or an infinitive activity), so the verb is “molesta”.",ok
+quiz-gustar,importar,___ la calidad del servicio.,The quality of the service matters to me.,me importa,"Use “me” as the indirect object pronoun. La calidad is singular (or an infinitive activity), so the verb is “importa”.",ok
+quiz-gustar,importar,A Luis ___ los pequeños detalles.,Small details matter to Luis.,le importan,"Use “le” as the indirect object pronoun. Los detalles is plural, so the verb is “importan”.",ok
+quiz-gustar,importar,___ llegar a tiempo.,Arriving on time matters to us.,nos importa,"Use “nos” as the indirect object pronoun. The activity llegar is singular (or an infinitive activity), so the verb is “importa”.",ok
+quiz-gustar,importar,¿ ___ estas diferencias?,Do these differences matter to you?,te importan,"Use “te” as the indirect object pronoun. Estas diferencias is plural, so the verb is “importan”.",ok
+quiz-gustar,importar,A ellos ___ el resultado final.,The final result matters to them.,les importa,"Use “les” as the indirect object pronoun. El resultado is singular (or an infinitive activity), so the verb is “importa”.",ok
+quiz-gustar,importar,No ___ trabajar solo.,Working alone does not matter to him or her.,le importa,"Use “le” as the indirect object pronoun. The activity trabajar is singular (or an infinitive activity), so the verb is “importa”.",ok
+quiz-gustar,importar,A ustedes ___ los horarios flexibles.,Flexible schedules matter to you all.,les importan,"Use “les” as the indirect object pronoun. Los horarios is plural, so the verb is “importan”.",ok
+quiz-gustar,importar,A mí ___ la opinión de mi familia.,My family's opinion matters to me.,me importa,"Use “me” as the indirect object pronoun. La opinión is singular (or an infinitive activity), so the verb is “importa”.",ok
+quiz-gustar,importar,___ mantenerse activos.,Staying active matters to them.,les importa,"Use “les” as the indirect object pronoun. The activity mantenerse is singular (or an infinitive activity), so the verb is “importa”.",ok
+quiz-gustar,importar,¿ ___ estos cambios?,Do these changes matter to us?,nos importan,"Use “nos” as the indirect object pronoun. Estos cambios is plural, so the verb is “importan”.",ok
+quiz-gustar,importar,A Eva ___ el medio ambiente.,The environment matters to Eva.,le importa,"Use “le” as the indirect object pronoun. El medio ambiente is singular (or an infinitive activity), so the verb is “importa”.",ok
+quiz-gustar,importar,___ las condiciones del viaje.,The travel conditions matter to you.,te importan,"Use “te” as the indirect object pronoun. Las condiciones is plural, so the verb is “importan”.",ok
+quiz-gustar,importar,A mis colegas ___ terminar bien el proyecto.,Finishing the project well matters to my colleagues.,les importa,"Use “les” as the indirect object pronoun. The activity terminar is singular (or an infinitive activity), so the verb is “importa”.",ok
+quiz-gustar,importar,___ las respuestas claras.,Clear answers matter to me.,me importan,"Use “me” as the indirect object pronoun. Las respuestas is plural, so the verb is “importan”.",ok
+quiz-gustar,importar,A usted ___ esta decisión.,Does this decision matter to you?,le importa,"Use “le” as the indirect object pronoun. Esta decisión is singular (or an infinitive activity), so the verb is “importa”.",ok
+quiz-gustar,faltar,___ un billete para Madrid.,I am missing a ticket to Madrid.,me falta,"Use “me” as the indirect object pronoun. Un billete is singular (or an infinitive activity), so the verb is “falta”.",ok
+quiz-gustar,faltar,A Clara ___ dos documentos.,Clara is missing two documents.,le faltan,"Use “le” as the indirect object pronoun. Dos documentos is plural, so the verb is “faltan”.",ok
+quiz-gustar,faltar,___ terminar el último ejercicio.,We still need to finish the last exercise.,nos falta,"Use “nos” as the indirect object pronoun. The activity terminar is singular (or an infinitive activity), so the verb is “falta”.",ok
+quiz-gustar,faltar,¿ ___ estas páginas?,Are you missing these pages?,te faltan,"Use “te” as the indirect object pronoun. Estas páginas is plural, so the verb is “faltan”.",ok
+quiz-gustar,faltar,A ellos ___ un poco de tiempo.,They are short of time.,les falta,"Use “les” as the indirect object pronoun. Un poco de tiempo is singular (or an infinitive activity), so the verb is “falta”.",ok
+quiz-gustar,faltar,___ practicar más.,He or she needs to practise more.,le falta,"Use “le” as the indirect object pronoun. The activity practicar is singular (or an infinitive activity), so the verb is “falta”.",ok
+quiz-gustar,faltar,A ustedes ___ las entradas para el concierto.,You all are missing the concert tickets.,les faltan,"Use “les” as the indirect object pronoun. Las entradas is plural, so the verb is “faltan”.",ok
+quiz-gustar,faltar,A mí ___ una buena mochila.,I need a good backpack.,me falta,"Use “me” as the indirect object pronoun. Una mochila is singular (or an infinitive activity), so the verb is “falta”.",ok
+quiz-gustar,faltar,___ visitar dos ciudades.,They still need to visit two cities.,les falta,"Use “les” as the indirect object pronoun. The activity visitar is singular (or an infinitive activity), so the verb is “falta”.",ok
+quiz-gustar,faltar,¿ ___ algunas sillas?,Are we missing some chairs?,nos faltan,"Use “nos” as the indirect object pronoun. Algunas sillas is plural, so the verb is “faltan”.",ok
+quiz-gustar,quedar,___ una semana de vacaciones.,I have one week of holiday left.,me queda,"Use “me” as the indirect object pronoun. Una semana is singular (or an infinitive activity), so the verb is “queda”.",ok
+quiz-gustar,quedar,A Raúl ___ tres preguntas.,Raúl has three questions left.,le quedan,"Use “le” as the indirect object pronoun. Tres preguntas is plural, so the verb is “quedan”.",ok
+quiz-gustar,quedar,___ reservar el hotel.,We still need to book the hotel.,nos queda,"Use “nos” as the indirect object pronoun. The activity reservar is singular (or an infinitive activity), so the verb is “queda”.",ok
+quiz-gustar,quedar,¿ ___ bien estos pantalones?,Do these trousers fit you well?,te quedan,"Use “te” as the indirect object pronoun. Estos pantalones is plural, so the verb is “quedan”.",ok
+quiz-gustar,quedar,A ellos ___ poco dinero.,They have little money left.,les queda,"Use “les” as the indirect object pronoun. Poco dinero is singular (or an infinitive activity), so the verb is “queda”.",ok
+quiz-gustar,quedar,___ preparar la cena.,He or she still needs to prepare dinner.,le queda,"Use “le” as the indirect object pronoun. The activity preparar is singular (or an infinitive activity), so the verb is “queda”.",ok
+quiz-gustar,quedar,A ustedes ___ dos días libres.,You all have two free days left.,les quedan,"Use “les” as the indirect object pronoun. Dos días is plural, so the verb is “quedan”.",ok
+quiz-gustar,quedar,A mí ___ bien esta camisa.,This shirt fits me well.,me queda,"Use “me” as the indirect object pronoun. Esta camisa is singular (or an infinitive activity), so the verb is “queda”.",ok
+quiz-gustar,quedar,___ recorrer diez kilómetros.,They still have ten kilometres to cover.,les queda,"Use “les” as the indirect object pronoun. The activity recorrer is singular (or an infinitive activity), so the verb is “queda”.",ok
+quiz-gustar,quedar,¿ ___ suficientes botellas de agua?,Do we have enough bottles of water left?,nos quedan,"Use “nos” as the indirect object pronoun. Suficientes botellas is plural, so the verb is “quedan”.",ok
+quiz-gustar,doler,___ la espalda.,My back hurts.,me duele,"Use “me” as the indirect object pronoun. La espalda is singular (or an infinitive activity), so the verb is “duele”.",ok
+quiz-gustar,doler,A Carmen ___ las rodillas.,Carmen's knees hurt.,le duelen,"Use “le” as the indirect object pronoun. Las rodillas is plural, so the verb is “duelen”.",ok
+quiz-gustar,doler,___ caminar con estas botas.,Walking in these boots hurts us.,nos duele,"Use “nos” as the indirect object pronoun. The activity caminar is singular (or an infinitive activity), so the verb is “duele”.",ok
+quiz-gustar,doler,¿ ___ los hombros?,Do your shoulders hurt?,te duelen,"Use “te” as the indirect object pronoun. Los hombros is plural, so the verb is “duelen”.",ok
+quiz-gustar,doler,A ellos ___ la cabeza.,Their heads hurt.,les duele,"Use “les” as the indirect object pronoun. La cabeza is singular (or an infinitive activity), so the verb is “duele”.",ok
+quiz-gustar,doler,___ subir escaleras.,Climbing stairs hurts him or her.,le duele,"Use “le” as the indirect object pronoun. The activity subir is singular (or an infinitive activity), so the verb is “duele”.",ok
+quiz-gustar,doler,A ustedes ___ los pies.,Your feet hurt.,les duelen,"Use “les” as the indirect object pronoun. Los pies is plural, so the verb is “duelen”.",ok
+quiz-gustar,doler,A mí ___ el brazo derecho.,My right arm hurts.,me duele,"Use “me” as the indirect object pronoun. El brazo is singular (or an infinitive activity), so the verb is “duele”.",ok
+quiz-gustar,doler,___ hacer este movimiento.,Making this movement hurts them.,les duele,"Use “les” as the indirect object pronoun. The activity hacer is singular (or an infinitive activity), so the verb is “duele”.",ok
+quiz-gustar,doler,¿ ___ las piernas después de correr?,Do our legs hurt after running?,nos duelen,"Use “nos” as the indirect object pronoun. Las piernas is plural, so the verb is “duelen”.",ok
+quiz-gustar,doler,A Andrés ___ la garganta.,Andrés's throat hurts.,le duele,"Use “le” as the indirect object pronoun. La garganta is singular (or an infinitive activity), so the verb is “duele”.",ok
+quiz-gustar,doler,___ los dedos.,Your fingers hurt.,te duelen,"Use “te” as the indirect object pronoun. Los dedos is plural, so the verb is “duelen”.",ok
+quiz-gustar,doler,A mis amigos ___ dormir en el suelo.,Sleeping on the floor hurts my friends.,les duele,"Use “les” as the indirect object pronoun. The activity dormir is singular (or an infinitive activity), so the verb is “duele”.",ok
+quiz-gustar,doler,___ las muñecas.,My wrists hurt.,me duelen,"Use “me” as the indirect object pronoun. Las muñecas is plural, so the verb is “duelen”.",ok
+quiz-gustar,doler,A usted ___ el cuello.,Does your neck hurt?,le duele,"Use “le” as the indirect object pronoun. El cuello is singular (or an infinitive activity), so the verb is “duele”.",ok
+quiz-gustar,parecer,___ interesante esta idea.,This idea seems interesting to me.,me parece,"Use “me” as the indirect object pronoun. Esta idea is singular (or an infinitive activity), so the verb is “parece”.",ok
+quiz-gustar,parecer,A Laura ___ caros estos hoteles.,These hotels seem expensive to Laura.,le parecen,"Use “le” as the indirect object pronoun. Estos hoteles is plural, so the verb is “parecen”.",ok
+quiz-gustar,parecer,___ útil practicar cada día.,Practising every day seems useful to us.,nos parece,"Use “nos” as the indirect object pronoun. The activity practicar is singular (or an infinitive activity), so the verb is “parece”.",ok
+quiz-gustar,parecer,¿ ___ claras estas instrucciones?,Do these instructions seem clear to you?,te parecen,"Use “te” as the indirect object pronoun. Estas instrucciones is plural, so the verb is “parecen”.",ok
+quiz-gustar,parecer,A ellos ___ buena la propuesta.,The proposal seems good to them.,les parece,"Use “les” as the indirect object pronoun. La propuesta is singular (or an infinitive activity), so the verb is “parece”.",ok
+quiz-gustar,parecer,___ difícil conducir de noche.,Driving at night seems difficult to him or her.,le parece,"Use “le” as the indirect object pronoun. The activity conducir is singular (or an infinitive activity), so the verb is “parece”.",ok
+quiz-gustar,parecer,A ustedes ___ largos los ejercicios.,The exercises seem long to you all.,les parecen,"Use “les” as the indirect object pronoun. Los ejercicios is plural, so the verb is “parecen”.",ok
+quiz-gustar,parecer,A mí ___ perfecta esta solución.,This solution seems perfect to me.,me parece,"Use “me” as the indirect object pronoun. Esta solución is singular (or an infinitive activity), so the verb is “parece”.",ok
+quiz-gustar,parecer,___ mejor salir temprano.,Leaving early seems better to them.,les parece,"Use “les” as the indirect object pronoun. The activity salir is singular (or an infinitive activity), so the verb is “parece”.",ok
+quiz-gustar,parecer,¿ ___ correctas estas respuestas?,Do these answers seem correct to us?,nos parecen,"Use “nos” as the indirect object pronoun. Estas respuestas is plural, so the verb is “parecen”.",ok
+quiz-gustar,gustar,"Aunque suele elegir destinos conocidos, a Marta ___ descubrir pueblos a los que casi no llegan turistas.","Although Marta usually chooses familiar destinations, she likes discovering villages that tourists hardly ever reach.",le gusta,"Use “le” as the indirect object pronoun. The grammatical subject is a single thing, clause, or activity, so the verb is “gusta”.",ok
+quiz-gustar,gustar,¿ ___ tanto la comida como el ambiente de ese restaurante pequeño?,Do you like both the food and the atmosphere of that small restaurant?,te gustan,"Use “te” as the indirect object pronoun. The grammatical subject contains several things, so the verb is “gustan”.",ok
+quiz-gustar,encantar,A Elena ___ que el mercado siga lleno de puestos familiares.,Elena loves that the market is still full of family-run stalls.,le encanta,"Use “le” as the indirect object pronoun. The grammatical subject is a single thing, clause, or activity, so the verb is “encanta”.",ok
+quiz-gustar,encantar,___ las canciones que mezclan guitarras potentes con melodías sencillas.,I love songs that combine powerful guitars with simple melodies.,me encantan,"Use “me” as the indirect object pronoun. The grammatical subject contains several things, so the verb is “encantan”.",ok
+quiz-gustar,interesar,Lo que realmente ___ es entender por qué algunas expresiones cambian según el país.,What really interests us is understanding why some expressions change depending on the country.,nos interesa,"Use “nos” as the indirect object pronoun. The grammatical subject is a single thing, clause, or activity, so the verb is “interesa”.",ok
+quiz-gustar,interesar,¿ ___ las propuestas que podrían mejorar el transporte público?,Are you interested in the proposals that could improve public transport?,te interesan,"Use “te” as the indirect object pronoun. The grammatical subject contains several things, so the verb is “interesan”.",ok
+quiz-gustar,molestar,___ que la gente hable por teléfono mientras otros intentan concentrarse.,It bothers me when people talk on the phone while others are trying to concentrate.,me molesta,"Use “me” as the indirect object pronoun. The grammatical subject is a single thing, clause, or activity, so the verb is “molesta”.",ok
+quiz-gustar,molestar,¿A ustedes ___ el ruido y las vibraciones que produce esta máquina?,Are you bothered by the noise and vibrations produced by this machine?,les molestan,"Use “les” as the indirect object pronoun. The grammatical subject contains several things, so the verb is “molestan”.",ok
+quiz-gustar,importar,Lo que más ___ es que el servicio funcione bien incluso cuando hay mucha demanda.,What matters most to me is that the service works well even when demand is high.,me importa,"Use “me” as the indirect object pronoun. The grammatical subject is a single thing, clause, or activity, so the verb is “importa”.",ok
+quiz-gustar,importar,¿ ___ la opinión del cliente y las recomendaciones del equipo?,Do the client's opinion and the team's recommendations matter to you?,te importan,"Use “te” as the indirect object pronoun. The grammatical subject contains several things, so the verb is “importan”.",ok
+quiz-gustar,faltar,"Aunque hemos avanzado mucho, ___ comprobar que todos los datos coinciden.","Although we have made a lot of progress, we still need to check that all the data matches.",nos falta,"Use “nos” as the indirect object pronoun. The grammatical subject is a single thing, clause, or activity, so the verb is “falta”.",ok
+quiz-gustar,faltar,A Clara ___ dos firmas sin las cuales el contrato no es válido.,Clara is missing two signatures without which the contract is valid.,le faltan,"Use “le” as the indirect object pronoun. The grammatical subject contains several things, so the verb is “faltan”.",ok
+quiz-gustar,quedar,"Aunque casi todo está listo, ___ decidir quién presentará cada parte del proyecto.","Although almost everything is ready, we still need to decide who will present each part of the project.",nos queda,"Use “nos” as the indirect object pronoun. The grammatical subject is a single thing, clause, or activity, so the verb is “queda”.",ok
+quiz-gustar,quedar,¿ ___ bien tanto la chaqueta como los pantalones que compraste ayer?,Do both the jacket and the trousers you bought yesterday fit you well?,te quedan,"Use “te” as the indirect object pronoun. The grammatical subject contains several things, so the verb is “quedan”.",ok
+quiz-gustar,doler,"Aunque llevamos calzado cómodo, ___ caminar durante horas sin hacer ninguna pausa.","Although we wear comfortable shoes, walking for hours without taking a break hurts us.",nos duele,"Use “nos” as the indirect object pronoun. The grammatical subject is a single thing, clause, or activity, so the verb is “duele”.",ok
+quiz-gustar,doler,¿ ___ el cuello y los hombros cuando trabajas demasiado tiempo frente al ordenador?,Do your neck and shoulders hurt when you work at the computer for too long?,te duelen,"Use “te” as the indirect object pronoun. The grammatical subject contains several things, so the verb is “duelen”.",ok
+quiz-gustar,parecer,"Aunque al principio dudaba, ___ razonable la solución que propone el equipo técnico.","Although I had doubts at first, the solution proposed by the technical team seems reasonable to me.",me parece,"Use “me” as the indirect object pronoun. The grammatical subject is a single thing, clause, or activity, so the verb is “parece”.",ok
+quiz-gustar,parecer,¿ ___ claras tanto las instrucciones como los ejemplos que aparecen debajo?,Do both the instructions and the examples below seem clear to you?,te parecen,"Use “te” as the indirect object pronoun. The grammatical subject contains several things, so the verb is “parecen”.",ok
+quiz-ser-estar,ser / estar,Yo ___  de México.,I am from Mexico.,soy,Origin is expressed with ser.,ok
+quiz-ser-estar,ser / estar,Marta ___  médica.,Marta is a doctor.,es,Professions use ser.,ok
+quiz-ser-estar,ser / estar,Nosotros ___  estudiantes de español.,We are Spanish students.,somos,Identity and roles use ser.,ok
+quiz-ser-estar,ser / estar,La mesa ___  de madera.,The table is made of wood.,es,Material is expressed with ser.,ok
+quiz-ser-estar,ser / estar,Hoy ___  lunes.,Today is Monday.,es,Dates and days use ser.,ok
+quiz-ser-estar,ser / estar,Las llaves ___  de Ana.,The keys belong to Ana.,son,Possession uses ser de.,ok
+quiz-ser-estar,ser / estar,El concierto ___  en el teatro.,The concert is at the theatre.,es,An event location uses ser.,ok
+quiz-ser-estar,ser / estar,La ventana ___  grande y luminosa.,The window is large and bright.,es,A defining description uses ser.,ok
+quiz-ser-estar,ser / estar,Yo ___  en casa ahora.,I am at home now.,estoy,Physical location uses estar.,ok
+quiz-ser-estar,ser / estar,Las mochilas ___  debajo de la mesa.,The backpacks are under the table.,están,Physical location uses estar.,ok
+quiz-ser-estar,ser / estar,¿Cómo ___  tú esta mañana?,How are you this morning?,estás,A current state uses estar.,ok
+quiz-ser-estar,ser / estar,El café ___  caliente.,The coffee is hot.,está,A temporary state uses estar.,ok
+quiz-ser-estar,ser / estar,Mis amigos ___  cansados después del viaje.,My friends are tired after the trip.,están,A resulting state uses estar.,ok
+quiz-ser-estar,ser / estar,La puerta ___  cerrada.,The door is closed.,está,A current condition uses estar.,ok
+quiz-ser-estar,ser / estar,El museo ___  cerca de la estación.,The museum is near the station.,está,Physical location uses estar.,ok
+quiz-ser-estar,ser / estar,La sopa ___  muy buena hoy.,The soup tastes very good today.,está,A tasted or experienced result uses estar.,ok
+quiz-ser-estar,ser / estar,Mi hermano ___  listo para salir.,My brother is ready to leave.,está,Estar listo means to be ready.,ok
+quiz-ser-estar,ser / estar,Clara ___  lista y curiosa.,Clara is clever and curious.,es,Ser listo means clever or smart.,ok
+quiz-ser-estar,ser / estar,El barrio ___  tranquilo por la noche.,The neighbourhood is quiet at night.,es,A characteristic description uses ser.,ok
+quiz-ser-estar,ser / estar,El barrio ___  vacío esta noche.,The neighbourhood is empty tonight.,está,A current state uses estar.,ok
+quiz-ser-estar,ser / estar,La camisa ___  azul.,The shirt is blue.,es,Colour as a characteristic uses ser.,ok
+quiz-ser-estar,ser / estar,La camisa ___  mojada.,The shirt is wet.,está,A temporary condition uses estar.,ok
+quiz-ser-estar,ser / estar,La reunión ___  a las tres.,The meeting is at three.,es,Event time uses ser.,ok
+quiz-ser-estar,ser / estar,Los niños ___  en el jardín.,The children are in the garden.,están,People's physical location uses estar.,ok
+quiz-ser-estar,ser / estar,La película ___  aburrida para mí.,The film is boring to me.,es,Ser can present a quality of something.,ok
+quiz-ser-estar,ser / estar,Yo ___  aburrido durante la película.,I am bored during the film.,estoy,Estar describes a person's current state.,ok
+quiz-ser-estar,ser / estar,El profesor ___  enfermo esta semana.,The teacher is ill this week.,está,Health states use estar.,ok
+quiz-ser-estar,ser / estar,El profesor ___  muy paciente.,The teacher is very patient.,es,A personal characteristic uses ser.,ok
+quiz-ser-estar,ser / estar,La puerta ___  abierta porque hace calor.,The door is open because it is hot.,está,A resulting condition uses estar.,ok
+quiz-ser-estar,ser / estar,La conferencia ___  en el auditorio principal.,The conference is in the main auditorium.,es,Events use ser for their location.,ok
+quiz-preterite-imperfect,ir,Ayer yo ___  al mercado.,Yesterday I went to the market.,fui,Ayer marks one completed past action. Correct tense: preterite.,ok
+quiz-preterite-imperfect,ir,"De niño, yo ___  al parque cada tarde.","As a child, I used to go to the park every afternoon.",iba,De niño and cada tarde describe a repeated past habit. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,preparar,Anoche Marta ___  la cena a las ocho.,Last night Marta prepared dinner at eight.,preparó,Anoche and a las ocho frame a completed event. Correct tense: preterite.,ok
+quiz-preterite-imperfect,preparar,"Mientras Marta ___  la cena, sonó el teléfono.","While Marta was preparing dinner, the phone rang.",preparaba,Mientras sets background action in progress. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,salir,El sábado nosotros ___  temprano.,On Saturday we left early.,salimos,El sábado points to one completed occasion. Correct tense: preterite.,ok
+quiz-preterite-imperfect,salir,Normalmente nosotros ___  temprano para la escuela.,Normally we used to leave early for school.,salíamos,Normalmente signals repeated past routine. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,llegar,"De repente, el tren ___  en la estación.","Suddenly, the train arrived at the station.",llegó,De repente introduces a completed interrupting action. Correct tense: preterite.,ok
+quiz-preterite-imperfect,llegar,El tren ___  cuando empezó la lluvia.,The train was arriving when the rain started.,llegaba,The arrival was in progress when another event happened. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,vivir,En 2020 Ana ___  en Sevilla.,In 2020 Ana lived in Seville.,vivió,A bounded time period can use preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,vivir,"Cuando la conocí, Ana ___  en Sevilla.","When I met her, Ana was living in Seville.",vivía,The living situation is background information. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,explicar,El profesor ___  la regla y luego dio ejemplos.,The teacher explained the rule and then gave examples.,explicó,A sequence of completed actions uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,explicar,El profesor ___  la regla cuando entró el director.,The teacher was explaining the rule when the principal came in.,explicaba,The explanation was ongoing background action. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,ponerse,"Al ver las noticias, Luis ___  nervioso.","When he saw the news, Luis became nervous.",se puso,A change of state at a moment uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,ponerse,"Cada vez que hablaba en público, Luis ___  nervioso.","Every time he spoke in public, Luis would get nervous.",se ponía,Cada vez que describes repeated past behavior. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,empezar,La reunión ___  a las diez.,The meeting started at ten.,empezó,A starting point is a completed event. Correct tense: preterite.,ok
+quiz-preterite-imperfect,empezar,La reunión ya ___  cuando llegué.,The meeting was already starting when I arrived.,empezaba,The starting was in progress when another action happened. Correct tense: imperfect.,ok
+flashcard,rank 1,ser,to be (essential),,Quiero ser más paciente.,ok
+flashcard,rank 2,estar,to be (state/location),,Voy a estar en casa esta tarde.,ok
+flashcard,rank 3,haber,to have; there to be,,Tiene que haber otra solución.,ok
+flashcard,rank 4,hacer,to do; to make,,Voy a hacer eso hoy.,generic-fallback
+flashcard,rank 5,poder,to be able to; can,,Quiero poder hablar español con confianza.,ok
+flashcard,rank 6,decir,to say; to tell,,Voy a decir eso hoy.,generic-fallback
+flashcard,rank 7,ir,to go,,Voy a ir hoy.,generic-fallback
+flashcard,rank 8,ver,to see,,Voy a ver eso hoy.,generic-fallback
+flashcard,rank 9,dar,to give,,Voy a dar eso hoy.,generic-fallback
+flashcard,rank 10,saber,to know (facts),,Quiero saber la verdad.,ok
+flashcard,rank 11,querer,to want,,Quiero aprender español.,ok
+flashcard,rank 12,llegar,to arrive,,Voy a llegar hoy.,generic-fallback
+flashcard,rank 13,pasar,to pass; to happen,,Voy a pasar eso hoy.,generic-fallback
+flashcard,rank 14,deber,to owe; should,,Debes descansar un poco.,ok
+flashcard,rank 15,poner,to put,,Voy a poner eso hoy.,generic-fallback
+flashcard,rank 16,parecer,to seem,,Esto puede parecer difícil al principio.,ok
+flashcard,rank 17,quedar,to stay; to remain,,Podemos quedar mañana por la tarde.,ok
+flashcard,rank 18,creer,to believe,,Voy a creer eso hoy.,generic-fallback
+flashcard,rank 19,hablar,to speak; to talk,,Voy a hablar hoy.,generic-fallback
+flashcard,rank 20,llevar,to carry; to take,,Voy a llevar eso hoy.,generic-fallback
+flashcard,rank 21,dejar,to leave; to let,,Voy a dejar eso hoy.,generic-fallback
+flashcard,rank 22,seguir,to follow; to continue,,Voy a seguir eso hoy.,generic-fallback
+flashcard,rank 23,encontrar,to find,,Voy a encontrar eso hoy.,generic-fallback
+flashcard,rank 24,llamar,to call,,Voy a llamar eso hoy.,generic-fallback
+flashcard,rank 25,venir,to come,,Voy a venir hoy.,generic-fallback
+flashcard,rank 26,pensar,to think,,Voy a pensar hoy.,generic-fallback
+flashcard,rank 27,salir,to leave; to go out,,Voy a salir hoy.,generic-fallback
+flashcard,rank 28,volver,to return,,Voy a volver hoy.,generic-fallback
+flashcard,rank 29,tomar,to take; to drink,,Voy a tomar eso hoy.,generic-fallback
+flashcard,rank 30,conocer,to know; to meet,,Me gustaría conocer mejor la ciudad.,ok
+flashcard,rank 31,vivir,to live,,Voy a vivir hoy.,generic-fallback
+flashcard,rank 32,sentir,to feel,,Puedo sentir el frío en las manos.,ok
+flashcard,rank 33,tratar,to try; to deal with,,Voy a tratar eso hoy.,generic-fallback
+flashcard,rank 34,mirar,to look at,,Voy a mirar eso hoy.,generic-fallback
+flashcard,rank 35,contar,to count; to tell,,Voy a contar eso hoy.,generic-fallback
+flashcard,rank 36,empezar,to begin,,Voy a empezar eso hoy.,generic-fallback
+flashcard,rank 37,esperar,to wait; to hope,,Voy a esperar hoy.,generic-fallback
+flashcard,rank 38,buscar,to look for,,Voy a buscar eso hoy.,generic-fallback
+flashcard,rank 39,existir,to exist,,Debe existir una forma más sencilla.,ok
+flashcard,rank 40,entrar,to enter,,Voy a entrar hoy.,generic-fallback
+flashcard,rank 41,trabajar,to work,,Voy a trabajar hoy.,generic-fallback
+flashcard,rank 42,escribir,to write,,Voy a escribir eso hoy.,generic-fallback
+flashcard,rank 43,perder,to lose,,Voy a perder eso hoy.,generic-fallback
+flashcard,rank 44,producir,to produce,,Voy a producir eso hoy.,generic-fallback
+flashcard,rank 45,ocurrir,to occur; to happen,,Eso puede ocurrir en cualquier momento.,ok
+flashcard,rank 46,entender,to understand,,Voy a entender eso hoy.,generic-fallback
+flashcard,rank 47,pedir,to ask for; to order,,Voy a pedir eso hoy.,generic-fallback
+flashcard,rank 48,recibir,to receive,,Voy a recibir eso hoy.,generic-fallback
+flashcard,rank 49,recordar,to remember,,Voy a recordar eso hoy.,generic-fallback
+flashcard,rank 50,terminar,to finish,,Voy a terminar eso hoy.,generic-fallback
+flashcard,rank 51,permitir,to allow,,Voy a permitir eso hoy.,generic-fallback
+flashcard,rank 52,aparecer,to appear,,Voy a aparecer hoy.,generic-fallback
+flashcard,rank 53,conseguir,to get; to achieve,,Voy a conseguir eso hoy.,generic-fallback
+flashcard,rank 54,comenzar,to begin,,Voy a comenzar hoy.,generic-fallback
+flashcard,rank 55,servir,to serve,,Voy a servir eso hoy.,generic-fallback
+flashcard,rank 56,sacar,to take out; to get,,Voy a sacar eso hoy.,generic-fallback
+flashcard,rank 57,necesitar,to need,,Voy a necesitar eso hoy.,generic-fallback
+flashcard,rank 58,mantener,to maintain; to keep,,Voy a mantener eso hoy.,generic-fallback
+flashcard,rank 59,resultar,to result; to turn out,,La tarea puede resultar más fácil de lo esperado.,ok
+flashcard,rank 60,leer,to read,,Voy a leer hoy.,generic-fallback
+flashcard,rank 61,caer,to fall,,Voy a caer hoy.,generic-fallback
+flashcard,rank 62,cambiar,to change,,Voy a cambiar eso hoy.,generic-fallback
+flashcard,rank 63,presentar,to present,,Voy a presentar eso hoy.,generic-fallback
+flashcard,rank 64,crear,to create,,Voy a crear eso hoy.,generic-fallback
+flashcard,rank 65,abrir,to open,,Voy a abrir eso hoy.,generic-fallback
+flashcard,rank 66,considerar,to consider,,Voy a considerar eso hoy.,generic-fallback
+flashcard,rank 67,oír,to hear,,Voy a oír eso hoy.,generic-fallback
+flashcard,rank 68,acabar,to finish; to end,,Voy a acabar hoy.,generic-fallback
+flashcard,rank 69,convertir,to convert; to turn into,,Voy a convertir eso hoy.,generic-fallback
+flashcard,rank 70,ganar,to win; to earn,,Voy a ganar eso hoy.,generic-fallback
+flashcard,rank 71,formar,to form,,Voy a formar eso hoy.,generic-fallback
+flashcard,rank 72,traer,to bring,,Voy a traer eso hoy.,generic-fallback
+flashcard,rank 73,partir,to leave; to depart,,Voy a partir hoy.,generic-fallback
+flashcard,rank 74,morir,to die,,Nadie quiere morir joven.,ok
+flashcard,rank 75,aceptar,to accept,,Voy a aceptar eso hoy.,generic-fallback
+flashcard,rank 76,realizar,to carry out; to perform,,Voy a realizar eso hoy.,generic-fallback
+flashcard,rank 77,suponer,to suppose,,Voy a suponer eso hoy.,generic-fallback
+flashcard,rank 78,comprender,to understand,,Voy a comprender eso hoy.,generic-fallback
+flashcard,rank 79,lograr,to achieve,,Voy a lograr eso hoy.,generic-fallback
+flashcard,rank 80,explicar,to explain,,Voy a explicar eso hoy.,generic-fallback
+flashcard,rank 81,preguntar,to ask,,Voy a preguntar eso hoy.,generic-fallback
+flashcard,rank 82,tocar,to touch; to play (instrument),,Voy a tocar eso hoy.,generic-fallback
+flashcard,rank 83,reconocer,to recognize,,Voy a reconocer eso hoy.,generic-fallback
+flashcard,rank 84,estudiar,to study,,Voy a estudiar hoy.,generic-fallback
+flashcard,rank 85,alcanzar,to reach,,Voy a alcanzar eso hoy.,generic-fallback
+flashcard,rank 86,nacer,to be born,,El bebé va a nacer en septiembre.,ok
+flashcard,rank 87,dirigir,to direct; to manage,,Voy a dirigir eso hoy.,generic-fallback
+flashcard,rank 88,correr,to run,,Voy a correr hoy.,generic-fallback
+flashcard,rank 89,utilizar,to use,,Voy a utilizar eso hoy.,generic-fallback
+flashcard,rank 90,pagar,to pay,,Voy a pagar eso hoy.,generic-fallback
+flashcard,rank 91,ayudar,to help,,Voy a ayudar eso hoy.,generic-fallback
+flashcard,rank 92,gustar,to like,,A Marta le puede gustar esta canción.,ok
+flashcard,rank 93,jugar,to play,,Voy a jugar hoy.,generic-fallback
+flashcard,rank 94,escuchar,to listen,,Voy a escuchar hoy.,generic-fallback
+flashcard,rank 95,cumplir,to fulfill; to comply,,Voy a cumplir eso hoy.,generic-fallback
+flashcard,rank 96,ofrecer,to offer,,Voy a ofrecer eso hoy.,generic-fallback
+flashcard,rank 97,descubrir,to discover,,Voy a descubrir eso hoy.,generic-fallback
+flashcard,rank 98,levantar,to lift; to raise,,Voy a levantar eso hoy.,generic-fallback
+flashcard,rank 99,intentar,to try; to attempt,,Voy a intentar eso hoy.,generic-fallback
+flashcard,rank 100,usar,to use,,Voy a usar eso hoy.,generic-fallback
+flashcard,rank 101,decidir,to decide,,Voy a decidir eso hoy.,generic-fallback
+flashcard,rank 102,repetir,to repeat,,Voy a repetir eso hoy.,generic-fallback
+flashcard,rank 103,olvidar,to forget,,Voy a olvidar eso hoy.,generic-fallback
+flashcard,rank 104,aprender,to learn,,Voy a aprender hoy.,generic-fallback
+flashcard,rank 105,cerrar,to close,,Voy a cerrar eso hoy.,generic-fallback
+flashcard,rank 106,comer,to eat,,Voy a comer eso hoy.,generic-fallback
+flashcard,rank 107,cantar,to sing,,Voy a cantar hoy.,generic-fallback
+flashcard,rank 108,bailar,to dance,,Voy a bailar hoy.,generic-fallback
+flashcard,rank 109,comprar,to buy,,Voy a comprar eso hoy.,generic-fallback
+flashcard,rank 110,vender,to sell,,Voy a vender eso hoy.,generic-fallback
+flashcard,rank 111,viajar,to travel,,Voy a viajar hoy.,generic-fallback
+flashcard,rank 112,caminar,to walk,,Voy a caminar hoy.,generic-fallback
+flashcard,rank 113,conducir,to drive,,Voy a conducir eso hoy.,generic-fallback
+flashcard,rank 114,dormir,to sleep,,Voy a dormir hoy.,generic-fallback
+flashcard,rank 115,beber,to drink,,Voy a beber eso hoy.,generic-fallback
+flashcard,rank 116,cocinar,to cook,,Voy a cocinar eso hoy.,generic-fallback
+flashcard,rank 117,lavar,to wash,,Voy a lavar eso hoy.,generic-fallback
+flashcard,rank 118,limpiar,to clean,,Voy a limpiar eso hoy.,generic-fallback
+flashcard,rank 119,cortar,to cut,,Voy a cortar eso hoy.,generic-fallback
+flashcard,rank 120,romper,to break,,Voy a romper eso hoy.,generic-fallback
+flashcard,rank 121,enviar,to send,,Voy a enviar eso hoy.,generic-fallback
+flashcard,rank 122,enseñar,to teach,,Voy a enseñar eso hoy.,generic-fallback
+flashcard,rank 123,mostrar,to show,,Voy a mostrar eso hoy.,generic-fallback
+flashcard,rank 124,compartir,to share,,Voy a compartir eso hoy.,generic-fallback
+flashcard,rank 125,elegir,to choose,,Voy a elegir eso hoy.,generic-fallback
+flashcard,rank 126,incluir,to include,,Voy a incluir eso hoy.,generic-fallback
+flashcard,rank 127,excluir,to exclude,,Voy a excluir eso hoy.,generic-fallback
+flashcard,rank 128,mejorar,to improve,,Voy a mejorar eso hoy.,generic-fallback
+flashcard,rank 129,empeorar,to get worse,,Voy a empeorar eso hoy.,generic-fallback
+flashcard,rank 130,crecer,to grow,,Voy a crecer hoy.,generic-fallback
+flashcard,rank 131,reducir,to reduce,,Voy a reducir eso hoy.,generic-fallback
+flashcard,rank 132,aumentar,to increase,,Voy a aumentar eso hoy.,generic-fallback
+flashcard,rank 133,bajar,to go down; to lower,,Voy a bajar hoy.,generic-fallback
+flashcard,rank 134,subir,to go up; to raise,,Voy a subir hoy.,generic-fallback
+flashcard,rank 135,regresar,to return,,Voy a regresar hoy.,generic-fallback
+flashcard,rank 136,permanecer,to remain,,Voy a permanecer hoy.,generic-fallback
+flashcard,rank 137,mover,to move,,Voy a mover eso hoy.,generic-fallback
+flashcard,rank 138,parar,to stop,,Voy a parar hoy.,generic-fallback
+flashcard,rank 139,continuar,to continue,,Voy a continuar hoy.,generic-fallback
+flashcard,rank 140,preparar,to prepare,,Voy a preparar eso hoy.,generic-fallback
+flashcard,rank 141,responder,to answer,,Voy a responder eso hoy.,generic-fallback
+flashcard,rank 142,añadir,to add,,Voy a añadir eso hoy.,generic-fallback
+flashcard,rank 143,quitar,to remove,,Voy a quitar eso hoy.,generic-fallback
+flashcard,rank 144,quitarse,to take off,,Voy a quitarse temprano.,generic-fallback
+flashcard,rank 145,vestir,to dress,,Voy a vestir eso hoy.,generic-fallback
+flashcard,rank 146,llevarse,to take away; to get along,,Voy a llevarse temprano.,generic-fallback
+flashcard,rank 147,levantarse,to get up,,Voy a levantarse temprano.,generic-fallback
+flashcard,rank 148,sentarse,to sit down,,Voy a sentarse temprano.,generic-fallback
+flashcard,rank 149,acostarse,to go to bed,,Voy a acostarse temprano.,generic-fallback
+flashcard,rank 150,despertarse,to wake up,,Voy a despertarse temprano.,generic-fallback
+flashcard,rank 151,ducharse,to shower,,Voy a ducharse temprano.,generic-fallback
+flashcard,rank 152,bañarse,to bathe,,Voy a bañarse temprano.,generic-fallback
+flashcard,rank 153,peinarse,to comb one's hair,,Voy a peinarse temprano.,generic-fallback
+flashcard,rank 154,afeitarse,to shave,,Voy a afeitarse temprano.,generic-fallback
+flashcard,rank 155,casar,to marry (someone),,Voy a casar eso hoy.,generic-fallback
+flashcard,rank 156,casarse,to get married,,Voy a casarse temprano.,generic-fallback
+flashcard,rank 157,reunir,to gather,,Voy a reunir eso hoy.,generic-fallback
+flashcard,rank 158,reunirse,to meet; to get together,,Voy a reunirse temprano.,generic-fallback
+flashcard,rank 159,encontrarse,to meet; to find oneself,,Voy a encontrarse temprano.,generic-fallback
+flashcard,rank 160,preocupar,to worry,,Voy a preocupar eso hoy.,generic-fallback
+flashcard,rank 161,preocuparse,to worry; to become worried,,Voy a preocuparse temprano.,generic-fallback
+flashcard,rank 162,ocupar,to occupy,,Voy a ocupar eso hoy.,generic-fallback
+flashcard,rank 163,ocuparse,to take care of; to deal with,,Voy a ocuparse temprano.,generic-fallback
+flashcard,rank 164,llamarse,to be called,,Voy a llamarse temprano.,generic-fallback
+flashcard,rank 165,sentirse,to feel,,Voy a sentirse temprano.,generic-fallback
+flashcard,rank 166,acordar,to agree,,Voy a acordar eso hoy.,generic-fallback
+flashcard,rank 167,acordarse,to remember,,Voy a acordarse temprano.,generic-fallback
+flashcard,rank 168,olvidarse,to forget,,Voy a olvidarse temprano.,generic-fallback
+flashcard,rank 169,contestar,to answer,,Voy a contestar eso hoy.,generic-fallback
+flashcard,rank 170,describir,to describe,,Voy a describir eso hoy.,generic-fallback
+flashcard,rank 171,comparar,to compare,,Voy a comparar eso hoy.,generic-fallback
+flashcard,rank 172,cambiarse,to change clothes; to move,,Voy a cambiarse temprano.,generic-fallback
+flashcard,rank 173,probar,to try; to test,,Voy a probar eso hoy.,generic-fallback
+flashcard,rank 174,prohibir,to prohibit,,Voy a prohibir eso hoy.,generic-fallback
+flashcard,rank 175,obligar,to force; to oblige,,Voy a obligar eso hoy.,generic-fallback
+flashcard,rank 176,recomendar,to recommend,,Voy a recomendar eso hoy.,generic-fallback
+flashcard,rank 177,aconsejar,to advise,,Voy a aconsejar eso hoy.,generic-fallback
+flashcard,rank 178,sugerir,to suggest,,Voy a sugerir eso hoy.,generic-fallback
+flashcard,rank 179,invitar,to invite,,Voy a invitar eso hoy.,generic-fallback
+flashcard,rank 180,rechazar,to reject,,Voy a rechazar eso hoy.,generic-fallback
+flashcard,rank 181,negar,to deny,,Voy a negar eso hoy.,generic-fallback
+flashcard,rank 182,afirmar,to affirm,,Voy a afirmar eso hoy.,generic-fallback
+flashcard,rank 183,prometer,to promise,,Voy a prometer eso hoy.,generic-fallback
+flashcard,rank 184,fallar,to fail,,Voy a fallar eso hoy.,generic-fallback
+flashcard,rank 185,ahorrar,to save (money),,Voy a ahorrar eso hoy.,generic-fallback
+flashcard,rank 186,gastar,to spend,,Voy a gastar eso hoy.,generic-fallback
+flashcard,rank 187,cobrar,to charge; to collect,,Voy a cobrar eso hoy.,generic-fallback
+flashcard,rank 188,costar,to cost,,El viaje puede costar más de cien euros.,ok
+flashcard,rank 189,valer,to be worth,,Este reloj puede valer mucho dinero.,ok
+flashcard,rank 190,preferir,to prefer,,Prefiero viajar en tren.,ok
+flashcard,rank 191,odiar,to hate,,Odio esperar en filas largas.,ok
+flashcard,rank 192,amar,to love,,Es fácil amar este lugar.,ok
+flashcard,rank 193,encantar,to delight; to love,,A los niños les va a encantar el museo.,ok
+flashcard,rank 194,molestar,to bother,,El ruido puede molestar a los vecinos.,ok
+flashcard,rank 195,importar,to matter,,Lo que piensas puede importar mucho.,ok
+flashcard,rank 196,faltar,to be missing; to lack,,Puede faltar una pieza.,ok
+flashcard,rank 197,doler,to hurt,,Me puede doler la espalda después del viaje.,ok
+flashcard,rank 198,aburrir,to bore,,La película puede aburrir a los niños.,ok
+flashcard,rank 199,divertir,to entertain,,El juego puede divertir a toda la familia.,ok
+flashcard,rank 200,interesar,to interest,,Este tema puede interesar a los estudiantes.,ok
+flashcard,rank 201,sorprender,to surprise,,La respuesta puede sorprenderte.,ok
+flashcard,rank 202,cansar,to tire,,Caminar tanto puede cansar a cualquiera.,ok
+flashcard,rank 203,alegrar,to cheer up,,La noticia puede alegrar a tu madre.,ok
+flashcard,rank 204,entristecer,to sadden,,La despedida puede entristecer a todos.,ok
+flashcard,rank 205,asustar,to scare,,Ese ruido puede asustar al perro.,ok
+flashcard,rank 206,enfadar,to anger,,Voy a enfadar eso hoy.,generic-fallback
+flashcard,rank 207,calmar,to calm,,Voy a calmar eso hoy.,generic-fallback
+flashcard,rank 208,relajar,to relax,,Voy a relajar eso hoy.,generic-fallback
+flashcard,rank 209,temer,to fear,,No debes temer el cambio.,ok
+flashcard,rank 210,confiar,to trust,,Puedes confiar en ella.,ok
+flashcard,rank 211,dudar,to doubt,,Es normal dudar al principio.,ok
+flashcard,rank 212,planear,to plan,,Voy a planear eso hoy.,generic-fallback
+flashcard,rank 213,organizar,to organize,,Voy a organizar eso hoy.,generic-fallback
+flashcard,rank 214,reservar,to reserve; to book,,Voy a reservar eso hoy.,generic-fallback
+flashcard,rank 215,cancelar,to cancel,,Voy a cancelar eso hoy.,generic-fallback
+flashcard,rank 216,visitar,to visit,,Voy a visitar eso hoy.,generic-fallback
+flashcard,rank 217,explorar,to explore,,Voy a explorar eso hoy.,generic-fallback
+flashcard,rank 218,quedarse,to stay,,Voy a quedarse temprano.,generic-fallback
+flashcard,rank 219,alojar,to lodge,,Voy a alojar eso hoy.,generic-fallback
+flashcard,rank 220,alojarse,to stay; to lodge,,Voy a alojarse temprano.,generic-fallback
+flashcard,rank 221,volar,to fly,,Voy a volar hoy.,generic-fallback
+flashcard,rank 222,montar,to ride; to mount,,Voy a montar eso hoy.,generic-fallback
+flashcard,rank 223,nadar,to swim,,Voy a nadar hoy.,generic-fallback
+flashcard,rank 224,andar,to walk; to go,,Voy a andar hoy.,generic-fallback
+flashcard,rank 225,pasear,to stroll,,Voy a pasear hoy.,generic-fallback
+flashcard,rank 226,cruzar,to cross,,Voy a cruzar eso hoy.,generic-fallback
+flashcard,rank 227,girar,to turn,,Voy a girar hoy.,generic-fallback
+flashcard,rank 228,detener,to stop; to detain,,Voy a detener eso hoy.,generic-fallback
+flashcard,rank 229,detenerse,to stop oneself,,Voy a detenerse temprano.,generic-fallback
+flashcard,rank 230,aparcar,to park,,Voy a aparcar eso hoy.,generic-fallback
+flashcard,rank 231,arrancar,to start (engine),,Voy a arrancar hoy.,generic-fallback
+flashcard,rank 232,frenar,to brake,,Voy a frenar hoy.,generic-fallback
+flashcard,rank 233,acelerar,to accelerate,,Voy a acelerar hoy.,generic-fallback
+flashcard,rank 234,saltar,to jump,,Voy a saltar hoy.,generic-fallback
+flashcard,rank 235,lanzar,to throw,,Voy a lanzar eso hoy.,generic-fallback
+flashcard,rank 236,tirar,to throw; to pull,,Voy a tirar eso hoy.,generic-fallback
+flashcard,rank 237,recoger,to pick up,,Voy a recoger eso hoy.,generic-fallback
+flashcard,rank 238,guardar,to keep; to save,,Voy a guardar eso hoy.,generic-fallback
+flashcard,rank 239,hallar,to find,,Voy a hallar eso hoy.,generic-fallback
+flashcard,rank 240,esconder,to hide,,Voy a esconder eso hoy.,generic-fallback
+flashcard,rank 241,esconderse,to hide oneself,,Voy a esconderse temprano.,generic-fallback
+flashcard,rank 242,observar,to observe,,Voy a observar eso hoy.,generic-fallback
+flashcard,rank 243,oler,to smell,,Voy a oler eso hoy.,generic-fallback
+flashcard,rank 244,comentar,to comment,,Voy a comentar eso hoy.,generic-fallback
+flashcard,rank 245,conversar,to converse,,Voy a conversar hoy.,generic-fallback
+flashcard,rank 246,discutir,to discuss; to argue,,Voy a discutir hoy.,generic-fallback
+flashcard,rank 247,gritar,to shout,,Voy a gritar hoy.,generic-fallback
+flashcard,rank 248,susurrar,to whisper,,Voy a susurrar hoy.,generic-fallback
+flashcard,rank 249,firmar,to sign,,Voy a firmar eso hoy.,generic-fallback
+flashcard,rank 250,copiar,to copy,,Voy a copiar eso hoy.,generic-fallback
+flashcard,rank 251,borrar,to erase; to delete,,Voy a borrar eso hoy.,generic-fallback
+flashcard,rank 252,dibujar,to draw,,Voy a dibujar eso hoy.,generic-fallback
+flashcard,rank 253,pintar,to paint,,Voy a pintar eso hoy.,generic-fallback
+flashcard,rank 254,imprimir,to print,,Voy a imprimir eso hoy.,generic-fallback
+flashcard,rank 255,publicar,to publish,,Voy a publicar eso hoy.,generic-fallback
+flashcard,rank 256,encender,to turn on,,Voy a encender eso hoy.,generic-fallback
+flashcard,rank 257,apagar,to turn off,,Voy a apagar eso hoy.,generic-fallback
+flashcard,rank 258,conectar,to connect,,Voy a conectar eso hoy.,generic-fallback
+flashcard,rank 259,desconectar,to disconnect,,Voy a desconectar eso hoy.,generic-fallback
+flashcard,rank 260,cargar,to load; to charge,,Voy a cargar eso hoy.,generic-fallback
+flashcard,rank 261,descargar,to download,,Voy a descargar eso hoy.,generic-fallback
+flashcard,rank 262,instalar,to install,,Voy a instalar eso hoy.,generic-fallback
+flashcard,rank 263,actualizar,to update,,Voy a actualizar eso hoy.,generic-fallback
+flashcard,rank 264,reparar,to repair,,Voy a reparar eso hoy.,generic-fallback
+flashcard,rank 265,funcionar,to work; to function,,Voy a funcionar hoy.,generic-fallback
+flashcard,rank 266,seleccionar,to select,,Voy a seleccionar eso hoy.,generic-fallback
+flashcard,rank 267,pulsar,to press,,Voy a pulsar eso hoy.,generic-fallback
+flashcard,rank 268,clicar,to click,,Voy a clicar eso hoy.,generic-fallback
+flashcard,rank 269,navegar,to browse,,Voy a navegar hoy.,generic-fallback
+flashcard,rank 270,eliminar,to delete,,Voy a eliminar eso hoy.,generic-fallback
+flashcard,rank 271,editar,to edit,,Voy a editar eso hoy.,generic-fallback
+flashcard,rank 272,revisar,to review,,Voy a revisar eso hoy.,generic-fallback
+flashcard,rank 273,comprobar,to check,,Voy a comprobar eso hoy.,generic-fallback
+flashcard,rank 274,medir,to measure,,Voy a medir eso hoy.,generic-fallback
+flashcard,rank 275,calcular,to calculate,,Voy a calcular eso hoy.,generic-fallback
+flashcard,rank 276,sumar,to add,,Voy a sumar eso hoy.,generic-fallback
+flashcard,rank 277,restar,to subtract,,Voy a restar eso hoy.,generic-fallback
+flashcard,rank 278,multiplicar,to multiply,,Voy a multiplicar eso hoy.,generic-fallback
+flashcard,rank 279,dividir,to divide,,Voy a dividir eso hoy.,generic-fallback
+flashcard,rank 280,ordenar,to order; to sort,,Voy a ordenar eso hoy.,generic-fallback
+flashcard,rank 281,clasificar,to classify,,Voy a clasificar eso hoy.,generic-fallback
+flashcard,rank 282,agrupar,to group,,Voy a agrupar eso hoy.,generic-fallback
+flashcard,rank 283,mezclar,to mix,,Voy a mezclar eso hoy.,generic-fallback
+flashcard,rank 284,separar,to separate,,Voy a separar eso hoy.,generic-fallback
+flashcard,rank 285,pegar,to paste; to glue,,Voy a pegar eso hoy.,generic-fallback
+flashcard,rank 286,unir,to join,,Voy a unir eso hoy.,generic-fallback
+flashcard,rank 287,llenar,to fill,,Voy a llenar eso hoy.,generic-fallback
+flashcard,rank 288,vaciar,to empty,,Voy a vaciar eso hoy.,generic-fallback
+flashcard,rank 289,cubrir,to cover,,Voy a cubrir eso hoy.,generic-fallback
+flashcard,rank 290,pausar,to pause,,Voy a pausar hoy.,generic-fallback
+flashcard,rank 291,reiniciar,to restart,,Voy a reiniciar hoy.,generic-fallback
+flashcard,rank 292,practicar,to practice,,Voy a practicar hoy.,generic-fallback
+flashcard,rank 293,memorizar,to memorize,,Voy a memorizar eso hoy.,generic-fallback
+flashcard,rank 294,imaginar,to imagine,,Voy a imaginar eso hoy.,generic-fallback
+flashcard,rank 295,soñar,to dream,,Me gusta soñar con viajes largos.,ok
+flashcard,rank 296,desear,to wish; to desire,,Todos podemos desear algo mejor.,ok
+flashcard,rank 297,evitar,to avoid,,Voy a evitar eso hoy.,generic-fallback
+flashcard,rank 298,tener,to have,,Quiero tener más tiempo libre.,ok
+flashcard,rank 299,convertirse,to become,,La idea puede convertirse en un proyecto.,ok
+flashcard,rank 300,disminuir,to decrease,,Voy a disminuir eso hoy.,generic-fallback
+flashcard,rank 301,desarrollar,to develop,,Voy a desarrollar eso hoy.,generic-fallback
+flashcard,rank 302,construir,to build,,Voy a construir eso hoy.,generic-fallback
+flashcard,rank 303,destruir,to destroy,,Voy a destruir eso hoy.,generic-fallback
+flashcard,rank 304,fabricar,to manufacture,,Voy a fabricar eso hoy.,generic-fallback
+flashcard,rank 305,alquilar,to rent,,Voy a alquilar eso hoy.,generic-fallback
+flashcard,rank 306,devolver,to return; to give back,,Voy a devolver eso hoy.,generic-fallback
+flashcard,rank 307,prestar,to lend,,Voy a prestar eso hoy.,generic-fallback
+flashcard,rank 308,mandar,to send; to order,,Voy a mandar eso hoy.,generic-fallback
+flashcard,rank 309,entregar,to deliver,,Voy a entregar eso hoy.,generic-fallback
+flashcard,rank 310,invertir,to invest,,Voy a invertir eso hoy.,generic-fallback
+flashcard,rank 311,descansar,to rest,,Voy a descansar hoy.,generic-fallback
+flashcard,rank 312,despertar,to wake,,Voy a despertar hoy.,generic-fallback
+flashcard,rank 313,sentar,to seat; to sit someone down,,Voy a sentar eso hoy.,generic-fallback
+flashcard,rank 314,acostar,to put to bed,,Voy a acostar eso hoy.,generic-fallback
+flashcard,rank 315,vestirse,to get dressed,,Voy a vestirse temprano.,generic-fallback
+flashcard,rank 316,desnudar,to undress,,Voy a desnudar eso hoy.,generic-fallback
+flashcard,rank 317,desnudarse,to get undressed,,Voy a desnudarse temprano.,generic-fallback
+flashcard,rank 318,lavarse,to wash oneself,,Voy a lavarse temprano.,generic-fallback
+flashcard,rank 319,duchar,to shower someone; to shower,,Voy a duchar eso hoy.,generic-fallback
+flashcard,rank 320,bañar,to bathe someone,,Voy a bañar eso hoy.,generic-fallback
+flashcard,rank 321,peinar,to comb,,Voy a peinar eso hoy.,generic-fallback
+flashcard,rank 322,afeitar,to shave,,Voy a afeitar eso hoy.,generic-fallback
+flashcard,rank 323,maquillar,to put makeup on,,Voy a maquillar eso hoy.,generic-fallback
+flashcard,rank 324,maquillarse,to put on makeup,,Voy a maquillarse temprano.,generic-fallback
+flashcard,rank 325,desayunar,to have breakfast,,Voy a desayunar hoy.,generic-fallback
+flashcard,rank 326,almorzar,to have lunch,,Voy a almorzar hoy.,generic-fallback
+flashcard,rank 327,cenar,to have dinner,,Voy a cenar hoy.,generic-fallback
+flashcard,rank 328,merendar,to have a snack,,Voy a merendar hoy.,generic-fallback
+flashcard,rank 329,calentar,to heat,,Voy a calentar eso hoy.,generic-fallback
+flashcard,rank 330,enfriar,to cool,,Voy a enfriar eso hoy.,generic-fallback
+flashcard,rank 331,hervir,to boil,,Voy a hervir hoy.,generic-fallback
+flashcard,rank 332,freír,to fry,,Voy a freír eso hoy.,generic-fallback
+flashcard,rank 333,hornear,to bake,,Voy a hornear eso hoy.,generic-fallback
+flashcard,rank 334,pelar,to peel,,Voy a pelar eso hoy.,generic-fallback
+flashcard,rank 335,echar,to throw in; to add,,Voy a echar eso hoy.,generic-fallback
+flashcard,rank 336,secar,to dry,,Voy a secar eso hoy.,generic-fallback
+flashcard,rank 337,planchar,to iron,,Voy a planchar eso hoy.,generic-fallback
+flashcard,rank 338,barrer,to sweep,,Voy a barrer eso hoy.,generic-fallback
+flashcard,rank 339,fregar,to scrub; to mop,,Voy a fregar eso hoy.,generic-fallback
+flashcard,rank 340,arreglar,to fix; to arrange,,Voy a arreglar eso hoy.,generic-fallback
+flashcard,rank 341,reciclar,to recycle,,Voy a reciclar eso hoy.,generic-fallback
+flashcard,rank 342,plantar,to plant,,Voy a plantar eso hoy.,generic-fallback
+flashcard,rank 343,regar,to water,,Voy a regar eso hoy.,generic-fallback
+flashcard,rank 344,cuidar,to care for,,Voy a cuidar eso hoy.,generic-fallback
+flashcard,rank 345,alimentar,to feed,,Voy a alimentar eso hoy.,generic-fallback
+flashcard,rank 346,adoptar,to adopt,,Voy a adoptar eso hoy.,generic-fallback
+flashcard,rank 347,criar,to raise; to breed,,Voy a criar eso hoy.,generic-fallback
+flashcard,rank 348,cazar,to hunt,,Voy a cazar eso hoy.,generic-fallback
+flashcard,rank 349,pescar,to fish,,Voy a pescar eso hoy.,generic-fallback
+flashcard,rank 350,morder,to bite,,Voy a morder eso hoy.,generic-fallback
+flashcard,rank 351,ladrar,to bark,,Voy a ladrar eso hoy.,generic-fallback
+flashcard,rank 352,maullar,to meow,,Voy a maullar eso hoy.,generic-fallback
+flashcard,rank 353,fotografiar,to photograph,,Voy a fotografiar eso hoy.,generic-fallback
+flashcard,rank 354,grabar,to record,,Voy a grabar eso hoy.,generic-fallback
+flashcard,rank 355,filmar,to film,,Voy a filmar eso hoy.,generic-fallback
+flashcard,rank 356,entrenar,to train,,Voy a entrenar eso hoy.,generic-fallback
+flashcard,rank 357,competir,to compete,,Voy a competir hoy.,generic-fallback
+flashcard,rank 358,empatar,to draw; to tie,,Voy a empatar hoy.,generic-fallback
+flashcard,rank 359,marcar,to score; to mark,,Voy a marcar eso hoy.,generic-fallback
+flashcard,rank 360,atrapar,to catch,,Voy a atrapar eso hoy.,generic-fallback
+flashcard,rank 361,golpear,to hit,,Voy a golpear eso hoy.,generic-fallback
+flashcard,rank 362,patear,to kick,,Voy a patear eso hoy.,generic-fallback
+flashcard,rank 363,pedalear,to pedal,,Voy a pedalear eso hoy.,generic-fallback
+flashcard,rank 364,esquiar,to ski,,Voy a esquiar hoy.,generic-fallback
+flashcard,rank 365,patinar,to skate,,Voy a patinar hoy.,generic-fallback
+flashcard,rank 366,escalar,to climb,,Voy a escalar hoy.,generic-fallback
+flashcard,rank 367,despegar,to take off,,Voy a despegar hoy.,generic-fallback
+flashcard,rank 368,aterrizar,to land,,Voy a aterrizar hoy.,generic-fallback
+flashcard,rank 369,facturar,to invoice; to check in luggage,,Voy a facturar eso hoy.,generic-fallback
+flashcard,rank 370,embarcar,to board; to embark,,Voy a embarcar hoy.,generic-fallback
+flashcard,rank 371,informar,to inform,,Voy a informar eso hoy.,generic-fallback
+flashcard,rank 372,confirmar,to confirm,,Voy a confirmar eso hoy.,generic-fallback
+flashcard,rank 373,avisar,to warn; to notify,,Voy a avisar eso hoy.,generic-fallback
+flashcard,rank 374,anunciar,to announce,,Voy a anunciar eso hoy.,generic-fallback
+flashcard,rank 375,comunicar,to communicate,,Voy a comunicar eso hoy.,generic-fallback
+flashcard,rank 376,traducir,to translate,,Voy a traducir eso hoy.,generic-fallback
+flashcard,rank 377,pronunciar,to pronounce,,Voy a pronunciar eso hoy.,generic-fallback
+flashcard,rank 378,deletrear,to spell,,Voy a deletrear eso hoy.,generic-fallback
+flashcard,rank 379,corregir,to correct,,Voy a corregir eso hoy.,generic-fallback
+flashcard,rank 380,aprobar,to pass; to approve,,Voy a aprobar eso hoy.,generic-fallback
+flashcard,rank 381,suspender,to fail; to suspend,,Voy a suspender eso hoy.,generic-fallback
+flashcard,rank 382,examinar,to examine,,Voy a examinar eso hoy.,generic-fallback
+flashcard,rank 383,evaluar,to evaluate,,Voy a evaluar eso hoy.,generic-fallback
+flashcard,rank 384,completar,to complete,,Voy a completar eso hoy.,generic-fallback
+flashcard,rank 385,rellenar,to fill in,,Voy a rellenar eso hoy.,generic-fallback
+flashcard,rank 386,investigar,to investigate,,Voy a investigar hoy.,generic-fallback
+flashcard,rank 387,analizar,to analyze,,Voy a analizar eso hoy.,generic-fallback
+flashcard,rank 388,experimentar,to experiment,,Voy a experimentar hoy.,generic-fallback
+flashcard,rank 389,demostrar,to demonstrate,,Voy a demostrar eso hoy.,generic-fallback
+flashcard,rank 390,concluir,to conclude,,Voy a concluir eso hoy.,generic-fallback
+flashcard,rank 391,gestionar,to manage,,Voy a gestionar eso hoy.,generic-fallback
+flashcard,rank 392,liderar,to lead,,Voy a liderar hoy.,generic-fallback
+flashcard,rank 393,colaborar,to collaborate,,Voy a colaborar hoy.,generic-fallback
+flashcard,rank 394,participar,to participate,,Voy a participar hoy.,generic-fallback
+flashcard,rank 395,asistir,to attend,,Voy a asistir hoy.,generic-fallback
+flashcard,rank 396,proponer,to propose,,Voy a proponer eso hoy.,generic-fallback
+flashcard,rank 397,negociar,to negotiate,,Voy a negociar eso hoy.,generic-fallback
+flashcard,rank 398,contratar,to hire,,Voy a contratar eso hoy.,generic-fallback
+flashcard,rank 399,despedir,to fire; to dismiss,,Voy a despedir eso hoy.,generic-fallback
+flashcard,rank 400,emplear,to employ,,Voy a emplear eso hoy.,generic-fallback
+flashcard,rank 401,solicitar,to request; to apply for,,Voy a solicitar eso hoy.,generic-fallback
+flashcard,rank 402,contactar,to contact,,Voy a contactar eso hoy.,generic-fallback
+flashcard,rank 403,apoyar,to support,,Voy a apoyar eso hoy.,generic-fallback
+flashcard,rank 404,resolver,to solve,,Voy a resolver eso hoy.,generic-fallback
+flashcard,rank 405,solucionar,to solve; to fix,,Voy a solucionar eso hoy.,generic-fallback
+flashcard,rank 406,implementar,to implement,,Voy a implementar eso hoy.,generic-fallback
+flashcard,rank 407,diseñar,to design,,Voy a diseñar eso hoy.,generic-fallback
+flashcard,rank 408,programar,to program,,Voy a programar eso hoy.,generic-fallback
+flashcard,rank 409,depurar,to debug,,Voy a depurar eso hoy.,generic-fallback
+flashcard,rank 410,desplegar,to deploy,,Voy a desplegar eso hoy.,generic-fallback
+flashcard,rank 411,documentar,to document,,Voy a documentar eso hoy.,generic-fallback
+flashcard,rank 412,planificar,to plan,,Voy a planificar eso hoy.,generic-fallback
+flashcard,rank 413,estimar,to estimate,,Voy a estimar eso hoy.,generic-fallback
+flashcard,rank 414,priorizar,to prioritize,,Voy a priorizar eso hoy.,generic-fallback
+flashcard,rank 415,asignar,to assign,,Voy a asignar eso hoy.,generic-fallback
+flashcard,rank 416,monitorizar,to monitor,,Voy a monitorizar eso hoy.,generic-fallback
+flashcard,rank 417,controlar,to control,,Voy a controlar eso hoy.,generic-fallback
+flashcard,rank 418,asegurar,to ensure,,Voy a asegurar eso hoy.,generic-fallback
+flashcard,rank 419,proteger,to protect,,Voy a proteger eso hoy.,generic-fallback
+flashcard,rank 420,bloquear,to block,,Voy a bloquear eso hoy.,generic-fallback
+flashcard,rank 421,desbloquear,to unblock,,Voy a desbloquear eso hoy.,generic-fallback
+flashcard,rank 422,registrarse,to register; to sign up,,Voy a registrarse temprano.,generic-fallback
+flashcard,rank 423,iniciar,to start; to initiate,,Voy a iniciar hoy.,generic-fallback
+flashcard,rank 424,acceder,to access,,Voy a acceder hoy.,generic-fallback
+flashcard,rank 425,denegar,to deny,,Voy a denegar eso hoy.,generic-fallback
+flashcard,rank 426,recuperar,to recover,,Voy a recuperar eso hoy.,generic-fallback
+flashcard,rank 427,renombrar,to rename,,Voy a renombrar eso hoy.,generic-fallback
+flashcard,rank 428,sincronizar,to synchronize,,Voy a sincronizar eso hoy.,generic-fallback
+flashcard,rank 429,exportar,to export,,Voy a exportar eso hoy.,generic-fallback
+flashcard,rank 430,filtrar,to filter,,Voy a filtrar eso hoy.,generic-fallback
+flashcard,rank 431,desmarcar,to uncheck,,Voy a desmarcar eso hoy.,generic-fallback
+flashcard,rank 432,avanzar,to advance,,Voy a avanzar hoy.,generic-fallback
+flashcard,rank 433,retroceder,to go back,,Voy a retroceder hoy.,generic-fallback
+flashcard,rank 434,ocultar,to hide,,Voy a ocultar eso hoy.,generic-fallback
+flashcard,rank 435,expandir,to expand,,Voy a expandir eso hoy.,generic-fallback
+flashcard,rank 436,contraer,to collapse; to contract,,Voy a contraer eso hoy.,generic-fallback
+flashcard,rank 437,activar,to activate,,Voy a activar eso hoy.,generic-fallback
+flashcard,rank 438,desactivar,to deactivate,,Voy a desactivar eso hoy.,generic-fallback
+flashcard,rank 439,configurar,to configure,,Voy a configurar eso hoy.,generic-fallback
+flashcard,rank 440,ajustar,to adjust,,Voy a ajustar eso hoy.,generic-fallback
+flashcard,rank 441,restablecer,to reset,,Voy a restablecer eso hoy.,generic-fallback
+flashcard,rank 442,duplicar,to duplicate,,Voy a duplicar eso hoy.,generic-fallback
+flashcard,rank 443,arrastrar,to drag,,Voy a arrastrar eso hoy.,generic-fallback
+flashcard,rank 444,soltar,to release; to drop,,Voy a soltar eso hoy.,generic-fallback
+flashcard,rank 445,deslizar,to swipe; to slide,,Voy a deslizar eso hoy.,generic-fallback
+flashcard,rank 446,acercar,to zoom in; to bring closer,,Voy a acercar eso hoy.,generic-fallback
+flashcard,rank 447,alejar,to zoom out; to move away,,Voy a alejar eso hoy.,generic-fallback
+flashcard,rank 448,escanear,to scan,,Voy a escanear eso hoy.,generic-fallback
+flashcard,rank 449,archivar,to archive,,Voy a archivar eso hoy.,generic-fallback
+flashcard,rank 450,mencionar,to mention,,Voy a mencionar eso hoy.,generic-fallback
+flashcard,rank 451,notificar,to notify,,Voy a notificar eso hoy.,generic-fallback
+flashcard,rank 452,suscribir,to subscribe,,Voy a suscribir eso hoy.,generic-fallback
+flashcard,rank 453,renovar,to renew,,Voy a renovar eso hoy.,generic-fallback
+flashcard,rank 454,vencer,to expire; to defeat,,Voy a vencer eso hoy.,generic-fallback
+flashcard,rank 455,caducar,to expire,,Voy a caducar hoy.,generic-fallback
+flashcard,rank 456,reclamar,to complain; to claim,,Voy a reclamar eso hoy.,generic-fallback
+flashcard,rank 457,reembolsar,to refund,,Voy a reembolsar eso hoy.,generic-fallback
+flashcard,rank 458,donar,to donate,,Voy a donar eso hoy.,generic-fallback
+flashcard,rank 459,regalar,to give as a gift,,Voy a regalar eso hoy.,generic-fallback
+flashcard,rank 460,inspeccionar,to inspect,,Voy a inspeccionar eso hoy.,generic-fallback
+flashcard,rank 461,pesar,to weigh,,Voy a pesar eso hoy.,generic-fallback
+flashcard,rank 462,registrar,to register; to record,,Voy a registrar eso hoy.,generic-fallback
+flashcard,rank 463,vigilar,to watch; to monitor,,Voy a vigilar eso hoy.,generic-fallback
+flashcard,rank 464,denunciar,to report; to denounce,,Voy a denunciar eso hoy.,generic-fallback
+flashcard,rank 465,rescatar,to rescue,,Voy a rescatar eso hoy.,generic-fallback
+flashcard,rank 466,salvar,to save,,Voy a salvar eso hoy.,generic-fallback
+flashcard,rank 467,atacar,to attack,,Voy a atacar eso hoy.,generic-fallback
+flashcard,rank 468,defender,to defend,,Voy a defender eso hoy.,generic-fallback
+flashcard,rank 469,luchar,to fight,,Voy a luchar eso hoy.,generic-fallback
+flashcard,rank 470,matar,to kill,,Voy a matar eso hoy.,generic-fallback
+flashcard,rank 471,herir,to injure,,Voy a herir eso hoy.,generic-fallback
+flashcard,rank 472,curar,to cure,,Voy a curar eso hoy.,generic-fallback
+flashcard,rank 473,sanar,to heal,,Voy a sanar eso hoy.,generic-fallback
+flashcard,rank 474,diagnosticar,to diagnose,,Voy a diagnosticar eso hoy.,generic-fallback
+flashcard,rank 475,recetar,to prescribe,,Voy a recetar eso hoy.,generic-fallback
+flashcard,rank 476,respirar,to breathe,,Voy a respirar hoy.,generic-fallback
+flashcard,rank 477,toser,to cough,,Voy a toser hoy.,generic-fallback
+flashcard,rank 478,estornudar,to sneeze,,Voy a estornudar hoy.,generic-fallback
+flashcard,rank 479,sangrar,to bleed,,Voy a sangrar hoy.,generic-fallback
+flashcard,rank 480,suceder,to happen,,Algo parecido puede suceder otra vez.,ok
+flashcard,rank 481,pertenecer,to belong,,Este libro puede pertenecer a Ana.,ok
+flashcard,rank 482,depender,to depend,,Todo puede depender del tiempo.,ok
+flashcard,rank 483,significar,to mean,,Esa palabra puede significar varias cosas.,ok
+flashcard,rank 484,representar,to represent,,Este símbolo puede representar la libertad.,ok
+flashcard,rank 485,establecer,to establish,,Voy a establecer eso hoy.,generic-fallback
+flashcard,rank 486,celebrar,to celebrate,,Voy a celebrar eso hoy.,generic-fallback
+flashcard,rank 487,aprovechar,to take advantage of,,Voy a aprovechar eso hoy.,generic-fallback
+flashcard,rank 488,manejar,to handle; to drive,,Voy a manejar eso hoy.,generic-fallback
+flashcard,rank 489,admitir,to admit,,Voy a admitir eso hoy.,generic-fallback
+flashcard,rank 490,abandonar,to abandon,,Voy a abandonar eso hoy.,generic-fallback
+flashcard,rank 491,aplicar,to apply,,Voy a aplicar eso hoy.,generic-fallback
+flashcard,rank 492,causar,to cause,,Voy a causar eso hoy.,generic-fallback
+flashcard,rank 493,conceder,to grant,,Voy a conceder eso hoy.,generic-fallback
+flashcard,rank 494,conservar,to conserve,,Voy a conservar eso hoy.,generic-fallback
+flashcard,rank 495,contener,to contain,,Voy a contener eso hoy.,generic-fallback
+flashcard,rank 496,contribuir,to contribute,,Voy a contribuir eso hoy.,generic-fallback
+flashcard,rank 497,desaparecer,to disappear,,Voy a desaparecer hoy.,generic-fallback
+flashcard,rank 498,exigir,to demand; to require,,Voy a exigir eso hoy.,generic-fallback
+flashcard,rank 499,expresar,to express,,Voy a expresar eso hoy.,generic-fallback
+flashcard,rank 500,indicar,to indicate,,Voy a indicar eso hoy.,generic-fallback
