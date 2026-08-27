@@ -3,6 +3,7 @@ import { Fraunces, Karla } from "next/font/google";
 import "./globals.css";
 import "./issue-5-design.css";
 import "./quiz-layout-fix.css";
+import "./editorial-polish.css";
 import QuizSelector from "./quiz-selector";
 import { SITE_CONFIG } from "./site-config";
 
