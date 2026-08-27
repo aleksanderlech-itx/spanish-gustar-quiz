@@ -928,9 +928,10 @@ body {
  * already uses for its sidebar below. */
 @media (min-width: 900px) {
   .board-home {
+    width: min(100% - 48px, 1240px);
     display: grid;
-    grid-template-columns: 224px minmax(0, 640px);
-    column-gap: 32px;
+    grid-template-columns: 224px minmax(0, 1fr);
+    column-gap: 36px;
     align-items: start;
   }
 
