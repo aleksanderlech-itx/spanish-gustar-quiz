@@ -161,101 +161,109 @@ export default function QuizSelector() {
 
   return (
     <main className="quiz-library board-home" aria-labelledby="quiz-library-title">
-      <header className="board-header">
-        <button
-          type="button"
-          className="mode-switch"
-          aria-label="Open menu"
-          aria-haspopup="dialog"
-          aria-expanded={drawerOpen}
-          ref={hamburgerRef}
-          onClick={() => setDrawerOpen(true)}
-        >
-          <span className="hamburger-icon" aria-hidden="true"><span /><span /><span /></span>
-        </button>
-        <h1 id="quiz-library-title" className="board-title">
-          <Logo size={24} />
-          <span>Spanish Quizzes</span>
-        </h1>
-        <button
-          type="button"
-          className="mode-switch"
-          aria-pressed={theme === "dark"}
-          aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-          onClick={toggleTheme}
-        >
-          {theme === "dark" ? <SunIcon /> : <MoonIcon />}
-          <span className="sr-only">{theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}</span>
-        </button>
-      </header>
-
-      <nav className="board-nav" aria-label="Sections">
-        <span className="board-nav-link board-nav-link-active" aria-current="page"><span className="board-nav-dot" aria-hidden="true" />Today&apos;s board</span>
-        <button type="button" className="board-nav-link" onClick={() => setDrawerOpen(true)}><span className="board-nav-dot" aria-hidden="true" />Progress &amp; history</button>
-        <button type="button" className="board-nav-link" onClick={() => setDrawerOpen(true)}><span className="board-nav-dot" aria-hidden="true" />Mistake notebook</button>
-        <a href="/how-to-use" className="board-nav-link"><span className="board-nav-dot" aria-hidden="true" />How to use</a>
-      </nav>
-
       <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)} returnFocusRef={hamburgerRef} />
 
-      <section className="streak-panel" aria-label={`${streak.streak} day streak`}>
-        <div className="streak-panel-top">
-          <div className="streak-count">
-            <strong>{streak.streak}</strong>
-            <div>
-              <span className="streak-label">días seguidos</span>
-              <span className="streak-goal">Goal: 1 round a day</span>
+      <div className="board-rail">
+        <header className="board-header">
+          <button
+            type="button"
+            className="mode-switch"
+            aria-label="Open menu"
+            aria-haspopup="dialog"
+            aria-expanded={drawerOpen}
+            ref={hamburgerRef}
+            onClick={() => setDrawerOpen(true)}
+          >
+            <span className="hamburger-icon" aria-hidden="true"><span /><span /><span /></span>
+          </button>
+          <h1 id="quiz-library-title" className="board-title">
+            <Logo size={24} />
+            <span>Spanish Quizzes</span>
+          </h1>
+          <button
+            type="button"
+            className="mode-switch board-header-theme"
+            aria-pressed={theme === "dark"}
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            onClick={toggleTheme}
+          >
+            {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+            <span className="sr-only">{theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}</span>
+          </button>
+        </header>
+
+        <nav className="board-nav" aria-label="Sections">
+          <span className="board-nav-link board-nav-link-active" aria-current="page"><span className="board-nav-dot" aria-hidden="true" />Today&apos;s board</span>
+          <button type="button" className="board-nav-link" onClick={() => setDrawerOpen(true)}><span className="board-nav-dot" aria-hidden="true" />Progress &amp; history</button>
+          <button type="button" className="board-nav-link" onClick={() => setDrawerOpen(true)}><span className="board-nav-dot" aria-hidden="true" />Mistake notebook</button>
+          <a href="/how-to-use" className="board-nav-link"><span className="board-nav-dot" aria-hidden="true" />How to use</a>
+        </nav>
+
+        <section className="streak-panel" aria-label={`${streak.streak} day streak`}>
+          <div className="streak-panel-top">
+            <div className="streak-count">
+              <strong>{streak.streak}</strong>
+              <div>
+                <span className="streak-label">días seguidos</span>
+                <span className="streak-goal">Goal: 1 round a day</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="streak-week" role="list" aria-label="This week's practice">
-          {streak.week.map((day, index) => (
-            <span key={index} className={`streak-day streak-day-${day.status}`} role="listitem" aria-label={day.status === "done" ? "Practised" : day.status === "today" ? "Today" : "Not yet"} />
-          ))}
-        </div>
-        <div className="streak-week-letters" aria-hidden="true">
-          {streak.week.map((day, index) => <span key={index}>{day.letter}</span>)}
-        </div>
-      </section>
+          <div className="streak-week" role="list" aria-label="This week's practice">
+            {streak.week.map((day, index) => (
+              <span key={index} className={`streak-day streak-day-${day.status}`} role="listitem" aria-label={day.status === "done" ? "Practised" : day.status === "today" ? "Today" : "Not yet"} />
+            ))}
+          </div>
+          <div className="streak-week-letters" aria-hidden="true">
+            {streak.week.map((day, index) => <span key={index}>{day.letter}</span>)}
+          </div>
+        </section>
 
-      <div className="board-section-head board-section-head-primary">
-        <p className="eyebrow">Today&apos;s board</p>
-        <span>sized by what&apos;s due</span>
+        <button type="button" className="board-nav-theme" onClick={toggleTheme}>
+          <span>{theme === "dark" ? "Dark mode" : "Light mode"}</span>
+          <span aria-hidden="true">{theme === "dark" ? "☾" : "☀"}</span>
+        </button>
       </div>
 
-      <div className="board-page-head">
-        <div>
+      <div className="board-content">
+        <div className="board-section-head board-section-head-primary">
           <p className="eyebrow">Today&apos;s board</p>
-          <h2 className="board-page-title">Pick up where you left off</h2>
-          <p className="board-page-sub">Your current quiz leads as one wide row; the rest of the board sits underneath, sized by what&apos;s actually due.</p>
+          <span>sized by what&apos;s due</span>
         </div>
-        <div className="board-total"><strong>{totalLogged}</strong><span>cards &amp; questions logged</span></div>
-      </div>
 
-      {pinnedItem && (
-        <a className="board-tile board-tile-pinned" href={pinnedItem.href}>
-          <span className="board-tile-pill board-tile-pill-progress">In progress</span>
-          <span className="board-icon board-icon-pinned"><BoardIcon kind={pinnedItem.kind} /></span>
-          <div className="board-ring" style={{ background: `conic-gradient(var(--primary) ${pinnedItem.percent}%, var(--line) ${pinnedItem.percent}%)` }}>
-            <div className="board-ring-inner"><strong>{pinnedItem.percent}%</strong></div>
+        <div className="board-page-head">
+          <div>
+            <p className="eyebrow">Today&apos;s board</p>
+            <h2 className="board-page-title">Pick up where you left off</h2>
+            <p className="board-page-sub">Your current quiz leads as one wide row; the rest of the board sits underneath, sized by what&apos;s actually due.</p>
           </div>
-          <div className="board-tile-pinned-body">
-            <h2>{pinnedItem.title}</h2>
-            <p className="board-tile-meta">
-              {pinnedItem.due} {pinnedItem.noun}{pinnedItem.due === 1 ? "" : "s"} due · {pinnedItem.completed} of {pinnedItem.total} done
-            </p>
-          </div>
-          <span className="board-tile-pinned-cta" aria-hidden="true">Continue →</span>
-        </a>
-      )}
-
-      {pinnedItem && restItems.length > 0 && (
-        <div className="board-section-head board-section-head-secondary">
-          <p className="eyebrow">Other activities</p>
+          <div className="board-total"><strong>{totalLogged}</strong><span>cards &amp; questions logged</span></div>
         </div>
-      )}
 
-      <section className="board-grid" aria-label="Available quizzes and decks">
+        {pinnedItem && (
+          <a className="board-tile board-tile-pinned" href={pinnedItem.href}>
+            <span className="board-tile-pill board-tile-pill-progress">In progress</span>
+            <div className="board-ring" style={{ background: `conic-gradient(var(--primary) ${pinnedItem.percent}%, var(--line) ${pinnedItem.percent}%)` }}>
+              <div className="board-ring-inner"><strong>{pinnedItem.percent}%</strong></div>
+            </div>
+            <div className="board-tile-pinned-body">
+              <h2>{pinnedItem.title}</h2>
+              <p className="board-tile-meta">
+                {pinnedItem.due} {pinnedItem.noun}{pinnedItem.due === 1 ? "" : "s"} due · {pinnedItem.completed} of {pinnedItem.total} done
+              </p>
+            </div>
+            <span className="board-icon board-icon-pinned"><BoardIcon kind={pinnedItem.kind} /></span>
+            <span className="board-tile-pinned-cta" aria-hidden="true">Continue →</span>
+          </a>
+        )}
+
+        {pinnedItem && restItems.length > 0 && (
+          <div className="board-section-head board-section-head-secondary">
+            <p className="eyebrow">Other activities</p>
+          </div>
+        )}
+
+        <section className="board-grid" aria-label="Available quizzes and decks">
         {restItems.map((item) => {
           if (item.due > 0) {
             return (
@@ -286,7 +294,8 @@ export default function QuizSelector() {
         })}
       </section>
 
-      <p className="library-note">Progress, filters, scoring, audio and review history remain attached to each quiz.</p>
+        <p className="library-note">Progress, filters, scoring, audio and review history remain attached to each quiz.</p>
+      </div>
     </main>
   );
 }

@@ -727,7 +727,8 @@ body {
 /* Nav rail and rich page head only render usefully once the sidebar split
    kicks in below — kept out of the flow on mobile. */
 .board-nav,
-.board-page-head {
+.board-page-head,
+.board-nav-theme {
   display: none;
 }
 
@@ -938,6 +939,15 @@ body {
  * are simply assigned to its first column, the same technique .app-shell
  * already uses for its sidebar below. */
 @media (min-width: 900px) {
+  /* Two grid items, not one item per rail/content row: giving every rail
+   * element (header/nav/streak) its own explicit grid-row previously left
+   * .board-content's items auto-placed into those SAME row tracks (grid
+   * auto-placement fills column 2 row-by-row starting at row 1 too), so
+   * e.g. the pinned tile shared a row with the taller nav list and the
+   * row stretched to the nav's height, leaving visible dead space under
+   * the tile. Wrapping each column's children in one element sidesteps
+   * row-matching entirely — each wrapper is a single grid item (row 1),
+   * stacking its own children with plain flex/block flow instead. */
   .board-home {
     width: min(100% - 48px, 1240px);
     display: grid;
@@ -946,9 +956,24 @@ body {
     align-items: start;
   }
 
-  .board-home .board-header {
+  /* A plain unstyled column of links read as stray text next to the
+     bordered/shadowed cards beside it — the design frames it as its own
+     panel, matching every other surface in this design system. */
+  .board-home .board-rail {
+    display: flex;
+    flex-direction: column;
     grid-column: 1;
-    grid-row: 1;
+    padding: 18px 16px;
+    border: 2px solid var(--ink);
+    border-radius: 16px 22px 12px 26px;
+    background: var(--surface);
+  }
+
+  .board-home .board-content {
+    grid-column: 2;
+  }
+
+  .board-home .board-header {
     margin-bottom: 18px;
   }
 
@@ -963,26 +988,38 @@ body {
     font-size: 19px;
   }
 
+  /* The header's small icon toggle is redundant with the labeled row at
+     the foot of the rail once that's always visible at this width. */
+  .board-home .board-header-theme {
+    display: none;
+  }
+
   .board-home .board-nav {
     display: flex;
     flex-direction: column;
     gap: 2px;
-    grid-column: 1;
-    grid-row: 2;
     margin-bottom: 20px;
   }
 
   .board-home .streak-panel {
-    grid-column: 1;
-    grid-row: 3;
     margin-bottom: 0;
   }
 
-  .board-home .board-section-head-primary,
-  .board-home .board-tile-pinned,
-  .board-home .board-grid,
-  .board-home .library-note {
-    grid-column: 2;
+  .board-home .board-nav-theme {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 48px;
+    margin-top: 16px;
+    padding: 0 14px;
+    border: 2px solid var(--ink);
+    border-radius: 10px;
+    background: var(--primary-soft);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
   }
 
   .board-home .board-section-head-primary {
@@ -994,8 +1031,7 @@ body {
     align-items: flex-end;
     justify-content: space-between;
     gap: 24px;
-    grid-column: 2;
-    margin-bottom: 22px;
+    margin-bottom: 18px;
   }
 
   .board-home .board-page-title {
@@ -1034,8 +1070,8 @@ body {
     font-size: 11px;
   }
 
-  .board-home .board-section-head.board-section-head-secondary {
-    grid-column: 2;
+  .board-home .board-section-head-secondary {
+    margin-top: 0;
   }
 
   /* The in-progress tile has room to lay its ring beside its copy instead of
@@ -1047,9 +1083,12 @@ body {
     gap: 18px;
   }
 
+  /* The corner icon and the Continue button both read as "this one's
+     active" and land in the same top-right corner once the tile is a row
+     instead of a stacked card — the button already says it, so the badge
+     is dropped rather than repositioned around it. */
   .board-home .board-tile-pinned .board-icon-pinned {
-    top: 14px;
-    right: 14px;
+    display: none;
   }
 
   .board-home .board-tile-pinned .board-ring {
@@ -1081,11 +1120,11 @@ body {
     font-weight: 600;
   }
 
-  /* auto-fill instead of a fixed 2-up split: tiles keep a readable width and
-     the row gains a column as the rail-adjusted content area allows, rather
-     than two tiles stretching to fill it. */
+  /* Fixed 2-up rather than auto-fill: with the content column free to grow
+     wide, auto-fill kept adding a 3rd/4th column instead of the intended
+     pair-per-row layout. */
   .board-home .board-grid {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .board-nav-link {
