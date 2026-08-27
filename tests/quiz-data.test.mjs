@@ -3,7 +3,7 @@ import test from "node:test";
 import { ALL_QUESTIONS, QUESTION_BANKS, VERB_FORMS } from "../app/quiz-data.ts";
 
 test("quiz content is complete and independent from interface code", () => {
-  assert.ok(ALL_QUESTIONS.length > 100);
+  assert.equal(ALL_QUESTIONS.length, 150);
   assert.deepEqual(Object.keys(QUESTION_BANKS), Object.keys(VERB_FORMS));
   assert.equal(new Set(ALL_QUESTIONS.map((question) => question.id)).size, ALL_QUESTIONS.length);
 });

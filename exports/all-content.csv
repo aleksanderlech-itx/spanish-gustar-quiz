@@ -149,24 +149,6 @@ quiz-gustar,parecer,A ustedes ___ largos los ejercicios.,The exercises seem long
 quiz-gustar,parecer,A mí ___ perfecta esta solución.,This solution seems perfect to me.,me parece,"Use “me” as the indirect object pronoun. Esta solución is singular (or an infinitive activity), so the verb is “parece”.",ok
 quiz-gustar,parecer,___ mejor salir temprano.,Leaving early seems better to them.,les parece,"Use “les” as the indirect object pronoun. The activity salir is singular (or an infinitive activity), so the verb is “parece”.",ok
 quiz-gustar,parecer,¿ ___ correctas estas respuestas?,Do these answers seem correct to us?,nos parecen,"Use “nos” as the indirect object pronoun. Estas respuestas is plural, so the verb is “parecen”.",ok
-quiz-gustar,gustar,"Aunque suele elegir destinos conocidos, a Marta ___ descubrir pueblos a los que casi no llegan turistas.","Although Marta usually chooses familiar destinations, she likes discovering villages that tourists hardly ever reach.",le gusta,"Use “le” as the indirect object pronoun. The grammatical subject is a single thing, clause, or activity, so the verb is “gusta”.",ok
-quiz-gustar,gustar,¿ ___ tanto la comida como el ambiente de ese restaurante pequeño?,Do you like both the food and the atmosphere of that small restaurant?,te gustan,"Use “te” as the indirect object pronoun. The grammatical subject contains several things, so the verb is “gustan”.",ok
-quiz-gustar,encantar,A Elena ___ que el mercado siga lleno de puestos familiares.,Elena loves that the market is still full of family-run stalls.,le encanta,"Use “le” as the indirect object pronoun. The grammatical subject is a single thing, clause, or activity, so the verb is “encanta”.",ok
-quiz-gustar,encantar,___ las canciones que mezclan guitarras potentes con melodías sencillas.,I love songs that combine powerful guitars with simple melodies.,me encantan,"Use “me” as the indirect object pronoun. The grammatical subject contains several things, so the verb is “encantan”.",ok
-quiz-gustar,interesar,Lo que realmente ___ es entender por qué algunas expresiones cambian según el país.,What really interests us is understanding why some expressions change depending on the country.,nos interesa,"Use “nos” as the indirect object pronoun. The grammatical subject is a single thing, clause, or activity, so the verb is “interesa”.",ok
-quiz-gustar,interesar,¿ ___ las propuestas que podrían mejorar el transporte público?,Are you interested in the proposals that could improve public transport?,te interesan,"Use “te” as the indirect object pronoun. The grammatical subject contains several things, so the verb is “interesan”.",ok
-quiz-gustar,molestar,___ que la gente hable por teléfono mientras otros intentan concentrarse.,It bothers me when people talk on the phone while others are trying to concentrate.,me molesta,"Use “me” as the indirect object pronoun. The grammatical subject is a single thing, clause, or activity, so the verb is “molesta”.",ok
-quiz-gustar,molestar,¿A ustedes ___ el ruido y las vibraciones que produce esta máquina?,Are you bothered by the noise and vibrations produced by this machine?,les molestan,"Use “les” as the indirect object pronoun. The grammatical subject contains several things, so the verb is “molestan”.",ok
-quiz-gustar,importar,Lo que más ___ es que el servicio funcione bien incluso cuando hay mucha demanda.,What matters most to me is that the service works well even when demand is high.,me importa,"Use “me” as the indirect object pronoun. The grammatical subject is a single thing, clause, or activity, so the verb is “importa”.",ok
-quiz-gustar,importar,¿ ___ la opinión del cliente y las recomendaciones del equipo?,Do the client's opinion and the team's recommendations matter to you?,te importan,"Use “te” as the indirect object pronoun. The grammatical subject contains several things, so the verb is “importan”.",ok
-quiz-gustar,faltar,"Aunque hemos avanzado mucho, ___ comprobar que todos los datos coinciden.","Although we have made a lot of progress, we still need to check that all the data matches.",nos falta,"Use “nos” as the indirect object pronoun. The grammatical subject is a single thing, clause, or activity, so the verb is “falta”.",ok
-quiz-gustar,faltar,A Clara ___ dos firmas sin las cuales el contrato no es válido.,Clara is missing two signatures without which the contract is valid.,le faltan,"Use “le” as the indirect object pronoun. The grammatical subject contains several things, so the verb is “faltan”.",ok
-quiz-gustar,quedar,"Aunque casi todo está listo, ___ decidir quién presentará cada parte del proyecto.","Although almost everything is ready, we still need to decide who will present each part of the project.",nos queda,"Use “nos” as the indirect object pronoun. The grammatical subject is a single thing, clause, or activity, so the verb is “queda”.",ok
-quiz-gustar,quedar,¿ ___ bien tanto la chaqueta como los pantalones que compraste ayer?,Do both the jacket and the trousers you bought yesterday fit you well?,te quedan,"Use “te” as the indirect object pronoun. The grammatical subject contains several things, so the verb is “quedan”.",ok
-quiz-gustar,doler,"Aunque llevamos calzado cómodo, ___ caminar durante horas sin hacer ninguna pausa.","Although we wear comfortable shoes, walking for hours without taking a break hurts us.",nos duele,"Use “nos” as the indirect object pronoun. The grammatical subject is a single thing, clause, or activity, so the verb is “duele”.",ok
-quiz-gustar,doler,¿ ___ el cuello y los hombros cuando trabajas demasiado tiempo frente al ordenador?,Do your neck and shoulders hurt when you work at the computer for too long?,te duelen,"Use “te” as the indirect object pronoun. The grammatical subject contains several things, so the verb is “duelen”.",ok
-quiz-gustar,parecer,"Aunque al principio dudaba, ___ razonable la solución que propone el equipo técnico.","Although I had doubts at first, the solution proposed by the technical team seems reasonable to me.",me parece,"Use “me” as the indirect object pronoun. The grammatical subject is a single thing, clause, or activity, so the verb is “parece”.",ok
-quiz-gustar,parecer,¿ ___ claras tanto las instrucciones como los ejemplos que aparecen debajo?,Do both the instructions and the examples below seem clear to you?,te parecen,"Use “te” as the indirect object pronoun. The grammatical subject contains several things, so the verb is “parecen”.",ok
 quiz-ser-estar,ser / estar,Yo ___  de México.,I am from Mexico.,soy,Origin is expressed with ser.,ok
 quiz-ser-estar,ser / estar,Marta ___  médica.,Marta is a doctor.,es,Professions use ser.,ok
 quiz-ser-estar,ser / estar,Nosotros ___  estudiantes de español.,We are Spanish students.,somos,Identity and roles use ser.,ok
@@ -197,6 +179,126 @@ quiz-ser-estar,ser / estar,El profesor ___  enfermo esta semana.,The teacher is 
 quiz-ser-estar,ser / estar,El profesor ___  muy paciente.,The teacher is very patient.,es,A personal characteristic uses ser.,ok
 quiz-ser-estar,ser / estar,La puerta ___  abierta porque hace calor.,The door is open because it is hot.,está,A resulting condition uses estar.,ok
 quiz-ser-estar,ser / estar,La conferencia ___  en el auditorio principal.,The conference is in the main auditorium.,es,Events use ser for their location.,ok
+quiz-ser-estar,ser / estar,Yo ___  ingeniera.,I am an engineer.,soy,Professions use ser.,ok
+quiz-ser-estar,ser / estar,Tú ___  mi mejor amigo.,You are my best friend.,eres,A close relationship or role uses ser.,ok
+quiz-ser-estar,ser / estar,Ella ___  periodista.,She is a journalist.,es,Professions use ser.,ok
+quiz-ser-estar,ser / estar,Nosotros ___  vecinos desde hace años.,We have been neighbours for years.,somos,A lasting role or relationship uses ser.,ok
+quiz-ser-estar,ser / estar,Ellos ___  los dueños de la tienda.,They are the owners of the shop.,son,Ownership and identity use ser.,ok
+quiz-ser-estar,ser / estar,Mi tío ___  abogado en Madrid.,My uncle is a lawyer in Madrid.,es,Profession uses ser even when a place follows.,ok
+quiz-ser-estar,ser / estar,Yo ___  la capitana del equipo.,I am the team captain.,soy,A role or title uses ser.,ok
+quiz-ser-estar,ser / estar,Mis padres ___  dentistas.,My parents are dentists.,son,Professions use ser.,ok
+quiz-ser-estar,ser / estar,Tú ___  un buen compañero de trabajo.,You are a good coworker.,eres,A description of role or character uses ser.,ok
+quiz-ser-estar,ser / estar,El señor García ___  el director del colegio.,Mr. García is the school principal.,es,A title or position uses ser.,ok
+quiz-ser-estar,ser / estar,"Nosotros ___  hermanos, no primos.","We are brothers, not cousins.",somos,A family relationship uses ser.,ok
+quiz-ser-estar,ser / estar,Ana y Luis ___  los organizadores del evento.,Ana and Luis are the organisers of the event.,son,A role uses ser.,ok
+quiz-ser-estar,ser / estar,Yo ___  cliente habitual de esta cafetería.,I am a regular customer at this café.,soy,An ongoing role or identity uses ser.,ok
+quiz-ser-estar,ser / estar,Ustedes ___  los nuevos socios de la empresa.,You all are the new partners in the company.,son,A role or position uses ser.,ok
+quiz-ser-estar,ser / estar,Ella ___  la autora de esta novela.,She is the author of this novel.,es,Authorship and identity use ser.,ok
+quiz-ser-estar,ser / estar,Yo ___  de Polonia.,I am from Poland.,soy,Origin uses ser.,ok
+quiz-ser-estar,ser / estar,Tú ___  de una familia italiana.,You are from an Italian family.,eres,Origin uses ser.,ok
+quiz-ser-estar,ser / estar,Estos quesos ___  de Francia.,These cheeses are from France.,son,Origin uses ser.,ok
+quiz-ser-estar,ser / estar,El vino ___  de la región de Rioja.,The wine is from the Rioja region.,es,Origin uses ser.,ok
+quiz-ser-estar,ser / estar,Nosotros ___  de la misma ciudad.,We are from the same city.,somos,Origin uses ser.,ok
+quiz-ser-estar,ser / estar,Mi abuela ___  de un pueblo pequeño.,My grandmother is from a small village.,es,Origin uses ser.,ok
+quiz-ser-estar,ser / estar,Esas naranjas ___  de Valencia.,Those oranges are from Valencia.,son,Origin of produce uses ser.,ok
+quiz-ser-estar,ser / estar,Tú ___  de padres extranjeros.,You are the child of foreign parents.,eres,Origin or background uses ser.,ok
+quiz-ser-estar,ser / estar,El profesor ___  de Argentina.,The teacher is from Argentina.,es,Origin uses ser.,ok
+quiz-ser-estar,ser / estar,Estas telas ___  de la India.,These fabrics are from India.,son,Origin uses ser.,ok
+quiz-ser-estar,ser / estar,Yo ___  originaria de un pueblo costero.,I originally come from a coastal town.,soy,Origin uses ser.,ok
+quiz-ser-estar,ser / estar,Mis compañeros ___  de distintas partes del país.,My colleagues are from different parts of the country.,son,Origin uses ser.,ok
+quiz-ser-estar,ser / estar,Este café ___  de Colombia.,This coffee is from Colombia.,es,Origin uses ser.,ok
+quiz-ser-estar,ser / estar,Nosotros ___  de una tradición familiar muy antigua.,We come from a very old family tradition.,somos,Origin and heritage use ser.,ok
+quiz-ser-estar,ser / estar,Ella ___  de ascendencia mexicana.,She is of Mexican descent.,es,Origin and heritage use ser.,ok
+quiz-ser-estar,ser / estar,Mi hermana ___  muy generosa.,My sister is very generous.,es,A personality trait uses ser.,ok
+quiz-ser-estar,ser / estar,Tú ___  alto y delgado.,You are tall and thin.,eres,A physical characteristic uses ser.,ok
+quiz-ser-estar,ser / estar,Este edificio ___  muy antiguo.,This building is very old.,es,A defining quality uses ser.,ok
+quiz-ser-estar,ser / estar,Los niños ___  curiosos por naturaleza.,Children are curious by nature.,son,An inherent trait uses ser.,ok
+quiz-ser-estar,ser / estar,Yo ___  bastante paciente.,I am quite patient.,soy,A personality trait uses ser.,ok
+quiz-ser-estar,ser / estar,Esta ciudad ___  muy ruidosa.,This city is very noisy.,es,A defining characteristic uses ser.,ok
+quiz-ser-estar,ser / estar,Nosotros ___  muy trabajadores.,We are very hardworking.,somos,A personality trait uses ser.,ok
+quiz-ser-estar,ser / estar,El examen ___  bastante difícil.,The exam is quite difficult.,es,An inherent quality uses ser.,ok
+quiz-ser-estar,ser / estar,Sus ojos ___  verdes.,Her eyes are green.,son,A physical feature uses ser.,ok
+quiz-ser-estar,ser / estar,Este barrio ___  conocido por sus restaurantes.,This neighbourhood is known for its restaurants.,es,A defining feature uses ser.,ok
+quiz-ser-estar,ser / estar,Tú ___  muy creativa.,You are very creative.,eres,A personality trait uses ser.,ok
+quiz-ser-estar,ser / estar,El profesor ___  muy exigente.,The teacher is very demanding.,es,A personality trait uses ser.,ok
+quiz-ser-estar,ser / estar,Mis padres ___  bastante estrictos.,My parents are quite strict.,son,A personality trait uses ser.,ok
+quiz-ser-estar,ser / estar,Esta película ___  larga y lenta.,This film is long and slow.,es,A defining quality uses ser.,ok
+quiz-ser-estar,ser / estar,El río ___  ancho y profundo en esta parte.,The river is wide and deep in this part.,es,A defining geographic characteristic uses ser.,ok
+quiz-ser-estar,ser / estar,La silla ___  de plástico.,The chair is made of plastic.,es,Material uses ser.,ok
+quiz-ser-estar,ser / estar,Hoy ___  miércoles.,Today is Wednesday.,es,Days of the week use ser.,ok
+quiz-ser-estar,ser / estar,___  las ocho de la mañana.,It is eight in the morning.,son,Clock time uses ser.,ok
+quiz-ser-estar,ser / estar,El concierto ___  el próximo sábado.,The concert is next Saturday.,es,Event dates use ser.,ok
+quiz-ser-estar,ser / estar,Esta mesa ___  de metal.,This table is made of metal.,es,Material uses ser.,ok
+quiz-ser-estar,ser / estar,Mañana ___  el cumpleaños de Sara.,Tomorrow is Sara's birthday.,es,Dates use ser.,ok
+quiz-ser-estar,ser / estar,El anillo ___  de oro.,The ring is made of gold.,es,Material uses ser.,ok
+quiz-ser-estar,ser / estar,Hoy ___  tres de mayo.,Today is the third of May.,es,Calendar dates use ser.,ok
+quiz-ser-estar,ser / estar,La entrevista ___  a las cinco.,The interview is at five o'clock.,es,Event time uses ser.,ok
+quiz-ser-estar,ser / estar,Estas copas ___  de cristal.,These glasses are made of crystal.,son,Material uses ser.,ok
+quiz-ser-estar,ser / estar,___  la una y media.,It is half past one.,es,Clock time uses ser.,ok
+quiz-ser-estar,ser / estar,El examen final ___  el viernes.,The final exam is on Friday.,es,Event dates use ser.,ok
+quiz-ser-estar,ser / estar,La estatua ___  de bronce.,The statue is made of bronze.,es,Material uses ser.,ok
+quiz-ser-estar,ser / estar,La boda ___  en agosto.,The wedding is in August.,es,Event date uses ser.,ok
+quiz-ser-estar,ser / estar,Esta manta ___  de lana.,This blanket is made of wool.,es,Material uses ser.,ok
+quiz-ser-estar,ser / estar,El supermercado ___  a dos calles de aquí.,The supermarket is two streets from here.,está,Physical location uses estar.,ok
+quiz-ser-estar,ser / estar,Mis gafas ___  encima de la mesa.,My glasses are on the table.,están,Physical location uses estar.,ok
+quiz-ser-estar,ser / estar,La boda ___  en un jardín.,The wedding is in a garden.,es,An event's location uses ser.,ok
+quiz-ser-estar,ser / estar,El hospital ___  al lado de la farmacia.,The hospital is next to the pharmacy.,está,Physical location uses estar.,ok
+quiz-ser-estar,ser / estar,La exposición ___  en el centro cultural.,The exhibition is at the cultural centre.,es,An event's location uses ser.,ok
+quiz-ser-estar,ser / estar,Los libros ___  en la estantería.,The books are on the shelf.,están,Physical location uses estar.,ok
+quiz-ser-estar,ser / estar,Yo ___  en la sala de espera.,I am in the waiting room.,estoy,Physical location uses estar.,ok
+quiz-ser-estar,ser / estar,La ceremonia ___  en la plaza principal.,The ceremony is in the main square.,es,An event's location uses ser.,ok
+quiz-ser-estar,ser / estar,El parque ___  detrás del colegio.,The park is behind the school.,está,Physical location uses estar.,ok
+quiz-ser-estar,ser / estar,Nosotros ___  en la última fila.,We are in the last row.,estamos,Physical location uses estar.,ok
+quiz-ser-estar,ser / estar,La feria ___  fuera de la ciudad este año.,The fair is outside the city this year.,es,An event's location uses ser.,ok
+quiz-ser-estar,ser / estar,Tus llaves ___  dentro del cajón.,Your keys are inside the drawer.,están,Physical location uses estar.,ok
+quiz-ser-estar,ser / estar,El aeropuerto ___  lejos del centro.,The airport is far from the city centre.,está,Physical location uses estar.,ok
+quiz-ser-estar,ser / estar,La reunión anual ___  en otra ciudad este año.,The annual meeting is in another city this year.,es,An event's location uses ser.,ok
+quiz-ser-estar,ser / estar,Los niños ___  en el patio.,The children are in the playground.,están,A person's physical location uses estar.,ok
+quiz-ser-estar,ser / estar,Yo ___  muy cansada hoy.,I am very tired today.,estoy,A temporary physical state uses estar.,ok
+quiz-ser-estar,ser / estar,La ventana ___  abierta.,The window is open.,está,A current condition uses estar.,ok
+quiz-ser-estar,ser / estar,Mi hermano ___  enfadado conmigo.,My brother is angry with me.,está,An emotional state uses estar.,ok
+quiz-ser-estar,ser / estar,El agua ___  helada.,The water is freezing cold.,está,A temporary condition uses estar.,ok
+quiz-ser-estar,ser / estar,Nosotros ___  preocupados por el examen.,We are worried about the exam.,estamos,A temporary emotional state uses estar.,ok
+quiz-ser-estar,ser / estar,Las tiendas ___  cerradas los domingos.,The shops are closed on Sundays.,están,"A resulting condition uses estar, even when it happens regularly.",ok
+quiz-ser-estar,ser / estar,Yo ___  emocionada por el viaje.,I am excited about the trip.,estoy,A temporary emotional state uses estar.,ok
+quiz-ser-estar,ser / estar,El pastel ___  todavía caliente.,The cake is still warm.,está,A temporary condition uses estar.,ok
+quiz-ser-estar,ser / estar,Mis padres ___  de vacaciones esta semana.,My parents are on vacation this week.,están,A temporary situation uses estar.,ok
+quiz-ser-estar,ser / estar,"Tú ___  resfriado, ¿verdad?","You have a cold, right?",estás,A temporary health condition uses estar.,ok
+quiz-ser-estar,ser / estar,La leche ___  a punto de caducar.,The milk is about to expire.,está,A temporary situation uses estar.,ok
+quiz-ser-estar,ser / estar,El equipo ___  nervioso antes del partido.,The team is nervous before the match.,está,A temporary emotional state uses estar.,ok
+quiz-ser-estar,ser / estar,Las calles ___  mojadas después de la lluvia.,The streets are wet after the rain.,están,A resulting condition uses estar.,ok
+quiz-ser-estar,ser / estar,Yo ___  un poco confundida con esta pregunta.,I am a bit confused by this question.,estoy,A temporary mental state uses estar.,ok
+quiz-ser-estar,ser / estar,El ambiente ___  tenso en la oficina hoy.,The atmosphere is tense in the office today.,está,A temporary situational state uses estar.,ok
+quiz-ser-estar,ser / estar,El trabajo ___  ya terminado.,The work is already finished.,está,A resulting condition from a completed action uses estar.,ok
+quiz-ser-estar,ser / estar,La puerta ___  rota desde ayer.,The door has been broken since yesterday.,está,A resulting state uses estar.,ok
+quiz-ser-estar,ser / estar,"Después de la operación, mi abuelo ___  mucho mejor.","After the surgery, my grandfather is much better.",está,A resulting or changed condition uses estar.,ok
+quiz-ser-estar,ser / estar,El pan ___  duro; llevaba días fuera.,The bread is hard; it had been out for days.,está,A resulting condition uses estar.,ok
+quiz-ser-estar,ser / estar,"Desde que empezó a estudiar más, ella ___  mucho más segura en los exámenes.","Since she started studying more, she is much more confident in exams.",está,A change of state over time uses estar.,ok
+quiz-ser-estar,ser / estar,El jarrón ___  roto en pedazos.,The vase is broken into pieces.,está,A resulting state uses estar.,ok
+quiz-ser-estar,ser / estar,"Después de tantos cambios, la empresa ___  irreconocible.","After so many changes, the company is unrecognisable.",está,A resulting state from change uses estar.,ok
+quiz-ser-estar,ser / estar,La fruta ___  madura ya.,The fruit is ripe now.,está,A resulting condition uses estar.,ok
+quiz-ser-estar,ser / estar,El niño ___  más alto que el año pasado.,The boy has gotten taller than last year.,está,A perceived change uses estar.,ok
+quiz-ser-estar,ser / estar,La habitación ___  ordenada por fin.,The room is tidy at last.,está,A resulting condition uses estar.,ok
+quiz-ser-estar,ser / estar,"Después del susto, todos ___  más tranquilos.","After the scare, everyone is calmer now.",están,A resulting emotional state uses estar.,ok
+quiz-ser-estar,ser / estar,El proyecto ___  casi acabado.,The project is almost finished.,está,A resulting condition uses estar.,ok
+quiz-ser-estar,ser / estar,Tu español ___  mucho mejor que antes.,Your Spanish is much better than before.,está,A perceived improvement uses estar.,ok
+quiz-ser-estar,ser / estar,Las plantas ___  secas después de tantos días de calor.,The plants are dry after so many hot days.,están,A resulting condition uses estar.,ok
+quiz-ser-estar,ser / estar,El coche ___  reparado desde el lunes.,The car has been repaired since Monday.,está,A resulting state uses estar.,ok
+quiz-ser-estar,ser / estar,Ese documental ___  bastante aburrido.,That documentary is quite boring.,es,Ser aburrido describes a boring quality.,ok
+quiz-ser-estar,ser / estar,Yo ___  aburrido en la clase de historia.,I am bored in history class.,estoy,Estar aburrido describes feeling bored.,ok
+quiz-ser-estar,ser / estar,Mi tío ___  muy rico.,My uncle is very wealthy.,es,Ser rico means to be wealthy.,ok
+quiz-ser-estar,ser / estar,Esta sopa ___  riquísima.,This soup tastes delicious.,está,Estar rico describes how food tastes.,ok
+quiz-ser-estar,ser / estar,Este puente ___  seguro para cruzar.,This bridge is safe to cross.,es,"Ser seguro describes a safe, reliable quality.",ok
+quiz-ser-estar,ser / estar,Yo ___  segura de mi respuesta.,I am sure of my answer.,estoy,Estar seguro means to feel certain.,ok
+quiz-ser-estar,ser / estar,Este plato ___  malo; no lo pruebes.,This dish is bad quality; don't try it.,es,Ser malo describes an inherently poor quality.,ok
+quiz-ser-estar,ser / estar,Mi hijo ___  malo desde ayer.,My son has been sick since yesterday.,está,Estar malo means to feel unwell.,ok
+quiz-ser-estar,ser / estar,Este plátano ___  verde todavía.,This banana is still unripe.,está,Estar verde describes an unripe state.,ok
+quiz-ser-estar,ser / estar,Su color favorito ___  verde.,Her favourite colour is green.,es,Ser verde describes an inherent colour.,ok
+quiz-ser-estar,ser / estar,Mi abuelo ___  muy vivo para su edad.,My grandfather is very lively for his age.,está,Estar vivo can describe a lively current state.,ok
+quiz-ser-estar,ser / estar,Esta ciudad ___  muy viva por las noches.,This city is very lively at night.,es,Ser vivo describes an inherent lively character.,ok
+quiz-ser-estar,ser / estar,Tú ___  muy despierto para ser tan temprano.,You are very alert for it being so early.,estás,Estar despierto describes being currently awake or alert.,ok
+quiz-ser-estar,ser / estar,Mi sobrina ___  muy despierta; aprende rápido.,My niece is very sharp; she learns quickly.,es,Ser despierto describes an inherently quick-witted personality.,ok
+quiz-ser-estar,ser / estar,Ellos ___  atentos a cada detalle del proyecto.,They are attentive to every detail of the project right now.,están,Estar atento describes being currently attentive.,ok
 quiz-preterite-imperfect,ir,Ayer yo ___  al mercado.,Yesterday I went to the market.,fui,Ayer marks one completed past action. Correct tense: preterite.,ok
 quiz-preterite-imperfect,ir,"De niño, yo ___  al parque cada tarde.","As a child, I used to go to the park every afternoon.",iba,De niño and cada tarde describe a repeated past habit. Correct tense: imperfect.,ok
 quiz-preterite-imperfect,preparar,Anoche Marta ___  la cena a las ocho.,Last night Marta prepared dinner at eight.,preparó,Anoche and a las ocho frame a completed event. Correct tense: preterite.,ok
@@ -213,6 +315,140 @@ quiz-preterite-imperfect,ponerse,"Al ver las noticias, Luis ___  nervioso.","Whe
 quiz-preterite-imperfect,ponerse,"Cada vez que hablaba en público, Luis ___  nervioso.","Every time he spoke in public, Luis would get nervous.",se ponía,Cada vez que describes repeated past behavior. Correct tense: imperfect.,ok
 quiz-preterite-imperfect,empezar,La reunión ___  a las diez.,The meeting started at ten.,empezó,A starting point is a completed event. Correct tense: preterite.,ok
 quiz-preterite-imperfect,empezar,La reunión ya ___  cuando llegué.,The meeting was already starting when I arrived.,empezaba,The starting was in progress when another action happened. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,escribir,"Ayer, Marta ___  una carta a su amiga.","Yesterday, Marta wrote a letter to her friend.",escribió,Ayer marks one completed past action. Correct tense: preterite.,ok
+quiz-preterite-imperfect,comer,Anoche nosotros ___  en aquel restaurante nuevo.,Last night we ate at that new restaurant.,comimos,Anoche marks a completed event. Correct tense: preterite.,ok
+quiz-preterite-imperfect,comprar,"El lunes pasado, yo ___  un coche nuevo.","Last Monday, I bought a new car.",compré,A specific past date marks a completed event. Correct tense: preterite.,ok
+quiz-preterite-imperfect,hacer,Diego ___  toda la tarea anoche.,Diego did all the homework last night.,hizo,Anoche marks a completed action. Correct tense: preterite.,ok
+quiz-preterite-imperfect,poner,"El sábado, mis padres ___  la mesa para la cena especial.","On Saturday, my parents set the table for the special dinner.",pusieron,A specific occasion marks a completed action. Correct tense: preterite.,ok
+quiz-preterite-imperfect,decir,Ella ___  la verdad por fin.,She finally told the truth.,dijo,Por fin signals a completed action. Correct tense: preterite.,ok
+quiz-preterite-imperfect,poder,Nosotros ___  terminar el proyecto a tiempo.,We managed to finish the project on time.,pudimos,Preterite of poder expresses a specific successful attempt. Correct tense: preterite.,ok
+quiz-preterite-imperfect,decir,Yo le ___  la noticia esta mañana.,I told him the news this morning.,dije,Esta mañana marks a specific completed action. Correct tense: preterite.,ok
+quiz-preterite-imperfect,llegar,El tren ___  con dos horas de retraso.,The train arrived two hours late.,llegó,A specific arrival is a completed event. Correct tense: preterite.,ok
+quiz-preterite-imperfect,escribir,Yo les ___  un mensaje a mis abuelos el domingo.,I wrote a message to my grandparents on Sunday.,escribí,El domingo marks one completed action. Correct tense: preterite.,ok
+quiz-preterite-imperfect,hacer,Los estudiantes ___  el examen sin problemas.,The students did the exam without any problems.,hicieron,A single completed event uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,decir,Carla ___  que sí sin dudarlo.,Carla said yes without hesitation.,dijo,A single completed statement uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,hablar,Tú ___  muy bien en la entrevista.,You spoke very well in the interview.,hablaste,A specific past event uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,decidir,Mi jefe ___  el proyecto la semana pasada.,My boss decided on the project last week.,decidió,La semana pasada marks a completed decision. Correct tense: preterite.,ok
+quiz-preterite-imperfect,leer,Yo ___  toda la novela en un fin de semana.,I read the whole novel in one weekend.,leí,A specific finished action uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,saber,Nosotros ___  la respuesta correcta enseguida.,We found out the correct answer right away.,supimos,Preterite of saber expresses finding something out at a specific moment. Correct tense: preterite.,ok
+quiz-preterite-imperfect,vivir,Ana ___  tres años en Londres antes de mudarse.,Ana lived in London for three years before moving.,vivió,A bounded time period uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,explicar,El médico ___  el diagnóstico al paciente.,The doctor explained the diagnosis to the patient.,explicó,A single completed explanation uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,dar,Yo ___  mi opinión en la reunión.,I gave my opinion at the meeting.,di,A specific completed action uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,llegar,Mis amigos ___  a la fiesta a las nueve.,My friends arrived at the party at nine.,llegaron,A specific time marks a completed arrival. Correct tense: preterite.,ok
+quiz-preterite-imperfect,preparar,Primero yo ___  la cena y luego llamé a mi hermana.,First I made dinner and then I called my sister.,preparé,A sequence of completed actions uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,escribir,"Luego, Sara ___  su nombre en el registro.","Then, Sara wrote her name in the register.",escribió,A step in a sequence uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,salir,"Después de desayunar, nosotros ___  al trabajo juntos.","After having breakfast, we left for work together.",salimos,A step in a sequence uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,empezar,Entonces el profesor ___  la lección con un ejemplo.,Then the teacher started the lesson with an example.,empezó,A step in a sequence uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,decir,"Finalmente, ellos ___  que sí a la propuesta.","Finally, they said yes to the proposal.",dijeron,The last step in a sequence uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,escribir,"Después, yo ___  un correo a mi jefe.","Afterwards, I wrote an email to my boss.",escribí,A step in a sequence uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,preparar,"Luego, el camarero ___  la mesa rápidamente.","Then, the waiter prepared the table quickly.",preparó,A step in a sequence uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,leer,"Primero, Luis ___  las instrucciones con cuidado.","First, Luis read the instructions carefully.",leyó,The first step in a sequence uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,comprar,"Después de eso, nosotros ___  un café rápido.","After that, we bought a quick coffee.",compramos,A step in a sequence uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,explicar,"Finalmente, el director ___  el nuevo plan al equipo.","Finally, the director explained the new plan to the team.",explicó,The last step in a sequence uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,hablar,Primero yo ___  con mi hermana y después con mis padres.,First I talked with my sister and then with my parents.,hablé,A step in a sequence uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,preparar,"Luego, Ana ___  toda la casa antes de la fiesta.","Then, Ana got the whole house ready before the party.",preparó,A step in a sequence uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,dar,"Después, el camarero nos ___  la cuenta.","Afterwards, the waiter gave us the bill.",dio,A step in a sequence uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,decir,"Entonces, ella ___  que necesitaba más tiempo.","Then, she said she needed more time.",dijo,A step in a sequence uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,escribir,"Primero, nosotros ___  el correo con cuidado.","First, we wrote the email carefully.",escribimos,The first step in a sequence uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,llegar,"Luego, mis padres ___  a casa y descansaron.","Then, my parents arrived home and rested.",llegaron,A step in a sequence uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,leer,"Antes de firmar, ellos ___  el contrato con calma.","Before signing, they read the contract calmly.",leyeron,A step in a sequence uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,decir,"Finalmente, yo ___  la verdad a mi amigo.","Finally, I told my friend the truth.",dije,The last step in a sequence uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,dar,"Después del discurso, el público ___  un fuerte aplauso.","After the speech, the audience gave a big round of applause.",dio,The final step in a sequence uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,empezar,"De repente, la niña ___  a llorar.","Suddenly, the girl started crying.",empezó,De repente marks the specific start of an action. Correct tense: preterite.,ok
+quiz-preterite-imperfect,empezar,El partido ___  a las cuatro en punto.,The match started at four o'clock sharp.,empezó,A specific starting time uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,ponerse,"Cuando oyó la noticia, Marta ___  muy contenta.","When she heard the news, Marta became very happy.",se puso,A change of state at a specific moment uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,decidir,"Al final del año, ellos ___  trasladarse a otra ciudad.","At the end of the year, they decided to move to another city.",decidieron,A specific decision marks the start of a change. Correct tense: preterite.,ok
+quiz-preterite-imperfect,ponerse,"Tras el accidente, Luis ___  mucho más cuidadoso.","After the accident, Luis became much more careful.",se puso,A change of state uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,empezar,Yo ___  a trabajar aquí en enero.,I started working here in January.,empecé,A specific starting point uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,saber,"En ese momento, nosotros ___  que el plan no iba a funcionar.","At that moment, we found out the plan wasn't going to work.",supimos,Preterite of saber marks the moment of finding something out. Correct tense: preterite.,ok
+quiz-preterite-imperfect,ponerse,"Después de la charla, los estudiantes ___  muy motivados.","After the talk, the students became very motivated.",se pusieron,A change of state uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,empezar,La tormenta ___  de repente por la tarde.,The storm started suddenly in the afternoon.,empezó,De repente marks a specific starting point. Correct tense: preterite.,ok
+quiz-preterite-imperfect,ponerse,"Cuando vio el examen, él ___  pálido.","When he saw the exam, he turned pale.",se puso,A sudden change of state uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,empezar,El curso ___  el mes pasado.,The course started last month.,empezó,A specific starting date uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,decidir,Nosotros ___  hacer las maletas la noche antes.,We decided to pack the night before.,decidimos,A specific decision uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,empezar,"Tan pronto como llegó la carta, ella ___  a llorar de alegría.","As soon as the letter arrived, she started crying with joy.",empezó,Tan pronto como marks a precise starting moment. Correct tense: preterite.,ok
+quiz-preterite-imperfect,decidir,"Después de años dudando, mi padre ___  cambiar de trabajo.","After years of hesitating, my father decided to change jobs.",decidió,A turning-point decision uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,ponerse,"Cuando sonó la alarma, todos ___  nerviosos.","When the alarm went off, everyone got nervous.",se pusieron,A sudden change of state uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,empezar,La construcción ___  hace dos años.,The construction started two years ago.,empezó,A specific starting point uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,empezar,"Al oír el ruido, el perro ___  a ladrar.","Upon hearing the noise, the dog started barking.",empezó,A precise triggering moment uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,decidir,"En esa reunión, ellos ___  cambiar toda la estrategia.","In that meeting, they decided to change the whole strategy.",decidieron,A specific decision uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,ponerse,"Al saber la verdad, Carla ___  muy seria.","On learning the truth, Carla became very serious.",se puso,A change of state at a specific moment uses preterite. Correct tense: preterite.,ok
+quiz-preterite-imperfect,comer,"De niño, yo ___  mucho pan con mantequilla.","As a child, I used to eat a lot of bread with butter.",comía,De niño signals a repeated past habit. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,escribir,"Todos los veranos, mis abuelos nos ___  muchas cartas.","Every summer, my grandparents used to write us many letters.",escribían,Todos los veranos signals a repeated habit. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,comprar,"Antes, nosotros ___  en aquella tienda pequeña.","Before, we used to shop at that small store.",comprábamos,Antes signals a repeated past habit. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,estudiar,"Cuando era estudiante, Marta ___  todas las noches hasta tarde.","When she was a student, Marta used to study every night until late.",estudiaba,Cuando era estudiante frames a repeated habit. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,decir,"Siempre, mi padre nos ___  la misma historia antes de dormir.",My father always used to tell us the same story before bed.,decía,Siempre signals a repeated habit. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,hablar,"Cada domingo, nosotros ___  con mis abuelos por teléfono.","Every Sunday, we used to talk with my grandparents on the phone.",hablábamos,Cada domingo signals a repeated habit. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,trabajar,"En aquella época, yo ___  muy poco.","At that time, I used to work very little.",trabajaba,En aquella época signals a repeated past situation. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,leer,"De pequeños, nosotros ___  libros de aventuras todo el verano.","As kids, we used to read adventure books all summer.",leíamos,De pequeños signals a repeated habit. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,tener,"A menudo, los vecinos ___  quejas sobre el ruido.",The neighbours often had complaints about the noise.,tenían,A menudo signals a repeated habit. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,hacer,"Cuando vivíamos en el pueblo, mi madre ___  el pan en casa.","When we lived in the village, my mother used to make bread at home.",hacía,A repeated past routine uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,decir,"Normalmente, yo le ___  la verdad a todo el mundo.","Normally, I used to tell everyone the truth.",decía,Normalmente signals a repeated habit. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,preparar,"Cada verano, mis padres ___  la casa de la playa.","Every summer, my parents used to get the beach house ready.",preparaban,Cada verano signals a repeated habit. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,hablar,"De adolescente, tú ___  muchísimo con tus amigos.","As a teenager, you used to talk a lot with your friends.",hablabas,De adolescente signals a repeated habit. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,comprar,"Habitualmente, ellos ___  café en la misma cafetería.",They habitually used to buy coffee at the same café.,compraban,Habitualmente signals a repeated habit. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,poner,"En esos años, mi abuelo ___  la radio todas las tardes.","In those years, my grandfather used to put the radio on every afternoon.",ponía,A repeated routine uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,escribir,"Cuando éramos niños, nosotros ___  cartas a nuestros primos todos los veranos.","When we were children, we used to write letters to our cousins every summer.",escribíamos,A repeated childhood habit uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,dar,"Frecuentemente, el jefe nos ___  instrucciones muy detalladas.",The boss would frequently give us very detailed instructions.,daba,Frecuentemente signals a repeated habit. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,preparar,"Cada mañana, mi madre ___  el desayuno para todos.","Every morning, my mother used to prepare breakfast for everyone.",preparaba,Cada mañana signals a repeated habit. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,poder,"De joven, ella ___  resolver cualquier problema sola.","As a young woman, she could handle any problem on her own.",podía,A general past ability described as a habit uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,hacer,"Todos los años, la empresa ___  una fiesta de fin de año.","Every year, the company used to hold an end-of-year party.",hacía,Todos los años signals a repeated habit. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,trabajar,"A esa hora, yo todavía ___  en la oficina.","At that hour, I was still working at the office.",trabajaba,An action in progress at a specific past hour uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,preparar,"En aquel momento, nosotros ___  un plan para el fin de semana.","At that moment, we were preparing a plan for the weekend.",preparábamos,En aquel momento frames an action in progress. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,leer,"Aquella tarde, los niños ___  tranquilamente en el jardín.","That afternoon, the children were reading quietly in the garden.",leían,Aquella tarde frames a background action in progress. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,escribir,"Mientras tanto, Ana ___  un correo importante.","Meanwhile, Ana was writing an important email.",escribía,Mientras tanto frames a background action. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,saber,"A esa edad, yo no ___  nada sobre política.","At that age, I didn't know anything about politics.",sabía,A background mental state uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,tener,"En esos días, mi hermano ___  un trabajo nuevo.","In those days, my brother had a new job.",tenía,A background situation uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,tener,"Aquel verano, nosotros ___  mucho tiempo libre.","That summer, we had a lot of free time.",teníamos,A background situation uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,trabajar,"Por aquel entonces, ella ___  en una empresa pequeña.","Back then, she was working at a small company.",trabajaba,Por aquel entonces frames a background situation. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,hacer,Esa mañana ___  mucho frío.,That morning it was very cold.,hacía,A background weather description uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,hacer,"En aquella casa, los vecinos ___  mucho ruido a esa hora.","In that house, the neighbours used to make a lot of noise at that hour.",hacían,A background situation uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,tener,"Aquel día, yo ___  un poco de fiebre.","That day, I had a slight fever.",tenía,A background physical state uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,tener,"En aquella época, el equipo ___  un entrenador muy exigente.","At that time, the team had a very demanding coach.",tenía,A background situation uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,preparar,"A esa hora, nosotros todavía ___  la cena.","At that hour, we were still preparing dinner.",preparábamos,An action in progress at a specific hour uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,hablar,"Aquel invierno, mis padres ___  de vender la casa.","That winter, my parents were talking about selling the house.",hablaban,A background ongoing topic uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,tener,"En aquellos años, yo ___  muy poco dinero.","In those years, I had very little money.",tenía,A background situation uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,tener,"Por entonces, la ciudad no ___  tanto tráfico como ahora.","Back then, the city didn't have as much traffic as now.",tenía,A background description uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,hacer,"Esa noche, afuera ___  mucho viento.","That night, it was very windy outside.",hacía,A background weather description uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,dar,"En aquel restaurante, los camareros ___  muy buen servicio.","At that restaurant, the waiters used to give very good service.",daban,A background characteristic uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,dar,"Mientras tanto, mi jefe ___  instrucciones por teléfono.","Meanwhile, my boss was giving instructions over the phone.",daba,Mientras tanto frames a background action. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,tener,"En aquella foto, mi madre ___  solo veinte años.","In that photo, my mother was only twenty years old.",tenía,Age in the past is described with imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,tener,"Cuando lo conocí, él ___  barba y el pelo largo.","When I met him, he had a beard and long hair.",tenía,A physical description in the past uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,hacer,Aquella tarde ___  un día precioso.,That afternoon it was a beautiful day.,hacía,A weather description uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,hacer,Esa mañana ___  mucho sol.,That morning it was very sunny.,hacía,A weather description uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,saber,"De joven, mi abuelo ___  mucho de historia.","As a young man, my grandfather knew a lot about history.",sabía,A background knowledge description uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,saber,Mi tía ___  tocar el piano de oído.,My aunt knew how to play the piano by ear.,sabía,A background skill description uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,poder,"De niño, yo ___  correr muy rápido.","As a child, I could run very fast.",podía,A general past ability uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,poder,Mi padre ___  levantar mucho peso cuando era joven.,My father could lift a lot of weight when he was young.,podía,A general past ability uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,poder,"En aquella empresa, los empleados ___  trabajar desde casa dos días a la semana.","At that company, employees could work from home two days a week.",podían,A general past situation described with imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,querer,"De pequeño, yo siempre ___  ser piloto.","As a little kid, I always wanted to be a pilot.",quería,A general past desire uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,querer,Mi hermana ___  ayudar a los demás siempre.,My sister always wanted to help others.,quería,A general personality trait or desire uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,tener,"Antes de la operación, mi abuelo ___  mucho miedo.","Before the surgery, my grandfather was very afraid.",tenía,A background emotional description uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,tener,"Antes de mudarnos, nuestro piso ___  muy poca luz natural.","Before we moved, our flat had very little natural light.",tenía,A background description uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,dar,"Por las tardes, el sol ___  directamente en la ventana.","In the afternoons, the sun used to shine directly into the window.",daba,A background description uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,tener,"En aquel momento, la habitación ___  un olor extraño.","At that moment, the room had a strange smell.",tenía,A background description uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,tener,"Cuando era joven, mi abuela ___  una voz preciosa.","When she was young, my grandmother had a beautiful voice.",tenía,A background description uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,tener,"Ese día, el examen ___  cinco preguntas muy difíciles.","That day, the exam had five very difficult questions.",tenía,A background description uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,tener,"Cuando yo tenía diez años, mi familia ___  un perro enorme.","When I was ten, my family had a huge dog.",tenía,A background description uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,tener,"Esa tarde, el parque ___  mucha gente paseando.","That afternoon, the park had a lot of people strolling around.",tenía,A background description uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,preparar,"Mientras yo ___  la cena, se apagó la luz.","While I was preparing dinner, the light went out.",preparaba,Mientras sets an ongoing background action interrupted by another event. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,escribir,Yo ___  cuando sonó el teléfono.,I was writing when the phone rang.,escribía,The ongoing action interrupted by cuando uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,comer,Nosotros ___  cuando empezó a llover.,We were eating when it started to rain.,comíamos,The interrupted ongoing action uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,explicar,"Mientras el profesor ___  el examen, un alumno llegó tarde.","While the teacher was explaining the exam, a student arrived late.",explicaba,Mientras sets an ongoing action interrupted by another event. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,trabajar,Ana ___  cuando se cortó la luz.,Ana was working when the power went out.,trabajaba,The interrupted ongoing action uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,hablar,"Mientras nosotros ___  del problema, llegó la solución por correo.","While we were talking about the problem, the solution arrived by email.",hablábamos,Mientras sets an ongoing action interrupted by another event. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,leer,Los niños ___  cuando su madre los llamó.,The children were reading when their mother called them.,leían,The interrupted ongoing action uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,decir,"Mientras yo le ___  la verdad, él empezó a llorar.","While I was telling him the truth, he started to cry.",decía,Mientras sets an ongoing action interrupted by another event. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,estudiar,Tú ___  cuando te llamé por primera vez.,You were studying when I called you for the first time.,estudiabas,The interrupted ongoing action uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,preparar,"Mientras el camarero ___  la mesa, se rompió un vaso.","While the waiter was setting the table, a glass broke.",preparaba,Mientras sets an ongoing action interrupted by another event. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,trabajar,Nosotros ___  cuando empezó el incendio.,We were working when the fire started.,trabajábamos,The interrupted ongoing action uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,escribir,Yo le ___  el mensaje cuando se cortó internet.,I was writing him the message when the internet cut out.,escribía,The interrupted ongoing action uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,trabajar,"Mientras Carla ___  en el jardín, empezó a nevar.","While Carla was working in the garden, it started to snow.",trabajaba,Mientras sets an ongoing action interrupted by another event. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,hablar,El público ___  cuando se apagaron las luces del teatro.,The audience was talking when the theatre lights went out.,hablaba,The interrupted ongoing action uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,preparar,"Mientras mis padres ___  la cena, yo puse la mesa.","While my parents were preparing dinner, I set the table.",preparaban,Mientras sets an ongoing action interrupted by another event. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,trabajar,Yo ___  cuando por fin llegó la noticia.,I was working when the news finally arrived.,trabajaba,The interrupted ongoing action uses imperfect. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,leer,"Mientras el director ___  el discurso, se fue la luz.","While the director was reading the speech, the power went out.",leía,Mientras sets an ongoing action interrupted by another event. Correct tense: imperfect.,ok
+quiz-preterite-imperfect,estudiar,Los estudiantes ___  cuando sonó la alarma de incendios.,The students were studying when the fire alarm went off.,estudiaban,The interrupted ongoing action uses imperfect. Correct tense: imperfect.,ok
 flashcard,rank 1,ser,to be (essential),,Quiero ser más paciente.,ok
 flashcard,rank 2,estar,to be (state/location),,Voy a estar en casa esta tarde.,ok
 flashcard,rank 3,haber,to have; there to be,,Tiene que haber otra solución.,ok
