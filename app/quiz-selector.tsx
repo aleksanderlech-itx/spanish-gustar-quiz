@@ -155,6 +155,7 @@ export default function QuizSelector() {
   const board = useMemo(() => orderBoard(items), [items]);
   const pinnedItem = board.find((item) => item.pinned);
   const restItems = board.filter((item) => !item.pinned);
+  const totalLogged = items.reduce((sum, item) => sum + item.completed, 0);
 
   if (!ready || !open) return null;
 
@@ -188,6 +189,13 @@ export default function QuizSelector() {
         </button>
       </header>
 
+      <nav className="board-nav" aria-label="Sections">
+        <span className="board-nav-link board-nav-link-active" aria-current="page"><span className="board-nav-dot" aria-hidden="true" />Today&apos;s board</span>
+        <button type="button" className="board-nav-link" onClick={() => setDrawerOpen(true)}><span className="board-nav-dot" aria-hidden="true" />Progress &amp; history</button>
+        <button type="button" className="board-nav-link" onClick={() => setDrawerOpen(true)}><span className="board-nav-dot" aria-hidden="true" />Mistake notebook</button>
+        <a href="/how-to-use" className="board-nav-link"><span className="board-nav-dot" aria-hidden="true" />How to use</a>
+      </nav>
+
       <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)} returnFocusRef={hamburgerRef} />
 
       <section className="streak-panel" aria-label={`${streak.streak} day streak`}>
@@ -210,9 +218,18 @@ export default function QuizSelector() {
         </div>
       </section>
 
-      <div className="board-section-head">
+      <div className="board-section-head board-section-head-primary">
         <p className="eyebrow">Today&apos;s board</p>
         <span>sized by what&apos;s due</span>
+      </div>
+
+      <div className="board-page-head">
+        <div>
+          <p className="eyebrow">Today&apos;s board</p>
+          <h2 className="board-page-title">Pick up where you left off</h2>
+          <p className="board-page-sub">Your current quiz leads as one wide row; the rest of the board sits underneath, sized by what&apos;s actually due.</p>
+        </div>
+        <div className="board-total"><strong>{totalLogged}</strong><span>cards &amp; questions logged</span></div>
       </div>
 
       {pinnedItem && (
@@ -222,10 +239,13 @@ export default function QuizSelector() {
           <div className="board-ring" style={{ background: `conic-gradient(var(--primary) ${pinnedItem.percent}%, var(--line) ${pinnedItem.percent}%)` }}>
             <div className="board-ring-inner"><strong>{pinnedItem.percent}%</strong></div>
           </div>
-          <h2>{pinnedItem.title}</h2>
-          <p className="board-tile-meta">
-            {pinnedItem.due} {pinnedItem.noun}{pinnedItem.due === 1 ? "" : "s"} due · {pinnedItem.completed} of {pinnedItem.total} done
-          </p>
+          <div className="board-tile-pinned-body">
+            <h2>{pinnedItem.title}</h2>
+            <p className="board-tile-meta">
+              {pinnedItem.due} {pinnedItem.noun}{pinnedItem.due === 1 ? "" : "s"} due · {pinnedItem.completed} of {pinnedItem.total} done
+            </p>
+          </div>
+          <span className="board-tile-pinned-cta" aria-hidden="true">Continue →</span>
         </a>
       )}
 
