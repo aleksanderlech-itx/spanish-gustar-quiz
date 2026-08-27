@@ -113,6 +113,12 @@ spacing:
   stack-lg: 32px
 ---
 
+> Runtime ownership of these tokens lives in `app/quiz-layout-fix.css` (`:root`
+> and `:root[data-theme="dark"]`) — see `DESIGN.md` for the current token
+> list, including tokens added by the board/round redesign (`--sun`,
+> `--clay`, `--sage`, `--panel-soft`, `--key`, and their dark-mode values).
+> This document stays as the aspirational design-system reference.
+
 ## Brand & Style
 
 This design system is an "anti-aesthetic" to traditional gamified educational software. It prioritizes a tactile, boutique, and editorial feel, moving away from clinical digital interfaces toward the warmth of a physical art journal or independent magazine. 
