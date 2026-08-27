@@ -40,3 +40,8 @@
 .drawer-help-link:hover {
   background: var(--primary-soft);
 }
+
+/* Keep the English prompt comfortably readable without competing with Spanish. */
+.round-translation {
+  font-size: 16px;
+}
