@@ -21,9 +21,11 @@ const { FLASHCARD_VERBS } = await import("../app/flashcards-data.ts");
 
 const QUIZ_TARGET = 150;
 
-// Matches the generic buildExample() fallback patterns in app/flashcards-data.ts
-// ("Voy a <verb> hoy.", "Voy a <verb> eso hoy.", "Voy a <verb> temprano.") so we
-// can tell manually-authored examples apart from placeholder ones.
+// Matches the old generic buildExample() fallback patterns that used to cover
+// flashcards without a hand-written sentence ("Voy a <verb> hoy.", "Voy a
+// <verb> eso hoy.", "Voy a <verb> temprano."). buildExample() itself was
+// removed in Stage 3 once every verb got a real example, so this pattern is
+// now a regression check: it should always match zero rows.
 const GENERIC_EXAMPLE_PATTERN = /^Voy a .+ (hoy|eso hoy|temprano)\.$/;
 
 function csvField(value) {
@@ -54,7 +56,10 @@ function flagDuplicates(rows, keyFn) {
 
 // ---- Quiz rows -------------------------------------------------------
 
-const HEADER = ["type", "topic", "spanish", "english", "answer_or_form", "explanation_or_example", "status"];
+// example_english is blank for quiz rows: quiz questions only have one
+// English translation (translations.en), not a separate example sentence
+// and its translation like flashcards do.
+const HEADER = ["type", "topic", "spanish", "english", "answer_or_form", "explanation_or_example", "status", "example_english"];
 
 function quizRows(questions, type) {
   const sentences = questions.map((q) => `${q.before} ___ ${q.after}`.trim());
@@ -66,7 +71,7 @@ function quizRows(questions, type) {
     const spanish = sentences[i];
     const missing = !q.answer?.trim() || !q.translations?.en?.trim() || !q.explanation?.trim();
     const status = missing ? "incomplete" : dupStatus[i];
-    return [type, q.infinitive, spanish, q.translations.en, q.answer, q.explanation, status];
+    return [type, q.infinitive, spanish, q.translations.en, q.answer, q.explanation, status, ""];
   });
 }
 
@@ -83,8 +88,9 @@ const flashcardDupStatus = flagDuplicates(
 
 const flashcardRows = FLASHCARD_VERBS.map((card, i) => {
   const isGeneric = GENERIC_EXAMPLE_PATTERN.test(card.example.trim());
-  const status = isGeneric ? "generic-fallback" : flashcardDupStatus[i];
-  return ["flashcard", `rank ${card.rank}`, card.spanish, card.english, "", card.example, status];
+  const missingEnglish = !card.exampleEnglish?.trim();
+  const status = isGeneric ? "generic-fallback" : missingEnglish ? "incomplete" : flashcardDupStatus[i];
+  return ["flashcard", `rank ${card.rank}`, card.spanish, card.english, "", card.example, status, card.exampleEnglish ?? ""];
 });
 
 // ---- Write CSVs ---------------------------------------------------------
@@ -103,7 +109,7 @@ await writeFile(
 // ---- Audit summary --------------------------------------------------------
 
 function countStatus(rows, status) {
-  return rows.filter((row) => row[row.length - 1] === status).length;
+  return rows.filter((row) => row[row.length - 2] === status).length;
 }
 
 function report(label, rows, target) {
@@ -125,8 +131,10 @@ report("quiz-preterite-imperfect", preteriteRows, QUIZ_TARGET);
 console.log("\n=== Flashcards (target: 500, all with real examples) ===");
 const generic = countStatus(flashcardRows, "generic-fallback");
 const flashDupes = countStatus(flashcardRows, "duplicate");
+const missingEnglish = flashcardRows.filter((row) => !row[7]?.trim()).length;
 console.log(`flashcards: ${flashcardRows.length} / 500`);
 console.log(`  generic buildExample() fallback ("Voy a ... hoy."): ${generic}`);
 console.log(`  manually-authored examples: ${flashcardRows.length - generic}`);
 console.log(`  duplicate spanish+example pairs: ${flashDupes}`);
-console.log(`  exampleEnglish field: not yet present on the data model (Stage 3/4)`);
+console.log(`  missing English example translation (exampleEnglish): ${missingEnglish}`);
+console.log(`  with English example translation: ${flashcardRows.length - missingEnglish}`);
