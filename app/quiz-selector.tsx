@@ -5,7 +5,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
 import { useTheme } from "./use-theme";
 import { orderBoard, type BoardTileProgress } from "./board";
-import { readStreakSummary, dayKey, ACTIVITY_IDS, type StreakSummary } from "./streak";
+import { readStreakSummary, recordActivityToday, dayKey, ACTIVITY_IDS, type StreakSummary } from "./streak";
 import { emptyQuizProgress, readQuizProgress, readDailyRoundProgress, type DailyRoundProgress } from "./quiz-progress";
 import { ROUND_SIZE as FLASHCARDS_ROUND_SIZE } from "./flashcards";
 import Drawer from "./drawer";
@@ -168,6 +168,13 @@ export default function QuizSelector() {
         ...flashcards.progress,
       },
     ];
+    // The streak ledger is written only when a round finishes (round.tsx/flashcards.tsx),
+    // so a round completed before this session's code loaded — or under an older storage
+    // version — can be done today per the quiz's own history without ever reaching the
+    // ledger. Backfill from the same ground truth the tiles just read, so the streak panel
+    // can never under-report what the board is already showing as done.
+    nextItems.forEach((item) => { if (item.daily.done) recordActivityToday(item.id); });
+
     // Browser storage is unavailable during the server render.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setItems(nextItems);
