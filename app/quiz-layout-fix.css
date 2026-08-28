@@ -2076,12 +2076,16 @@ body {
 }
 
 .flashcard-example-english {
-  margin: 2px 0 0;
+  margin: -10px 0 0;
   color: var(--muted);
-  font-size: 16px;
+  font-size: 18px;
   font-style: italic;
   line-height: 1.5;
   opacity: 0.85;
+}
+
+.flashcard-example-english + .flashcard-due-pill {
+  margin-top: 32px;
 }
 
 .flashcard-footer {
