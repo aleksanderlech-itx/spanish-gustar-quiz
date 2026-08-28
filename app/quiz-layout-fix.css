@@ -2075,6 +2075,15 @@ body {
   line-height: 1.55;
 }
 
+.flashcard-example-english {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
 .flashcard-footer {
   display: flex;
   gap: 10px;

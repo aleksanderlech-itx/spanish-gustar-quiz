@@ -3,7 +3,7 @@ import test from "node:test";
 import { PRETERITE_IMPERFECT_CONJUGATIONS, PRETERITE_IMPERFECT_FORMS, PRETERITE_IMPERFECT_QUESTIONS } from "../app/preterite-imperfect-data.ts";
 
 test("Preterite vs Imperfect quiz is generated from complete templates", () => {
-  assert.equal(PRETERITE_IMPERFECT_QUESTIONS.length, 16);
+  assert.equal(PRETERITE_IMPERFECT_QUESTIONS.length, 150);
   for (const forms of Object.values(PRETERITE_IMPERFECT_FORMS)) assert.deepEqual(forms, ["preterite", "imperfect"]);
   assert.equal(new Set(PRETERITE_IMPERFECT_QUESTIONS.map((question) => question.id)).size, PRETERITE_IMPERFECT_QUESTIONS.length);
   assert.ok(PRETERITE_IMPERFECT_QUESTIONS.some((question) => question.tense === "preterite"));
@@ -21,7 +21,11 @@ test("Preterite vs Imperfect quiz is generated from complete templates", () => {
 });
 
 test("Preterite vs Imperfect conjugation charts cover only quiz verbs in all forms", () => {
-  const expectedVerbs = new Set(["ir", "preparar", "salir", "llegar", "vivir", "explicar", "ponerse", "empezar"]);
+  const expectedVerbs = new Set([
+    "ir", "preparar", "salir", "llegar", "vivir", "explicar", "ponerse", "empezar",
+    "hablar", "comer", "escribir", "trabajar", "estudiar", "comprar", "leer", "decidir",
+    "tener", "hacer", "poder", "querer", "decir", "dar", "poner", "saber",
+  ]);
   assert.deepEqual(new Set(Object.keys(PRETERITE_IMPERFECT_CONJUGATIONS)), expectedVerbs);
 
   for (const verb of expectedVerbs) {

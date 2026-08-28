@@ -1,5 +1,4 @@
 import { TRANSLATIONS } from "./translations.ts";
-import { COMPLEX_QUESTION_SEEDS } from "./complex-questions.ts";
 
 export type Question = {
   id: number;
@@ -90,20 +89,9 @@ const QUESTIONS: Question[] = Object.entries(QUESTION_BANKS).flatMap(([infinitiv
   })
 );
 
-const COMPLEX_QUESTIONS: Question[] = COMPLEX_QUESTION_SEEDS.map(([before, after, infinitive, verbAnswer, subjectNumber, indirectObject, en, pl], index) => {
-  const pronounMatch = before.match(/\b(me|te|le|nos|les)\b/i);
-  const objectPronoun = pronounMatch?.[1]?.toLocaleLowerCase("es") ?? indirectObject;
-  const promptBefore = pronounMatch
-    ? `${before.slice(0, pronounMatch.index)}${before.slice((pronounMatch.index ?? 0) + pronounMatch[0].length)}`.trimEnd()
-    : before;
-  return {
-    id: 1001 + index,
-    before: promptBefore, after, infinitive, answer: `${objectPronoun} ${verbAnswer}`, verbAnswer, objectPronoun,
-    explanation: `Use “${objectPronoun}” as the indirect object pronoun. ${subjectNumber === "singular" ? "The grammatical subject is a single thing, clause, or activity" : "The grammatical subject contains several things"}, so the verb is “${verbAnswer}”.`,
-    translations: { en, pl }, subjectNumber, indirectObject: objectPronoun,
-    isActivity: subjectNumber === "singular" && /\b(que|ar|er|ir)\b/i.test(after),
-    tense: "present", level: "advanced",
-  };
-});
-
-export const ALL_QUESTIONS = [...QUESTIONS, ...COMPLEX_QUESTIONS];
+// Issue #24, Stage 5: the previous COMPLEX_QUESTIONS block (18 subordinate-clause
+// items sourced from complex-questions.ts) has been removed. Those sentences used
+// heavier constructions ("aunque...", "lo que...", "cada vez que...") that were the
+// weakest fit for the A2-B1 audience this quiz targets, and removing them brings the
+// dataset to exactly the 150-question target already reached by QUESTION_BANKS above.
+export const ALL_QUESTIONS = QUESTIONS;
