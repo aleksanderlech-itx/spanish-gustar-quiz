@@ -132,7 +132,7 @@ test("round screen commits one answer at a time, recolors options, and gates Nex
   assert.match(round, /const primaryDisabled = mode === "type" \? \(!isSubmitted && !typed\.trim\(\)\) : !isSubmitted;/);
   assert.match(round, /"Pick an answer"\s*: isLast \? "See results" : "Next question";/);
   // Score increments once per question, at commit time — not on render.
-  assert.match(round, /recordActivityToday\(\);/);
+  assert.match(round, /recordActivityToday\(quizId\);/);
   // Answer comparison for Choose mode reuses the existing verb-form/pronoun data, not a parallel bank.
   assert.match(data, /answer: `\$\{objectPronoun\} \$\{verbAnswer\}`/);
 });
