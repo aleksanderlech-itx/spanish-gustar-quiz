@@ -13,6 +13,26 @@ test("flashcard corpus contains 500 unique ranked verbs", () => {
   });
 });
 
+test("every flashcard has a real, project-authored example with an English translation", () => {
+  // The old buildExample() fallback produced exactly these three shapes for a verb it
+  // didn't have a hand-written sentence for. None should remain now that every verb has
+  // a real, authored example (Stage 3 of docs/issue-24-implementation-plan.md).
+  const genericShapes = (spanish) => [`Voy a ${spanish} hoy.`, `Voy a ${spanish} eso hoy.`, `Voy a ${spanish} temprano.`];
+
+  const seenExamples = new Map();
+  for (const card of FLASHCARD_VERBS) {
+    assert.ok(card.example.trim(), `${card.spanish} is missing a Spanish example`);
+    assert.ok(card.exampleEnglish.trim(), `${card.spanish} is missing an English example translation`);
+    assert.notEqual(card.example, card.exampleEnglish);
+    assert.ok(!genericShapes(card.spanish).includes(card.example), `${card.spanish} still uses a generic placeholder example`);
+
+    const key = card.example.trim().toLocaleLowerCase("es");
+    const prior = seenExamples.get(key);
+    assert.ok(!prior, prior && `${card.spanish} and ${prior} share the identical example sentence`);
+    seenExamples.set(key, card.spanish);
+  }
+});
+
 test("flashcard interface reveals answers before recording Leitner progress", async () => {
   const { readFile } = await import("node:fs/promises");
   const source = await readFile(new URL("../app/flashcards.tsx", import.meta.url), "utf8");

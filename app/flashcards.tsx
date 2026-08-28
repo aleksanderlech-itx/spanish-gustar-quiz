@@ -167,6 +167,7 @@ export default function Flashcards() {
                 <div className="flashcard-reveal-divider" />
                 <p className="flashcard-meaning" lang="en">{card.english}</p>
                 <p className="flashcard-example" lang="es">{card.example}</p>
+                <p className="flashcard-example-english" lang="en">{card.exampleEnglish}</p>
                 <span className="flashcard-due-pill">Box {currentBox} · {dueCopy(currentBox)}</span>
               </span>
             </span>
