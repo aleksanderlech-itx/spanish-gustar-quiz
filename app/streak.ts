@@ -1,51 +1,77 @@
-const STREAK_KEY = "spanish-quiz-streak-v1";
+const STREAK_KEY = "spanish-quiz-streak-v2";
 const DAY_LETTERS = ["Lu", "Ma", "Mi", "Ju", "Vi", "Sá", "Do"];
+
+export const ACTIVITY_IDS = ["gustar", "ser-estar", "preterite-imperfect", "flashcards"] as const;
+export type ActivityId = (typeof ACTIVITY_IDS)[number];
+
+/** dayKey -> activities completed that day. The daily goal is reaching every activity, not just one. */
+export type Records = Map<string, Set<ActivityId>>;
 
 const pad = (value: number) => String(value).padStart(2, "0");
 
 export const dayKey = (date: Date) => `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
 
-const readDays = (): Set<string> => {
-  if (typeof window === "undefined") return new Set();
+const isActivityId = (value: unknown): value is ActivityId => (ACTIVITY_IDS as readonly string[]).includes(value as string);
+
+const isDayComplete = (record: Set<ActivityId> | undefined) => !!record && ACTIVITY_IDS.every((id) => record.has(id));
+
+const readRecords = (): Records => {
+  if (typeof window === "undefined") return new Map();
   try {
     const raw = window.localStorage.getItem(STREAK_KEY);
-    const days = raw ? (JSON.parse(raw) as unknown) : [];
-    return new Set(Array.isArray(days) ? days.filter((day): day is string => typeof day === "string") : []);
+    const parsed = raw ? (JSON.parse(raw) as unknown) : {};
+    const records: Records = new Map();
+    if (parsed && typeof parsed === "object") {
+      for (const [day, activities] of Object.entries(parsed as Record<string, unknown>)) {
+        if (!Array.isArray(activities)) continue;
+        const valid = activities.filter(isActivityId);
+        if (valid.length) records.set(day, new Set(valid));
+      }
+    }
+    return records;
   } catch {
-    return new Set();
+    return new Map();
   }
 };
 
-/** Marks today as a practised day. Call once per completed round or flashcard assessment. */
-export const recordActivityToday = () => {
-  if (typeof window === "undefined") return;
-  const days = readDays();
-  const today = dayKey(new Date());
-  if (days.has(today)) return;
-  days.add(today);
+const writeRecords = (records: Records) => {
   try {
-    window.localStorage.setItem(STREAK_KEY, JSON.stringify([...days]));
+    const obj: Record<string, ActivityId[]> = {};
+    records.forEach((set, day) => { obj[day] = [...set]; });
+    window.localStorage.setItem(STREAK_KEY, JSON.stringify(obj));
   } catch {
     // Storage can be unavailable (private mode, quota); the streak just won't persist this session.
   }
 };
 
-/** Consecutive practised days ending today, or ending yesterday if today is not done yet. */
-export const currentStreak = (days: Set<string>, today = new Date()): number => {
+/** Marks one activity's round/session done today. Call once per completed round or flashcard session. */
+export const recordActivityToday = (activity: ActivityId) => {
+  if (typeof window === "undefined") return;
+  const records = readRecords();
+  const today = dayKey(new Date());
+  const set = records.get(today) ?? new Set<ActivityId>();
+  if (set.has(activity)) return;
+  set.add(activity);
+  records.set(today, set);
+  writeRecords(records);
+};
+
+/** Consecutive days ending today (or yesterday, if today isn't fully done yet) where every activity was completed. */
+export const currentStreak = (records: Records, today = new Date()): number => {
   const cursor = new Date(today);
-  if (!days.has(dayKey(cursor))) cursor.setDate(cursor.getDate() - 1);
+  if (!isDayComplete(records.get(dayKey(cursor)))) cursor.setDate(cursor.getDate() - 1);
   let streak = 0;
-  while (days.has(dayKey(cursor))) {
+  while (isDayComplete(records.get(dayKey(cursor)))) {
     streak += 1;
     cursor.setDate(cursor.getDate() - 1);
   }
   return streak;
 };
 
-export type WeekDay = { letter: string; status: "done" | "today" | "future" };
+export type WeekDay = { letter: string; status: "done" | "today" | "future"; doneCount: number; total: number };
 
 /** Monday-start week containing `today`, for the streak panel's 7 day bars. */
-export const weekBars = (days: Set<string>, today = new Date()): WeekDay[] => {
+export const weekBars = (records: Records, today = new Date()): WeekDay[] => {
   const mondayOffset = (today.getDay() + 6) % 7;
   const monday = new Date(today);
   monday.setDate(today.getDate() - mondayOffset);
@@ -55,18 +81,28 @@ export const weekBars = (days: Set<string>, today = new Date()): WeekDay[] => {
     const date = new Date(monday);
     date.setDate(monday.getDate() + index);
     const key = dayKey(date);
-    const status: WeekDay["status"] = key === todayKey ? "today" : days.has(key) ? "done" : "future";
-    return { letter: DAY_LETTERS[index], status };
+    const record = records.get(key);
+    const status: WeekDay["status"] = key === todayKey ? "today" : isDayComplete(record) ? "done" : "future";
+    return { letter: DAY_LETTERS[index], status, doneCount: record?.size ?? 0, total: ACTIVITY_IDS.length };
   });
 };
 
-export type StreakSummary = { streak: number; completedToday: boolean; week: WeekDay[] };
+export type StreakSummary = {
+  streak: number;
+  completedToday: boolean;
+  todayDone: number;
+  todayTotal: number;
+  week: WeekDay[];
+};
 
 export const readStreakSummary = (today = new Date()): StreakSummary => {
-  const days = readDays();
+  const records = readRecords();
+  const todayRecord = records.get(dayKey(today));
   return {
-    streak: currentStreak(days, today),
-    completedToday: days.has(dayKey(today)),
-    week: weekBars(days, today),
+    streak: currentStreak(records, today),
+    completedToday: isDayComplete(todayRecord),
+    todayDone: todayRecord?.size ?? 0,
+    todayTotal: ACTIVITY_IDS.length,
+    week: weekBars(records, today),
   };
 };

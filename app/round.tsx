@@ -249,7 +249,7 @@ export default function Round({ quizId }: { quizId: QuizId }) {
     const next = [...history, result];
     setHistory(next);
     void persistProgress(next);
-    recordActivityToday();
+    recordActivityToday(quizId);
     setMissedRules(rules);
     setLastResult(result);
     setFinished(true);

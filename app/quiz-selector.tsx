@@ -5,8 +5,9 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
 import { useTheme } from "./use-theme";
 import { orderBoard, type BoardTileProgress } from "./board";
-import { readStreakSummary, type StreakSummary } from "./streak";
-import { emptyQuizProgress, readQuizProgress } from "./quiz-progress";
+import { readStreakSummary, dayKey, ACTIVITY_IDS, type StreakSummary } from "./streak";
+import { emptyQuizProgress, readQuizProgress, readDailyRoundProgress, type DailyRoundProgress } from "./quiz-progress";
+import { ROUND_SIZE as FLASHCARDS_ROUND_SIZE } from "./flashcards";
 import Drawer from "./drawer";
 import Logo from "./logo";
 
@@ -18,7 +19,10 @@ type BoardItem = BoardTileProgress & {
   title: string;
   noun: string;
   href: string;
+  daily: DailyRoundProgress;
 };
+
+const EMPTY_DAILY: DailyRoundProgress = { correct: 0, roundLength: 0, percent: 0, done: false };
 
 /** A checkmark reads as "quiz" without borrowing the "?" glyph, which looks like a help button. */
 const QuizIcon = () => (
@@ -55,13 +59,16 @@ const MoonIcon = () => (
 );
 
 const QUIZ_IDS = Object.keys(QUIZ_CONFIG) as QuizId[];
+const EMPTY_WEEK_DAY = { status: "future" as const, doneCount: 0, total: ACTIVITY_IDS.length };
 const EMPTY_STREAK: StreakSummary = {
   streak: 0,
   completedToday: false,
+  todayDone: 0,
+  todayTotal: ACTIVITY_IDS.length,
   week: [
-    { letter: "Lu", status: "future" }, { letter: "Ma", status: "future" }, { letter: "Mi", status: "future" },
-    { letter: "Ju", status: "future" }, { letter: "Vi", status: "future" }, { letter: "Sá", status: "future" },
-    { letter: "Do", status: "future" },
+    { letter: "Lu", ...EMPTY_WEEK_DAY }, { letter: "Ma", ...EMPTY_WEEK_DAY }, { letter: "Mi", ...EMPTY_WEEK_DAY },
+    { letter: "Ju", ...EMPTY_WEEK_DAY }, { letter: "Vi", ...EMPTY_WEEK_DAY }, { letter: "Sá", ...EMPTY_WEEK_DAY },
+    { letter: "Do", ...EMPTY_WEEK_DAY },
   ],
 };
 
@@ -70,7 +77,13 @@ const detailPath = (quizId: QuizId) => `/?quiz=${quizId}`;
 
 const FLASHCARD_TOTAL = 500;
 
-const readFlashcardProgress = (): Omit<BoardTileProgress, "id"> => {
+/**
+ * Flashcards has no round history to read back (each card writes only its current
+ * Leitner box, not a per-day log), so the daily gauge is a proxy: cards reviewed today
+ * — right or wrong, the Leitner box mechanics stay untouched — against the fixed
+ * session size, capped at 100%.
+ */
+const readFlashcardProgress = (): { progress: Omit<BoardTileProgress, "id">; daily: DailyRoundProgress } => {
   try {
     const raw = window.localStorage.getItem("spanish-flashcards-leitner-v2") ?? window.localStorage.getItem("spanish-flashcards-progress-v1");
     const saved = raw ? JSON.parse(raw) as Record<string, { box?: number; nextReviewAt?: string; updatedAt?: string }> : {};
@@ -84,17 +97,29 @@ const readFlashcardProgress = (): Omit<BoardTileProgress, "id"> => {
       null,
     );
 
+    const today = dayKey(new Date());
+    const reviewedToday = entries.filter((item) => item.updatedAt && dayKey(new Date(item.updatedAt)) === today).length;
+    const daily: DailyRoundProgress = {
+      correct: reviewedToday,
+      roundLength: FLASHCARDS_ROUND_SIZE,
+      percent: Math.min(100, Math.round((reviewedToday / FLASHCARDS_ROUND_SIZE) * 100)),
+      done: reviewedToday >= FLASHCARDS_ROUND_SIZE,
+    };
+
     return {
-      completed,
-      total: FLASHCARD_TOTAL,
-      percent: Math.round((completed / FLASHCARD_TOTAL) * 100),
-      due,
-      mastered,
-      accuracy: 0,
-      lastActivity,
+      progress: {
+        completed,
+        total: FLASHCARD_TOTAL,
+        percent: Math.round((completed / FLASHCARD_TOTAL) * 100),
+        due,
+        mastered,
+        accuracy: 0,
+        lastActivity,
+      },
+      daily,
     };
   } catch {
-    return emptyQuizProgress(FLASHCARD_TOTAL);
+    return { progress: emptyQuizProgress(FLASHCARD_TOTAL), daily: EMPTY_DAILY };
   }
 };
 
@@ -113,8 +138,8 @@ export default function QuizSelector() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const hamburgerRef = useRef<HTMLButtonElement | null>(null);
   const [items, setItems] = useState<BoardItem[]>(() => [
-    ...QUIZ_IDS.map((id) => ({ id: id as LibraryQuizId, kind: "quiz" as const, title: QUIZ_CONFIG[id].title.replace(" Quiz", ""), noun: "question", href: detailPath(id), ...emptyQuizProgress(QUIZ_CONFIG[id].questions.length) })),
-    { id: "flashcards" as LibraryQuizId, kind: "deck" as const, title: "Spanish Verb Flashcards", noun: "card", href: "/?quiz=flashcards&play=1", ...emptyQuizProgress(FLASHCARD_TOTAL) },
+    ...QUIZ_IDS.map((id) => ({ id: id as LibraryQuizId, kind: "quiz" as const, title: QUIZ_CONFIG[id].title.replace(" Quiz", ""), noun: "question", href: detailPath(id), daily: EMPTY_DAILY, ...emptyQuizProgress(QUIZ_CONFIG[id].questions.length) })),
+    { id: "flashcards" as LibraryQuizId, kind: "deck" as const, title: "Spanish Verb Flashcards", noun: "card", href: "/?quiz=flashcards&play=1", daily: EMPTY_DAILY, ...emptyQuizProgress(FLASHCARD_TOTAL) },
   ]);
   const [streak, setStreak] = useState<StreakSummary>(EMPTY_STREAK);
 
@@ -122,6 +147,7 @@ export default function QuizSelector() {
     // Re-reads progress every time the board becomes visible again, not just on
     // first mount, so returning from a round shows the round's updated numbers.
     if (!open) return;
+    const flashcards = readFlashcardProgress();
     const nextItems: BoardItem[] = [
       ...QUIZ_IDS.map((id) => ({
         id,
@@ -129,15 +155,17 @@ export default function QuizSelector() {
         title: QUIZ_CONFIG[id].title.replace(" Quiz", ""),
         noun: "question",
         href: detailPath(id),
+        daily: readDailyRoundProgress(id),
         ...readQuizProgress(id),
       })),
       {
-        id: "flashcards",
-        kind: "deck",
+        id: "flashcards" as LibraryQuizId,
+        kind: "deck" as const,
         title: "Spanish Verb Flashcards",
         noun: "card",
         href: "/?quiz=flashcards&play=1",
-        ...readFlashcardProgress(),
+        daily: flashcards.daily,
+        ...flashcards.progress,
       },
     ];
     // Browser storage is unavailable during the server render.
@@ -194,14 +222,24 @@ export default function QuizSelector() {
             <strong>{streak.streak}</strong>
             <div>
               <span className="streak-label">días seguidos</span>
-              <span className="streak-goal">Goal: 1 round a day</span>
+              <span className="streak-goal">Goal: a round in all {streak.todayTotal} activities · {streak.todayDone}/{streak.todayTotal} today</span>
             </div>
           </div>
         </div>
         <div className="streak-week" role="list" aria-label="This week's practice">
-          {streak.week.map((day, index) => (
-            <span key={index} className={`streak-day streak-day-${day.status}`} role="listitem" aria-label={day.status === "done" ? "Practised" : day.status === "today" ? "Today" : "Not yet"} />
-          ))}
+          {streak.week.map((day, index) => {
+            const isToday = day.status === "today";
+            const fill = isToday && day.total ? Math.round((day.doneCount / day.total) * 100) : undefined;
+            return (
+              <span
+                key={index}
+                className={`streak-day streak-day-${day.status}`}
+                style={isToday ? { background: `linear-gradient(90deg, var(--sun) ${fill}%, transparent ${fill}%)` } : undefined}
+                role="listitem"
+                aria-label={day.status === "done" ? "All activities done" : day.status === "today" ? `${day.doneCount} of ${day.total} activities done today` : "Not yet"}
+              />
+            );
+          })}
         </div>
         <div className="streak-week-letters" aria-hidden="true">
           {streak.week.map((day, index) => <span key={index}>{day.letter}</span>)}
@@ -215,17 +253,28 @@ export default function QuizSelector() {
 
       <section className="board-grid" aria-label="Available quizzes and decks">
         {board.map((item) => {
+          const todayPill = item.daily.done ? (
+            <span className="board-tile-pill board-tile-pill-today">✓ Today</span>
+          ) : item.daily.roundLength ? (
+            <span className="board-tile-pill board-tile-pill-today board-tile-pill-today-pending">
+              {item.daily.correct}/{item.daily.roundLength} today
+            </span>
+          ) : null;
+
           if (item.pinned) {
             return (
               <a className="board-tile board-tile-pinned" href={item.href} key={item.id}>
-                <span className="board-tile-pill board-tile-pill-progress">In progress</span>
+                <span className="board-tile-top-pills">
+                  <span className="board-tile-pill board-tile-pill-progress">In progress</span>
+                  {todayPill}
+                </span>
                 <span className="board-icon board-icon-pinned"><BoardIcon kind={item.kind} /></span>
-                <div className="board-ring" style={{ background: `conic-gradient(var(--primary) ${item.percent}%, var(--line) ${item.percent}%)` }}>
-                  <div className="board-ring-inner"><strong>{item.percent}%</strong></div>
+                <div className="board-ring" style={{ background: `conic-gradient(var(--primary) ${item.daily.percent}%, var(--line) ${item.daily.percent}%)` }}>
+                  <div className="board-ring-inner"><strong>{item.daily.percent}%</strong></div>
                 </div>
                 <h2>{item.title}</h2>
                 <p className="board-tile-meta">
-                  {item.due} {item.noun}{item.due === 1 ? "" : "s"} due · {item.completed} of {item.total} done
+                  Today: {item.daily.correct} of {item.daily.roundLength || "–"} correct · {item.completed} of {item.total} total done
                 </p>
               </a>
             );
@@ -236,7 +285,10 @@ export default function QuizSelector() {
               <a className="board-tile board-tile-due" href={item.href} key={item.id}>
                 <div className="board-tile-top">
                   <span className="board-icon"><BoardIcon kind={item.kind} /></span>
-                  <span className="board-tile-pill board-tile-pill-due">{item.due} due</span>
+                  <span className="board-tile-top-pills">
+                    {todayPill}
+                    <span className="board-tile-pill board-tile-pill-due">{item.due} due</span>
+                  </span>
                 </div>
                 <h2>{item.title}</h2>
                 <div className="board-tile-bottom">
@@ -251,7 +303,10 @@ export default function QuizSelector() {
             <a className="board-tile board-tile-quiet" href={item.href} key={item.id}>
               <div className="board-tile-top">
                 <span className="board-icon board-icon-quiet"><BoardIcon kind={item.kind} /></span>
-                <span className="board-tile-note board-tile-note-quiet">nothing due</span>
+                <span className="board-tile-top-pills">
+                  {todayPill}
+                  <span className="board-tile-note board-tile-note-quiet">nothing due</span>
+                </span>
               </div>
               <h2>{item.title}</h2>
               <div className="board-bar board-bar-quiet" aria-hidden="true"><span style={{ width: `${item.percent}%`, background: dueBarFill(item.percent) }} /></div>

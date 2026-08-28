@@ -13,7 +13,7 @@ type LegacyProgress = Record<string, { remembered?: boolean; attempts?: number; 
 
 const STORAGE_KEY = "spanish-flashcards-leitner-v2";
 const LEGACY_STORAGE_KEY = "spanish-flashcards-progress-v1";
-const ROUND_SIZE = 20;
+export const ROUND_SIZE = 20;
 const DAY = 86_400_000;
 const REVIEW_INTERVAL_DAYS: Record<LeitnerBox, number> = { 1: 0, 2: 1, 3: 3, 4: 7, 5: 14 };
 const BOXES: LeitnerBox[] = [1, 2, 3, 4, 5];
@@ -114,7 +114,7 @@ export default function Flashcards() {
     setProgress(next);
     setCurrentTime(Date.now());
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-    recordActivityToday();
+    recordActivityToday("flashcards");
     setIndex((current) => current + 1);
     setRevealed(false);
   };

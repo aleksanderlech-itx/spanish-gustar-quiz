@@ -833,6 +833,27 @@ body {
   color: var(--clay);
 }
 
+.board-tile-top-pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.board-tile-pinned > .board-tile-top-pills {
+  align-self: flex-start;
+}
+
+.board-tile-pill-today {
+  background: var(--success-soft);
+  color: var(--success);
+}
+
+.board-tile-pill-today-pending {
+  background: transparent;
+  border: 2px dashed var(--line);
+  color: var(--muted);
+}
+
 .board-ring {
   display: grid;
   place-items: center;
