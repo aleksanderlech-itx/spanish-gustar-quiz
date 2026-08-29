@@ -6,7 +6,7 @@ import { FLASHCARD_VERBS, type FlashcardVerb } from "./flashcards-data";
 import { recordActivityToday } from "./streak";
 import { speak } from "./speak";
 
-type LeitnerBox = 1 | 2 | 3 | 4 | 5;
+type LeitnerBox = 1 | 2 | 3 | 4;
 type CardRecord = { box: LeitnerBox; attempts: number; correct: number; updatedAt: string; nextReviewAt: string };
 type LeitnerProgress = Record<string, CardRecord>;
 type LegacyProgress = Record<string, { remembered?: boolean; attempts?: number; updatedAt?: string }>;
@@ -15,10 +15,12 @@ const STORAGE_KEY = "spanish-flashcards-leitner-v2";
 const LEGACY_STORAGE_KEY = "spanish-flashcards-progress-v1";
 export const ROUND_SIZE = 20;
 const DAY = 86_400_000;
-const REVIEW_INTERVAL_DAYS: Record<LeitnerBox, number> = { 1: 0, 2: 1, 3: 3, 4: 7, 5: 14 };
-const BOXES: LeitnerBox[] = [1, 2, 3, 4, 5];
+const MAX_BOX: LeitnerBox = 4;
+const REVIEW_INTERVAL_DAYS: Record<LeitnerBox, number> = { 1: 0, 2: 1, 3: 3, 4: 7 };
+const BOXES: LeitnerBox[] = [1, 2, 3, 4];
 
 const shuffle = <T,>(items: T[]) => [...items].sort(() => Math.random() - 0.5);
+const clampBox = (box: number): LeitnerBox => Math.min(MAX_BOX, Math.max(1, box)) as LeitnerBox;
 const nextReviewDate = (box: LeitnerBox, from = Date.now()) => new Date(from + REVIEW_INTERVAL_DAYS[box] * DAY).toISOString();
 const dueCopy = (box: LeitnerBox) => (REVIEW_INTERVAL_DAYS[box] === 0 ? "due now" : `due in ${REVIEW_INTERVAL_DAYS[box]} day${REVIEW_INTERVAL_DAYS[box] === 1 ? "" : "s"}`);
 
@@ -26,7 +28,7 @@ const dueCopy = (box: LeitnerBox) => (REVIEW_INTERVAL_DAYS[box] === 0 ? "due now
 const boxState = (box: LeitnerBox, currentBox: LeitnerBox): "current" | "next" | "mastered" | "unreached" => {
   if (box === currentBox) return "current";
   if (box === currentBox + 1) return "next";
-  if (box === 5) return "mastered";
+  if (box === MAX_BOX) return "mastered";
   return "unreached";
 };
 
@@ -42,7 +44,12 @@ const readStoredProgress = (): LeitnerProgress => {
   if (typeof window === "undefined") return {};
   try {
     const saved = window.localStorage.getItem(STORAGE_KEY);
-    if (saved) return JSON.parse(saved) as LeitnerProgress;
+    if (saved) {
+      const parsed = JSON.parse(saved) as LeitnerProgress;
+      // Earlier versions used 5 Leitner boxes; clamp any box 5 records still in
+      // storage down into the new 4-box range instead of losing that progress.
+      return Object.fromEntries(Object.entries(parsed).map(([spanish, record]) => [spanish, { ...record, box: clampBox(record.box) }]));
+    }
     const legacy = window.localStorage.getItem(LEGACY_STORAGE_KEY);
     if (!legacy) return {};
     const migrated = migrateLegacyProgress(JSON.parse(legacy) as LegacyProgress);
@@ -108,7 +115,7 @@ export default function Flashcards() {
   const recordAnswer = (remembered: boolean) => {
     if (!card || !revealed) return;
     const previous = progress[card.spanish];
-    const box = (remembered ? Math.min(5, (previous?.box ?? 1) + 1) : 1) as LeitnerBox;
+    const box = (remembered ? Math.min(MAX_BOX, (previous?.box ?? 1) + 1) : 1) as LeitnerBox;
     const updatedAt = new Date().toISOString();
     const next = { ...progress, [card.spanish]: { box, attempts: (previous?.attempts ?? 0) + 1, correct: (previous?.correct ?? 0) + (remembered ? 1 : 0), updatedAt, nextReviewAt: nextReviewDate(box) } };
     setProgress(next);
@@ -178,8 +185,8 @@ export default function Flashcards() {
               <button type="button" className="flashcard-reveal" onClick={reveal}>Reveal</button>
             ) : (
               <>
-                <button type="button" className="flashcard-again" disabled={!revealed} onClick={() => recordAnswer(false)}><span aria-hidden="true">↺</span> Again</button>
-                <button type="button" className="flashcard-known" disabled={!revealed} onClick={() => recordAnswer(true)}><span aria-hidden="true">✓</span> Knew it</button>
+                <button type="button" className="flashcard-again" aria-label="Not OK" disabled={!revealed} onClick={() => recordAnswer(false)}><span aria-hidden="true">✕</span></button>
+                <button type="button" className="flashcard-known" aria-label="OK" disabled={!revealed} onClick={() => recordAnswer(true)}><span aria-hidden="true">✓</span></button>
               </>
             )}
           </footer>
