@@ -196,7 +196,7 @@ export default function Flashcards() {
       <section className="stats leitner-stats" aria-label="Leitner box progress">
         {totals.boxes.map((count, boxIndex) => { const box = (boxIndex + 1) as LeitnerBox; const days = REVIEW_INTERVAL_DAYS[box]; return <div key={box}><span className="leitner-box-label">Box {box}</span><strong>{count}</strong><span>{days === 0 ? "Every session" : `${days} day${days === 1 ? "" : "s"}`}</span></div>; })}
       </section>
-      <p className="leitner-note"><strong>How it works:</strong> Box 1 cards are reviewed immediately. Boxes 2–5 return after 1, 3, 7 and 14 days. One wrong answer sends a card back to Box 1.</p>
+      <p className="leitner-note"><strong>How it works:</strong> Box 1 cards are reviewed immediately. Boxes 2–4 return after 1, 3 and 7 days. One wrong answer sends a card back to Box 1.</p>
     </main>
   );
 }
