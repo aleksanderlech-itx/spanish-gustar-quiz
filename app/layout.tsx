@@ -7,6 +7,7 @@ import "./issue-5-design.css";
 import "./quiz-layout-fix.css";
 import "./editorial-polish.css";
 import QuizSelector from "./quiz-selector";
+import { SiteFooter } from "./site-footer";
 import { SITE_CONFIG } from "./site-config";
 import { isProductionHost } from "./is-production-host";
 
@@ -108,6 +109,7 @@ export default async function RootLayout({
         )}
         <QuizSelector />
         {children}
+        <SiteFooter />
       </body>
     </html>
   );
