@@ -255,13 +255,13 @@ summary:focus-visible {
 
 .flashcard-again {
   border: 1px solid var(--danger);
-  color: var(--danger);
+  color: #d1273d;
   background: var(--danger-soft);
 }
 
 .flashcard-known {
   border: 1px solid color-mix(in srgb, var(--success) 64%, var(--line));
-  color: var(--ink);
+  color: #1a9c4a;
   background: var(--success-soft);
 }
 

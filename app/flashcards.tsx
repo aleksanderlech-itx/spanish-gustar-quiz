@@ -185,8 +185,8 @@ export default function Flashcards() {
               <button type="button" className="flashcard-reveal" onClick={reveal}>Reveal</button>
             ) : (
               <>
-                <button type="button" className="flashcard-again" aria-label="Not OK" disabled={!revealed} onClick={() => recordAnswer(false)}><span aria-hidden="true">✕</span></button>
-                <button type="button" className="flashcard-known" aria-label="OK" disabled={!revealed} onClick={() => recordAnswer(true)}><span aria-hidden="true">✓</span></button>
+                <button type="button" className="flashcard-again" aria-label="Not OK" disabled={!revealed} onClick={() => recordAnswer(false)}><span aria-hidden="true">✖</span></button>
+                <button type="button" className="flashcard-known" aria-label="OK" disabled={!revealed} onClick={() => recordAnswer(true)}><span aria-hidden="true">✔</span></button>
               </>
             )}
           </footer>

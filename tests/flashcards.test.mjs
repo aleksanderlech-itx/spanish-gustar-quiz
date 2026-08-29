@@ -43,9 +43,9 @@ test("flashcard interface reveals answers before recording Leitner progress", as
   assert.match(source, /spanish-flashcards-leitner-v2/);
   assert.match(source, /REVIEW_INTERVAL_DAYS.*1: 0.*2: 1.*3: 3.*4: 7/s);
   assert.match(source, /Math\.min\(MAX_BOX, \(previous\?\.box \?\? 1\) \+ 1\)/);
-  // Icon-only OK / Not OK buttons, each with an accessible label, per UX-CONTRACT.md.
-  assert.match(source, /aria-label="Not OK".*<span aria-hidden="true">✕<\/span>/);
-  assert.match(source, /aria-label="OK".*<span aria-hidden="true">✓<\/span>/);
+  // Icon-only OK / Not OK buttons (bold red cross / green check), each with an accessible label, per UX-CONTRACT.md.
+  assert.match(source, /aria-label="Not OK".*<span aria-hidden="true">✖<\/span>/);
+  assert.match(source, /aria-label="OK".*<span aria-hidden="true">✔<\/span>/);
 });
 
 test("flashcard reveal button and box dots stay accurate before assessment", async () => {

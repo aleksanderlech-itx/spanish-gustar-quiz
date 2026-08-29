@@ -77,7 +77,7 @@ This contract records the observable behavior shared by the grammar quizzes and 
 ## Interaction
 
 - A flashcard must reveal its English meaning and Spanish example before recall can be assessed.
-- Recall actions are icon-only OK / Not OK buttons, each with an accessible label. They remain disabled before reveal.
+- Recall actions are icon-only OK / Not OK buttons — a bold green checkmark and a bold red cross — each with an accessible label. They remain disabled before reveal.
 - All primary touch targets have a minimum height of 44px and a visible keyboard focus state.
 - The active exercise is the only strongly elevated surface. Supporting progress panels remain visually quieter.
 
