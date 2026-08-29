@@ -52,6 +52,22 @@ body.dark {
   box-sizing: border-box;
 }
 
+.site-footer {
+  padding: 16px 20px 24px;
+  text-align: center;
+}
+
+.site-footer a {
+  color: var(--muted);
+  font-size: 13px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.site-footer a:hover {
+  color: var(--primary);
+}
+
 html {
   background: var(--paper);
   overflow-x: hidden;
