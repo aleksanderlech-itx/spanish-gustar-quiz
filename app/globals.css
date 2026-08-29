@@ -397,7 +397,7 @@ summary:focus-visible {
   }
 
   .leitner-stats {
-    grid-template-columns: repeat(5, minmax(62px, 1fr));
+    grid-template-columns: repeat(4, minmax(62px, 1fr));
     overflow-x: auto;
     scrollbar-gutter: stable;
   }
