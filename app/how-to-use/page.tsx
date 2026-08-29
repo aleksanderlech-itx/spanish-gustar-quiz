@@ -107,17 +107,16 @@ export default function HowToUsePage() {
             <li>Read the Spanish verb and think of its English meaning.</li>
             <li>Select <UiLabel>Reveal</UiLabel>, or tap the card, to see the answer and example sentence.</li>
             <li>Use the speaker button if you want to hear the Spanish verb.</li>
-            <li>Select <UiLabel>Knew it</UiLabel> if you remembered the meaning.</li>
-            <li>Select <UiLabel>Again</UiLabel> if you need more practice.</li>
+            <li>Select the green <UiLabel>OK</UiLabel> checkmark if you remembered the meaning.</li>
+            <li>Select the red <UiLabel>Not OK</UiLabel> cross if you need more practice.</li>
           </ol>
           <div className={styles.boxGrid} aria-label="Leitner review intervals">
             <div><strong>Box 1</strong><span>Every session</span></div>
             <div><strong>Box 2</strong><span>After 1 day</span></div>
             <div><strong>Box 3</strong><span>After 3 days</span></div>
             <div><strong>Box 4</strong><span>After 7 days</span></div>
-            <div><strong>Box 5</strong><span>After 14 days</span></div>
           </div>
-          <p>A correct recall moves the card forward by one box, up to Box 5. <UiLabel>Again</UiLabel> sends it back to Box 1. A card marked <UiLabel>due now</UiLabel> is ready for review.</p>
+          <p>A correct recall moves the card forward by one box, up to Box 4. <UiLabel>Not OK</UiLabel> sends it back to Box 1. A card marked <UiLabel>due now</UiLabel> is ready for review.</p>
         </div>
       </section>
 
