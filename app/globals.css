@@ -255,13 +255,13 @@ summary:focus-visible {
 
 .flashcard-again {
   border: 1px solid var(--danger);
-  color: var(--danger);
+  color: #d1273d;
   background: var(--danger-soft);
 }
 
 .flashcard-known {
   border: 1px solid color-mix(in srgb, var(--success) 64%, var(--line));
-  color: var(--ink);
+  color: #1a9c4a;
   background: var(--success-soft);
 }
 
@@ -305,7 +305,7 @@ summary:focus-visible {
 
 .leitner-stats {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 0;
   padding: 0;
   overflow: hidden;
@@ -332,8 +332,7 @@ summary:focus-visible {
 
 .leitner-stats div:nth-child(2) { --box-color: var(--accent); }
 .leitner-stats div:nth-child(3) { --box-color: var(--primary); }
-.leitner-stats div:nth-child(4) { --box-color: color-mix(in srgb, var(--primary) 48%, var(--success)); }
-.leitner-stats div:nth-child(5) { --box-color: var(--success); }
+.leitner-stats div:nth-child(4) { --box-color: var(--success); }
 
 .leitner-stats strong,
 .leitner-stats span {

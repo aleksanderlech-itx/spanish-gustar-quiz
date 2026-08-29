@@ -69,15 +69,15 @@ This contract records the observable behavior shared by the grammar quizzes and 
   again for a user who answered within the last 7 days (`app/enjoyment.ts`). The Ko-fi panel shows
   only after a positive answer; a negative answer leads to a feedback confirmation with no network
   call (feedback submission is a later phase).
-- Flashcards use five Leitner boxes. Correct recall advances one box, up to Box 5; incorrect recall returns the card to Box 1.
-- Box intervals are immediate, 1 day, 3 days, 7 days, and 14 days. A session contains due cards first, then unseen cards, up to 20 cards.
+- Flashcards use four Leitner boxes. Correct recall advances one box, up to Box 4; incorrect recall returns the card to Box 1.
+- Box intervals are immediate, 1 day, 3 days, and 7 days. A session contains due cards first, then unseen cards, up to 20 cards.
 - Existing binary flashcard progress migrates automatically: remembered cards enter Box 2 and cards still being learned enter Box 1.
 - Returning to the library never deletes or resets progress.
 
 ## Interaction
 
 - A flashcard must reveal its English meaning and Spanish example before recall can be assessed.
-- Recall actions use a symbol and a visible text label. They remain disabled before reveal.
+- Recall actions are icon-only OK / Not OK buttons — a bold green checkmark and a bold red cross — each with an accessible label. They remain disabled before reveal.
 - All primary touch targets have a minimum height of 44px and a visible keyboard focus state.
 - The active exercise is the only strongly elevated surface. Supporting progress panels remain visually quieter.
 

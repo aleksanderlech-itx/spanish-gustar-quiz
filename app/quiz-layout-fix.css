@@ -2114,9 +2114,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 26px;
+  font-weight: 900;
+  -webkit-text-stroke: 1px currentColor;
 }
 
 /* Verb conjugation chart — see design handoff README "Verb conjugation chart". */
