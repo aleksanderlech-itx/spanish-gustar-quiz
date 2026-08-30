@@ -4,7 +4,7 @@ import Logo from "../logo";
 import styles from "./how-to-use.module.css";
 
 export const metadata: Metadata = {
-  title: "How to use",
+  title: "How to Use",
   description: "How to use Spanish Quizzes, grammar rounds, flashcards, progress, backups, and the mistake notebook.",
   alternates: {
     canonical: "/how-to-use",

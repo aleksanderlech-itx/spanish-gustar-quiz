@@ -4,7 +4,7 @@ import Logo from "../logo";
 import { SITE_CONFIG } from "../site-config";
 import styles from "../prose-page.module.css";
 
-const TITLE = "About Spanish Quizzes";
+const TITLE = "About";
 const DESCRIPTION =
   "What Spanish Quizzes is, who it is for, and how your progress is stored. A small practice app for gustar, ser vs estar and preterite vs imperfect.";
 
