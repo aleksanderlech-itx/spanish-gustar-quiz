@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { type Question } from "./quiz-data";
 import { availableQuestions, filterQuestions, getMissedIds, normalizeAnswer, scoreRound, type QuizResult } from "./quiz-logic";
-import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
+import { QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config";
 import { recordActivityToday } from "./streak";
 import { readTopicSettings, type AnswerMode } from "./topic-settings";
 import { readQuizFilters } from "./quiz-filters";
@@ -170,7 +170,7 @@ export default function Round({ quizId }: { quizId: QuizId }) {
           <p>Your results are saved. Practise the ones you missed, or head back to the board.</p>
           <div>
             {missedIds.length > 0 && <button type="button" className="primary" onClick={() => startRound(true, history)}>Practise the misses</button>}
-            <Link className="secondary" href={`/?quiz=${quizId}`}>Back to topic</Link>
+            <Link className="secondary" href={quizPath(quizId)}>Back to topic</Link>
           </div>
         </section>
       </main>
@@ -288,7 +288,7 @@ export default function Round({ quizId }: { quizId: QuizId }) {
   return (
     <main className="round-shell">
       <header className="round-header">
-        <Link className="round-back" href={`/?quiz=${quizId}`} aria-label="Back to topic"><span aria-hidden="true">←</span></Link>
+        <Link className="round-back" href={quizPath(quizId)} aria-label="Back to topic"><span aria-hidden="true">←</span></Link>
         <div className="round-steps" role="progressbar" aria-valuemin={1} aria-valuemax={round.length} aria-valuenow={index + 1} aria-label={`Question ${index + 1} of ${round.length}`}>
           {round.map((q, i) => (
             <span key={q.id} className={`round-step ${i < index ? "round-step-past" : ""} ${i === index ? "round-step-current" : ""}`} />
@@ -330,7 +330,7 @@ export default function Round({ quizId }: { quizId: QuizId }) {
           <>
             {!isSubmitted && (
               // Opens in a new tab so the in-progress round (not yet saved to history) isn't lost mid-navigation.
-              <a className="round-stuck" href={`/?quiz=${quizId}&chart=1&verb=${encodeURIComponent(question.infinitive)}`} target="_blank" rel="noreferrer">
+              <a className="round-stuck" href={`${quizPath(quizId)}?chart=1&verb=${encodeURIComponent(question.infinitive)}`} target="_blank" rel="noreferrer">
                 Stuck? Open the conjugation chart
               </a>
             )}

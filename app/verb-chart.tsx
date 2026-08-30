@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
+import { QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config";
 import { PRETERITE_IMPERFECT_CONJUGATIONS, PRETERITE_IMPERFECT_REGULARITY } from "./preterite-imperfect-data";
 import { speak, speakQueue } from "./speak";
 
@@ -57,7 +57,7 @@ export default function VerbChart({ quizId, infinitive }: { quizId: QuizId; infi
   return (
     <main className="app-shell verb-chart">
       <header className="verb-chart-header">
-        <Link className="round-back" href={`/?quiz=${quizId}`} aria-label="Back to topic"><span aria-hidden="true">←</span></Link>
+        <Link className="round-back" href={quizPath(quizId)} aria-label="Back to topic"><span aria-hidden="true">←</span></Link>
         <h1>{infinitives.length === 1 ? infinitives[0] : quiz.title.replace(" Quiz", "")}</h1>
         {infinitives.length === 1 && regularityFor(quizId, infinitives[0]) && (
           <span className="verb-chart-regularity-badge">{regularityFor(quizId, infinitives[0])}</span>

@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
-import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
+import { QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config";
 import { useTheme } from "./use-theme";
 import { orderBoard, type BoardTileProgress } from "./board";
 import { readStreakSummary, recordActivityToday, dayKey, ACTIVITY_IDS, type StreakSummary } from "./streak";
@@ -72,8 +72,8 @@ const EMPTY_STREAK: StreakSummary = {
   ],
 };
 
-/** Grammar quizzes route to the topic detail screen; the round itself is `&play=1` from there. */
-const detailPath = (quizId: QuizId) => `/?quiz=${quizId}`;
+/** Grammar quizzes route to each topic's own URL; the round itself is `?play=1` from there. */
+const detailPath = (quizId: QuizId) => quizPath(quizId);
 
 const FLASHCARD_TOTAL = 500;
 

@@ -6,6 +6,16 @@ import type { Question } from "./quiz-data";
 
 export type QuizId = "gustar" | "ser-estar" | "preterite-imperfect";
 
+/** Each quiz's own crawlable URL, so every topic canonicalizes to itself instead of
+ * every `?quiz=` variant resolving to the same root page. */
+export const QUIZ_SLUGS: Record<QuizId, string> = {
+  gustar: "gustar",
+  "ser-estar": "ser-vs-estar",
+  "preterite-imperfect": "preterite-vs-imperfect",
+};
+
+export const quizPath = (quizId: QuizId): string => `/${QUIZ_SLUGS[quizId]}`;
+
 export const QUIZ_CONFIG = {
   gustar: {
     title: "Spanish Gustar Quiz",

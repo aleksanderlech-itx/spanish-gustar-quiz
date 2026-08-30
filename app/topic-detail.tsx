@@ -7,6 +7,7 @@ import { emptyQuizProgress, readQuizProgress, type QuizProgress } from "./quiz-p
 import { readTopicSettings, writeTopicSettings, type AnswerMode, type RoundLength } from "./topic-settings";
 import { filterQuestions, type QuizFilters } from "./quiz-logic";
 import { readQuizFilters, writeQuizFilters } from "./quiz-filters";
+import { quizPath } from "./quiz-config";
 
 const ROUND_LENGTHS: RoundLength[] = [5, 10, 20];
 const LEVELS: Array<QuizFilters["level"]> = ["all", "basic", "intermediate", "advanced"];
@@ -116,7 +117,7 @@ export default function TopicDetail({ quizId }: { quizId: QuizId }) {
         <p className="topic-setting-hint">{filteredCount} sentence{filteredCount === 1 ? "" : "s"} selected</p>
       </section>
 
-      <Link className="topic-chart-link" href={`/?quiz=${quizId}&chart=1`}>
+      <Link className="topic-chart-link" href={`${quizPath(quizId)}?chart=1`}>
         <span className="board-icon" aria-hidden="true">▦</span>
         <span className="topic-chart-link-label">Verb conjugation chart</span>
         <span aria-hidden="true">→</span>
@@ -124,7 +125,7 @@ export default function TopicDetail({ quizId }: { quizId: QuizId }) {
 
       <footer className="topic-detail-footer">
         {filteredCount > 0 ? (
-          <a className="primary topic-start" href={`/?quiz=${quizId}&play=1`}>Start round of {roundLength}</a>
+          <a className="primary topic-start" href={`${quizPath(quizId)}?play=1`}>Start round of {roundLength}</a>
         ) : (
           <span className="primary topic-start topic-start-disabled" aria-disabled="true">No sentences match these filters</span>
         )}
