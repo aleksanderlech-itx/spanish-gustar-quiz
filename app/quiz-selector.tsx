@@ -232,6 +232,7 @@ export default function QuizSelector() {
           <button type="button" className="board-nav-link" onClick={() => setDrawerOpen(true)}><span className="board-nav-dot" aria-hidden="true" />Progress &amp; history</button>
           <button type="button" className="board-nav-link" onClick={() => setDrawerOpen(true)}><span className="board-nav-dot" aria-hidden="true" />Mistake notebook</button>
           <a href="/how-to-use" className="board-nav-link"><span className="board-nav-dot" aria-hidden="true" />How to use</a>
+          <a href="/notes" className="board-nav-link"><span className="board-nav-dot" aria-hidden="true" />Notes</a>
         </nav>
 
         <section className="streak-panel" aria-label={`${streak.streak} day streak`}>

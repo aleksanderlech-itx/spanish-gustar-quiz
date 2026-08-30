@@ -310,6 +310,11 @@ export default function Drawer({ open, onClose, returnFocusRef }: { open: boolea
             <span>How to use</span>
             <span aria-hidden="true">→</span>
           </a>
+
+          <a className="drawer-row drawer-help-link" href="/notes" onClick={onClose}>
+            <span>Notes</span>
+            <span aria-hidden="true">→</span>
+          </a>
         </div>
 
         <a className="drawer-kofi" href={SITE_CONFIG.kofiUrl} target="_blank" rel="noreferrer">

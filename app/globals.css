@@ -68,6 +68,11 @@ body.dark {
   color: var(--primary);
 }
 
+.site-footer span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
 html {
   background: var(--paper);
   overflow-x: hidden;

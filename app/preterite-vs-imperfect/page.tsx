@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SITE_CONFIG } from "../site-config";
+import { QUIZ_CONTENT } from "../quiz-content";
 import QuizPage from "../quiz-page";
 
 const TITLE = "Preterite vs Imperfect Quiz — Practice Online";
@@ -36,10 +37,21 @@ const jsonLd = {
   about: { "@type": "Thing", name: "Spanish preterite and imperfect tenses" },
 };
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: QUIZ_CONTENT["preterite-imperfect"].faq.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: { "@type": "Answer", text: item.answer },
+  })),
+};
+
 export default function PreteriteImperfectQuizPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <QuizPage quizId="preterite-imperfect" />
     </>
   );

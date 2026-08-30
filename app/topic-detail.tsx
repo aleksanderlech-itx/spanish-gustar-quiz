@@ -8,6 +8,7 @@ import { readTopicSettings, writeTopicSettings, type AnswerMode, type RoundLengt
 import { filterQuestions, type QuizFilters } from "./quiz-logic";
 import { readQuizFilters, writeQuizFilters } from "./quiz-filters";
 import { quizPath } from "./quiz-config";
+import TopicExplainer from "./topic-explainer";
 
 const ROUND_LENGTHS: RoundLength[] = [5, 10, 20];
 const LEVELS: Array<QuizFilters["level"]> = ["all", "basic", "intermediate", "advanced"];
@@ -130,6 +131,8 @@ export default function TopicDetail({ quizId }: { quizId: QuizId }) {
           <span className="primary topic-start topic-start-disabled" aria-disabled="true">No sentences match these filters</span>
         )}
       </footer>
+
+      <TopicExplainer quizId={quizId} />
     </main>
   );
 }
