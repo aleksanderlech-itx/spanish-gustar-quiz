@@ -281,7 +281,7 @@ export default function QuizSelector() {
           <div>
             <p className="eyebrow">Today&apos;s board</p>
             <h2 className="board-page-title">Pick up where you left off</h2>
-            <p className="board-page-sub">Your current quiz leads as one wide row; the rest of the board sits underneath, sized by what&apos;s actually due.</p>
+            <p className="board-page-sub">Your current quiz stays at the top. Everything else below is sorted by what still needs practice.</p>
           </div>
           <div className="board-total"><strong>{totalLogged}</strong><span>cards &amp; questions logged</span></div>
         </div>
