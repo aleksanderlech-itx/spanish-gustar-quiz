@@ -4,7 +4,7 @@ import { isProductionHost } from "./app/is-production-host";
 import { SITE_CONFIG } from "./app/site-config";
 import { QUIZ_SLUGS } from "./app/quiz-config";
 
-const SITEMAP_PATHS = ["/", "/how-to-use", ...Object.values(QUIZ_SLUGS).map((slug) => `/${slug}`)];
+const SITEMAP_PATHS = ["/", "/how-to-use", "/flashcards", ...Object.values(QUIZ_SLUGS).map((slug) => `/${slug}`)];
 
 export function proxy(request: NextRequest) {
   const host = request.headers.get("host") ?? "";

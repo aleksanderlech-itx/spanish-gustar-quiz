@@ -139,7 +139,7 @@ export default function QuizSelector() {
   const hamburgerRef = useRef<HTMLButtonElement | null>(null);
   const [items, setItems] = useState<BoardItem[]>(() => [
     ...QUIZ_IDS.map((id) => ({ id: id as LibraryQuizId, kind: "quiz" as const, title: QUIZ_CONFIG[id].title.replace(" Quiz", ""), noun: "question", href: detailPath(id), daily: EMPTY_DAILY, ...emptyQuizProgress(QUIZ_CONFIG[id].questions.length) })),
-    { id: "flashcards" as LibraryQuizId, kind: "deck" as const, title: "Spanish Verb Flashcards", noun: "card", href: "/?quiz=flashcards&play=1", daily: EMPTY_DAILY, ...emptyQuizProgress(FLASHCARD_TOTAL) },
+    { id: "flashcards" as LibraryQuizId, kind: "deck" as const, title: "Spanish Verb Flashcards", noun: "card", href: "/flashcards", daily: EMPTY_DAILY, ...emptyQuizProgress(FLASHCARD_TOTAL) },
   ]);
   const [streak, setStreak] = useState<StreakSummary>(EMPTY_STREAK);
 
@@ -163,7 +163,7 @@ export default function QuizSelector() {
         kind: "deck" as const,
         title: "Spanish Verb Flashcards",
         noun: "card",
-        href: "/?quiz=flashcards&play=1",
+        href: "/flashcards",
         daily: flashcards.daily,
         ...flashcards.progress,
       },
