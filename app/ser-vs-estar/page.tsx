@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "LearningResource",
+  "@type": ["Quiz", "LearningResource"],
   name: "Ser vs Estar Quiz",
   description: DESCRIPTION,
   url: `${SITE_CONFIG.url}/ser-vs-estar`,
