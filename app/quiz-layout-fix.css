@@ -24,6 +24,22 @@
   --key: #FCFAF6;
   --hard-shadow: 4px 4px 0 var(--shadow-col);
 
+  /* Per-activity palette — see issue #14 "Main page" for the source values.
+     Each activity gets a leading color, a light tint for the tile background,
+     and a dark shade for its border/hover state. */
+  --activity-gustar: #E85D4C;
+  --activity-gustar-light: #FDEDEA;
+  --activity-gustar-dark: #B8402F;
+  --activity-ser-estar: #3B6FD6;
+  --activity-ser-estar-light: #EAF1FC;
+  --activity-ser-estar-dark: #26468F;
+  --activity-preterite-imperfect: #7A5AB8;
+  --activity-preterite-imperfect-light: #F1ECFA;
+  --activity-preterite-imperfect-dark: #523A80;
+  --activity-flashcards: #2E9E6B;
+  --activity-flashcards-light: #EAF8F1;
+  --activity-flashcards-dark: #1F7A52;
+
   /* Aliases kept for existing rules that predate the token pass above. */
   --quiz-surface: var(--surface);
   --primary-dark: var(--primary);
@@ -782,6 +798,37 @@ body {
   background: var(--panel-soft);
   box-shadow: none;
 }
+
+/* Per-activity tile colors — each activity's leading color tints its icon and
+   border, its light shade fills the tile, and its dark shade takes over on
+   hover/focus so every tile reads as its own activity at a glance. */
+.board-tile-pinned.activity-gustar,
+.board-tile-due.activity-gustar,
+.board-tile-quiet.activity-gustar { background: var(--activity-gustar-light); border-color: var(--activity-gustar); }
+.board-tile-pinned.activity-ser-estar,
+.board-tile-due.activity-ser-estar,
+.board-tile-quiet.activity-ser-estar { background: var(--activity-ser-estar-light); border-color: var(--activity-ser-estar); }
+.board-tile-pinned.activity-preterite-imperfect,
+.board-tile-due.activity-preterite-imperfect,
+.board-tile-quiet.activity-preterite-imperfect { background: var(--activity-preterite-imperfect-light); border-color: var(--activity-preterite-imperfect); }
+.board-tile-pinned.activity-flashcards,
+.board-tile-due.activity-flashcards,
+.board-tile-quiet.activity-flashcards { background: var(--activity-flashcards-light); border-color: var(--activity-flashcards); }
+
+.board-tile.activity-gustar:hover { border-color: var(--activity-gustar-dark); }
+.board-tile.activity-ser-estar:hover { border-color: var(--activity-ser-estar-dark); }
+.board-tile.activity-preterite-imperfect:hover { border-color: var(--activity-preterite-imperfect-dark); }
+.board-tile.activity-flashcards:hover { border-color: var(--activity-flashcards-dark); }
+
+.board-tile.activity-gustar .board-icon { background: var(--activity-gustar-light); border-color: var(--activity-gustar); color: var(--activity-gustar-dark); }
+.board-tile.activity-ser-estar .board-icon { background: var(--activity-ser-estar-light); border-color: var(--activity-ser-estar); color: var(--activity-ser-estar-dark); }
+.board-tile.activity-preterite-imperfect .board-icon { background: var(--activity-preterite-imperfect-light); border-color: var(--activity-preterite-imperfect); color: var(--activity-preterite-imperfect-dark); }
+.board-tile.activity-flashcards .board-icon { background: var(--activity-flashcards-light); border-color: var(--activity-flashcards); color: var(--activity-flashcards-dark); }
+
+.board-tile.activity-gustar .board-icon .card-front { fill: var(--activity-gustar-light); }
+.board-tile.activity-ser-estar .board-icon .card-front { fill: var(--activity-ser-estar-light); }
+.board-tile.activity-preterite-imperfect .board-icon .card-front { fill: var(--activity-preterite-imperfect-light); }
+.board-tile.activity-flashcards .board-icon .card-front { fill: var(--activity-flashcards-light); }
 
 .board-tile-top {
   display: flex;

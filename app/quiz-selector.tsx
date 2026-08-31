@@ -287,7 +287,7 @@ export default function QuizSelector() {
         </div>
 
         {pinnedItem && (
-          <a className="board-tile board-tile-pinned" href={pinnedItem.href}>
+          <a className={`board-tile board-tile-pinned activity-${pinnedItem.id}`} href={pinnedItem.href}>
             <span className="board-tile-top-pills">
               <span className="board-tile-pill board-tile-pill-progress">In progress</span>
               {pinnedItem.daily.done ? (
@@ -330,7 +330,7 @@ export default function QuizSelector() {
 
           if (item.due > 0) {
             return (
-              <a className="board-tile board-tile-due" href={item.href} key={item.id}>
+              <a className={`board-tile board-tile-due activity-${item.id}`} href={item.href} key={item.id}>
                 <div className="board-tile-top">
                   <span className="board-icon"><BoardIcon kind={item.kind} /></span>
                   <span className="board-tile-top-pills">
@@ -348,7 +348,7 @@ export default function QuizSelector() {
           }
 
           return (
-            <a className="board-tile board-tile-quiet" href={item.href} key={item.id}>
+            <a className={`board-tile board-tile-quiet activity-${item.id}`} href={item.href} key={item.id}>
               <div className="board-tile-top">
                 <span className="board-icon board-icon-quiet"><BoardIcon kind={item.kind} /></span>
                 <span className="board-tile-top-pills">
