@@ -10,6 +10,7 @@ import { readTopicSettings, type AnswerMode } from "./topic-settings";
 import { readQuizFilters } from "./quiz-filters";
 import { recordMistakes, ruleLabelFor } from "./notebook";
 import Results from "./results";
+import VerbChart from "./verb-chart";
 
 type Result = QuizResult;
 
@@ -71,6 +72,7 @@ export default function Round({ quizId }: { quizId: QuizId }) {
   const [finished, setFinished] = useState(false);
   const [lastResult, setLastResult] = useState<Result | null>(null);
   const [missedRules, setMissedRules] = useState<string[]>([]);
+  const [showChart, setShowChart] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const missedIds = useMemo(() => getMissedIds(history), [history]);
@@ -329,10 +331,10 @@ export default function Round({ quizId }: { quizId: QuizId }) {
         }) : (
           <>
             {!isSubmitted && (
-              // Opens in a new tab so the in-progress round (not yet saved to history) isn't lost mid-navigation.
-              <a className="round-stuck" href={`${quizPath(quizId)}?chart=1&verb=${encodeURIComponent(question.infinitive)}`} target="_blank" rel="noreferrer">
+              // Shown as an in-place overlay, not a navigation, so the in-progress round (not yet saved to history) is never lost.
+              <button type="button" className="round-stuck" onClick={() => setShowChart(true)}>
                 Stuck? Open the conjugation chart
-              </a>
+              </button>
             )}
             <input
               ref={inputRef}
@@ -381,6 +383,12 @@ export default function Round({ quizId }: { quizId: QuizId }) {
           {primaryLabel}
         </button>
       </footer>
+
+      {showChart && (
+        <div className="round-chart-overlay" role="dialog" aria-modal="true" aria-label="Verb conjugation chart">
+          <VerbChart quizId={quizId} infinitive={question.infinitive} onClose={() => setShowChart(false)} />
+        </div>
+      )}
     </main>
   );
 }
