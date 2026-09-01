@@ -13,9 +13,6 @@
     "enabled": true
   },
   "env": {
-    "staging": {
-      "name": "spanish-gustar-quiz-staging"
-    },
     "production": {
       "name": "spanish-gustar-quiz"
     }
