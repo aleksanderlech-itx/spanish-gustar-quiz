@@ -1672,12 +1672,16 @@ body {
 .round-stuck {
   display: flex;
   align-items: center;
+  width: 100%;
   min-height: 48px;
   padding: 0 4px;
   border: 2px dashed var(--line);
   border-radius: 10px;
+  background: none;
   color: var(--muted);
+  font-family: inherit;
   font-size: 13px;
+  text-align: left;
   text-decoration: none;
 }
 
@@ -2242,6 +2246,14 @@ body {
 
 .verb-chart-speaker {
   opacity: .25;
+}
+
+.round-chart-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  overflow-y: auto;
+  background: var(--paper);
 }
 
 /* Drawer — see design handoff README "Drawer". */
