@@ -33,7 +33,7 @@ const blocksFor = (quizId: QuizId, infinitive: string, forms: Record<string, [st
 const regularityFor = (quizId: QuizId, infinitive: string) =>
   quizId === "preterite-imperfect" ? PRETERITE_IMPERFECT_REGULARITY[infinitive] : undefined;
 
-export default function VerbChart({ quizId, infinitive }: { quizId: QuizId; infinitive?: string }) {
+export default function VerbChart({ quizId, infinitive, onClose }: { quizId: QuizId; infinitive?: string; onClose?: () => void }) {
   const quiz = QUIZ_CONFIG[quizId];
   const infinitives = infinitive && quiz.forms[infinitive] ? [infinitive] : Object.keys(quiz.forms);
   const [speakingKey, setSpeakingKey] = useState<string | null>(null);
@@ -57,7 +57,11 @@ export default function VerbChart({ quizId, infinitive }: { quizId: QuizId; infi
   return (
     <main className="app-shell verb-chart">
       <header className="verb-chart-header">
-        <Link className="round-back" href={quizPath(quizId)} aria-label="Back to topic"><span aria-hidden="true">←</span></Link>
+        {onClose ? (
+          <button type="button" className="round-back" aria-label="Close conjugation chart" onClick={onClose}><span aria-hidden="true">←</span></button>
+        ) : (
+          <Link className="round-back" href={quizPath(quizId)} aria-label="Back to topic"><span aria-hidden="true">←</span></Link>
+        )}
         <h1>{infinitives.length === 1 ? infinitives[0] : quiz.title.replace(" Quiz", "")}</h1>
         {infinitives.length === 1 && regularityFor(quizId, infinitives[0]) && (
           <span className="verb-chart-regularity-badge">{regularityFor(quizId, infinitives[0])}</span>

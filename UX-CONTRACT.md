@@ -24,10 +24,12 @@ This contract records the observable behavior shared by the grammar quizzes and 
   lang="es"`) with an accent row (`á é í ó ú ñ`) that inserts at the input's caret position, not the
   end. Checking is a no-op on empty/whitespace input. Answer comparison always goes through
   `normalizeAnswer`, in both modes. Type mode's "Stuck? Open the conjugation chart" opens
-  `app/verb-chart.tsx` in a new tab (scoped to the current question's verb), rather than navigating
-  away and losing the in-progress round, which is not yet saved to history. The in-round quiz
-  switcher is not present — switching quizzes now happens from the board (confirmed intentional,
-  matches the design's nav graph).
+  `app/verb-chart.tsx` (scoped to the current question's verb) as an in-place overlay on top of the
+  round rather than navigating away, so the in-progress round (not yet saved to history) is never
+  lost; closing the chart returns to the exact same question. Outside a round (topic detail's "Verb
+  conjugation chart" link, or a direct `?chart=1` URL), the chart still opens as its own page with a
+  "Back to topic" link. The in-round quiz switcher is not present — switching quizzes now happens
+  from the board (confirmed intentional, matches the design's nav graph).
 - The round screen's height uses `100dvh` (falling back to `100vh` on browsers that don't support
   it — declared in that order so `dvh` actually wins where supported) with a `visualViewport`
   fallback in Type mode: a measured `--keyboard-inset` lifts the footer above the on-screen
