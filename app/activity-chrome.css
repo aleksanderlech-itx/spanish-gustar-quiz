@@ -22,86 +22,11 @@
   top: 12px;
 }
 
-.activity-masthead {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  border-bottom: 2px solid var(--ink);
-  background: var(--surface);
-}
-
-.activity-masthead-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-  max-width: 1160px;
-  margin: 0 auto;
-  padding: 12px 20px;
-}
-
-.activity-masthead-compact .activity-masthead-inner {
-  padding: 8px 20px;
-}
-
-.activity-masthead-compact .activity-masthead-name {
-  font-size: 15px;
-}
-
-.activity-masthead-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 44px;
-  color: var(--ink);
+/* The shared board-style header (SiteHeader) is styled by .board-header /
+   .board-title / .mode-switch in quiz-layout-fix.css — only its Link-specific
+   override lives here. */
+.site-header-title {
   text-decoration: none;
-}
-
-.activity-masthead-brand:hover {
-  color: var(--clay);
-}
-
-.activity-masthead-brand-text {
-  display: flex;
-  flex-direction: column;
-}
-
-.activity-masthead-name {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 1.05;
-  color: inherit;
-}
-
-.activity-masthead-sub {
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.activity-masthead-nav {
-  display: flex;
-  gap: 14px;
-}
-
-.activity-masthead-nav a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  color: var(--primary);
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.activity-masthead-nav a:hover {
-  color: var(--clay);
 }
 
 .activity-breadcrumb {
@@ -263,17 +188,10 @@
   color: var(--ink);
 }
 
-.activity-masthead a:focus-visible,
 .activity-breadcrumb a:focus-visible,
 .activity-footer a:focus-visible {
   outline: 3px solid var(--sun);
   outline-offset: 2px;
-}
-
-@media (max-width: 440px) {
-  .activity-masthead-sub {
-    display: none;
-  }
 }
 
 @media (max-width: 360px) {

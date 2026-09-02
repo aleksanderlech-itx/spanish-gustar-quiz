@@ -11,7 +11,8 @@ import { readQuizFilters } from "./quiz-filters";
 import { recordMistakes, ruleLabelFor } from "./notebook";
 import Results from "./results";
 import VerbChart from "./verb-chart";
-import { ActivityMasthead, SkipLink } from "./activity-chrome";
+import { SkipLink } from "./activity-chrome";
+import SiteHeader from "./site-header";
 
 type Result = QuizResult;
 
@@ -166,10 +167,9 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
 
   if (poolExhausted) {
     return (
-      <>
-        {standalone && <ActivityMasthead />}
-        <main className="app-shell">
-          <section className="completion-card" aria-live="polite">
+      <main className="app-shell">
+        {standalone && <SiteHeader />}
+        <section className="completion-card" aria-live="polite">
             <p className="eyebrow">Set completed</p>
             <h2>You&apos;ve completed every {quiz.title.replace(" Quiz", "")} sentence.</h2>
             <p>Your results are saved. Practise the ones you missed, or head back to the board.</p>
@@ -177,9 +177,8 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
               {missedIds.length > 0 && <button type="button" className="primary" onClick={() => startRound(true, history)}>Practise the misses</button>}
               <Link className="secondary" href={quizPath(quizId)}>Back to topic</Link>
             </div>
-          </section>
-        </main>
-      </>
+        </section>
+      </main>
     );
   }
 
@@ -296,7 +295,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
     <>
       {standalone && <SkipLink targetId="round-question" label="Skip to the question" />}
       <main id={standalone ? "round-question" : undefined} className="round-shell">
-      {standalone && <ActivityMasthead compact />}
+      {standalone && <SiteHeader />}
       <header className="round-header">
         <Link className="round-back" href={quizPath(quizId)} aria-label="Back to topic"><span aria-hidden="true">←</span></Link>
         <div className="round-steps" role="progressbar" aria-valuemin={1} aria-valuemax={round.length} aria-valuenow={index + 1} aria-label={`Question ${index + 1} of ${round.length}`}>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Logo from "../../logo";
+import SiteHeader from "../../site-header";
 import { SITE_CONFIG } from "../../site-config";
 import styles from "../../prose-page.module.css";
 
@@ -30,16 +30,7 @@ export default function EncantarVsGustarPost() {
     <main className={styles.page}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <header className={styles.header}>
-        <Link className={styles.back} href="/notes" aria-label="Back to notes">
-          <span aria-hidden="true">←</span>
-          <span>Back to notes</span>
-        </Link>
-        <div className={styles.brand}>
-          <Logo size={26} />
-          <span>Spanish Quizzes</span>
-        </div>
-      </header>
+      <SiteHeader />
 
       <section className={styles.intro}>
         <p className={styles.eyebrow}>Notes</p>

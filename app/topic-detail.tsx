@@ -9,7 +9,8 @@ import { filterQuestions, type QuizFilters } from "./quiz-logic";
 import { readQuizFilters, writeQuizFilters } from "./quiz-filters";
 import { quizPath } from "./quiz-config";
 import TopicExplainer from "./topic-explainer";
-import { ActivityBreadcrumb, ActivityChips, ActivityFooter, ActivityMasthead, SkipLink } from "./activity-chrome";
+import { ActivityBreadcrumb, ActivityChips, ActivityFooter, SkipLink } from "./activity-chrome";
+import SiteHeader from "./site-header";
 import { SITE_CONFIG } from "./site-config";
 
 const ROUND_LENGTHS: RoundLength[] = [5, 10, 20];
@@ -51,18 +52,16 @@ export default function TopicDetail({ quizId, standalone = false }: { quizId: Qu
   const filteredCount = filterQuestions(quiz.questions, filters).length;
   const roundLength = Math.min(settings.roundLength, filteredCount);
 
-  const chrome = standalone && (
-    <>
-      <SkipLink targetId="quiz-setup" label={`Skip to the ${quiz.eyebrow} quiz`} />
-      <ActivityMasthead />
-      <ActivityBreadcrumb trail={[{ label: "Home", href: "/" }, { label: quiz.eyebrow }]} />
-    </>
-  );
-
   return (
     <>
-      {chrome}
+      {standalone && <SkipLink targetId="quiz-setup" label={`Skip to the ${quiz.eyebrow} quiz`} />}
       <main id={standalone ? "quiz-setup" : undefined} className="app-shell topic-detail">
+      {standalone && (
+        <>
+          <SiteHeader />
+          <ActivityBreadcrumb trail={[{ label: "Home", href: "/" }, { label: quiz.eyebrow }]} />
+        </>
+      )}
       <header className="topic-detail-header">
         <Link className="topic-back" href="/" aria-label="Back to board">
           <span aria-hidden="true">←</span>

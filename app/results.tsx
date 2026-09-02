@@ -6,7 +6,7 @@ import type { QuizResult } from "./quiz-logic";
 import { readStreakSummary } from "./streak";
 import { shouldShowEnjoymentGate, markEnjoymentGateShown, markEnjoymentAnswered } from "./enjoyment";
 import { SITE_CONFIG } from "./site-config";
-import { ActivityMasthead } from "./activity-chrome";
+import SiteHeader from "./site-header";
 
 type EnjoymentAnswer = "yes" | "no" | "sent" | null;
 
@@ -61,9 +61,8 @@ export default function Results({
   };
 
   return (
-    <>
-      {standalone && <ActivityMasthead />}
-      <main className="app-shell results-screen">
+    <main className="app-shell results-screen">
+      {standalone && <SiteHeader />}
       <p className="eyebrow-clay">Round complete</p>
       <h1 className="results-heading">{headline}</h1>
 
@@ -125,7 +124,6 @@ export default function Results({
           )}
         </section>
       )}
-      </main>
-    </>
+    </main>
   );
 }
