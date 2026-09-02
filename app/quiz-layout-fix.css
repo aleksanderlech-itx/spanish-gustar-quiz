@@ -1883,14 +1883,6 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 48px;
-  padding: 0 14px;
-  border: 2px solid var(--ink);
-  border-radius: 10px;
-  background: var(--surface);
-  box-shadow: 3px 3px 0 var(--ink);
-  color: var(--ink);
-  font-weight: 600;
-  text-decoration: none;
 }
 
 /* Flashcards restyle — see design handoff README "Flashcards". */
@@ -2405,30 +2397,13 @@ body {
 .drawer-kofi {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
   min-height: 52px;
   margin-top: auto;
-  padding: 0 14px;
+  padding: 8px 14px;
   border: 2px solid var(--clay);
   border-radius: 10px;
   background: var(--clay-soft);
-  color: var(--ink);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.drawer-kofi-badge {
-  display: inline-grid;
-  width: 30px;
-  height: 30px;
-  flex: none;
-  border-radius: 50%;
-  background: var(--surface);
-  place-items: center;
-}
-
-.drawer-kofi-label {
-  line-height: 1.2;
 }
 
 .drawer-theme-row {

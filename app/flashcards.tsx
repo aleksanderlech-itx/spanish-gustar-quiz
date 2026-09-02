@@ -9,6 +9,7 @@ import { ActivityChips, ActivityFooter, SkipLink } from "./activity-chrome";
 import SiteHeader from "./site-header";
 import { QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config";
 import { SITE_CONFIG } from "./site-config";
+import SupportPrompt from "./support-prompt";
 
 type LeitnerBox = 1 | 2 | 3 | 4;
 type CardRecord = { box: LeitnerBox; attempts: number; correct: number; updatedAt: string; nextReviewAt: string };
@@ -162,7 +163,10 @@ export default function Flashcards({ standalone = false }: { standalone?: boolea
       </header>
 
       {finished ? (
-        <section className="completion-card flashcard-complete"><p className="eyebrow">Session complete</p><h2>{totals.studied} of 500 verbs entered into the system</h2><p>{totals.due ? `${totals.due} due card${totals.due === 1 ? " is" : "s are"} ready for another session.` : "You are caught up. Return when the next box becomes due."}</p>{totals.due > 0 && <button type="button" className="primary" onClick={() => startRound(progress)}>Review due cards</button>}</section>
+        <>
+          <section className="completion-card flashcard-complete"><p className="eyebrow">Session complete</p><h2>{totals.studied} of 500 verbs entered into the system</h2><p>{totals.due ? `${totals.due} due card${totals.due === 1 ? " is" : "s are"} ready for another session.` : "You are caught up. Return when the next box becomes due."}</p>{totals.due > 0 && <button type="button" className="primary" onClick={() => startRound(progress)}>Review due cards</button>}</section>
+          <SupportPrompt />
+        </>
       ) : (
         <section className="flashcard-stage" aria-live="polite">
           <div

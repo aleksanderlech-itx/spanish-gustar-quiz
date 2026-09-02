@@ -6,9 +6,9 @@ import { readStreakSummary } from "./streak";
 import { readNotebookEntries } from "./notebook";
 import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
 import type { QuizResult } from "./quiz-logic";
-import { SITE_CONFIG } from "./site-config";
 import { computeRecentRounds, computeWeakAreas, type RecentRound, type WeakArea } from "./history";
 import Logo from "./logo";
+import KofiButton from "./kofi-button";
 
 const QUIZ_IDS = Object.keys(QUIZ_CONFIG) as QuizId[];
 const FLASHCARD_KEY = "spanish-flashcards-leitner-v2";
@@ -317,10 +317,7 @@ export default function Drawer({ open, onClose, returnFocusRef }: { open: boolea
           </a>
         </div>
 
-        <a className="drawer-kofi" href={SITE_CONFIG.kofiUrl} target="_blank" rel="noreferrer">
-          <span className="drawer-kofi-badge" aria-hidden="true">☕</span>
-          <span className="drawer-kofi-label">Help build more quizzes</span>
-        </a>
+        <KofiButton className="drawer-kofi" />
 
         <button type="button" className="drawer-theme-row" onClick={toggleTheme}>
           <span>{theme === "dark" ? "Dark theme" : "Light theme"}</span>

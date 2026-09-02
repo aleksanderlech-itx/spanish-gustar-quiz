@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { QuizResult } from "./quiz-logic";
 import { readStreakSummary } from "./streak";
-import { shouldShowEnjoymentGate, markEnjoymentGateShown } from "./enjoyment";
-import { SITE_CONFIG } from "./site-config";
+import SupportPrompt from "./support-prompt";
 import SiteHeader from "./site-header";
 
 export default function Results({
@@ -23,13 +22,11 @@ export default function Results({
 }) {
   const total = result.questionIds.length;
   const [streakDays, setStreakDays] = useState(0);
-  const [showGate, setShowGate] = useState(false);
 
   useEffect(() => {
     // Browser storage is unavailable during the server render.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setStreakDays(readStreakSummary().streak);
-    setShowGate(shouldShowEnjoymentGate());
   }, []);
 
   const uniqueRules = [...new Set(missedRuleLabels)];
@@ -72,20 +69,7 @@ export default function Results({
         <Link className="secondary results-back" href="/">Back to board</Link>
       </div>
 
-      {showGate && (
-        <section className="results-support">
-          <p className="results-support-question">If you liked it, consider supporting this project.</p>
-          <a
-            className="results-kofi-link"
-            href={SITE_CONFIG.kofiUrl}
-            target="_blank"
-            rel="noreferrer"
-            onClick={markEnjoymentGateShown}
-          >
-            <span>☕ Support on Ko-fi</span>
-          </a>
-        </section>
-      )}
+      <SupportPrompt />
     </main>
   );
 }
