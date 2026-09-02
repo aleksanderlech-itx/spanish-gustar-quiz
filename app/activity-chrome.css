@@ -1,0 +1,275 @@
+/* Identity chrome for standalone activity pages (grammar quiz setup, flashcard
+   deck) — masthead, breadcrumb, footer, chips. See design handoff:
+   "Activity page identity elements". Suppressed once a round takes over the screen. */
+
+.activity-skip-link {
+  position: absolute;
+  top: -48px;
+  left: 12px;
+  z-index: 20;
+  padding: 10px 16px;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-decoration: none;
+  transition: top .15s ease;
+}
+
+.activity-skip-link:focus {
+  top: 12px;
+}
+
+.activity-masthead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 2px solid var(--ink);
+  background: var(--surface);
+}
+
+.activity-masthead-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 12px 20px;
+}
+
+.activity-masthead-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.activity-masthead-brand:hover {
+  color: var(--clay);
+}
+
+.activity-masthead-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-masthead-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.05;
+  color: inherit;
+}
+
+.activity-masthead-sub {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.activity-masthead-nav {
+  display: flex;
+  gap: 14px;
+}
+
+.activity-masthead-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--primary);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.activity-masthead-nav a:hover {
+  color: var(--clay);
+}
+
+.activity-breadcrumb {
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.activity-breadcrumb-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  list-style: none;
+}
+
+.activity-breadcrumb li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 12px;
+}
+
+.activity-breadcrumb a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.activity-breadcrumb a:hover {
+  color: var(--clay);
+}
+
+.activity-breadcrumb span[aria-current="page"] {
+  color: var(--ink);
+}
+
+.activity-breadcrumb-sep {
+  color: var(--muted);
+}
+
+.flashcard-title-block {
+  margin-bottom: 14px;
+}
+
+.activity-page-title {
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+
+.activity-lede {
+  margin: 0 0 14px;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.activity-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 4px;
+}
+
+.activity-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.activity-chip-primary {
+  background: var(--primary-soft);
+}
+
+.activity-chip-neutral {
+  background: var(--surface);
+}
+
+.activity-chip-sage {
+  background: var(--sage-soft);
+}
+
+.activity-footer {
+  margin-top: 32px;
+  border-top: 2px solid var(--ink);
+  background: var(--surface);
+}
+
+.activity-footer-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.activity-footer-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.activity-footer-heading {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.activity-footer-column ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.activity-footer-column a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--primary);
+  font-family: var(--font-body);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.activity-footer-column a:hover {
+  color: var(--clay);
+}
+
+.activity-footer-bottom {
+  margin: 12px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.activity-footer-bottom strong {
+  color: var(--ink);
+}
+
+.activity-masthead a:focus-visible,
+.activity-breadcrumb a:focus-visible,
+.activity-footer a:focus-visible {
+  outline: 3px solid var(--sun);
+  outline-offset: 2px;
+}
+
+@media (max-width: 440px) {
+  .activity-masthead-sub {
+    display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .activity-footer-columns {
+    grid-template-columns: 1fr;
+  }
+}

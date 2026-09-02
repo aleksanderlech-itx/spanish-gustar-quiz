@@ -9,11 +9,16 @@ import { filterQuestions, type QuizFilters } from "./quiz-logic";
 import { readQuizFilters, writeQuizFilters } from "./quiz-filters";
 import { quizPath } from "./quiz-config";
 import TopicExplainer from "./topic-explainer";
+import { ActivityBreadcrumb, ActivityChips, ActivityFooter, ActivityMasthead, SkipLink } from "./activity-chrome";
+import { SITE_CONFIG } from "./site-config";
 
 const ROUND_LENGTHS: RoundLength[] = [5, 10, 20];
 const LEVELS: Array<QuizFilters["level"]> = ["all", "basic", "intermediate", "advanced"];
 
-export default function TopicDetail({ quizId }: { quizId: QuizId }) {
+/** Only set on the quiz's own crawlable route (/gustar, /ser-vs-estar, /preterite-vs-imperfect),
+ * never on the home board, where this same component renders behind the board (display:none)
+ * for the default `?quiz=` state. */
+export default function TopicDetail({ quizId, standalone = false }: { quizId: QuizId; standalone?: boolean }) {
   const quiz = QUIZ_CONFIG[quizId];
   const [progress, setProgress] = useState<QuizProgress>(() => emptyQuizProgress(quiz.questions.length));
   const [settings, setSettings] = useState(() => readTopicSettings(quizId));
@@ -46,16 +51,39 @@ export default function TopicDetail({ quizId }: { quizId: QuizId }) {
   const filteredCount = filterQuestions(quiz.questions, filters).length;
   const roundLength = Math.min(settings.roundLength, filteredCount);
 
+  const chrome = standalone && (
+    <>
+      <SkipLink targetId="quiz-setup" label={`Skip to the ${quiz.eyebrow} quiz`} />
+      <ActivityMasthead />
+      <ActivityBreadcrumb trail={[{ label: "Home", href: "/" }, { label: quiz.eyebrow }]} />
+    </>
+  );
+
   return (
-    <main className="app-shell topic-detail">
+    <>
+      {chrome}
+      <main id={standalone ? "quiz-setup" : undefined} className="app-shell topic-detail">
       <header className="topic-detail-header">
         <Link className="topic-back" href="/" aria-label="Back to board">
           <span aria-hidden="true">←</span>
         </Link>
-        <p className="eyebrow-clay">Grammar quiz</p>
+        <p className="eyebrow-clay">Grammar quiz{standalone ? " · Spanish" : ""}</p>
       </header>
 
       <h1>{quiz.eyebrow}</h1>
+
+      {standalone && (
+        <>
+          <p className="activity-lede">{quiz.description}</p>
+          <ActivityChips
+            chips={[
+              { label: quiz.levelBand, tone: "primary" },
+              { label: `${quiz.questions.length} sentences`, tone: "neutral" },
+              { label: "No sign-up", tone: "sage" },
+            ]}
+          />
+        </>
+      )}
 
       <section className="topic-summary-card">
         <div
@@ -133,6 +161,31 @@ export default function TopicDetail({ quizId }: { quizId: QuizId }) {
       </footer>
 
       <TopicExplainer quizId={quizId} />
-    </main>
+      </main>
+      {standalone && (
+        <ActivityFooter
+          columns={[
+            {
+              heading: "More quizzes",
+              links: [
+                ...(Object.keys(QUIZ_CONFIG) as QuizId[])
+                  .filter((id) => id !== quizId)
+                  .map((id) => ({ label: QUIZ_CONFIG[id].eyebrow, href: quizPath(id) })),
+                { label: "Flashcards", href: "/flashcards" },
+              ],
+            },
+            {
+              heading: "About",
+              links: [
+                { label: "How the flashcard boxes work", href: "/how-to-use#flashcards" },
+                { label: "Notes on Spanish grammar", href: "/notes" },
+                { label: "Contact", href: SITE_CONFIG.kofiUrl, external: true },
+              ],
+            },
+          ]}
+          bottomNote={<><strong>{SITE_CONFIG.name}</strong> — free Spanish grammar quizzes and spaced-repetition flashcards. Nothing to install, no account needed.</>}
+        />
+      )}
+    </>
   );
 }

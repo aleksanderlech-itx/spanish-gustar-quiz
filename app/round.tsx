@@ -304,7 +304,7 @@ export default function Round({ quizId }: { quizId: QuizId }) {
           <p className="eyebrow-clay">{quiz.eyebrow}</p>
           <span className="round-level-badge">{LEVEL_BADGE[question.level]}</span>
         </div>
-        <p className="round-sentence">
+        <p className="round-sentence" lang="es">
           {question.before} <span className={`round-blank ${isSubmitted ? "round-blank-filled" : ""}`}>
             {isSubmitted ? question.answer : mode === "type" ? (typed || "?") : "?"}
           </span> {question.after}

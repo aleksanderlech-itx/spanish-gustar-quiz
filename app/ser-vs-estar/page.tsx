@@ -47,11 +47,21 @@ const faqJsonLd = {
   })),
 };
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: SITE_CONFIG.url },
+    { "@type": "ListItem", position: 2, name: "Ser vs estar", item: `${SITE_CONFIG.url}/ser-vs-estar` },
+  ],
+};
+
 export default function SerEstarQuizPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <QuizPage quizId="ser-estar" />
     </>
   );

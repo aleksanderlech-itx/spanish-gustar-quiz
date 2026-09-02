@@ -13,5 +13,5 @@ export default function QuizPage({ quizId }: { quizId: QuizId }) {
 
   if (params.get("chart") === "1") return <VerbChart quizId={quizId} infinitive={params.get("verb") ?? undefined} />;
   if (params.get("play") === "1") return <Round quizId={quizId} />;
-  return <TopicDetail quizId={quizId} />;
+  return <TopicDetail quizId={quizId} standalone />;
 }
