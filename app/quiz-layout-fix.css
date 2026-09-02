@@ -1864,65 +1864,25 @@ body {
   text-decoration: none;
 }
 
-.results-enjoyment {
+.results-support {
   padding: 14px;
   border: 2px dashed var(--line);
   border-radius: 12px;
   margin-top: 18px;
 }
 
-.results-enjoyment-question {
+.results-support-question {
   margin: 0 0 10px;
   font-family: var(--font-display);
   font-size: 16px;
   font-weight: 600;
 }
 
-.results-enjoyment-buttons {
-  display: flex;
-  gap: 10px;
-}
-
-.results-enjoyment-yes,
-.results-enjoyment-no {
-  flex: 1;
-  min-height: 46px;
-  border: 2px solid var(--ink);
-  border-radius: 10px;
-  font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.results-enjoyment-yes {
-  background: var(--sage-soft);
-}
-
-.results-enjoyment-no {
-  background: var(--surface);
-}
-
-.results-kofi-panel {
-  padding: 2px;
-  border: 2px solid var(--clay);
-  border-radius: 10px;
-  background: var(--clay-soft);
-}
-
-.results-kofi-panel > p {
-  margin: 10px;
-  color: var(--ink);
-  font-size: 14px;
-  line-height: 1.5;
-}
-
 .results-kofi-link {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   min-height: 48px;
-  margin: 10px;
   padding: 0 14px;
   border: 2px solid var(--ink);
   border-radius: 10px;
@@ -1931,44 +1891,6 @@ body {
   color: var(--ink);
   font-weight: 600;
   text-decoration: none;
-}
-
-.results-kofi-muted {
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 400;
-}
-
-.results-feedback-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.results-feedback-panel > p {
-  margin: 0;
-  color: var(--ink);
-  font-size: 14px;
-}
-
-.results-feedback-send {
-  min-height: 46px;
-  border: 2px solid var(--ink);
-  border-radius: 10px;
-  background: var(--surface);
-  color: var(--ink);
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 600;
-}
-
-.results-feedback-confirm {
-  min-height: 46px;
-  display: flex;
-  align-items: center;
-  padding: 0 4px;
-  color: var(--sage);
-  font-weight: 700;
 }
 
 /* Flashcards restyle — see design handoff README "Flashcards". */
