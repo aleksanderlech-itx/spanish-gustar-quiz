@@ -5,8 +5,9 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config";
 import { useTheme } from "./use-theme";
 import { orderBoard, type BoardTileProgress } from "./board";
-import { readStreakSummary, recordActivityToday, dayKey, ACTIVITY_IDS, type StreakSummary } from "./streak";
+import { readStreakSummary, mergeActivityDays, dayKey, ACTIVITY_IDS, type ActivityId, type StreakSummary } from "./streak";
 import { emptyQuizProgress, readQuizProgress, readDailyRoundProgress, type DailyRoundProgress } from "./quiz-progress";
+import type { QuizResult } from "./quiz-logic";
 import { ROUND_SIZE as FLASHCARDS_ROUND_SIZE } from "./flashcards";
 import Drawer from "./drawer";
 import Logo from "./logo";
@@ -125,6 +126,42 @@ const readFlashcardProgress = (): { progress: Omit<BoardTileProgress, "id">; dai
 
 const dueBarFill = (percent: number) => (percent >= 90 ? "var(--sage)" : "var(--primary)");
 
+/**
+ * Rebuilds the full activity/day ledger from each quiz's and the flashcard deck's own
+ * stored history, not just today's. The streak ledger is only ever written at the moment
+ * a round finishes (round.tsx/flashcards.tsx); if that write ever missed a day — an old
+ * app version, a closed tab, this one storage key cleared — the streak silently
+ * under-reports forever after, even though the quiz/flashcard history it's derived from
+ * is still there. Re-deriving every day on each board load makes the ledger self-healing.
+ */
+const backfillEntries = (): Array<{ activity: ActivityId; day: string }> => {
+  const entries: Array<{ activity: ActivityId; day: string }> = [];
+
+  QUIZ_IDS.forEach((quizId) => {
+    try {
+      const raw = window.localStorage.getItem(QUIZ_CONFIG[quizId].storageKey);
+      const history = raw ? (JSON.parse(raw) as QuizResult[]) : [];
+      history.filter((item) => item.mode !== "review").forEach((item) => {
+        entries.push({ activity: quizId, day: dayKey(new Date(item.date)) });
+      });
+    } catch {
+      // Corrupt or unavailable history for this quiz; skip its backfill.
+    }
+  });
+
+  try {
+    const raw = window.localStorage.getItem("spanish-flashcards-leitner-v2") ?? window.localStorage.getItem("spanish-flashcards-progress-v1");
+    const saved = raw ? JSON.parse(raw) as Record<string, { updatedAt?: string }> : {};
+    Object.values(saved).forEach((item) => {
+      if (item.updatedAt) entries.push({ activity: "flashcards", day: dayKey(new Date(item.updatedAt)) });
+    });
+  } catch {
+    // Corrupt or unavailable flashcard progress; skip its backfill.
+  }
+
+  return entries;
+};
+
 export default function QuizSelector() {
   // useSearchParams is router-connected, so this re-evaluates on every client-side
   // Link navigation. usePathname keeps the board scoped to the home route, so
@@ -168,12 +205,9 @@ export default function QuizSelector() {
         ...flashcards.progress,
       },
     ];
-    // The streak ledger is written only when a round finishes (round.tsx/flashcards.tsx),
-    // so a round completed before this session's code loaded — or under an older storage
-    // version — can be done today per the quiz's own history without ever reaching the
-    // ledger. Backfill from the same ground truth the tiles just read, so the streak panel
-    // can never under-report what the board is already showing as done.
-    nextItems.forEach((item) => { if (item.daily.done) recordActivityToday(item.id); });
+    // Backfill the whole streak ledger from the same ground truth the tiles just read, so
+    // the streak panel can never under-report what the quiz/flashcard history already shows.
+    mergeActivityDays(backfillEntries());
 
     // Browser storage is unavailable during the server render.
     // eslint-disable-next-line react-hooks/set-state-in-effect
