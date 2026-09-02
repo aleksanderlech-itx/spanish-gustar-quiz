@@ -153,14 +153,6 @@ export default function Flashcards({ standalone = false }: { standalone?: boolea
         <div className="flashcard-title-block">
           <p className="eyebrow-clay">Flashcard deck · Spanish</p>
           <h1 className="activity-page-title">Spanish verb flashcards</h1>
-          <p className="activity-lede">{FLASHCARDS_DESCRIPTION}</p>
-          <ActivityChips
-            chips={[
-              { label: `${FLASHCARD_VERBS.length} cards`, tone: "primary" },
-              { label: "Audio", tone: "neutral" },
-              { label: "Spaced repetition", tone: "sage" },
-            ]}
-          />
         </div>
       )}
       <header className="flashcard-top-header">
@@ -224,6 +216,19 @@ export default function Flashcards({ standalone = false }: { standalone?: boolea
         {totals.boxes.map((count, boxIndex) => { const box = (boxIndex + 1) as LeitnerBox; const days = REVIEW_INTERVAL_DAYS[box]; return <div key={box}><span className="leitner-box-label">Box {box}</span><strong>{count}</strong><span>{days === 0 ? "Every session" : `${days} day${days === 1 ? "" : "s"}`}</span></div>; })}
       </section>
       <p className="leitner-note"><strong>How it works:</strong> Box 1 cards are reviewed immediately. Boxes 2–4 return after 1, 3 and 7 days. One wrong answer sends a card back to Box 1.</p>
+
+      {standalone && (
+        <>
+          <p className="activity-lede">{FLASHCARDS_DESCRIPTION}</p>
+          <ActivityChips
+            chips={[
+              { label: `${FLASHCARD_VERBS.length} cards`, tone: "primary" },
+              { label: "Audio", tone: "neutral" },
+              { label: "Spaced repetition", tone: "sage" },
+            ]}
+          />
+        </>
+      )}
       </main>
       {standalone && (
         <ActivityFooter

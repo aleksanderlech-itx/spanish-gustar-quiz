@@ -72,19 +72,6 @@ export default function TopicDetail({ quizId, standalone = false }: { quizId: Qu
 
       <h1>{quiz.eyebrow}</h1>
 
-      {standalone && (
-        <>
-          <p className="activity-lede">{quiz.description}</p>
-          <ActivityChips
-            chips={[
-              { label: quiz.levelBand, tone: "primary" },
-              { label: `${quiz.questions.length} sentences`, tone: "neutral" },
-              { label: "No sign-up", tone: "sage" },
-            ]}
-          />
-        </>
-      )}
-
       <section className="topic-summary-card">
         <div
           className="board-ring topic-summary-ring"
@@ -161,6 +148,19 @@ export default function TopicDetail({ quizId, standalone = false }: { quizId: Qu
       </footer>
 
       <TopicExplainer quizId={quizId} />
+
+      {standalone && (
+        <>
+          <p className="activity-lede">{quiz.description}</p>
+          <ActivityChips
+            chips={[
+              { label: quiz.levelBand, tone: "primary" },
+              { label: `${quiz.questions.length} sentences`, tone: "neutral" },
+              { label: "No sign-up", tone: "sage" },
+            ]}
+          />
+        </>
+      )}
       </main>
       {standalone && (
         <ActivityFooter
