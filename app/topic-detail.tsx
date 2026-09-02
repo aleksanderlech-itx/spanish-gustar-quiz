@@ -9,7 +9,7 @@ import { filterQuestions, type QuizFilters } from "./quiz-logic";
 import { readQuizFilters, writeQuizFilters } from "./quiz-filters";
 import { quizPath } from "./quiz-config";
 import TopicExplainer from "./topic-explainer";
-import { ActivityBreadcrumb, ActivityChips, ActivityFooter, SkipLink } from "./activity-chrome";
+import { ActivityChips, ActivityFooter, SkipLink } from "./activity-chrome";
 import SiteHeader from "./site-header";
 import { SITE_CONFIG } from "./site-config";
 
@@ -56,12 +56,7 @@ export default function TopicDetail({ quizId, standalone = false }: { quizId: Qu
     <>
       {standalone && <SkipLink targetId="quiz-setup" label={`Skip to the ${quiz.eyebrow} quiz`} />}
       <main id={standalone ? "quiz-setup" : undefined} className="app-shell topic-detail">
-      {standalone && (
-        <>
-          <SiteHeader />
-          <ActivityBreadcrumb trail={[{ label: "Home", href: "/" }, { label: quiz.eyebrow }]} />
-        </>
-      )}
+      {standalone && <SiteHeader />}
       <header className="topic-detail-header">
         <Link className="topic-back" href="/" aria-label="Back to board">
           <span aria-hidden="true">←</span>

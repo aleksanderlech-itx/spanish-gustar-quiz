@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FLASHCARD_VERBS, type FlashcardVerb } from "./flashcards-data";
 import { recordActivityToday } from "./streak";
 import { speak } from "./speak";
-import { ActivityBreadcrumb, ActivityChips, ActivityFooter, SkipLink } from "./activity-chrome";
+import { ActivityChips, ActivityFooter, SkipLink } from "./activity-chrome";
 import SiteHeader from "./site-header";
 import { QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config";
 import { SITE_CONFIG } from "./site-config";
@@ -147,7 +147,6 @@ export default function Flashcards({ standalone = false }: { standalone?: boolea
       {standalone && (
         <>
           <SiteHeader />
-          <ActivityBreadcrumb trail={[{ label: "Home", href: "/" }, { label: "Flashcards" }]} />
           <div className="flashcard-title-block">
             <p className="eyebrow-clay">Flashcard deck · Spanish</p>
             <h1 className="activity-page-title">Spanish verb flashcards</h1>

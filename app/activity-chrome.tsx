@@ -2,7 +2,6 @@ import Link from "next/link";
 
 export type ChipTone = "primary" | "neutral" | "sage";
 export type Chip = { label: string; tone: ChipTone };
-export type Crumb = { label: string; href?: string };
 export type FooterLink = { label: string; href: string; external?: boolean };
 export type FooterColumn = { heading: string; links: FooterLink[] };
 
@@ -13,28 +12,6 @@ export function SkipLink({ targetId, label }: { targetId: string; label: string 
     <a className="activity-skip-link" href={`#${targetId}`}>
       {label}
     </a>
-  );
-}
-
-export function ActivityBreadcrumb({ trail }: { trail: Crumb[] }) {
-  return (
-    <nav className="activity-breadcrumb" aria-label="Breadcrumb">
-      <ol className="activity-breadcrumb-inner">
-        {trail.map((crumb, index) => {
-          const isLast = index === trail.length - 1;
-          return (
-            <li key={crumb.label}>
-              {crumb.href && !isLast ? (
-                <Link href={crumb.href}>{crumb.label}</Link>
-              ) : (
-                <span aria-current={isLast ? "page" : undefined}>{crumb.label}</span>
-              )}
-              {!isLast && <span className="activity-breadcrumb-sep" aria-hidden="true">›</span>}
-            </li>
-          );
-        })}
-      </ol>
-    </nav>
   );
 }
 

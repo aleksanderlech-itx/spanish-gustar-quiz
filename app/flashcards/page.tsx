@@ -35,20 +35,10 @@ const jsonLd = {
   about: { "@type": "Thing", name: "Spanish verb vocabulary" },
 };
 
-const breadcrumbJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: SITE_CONFIG.url },
-    { "@type": "ListItem", position: 2, name: "Flashcards", item: `${SITE_CONFIG.url}/flashcards` },
-  ],
-};
-
 export default function FlashcardsPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <Flashcards standalone />
     </>
   );
