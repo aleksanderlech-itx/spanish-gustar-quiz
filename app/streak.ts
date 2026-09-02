@@ -47,13 +47,28 @@ const writeRecords = (records: Records) => {
 /** Marks one activity's round/session done today. Call once per completed round or flashcard session. */
 export const recordActivityToday = (activity: ActivityId) => {
   if (typeof window === "undefined") return;
+  mergeActivityDays([{ activity, day: dayKey(new Date()) }]);
+};
+
+/**
+ * Adds activity/day pairs to the ledger without ever removing what's already there — a
+ * day's recorded activities only grow. Used both for the live recordActivityToday write
+ * and for backfilling the whole ledger from each quiz/flashcard's own stored history, so
+ * a day that was actually completed still counts even if its live write never landed
+ * (an old app version, a closed tab, storage cleared for just this key).
+ */
+export const mergeActivityDays = (entries: Array<{ activity: ActivityId; day: string }>) => {
+  if (typeof window === "undefined" || !entries.length) return;
   const records = readRecords();
-  const today = dayKey(new Date());
-  const set = records.get(today) ?? new Set<ActivityId>();
-  if (set.has(activity)) return;
-  set.add(activity);
-  records.set(today, set);
-  writeRecords(records);
+  let changed = false;
+  for (const { activity, day } of entries) {
+    const set = records.get(day) ?? new Set<ActivityId>();
+    if (set.has(activity)) continue;
+    set.add(activity);
+    records.set(day, set);
+    changed = true;
+  }
+  if (changed) writeRecords(records);
 };
 
 /** Consecutive days ending today (or yesterday, if today isn't fully done yet) where every activity was completed. */
