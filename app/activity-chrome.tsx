@@ -19,23 +19,27 @@ export function SkipLink({ targetId, label }: { targetId: string; label: string 
 }
 
 /** Sticky identity bar shared by every standalone activity page (grammar quiz setup,
- * flashcard deck). Suppressed once a round/session takes over the screen. */
-export function ActivityMasthead() {
+ * flashcard deck). `compact` drops the sub-label and nav to a bare wordmark strip —
+ * used inside the round screen, whose fixed-height/overflow-hidden layout leaves no
+ * room to spare for the on-screen keyboard on short viewports. */
+export function ActivityMasthead({ compact = false }: { compact?: boolean } = {}) {
   return (
-    <header className="activity-masthead">
+    <header className={`activity-masthead ${compact ? "activity-masthead-compact" : ""}`}>
       <div className="activity-masthead-inner">
         <Link className="activity-masthead-brand" href="/">
-          <Logo size={26} />
+          <Logo size={compact ? 20 : 26} />
           <span className="activity-masthead-brand-text">
             <span className="activity-masthead-name">{SITE_CONFIG.name}</span>
-            <span className="activity-masthead-sub">Grammar practice</span>
+            {!compact && <span className="activity-masthead-sub">Grammar practice</span>}
           </span>
         </Link>
-        <nav className="activity-masthead-nav" aria-label="Main">
-          <Link href="/">Quizzes</Link>
-          <Link href="/flashcards">Flashcards</Link>
-          <Link href="/how-to-use">How to use</Link>
-        </nav>
+        {!compact && (
+          <nav className="activity-masthead-nav" aria-label="Main">
+            <Link href="/">Quizzes</Link>
+            <Link href="/flashcards">Flashcards</Link>
+            <Link href="/how-to-use">How to use</Link>
+          </nav>
+        )}
       </div>
     </header>
   );

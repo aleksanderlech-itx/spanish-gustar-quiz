@@ -6,6 +6,7 @@ import type { QuizResult } from "./quiz-logic";
 import { readStreakSummary } from "./streak";
 import { shouldShowEnjoymentGate, markEnjoymentGateShown, markEnjoymentAnswered } from "./enjoyment";
 import { SITE_CONFIG } from "./site-config";
+import { ActivityMasthead } from "./activity-chrome";
 
 type EnjoymentAnswer = "yes" | "no" | "sent" | null;
 
@@ -14,11 +15,13 @@ export default function Results({
   missedRuleLabels,
   hasMissedOverall,
   onPractiseMisses,
+  standalone = false,
 }: {
   result: QuizResult;
   missedRuleLabels: string[];
   hasMissedOverall: boolean;
   onPractiseMisses: () => void;
+  standalone?: boolean;
 }) {
   const total = result.questionIds.length;
   const [streakDays, setStreakDays] = useState(0);
@@ -58,7 +61,9 @@ export default function Results({
   };
 
   return (
-    <main className="app-shell results-screen">
+    <>
+      {standalone && <ActivityMasthead />}
+      <main className="app-shell results-screen">
       <p className="eyebrow-clay">Round complete</p>
       <h1 className="results-heading">{headline}</h1>
 
@@ -120,6 +125,7 @@ export default function Results({
           )}
         </section>
       )}
-    </main>
+      </main>
+    </>
   );
 }
