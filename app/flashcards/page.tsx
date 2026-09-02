@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { SITE_CONFIG } from "../site-config";
-import Flashcards from "../flashcards";
+import Flashcards, { FLASHCARDS_DESCRIPTION } from "../flashcards";
 
 const TITLE = "Spanish Verb Flashcards — Leitner Spaced Repetition";
-const DESCRIPTION =
-  "Practise 500 Spanish verbs with spaced-repetition flashcards. The Leitner system brings back what you miss sooner and lets what you know fade to longer reviews.";
+const DESCRIPTION = FLASHCARDS_DESCRIPTION;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -40,7 +39,7 @@ export default function FlashcardsPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <Flashcards />
+      <Flashcards standalone />
     </>
   );
 }

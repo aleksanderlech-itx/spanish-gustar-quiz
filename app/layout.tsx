@@ -6,6 +6,7 @@ import "./globals.css";
 import "./issue-5-design.css";
 import "./quiz-layout-fix.css";
 import "./editorial-polish.css";
+import "./activity-chrome.css";
 import QuizSelector from "./quiz-selector";
 import { SiteFooter } from "./site-footer";
 import { SITE_CONFIG } from "./site-config";
@@ -93,7 +94,7 @@ export default async function RootLayout({
   const isProduction = isProductionHost(host);
 
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className={`${fraunces.variable} ${karla.variable} antialiased`}>
         <script suppressHydrationWarning dangerouslySetInnerHTML={{ __html: THEME_PRE_PAINT_SCRIPT }} />
         {isProduction && (

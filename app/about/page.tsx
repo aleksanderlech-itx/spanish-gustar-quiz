@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import Logo from "../logo";
+import SiteHeader from "../site-header";
 import { SITE_CONFIG } from "../site-config";
 import styles from "../prose-page.module.css";
 
@@ -19,16 +18,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main className={styles.page}>
-      <header className={styles.header}>
-        <Link className={styles.back} href="/" aria-label="Back to board">
-          <span aria-hidden="true">←</span>
-          <span>Back to board</span>
-        </Link>
-        <div className={styles.brand}>
-          <Logo size={26} />
-          <span>Spanish Quizzes</span>
-        </div>
-      </header>
+      <SiteHeader />
 
       <section className={styles.intro}>
         <p className={styles.eyebrow}>About</p>

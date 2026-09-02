@@ -5,44 +5,10 @@
   color: var(--ink);
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 44px;
-}
-
-.back,
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  min-height: 44px;
-  color: var(--ink);
-  font-family: var(--font-body);
-  font-weight: 700;
-}
-
-.back {
-  text-decoration: none;
-}
-
-.back:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-.back:focus-visible,
 .contents a:focus-visible,
 .footer a:focus-visible {
   outline: 3px solid var(--primary);
   outline-offset: 3px;
-}
-
-.brand {
-  font-family: var(--font-display);
-  font-size: 18px;
 }
 
 .intro {

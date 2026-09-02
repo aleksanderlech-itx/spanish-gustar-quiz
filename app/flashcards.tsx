@@ -5,11 +5,17 @@ import Link from "next/link";
 import { FLASHCARD_VERBS, type FlashcardVerb } from "./flashcards-data";
 import { recordActivityToday } from "./streak";
 import { speak } from "./speak";
+import { ActivityChips, ActivityFooter, SkipLink } from "./activity-chrome";
+import SiteHeader from "./site-header";
+import { QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config";
+import { SITE_CONFIG } from "./site-config";
 
 type LeitnerBox = 1 | 2 | 3 | 4;
 type CardRecord = { box: LeitnerBox; attempts: number; correct: number; updatedAt: string; nextReviewAt: string };
 type LeitnerProgress = Record<string, CardRecord>;
 type LegacyProgress = Record<string, { remembered?: boolean; attempts?: number; updatedAt?: string }>;
+
+export const FLASHCARDS_DESCRIPTION = "Practise 500 Spanish verbs with spaced-repetition flashcards. The Leitner system brings back what you miss sooner and lets what you know fade to longer reviews.";
 
 const STORAGE_KEY = "spanish-flashcards-leitner-v2";
 const LEGACY_STORAGE_KEY = "spanish-flashcards-progress-v1";
@@ -69,7 +75,7 @@ const selectRound = (source: LeitnerProgress, now = Date.now()) => {
   return [...due, ...unseen].slice(0, ROUND_SIZE);
 };
 
-export default function Flashcards() {
+export default function Flashcards({ standalone = false }: { standalone?: boolean } = {}) {
   const [ready, setReady] = useState(false);
   const [progress, setProgress] = useState<LeitnerProgress>({});
   const [round, setRound] = useState<FlashcardVerb[]>([]);
@@ -135,7 +141,18 @@ export default function Flashcards() {
   if (!ready) return null;
 
   return (
-    <main className="flashcard-shell">
+    <>
+      {standalone && <SkipLink targetId="flashcard-deck" label="Skip to the deck" />}
+      <main id={standalone ? "flashcard-deck" : undefined} className="flashcard-shell">
+      {standalone && (
+        <>
+          <SiteHeader />
+          <div className="flashcard-title-block">
+            <p className="eyebrow-clay">Flashcard deck · Spanish</p>
+            <h1 className="activity-page-title">Spanish verb flashcards</h1>
+          </div>
+        </>
+      )}
       <header className="flashcard-top-header">
         <Link className="round-back" href="/" aria-label="Back to board"><span aria-hidden="true">←</span></Link>
         <span className="flashcard-counter">Card {finished ? round.length : index + 1} of {round.length}</span>
@@ -197,6 +214,39 @@ export default function Flashcards() {
         {totals.boxes.map((count, boxIndex) => { const box = (boxIndex + 1) as LeitnerBox; const days = REVIEW_INTERVAL_DAYS[box]; return <div key={box}><span className="leitner-box-label">Box {box}</span><strong>{count}</strong><span>{days === 0 ? "Every session" : `${days} day${days === 1 ? "" : "s"}`}</span></div>; })}
       </section>
       <p className="leitner-note"><strong>How it works:</strong> Box 1 cards are reviewed immediately. Boxes 2–4 return after 1, 3 and 7 days. One wrong answer sends a card back to Box 1.</p>
-    </main>
+
+      {standalone && (
+        <>
+          <p className="activity-lede">{FLASHCARDS_DESCRIPTION}</p>
+          <ActivityChips
+            chips={[
+              { label: `${FLASHCARD_VERBS.length} cards`, tone: "primary" },
+              { label: "Audio", tone: "neutral" },
+              { label: "Spaced repetition", tone: "sage" },
+            ]}
+          />
+        </>
+      )}
+      </main>
+      {standalone && (
+        <ActivityFooter
+          columns={[
+            {
+              heading: "Grammar quizzes",
+              links: (Object.keys(QUIZ_CONFIG) as QuizId[]).map((id) => ({ label: QUIZ_CONFIG[id].eyebrow, href: quizPath(id) })),
+            },
+            {
+              heading: "About",
+              links: [
+                { label: "How the flashcard boxes work", href: "/how-to-use#flashcards" },
+                { label: "Notes on Spanish grammar", href: "/notes" },
+                { label: "Contact", href: SITE_CONFIG.kofiUrl, external: true },
+              ],
+            },
+          ]}
+          bottomNote={<><strong>{SITE_CONFIG.name}</strong> — free Spanish grammar quizzes and spaced-repetition flashcards. Nothing to install, no account needed.</>}
+        />
+      )}
+    </>
   );
 }
