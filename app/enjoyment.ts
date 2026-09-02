@@ -21,14 +21,6 @@ export const shouldShowEnjoymentGate = (): boolean => {
 export const markEnjoymentGateShown = () => {
   try {
     window.sessionStorage.setItem(SESSION_SHOWN_KEY, "1");
-  } catch {
-    // Storage can be unavailable; worst case the gate shows again this session.
-  }
-};
-
-export const markEnjoymentAnswered = () => {
-  try {
-    window.sessionStorage.setItem(SESSION_SHOWN_KEY, "1");
     window.localStorage.setItem(LAST_ANSWERED_KEY, new Date().toISOString());
   } catch {
     // Storage can be unavailable; worst case the gate shows again next round.

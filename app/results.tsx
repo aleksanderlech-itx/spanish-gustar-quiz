@@ -4,11 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { QuizResult } from "./quiz-logic";
 import { readStreakSummary } from "./streak";
-import { shouldShowEnjoymentGate, markEnjoymentGateShown, markEnjoymentAnswered } from "./enjoyment";
-import { SITE_CONFIG } from "./site-config";
+import SupportPrompt from "./support-prompt";
 import SiteHeader from "./site-header";
-
-type EnjoymentAnswer = "yes" | "no" | "sent" | null;
 
 export default function Results({
   result,
@@ -25,14 +22,11 @@ export default function Results({
 }) {
   const total = result.questionIds.length;
   const [streakDays, setStreakDays] = useState(0);
-  const [showGate, setShowGate] = useState(false);
-  const [enjoyment, setEnjoyment] = useState<EnjoymentAnswer>(null);
 
   useEffect(() => {
     // Browser storage is unavailable during the server render.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setStreakDays(readStreakSummary().streak);
-    setShowGate(shouldShowEnjoymentGate());
   }, []);
 
   const uniqueRules = [...new Set(missedRuleLabels)];
@@ -44,21 +38,6 @@ export default function Results({
       : result.score >= total / 2
         ? "Solid round."
         : "Worth another pass.";
-
-  const answerYes = () => {
-    setEnjoyment("yes");
-    markEnjoymentAnswered();
-  };
-
-  const answerNo = () => {
-    setEnjoyment("no");
-    markEnjoymentGateShown();
-  };
-
-  const sendFeedback = () => {
-    setEnjoyment("sent");
-    markEnjoymentAnswered();
-  };
 
   return (
     <main className="app-shell results-screen">
@@ -90,40 +69,7 @@ export default function Results({
         <Link className="secondary results-back" href="/">Back to board</Link>
       </div>
 
-      {showGate && (
-        <section className="results-enjoyment">
-          {enjoyment === null && (
-            <>
-              <p className="results-enjoyment-question">Did you enjoy this round?</p>
-              <div className="results-enjoyment-buttons">
-                <button type="button" className="results-enjoyment-yes" onClick={answerYes}>Yes, it was fun</button>
-                <button type="button" className="results-enjoyment-no" onClick={answerNo}>Not really</button>
-              </div>
-            </>
-          )}
-
-          {enjoyment === "yes" && (
-            <div className="results-kofi-panel">
-              <p>Glad to hear it. Spanish Quizzes is free and made by one person — a coffee keeps new questions coming.</p>
-              <a className="results-kofi-link" href={SITE_CONFIG.kofiUrl} target="_blank" rel="noreferrer">
-                <span>☕ Help build more quizzes</span>
-                <span className="results-kofi-muted">ko-fi</span>
-              </a>
-            </div>
-          )}
-
-          {enjoyment === "no" && (
-            <div className="results-feedback-panel">
-              <p>Noted — what would make it better?</p>
-              <button type="button" className="results-feedback-send" onClick={sendFeedback}>Send feedback</button>
-            </div>
-          )}
-
-          {enjoyment === "sent" && (
-            <div className="results-feedback-confirm">✓ Thanks — feedback sent.</div>
-          )}
-        </section>
-      )}
+      <SupportPrompt />
     </main>
   );
 }
