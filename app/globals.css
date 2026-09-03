@@ -362,7 +362,7 @@ summary:focus-visible {
 }
 
 .leitner-note {
-  margin: 12px 0 0;
+  margin: 12px 0 16px;
   padding: 13px 15px;
   border: 1px solid color-mix(in srgb, var(--line) 78%, transparent);
   border-radius: var(--radius);
