@@ -571,10 +571,10 @@ p {
   display: grid;
   min-width: 170px;
   padding: 6px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 14px;
   background: var(--surface);
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: 4px 4px 0 var(--shadow-col);
 }
 
 .quiz-switch nav button {
@@ -630,6 +630,15 @@ body.dark .mode-switch {
   font-weight: 700;
   letter-spacing: .08em;
   text-transform: uppercase;
+}
+
+/* Dark mode: --muted alone reads a touch flat on uppercase labels at this
+   size — a brighter tone and wider tracking keep them legible without
+   promoting them to body-text contrast. See design handoff "Dark mode:
+   muted text". */
+:root[data-theme="dark"] .eyebrow {
+  color: #CFC5B4;
+  letter-spacing: .14em;
 }
 
 h1 {
@@ -947,11 +956,11 @@ h1 em {
   width: min(100%, 760px);
   max-height: min(72vh, 620px);
   overflow: auto;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: calc(var(--radius) + 6px);
   background: var(--surface);
   color: var(--ink);
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: 4px 4px 0 var(--shadow-col);
 }
 
 .conjugation-modal-header {

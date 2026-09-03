@@ -4,13 +4,13 @@
 .stat-grid,
 .insights > div,
 .history-list article {
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   background: var(--paper-white);
   box-shadow: none;
 }
 
 .quiz-switch summary {
-  box-shadow: 2px 2px 0 var(--ink);
+  box-shadow: 2px 2px 0 var(--shadow-col);
 }
 
 .quiz-switch summary:active {
@@ -24,13 +24,13 @@
 
 .choice-grid button.correct,
 .choice-grid button.wrong {
-  border-color: var(--ink);
+  border-color: var(--border-ink);
 }
 
 .stat-grid div,
 .insights > div,
 .history-list article {
-  border-color: var(--ink);
+  border-color: var(--border-ink);
 }
 
 .drawer-help-link {
