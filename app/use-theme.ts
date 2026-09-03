@@ -1,6 +1,10 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
+
+// Server rendering has no DOM, so useLayoutEffect would warn there; useEffect
+// is a no-op difference in that environment since neither runs during SSR.
+const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 export type Theme = "light" | "dark";
 
@@ -30,12 +34,14 @@ const applyTheme = (theme: Theme) => {
  * other instance so they all stay in sync.
  */
 export function useTheme() {
-  const [theme, setTheme] = useState<Theme>(() => (typeof document === "undefined" ? "light" : readTheme()));
+  // Starts as "light" to match the server-rendered markup exactly (the server has
+  // no DOM to read a real theme from), then syncs to the real value before paint.
+  const [theme, setTheme] = useState<Theme>("light");
 
-  useEffect(() => {
-    // The pre-paint script in layout.tsx already set this before hydration,
-    // but re-sync in case it ran after this component's initial state read.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+  useIsomorphicLayoutEffect(() => {
+    // The pre-paint script in layout.tsx already set the DOM attribute before
+    // hydration; this only pulls React's state in sync with it, synchronously
+    // before the browser paints so there's no visible flash of the wrong icon.
     setTheme(readTheme());
 
     const onThemeChange = (event: Event) => {
