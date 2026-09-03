@@ -1,6 +1,6 @@
-export default function KofiButton({ className, onClick }: { className?: string; onClick?: () => void }) {
+export default function KofiButton({ className }: { className?: string }) {
   return (
-    <a className={className} href="https://ko-fi.com/M3O325HG20" target="_blank" rel="noreferrer" onClick={onClick}>
+    <a className={className} href="https://ko-fi.com/M3O325HG20" target="_blank" rel="noreferrer">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         height={36}

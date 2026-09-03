@@ -67,10 +67,9 @@ This contract records the observable behavior shared by the grammar quizzes and 
   one entry per grammar point such as "Ser vs estar" or "Gustar pattern: doler") and shown as chips
   on the results screen. "Practise the misses" restarts a round scoped to every currently-missed
   question across the topic's history, not just this round's misses.
-- The results screen asks "Did you enjoy this round?" at most once per browser session, and not
-  again for a user who answered within the last 7 days (`app/enjoyment.ts`). The Ko-fi panel shows
-  only after a positive answer; a negative answer leads to a feedback confirmation with no network
-  call (feedback submission is a later phase).
+- The results screen and the flashcard deck's end-of-session screen each show a low-pressure Ko-fi
+  support prompt ("If you liked it, consider supporting this project.") every time, with no
+  suppression window (`app/support-prompt.tsx`).
 - Flashcards use four Leitner boxes. Correct recall advances one box, up to Box 4; incorrect recall returns the card to Box 1.
 - Box intervals are immediate, 1 day, 3 days, and 7 days. A session contains due cards first, then unseen cards, up to 20 cards.
 - Existing binary flashcard progress migrates automatically: remembered cards enter Box 2 and cards still being learned enter Box 1.
