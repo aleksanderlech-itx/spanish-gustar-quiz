@@ -14,7 +14,7 @@
 .intro {
   max-width: 760px;
   padding-bottom: 32px;
-  border-bottom: 3px solid var(--ink);
+  border-bottom: 3px solid var(--border-ink);
 }
 
 .eyebrow,
@@ -55,7 +55,7 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0;
   margin: 28px 0 40px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   background: var(--paper-white);
 }
 
@@ -81,9 +81,9 @@
 .practiceLoop {
   margin: 0 0 56px;
   padding: 24px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   background: var(--sun-soft, var(--paper-white));
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: 4px 4px 0 var(--shadow-col);
 }
 
 .practiceLoop h2 {
@@ -95,7 +95,7 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0;
   margin-top: 24px;
-  border-top: 2px solid var(--ink);
+  border-top: 2px solid var(--border-ink);
 }
 
 .loopSteps div {
@@ -107,7 +107,7 @@
 
 .loopSteps div + div {
   padding-left: 16px;
-  border-left: 1px solid var(--ink);
+  border-left: 1px solid var(--border-ink);
 }
 
 .loopSteps strong {
@@ -115,7 +115,7 @@
   place-items: center;
   width: 30px;
   height: 30px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 50%;
   font-family: var(--font-display);
 }
@@ -178,7 +178,7 @@
   display: inline-block;
   margin: 0 2px;
   padding: 2px 7px;
-  border: 1px solid var(--ink);
+  border: 1px solid var(--border-ink);
   border-radius: 999px;
   background: var(--paper-white);
   font-family: var(--font-body);
@@ -208,7 +208,7 @@
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   margin: 22px 0;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   background: var(--paper-white);
 }
 
@@ -219,7 +219,7 @@
 }
 
 .boxGrid div + div {
-  border-left: 1px solid var(--ink);
+  border-left: 1px solid var(--border-ink);
 }
 
 .boxGrid strong,
@@ -246,7 +246,7 @@
 
 .definitionGrid > div {
   padding: 18px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   background: var(--paper-white);
 }
 
@@ -297,7 +297,7 @@
   gap: 18px;
   margin-top: 24px;
   padding-top: 28px;
-  border-top: 3px solid var(--ink);
+  border-top: 3px solid var(--border-ink);
 }
 
 .footer p {
@@ -312,11 +312,11 @@
   align-items: center;
   min-height: 44px;
   padding: 9px 16px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: var(--radius, 8px);
   background: var(--primary);
   color: var(--paper-white);
-  box-shadow: 3px 3px 0 var(--ink);
+  box-shadow: 3px 3px 0 var(--shadow-col);
   font-weight: 800;
   text-decoration: none;
 }
@@ -377,7 +377,7 @@
   }
 
   .boxGrid div + div {
-    border-top: 1px solid var(--ink);
+    border-top: 1px solid var(--border-ink);
     border-left: 0;
   }
 

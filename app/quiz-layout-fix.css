@@ -9,6 +9,7 @@
   --ink: #2C2B29;
   --muted: #6B6459;
   --line: #DCD2C2;
+  --border-ink: var(--ink);
   --primary: #00625D;
   --primary-ink: #FFFFFF;
   --primary-soft: #C9F2EE;
@@ -36,14 +37,16 @@
 }
 
 :root[data-theme="dark"] {
-  --paper: #1B1A17;
+  --paper: #141310;
   --surface: #262420;
-  --panel: #2F2C27;
+  --panel: #332F29;
   --panel-soft: #221F1B;
   --ink: #F4EFE6;
   --muted: #B5AC9C;
   --line: #45403A;
+  --border-ink: #6A6358;
   --primary: #67D8D0;
+  --primary-dark: #8FEAE3;
   --primary-ink: #06322F;
   --primary-soft: #0C4A46;
   --sun: #FFC24D;
@@ -54,7 +57,8 @@
   --sage-soft: #2E4227;
   --danger: #FFB4AB;
   --danger-soft: #6B1210;
-  --shadow-col: #000000;
+  --shadow-col: #6A6358;
+  --focus-ring: #FFC24D;
   --key: #332F29;
 }
 
@@ -111,7 +115,7 @@ body {
 
 .question-progress {
   padding: 14px 20px;
-  border-bottom: 2px solid var(--ink);
+  border-bottom: 2px solid var(--border-ink);
   background: var(--primary);
 }
 
@@ -135,7 +139,7 @@ body {
 .question-card {
   min-height: 360px;
   padding: 34px 34px 30px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 16px 24px 12px 32px;
   background: var(--paper-white);
   box-shadow: var(--hard-shadow);
@@ -221,7 +225,7 @@ body {
 
 .primary {
   background: var(--primary-dark);
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   box-shadow: var(--hard-shadow);
 }
 
@@ -230,7 +234,7 @@ body {
 .back-button:hover:not(:disabled),
 .quiz-library-start:hover {
   transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 var(--ink);
+  box-shadow: 2px 2px 0 var(--shadow-col);
 }
 
 .primary:active:not(:disabled),
@@ -265,7 +269,7 @@ body {
   place-items: center;
   width: 44px;
   min-height: 44px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 12px;
   background: var(--surface);
   color: var(--ink);
@@ -404,7 +408,7 @@ body {
 .library-total,
 .leitner-note,
 .quiz-form {
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   box-shadow: none;
 }
 
@@ -454,7 +458,7 @@ body {
 .progress,
 .quiz-library-progress-track {
   height: 12px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 4px;
   background: var(--paper-white);
 }
@@ -472,15 +476,15 @@ body {
 }
 
 .answer-mode {
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 8px;
   background: var(--paper-white);
 }
 
 .answer-mode button.active {
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   background: var(--paper-white);
-  box-shadow: 2px 2px 0 var(--ink);
+  box-shadow: 2px 2px 0 var(--shadow-col);
 }
 
 .filters select,
@@ -489,9 +493,9 @@ body {
 .secondary,
 .flashcard-listen,
 .flashcard-actions button {
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 8px;
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: 4px 4px 0 var(--shadow-col);
 }
 
 .choice-grid button:hover:not(:disabled),
@@ -499,7 +503,7 @@ body {
 .flashcard-listen:hover,
 .flashcard-actions button:hover:not(:disabled) {
   transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 var(--ink);
+  box-shadow: 2px 2px 0 var(--shadow-col);
 }
 
 .translation-text,
@@ -509,7 +513,7 @@ body {
 
 .verb-chip,
 .quiz-count {
-  border: 1px solid var(--ink);
+  border: 1px solid var(--border-ink);
   border-radius: 999px;
   font-family: var(--font-body);
 }
@@ -557,7 +561,7 @@ body {
  * propagation) right under a tap aimed at the card's visual center. */
 .flashcard {
   flex: 1;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 16px 28px 14px 34px;
   box-shadow: var(--hard-shadow);
   display: flex;
@@ -582,7 +586,7 @@ body {
 
 .flashcard-again,
 .flashcard-known {
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 10px;
   box-shadow: var(--hard-shadow);
 }
@@ -628,7 +632,7 @@ body {
 
 .streak-panel {
   padding: 16px 18px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 16px 24px 12px 32px;
   background: var(--sun-soft);
   margin-bottom: 22px;
@@ -680,7 +684,7 @@ body {
   flex: 1;
   height: 22px;
   border-radius: 4px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
 }
 
 .streak-day-done {
@@ -709,6 +713,32 @@ body {
   color: var(--muted);
   font-size: 10px;
   text-align: center;
+}
+
+/* Dark mode: --sun-soft reads as an olive wash at full-card size, so the streak
+   card keeps the surface fill and lets the --sun border/numeral carry the
+   streak identity instead. See design handoff "Dark mode: streak panel". */
+:root[data-theme="dark"] .streak-panel {
+  background: var(--surface);
+  border-color: var(--sun);
+}
+
+:root[data-theme="dark"] .streak-count > strong {
+  color: var(--sun);
+  font-size: 34px;
+}
+
+:root[data-theme="dark"] .streak-day {
+  border-color: var(--line);
+}
+
+:root[data-theme="dark"] .streak-day-today {
+  border-color: var(--sun);
+}
+
+:root[data-theme="dark"] .streak-day-future {
+  border-style: solid;
+  border-color: var(--line);
 }
 
 .board-section-head {
@@ -743,7 +773,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 16px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   color: var(--ink);
   text-decoration: none;
 }
@@ -794,7 +824,7 @@ body {
   place-items: center;
   width: 24px;
   height: 24px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 5px;
   background: var(--surface);
   color: var(--ink);
@@ -931,7 +961,7 @@ body {
 
 .board-bar {
   height: 8px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 4px;
   background: var(--surface);
   overflow: hidden;
@@ -985,7 +1015,7 @@ body {
     flex-direction: column;
     grid-column: 1;
     padding: 18px 16px;
-    border: 2px solid var(--ink);
+    border: 2px solid var(--border-ink);
     border-radius: 16px 22px 12px 26px;
     background: var(--surface);
   }
@@ -1033,7 +1063,7 @@ body {
     min-height: 48px;
     margin-top: 16px;
     padding: 0 14px;
-    border: 2px solid var(--ink);
+    border: 2px solid var(--border-ink);
     border-radius: 10px;
     background: var(--primary-soft);
     color: var(--ink);
@@ -1073,7 +1103,7 @@ body {
   .board-home .board-total {
     flex: none;
     padding: 12px 16px;
-    border: 2px solid var(--ink);
+    border: 2px solid var(--border-ink);
     border-radius: 12px;
     background: var(--surface);
     text-align: right;
@@ -1132,7 +1162,7 @@ body {
     align-items: center;
     gap: 6px;
     padding: 12px 18px;
-    border: 2px solid var(--ink);
+    border: 2px solid var(--border-ink);
     border-radius: 10px;
     background: var(--primary);
     color: var(--primary-ink);
@@ -1199,7 +1229,7 @@ body {
   display: inline-grid;
   width: 44px;
   min-height: 44px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 12px;
   background: var(--surface);
   color: var(--ink);
@@ -1229,7 +1259,7 @@ body {
   align-items: center;
   gap: 16px;
   padding: 18px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 16px 26px 12px 32px;
   background: var(--surface);
   box-shadow: var(--hard-shadow);
@@ -1285,7 +1315,7 @@ body {
 
 .round-length-picker button {
   min-height: 48px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 10px;
   background: var(--surface);
   color: var(--ink);
@@ -1302,7 +1332,7 @@ body {
   display: flex;
   gap: 4px;
   padding: 4px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 12px;
   background: var(--surface);
 }
@@ -1320,8 +1350,20 @@ body {
 }
 
 .mode-segmented button.active {
-  border-color: var(--ink);
+  border-color: var(--border-ink);
   background: var(--primary-soft);
+}
+
+/* Dark mode: the light theme's 20% primary tint reads as roughly 2:1 contrast
+   on dark paper — the selected segment needs the full --primary fill instead.
+   See design handoff "Dark mode: segmented control". */
+:root[data-theme="dark"] .mode-segmented button {
+  color: var(--muted);
+}
+
+:root[data-theme="dark"] .mode-segmented button.active {
+  background: var(--primary);
+  color: var(--primary-ink);
 }
 
 .topic-setting-hint {
@@ -1398,7 +1440,7 @@ body {
 .topic-filter-field select {
   min-height: 44px;
   padding: 0 10px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 10px;
   background: var(--surface);
   color: var(--ink);
@@ -1438,7 +1480,7 @@ body {
   width: 40px;
   height: 40px;
   flex: none;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 12px;
   background: var(--surface);
   color: var(--ink);
@@ -1457,7 +1499,7 @@ body {
 .round-step {
   flex: 1;
   height: 8px;
-  border: 1.5px solid var(--ink);
+  border: 1.5px solid var(--border-ink);
   border-radius: 2px;
   background: transparent;
 }
@@ -1482,7 +1524,7 @@ body {
   flex: none;
   margin: 14px 18px 0;
   padding: 18px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 16px 26px 12px 32px;
   background: var(--surface);
   box-shadow: var(--hard-shadow);
@@ -1545,7 +1587,7 @@ body {
 .round-option {
   min-height: 56px;
   padding: 0 16px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 10px;
   background: var(--surface);
   color: var(--ink);
@@ -1559,13 +1601,13 @@ body {
 .round-option-correct {
   border-color: var(--sage);
   background: var(--sage-soft);
-  box-shadow: 2px 2px 0 var(--ink);
+  box-shadow: 2px 2px 0 var(--shadow-col);
 }
 
 .round-option-wrong {
   border-color: var(--danger);
   background: var(--danger-soft);
-  box-shadow: 2px 2px 0 var(--ink);
+  box-shadow: 2px 2px 0 var(--shadow-col);
 }
 
 .round-option-other {
@@ -1576,7 +1618,7 @@ body {
 
 .round-explain {
   padding: 14px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 12px;
   animation: fadein .18s ease-out;
 }
@@ -1619,7 +1661,7 @@ body {
   flex: none;
   gap: 10px;
   padding: 14px 18px;
-  border-top: 2px solid var(--ink);
+  border-top: 2px solid var(--border-ink);
   background: var(--surface);
 }
 
@@ -1627,7 +1669,7 @@ body {
   flex: none;
   min-height: 56px;
   padding: 0 18px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 10px;
   background: var(--surface);
   color: var(--ink);
@@ -1639,7 +1681,7 @@ body {
 .round-next {
   flex: 1;
   min-height: 56px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 10px;
   background: var(--primary);
   color: var(--primary-ink);
@@ -1688,7 +1730,7 @@ body {
 .round-type-input {
   min-height: 52px;
   padding: 0 14px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 10px;
   background: var(--paper);
   color: var(--ink);
@@ -1725,7 +1767,7 @@ body {
   min-width: 40px;
   min-height: 38px;
   flex: none;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 8px;
   background: var(--sun-soft);
   color: var(--ink);
@@ -1754,7 +1796,7 @@ body {
 
 .results-score-card {
   padding: 20px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 16px 26px 12px 32px;
   background: var(--surface);
   box-shadow: var(--hard-shadow);
@@ -1783,7 +1825,7 @@ body {
 .results-score-bar {
   height: 12px;
   margin-top: 14px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 4px;
   background: var(--surface);
   overflow: hidden;
@@ -1820,7 +1862,7 @@ body {
   align-items: center;
   min-height: 30px;
   padding: 0 12px;
-  border: 1px solid var(--ink);
+  border: 1px solid var(--border-ink);
   border-radius: 999px;
   background: var(--clay-soft);
   color: var(--ink);
@@ -1854,7 +1896,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 50px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 10px;
   background: var(--surface);
   color: var(--ink);
@@ -1909,7 +1951,7 @@ body {
 .flashcard-box-dot {
   width: 15px;
   height: 15px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 0;
   background: var(--surface);
 }
@@ -1954,7 +1996,7 @@ body {
   width: 44px;
   height: 44px;
   flex: none;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 50%;
   background: var(--sun-soft);
   place-items: center;
@@ -1965,7 +2007,7 @@ body {
   align-self: flex-start;
   margin-top: auto;
   padding: 4px 10px;
-  border: 1px solid var(--ink);
+  border: 1px solid var(--border-ink);
   border-radius: 999px;
   background: var(--panel-soft);
   color: var(--muted);
@@ -2015,7 +2057,7 @@ body {
 .flashcard-reveal {
   flex: 1;
   min-height: 54px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 10px;
   background: var(--primary);
   color: var(--primary-ink);
@@ -2081,7 +2123,7 @@ body {
 }
 
 .verb-chart-block {
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 14px;
   background: var(--surface);
   overflow: hidden;
@@ -2093,7 +2135,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 10px 14px;
-  border-bottom: 2px solid var(--ink);
+  border-bottom: 2px solid var(--border-ink);
 }
 
 .verb-chart-block-primary .verb-chart-block-header {
@@ -2115,7 +2157,7 @@ body {
 .verb-chart-play-all {
   min-height: 36px;
   padding: 0 12px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 999px;
   background: var(--surface);
   color: var(--ink);
@@ -2207,7 +2249,7 @@ body {
   max-width: 85vw;
   height: 100%;
   padding: 20px 18px;
-  border-right: 3px solid var(--ink);
+  border-right: 3px solid var(--border-ink);
   background: var(--surface);
   overflow-y: auto;
   animation: drawer-slide-in .18s ease-out;
@@ -2244,7 +2286,7 @@ body {
   display: inline-grid;
   width: 40px;
   height: 40px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 10px;
   background: var(--surface);
   color: var(--ink);
@@ -2256,7 +2298,7 @@ body {
   flex-direction: column;
   gap: 4px;
   padding: 12px 14px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 14px;
   background: var(--sun-soft);
   font-size: 13px;
@@ -2281,7 +2323,7 @@ body {
   justify-content: space-between;
   min-height: 52px;
   padding: 0 14px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 10px;
   background: var(--paper);
   color: var(--ink);
@@ -2379,7 +2421,7 @@ body {
 
 .drawer-action-button {
   min-height: 44px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 8px;
   background: var(--surface);
   color: var(--ink);
@@ -2412,7 +2454,7 @@ body {
   justify-content: space-between;
   min-height: 52px;
   padding: 0 14px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border-ink);
   border-radius: 10px;
   background: var(--primary-soft);
   color: var(--ink);
