@@ -1736,7 +1736,7 @@ body {
   padding-bottom: calc(14px + env(safe-area-inset-bottom) + var(--keyboard-inset, 0px));
 }
 
-/* Results, mistake notebook, enjoyment gate — see design handoff README "Results". */
+/* Results, mistake notebook, support prompt — see design handoff README "Results". */
 
 .results-screen {
   display: flex;
