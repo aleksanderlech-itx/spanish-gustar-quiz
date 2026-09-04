@@ -320,6 +320,12 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
       </section>
 
       <section className="round-answer-area">
+        {!isSubmitted && (
+          // Shown as an in-place overlay, not a navigation, so the in-progress round (not yet saved to history) is never lost.
+          <button type="button" className="round-stuck" onClick={() => setShowChart(true)}>
+            Stuck? Open the conjugation chart
+          </button>
+        )}
         {mode === "choose" ? choices.map((choice) => {
           const state = optionState(choice);
           return (
@@ -337,12 +343,6 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
           );
         }) : (
           <>
-            {!isSubmitted && (
-              // Shown as an in-place overlay, not a navigation, so the in-progress round (not yet saved to history) is never lost.
-              <button type="button" className="round-stuck" onClick={() => setShowChart(true)}>
-                Stuck? Open the conjugation chart
-              </button>
-            )}
             <input
               ref={inputRef}
               type="text"
