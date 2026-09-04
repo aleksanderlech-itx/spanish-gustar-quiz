@@ -22,7 +22,7 @@ const STORAGE_KEY = "spanish-flashcards-leitner-v2";
 const LEGACY_STORAGE_KEY = "spanish-flashcards-progress-v1";
 export const ROUND_SIZE = 20;
 const DAY = 86_400_000;
-const MAX_BOX: LeitnerBox = 4;
+export const MAX_BOX: LeitnerBox = 4;
 const REVIEW_INTERVAL_DAYS: Record<LeitnerBox, number> = { 1: 0, 2: 1, 3: 3, 4: 7 };
 const BOXES: LeitnerBox[] = [1, 2, 3, 4];
 

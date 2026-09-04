@@ -8,7 +8,7 @@ import { orderBoard, type BoardTileProgress } from "./board";
 import { readStreakSummary, mergeActivityDays, dayKey, ACTIVITY_IDS, type ActivityId, type StreakSummary } from "./streak";
 import { emptyQuizProgress, readQuizProgress, readDailyRoundProgress, type DailyRoundProgress } from "./quiz-progress";
 import type { QuizResult } from "./quiz-logic";
-import { ROUND_SIZE as FLASHCARDS_ROUND_SIZE } from "./flashcards";
+import { ROUND_SIZE as FLASHCARDS_ROUND_SIZE, MAX_BOX as MAX_FLASHCARD_BOX } from "./flashcards";
 import Drawer from "./drawer";
 import Logo from "./logo";
 import { SunIcon, MoonIcon } from "./theme-icons";
@@ -78,7 +78,7 @@ const readFlashcardProgress = (): { progress: Omit<BoardTileProgress, "id">; dai
     const completed = entries.length;
     const now = Date.now();
     const due = entries.filter((item) => item.nextReviewAt && Date.parse(item.nextReviewAt) <= now).length;
-    const mastered = entries.filter((item) => item.box === 5).length;
+    const mastered = entries.filter((item) => item.box === MAX_FLASHCARD_BOX).length;
     const lastActivity = entries.reduce<string | null>(
       (latest, item) => (item.updatedAt && (!latest || item.updatedAt > latest) ? item.updatedAt : latest),
       null,

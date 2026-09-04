@@ -131,7 +131,7 @@ export default function HowToUsePage() {
               <dl>
                 <dt>Question or card counter</dt><dd>Your current position in the session.</dd>
                 <dt>Progress line</dt><dd>How far you are through the current round.</dd>
-                <dt>Box 1–5</dt><dd>The flashcard&apos;s current review interval.</dd>
+                <dt>Box 1–4</dt><dd>The flashcard&apos;s current review interval.</dd>
                 <dt>Speaker</dt><dd>Plays Spanish audio when available.</dd>
                 <dt>Explanation</dt><dd>Why the grammar answer is correct or what needs changing.</dd>
               </dl>
