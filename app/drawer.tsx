@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState, type RefObject } from "react";
-import { useTheme } from "./use-theme";
 import { readStreakSummary } from "./streak";
 import { readNotebookEntries } from "./notebook";
 import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
@@ -124,7 +123,6 @@ const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), input:not([disabled
 type DrawerRow = "history" | "recap" | "notebook" | "backup" | "settings";
 
 export default function Drawer({ open, onClose, returnFocusRef }: { open: boolean; onClose: () => void; returnFocusRef: RefObject<HTMLButtonElement | null> }) {
-  const { theme, toggleTheme } = useTheme();
   const [expanded, setExpanded] = useState<DrawerRow | null>(null);
   const [stats, setStats] = useState<GlobalStats>(emptyStats);
   const [recentRounds, setRecentRounds] = useState<RecentRound[]>([]);
@@ -318,11 +316,6 @@ export default function Drawer({ open, onClose, returnFocusRef }: { open: boolea
         </div>
 
         <KofiButton className="drawer-kofi" />
-
-        <button type="button" className="drawer-theme-row" onClick={toggleTheme}>
-          <span>{theme === "dark" ? "Dark theme" : "Light theme"}</span>
-          <span className="drawer-theme-dot" aria-hidden="true" />
-        </button>
       </div>
     </div>
   );
