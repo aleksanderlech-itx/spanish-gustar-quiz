@@ -10,6 +10,7 @@ export type Theme = "light" | "dark";
 
 const THEME_STORAGE_KEY = "spanish-quiz-theme";
 const THEME_CHANGE_EVENT = "spanish-quiz-theme-change";
+const THEME_COOKIE_MAX_AGE = 60 * 60 * 24 * 365; // 1 year
 
 const readTheme = (): Theme => (document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light");
 
@@ -19,6 +20,15 @@ const applyTheme = (theme: Theme) => {
     localStorage.setItem(THEME_STORAGE_KEY, theme);
   } catch {
     // Storage can be unavailable (private mode, quota); theme still applies for this load.
+  }
+  try {
+    // Also persist as a cookie so the server can render the right theme on the
+    // next request (see the RootLayout head read in app/layout.tsx). This is
+    // what keeps the toggle sticking through a reload or fresh navigation on
+    // browsers where localStorage is blocked or cleared but cookies aren't.
+    document.cookie = `${THEME_STORAGE_KEY}=${theme}; path=/; max-age=${THEME_COOKIE_MAX_AGE}; SameSite=Lax`;
+  } catch {
+    // Cookie writes can be blocked too; the DOM attribute above still applies for this load.
   }
   // Multiple components call useTheme() at once (site header, drawer, the board's
   // own header). Each keeps its own React state, so without broadcasting a toggle

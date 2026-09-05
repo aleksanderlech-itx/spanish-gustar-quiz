@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Karla } from "next/font/google";
-import { headers } from "next/headers";
+import { cookies, headers } from "next/headers";
 import Script from "next/script";
 import "./globals.css";
 import "./issue-5-design.css";
@@ -74,15 +74,30 @@ export const viewport: Viewport = {
   ],
 };
 
+// Reads the theme cookie set by app/use-theme.ts so the server can render the
+// right attribute up front. localStorage is still the primary source (it's
+// read first below) but on a browser that blocks or clears it, this script
+// would otherwise have no way to recover the choice and would fall back to
+// "light" on every reload — this keeps whatever the server already rendered
+// from the cookie instead of clobbering it.
 const THEME_PRE_PAINT_SCRIPT = `(function () {
+  var html = document.documentElement;
+  var serverTheme = html.getAttribute("data-theme");
+  var fallback = serverTheme === "light" || serverTheme === "dark"
+    ? serverTheme
+    : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  var theme = fallback;
   try {
     var stored = localStorage.getItem("spanish-quiz-theme");
-    var theme = stored === "light" || stored === "dark"
-      ? stored
-      : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    document.documentElement.setAttribute("data-theme", theme);
+    if (stored === "light" || stored === "dark") theme = stored;
   } catch (error) {
-    document.documentElement.setAttribute("data-theme", "light");
+    // localStorage unavailable; keep the server-rendered (cookie-derived) theme.
+  }
+  html.setAttribute("data-theme", theme);
+  try {
+    document.cookie = "spanish-quiz-theme=" + theme + "; path=/; max-age=31536000; SameSite=Lax";
+  } catch (error) {
+    // Cookie writes can be blocked too; the DOM attribute above still applies for this load.
   }
 })();`;
 
@@ -93,9 +108,11 @@ export default async function RootLayout({
 }>) {
   const host = (await headers()).get("host") ?? "";
   const isProduction = isProductionHost(host);
+  const themeCookie = (await cookies()).get("spanish-quiz-theme")?.value;
+  const initialTheme = themeCookie === "dark" ? "dark" : "light";
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-theme={initialTheme} suppressHydrationWarning>
       <body className={`${fraunces.variable} ${karla.variable} antialiased`}>
         <script suppressHydrationWarning dangerouslySetInnerHTML={{ __html: THEME_PRE_PAINT_SCRIPT }} />
         {isProduction && (
