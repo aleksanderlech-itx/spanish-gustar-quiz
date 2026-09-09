@@ -2,7 +2,7 @@
 
 import { type MouseEvent, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { FLASHCARD_VERBS, type FlashcardVerb } from "./flashcards-data";
+import { FLASHCARD_VERBS, type FlashcardDifficulty, type FlashcardVerb } from "./flashcards-data";
 import { recordActivityToday } from "./streak";
 import { speak } from "./speak";
 import { ActivityChips, ActivityFooter, SkipLink } from "./activity-chrome";
@@ -20,7 +20,23 @@ export const FLASHCARDS_DESCRIPTION = "Practise 500 Spanish verbs with spaced-re
 
 const STORAGE_KEY = "spanish-flashcards-leitner-v2";
 const LEGACY_STORAGE_KEY = "spanish-flashcards-progress-v1";
+const DIFFICULTY_STORAGE_KEY = "spanish-flashcards-difficulty-v1";
 export const ROUND_SIZE = 20;
+
+type DifficultyFilter = FlashcardDifficulty | "all";
+const DIFFICULTY_OPTIONS: { value: DifficultyFilter; label: string }[] = [
+  { value: "all", label: "All" },
+  { value: "easy", label: "Easy" },
+  { value: "medium", label: "Medium" },
+  { value: "hard", label: "Hard" },
+];
+
+const readStoredDifficulty = (): DifficultyFilter => {
+  if (typeof window === "undefined") return "all";
+  const saved = window.localStorage.getItem(DIFFICULTY_STORAGE_KEY);
+  return saved === "easy" || saved === "medium" || saved === "hard" ? saved : "all";
+};
+
 const DAY = 86_400_000;
 export const MAX_BOX: LeitnerBox = 4;
 const REVIEW_INTERVAL_DAYS: Record<LeitnerBox, number> = { 1: 0, 2: 1, 3: 3, 4: 7 };
@@ -67,12 +83,12 @@ const readStoredProgress = (): LeitnerProgress => {
   }
 };
 
-const selectRound = (source: LeitnerProgress, now = Date.now()) => {
-  const due = shuffle(FLASHCARD_VERBS.filter((card) => {
+const selectRound = (pool: FlashcardVerb[], source: LeitnerProgress, now = Date.now()) => {
+  const due = shuffle(pool.filter((card) => {
     const record = source[card.spanish];
     return record && Date.parse(record.nextReviewAt) <= now;
   })).sort((a, b) => (source[a.spanish]?.box ?? 1) - (source[b.spanish]?.box ?? 1));
-  const unseen = shuffle(FLASHCARD_VERBS.filter((card) => !source[card.spanish]));
+  const unseen = shuffle(pool.filter((card) => !source[card.spanish]));
   return [...due, ...unseen].slice(0, ROUND_SIZE);
 };
 
@@ -83,6 +99,12 @@ export default function Flashcards({ standalone = false }: { standalone?: boolea
   const [index, setIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
+  const [difficulty, setDifficulty] = useState<DifficultyFilter>("all");
+
+  const pool = useMemo(
+    () => (difficulty === "all" ? FLASHCARD_VERBS : FLASHCARD_VERBS.filter((card) => card.difficulty === difficulty)),
+    [difficulty],
+  );
 
   useEffect(() => {
     // Selecting a round reads localStorage and shuffles with Math.random — both
@@ -93,20 +115,31 @@ export default function Flashcards({ standalone = false }: { standalone?: boolea
     // (a different random order), corrupting hydration for this whole screen and
     // silently breaking the reveal tap along with it.
     const stored = readStoredProgress();
+    const storedDifficulty = readStoredDifficulty();
+    const storedPool = storedDifficulty === "all" ? FLASHCARD_VERBS : FLASHCARD_VERBS.filter((card) => card.difficulty === storedDifficulty);
     const now = Date.now();
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setProgress(stored);
-    setRound(selectRound(stored, now));
+    setDifficulty(storedDifficulty);
+    setRound(selectRound(storedPool, stored, now));
     setCurrentTime(now);
     setReady(true);
   }, []);
 
-  const startRound = (source: LeitnerProgress) => {
-    const now = Date.now();
+  const startRound = (source: LeitnerProgress, roundPool: FlashcardVerb[], now: number) => {
     setCurrentTime(now);
-    setRound(selectRound(source, now));
+    setRound(selectRound(roundPool, source, now));
     setIndex(0);
     setRevealed(false);
+  };
+
+  const changeDifficulty = (next: DifficultyFilter) => {
+    if (next === difficulty) return;
+    setDifficulty(next);
+    window.localStorage.setItem(DIFFICULTY_STORAGE_KEY, next);
+    const nextPool = next === "all" ? FLASHCARD_VERBS : FLASHCARD_VERBS.filter((card) => card.difficulty === next);
+    // eslint-disable-next-line react-hooks/purity -- only ever invoked from the filter buttons' onClick
+    startRound(progress, nextPool, Date.now());
   };
 
   const totals = useMemo(() => {
@@ -162,9 +195,23 @@ export default function Flashcards({ standalone = false }: { standalone?: boolea
         </div>
       </header>
 
+      <div className="flashcard-difficulty-filter" role="group" aria-label="Filter by difficulty">
+        {DIFFICULTY_OPTIONS.map((option) => (
+          <button
+            key={option.value}
+            type="button"
+            className={`flashcard-difficulty-btn${difficulty === option.value ? " flashcard-difficulty-btn-active" : ""}`}
+            aria-pressed={difficulty === option.value}
+            onClick={() => changeDifficulty(option.value)}
+          >
+            {option.label}
+          </button>
+        ))}
+      </div>
+
       {finished ? (
         <>
-          <section className="completion-card flashcard-complete"><p className="eyebrow">Session complete</p><h2>{totals.studied} of 500 verbs entered into the system</h2><p>{totals.due ? `${totals.due} due card${totals.due === 1 ? " is" : "s are"} ready for another session.` : "You are caught up. Return when the next box becomes due."}</p>{totals.due > 0 && <button type="button" className="primary" onClick={() => startRound(progress)}>Review due cards</button>}</section>
+          <section className="completion-card flashcard-complete"><p className="eyebrow">Session complete</p><h2>{totals.studied} of 500 verbs entered into the system</h2><p>{totals.due ? `${totals.due} due card${totals.due === 1 ? " is" : "s are"} ready for another session.` : "You are caught up. Return when the next box becomes due."}</p>{totals.due > 0 && <button type="button" className="primary" onClick={() => startRound(progress, pool, Date.now())}>Review due cards</button>}</section>
           <SupportPrompt />
         </>
       ) : (

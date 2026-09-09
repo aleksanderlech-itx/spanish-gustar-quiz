@@ -1968,6 +1968,28 @@ body {
   background: var(--sage-soft);
 }
 
+.flashcard-difficulty-filter {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.flashcard-difficulty-btn {
+  flex: 1;
+  min-height: 36px;
+  border: 2px solid var(--border-ink);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.flashcard-difficulty-btn-active {
+  background: var(--clay-soft);
+}
+
 .flashcard {
   padding: 24px 20px;
   border-radius: 18px 30px 14px 34px;
