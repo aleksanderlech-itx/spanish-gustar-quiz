@@ -126,8 +126,7 @@ export default function Flashcards({ standalone = false }: { standalone?: boolea
     setReady(true);
   }, []);
 
-  const startRound = (source: LeitnerProgress, roundPool: FlashcardVerb[] = pool) => {
-    const now = Date.now();
+  const startRound = (source: LeitnerProgress, roundPool: FlashcardVerb[], now: number) => {
     setCurrentTime(now);
     setRound(selectRound(roundPool, source, now));
     setIndex(0);
@@ -139,7 +138,8 @@ export default function Flashcards({ standalone = false }: { standalone?: boolea
     setDifficulty(next);
     window.localStorage.setItem(DIFFICULTY_STORAGE_KEY, next);
     const nextPool = next === "all" ? FLASHCARD_VERBS : FLASHCARD_VERBS.filter((card) => card.difficulty === next);
-    startRound(progress, nextPool);
+    // eslint-disable-next-line react-hooks/purity -- only ever invoked from the filter buttons' onClick
+    startRound(progress, nextPool, Date.now());
   };
 
   const totals = useMemo(() => {
@@ -211,7 +211,7 @@ export default function Flashcards({ standalone = false }: { standalone?: boolea
 
       {finished ? (
         <>
-          <section className="completion-card flashcard-complete"><p className="eyebrow">Session complete</p><h2>{totals.studied} of 500 verbs entered into the system</h2><p>{totals.due ? `${totals.due} due card${totals.due === 1 ? " is" : "s are"} ready for another session.` : "You are caught up. Return when the next box becomes due."}</p>{totals.due > 0 && <button type="button" className="primary" onClick={() => startRound(progress)}>Review due cards</button>}</section>
+          <section className="completion-card flashcard-complete"><p className="eyebrow">Session complete</p><h2>{totals.studied} of 500 verbs entered into the system</h2><p>{totals.due ? `${totals.due} due card${totals.due === 1 ? " is" : "s are"} ready for another session.` : "You are caught up. Return when the next box becomes due."}</p>{totals.due > 0 && <button type="button" className="primary" onClick={() => startRound(progress, pool, Date.now())}>Review due cards</button>}</section>
           <SupportPrompt />
         </>
       ) : (
