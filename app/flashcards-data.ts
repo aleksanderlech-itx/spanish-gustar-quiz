@@ -2,13 +2,26 @@ import { FLASHCARD_VERBS_PART_1 } from "./flashcards-verbs-part1.ts";
 import { FLASHCARD_VERBS_PART_2 } from "./flashcards-verbs-part2.ts";
 import { FLASHCARD_EXAMPLES } from "./flashcards-examples.ts";
 
+export type FlashcardDifficulty = "easy" | "medium" | "hard";
+
 export type FlashcardVerb = {
   rank: number;
   spanish: string;
   english: string;
   example: string;
   exampleEnglish: string;
+  difficulty: FlashcardDifficulty;
 };
+
+// No authored difficulty data exists for these verbs, so difficulty is derived
+// from the frequency rank already assigned to each word: the most common third
+// reads as elementary-level vocabulary, the middle third as middle-school level,
+// and the least common third as high-school/advanced level.
+function difficultyForRank(rank: number): FlashcardDifficulty {
+  if (rank <= 166) return "easy";
+  if (rank <= 333) return "medium";
+  return "hard";
+}
 
 export const FLASHCARD_VERBS_SOURCE = {
   corpus: "OpenSubtitles2016 Spanish frequency data via hermitdave/FrequencyWords",
@@ -41,11 +54,13 @@ if (rows.length !== 500) {
 export const FLASHCARD_VERBS: FlashcardVerb[] = rows.map(({ spanish, english }, index) => {
   const authored = FLASHCARD_EXAMPLES[spanish];
   if (!authored) throw new Error(`Missing authored example for flashcard verb "${spanish}"`);
+  const rank = index + 1;
   return {
-    rank: index + 1,
+    rank,
     spanish,
     english,
     example: authored.example,
     exampleEnglish: authored.exampleEnglish,
+    difficulty: difficultyForRank(rank),
   };
 });
