@@ -178,7 +178,7 @@ export default function Flashcards({ standalone = false }: { standalone?: boolea
   return (
     <>
       {standalone && <SkipLink targetId="flashcard-deck" label="Skip to the deck" />}
-      <main id={standalone ? "flashcard-deck" : undefined} className="flashcard-shell">
+      <main id={standalone ? "flashcard-deck" : undefined} className="flashcard-shell app-shell">
       {standalone && (
         <>
           <SiteHeader />

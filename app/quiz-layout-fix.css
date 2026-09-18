@@ -107,6 +107,9 @@ body {
 
 .app-shell {
   width: min(100% - 32px, 1160px);
+  /* Matches .quiz-library's vertical rhythm so activity pages and the
+     front page share the same top/bottom spacing. */
+  padding: 34px 0 42px;
 }
 
 .quiz-form {
@@ -296,7 +299,7 @@ body {
 @media (max-width: 767px) {
   .app-shell {
     width: min(100% - 20px, 1160px);
-    padding-top: 10px;
+    padding-top: 22px;
   }
 
   .hero {
@@ -533,14 +536,15 @@ body {
  * min-height (not a hard height + overflow:hidden, unlike round-shell) since this
  * screen has extra content below the card+footer (Leitner box stats, a note) that
  * should stay reachable by a normal page scroll rather than being clipped. */
+/* Width comes from .app-shell, applied alongside this class in flashcards.tsx. */
 .flashcard-shell {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   min-height: 100dvh;
-  max-width: 480px;
   margin: 0 auto;
-  padding: 14px 18px 22px;
+  /* Same vertical rhythm as .app-shell/.quiz-library. */
+  padding: 34px 0 42px;
 }
 
 .flashcard-stage {
