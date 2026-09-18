@@ -541,9 +541,10 @@ body {
   flex-direction: column;
   min-height: 100vh;
   min-height: 100dvh;
-  max-width: 480px;
+  width: min(100% - 32px, 480px);
   margin: 0 auto;
-  padding: 14px 18px 22px;
+  /* Same vertical rhythm as .app-shell/.quiz-library. */
+  padding: 34px 0 42px;
 }
 
 .flashcard-stage {
