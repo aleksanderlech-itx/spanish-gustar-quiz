@@ -128,10 +128,6 @@ summary:focus-visible {
   color: var(--muted);
 }
 
-.flashcard-shell {
-  width: min(100% - 32px, 760px);
-}
-
 .flashcard-hero {
   gap: 16px;
 }

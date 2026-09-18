@@ -302,11 +302,6 @@ body {
     padding-top: 22px;
   }
 
-  .flashcard-shell {
-    width: min(100% - 22px, 480px);
-    padding-top: 22px;
-  }
-
   .hero {
     padding: 13px 14px 15px;
   }
@@ -541,12 +536,12 @@ body {
  * min-height (not a hard height + overflow:hidden, unlike round-shell) since this
  * screen has extra content below the card+footer (Leitner box stats, a note) that
  * should stay reachable by a normal page scroll rather than being clipped. */
+/* Width comes from .app-shell, applied alongside this class in flashcards.tsx. */
 .flashcard-shell {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   min-height: 100dvh;
-  width: min(100% - 32px, 480px);
   margin: 0 auto;
   /* Same vertical rhythm as .app-shell/.quiz-library. */
   padding: 34px 0 42px;
