@@ -1,10 +1,11 @@
 import { ALL_QUESTIONS, VERB_FORMS } from "./quiz-data";
 import { PRETERITE_IMPERFECT_FORMS, PRETERITE_IMPERFECT_QUESTIONS } from "./preterite-imperfect-data";
 import { SER_ESTAR_FORMS, SER_ESTAR_QUESTIONS } from "./ser-estar-data";
+import { POR_PARA_FORMS, POR_PARA_QUESTIONS } from "./por-para-data";
 import { ruleForTense } from "./quiz-logic";
 import type { Question } from "./quiz-data";
 
-export type QuizId = "gustar" | "ser-estar" | "preterite-imperfect";
+export type QuizId = "gustar" | "ser-estar" | "preterite-imperfect" | "por-para";
 
 /** Each quiz's own crawlable URL, so every topic canonicalizes to itself instead of
  * every `?quiz=` variant resolving to the same root page. */
@@ -12,6 +13,7 @@ export const QUIZ_SLUGS: Record<QuizId, string> = {
   gustar: "gustar",
   "ser-estar": "ser-vs-estar",
   "preterite-imperfect": "preterite-vs-imperfect",
+  "por-para": "por-vs-para",
 };
 
 export const quizPath = (quizId: QuizId): string => `/${QUIZ_SLUGS[quizId]}`;
@@ -61,5 +63,20 @@ export const QUIZ_CONFIG = {
     backupName: "spanish-preterite-imperfect-quiz-progress.json",
     sources: [],
     rule: { title: "Preterite completes the event. Imperfect describes the frame.", body: "Use preterite for completed actions, sequences, starts and changes. Use imperfect for habits, ongoing actions, background details and repeated past situations.", singular: "Ayer fui al mercado.", plural: "De niño iba al parque." },
+  },
+  "por-para": {
+    title: "Por vs Para Quiz",
+    eyebrow: "Por vs para",
+    heading: "Name the reason. Name the goal.",
+    copy: "Choose por or para through cause, duration, exchange, purpose, recipients and deadlines.",
+    description: "Choose por or para with 150 sentences covering cause, duration, exchange, means, purpose, recipients, deadlines and destinations, with an explanation for every answer.",
+    levelBand: "A2–B1",
+    questions: POR_PARA_QUESTIONS,
+    forms: POR_PARA_FORMS,
+    storageKey: "por-para-quiz-progress-v1",
+    filterKey: "por-para-quiz-filters-v1",
+    backupName: "spanish-por-para-quiz-progress.json",
+    sources: [],
+    rule: { title: "Por looks back to the cause. Para looks ahead to the goal.", body: "Use por for cause, duration, exchange, means and movement through a place. Use para for purpose, recipients, deadlines and destinations.", singular: "Lo hice por ti.", plural: "Lo hice para ti." },
   },
 } satisfies Record<QuizId, { title: string; eyebrow: string; heading: string; copy: string; description: string; levelBand: string; questions: Question[]; forms: Record<string, [string, string]>; storageKey: string; filterKey: string; backupName: string; sources: Array<{ label: string; href: string }>; rule: ReturnType<typeof ruleForTense> }>;

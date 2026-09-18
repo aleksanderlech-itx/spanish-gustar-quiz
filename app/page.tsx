@@ -9,7 +9,7 @@ import VerbChart from "./verb-chart";
 
 const quizIdFromParams = (params: URLSearchParams): QuizId => {
   const value = params.get("quiz");
-  return value === "ser-estar" || value === "preterite-imperfect" ? value : "gustar";
+  return value === "ser-estar" || value === "preterite-imperfect" || value === "por-para" ? value : "gustar";
 };
 
 export default function Home() {
