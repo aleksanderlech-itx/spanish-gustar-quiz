@@ -302,6 +302,11 @@ body {
     padding-top: 22px;
   }
 
+  .flashcard-shell {
+    width: min(100% - 22px, 480px);
+    padding-top: 22px;
+  }
+
   .hero {
     padding: 13px 14px 15px;
   }
