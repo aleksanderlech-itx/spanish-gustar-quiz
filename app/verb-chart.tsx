@@ -25,6 +25,10 @@ const blocksFor = (quizId: QuizId, infinitive: string, forms: Record<string, [st
     const [ser, estar] = forms[infinitive] ?? ["ser", "estar"];
     return [{ tenseLabel: "Present", accent: "primary", rows: [{ pronoun: "ser", form: ser }, { pronoun: "estar", form: estar }] }];
   }
+  if (quizId === "por-para") {
+    const [por, para] = forms[infinitive] ?? ["por", "para"];
+    return [{ tenseLabel: "Preposition", accent: "primary", rows: [{ pronoun: "por", form: por }, { pronoun: "para", form: para }] }];
+  }
   const [singular, plural] = forms[infinitive] ?? ["", ""];
   return [{ tenseLabel: "Present", accent: "primary", rows: [{ pronoun: "one thing / to do something", form: singular }, { pronoun: "several things", form: plural }] }];
 };

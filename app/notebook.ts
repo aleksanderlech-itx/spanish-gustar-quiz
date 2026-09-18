@@ -8,6 +8,7 @@ const NOTEBOOK_KEY = "spanish-quiz-notebook-v1";
 /** Short, stable label for the grammar point a missed question exercises. */
 export const ruleLabelFor = (question: Question, quizId: QuizId): string => {
   if (quizId === "ser-estar") return "Ser vs estar";
+  if (quizId === "por-para") return "Por vs para";
   if (quizId === "preterite-imperfect") return question.tense === "preterite" ? "Preterite" : "Imperfect";
   return `Gustar pattern: ${question.infinitive}`;
 };

@@ -127,11 +127,19 @@ export default function TopicDetail({ quizId, standalone = false }: { quizId: Qu
         <p className="topic-setting-hint">{filteredCount} sentence{filteredCount === 1 ? "" : "s"} selected</p>
       </section>
 
-      <Link className="topic-chart-link" href={`${quizPath(quizId)}?chart=1`}>
-        <span className="board-icon" aria-hidden="true">▦</span>
-        <span className="topic-chart-link-label">Verb conjugation chart</span>
-        <span aria-hidden="true">→</span>
-      </Link>
+      {quizId === "por-para" ? (
+        <a className="topic-chart-link" href={`#${quizId}-explainer-heading`}>
+          <span className="board-icon" aria-hidden="true">▦</span>
+          <span className="topic-chart-link-label">Por vs para, explained</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      ) : (
+        <Link className="topic-chart-link" href={`${quizPath(quizId)}?chart=1`}>
+          <span className="board-icon" aria-hidden="true">▦</span>
+          <span className="topic-chart-link-label">Verb conjugation chart</span>
+          <span aria-hidden="true">→</span>
+        </Link>
+      )}
 
       <footer className="topic-detail-footer">
         {filteredCount > 0 ? (

@@ -113,4 +113,39 @@ export const QUIZ_CONTENT: Record<QuizId, QuizContent> = {
       },
     ],
   },
+  "por-para": {
+    paragraphs: [
+      "Por and para both translate as for, which is exactly why English speakers reach for the wrong one so often. Neither preposition is a direct match for anything in English, so the safest approach is to stop translating and start asking what job the word is doing in the sentence.",
+      "Por looks backward, toward a cause, a duration, an exchange or a means. Lo hice por amor points at the motive. Estudié por dos horas points at how long. Lo compré por veinte euros points at what was traded for it. Para looks forward, toward a purpose, a recipient or a deadline. Estudio para aprobar el examen points at the goal. Este regalo es para ti points at who receives it.",
+      "A handful of contexts show the contrast clearly with the same verb. Trabajo por mi familia means I work for my family's sake, out of love or necessity. Trabajo para mi familia means my family's business employs me. Same verb, same object, a completely different relationship because of one preposition.",
+      "This quiz has 150 sentences covering cause, duration, exchange, means, movement, purpose, recipients, deadlines and destinations, with an explanation for every answer, until the backward-versus-forward instinct starts to feel automatic.",
+    ],
+    examples: [
+      { es: "Cancelaron el partido por la lluvia.", en: "They cancelled the match because of the rain." },
+      { es: "Compré esta bicicleta por cien euros.", en: "I bought this bike for one hundred euros." },
+      { es: "Estudio español para viajar a México.", en: "I study Spanish to travel to Mexico." },
+      { es: "Este regalo es para ti.", en: "This gift is for you." },
+      { es: "La tarea es para el lunes.", en: "The homework is due Monday." },
+    ],
+    faq: [
+      {
+        question: "What is the simplest way to choose between por and para?",
+        answer:
+          "Ask whether the sentence points backward to a cause, duration, exchange or means (por) or forward to a purpose, recipient or deadline (para).",
+      },
+      {
+        question: "Why does trabajar por and trabajar para mean different things?",
+        answer:
+          "Trabajar por someone means acting for their sake or in their place. Trabajar para someone means they are your employer. The verb stays the same; the preposition changes the relationship.",
+      },
+      {
+        question: "Does por always mean because of?",
+        answer: "Not always, but cause is one of its core uses, alongside duration, exchange, means and movement through a place.",
+      },
+      {
+        question: "How do I know if para introduces a deadline or a destination?",
+        answer: "Context tells you: a date or time after para is a deadline, a place after para is a destination.",
+      },
+    ],
+  },
 };

@@ -29,7 +29,7 @@ const LEVEL_BADGE: Record<Question["level"], string> = {
 
 /** Up to 3 options: the correct answer plus distractors drawn from the quiz's own verb forms/pronouns. */
 const answerChoicesFor = (question: Question, forms: Record<string, [string, string]>) => {
-  if (question.infinitive === "ser / estar" || question.tense === "preterite" || question.tense === "imperfect") {
+  if (question.infinitive === "ser / estar" || question.infinitive === "por / para" || question.tense === "preterite" || question.tense === "imperfect") {
     return shuffle([question.answer, question.objectPronoun].filter(Boolean));
   }
   const choices = new Set<string>([question.answer]);

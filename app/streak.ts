@@ -4,7 +4,7 @@ const STREAK_KEY = "spanish-quiz-streak-v2";
 const FLASHCARD_DAYS_KEY = "spanish-flashcards-active-days-v1";
 const DAY_LETTERS = ["Lu", "Ma", "Mi", "Ju", "Vi", "Sá", "Do"];
 
-export const ACTIVITY_IDS = ["gustar", "ser-estar", "preterite-imperfect", "flashcards"] as const;
+export const ACTIVITY_IDS = ["gustar", "ser-estar", "preterite-imperfect", "por-para", "flashcards"] as const;
 export type ActivityId = (typeof ACTIVITY_IDS)[number];
 
 /** dayKey -> activities completed that day. The daily goal is reaching every activity, not just one. */
