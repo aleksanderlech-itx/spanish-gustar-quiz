@@ -2462,6 +2462,55 @@ body {
   color: var(--danger);
 }
 
+.drawer-finished-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.drawer-finished-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.drawer-finished-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.drawer-finished-item-info > span:first-child {
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.drawer-finished-item-meta {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.drawer-finished-toggle {
+  align-self: flex-start;
+  min-height: 32px;
+  padding: 0 10px;
+  border: 2px solid var(--border-ink);
+  border-radius: 6px;
+  background: var(--panel-soft);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+}
+
 .drawer-kofi {
   display: flex;
   align-items: center;

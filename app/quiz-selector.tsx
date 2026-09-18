@@ -7,6 +7,7 @@ import { useTheme } from "./use-theme";
 import { orderBoard, type BoardTileProgress } from "./board";
 import { readStreakSummary, mergeActivityDays, dayKey, readFlashcardDaysReviewed, ACTIVITY_IDS, type ActivityId, type StreakSummary } from "./streak";
 import { emptyQuizProgress, readQuizProgress, readDailyRoundProgress, type DailyRoundProgress } from "./quiz-progress";
+import { isQuizHiddenFromBoard } from "./quiz-completion";
 import type { QuizResult } from "./quiz-logic";
 import { ROUND_SIZE as FLASHCARDS_ROUND_SIZE, MAX_BOX as MAX_FLASHCARD_BOX } from "./flashcards";
 import Drawer from "./drawer";
@@ -166,7 +167,7 @@ export default function QuizSelector() {
     if (!open) return;
     const flashcards = readFlashcardProgress();
     const nextItems: BoardItem[] = [
-      ...QUIZ_IDS.map((id) => ({
+      ...QUIZ_IDS.filter((id) => !isQuizHiddenFromBoard(id)).map((id) => ({
         id,
         kind: "quiz" as const,
         title: QUIZ_CONFIG[id].title.replace(" Quiz", ""),
