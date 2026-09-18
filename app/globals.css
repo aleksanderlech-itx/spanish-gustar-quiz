@@ -1323,6 +1323,9 @@ h1 em {
 .primary,
 .secondary,
 .back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-height: 46px;
   border: 0;
   border-radius: var(--radius);
