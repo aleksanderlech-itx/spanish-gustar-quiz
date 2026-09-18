@@ -1,4 +1,5 @@
 const STREAK_KEY = "spanish-quiz-streak-v2";
+const FLASHCARD_DAYS_KEY = "spanish-flashcards-active-days-v1";
 const DAY_LETTERS = ["Lu", "Ma", "Mi", "Ju", "Vi", "Sá", "Do"];
 
 export const ACTIVITY_IDS = ["gustar", "ser-estar", "preterite-imperfect", "flashcards"] as const;
@@ -48,6 +49,38 @@ const writeRecords = (records: Records) => {
 export const recordActivityToday = (activity: ActivityId) => {
   if (typeof window === "undefined") return;
   mergeActivityDays([{ activity, day: dayKey(new Date()) }]);
+};
+
+/**
+ * Flashcards has no per-round history like the grammar quizzes — each card's Leitner
+ * record only keeps its own most recent `updatedAt`, so a card reviewed on multiple
+ * days remembers only the latest one. That means the streak's self-heal (which
+ * rebuilds days from each activity's own stored history) can only ever recover the
+ * single most recent flashcards day, silently dropping earlier days if the streak
+ * ledger itself is ever lost. This is flashcards' own durable day-by-day log, written
+ * on every card reviewed, so the streak stays fully recoverable like the quizzes are.
+ */
+export const recordFlashcardDayReviewed = (day: string) => {
+  if (typeof window === "undefined") return;
+  try {
+    const raw = window.localStorage.getItem(FLASHCARD_DAYS_KEY);
+    const days: string[] = raw ? JSON.parse(raw) : [];
+    if (days.includes(day)) return;
+    window.localStorage.setItem(FLASHCARD_DAYS_KEY, JSON.stringify([...days, day]));
+  } catch {
+    // Storage can be unavailable (private mode, quota); the day log just won't persist this session.
+  }
+};
+
+export const readFlashcardDaysReviewed = (): string[] => {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = window.localStorage.getItem(FLASHCARD_DAYS_KEY);
+    const days = raw ? (JSON.parse(raw) as unknown) : [];
+    return Array.isArray(days) ? days.filter((day): day is string => typeof day === "string") : [];
+  } catch {
+    return [];
+  }
 };
 
 /**
