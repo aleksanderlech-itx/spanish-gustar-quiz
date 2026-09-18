@@ -1,6 +1,18 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { ACTIVITY_IDS, currentStreak, dayKey, weekBars } from "../app/streak.ts";
+
+// A minimal localStorage stand-in for Node, since streak.ts is a plain browser
+// module (no DOM test runner here).
+const store = new Map();
+globalThis.window = {
+  localStorage: {
+    getItem: (key) => (store.has(key) ? store.get(key) : null),
+    setItem: (key, value) => store.set(key, value),
+    clear: () => store.clear(),
+  },
+};
+
+const { ACTIVITY_IDS, currentStreak, dayKey, weekBars, recordFlashcardDayReviewed, readFlashcardDaysReviewed } = await import("../app/streak.ts");
 
 const daysAgo = (today, count) => {
   const date = new Date(today);
@@ -66,4 +78,13 @@ test("weekBars reports partial completion counts for today", () => {
   const todayBar = week.find((day) => day.status === "today");
   assert.equal(todayBar.doneCount, 2);
   assert.equal(todayBar.total, ACTIVITY_IDS.length);
+});
+
+test("recordFlashcardDayReviewed/readFlashcardDaysReviewed keep every distinct day, not just the most recent", () => {
+  store.clear();
+  recordFlashcardDayReviewed("2026-09-11");
+  recordFlashcardDayReviewed("2026-09-12");
+  recordFlashcardDayReviewed("2026-09-12"); // Re-reviewing a card the same day must not duplicate the entry.
+  recordFlashcardDayReviewed("2026-09-13");
+  assert.deepEqual(readFlashcardDaysReviewed(), ["2026-09-11", "2026-09-12", "2026-09-13"]);
 });

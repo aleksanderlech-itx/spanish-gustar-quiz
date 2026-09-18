@@ -3,7 +3,7 @@
 import { type MouseEvent, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { FLASHCARD_VERBS, type FlashcardDifficulty, type FlashcardVerb } from "./flashcards-data";
-import { recordActivityToday } from "./streak";
+import { dayKey, recordActivityToday, recordFlashcardDayReviewed } from "./streak";
 import { speak } from "./speak";
 import { ActivityChips, ActivityFooter, SkipLink } from "./activity-chrome";
 import SiteHeader from "./site-header";
@@ -162,6 +162,7 @@ export default function Flashcards({ standalone = false }: { standalone?: boolea
     setCurrentTime(Date.now());
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
     recordActivityToday("flashcards");
+    recordFlashcardDayReviewed(dayKey(new Date()));
     setIndex((current) => current + 1);
     setRevealed(false);
   };

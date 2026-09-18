@@ -5,7 +5,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config";
 import { useTheme } from "./use-theme";
 import { orderBoard, type BoardTileProgress } from "./board";
-import { readStreakSummary, mergeActivityDays, dayKey, ACTIVITY_IDS, type ActivityId, type StreakSummary } from "./streak";
+import { readStreakSummary, mergeActivityDays, dayKey, readFlashcardDaysReviewed, ACTIVITY_IDS, type ActivityId, type StreakSummary } from "./streak";
 import { emptyQuizProgress, readQuizProgress, readDailyRoundProgress, type DailyRoundProgress } from "./quiz-progress";
 import type { QuizResult } from "./quiz-logic";
 import { ROUND_SIZE as FLASHCARDS_ROUND_SIZE, MAX_BOX as MAX_FLASHCARD_BOX } from "./flashcards";
@@ -135,15 +135,9 @@ const backfillEntries = (): Array<{ activity: ActivityId; day: string }> => {
     }
   });
 
-  try {
-    const raw = window.localStorage.getItem("spanish-flashcards-leitner-v2") ?? window.localStorage.getItem("spanish-flashcards-progress-v1");
-    const saved = raw ? JSON.parse(raw) as Record<string, { updatedAt?: string }> : {};
-    Object.values(saved).forEach((item) => {
-      if (item.updatedAt) entries.push({ activity: "flashcards", day: dayKey(new Date(item.updatedAt)) });
-    });
-  } catch {
-    // Corrupt or unavailable flashcard progress; skip its backfill.
-  }
+  // Each Leitner card record only keeps its own most recent `updatedAt`, so it can't
+  // tell us every day flashcards were reviewed — only readFlashcardDaysReviewed can.
+  readFlashcardDaysReviewed().forEach((day) => entries.push({ activity: "flashcards", day }));
 
   return entries;
 };
