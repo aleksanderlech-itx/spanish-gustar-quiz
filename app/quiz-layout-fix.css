@@ -107,6 +107,9 @@ body {
 
 .app-shell {
   width: min(100% - 32px, 1160px);
+  /* Matches .quiz-library's vertical rhythm so activity pages and the
+     front page share the same top/bottom spacing. */
+  padding: 34px 0 42px;
 }
 
 .quiz-form {
@@ -296,7 +299,7 @@ body {
 @media (max-width: 767px) {
   .app-shell {
     width: min(100% - 20px, 1160px);
-    padding-top: 10px;
+    padding-top: 22px;
   }
 
   .hero {
