@@ -3,9 +3,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { type Question } from "./quiz-data";
-import { availableQuestions, filterQuestions, getMissedIds, normalizeAnswer, scoreRound, type QuizResult } from "./quiz-logic";
+import { availableQuestions, clearRegularHistory, filterQuestions, getMissedIds, normalizeAnswer, scoreRound, type QuizResult } from "./quiz-logic";
 import { QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config";
 import { recordActivityToday } from "./streak";
+import { markQuizCompleted, readQuizCompletion, repeatDueDate } from "./quiz-completion";
 import { readTopicSettings, type AnswerMode } from "./topic-settings";
 import { readQuizFilters } from "./quiz-filters";
 import { recordMistakes, ruleLabelFor } from "./notebook";
@@ -166,15 +167,28 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
   if (!hydrated) return <main className="loading">Preparing your quiz…</main>;
 
   if (poolExhausted) {
+    const completedAt = readQuizCompletion(quizId);
+    const dueDate = completedAt ? repeatDueDate(completedAt) : null;
+    const redoSet = () => {
+      const resetHistory = clearRegularHistory(history);
+      setHistory(resetHistory);
+      void persistProgress(resetHistory);
+      startRound(false, resetHistory);
+    };
     return (
       <main className="app-shell">
         {standalone && <SiteHeader />}
         <section className="completion-card" aria-live="polite">
             <p className="eyebrow">Set completed</p>
             <h2>You&apos;ve completed every {quiz.title.replace(" Quiz", "")} sentence.</h2>
-            <p>Your results are saved. Practise the ones you missed, or head back to the board.</p>
+            <p>
+              Your results are saved{completedAt ? ` (done ${new Date(completedAt).toLocaleDateString()})` : ""}.
+              This topic isn&apos;t required for today&apos;s goal anymore
+              {dueDate ? ` — we'll suggest a repeat from ${dueDate.toLocaleDateString()}, but you can redo it any time.` : "."}
+            </p>
             <div>
               {missedIds.length > 0 && <button type="button" className="primary" onClick={() => startRound(true, history)}>Practise the misses</button>}
+              <button type="button" className="secondary" onClick={redoSet}>Redo the whole set</button>
               <Link className="secondary" href={quizPath(quizId)}>Back to topic</Link>
             </div>
         </section>
@@ -256,6 +270,10 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
     setHistory(next);
     void persistProgress(next);
     recordActivityToday(quizId);
+    if (!practiceMissed) {
+      const filteredQuestions = filterQuestions(questions, readQuizFilters(quiz.filterKey));
+      if (availableQuestions(filteredQuestions, next, false).length === 0) markQuizCompleted(quizId);
+    }
     setMissedRules(rules);
     setLastResult(result);
     setFinished(true);

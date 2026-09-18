@@ -53,6 +53,9 @@ export const availableQuestions = <T extends QuizQuestion>(questions: T[], histo
   return questions.filter((question) => !used.has(question.id));
 };
 
+/** Drops the finished regular-mode rounds so every sentence becomes available again, for an early voluntary redo. Review-mode (missed-practice) history is kept. */
+export const clearRegularHistory = (history: QuizResult[]) => history.filter((item) => item.mode === "review");
+
 export const restartSelectedHistory = (history: QuizResult[], selectedIds: Set<number>) => history.flatMap((result) => {
   if (result.mode === "review") return [result];
   const keptIndexes = result.questionIds.map((id, index) => ({ id, index })).filter(({ id }) => !selectedIds.has(id));

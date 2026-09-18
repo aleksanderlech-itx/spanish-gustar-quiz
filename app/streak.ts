@@ -1,3 +1,5 @@
+import { readAllCompletions, repeatDueDate } from "./quiz-completion.ts";
+
 const STREAK_KEY = "spanish-quiz-streak-v2";
 const FLASHCARD_DAYS_KEY = "spanish-flashcards-active-days-v1";
 const DAY_LETTERS = ["Lu", "Ma", "Mi", "Ju", "Vi", "Sá", "Do"];
@@ -14,7 +16,23 @@ export const dayKey = (date: Date) => `${date.getFullYear()}-${pad(date.getMonth
 
 const isActivityId = (value: unknown): value is ActivityId => (ACTIVITY_IDS as readonly string[]).includes(value as string);
 
-const isDayComplete = (record: Set<ActivityId> | undefined) => !!record && ACTIVITY_IDS.every((id) => record.has(id));
+/**
+ * A quiz that's been fully completed is exempt from the daily goal for every day from
+ * its completion date up to (not including) the day its monthly repeat becomes due —
+ * at which point it's required again like any other activity.
+ */
+const isExemptOn = (activity: ActivityId, day: string, completions: Record<string, string>) => {
+  const completedAt = completions[activity];
+  if (!completedAt) return false;
+  if (day < dayKey(new Date(completedAt))) return false;
+  return day < dayKey(repeatDueDate(completedAt));
+};
+
+const requiredActivitiesOn = (day: string, completions: Record<string, string>) =>
+  ACTIVITY_IDS.filter((id) => !isExemptOn(id, day, completions));
+
+const isDayComplete = (record: Set<ActivityId> | undefined, day: string, completions: Record<string, string>) =>
+  !!record && requiredActivitiesOn(day, completions).every((id) => record.has(id));
 
 const readRecords = (): Records => {
   if (typeof window === "undefined") return new Map();
@@ -104,12 +122,12 @@ export const mergeActivityDays = (entries: Array<{ activity: ActivityId; day: st
   if (changed) writeRecords(records);
 };
 
-/** Consecutive days ending today (or yesterday, if today isn't fully done yet) where every activity was completed. */
-export const currentStreak = (records: Records, today = new Date()): number => {
+/** Consecutive days ending today (or yesterday, if today isn't fully done yet) where every required activity was completed. */
+export const currentStreak = (records: Records, today = new Date(), completions = readAllCompletions()): number => {
   const cursor = new Date(today);
-  if (!isDayComplete(records.get(dayKey(cursor)))) cursor.setDate(cursor.getDate() - 1);
+  if (!isDayComplete(records.get(dayKey(cursor)), dayKey(cursor), completions)) cursor.setDate(cursor.getDate() - 1);
   let streak = 0;
-  while (isDayComplete(records.get(dayKey(cursor)))) {
+  while (isDayComplete(records.get(dayKey(cursor)), dayKey(cursor), completions)) {
     streak += 1;
     cursor.setDate(cursor.getDate() - 1);
   }
@@ -119,7 +137,7 @@ export const currentStreak = (records: Records, today = new Date()): number => {
 export type WeekDay = { letter: string; status: "done" | "today" | "future"; doneCount: number; total: number };
 
 /** Monday-start week containing `today`, for the streak panel's 7 day bars. */
-export const weekBars = (records: Records, today = new Date()): WeekDay[] => {
+export const weekBars = (records: Records, today = new Date(), completions = readAllCompletions()): WeekDay[] => {
   const mondayOffset = (today.getDay() + 6) % 7;
   const monday = new Date(today);
   monday.setDate(today.getDate() - mondayOffset);
@@ -130,8 +148,9 @@ export const weekBars = (records: Records, today = new Date()): WeekDay[] => {
     date.setDate(monday.getDate() + index);
     const key = dayKey(date);
     const record = records.get(key);
-    const status: WeekDay["status"] = key === todayKey ? "today" : isDayComplete(record) ? "done" : "future";
-    return { letter: DAY_LETTERS[index], status, doneCount: record?.size ?? 0, total: ACTIVITY_IDS.length };
+    const total = requiredActivitiesOn(key, completions).length;
+    const status: WeekDay["status"] = key === todayKey ? "today" : isDayComplete(record, key, completions) ? "done" : "future";
+    return { letter: DAY_LETTERS[index], status, doneCount: record?.size ?? 0, total };
   });
 };
 
@@ -145,12 +164,15 @@ export type StreakSummary = {
 
 export const readStreakSummary = (today = new Date()): StreakSummary => {
   const records = readRecords();
-  const todayRecord = records.get(dayKey(today));
+  const completions = readAllCompletions();
+  const todayKey = dayKey(today);
+  const todayRecord = records.get(todayKey);
+  const requiredToday = requiredActivitiesOn(todayKey, completions);
   return {
-    streak: currentStreak(records, today),
-    completedToday: isDayComplete(todayRecord),
-    todayDone: todayRecord?.size ?? 0,
-    todayTotal: ACTIVITY_IDS.length,
-    week: weekBars(records, today),
+    streak: currentStreak(records, today, completions),
+    completedToday: isDayComplete(todayRecord, todayKey, completions),
+    todayDone: requiredToday.filter((id) => todayRecord?.has(id)).length,
+    todayTotal: requiredToday.length,
+    week: weekBars(records, today, completions),
   };
 };
