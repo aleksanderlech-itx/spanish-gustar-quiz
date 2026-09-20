@@ -6,6 +6,7 @@ import { readNotebookEntries } from "./notebook";
 import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
 import type { QuizResult } from "./quiz-logic";
 import { computeRecentRounds, computeWeakAreas, type RecentRound, type WeakArea } from "./history";
+import { readAllCompletions, isQuizReinstated, setQuizReinstated, isRepeatDue, repeatDueDate } from "./quiz-completion";
 import Logo from "./logo";
 import KofiButton from "./kofi-button";
 
@@ -122,6 +123,25 @@ const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), input:not([disabled
 
 type DrawerRow = "history" | "recap" | "notebook" | "backup" | "settings";
 
+type FinishedActivity = { quizId: QuizId; title: string; completedAt: string; repeatDue: boolean; reinstated: boolean };
+
+/** Grammar quizzes the user has fully completed, whether or not they're currently
+ * shown back on the main screen. Only finished topics are settings' concern —
+ * an unfinished one is just on the board where it already belongs. */
+const readFinishedActivities = (): FinishedActivity[] => {
+  const completions = readAllCompletions();
+  return QUIZ_IDS
+    .filter((id) => completions[id])
+    .map((id) => ({
+      quizId: id,
+      title: QUIZ_CONFIG[id].title.replace(" Quiz", ""),
+      completedAt: completions[id],
+      repeatDue: isRepeatDue(completions[id]),
+      reinstated: isQuizReinstated(id),
+    }))
+    .sort((a, b) => b.completedAt.localeCompare(a.completedAt));
+};
+
 export default function Drawer({ open, onClose, returnFocusRef }: { open: boolean; onClose: () => void; returnFocusRef: RefObject<HTMLButtonElement | null> }) {
   const [expanded, setExpanded] = useState<DrawerRow | null>(null);
   const [stats, setStats] = useState<GlobalStats>(emptyStats);
@@ -130,6 +150,7 @@ export default function Drawer({ open, onClose, returnFocusRef }: { open: boolea
   const [streakDays, setStreakDays] = useState(0);
   const [notebookCount, setNotebookCount] = useState(0);
   const [notebookRules, setNotebookRules] = useState<string[]>([]);
+  const [finishedActivities, setFinishedActivities] = useState<FinishedActivity[]>([]);
   const panelRef = useRef<HTMLDivElement | null>(null);
   const importRef = useRef<HTMLInputElement | null>(null);
 
@@ -145,7 +166,13 @@ export default function Drawer({ open, onClose, returnFocusRef }: { open: boolea
     const entries = readNotebookEntries();
     setNotebookCount(entries.length);
     setNotebookRules(entries.map((entry) => entry.rule));
+    setFinishedActivities(readFinishedActivities());
   }, [open]);
+
+  const toggleReinstated = (quizId: QuizId, reinstated: boolean) => {
+    setQuizReinstated(quizId, reinstated);
+    setFinishedActivities(readFinishedActivities());
+  };
 
   useEffect(() => {
     if (!open) return;
@@ -301,6 +328,33 @@ export default function Drawer({ open, onClose, returnFocusRef }: { open: boolea
           {expanded === "settings" && (
             <div className="drawer-row-panel drawer-row-panel-actions">
               <button type="button" className="drawer-action-button drawer-danger" onClick={resetAllProgress}>Reset all progress</button>
+
+              <p className="drawer-subhead">Finished activities</p>
+              {finishedActivities.length ? (
+                <ul className="drawer-finished-list">
+                  {finishedActivities.map((item) => (
+                    <li key={item.quizId} className="drawer-finished-item">
+                      <div className="drawer-finished-item-info">
+                        <span>{item.title}</span>
+                        <span className="drawer-finished-item-meta">
+                          {item.repeatDue
+                            ? "Repeat due"
+                            : `Done ${new Date(item.completedAt).toLocaleDateString()} · repeat from ${repeatDueDate(item.completedAt).toLocaleDateString()}`}
+                        </span>
+                      </div>
+                      {!item.repeatDue && (
+                        <button
+                          type="button"
+                          className="drawer-finished-toggle"
+                          onClick={() => toggleReinstated(item.quizId, !item.reinstated)}
+                        >
+                          {item.reinstated ? "Remove from main screen" : "Add to main screen"}
+                        </button>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              ) : <p>No finished activities yet.</p>}
             </div>
           )}
 
