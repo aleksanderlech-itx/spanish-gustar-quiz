@@ -270,10 +270,13 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
     setHistory(next);
     void persistProgress(next);
     recordActivityToday(quizId);
-    if (!practiceMissed) {
-      const filteredQuestions = filterQuestions(questions, readQuizFilters(quiz.filterKey));
-      if (availableQuestions(filteredQuestions, next, false).length === 0) markQuizCompleted(quizId);
-    }
+    const filteredQuestions = filterQuestions(questions, readQuizFilters(quiz.filterKey));
+    const regularPoolExhausted = availableQuestions(filteredQuestions, next, false).length === 0;
+    // A regular round marks completion as soon as every sentence has been attempted once, misses
+    // or not — that's the existing "you've completed every sentence" milestone. A review round
+    // (practising misses) only reaches that milestone once it clears the last outstanding miss,
+    // since the regular pool was already exhausted before the review round started.
+    if (regularPoolExhausted && (!practiceMissed || getMissedIds(next).length === 0)) markQuizCompleted(quizId);
     setMissedRules(rules);
     setLastResult(result);
     setFinished(true);
