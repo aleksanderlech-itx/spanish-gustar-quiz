@@ -164,6 +164,8 @@ export default function QuizSelector() {
   useEffect(() => {
     // Re-reads progress every time the board becomes visible again, not just on
     // first mount, so returning from a round shows the round's updated numbers.
+    // Also re-reads when the drawer opens/closes, so a "show on main screen" choice
+    // made in Settings (drawer.tsx) appears on the board without a page reload.
     if (!open) return;
     const flashcards = readFlashcardProgress();
     const progressById = Object.fromEntries(QUIZ_IDS.map((id) => [id, readQuizProgress(id)])) as Record<QuizId, QuizProgress>;
@@ -205,7 +207,7 @@ export default function QuizSelector() {
     setItems(nextItems);
     setStreak(readStreakSummary());
     setReady(true);
-  }, [open]);
+  }, [open, drawerOpen]);
 
   useEffect(() => {
     document.body.classList.toggle("quiz-library-open", ready && open);
