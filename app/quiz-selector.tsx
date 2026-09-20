@@ -6,8 +6,8 @@ import { QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config";
 import { useTheme } from "./use-theme";
 import { orderBoard, type BoardTileProgress } from "./board";
 import { readStreakSummary, mergeActivityDays, dayKey, readFlashcardDaysReviewed, ACTIVITY_IDS, type ActivityId, type StreakSummary } from "./streak";
-import { emptyQuizProgress, readQuizProgress, readDailyRoundProgress, type DailyRoundProgress } from "./quiz-progress";
-import { isQuizHiddenFromBoard } from "./quiz-completion";
+import { emptyQuizProgress, readQuizProgress, readDailyRoundProgress, type DailyRoundProgress, type QuizProgress } from "./quiz-progress";
+import { isQuizHiddenFromBoard, readQuizCompletion, markQuizCompleted } from "./quiz-completion";
 import type { QuizResult } from "./quiz-logic";
 import { ROUND_SIZE as FLASHCARDS_ROUND_SIZE, MAX_BOX as MAX_FLASHCARD_BOX } from "./flashcards";
 import Drawer from "./drawer";
@@ -164,8 +164,20 @@ export default function QuizSelector() {
   useEffect(() => {
     // Re-reads progress every time the board becomes visible again, not just on
     // first mount, so returning from a round shows the round's updated numbers.
+    // Also re-reads when the drawer opens/closes, so a "show on main screen" choice
+    // made in Settings (drawer.tsx) appears on the board without a page reload.
     if (!open) return;
     const flashcards = readFlashcardProgress();
+    const progressById = Object.fromEntries(QUIZ_IDS.map((id) => [id, readQuizProgress(id)])) as Record<QuizId, QuizProgress>;
+    // Self-heal: a quiz fully mastered before this device ever recorded a completion timestamp
+    // (e.g. its last outstanding miss was cleared by a review round, which used to skip the mark)
+    // gets backfilled here, the same way the streak ledger backfills from history on every load.
+    QUIZ_IDS.forEach((id) => {
+      const progress = progressById[id];
+      if (progress.completed > 0 && progress.due === 0 && progress.percent === 100 && !readQuizCompletion(id)) {
+        markQuizCompleted(id, progress.lastActivity ? new Date(progress.lastActivity) : new Date());
+      }
+    });
     const nextItems: BoardItem[] = [
       ...QUIZ_IDS.filter((id) => !isQuizHiddenFromBoard(id)).map((id) => ({
         id,
@@ -174,7 +186,7 @@ export default function QuizSelector() {
         noun: "question",
         href: detailPath(id),
         daily: readDailyRoundProgress(id),
-        ...readQuizProgress(id),
+        ...progressById[id],
       })),
       {
         id: "flashcards" as LibraryQuizId,
@@ -195,7 +207,7 @@ export default function QuizSelector() {
     setItems(nextItems);
     setStreak(readStreakSummary());
     setReady(true);
-  }, [open]);
+  }, [open, drawerOpen]);
 
   useEffect(() => {
     document.body.classList.toggle("quiz-library-open", ready && open);
