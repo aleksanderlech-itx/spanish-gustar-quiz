@@ -111,8 +111,10 @@ test("QuizSelector re-derives its open state from the router on every render, no
   assert.match(quizSelector, /const open = pathname === "\/" && !params\.has\("quiz"\) && params\.get\("play"\) !== "1";/);
   assert.doesNotMatch(quizSelector, /window\.location\.search/);
   // The board's progress numbers re-read from storage whenever it becomes visible
-  // again (dependent on `open`), not only once at first mount.
-  assert.match(quizSelector, /\}, \[open\]\);/);
+  // again (dependent on `open`), not only once at first mount — and also when the
+  // drawer opens or closes, so a Settings change (e.g. "show on main screen") shows
+  // up without a page reload.
+  assert.match(quizSelector, /\}, \[open, drawerOpen\]\);/);
 });
 
 test("round screen commits one answer at a time, recolors options, and gates Next until answered", async () => {
