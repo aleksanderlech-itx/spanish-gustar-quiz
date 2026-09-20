@@ -20,7 +20,7 @@ export const quizPath = (quizId: QuizId): string => `/${QUIZ_SLUGS[quizId]}`;
 
 export const QUIZ_CONFIG = {
   gustar: {
-    title: "Spanish Gustar Quiz",
+    title: "Gustar Patterns Quiz",
     eyebrow: "Gustar patterns",
     heading: "Build the sentence, prove the rule.",
     copy: "Practise Spanish verbs that work like gustar with short, original sentences.",
