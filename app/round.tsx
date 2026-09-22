@@ -212,6 +212,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
   if (!question) return <main className="loading">Preparing your quiz…</main>;
 
   const choices = choiceSets[question.id] ?? answerChoicesFor(question, forms);
+  const blankPlaceholder = quiz.showInfinitiveBlank === false ? "?" : question.infinitive;
   const isSubmitted = submitted[index];
   const picked = answers[index];
   const isLast = index === round.length - 1;
@@ -334,7 +335,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
         </div>
         <p className="round-sentence" lang="es">
           {question.before} <span className={`round-blank ${isSubmitted ? "round-blank-filled" : ""}`}>
-            {isSubmitted ? question.answer : mode === "type" ? (typed || "?") : "?"}
+            {isSubmitted ? question.answer : mode === "type" ? (typed || blankPlaceholder) : blankPlaceholder}
           </span> {question.after}
         </p>
         <p className="round-translation" lang="en">{question.translations.en}</p>

@@ -18,7 +18,27 @@ export const QUIZ_SLUGS: Record<QuizId, string> = {
 
 export const quizPath = (quizId: QuizId): string => `/${QUIZ_SLUGS[quizId]}`;
 
-export const QUIZ_CONFIG = {
+type QuizConfigEntry = {
+  title: string;
+  eyebrow: string;
+  heading: string;
+  copy: string;
+  description: string;
+  levelBand: string;
+  questions: Question[];
+  forms: Record<string, [string, string]>;
+  storageKey: string;
+  filterKey: string;
+  backupName: string;
+  sources: Array<{ label: string; href: string }>;
+  rule: ReturnType<typeof ruleForTense>;
+  /** Whether the blank shows the question's infinitive before it's answered.
+   * Defaults to true — set false only when the answer isn't a form of that
+   * single infinitive (e.g. gustar's answer is a pronoun + conjugated verb). */
+  showInfinitiveBlank?: boolean;
+};
+
+export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
   gustar: {
     title: "Gustar Patterns Quiz",
     eyebrow: "Gustar patterns",
@@ -33,6 +53,9 @@ export const QUIZ_CONFIG = {
     backupName: "spanish-gustar-quiz-progress.json",
     sources: [],
     rule: ruleForTense(),
+    // The answer is a pronoun + conjugated verb (e.g. "me gusta"), not a form of the
+    // bare infinitive shown here (e.g. "gustar"), so showing it in the blank would mislead.
+    showInfinitiveBlank: false,
   },
   "ser-estar": {
     title: "Ser vs Estar Quiz",
@@ -79,4 +102,4 @@ export const QUIZ_CONFIG = {
     sources: [],
     rule: { title: "Por looks back to the cause. Para looks ahead to the goal.", body: "Use por for cause, duration, exchange, means and movement through a place. Use para for purpose, recipients, deadlines and destinations.", singular: "Lo hice por ti.", plural: "Lo hice para ti." },
   },
-} satisfies Record<QuizId, { title: string; eyebrow: string; heading: string; copy: string; description: string; levelBand: string; questions: Question[]; forms: Record<string, [string, string]>; storageKey: string; filterKey: string; backupName: string; sources: Array<{ label: string; href: string }>; rule: ReturnType<typeof ruleForTense> }>;
+};
