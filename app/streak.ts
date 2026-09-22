@@ -1,11 +1,14 @@
 import { readAllCompletions, repeatDueDate } from "./quiz-completion.ts";
+import { ACTIVITY_REGISTRY, type ActivityId } from "./activity-registry.ts";
 
 const STREAK_KEY = "spanish-quiz-streak-v2";
 const FLASHCARD_DAYS_KEY = "spanish-flashcards-active-days-v1";
 const DAY_LETTERS = ["Lu", "Ma", "Mi", "Ju", "Vi", "Sá", "Do"];
 
-export const ACTIVITY_IDS = ["gustar", "ser-estar", "preterite-imperfect", "por-para", "flashcards"] as const;
-export type ActivityId = (typeof ACTIVITY_IDS)[number];
+/** Every activity the daily streak tracks, in registry order — sourced from the
+ * activity registry so a newly registered activity is required for the streak too. */
+export const ACTIVITY_IDS: readonly ActivityId[] = ACTIVITY_REGISTRY.map((entry) => entry.id);
+export type { ActivityId };
 
 /** dayKey -> activities completed that day. The daily goal is reaching every activity, not just one. */
 export type Records = Map<string, Set<ActivityId>>;

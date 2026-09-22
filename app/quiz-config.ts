@@ -1,8 +1,8 @@
-import { ALL_QUESTIONS, VERB_FORMS } from "./quiz-data";
-import { PRETERITE_IMPERFECT_FORMS, PRETERITE_IMPERFECT_QUESTIONS } from "./preterite-imperfect-data";
-import { SER_ESTAR_FORMS, SER_ESTAR_QUESTIONS } from "./ser-estar-data";
-import { POR_PARA_FORMS, POR_PARA_QUESTIONS } from "./por-para-data";
-import { ruleForTense } from "./quiz-logic";
+import { ALL_QUESTIONS, VERB_FORMS } from "./quiz-data.ts";
+import { PRETERITE_IMPERFECT_FORMS, PRETERITE_IMPERFECT_QUESTIONS } from "./preterite-imperfect-data.ts";
+import { SER_ESTAR_FORMS, SER_ESTAR_QUESTIONS } from "./ser-estar-data.ts";
+import { POR_PARA_FORMS, POR_PARA_QUESTIONS } from "./por-para-data.ts";
+import { ruleForTense } from "./quiz-logic.ts";
 import type { Question } from "./quiz-data";
 
 export type QuizId = "gustar" | "ser-estar" | "preterite-imperfect" | "por-para";
@@ -103,3 +103,16 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     rule: { title: "Por looks back to the cause. Para looks ahead to the goal.", body: "Use por for cause, duration, exchange, means and movement through a place. Use para for purpose, recipients, deadlines and destinations.", singular: "Lo hice por ti.", plural: "Lo hice para ti." },
   },
 };
+
+/** Every registered quiz id, in registry order. The single source other modules should
+ * iterate from instead of each re-deriving `Object.keys(QUIZ_CONFIG)` for themselves. */
+export const QUIZ_IDS = Object.keys(QUIZ_CONFIG) as QuizId[];
+
+/** Type guard for a value read from a URL param or storage. Adding a quiz to
+ * QUIZ_CONFIG is enough to make this (and anything built on it) recognise it. */
+export const isQuizId = (value: string | null | undefined): value is QuizId =>
+  !!value && Object.prototype.hasOwnProperty.call(QUIZ_CONFIG, value);
+
+/** Resolves a `?quiz=` param to a known quiz id, falling back when it's missing or unknown. */
+export const resolveQuizId = (value: string | null | undefined, fallback: QuizId = "gustar"): QuizId =>
+  isQuizId(value) ? value : fallback;

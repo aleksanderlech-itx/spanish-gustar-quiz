@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
+import { QUIZ_CONFIG, QUIZ_IDS, type QuizId } from "./quiz-config";
 import { emptyQuizProgress, readQuizProgress, type QuizProgress } from "./quiz-progress";
 import { readTopicSettings, writeTopicSettings, type AnswerMode, type RoundLength } from "./topic-settings";
 import { filterQuestions, type QuizFilters } from "./quiz-logic";
@@ -170,7 +170,7 @@ export default function TopicDetail({ quizId, standalone = false }: { quizId: Qu
             {
               heading: "More quizzes",
               links: [
-                ...(Object.keys(QUIZ_CONFIG) as QuizId[])
+                ...QUIZ_IDS
                   .filter((id) => id !== quizId)
                   .map((id) => ({ label: QUIZ_CONFIG[id].eyebrow, href: quizPath(id) })),
                 { label: "Flashcards", href: "/flashcards" },

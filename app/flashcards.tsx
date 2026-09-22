@@ -7,7 +7,7 @@ import { dayKey, recordActivityToday, recordFlashcardDayReviewed } from "./strea
 import { speak } from "./speak";
 import { ActivityChips, ActivityFooter, SkipLink } from "./activity-chrome";
 import SiteHeader from "./site-header";
-import { QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config";
+import { QUIZ_CONFIG, QUIZ_IDS, quizPath } from "./quiz-config";
 import { SITE_CONFIG } from "./site-config";
 import SupportPrompt from "./support-prompt";
 
@@ -285,7 +285,7 @@ export default function Flashcards({ standalone = false }: { standalone?: boolea
           columns={[
             {
               heading: "Grammar quizzes",
-              links: (Object.keys(QUIZ_CONFIG) as QuizId[]).map((id) => ({ label: QUIZ_CONFIG[id].eyebrow, href: quizPath(id) })),
+              links: QUIZ_IDS.map((id) => ({ label: QUIZ_CONFIG[id].eyebrow, href: quizPath(id) })),
             },
             {
               heading: "About",
