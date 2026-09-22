@@ -1465,10 +1465,24 @@ body {
   flex-direction: column;
   height: 100vh;
   height: 100dvh;
+  /* Same side gutter as .app-shell (results, topic detail, verb chart) on narrow
+     viewports, instead of running edge to edge — capped at the same 480px phone-card
+     width this screen has always used on wider viewports. */
+  width: min(100% - 32px, 480px);
   max-width: 480px;
   margin: 0 auto;
   overflow: hidden;
   background: var(--paper);
+}
+
+/* Matches .app-shell's mobile gutter (see the (max-width: 767px) block above), so the
+   round screen's side margin doesn't shrink from 16px to 10px at a different breakpoint
+   than every other page. Declared after the base .round-shell rule so it wins the cascade
+   at this viewport regardless of source order inside a @media block. */
+@media (max-width: 767px) {
+  .round-shell {
+    width: min(100% - 20px, 480px);
+  }
 }
 
 .round-header {
