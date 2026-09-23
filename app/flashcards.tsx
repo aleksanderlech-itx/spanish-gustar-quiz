@@ -7,6 +7,7 @@ import { dayKey, recordActivityToday, recordFlashcardDayReviewed } from "./strea
 import { speak } from "./speak";
 import { ActivityChips, ActivityFooter, SkipLink } from "./activity-chrome";
 import SiteHeader from "./site-header";
+import HelpButton from "./help-modal";
 import { QUIZ_CONFIG, QUIZ_IDS, quizPath } from "./quiz-config";
 import { SITE_CONFIG } from "./site-config";
 import SupportPrompt from "./support-prompt";
@@ -196,6 +197,7 @@ export default function Flashcards({ standalone = false }: { standalone?: boolea
         <div className="flashcard-box-row" aria-label="Leitner box progress">
           {BOXES.map((box) => <span key={box} className={`flashcard-box-dot flashcard-box-dot-${boxState(box, currentBox)}`} />)}
         </div>
+        <HelpButton topic="flashcards" />
       </header>
 
       <div className="flashcard-difficulty-filter" role="group" aria-label="Filter by difficulty">

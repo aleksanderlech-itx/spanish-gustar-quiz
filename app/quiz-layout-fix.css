@@ -2543,3 +2543,113 @@ body {
   background: var(--clay-soft);
 }
 
+
+/* Help modal (issue #30) — help icon in activity headers, opens a native <dialog>. */
+
+.help-button {
+  display: inline-grid;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  margin-left: auto;
+  border: 2px solid var(--border-ink);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+  place-items: center;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.help-button:focus-visible,
+.help-dialog-close:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.help-dialog {
+  width: min(440px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  border: 3px solid var(--border-ink);
+  border-radius: 16px;
+  background: var(--surface);
+  color: var(--ink);
+  animation: help-dialog-in .18s ease-out;
+}
+
+.help-dialog::backdrop {
+  background: rgba(44, 43, 41, .5);
+}
+
+@keyframes help-dialog-in {
+  from { transform: translateY(8px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .help-dialog {
+    animation: none;
+  }
+}
+
+.help-dialog-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px 18px;
+}
+
+.help-dialog-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.help-dialog-top h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.help-dialog-close {
+  display: inline-grid;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border: 2px solid var(--border-ink);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  place-items: center;
+  cursor: pointer;
+}
+
+.help-dialog-points {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding-left: 20px;
+  line-height: 1.45;
+}
+
+.help-dialog-guide {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.help-dialog-guide-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.help-dialog-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
