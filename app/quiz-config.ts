@@ -2,10 +2,11 @@ import { ALL_QUESTIONS, VERB_FORMS } from "./quiz-data.ts";
 import { PRETERITE_IMPERFECT_FORMS, PRETERITE_IMPERFECT_QUESTIONS } from "./preterite-imperfect-data.ts";
 import { SER_ESTAR_FORMS, SER_ESTAR_QUESTIONS } from "./ser-estar-data.ts";
 import { POR_PARA_FORMS, POR_PARA_QUESTIONS } from "./por-para-data.ts";
+import { OBJECT_PRONOUN_FORMS, OBJECT_PRONOUN_QUESTIONS } from "./object-pronouns-data.ts";
 import { ruleForTense } from "./quiz-logic.ts";
 import type { Question } from "./quiz-data";
 
-export type QuizId = "gustar" | "ser-estar" | "preterite-imperfect" | "por-para";
+export type QuizId = "gustar" | "ser-estar" | "preterite-imperfect" | "por-para" | "object-pronouns";
 
 /** Each quiz's own crawlable URL, so every topic canonicalizes to itself instead of
  * every `?quiz=` variant resolving to the same root page. */
@@ -14,6 +15,7 @@ export const QUIZ_SLUGS: Record<QuizId, string> = {
   "ser-estar": "ser-vs-estar",
   "preterite-imperfect": "preterite-vs-imperfect",
   "por-para": "por-vs-para",
+  "object-pronouns": "object-pronouns",
 };
 
 export const quizPath = (quizId: QuizId): string => `/${QUIZ_SLUGS[quizId]}`;
@@ -110,6 +112,25 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     backupName: "spanish-por-para-quiz-progress.json",
     sources: [],
     rule: { title: "Por looks back to the cause. Para looks ahead to the goal.", body: "Use por for cause, duration, exchange, means and movement through a place. Use para for purpose, recipients, deadlines and destinations.", singular: "Lo hice por ti.", plural: "Lo hice para ti." },
+  },
+  "object-pronouns": {
+    title: "Object Pronouns Quiz",
+    eyebrow: "Object pronouns",
+    heading: "Replace the object. Keep the meaning.",
+    copy: "Swap nouns for me, te, lo, la, le, nos, los, las, les and double pronouns like se lo.",
+    description: "Practise Spanish direct, indirect and double object pronouns with 150 sentences covering placement, attachment to gerunds and infinitives, and le turning into se, with an explanation for every answer.",
+    levelBand: "A2–B1",
+    questions: OBJECT_PRONOUN_QUESTIONS,
+    forms: OBJECT_PRONOUN_FORMS,
+    storageKey: "object-pronouns-quiz-progress-v1",
+    filterKey: "object-pronouns-quiz-filters-v1",
+    backupName: "spanish-object-pronouns-quiz-progress.json",
+    sources: [],
+    rule: { title: "Indirect before direct. Le and les become se.", body: "Put object pronouns before a conjugated verb, or attach them to a gerund or infinitive. With two pronouns, the indirect one goes first, and le or les turns into se before lo, la, los or las.", singular: "Le doy el libro → Se lo doy.", plural: "Les doy las llaves → Se las doy." },
+    // The blank holds pronouns, not a form of anything shown in `infinitive` (the pronoun type).
+    showInfinitiveBlank: false,
+    filterLabel: { label: "Pronoun type", all: "All pronoun types" },
+    chartLabel: "Pronoun chart",
   },
 };
 

@@ -216,3 +216,32 @@ export const OBJECT_PRONOUN_FORMS: Record<string, [string, string]> = {
   "indirect object": ["me, te, le", "nos, les"],
   "double pronouns": ["me lo, te la, se lo…", "nos los, se las…"],
 };
+
+/** Reference tables for the in-round "Pronoun chart": who or what each pronoun stands for. */
+export const OBJECT_PRONOUN_CHART: Record<ObjectPronounType, Array<{ label: string; form: string }>> = {
+  "direct object": [
+    { label: "yo", form: "me" },
+    { label: "tú", form: "te" },
+    { label: "él / usted / masc. thing", form: "lo" },
+    { label: "ella / usted / fem. thing", form: "la" },
+    { label: "nosotros / nosotras", form: "nos" },
+    { label: "ellos / ustedes / masc. things", form: "los" },
+    { label: "ellas / ustedes / fem. things", form: "las" },
+  ],
+  "indirect object": [
+    { label: "yo", form: "me" },
+    { label: "tú", form: "te" },
+    { label: "él / ella / usted", form: "le" },
+    { label: "nosotros / nosotras", form: "nos" },
+    { label: "ellos / ellas / ustedes", form: "les" },
+  ],
+  "double pronouns": [
+    { label: "me + lo", form: "me lo" },
+    { label: "te + la", form: "te la" },
+    { label: "nos + los", form: "nos los" },
+    { label: "le + lo", form: "se lo" },
+    { label: "le + la", form: "se la" },
+    { label: "les + los", form: "se los" },
+    { label: "les + las", form: "se las" },
+  ],
+};

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config";
 import { PRETERITE_IMPERFECT_CONJUGATIONS, PRETERITE_IMPERFECT_REGULARITY } from "./preterite-imperfect-data";
+import { OBJECT_PRONOUN_CHART, type ObjectPronounType } from "./object-pronouns-data";
 import { speak, speakQueue } from "./speak";
 
 type ChartRow = { pronoun: string; form: string };
@@ -24,6 +25,10 @@ const blocksFor = (quizId: QuizId, infinitive: string, forms: Record<string, [st
   if (quizId === "ser-estar") {
     const [ser, estar] = forms[infinitive] ?? ["ser", "estar"];
     return [{ tenseLabel: "Present", accent: "primary", rows: [{ pronoun: "ser", form: ser }, { pronoun: "estar", form: estar }] }];
+  }
+  if (quizId === "object-pronouns") {
+    const rows = OBJECT_PRONOUN_CHART[infinitive as ObjectPronounType] ?? [];
+    return [{ tenseLabel: "Pronouns", accent: "primary", rows: rows.map((row) => ({ pronoun: row.label, form: row.form })) }];
   }
   if (quizId === "por-para") {
     const [por, para] = forms[infinitive] ?? ["por", "para"];
