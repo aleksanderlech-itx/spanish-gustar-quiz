@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import { SITE_CONFIG } from "./site-config";
 
 export type HelpTopic = "topic-detail" | "round" | "flashcards";
 
@@ -73,11 +72,10 @@ export default function HelpButton({ topic }: { topic: HelpTopic }) {
             {content.points.map((point) => <li key={point}>{point}</li>)}
           </ul>
           {/* New tab: rounds and flashcard sessions live only in memory, so navigating away would lose them. */}
-          <a className="help-dialog-guide" href={content.guideHref} target="_blank" rel="noopener noreferrer">Read the full guide →</a>
-          <p className="help-dialog-support">
-            Something not working, or have an idea?{" "}
-            <a href={SITE_CONFIG.supportUrl} target="_blank" rel="noopener noreferrer">Report it on GitHub</a>
-          </p>
+          <div className="help-dialog-guide-row">
+            <a className="help-dialog-guide" href={content.guideHref} target="_blank" rel="noopener noreferrer" aria-describedby={`${titleId}-new-tab`}>Read the full guide →</a>
+            <p className="help-dialog-note" id={`${titleId}-new-tab`}>Opens in a new tab, so you won&apos;t lose your place here.</p>
+          </div>
         </div>
       </dialog>
     </>

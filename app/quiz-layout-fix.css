@@ -2642,15 +2642,14 @@ body {
   font-weight: 700;
 }
 
-.help-dialog-support {
-  margin: 0;
-  padding-top: 12px;
-  border-top: 1px solid var(--line);
-  color: var(--muted);
-  font-size: 14px;
+.help-dialog-guide-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.help-dialog-support a {
-  color: var(--ink);
-  font-weight: 700;
+.help-dialog-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
 }

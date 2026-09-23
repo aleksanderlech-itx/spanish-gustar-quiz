@@ -10,16 +10,15 @@ test("each activity screen renders a help button for its own topic", async () =>
   assert.match(await read("app/flashcards.tsx"), /<HelpButton topic="flashcards" \/>/);
 });
 
-test("help modal is a native modal dialog that ends with a GitHub issues support link", async () => {
+test("help modal is a native modal dialog whose guide link opens in a new tab and says so", async () => {
   const source = await read("app/help-modal.tsx");
   assert.match(source, /<dialog/);
   assert.match(source, /\.showModal\(\)/);
   assert.match(source, /aria-labelledby=\{titleId\}/);
-  assert.match(source, /href=\{SITE_CONFIG\.supportUrl\}/);
   // The guide opens in a new tab so an in-progress round (kept only in memory) survives.
   assert.match(source, /href=\{content\.guideHref\} target="_blank"/);
-  const config = await read("app/site-config.ts");
-  assert.match(config, /supportUrl: "https:\/\/github\.com\/aleksanderlech-itx\/spanish-gustar-quiz\/issues"/);
+  assert.match(source, /Opens in a new tab/);
+  assert.doesNotMatch(source, /github\.com|supportUrl/);
 });
 
 test("help modal's entrance animation is dropped under prefers-reduced-motion", async () => {
