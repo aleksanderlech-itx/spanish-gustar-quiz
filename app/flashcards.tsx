@@ -10,6 +10,7 @@ import SiteHeader from "./site-header";
 import { QUIZ_CONFIG, QUIZ_IDS, quizPath } from "./quiz-config";
 import { SITE_CONFIG } from "./site-config";
 import SupportPrompt from "./support-prompt";
+import { updateStoredProgress } from "./stored-progress";
 
 type LeitnerBox = 1 | 2 | 3 | 4;
 type CardRecord = { box: LeitnerBox; attempts: number; correct: number; updatedAt: string; nextReviewAt: string };
@@ -154,13 +155,14 @@ export default function Flashcards({ standalone = false }: { standalone?: boolea
 
   const recordAnswer = (remembered: boolean) => {
     if (!card || !revealed) return;
-    const previous = progress[card.spanish];
-    const box = (remembered ? Math.min(MAX_BOX, (previous?.box ?? 1) + 1) : 1) as LeitnerBox;
-    const updatedAt = new Date().toISOString();
-    const next = { ...progress, [card.spanish]: { box, attempts: (previous?.attempts ?? 0) + 1, correct: (previous?.correct ?? 0) + (remembered ? 1 : 0), updatedAt, nextReviewAt: nextReviewDate(box) } };
+    const next = updateStoredProgress(STORAGE_KEY, readStoredProgress, (stored) => {
+      const previous = stored[card.spanish];
+      const box = (remembered ? Math.min(MAX_BOX, (previous?.box ?? 1) + 1) : 1) as LeitnerBox;
+      const updatedAt = new Date().toISOString();
+      return { ...stored, [card.spanish]: { box, attempts: (previous?.attempts ?? 0) + 1, correct: (previous?.correct ?? 0) + (remembered ? 1 : 0), updatedAt, nextReviewAt: nextReviewDate(box) } };
+    });
     setProgress(next);
     setCurrentTime(Date.now());
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
     recordActivityToday("flashcards");
     recordFlashcardDayReviewed(dayKey(new Date()));
     setIndex((current) => current + 1);
