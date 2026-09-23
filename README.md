@@ -124,7 +124,6 @@ actions tied to the current ChatGPT user. Leave public content anonymous.
 - `npm test`: build, validate, and verify the rendered development-preview metadata
 - `npm run validate:artifact`: recheck an existing artifact's manifest and ESM `default.fetch` export
 - `npm run db:generate`: generate Drizzle migrations after schema changes
-- `npm run stats:usage -- --database <d1-database-name>`: print broad, anonymous usage stats (synced users, rounds, average score and most-missed questions per quiz) from the D1 `quiz_progress` table as Markdown; use `--file <rows.json>` to read a saved `wrangler d1 execute --json` result instead, and `--json` for machine-readable output. Only covers signed-in users whose progress synced; emails and typed answers are never read or printed
 
 Use build and validation commands for targeted diagnosis after a remote failure, not as part of the normal checkpoint path.
 

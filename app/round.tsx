@@ -50,19 +50,12 @@ const presentOnlyHistory = (items: Result[], questions: Question[]) => items.fla
   return [{ ...result, questionIds, answers, missedIds, score, percent: Math.round((score / questionIds.length) * 100), tense: "present" as const }];
 });
 
-const mergeHistory = (local: Result[], remote: Result[]) => {
-  const unique = new Map<string, Result>();
-  [...remote, ...local].forEach((item) => unique.set(`${item.date}|${item.mode ?? "regular"}|${item.questionIds.join(",")}`, item));
-  return [...unique.values()].sort((a, b) => a.date.localeCompare(b.date));
-};
-
 export default function Round({ quizId, standalone = false }: { quizId: QuizId; standalone?: boolean }) {
   const quiz = QUIZ_CONFIG[quizId];
   const { questions, forms, storageKey } = quiz;
 
   const [hydrated, setHydrated] = useState(false);
   const [history, setHistory] = useState<Result[]>([]);
-  const [syncState, setSyncState] = useState<"checking" | "signed-out" | "synced" | "saving" | "error">("checking");
   const [round, setRound] = useState<Question[]>([]);
   const [choiceSets, setChoiceSets] = useState<Record<number, string[]>>({});
   const [mode, setMode] = useState<AnswerMode>("type");
@@ -133,35 +126,17 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
 
   useEffect(() => {
     const saved = localStorage.getItem(storageKey);
-    const initial = saved ? (JSON.parse(saved) as Result[]) : [];
-    const initialise = async () => {
-      let merged = presentOnlyHistory(initial, questions);
-      try {
-        const response = await fetch("/api/progress", { cache: "no-store" });
-        if (response.status === 401) setSyncState("signed-out");
-        else if (response.ok) {
-          const data = await response.json() as { progress?: { history?: Result[] } | null };
-          merged = presentOnlyHistory(mergeHistory(initial, data.progress?.history ?? []), questions);
-          localStorage.setItem(storageKey, JSON.stringify(merged));
-          setSyncState("synced");
-        } else setSyncState("error");
-      } catch { setSyncState("error"); }
-      setHistory(merged);
-      startRound(false, merged);
-      setHydrated(true);
-    };
-    void initialise();
+    const initial = presentOnlyHistory(saved ? (JSON.parse(saved) as Result[]) : [], questions);
+    // Progress lives only in this device's localStorage, which isn't readable until the client mounts.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setHistory(initial);
+    startRound(false, initial);
+    setHydrated(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quizId, questions, storageKey]);
 
-  const persistProgress = async (nextHistory: Result[]) => {
+  const persistProgress = (nextHistory: Result[]) => {
     localStorage.setItem(storageKey, JSON.stringify(nextHistory));
-    if (syncState !== "synced" && syncState !== "saving") return;
-    setSyncState("saving");
-    try {
-      const response = await fetch("/api/progress", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ history: nextHistory, filters: { level: "all", verb: "all" } }) });
-      setSyncState(response.ok ? "synced" : response.status === 401 ? "signed-out" : "error");
-    } catch { setSyncState("error"); }
   };
 
   if (!hydrated) return <main className="loading">Preparing your quiz…</main>;
@@ -172,7 +147,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
     const redoSet = () => {
       const resetHistory = clearRegularHistory(history);
       setHistory(resetHistory);
-      void persistProgress(resetHistory);
+      persistProgress(resetHistory);
       startRound(false, resetHistory);
     };
     return (
@@ -269,7 +244,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
     };
     const next = [...history, result];
     setHistory(next);
-    void persistProgress(next);
+    persistProgress(next);
     recordActivityToday(quizId);
     const filteredQuestions = filterQuestions(questions, readQuizFilters(quiz.filterKey));
     const regularPoolExhausted = availableQuestions(filteredQuestions, next, false).length === 0;
