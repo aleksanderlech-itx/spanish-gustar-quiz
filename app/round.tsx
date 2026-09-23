@@ -14,6 +14,7 @@ import Results from "./results";
 import VerbChart from "./verb-chart";
 import { SkipLink } from "./activity-chrome";
 import SiteHeader from "./site-header";
+import HelpButton from "./help-modal";
 import { updateStoredProgress } from "./stored-progress";
 
 type Result = QuizResult;
@@ -304,6 +305,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
           ))}
         </div>
         <span className="round-counter">{index + 1}/{round.length}</span>
+        <HelpButton topic="round" />
       </header>
 
       <section className="round-question-card">

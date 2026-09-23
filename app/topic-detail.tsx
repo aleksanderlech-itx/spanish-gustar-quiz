@@ -11,6 +11,7 @@ import { quizPath } from "./quiz-config";
 import TopicExplainer from "./topic-explainer";
 import { ActivityChips, ActivityFooter, SkipLink } from "./activity-chrome";
 import SiteHeader from "./site-header";
+import HelpButton from "./help-modal";
 import { SITE_CONFIG } from "./site-config";
 
 const ROUND_LENGTHS: RoundLength[] = [5, 10, 20];
@@ -62,6 +63,7 @@ export default function TopicDetail({ quizId, standalone = false }: { quizId: Qu
           <span aria-hidden="true">←</span>
         </Link>
         <p className="eyebrow-clay">Grammar quiz{standalone ? " · Spanish" : ""}</p>
+        <HelpButton topic="topic-detail" />
       </header>
 
       <h1>{quiz.eyebrow}</h1>
