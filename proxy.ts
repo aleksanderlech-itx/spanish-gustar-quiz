@@ -16,6 +16,7 @@ const SITEMAP_PATHS = [
   "/notes",
   "/notes/ser-vs-estar-mistakes",
   "/notes/encantar-vs-gustar",
+  "/notes/gustar-mistakes",
 ];
 
 export function proxy(request: NextRequest) {

@@ -15,6 +15,11 @@ export const metadata: Metadata = {
 
 const POSTS = [
   {
+    href: "/notes/gustar-mistakes",
+    title: "3 mistakes learners make with gustar",
+    excerpt: "Gustar works backwards compared to English. These are the three slips the gustar quiz is built around.",
+  },
+  {
     href: "/notes/ser-vs-estar-mistakes",
     title: "3 mistakes learners make with ser vs estar",
     excerpt: "The rule sounds easy until you write your own sentences. Here are the three slips that keep coming back.",
