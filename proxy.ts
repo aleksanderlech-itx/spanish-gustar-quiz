@@ -16,6 +16,9 @@ const SITEMAP_PATHS = [
   "/notes",
   "/notes/ser-vs-estar-mistakes",
   "/notes/encantar-vs-gustar",
+  "/notes/gustar-mistakes",
+  "/notes/por-vs-para-mistakes",
+  "/notes/preterite-vs-imperfect-signal-words",
 ];
 
 export function proxy(request: NextRequest) {
