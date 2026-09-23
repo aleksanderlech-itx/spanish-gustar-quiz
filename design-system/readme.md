@@ -80,7 +80,7 @@ warm ink `#2C2B29` for text and every border. One saturated primary — deep tea
 four accents with fixed jobs: **sun gold** `#F2A81D` for streaks and focus rings only, **clay**
 `#C4553F` for secondary emphasis and section numerals, **sage** `#6E8F5E` for correctness and
 mastery, **danger red** `#BA1A1A` for wrong answers and destructive resets. Each accent has a soft
-wash used for chips, tinted panels and answer states. Dark theme inverts to `#1B1A17` paper with
+wash used for chips, tinted panels and answer states. Dark theme inverts to `#141310` paper with
 brightened accents; every token resolves in both. Maximum two background colours per screen.
 
 **Type.** Two families, no exceptions. **Fraunces 600** sets display, headlines, card headings and
