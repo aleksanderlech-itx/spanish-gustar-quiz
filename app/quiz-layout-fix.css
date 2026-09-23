@@ -1475,13 +1475,15 @@ body {
   background: var(--paper);
 }
 
-/* Matches .app-shell's mobile gutter (see the (max-width: 767px) block above), so the
-   round screen's side margin doesn't shrink from 16px to 10px at a different breakpoint
-   than every other page. Declared after the base .round-shell rule so it wins the cascade
-   at this viewport regardless of source order inside a @media block. */
+/* Matches .app-shell's/.quiz-library's mobile gutter and top padding (see the
+   (max-width: 767px) block above), so the round screen doesn't run edge to edge or
+   sit flush against the top of the viewport at a different breakpoint than every
+   other page. Declared after the base .round-shell rule so it wins the cascade at
+   this viewport regardless of source order inside a @media block. */
 @media (max-width: 767px) {
   .round-shell {
     width: min(100% - 20px, 480px);
+    padding-top: 22px;
   }
 }
 
