@@ -1473,6 +1473,10 @@ body {
   margin: 0 auto;
   overflow: hidden;
   background: var(--paper);
+  /* Same top gap as .app-shell's base padding (34px 0 42px above), so the round
+     screen's header doesn't sit flush against the top of a desktop viewport while
+     every .app-shell page has room above it. Overridden to 22px on mobile below. */
+  padding-top: 34px;
 }
 
 /* Matches .app-shell's/.quiz-library's mobile gutter and top padding (see the
