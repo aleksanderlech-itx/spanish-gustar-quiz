@@ -36,7 +36,16 @@ type QuizConfigEntry = {
    * Defaults to true — set false only when the answer isn't a form of that
    * single infinitive (e.g. gustar's answer is a pronoun + conjugated verb). */
   showInfinitiveBlank?: boolean;
+  /** Label for the second filter, which matches each question's `infinitive`.
+   * Defaults to "Verb" / "All verbs"; set when that field holds something else. */
+  filterLabel?: { label: string; all: string };
+  /** Name of the reference chart linked from the topic page and the round's
+   * "Stuck?" button. Defaults to "Verb conjugation chart". */
+  chartLabel?: string;
 };
+
+export const DEFAULT_FILTER_LABEL = { label: "Verb", all: "All verbs" };
+export const DEFAULT_CHART_LABEL = "Verb conjugation chart";
 
 export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
   gustar: {

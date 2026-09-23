@@ -62,7 +62,7 @@ export default function VerbChart({ quizId, infinitive, onClose }: { quizId: Qui
     <main className="app-shell verb-chart">
       <header className="verb-chart-header">
         {onClose ? (
-          <button type="button" className="round-back" aria-label="Close conjugation chart" onClick={onClose}><span aria-hidden="true">←</span></button>
+          <button type="button" className="round-back" aria-label={`Close ${(quiz.chartLabel ?? "conjugation chart").toLocaleLowerCase("en")}`} onClick={onClose}><span aria-hidden="true">←</span></button>
         ) : (
           <Link className="round-back" href={quizPath(quizId)} aria-label="Back to topic"><span aria-hidden="true">←</span></Link>
         )}
