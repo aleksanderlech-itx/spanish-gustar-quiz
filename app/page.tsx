@@ -1,16 +1,13 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { type QuizId } from "./quiz-config";
+import { resolveQuizId, type QuizId } from "./quiz-config";
 import Flashcards from "./flashcards";
 import TopicDetail from "./topic-detail";
 import Round from "./round";
 import VerbChart from "./verb-chart";
 
-const quizIdFromParams = (params: URLSearchParams): QuizId => {
-  const value = params.get("quiz");
-  return value === "ser-estar" || value === "preterite-imperfect" || value === "por-para" ? value : "gustar";
-};
+const quizIdFromParams = (params: URLSearchParams): QuizId => resolveQuizId(params.get("quiz"));
 
 export default function Home() {
   // useSearchParams is router-connected (server: request context, client: reactive

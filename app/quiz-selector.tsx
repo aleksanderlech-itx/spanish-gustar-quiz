@@ -2,10 +2,11 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
-import { QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config";
+import { QUIZ_CONFIG, QUIZ_IDS, type QuizId } from "./quiz-config";
+import { ACTIVITY_REGISTRY, type ActivityId, type ActivityRegistryEntry } from "./activity-registry";
 import { useTheme } from "./use-theme";
 import { orderBoard, type BoardTileProgress } from "./board";
-import { readStreakSummary, mergeActivityDays, dayKey, readFlashcardDaysReviewed, ACTIVITY_IDS, type ActivityId, type StreakSummary } from "./streak";
+import { readStreakSummary, mergeActivityDays, dayKey, readFlashcardDaysReviewed, ACTIVITY_IDS, type StreakSummary } from "./streak";
 import { emptyQuizProgress, readQuizProgress, readDailyRoundProgress, type DailyRoundProgress, type QuizProgress } from "./quiz-progress";
 import { isQuizHiddenFromBoard, readQuizCompletion, markQuizCompleted } from "./quiz-completion";
 import type { QuizResult } from "./quiz-logic";
@@ -14,10 +15,8 @@ import Drawer from "./drawer";
 import Logo from "./logo";
 import { SunIcon, MoonIcon } from "./theme-icons";
 
-type LibraryQuizId = QuizId | "flashcards";
-
 type BoardItem = BoardTileProgress & {
-  id: LibraryQuizId;
+  id: ActivityId;
   kind: "quiz" | "deck";
   title: string;
   noun: string;
@@ -46,7 +45,6 @@ const FlashcardsIcon = () => (
 
 const BoardIcon = ({ kind }: { kind: "quiz" | "deck" }) => (kind === "deck" ? <FlashcardsIcon /> : <QuizIcon />);
 
-const QUIZ_IDS = Object.keys(QUIZ_CONFIG) as QuizId[];
 const EMPTY_WEEK_DAY = { status: "future" as const, doneCount: 0, total: ACTIVITY_IDS.length };
 const EMPTY_STREAK: StreakSummary = {
   streak: 0,
@@ -60,10 +58,19 @@ const EMPTY_STREAK: StreakSummary = {
   ],
 };
 
-/** Grammar quizzes route to each topic's own URL; the round itself is `?play=1` from there. */
-const detailPath = (quizId: QuizId) => quizPath(quizId);
-
 const FLASHCARD_TOTAL = 500;
+
+/** Assembles one board tile from a registry entry plus its progress/daily numbers, so the
+ * quiz and flashcards branches of the board share one shape instead of two hand-built objects. */
+const boardItem = (entry: ActivityRegistryEntry, progress: QuizProgress, daily: DailyRoundProgress): BoardItem => ({
+  id: entry.id,
+  kind: entry.icon,
+  title: entry.title,
+  noun: entry.activityType === "flashcards" ? "card" : "question",
+  href: entry.path,
+  daily,
+  ...progress,
+});
 
 /**
  * Flashcards has no round history to read back (each card writes only its current
@@ -155,10 +162,11 @@ export default function QuizSelector() {
   const { theme, toggleTheme } = useTheme();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const hamburgerRef = useRef<HTMLButtonElement | null>(null);
-  const [items, setItems] = useState<BoardItem[]>(() => [
-    ...QUIZ_IDS.map((id) => ({ id: id as LibraryQuizId, kind: "quiz" as const, title: QUIZ_CONFIG[id].title.replace(" Quiz", ""), noun: "question", href: detailPath(id), daily: EMPTY_DAILY, ...emptyQuizProgress(QUIZ_CONFIG[id].questions.length) })),
-    { id: "flashcards" as LibraryQuizId, kind: "deck" as const, title: "Spanish Verb Flashcards", noun: "card", href: "/flashcards", daily: EMPTY_DAILY, ...emptyQuizProgress(FLASHCARD_TOTAL) },
-  ]);
+  const [items, setItems] = useState<BoardItem[]>(() => ACTIVITY_REGISTRY.map((entry) => boardItem(
+    entry,
+    emptyQuizProgress(entry.activityType === "flashcards" ? FLASHCARD_TOTAL : QUIZ_CONFIG[entry.id as QuizId].questions.length),
+    EMPTY_DAILY,
+  )));
   const [streak, setStreak] = useState<StreakSummary>(EMPTY_STREAK);
 
   useEffect(() => {
@@ -178,26 +186,11 @@ export default function QuizSelector() {
         markQuizCompleted(id, progress.lastActivity ? new Date(progress.lastActivity) : new Date());
       }
     });
-    const nextItems: BoardItem[] = [
-      ...QUIZ_IDS.filter((id) => !isQuizHiddenFromBoard(id)).map((id) => ({
-        id,
-        kind: "quiz" as const,
-        title: QUIZ_CONFIG[id].title.replace(" Quiz", ""),
-        noun: "question",
-        href: detailPath(id),
-        daily: readDailyRoundProgress(id),
-        ...progressById[id],
-      })),
-      {
-        id: "flashcards" as LibraryQuizId,
-        kind: "deck" as const,
-        title: "Spanish Verb Flashcards",
-        noun: "card",
-        href: "/flashcards",
-        daily: flashcards.daily,
-        ...flashcards.progress,
-      },
-    ];
+    const nextItems: BoardItem[] = ACTIVITY_REGISTRY
+      .filter((entry) => entry.activityType === "flashcards" || !isQuizHiddenFromBoard(entry.id as QuizId))
+      .map((entry) => entry.activityType === "flashcards"
+        ? boardItem(entry, flashcards.progress, flashcards.daily)
+        : boardItem(entry, progressById[entry.id as QuizId], readDailyRoundProgress(entry.id as QuizId)));
     // Backfill the whole streak ledger from the same ground truth the tiles just read, so
     // the streak panel can never under-report what the quiz/flashcard history already shows.
     mergeActivityDays(backfillEntries());

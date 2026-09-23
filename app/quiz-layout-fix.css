@@ -1465,10 +1465,30 @@ body {
   flex-direction: column;
   height: 100vh;
   height: 100dvh;
+  /* Same side gutter as .app-shell (results, topic detail, verb chart) on narrow
+     viewports, instead of running edge to edge — capped at the same 480px phone-card
+     width this screen has always used on wider viewports. */
+  width: min(100% - 32px, 480px);
   max-width: 480px;
   margin: 0 auto;
   overflow: hidden;
   background: var(--paper);
+  /* Same top gap as .app-shell's base padding (34px 0 42px above), so the round
+     screen's header doesn't sit flush against the top of a desktop viewport while
+     every .app-shell page has room above it. Overridden to 22px on mobile below. */
+  padding-top: 34px;
+}
+
+/* Matches .app-shell's/.quiz-library's mobile gutter and top padding (see the
+   (max-width: 767px) block above), so the round screen doesn't run edge to edge or
+   sit flush against the top of the viewport at a different breakpoint than every
+   other page. Declared after the base .round-shell rule so it wins the cascade at
+   this viewport regardless of source order inside a @media block. */
+@media (max-width: 767px) {
+  .round-shell {
+    width: min(100% - 20px, 480px);
+    padding-top: 22px;
+  }
 }
 
 .round-header {
