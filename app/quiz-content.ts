@@ -148,4 +148,40 @@ export const QUIZ_CONTENT: Record<QuizId, QuizContent> = {
       },
     ],
   },
+  "object-pronouns": {
+    paragraphs: [
+      "Object pronouns let Spanish avoid repeating a noun. Instead of Compro el pan, you say Lo compro once everyone knows what el pan is. The hard part for English speakers is that Spanish has two sets: direct object pronouns for the thing or person the action lands on, and indirect object pronouns for the person who receives it or is affected by it.",
+      "Direct objects answer what? or whom?: me, te, lo, la, nos, los, las. Lo and la agree with the noun they replace, so el libro becomes lo and la carta becomes la. Indirect objects answer to whom? or for whom?: me, te, le, nos, les. Le and les don't change for gender, so le doy works for él, ella and usted alike.",
+      "Both kinds go before a conjugated verb (lo veo, no le escribo, lo he leído) or attach to the end of a gerund or infinitive (estoy leyéndolo, voy a comprarla). Attaching usually needs a written accent to keep the stress where it was. With two pronouns, the indirect one always goes first, and le or les turns into se before lo, la, los or las: le doy el libro becomes se lo doy, never le lo doy. Because se can mean him, her, you or them, Spanish often adds a + person to make it clear: se lo di a María.",
+      "This quiz has 150 sentences split into direct, indirect and double-pronoun items, with an explanation for every answer. Use the pronoun type filter to drill one set at a time, then mix them once the choice feels automatic.",
+    ],
+    examples: [
+      { es: "¿El café? Lo tomo sin azúcar.", en: "The coffee? I drink it without sugar." },
+      { es: "Le escribo a mi abuela cada semana.", en: "I write to my grandmother every week." },
+      { es: "¿Las llaves? Se las di a Juan.", en: "The keys? I gave them to Juan." },
+      { es: "¿El libro? Estoy leyéndolo ahora.", en: "The book? I'm reading it now." },
+      { es: "¿La bicicleta? Quiero prestársela a mi primo.", en: "The bike? I want to lend it to my cousin." },
+    ],
+    faq: [
+      {
+        question: "How do I know whether to use lo or le?",
+        answer:
+          "Ask what the pronoun replaces. The thing or person the action lands on directly is a direct object (lo, la, los, las). The person who receives something or benefits from the action is an indirect object (le, les).",
+      },
+      {
+        question: "Why does le become se?",
+        answer: "Spanish never puts le or les directly before lo, la, los or las. When they meet, le and les turn into se: le doy el regalo becomes se lo doy.",
+      },
+      {
+        question: "Where do object pronouns go in the sentence?",
+        answer:
+          "Before a conjugated verb (lo compro, se lo he dado), or attached to the end of a gerund or infinitive (comprándolo, dárselo). With estar + gerund or ir a + infinitive, both positions are correct.",
+      },
+      {
+        question: "Why do some attached forms need an accent?",
+        answer:
+          "Adding syllables to the end of a word can move the stress, so a written accent keeps it where it was. A gerund with any attached pronoun takes one (leyéndolo), and so does an infinitive with two (dárselo).",
+      },
+    ],
+  },
 };

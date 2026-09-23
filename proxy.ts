@@ -5,7 +5,7 @@ import { SITE_CONFIG } from "./app/site-config";
 import { QUIZ_SLUGS, type QuizId } from "./app/quiz-config";
 
 const isQuizId = (value: string | null): value is QuizId =>
-  value === "gustar" || value === "ser-estar" || value === "preterite-imperfect" || value === "por-para";
+  value === "gustar" || value === "ser-estar" || value === "preterite-imperfect" || value === "por-para" || value === "object-pronouns";
 
 const SITEMAP_PATHS = [
   "/",

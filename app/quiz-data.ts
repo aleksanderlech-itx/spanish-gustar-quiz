@@ -15,6 +15,9 @@ export type Question = {
   indirectObject: string;
   tense: "present" | "preterite" | "imperfect";
   level: "basic" | "intermediate" | "advanced";
+  /** Shown in the empty blank instead of the infinitive — e.g. the bare gerund
+   * when the learner has to attach pronouns to it. */
+  blankHint?: string;
 };
 
 export const VERB_FORMS: Record<string, [string, string]> = {

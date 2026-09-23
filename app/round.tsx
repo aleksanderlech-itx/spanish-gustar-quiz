@@ -3,8 +3,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { type Question } from "./quiz-data";
+import { OBJECT_PRONOUN_TYPES } from "./object-pronouns-data";
 import { availableQuestions, clearRegularHistory, filterQuestions, getMissedIds, normalizeAnswer, scoreRound, type QuizResult } from "./quiz-logic";
-import { QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config";
+import { DEFAULT_CHART_LABEL, QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config";
 import { recordActivityToday } from "./streak";
 import { markQuizCompleted, readQuizCompletion, repeatDueDate } from "./quiz-completion";
 import { readTopicSettings, type AnswerMode } from "./topic-settings";
@@ -31,7 +32,7 @@ const LEVEL_BADGE: Record<Question["level"], string> = {
 
 /** Up to 3 options: the correct answer plus distractors drawn from the quiz's own verb forms/pronouns. */
 const answerChoicesFor = (question: Question, forms: Record<string, [string, string]>) => {
-  if (question.infinitive === "ser / estar" || question.infinitive === "por / para" || question.tense === "preterite" || question.tense === "imperfect") {
+  if (question.infinitive === "ser / estar" || question.infinitive === "por / para" || (OBJECT_PRONOUN_TYPES as readonly string[]).includes(question.infinitive) || question.tense === "preterite" || question.tense === "imperfect") {
     return shuffle([question.answer, question.objectPronoun].filter(Boolean));
   }
   const choices = new Set<string>([question.answer]);
@@ -193,7 +194,8 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
   if (!question) return <main className="loading">Preparing your quiz…</main>;
 
   const choices = choiceSets[question.id] ?? answerChoicesFor(question, forms);
-  const blankPlaceholder = quiz.showInfinitiveBlank === false ? "?" : question.infinitive;
+  const blankPlaceholder = question.blankHint ?? (quiz.showInfinitiveBlank === false ? "?" : question.infinitive);
+  const chartLabel = quiz.chartLabel ?? DEFAULT_CHART_LABEL;
   const isSubmitted = submitted[index];
   const picked = answers[index];
   const isLast = index === round.length - 1;
@@ -325,7 +327,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
         {!isSubmitted && (
           // Shown as an in-place overlay, not a navigation, so the in-progress round (not yet saved to history) is never lost.
           <button type="button" className="round-stuck" onClick={() => setShowChart(true)}>
-            Stuck? Open the conjugation chart
+            Stuck? Open the {quiz.chartLabel ? chartLabel.toLocaleLowerCase("en") : "conjugation chart"}
           </button>
         )}
         {mode === "choose" ? choices.map((choice) => {
@@ -394,7 +396,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
       </footer>
 
       {showChart && (
-        <div className="round-chart-overlay" role="dialog" aria-modal="true" aria-label="Verb conjugation chart">
+        <div className="round-chart-overlay" role="dialog" aria-modal="true" aria-label={chartLabel}>
           <VerbChart quizId={quizId} infinitive={question.infinitive} onClose={() => setShowChart(false)} />
         </div>
       )}

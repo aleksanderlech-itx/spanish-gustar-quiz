@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { QUIZ_CONFIG, QUIZ_IDS, type QuizId } from "./quiz-config";
+import { DEFAULT_CHART_LABEL, DEFAULT_FILTER_LABEL, QUIZ_CONFIG, QUIZ_IDS, type QuizId } from "./quiz-config";
 import { emptyQuizProgress, readQuizProgress, type QuizProgress } from "./quiz-progress";
 import { readTopicSettings, writeTopicSettings, type AnswerMode, type RoundLength } from "./topic-settings";
 import { filterQuestions, type QuizFilters } from "./quiz-logic";
@@ -22,6 +22,7 @@ const LEVELS: Array<QuizFilters["level"]> = ["all", "basic", "intermediate", "ad
  * for the default `?quiz=` state. */
 export default function TopicDetail({ quizId, standalone = false }: { quizId: QuizId; standalone?: boolean }) {
   const quiz = QUIZ_CONFIG[quizId];
+  const filterLabel = quiz.filterLabel ?? DEFAULT_FILTER_LABEL;
   const [progress, setProgress] = useState<QuizProgress>(() => emptyQuizProgress(quiz.questions.length));
   const [settings, setSettings] = useState(() => readTopicSettings(quizId));
   const [filters, setFilters] = useState<QuizFilters>(() => readQuizFilters(quiz.filterKey));
@@ -119,9 +120,9 @@ export default function TopicDetail({ quizId, standalone = false }: { quizId: Qu
             </select>
           </label>
           <label className="topic-filter-field">
-            <span>Verb</span>
+            <span>{filterLabel.label}</span>
             <select value={filters.verb} onChange={(event) => updateFilters({ verb: event.target.value })}>
-              <option value="all">All verbs</option>
+              <option value="all">{filterLabel.all}</option>
               {Object.keys(quiz.forms).map((verb) => <option value={verb} key={verb}>{verb}</option>)}
             </select>
           </label>
@@ -138,7 +139,7 @@ export default function TopicDetail({ quizId, standalone = false }: { quizId: Qu
       ) : (
         <Link className="topic-chart-link" href={`${quizPath(quizId)}?chart=1`}>
           <span className="board-icon" aria-hidden="true">▦</span>
-          <span className="topic-chart-link-label">Verb conjugation chart</span>
+          <span className="topic-chart-link-label">{quiz.chartLabel ?? DEFAULT_CHART_LABEL}</span>
           <span aria-hidden="true">→</span>
         </Link>
       )}
