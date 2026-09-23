@@ -16,6 +16,8 @@ test("help modal is a native modal dialog that ends with a GitHub issues support
   assert.match(source, /\.showModal\(\)/);
   assert.match(source, /aria-labelledby=\{titleId\}/);
   assert.match(source, /href=\{SITE_CONFIG\.supportUrl\}/);
+  // The guide opens in a new tab so an in-progress round (kept only in memory) survives.
+  assert.match(source, /href=\{content\.guideHref\} target="_blank"/);
   const config = await read("app/site-config.ts");
   assert.match(config, /supportUrl: "https:\/\/github\.com\/aleksanderlech-itx\/spanish-gustar-quiz\/issues"/);
 });

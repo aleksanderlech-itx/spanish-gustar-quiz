@@ -72,7 +72,8 @@ export default function HelpButton({ topic }: { topic: HelpTopic }) {
           <ul className="help-dialog-points">
             {content.points.map((point) => <li key={point}>{point}</li>)}
           </ul>
-          <a className="help-dialog-guide" href={content.guideHref}>Read the full guide →</a>
+          {/* New tab: rounds and flashcard sessions live only in memory, so navigating away would lose them. */}
+          <a className="help-dialog-guide" href={content.guideHref} target="_blank" rel="noopener noreferrer">Read the full guide →</a>
           <p className="help-dialog-support">
             Something not working, or have an idea?{" "}
             <a href={SITE_CONFIG.supportUrl} target="_blank" rel="noopener noreferrer">Report it on GitHub</a>

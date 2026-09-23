@@ -65,7 +65,8 @@ This contract records the observable behavior shared by the grammar quizzes and 
   is dropped under `prefers-reduced-motion`. Body scroll is locked while it's open.
 - Topic detail, the round and flashcards each show a "?" help button at the end of their header
   (`app/help-modal.tsx`). It opens a native modal `<dialog>` with a short, screen-specific summary, a
-  link to the matching `/how-to-use` section, and a closing support link to the GitHub issues page
+  link to the matching `/how-to-use` section (opened in a new tab so an in-progress round or flashcard
+  session is never lost), and a closing support link to the GitHub issues page
   (`SITE_CONFIG.supportUrl`). The dialog closes on Escape, the ✕ button or a backdrop click, and
   returns focus to the help button. Opening it mid-round doesn't touch the in-progress round.
 - After a round, missed questions are recorded to a per-rule mistake notebook (`app/notebook.ts`,
