@@ -1,0 +1,28 @@
+:root{
+  /* display scale — Fraunces 600 */
+  --text-display:36px;      --leading-display:1.2;   --tracking-display:-.02em;
+  --text-headline:28px;     --leading-headline:1.3;
+  --text-headline-sm:24px;  /* headline on mobile */
+  --text-title:18px;        --leading-title:1.4;
+
+  /* body scale — Karla */
+  --text-body-lg:18px;      --leading-body-lg:1.6;
+  --text-body-md:16px;      --leading-body-md:1.5;
+  --text-body-sm:14px;      --leading-body-sm:1.55;
+  --text-caption:13px;      --leading-caption:1.5;
+  --text-micro:11px;
+
+  /* labels */
+  --text-label:14px;        --tracking-label:.05em;
+  --text-eyebrow:12px;      --tracking-eyebrow:.16em;
+  --tracking-eyebrow-tight:.12em;
+
+  /* the Spanish quiz prompt — never below 21px at 380px */
+  --text-prompt:clamp(22px,6.4vw,28px);
+  --leading-prompt:1.35;
+
+  --weight-regular:400;
+  --weight-medium:500;
+  --weight-semibold:600;
+  --weight-bold:700;
+}

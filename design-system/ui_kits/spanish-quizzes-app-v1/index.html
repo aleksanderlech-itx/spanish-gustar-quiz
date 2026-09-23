@@ -1,0 +1,258 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<title>Spanish Quizzes app — v1 (reference, superseded)</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;padding:24px;background:var(--panel-soft);display:flex;gap:28px;align-items:flex-start;justify-content:center;font-family:var(--font-body);color:var(--ink)}
+.side{display:flex;flex-direction:column;gap:10px;max-width:280px}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+/* v1 of the app screens, rebuilt for reference only. Superseded by ../spanish-quizzes-app/.
+   These screens predate the repo rebuild: they follow the original uploaded spec (bottom tab bar,
+   teal round header, "You" tab) with the first round of repo fixes (four Leitner boxes, OK / Not OK recall).
+   The v1-only components below are local to this file and are not part of the design system. */
+const {Button,Chip,Card,ProgressBar,AppHeader,PhoneFrame,Glyph}=window.QuizStudioDesignSystem_fb0db2;
+const organic=["var(--radius-organic-1)","var(--radius-organic-2)","var(--radius-organic-3)","var(--radius-organic-4)"];
+
+function V1DeckCard({title,level,tone,percent,answered,total,shape,elevated,onClick}){
+  return (
+    <Card shape={shape} elevated={elevated} onClick={onClick} className={elevated?"qs-press":undefined}
+      style={{padding:16,display:"flex",flexDirection:"column",gap:10,cursor:"pointer"}}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",gap:10}}>
+        <span style={{fontFamily:"var(--font-display)",fontSize:18,fontWeight:600}}>{title}</span>
+        <Chip tone={tone} size="sm" style={{minHeight:"auto",padding:"2px 10px",fontSize:12,fontWeight:700}}>{level}</Chip>
+      </div>
+      <ProgressBar value={percent} height="10px"/>
+      <span style={{fontSize:13,color:"var(--muted)"}}>{percent}% · {answered} of {total} questions</span>
+    </Card>
+  );
+}
+function V1Streak({days=12,done=5,today=6}){
+  return (
+    <div style={{display:"flex",flexDirection:"column",gap:14}}>
+      <div style={{display:"flex",alignItems:"baseline",gap:10}}>
+        <span style={{fontFamily:"var(--font-display)",fontSize:46,fontWeight:600,lineHeight:1}}>{days}</span>
+        <span style={{fontSize:16,fontWeight:600}}>days in a row</span>
+      </div>
+      <div style={{display:"flex",gap:6}}>
+        {["L","M","X","J","V","S","D"].map((d,i)=>{const n=i+1,isDone=n<=done,isToday=n===today;return (
+          <div key={d} style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",gap:5}}>
+            <span style={{width:"100%",height:26,borderRadius:4,background:isDone?"var(--sun)":"none",
+              border:isDone?"2px solid var(--border-ink)":isToday?"2px dashed var(--border-ink)":"2px dashed var(--line)"}}/>
+            <span style={{fontSize:11,color:"var(--muted)"}}>{d}</span>
+          </div>);})}
+      </div>
+    </div>
+  );
+}
+function V1QuizHeader({current,total,onBack}){
+  return (
+    <div style={{display:"flex",alignItems:"center",gap:12,padding:"12px 16px",borderBottom:"2px solid var(--border-ink)",background:"var(--primary)",color:"var(--primary-ink)"}}>
+      <button type="button" onClick={onBack} aria-label="Leave round" style={{border:0,background:"none",color:"inherit",fontSize:20,cursor:"pointer",padding:0}}>{"\u2190"}</button>
+      <strong style={{fontSize:14}}>{current} / {total}</strong>
+      <div style={{display:"flex",gap:4,flex:1}}>{Array.from({length:total},(_,i)=><span key={i} style={{flex:1,height:8,background:i<current?"#ffffff":"rgba(255,255,255,.35)"}}/>)}</div>
+    </div>
+  );
+}
+function V1Answer({state="idle",disabled,onClick,children}){
+  const bg={idle:"var(--surface)",correct:"var(--sage-soft)",wrong:"var(--danger-soft)",other:"var(--surface)"}[state];
+  const mark=state==="correct"?{g:"\u2713",l:"Correct",c:"var(--sage)"}:state==="wrong"?{g:"\u2715",l:"Wrong",c:"var(--danger)"}:null;
+  return (
+    <button type="button" disabled={disabled} onClick={onClick} className={state==="idle"?"qs-press":undefined}
+      style={{width:"100%",minHeight:52,padding:"0 16px",display:"flex",alignItems:"center",gap:10,textAlign:"left",border:"2px solid var(--border-ink)",borderRadius:8,
+        background:bg,color:"var(--ink)",boxShadow:state==="idle"?"var(--offset-md)":state==="other"?"var(--offset-md)":"var(--offset-sm)",
+        fontFamily:"var(--font-body)",fontSize:17,fontWeight:state==="idle"||state==="other"?400:600,textDecoration:state==="wrong"?"line-through":"none",cursor:disabled?"default":"pointer"}}>
+      {mark?<span style={{fontSize:18}}>{mark.g}</span>:null}{children}
+      {mark?<span style={{marginLeft:"auto",fontSize:13,fontWeight:700,letterSpacing:".08em",textTransform:"uppercase",color:mark.c,textDecoration:"none"}}>{mark.l}</span>:null}
+    </button>
+  );
+}
+function V1Blank({value,filled}){return <span style={{display:"inline-block",minWidth:110,textAlign:"center",borderBottom:"3px solid var(--sun)",color:filled?"var(--ink)":"var(--muted)",fontWeight:filled?700:400}}>{value??"?"}</span>;}
+function V1ScoreRing({value,total,size=140}){
+  const pct=Math.round(value/total*100),inner=Math.round(size*.757);
+  return (
+    <div style={{width:size,height:size,borderRadius:999,border:"2px solid var(--border-ink)",display:"grid",placeItems:"center",background:`conic-gradient(var(--primary) 0 ${pct}%, var(--line) ${pct}% 100%)`}}>
+      <div style={{width:inner,height:inner,borderRadius:999,border:"2px solid var(--border-ink)",background:"var(--surface)",display:"grid",placeItems:"center",textAlign:"center"}}>
+        <div><div style={{fontFamily:"var(--font-display)",fontSize:34,fontWeight:600,lineHeight:1}}>{pct}%</div><div style={{fontSize:12,color:"var(--muted)",letterSpacing:".08em",textTransform:"uppercase"}}>{value} of {total}</div></div>
+      </div>
+    </div>
+  );
+}
+const LEITNER=["var(--clay-soft)","var(--sun-soft)","var(--surface)","var(--sage-soft)"];
+function V1Leitner({counts}){
+  return (
+    <div style={{display:"flex",flexDirection:"column",gap:8}}>
+      <div style={{display:"flex",gap:8}}>{counts.map((c,i)=>(
+        <div key={i} style={{flex:1,border:"2px solid var(--border-ink)",borderRadius:6,background:LEITNER[i],padding:"8px 0",textAlign:"center"}}>
+          <div style={{fontFamily:"var(--font-display)",fontSize:18,fontWeight:600}}>{c}</div><div style={{fontSize:11,color:"var(--muted)"}}>{i+1}</div></div>))}</div>
+      <span style={{fontSize:13,color:"var(--muted)"}}>Four equal boxes. Intervals: now, 1d, 3d, 7d.</span>
+    </div>
+  );
+}
+function V1FlashCard({term,translation,example,meta,revealed,shape}){
+  return (
+    <div style={{flex:1,border:"2px solid var(--border-ink)",borderRadius:shape,background:"var(--surface)",boxShadow:"var(--offset-md)",padding:"22px 18px",display:"flex",flexDirection:"column",gap:16,cursor:revealed?"default":"pointer"}}>
+      <div style={{fontFamily:"var(--font-display)",fontSize:44,fontWeight:600,lineHeight:1,color:"var(--primary)"}}>{term}</div>
+      {revealed?<div style={{borderTop:"2px solid var(--border-ink)",paddingTop:14,display:"flex",flexDirection:"column",gap:8}}>
+        <span style={{fontSize:20,fontWeight:600}}>{translation}</span><span style={{fontSize:16,lineHeight:1.5,color:"var(--muted)"}}>{example}</span></div>
+        :<span style={{fontSize:16,color:"var(--muted)"}}>Tap to reveal</span>}
+      {revealed?<span style={{marginTop:"auto",alignSelf:"flex-start",display:"inline-flex",alignItems:"center",minHeight:30,padding:"0 12px",border:"1px solid var(--border-ink)",borderRadius:999,background:"var(--sun-soft)",fontSize:13,fontWeight:600,whiteSpace:"nowrap"}}>{meta}</span>:null}
+    </div>
+  );
+}
+function V1BottomNav({value,onChange}){
+  const items=[["library","Library",{borderRadius:4}],["cards","Cards",{borderRadius:4}],["progress","Progress",{borderRadius:999}],["you","You",{borderRadius:4,transform:"rotate(45deg)"}]];
+  return (
+    <nav style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",borderTop:"2px solid var(--border-ink)",background:"var(--surface)",marginTop:"auto"}}>
+      {items.map(([v,l,shape],i)=>{const on=v===value;return (
+        <button key={v} type="button" onClick={()=>onChange(v)} style={{display:"flex",flexDirection:"column",alignItems:"center",gap:4,padding:"10px 0 12px",minHeight:56,border:0,borderRight:i<3?"2px solid var(--line)":0,background:"none",cursor:"pointer",color:on?"var(--ink)":"var(--muted)",fontFamily:"var(--font-body)"}}>
+          <span style={{width:20,height:20,border:`2px solid ${on?"var(--border-ink)":"var(--muted)"}`,background:on?"var(--primary)":"none",...shape}}/>
+          <span style={{fontSize:11,fontWeight:on?700:400}}>{l}</span>
+        </button>);})}
+    </nav>
+  );
+}
+
+const DECKS=[
+ {id:"ser-estar",title:"Ser vs estar",level:"A2",tone:"primary",percent:62,answered:18,total:29,questions:[
+  {topic:"Ser vs estar",sentence:["La sopa"," fría."],hint:"The soup is cold — right now.",options:["es","está"],answer:"está",area:"Estar + condition"},
+  {topic:"Ser vs estar",sentence:["Mi hermana"," profesora."],hint:"Her profession, not her mood.",options:["está","es"],answer:"es",area:"Ser + role"},
+  {topic:"Ser vs estar",sentence:["Los niños"," cansados."],hint:"How they feel this afternoon.",options:["son","están"],answer:"están",area:"Estar + condition"}]},
+ {id:"gustar",title:"Gustar patterns",level:"A1",tone:"sun",percent:24,answered:9,total:38,questions:[
+  {topic:"Gustar patterns",sentence:["Me"," las ciudades tranquilas."],hint:"The cities are the subject.",options:["gusta","gustan"],answer:"gustan",area:"Plural subject"},
+  {topic:"Gustar patterns",sentence:["¿Te"," el café?"],hint:"One thing, singular.",options:["gustan","gusta"],answer:"gusta",area:"Singular subject"},
+  {topic:"Gustar patterns",sentence:["No nos"," madrugar."],hint:"An infinitive counts as one thing.",options:["gustan","gusta"],answer:"gusta",area:"Infinitive subject"}]},
+ {id:"preterite",title:"Preterite vs imperfect",level:"B1",tone:"neutral",percent:8,answered:3,total:41,questions:[
+  {topic:"Preterite vs imperfect",sentence:["Ayer"," al mercado."],hint:"One finished trip.",options:["iba","fui"],answer:"fui",area:"Completed action"},
+  {topic:"Preterite vs imperfect",sentence:["Cuando era niño,"," mucho."],hint:"A repeated habit.",options:["leí","leía"],answer:"leía",area:"Habitual past"},
+  {topic:"Preterite vs imperfect",sentence:["Ella"," la puerta y salió."],hint:"A single completed action.",options:["abría","abrió"],answer:"abrió",area:"Completed action"}]}];
+const CARDS=[
+ {term:"el hilo",translation:"the thread",example:"Perdí el hilo de la conversación.",meta:"Box 2 · due in 1 day"},
+ {term:"madrugar",translation:"to get up early",example:"No me gusta madrugar los domingos.",meta:"Box 1 · due now"},
+ {term:"el reto",translation:"the challenge",example:"Es un reto aprender los tiempos.",meta:"Box 4 · due in 7 days"},
+ {term:"apenas",translation:"barely, just",example:"Apenas empezaba a entender.",meta:"Box 3 · due in 3 days"}];
+const mark=<img src="../../assets/brand/mark.svg" width="24" height="24" alt=""/>;
+const scroll={flex:1,overflowY:"auto",scrollbarWidth:"none",padding:18,display:"flex",flexDirection:"column",gap:16};
+const bar={display:"flex",gap:10,padding:"12px 16px 16px",borderTop:"2px solid var(--border-ink)",background:"var(--surface)"};
+
+function App(){
+  const [theme,setTheme]=React.useState("light");
+  const [tab,setTab]=React.useState("library");
+  const [deckId,setDeckId]=React.useState(null);
+  const [qi,setQi]=React.useState(0);
+  const [picked,setPicked]=React.useState(null);
+  const [answers,setAnswers]=React.useState([]);
+  const [done,setDone]=React.useState(false);
+  const [ci,setCi]=React.useState(0);
+  const [revealed,setRevealed]=React.useState(false);
+  React.useEffect(()=>{document.documentElement.setAttribute("data-theme",theme);},[theme]);
+
+  const deck=DECKS.find(d=>d.id===deckId),inRound=deck&&!done;
+  const openDeck=id=>{setDeckId(id);setQi(0);setPicked(null);setAnswers([]);setDone(false);};
+  const leave=()=>{setDeckId(null);setDone(false);};
+  const pick=o=>{if(picked==null){setPicked(o);setAnswers(a=>[...a,{q:deck.questions[qi],picked:o}]);}};
+  const next=()=>{if(qi+1<deck.questions.length){setQi(qi+1);setPicked(null);}else setDone(true);};
+  const correct=answers.filter(a=>a.picked===a.q.answer).length;
+  const misses=[...new Set(answers.filter(a=>a.picked!==a.q.answer).map(a=>a.q.area))];
+
+  let body;
+  if(inRound){
+    const q=deck.questions[qi],graded=picked!=null;
+    body=<>
+      <V1QuizHeader current={qi+1} total={deck.questions.length} onBack={leave}/>
+      <div style={{...scroll,padding:16,gap:14}}>
+        <Card shape={1} elevated style={{padding:"20px 18px",display:"flex",flexDirection:"column",gap:14}}>
+          <span style={{fontSize:12,fontWeight:700,letterSpacing:".12em",textTransform:"uppercase",color:"var(--clay)"}}>{q.topic}</span>
+          <div style={{fontSize:24,fontWeight:700,lineHeight:1.35}}>{q.sentence[0]} <V1Blank value={graded?q.answer:undefined} filled={graded}/>{q.sentence[1]}</div>
+          <span style={{fontSize:14,color:"var(--muted)"}}>{q.hint}</span>
+        </Card>
+        <div style={{display:"flex",flexDirection:"column",gap:10}}>{q.options.map(o=>
+          <V1Answer key={o} state={!graded?"idle":o===q.answer?"correct":o===picked?"wrong":"other"} disabled={graded} onClick={()=>pick(o)}>{o}</V1Answer>)}</div>
+      </div>
+      <div style={bar}>
+        <Button variant="secondary" onClick={next} disabled={graded}>Skip</Button>
+        <Button variant="primary" fullWidth disabled={!graded} onClick={next}>{qi+1===deck.questions.length?"See results":"Next question"}</Button>
+      </div>
+    </>;
+  } else if(deck&&done){
+    body=<div style={scroll}>
+      <div style={{fontFamily:"var(--font-display)",fontSize:26,fontWeight:600}}>Round complete.</div>
+      <Card shape={1} elevated style={{padding:18,display:"flex",flexDirection:"column",gap:12}}>
+        <div style={{display:"flex",alignItems:"baseline",gap:10}}><span style={{fontFamily:"var(--font-display)",fontSize:52,fontWeight:600,lineHeight:1}}>{correct}</span><span style={{fontSize:18,color:"var(--muted)"}}>/ {deck.questions.length} correct</span></div>
+        <ProgressBar value={correct} max={deck.questions.length} fill="var(--sage)"/>
+        <span style={{fontSize:14,color:"var(--muted)"}}>{correct===deck.questions.length?`Clean round on ${deck.title.toLowerCase()}.`:`Best round yet on ${deck.title.toLowerCase()}.`}</span>
+      </Card>
+      {misses.length?<Card shape={2} tone="panel" style={{padding:16,display:"flex",flexDirection:"column",gap:10}}>
+        <span style={{fontSize:12,fontWeight:700,letterSpacing:".12em",textTransform:"uppercase",color:"var(--muted)"}}>Weak areas</span>
+        <div style={{display:"flex",flexWrap:"wrap",gap:8}}>{misses.map(m=><Chip key={m} tone="clay" size="sm">{m}</Chip>)}</div></Card>:null}
+      <Button variant="primary" size="lg" fullWidth onClick={()=>openDeck(deck.id)}>{misses.length?`Practise the ${misses.length} miss${misses.length>1?"es":""}`:"Practise again"}</Button>
+      <Button variant="secondary" fullWidth onClick={leave}>Back to library</Button>
+    </div>;
+  } else if(tab==="library"){
+    body=<>
+      <AppHeader title="Spanish Quizzes" mark={mark} badge={12}/>
+      <div style={scroll}>
+        <div><div style={{fontFamily:"var(--font-display)",fontSize:26,fontWeight:600,lineHeight:1.15}}>Buenos días, Alek.</div><div style={{fontSize:14,color:"var(--muted)",marginTop:4}}>3 cards due today.</div></div>
+        {DECKS.map((d,i)=><V1DeckCard key={d.id} {...d} shape={(i%4)+1} elevated={i===0} onClick={()=>openDeck(d.id)}/>)}
+        <Card shape={3} tone="sun"><V1Streak/></Card>
+      </div>
+    </>;
+  } else if(tab==="cards"){
+    const c=CARDS[ci],grade=()=>{setRevealed(false);setCi(i=>(i+1)%CARDS.length);};
+    body=<>
+      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"12px 16px",borderBottom:"2px solid var(--border-ink)",background:"var(--surface)"}}>
+        <span style={{fontSize:14,fontWeight:600}}>Card {ci+1} of {CARDS.length}</span>
+        <div style={{display:"flex",gap:4}}>{LEITNER.map((w,i)=><span key={i} style={{width:14,height:14,border:"2px solid var(--border-ink)",background:w}}/>)}</div>
+      </div>
+      <div style={{flex:1,padding:16,display:"flex"}} onClick={!revealed?()=>setRevealed(true):undefined}>
+        <V1FlashCard {...c} revealed={revealed} shape={organic[ci%4]}/>
+      </div>
+      <div style={bar}>
+        <Button variant="secondary" fullWidth aria-label="Not OK" disabled={!revealed} onClick={grade} style={revealed?{background:"var(--danger-soft)"}:undefined}><Glyph name="wrong" size="24px" color={revealed?"var(--danger)":undefined}/></Button>
+        <Button variant="secondary" fullWidth aria-label="OK" disabled={!revealed} onClick={grade} style={revealed?{background:"var(--sage-soft)"}:undefined}><Glyph name="correct" size="24px" color={revealed?"var(--sage)":undefined}/></Button>
+      </div>
+    </>;
+  } else if(tab==="progress"){
+    body=<>
+      <AppHeader title="Progress" badge={12}/>
+      <div style={scroll}>
+        <Card shape={1} elevated style={{display:"flex",flexDirection:"column",gap:14,alignItems:"flex-start"}}>
+          <span style={{fontSize:12,fontWeight:700,letterSpacing:".16em",textTransform:"uppercase",color:"var(--muted)"}}>Last round</span><V1ScoreRing value={8} total={10}/></Card>
+        <Card shape={2} style={{display:"flex",flexDirection:"column",gap:12}}><span style={{fontSize:14,fontWeight:600}}>Leitner boxes</span><V1Leitner counts={[6,4,3,9]}/></Card>
+        <Card shape={3} style={{display:"flex",flexDirection:"column",gap:14}}><span style={{fontSize:14,fontWeight:600}}>Decks</span>
+          {DECKS.map(d=><ProgressBar key={d.id} value={d.percent} label={d.title} valueLabel={d.percent+"%"} height="10px"/>)}</Card>
+        <Card shape={4} tone="sun"><V1Streak/></Card>
+      </div>
+    </>;
+  } else {
+    body=<>
+      <AppHeader title="You"/>
+      <div style={scroll}><Card shape={2} tone="panel" style={{border:"2px dashed var(--line)"}}>
+        <span style={{fontSize:14,lineHeight:1.6,color:"var(--muted)"}}>Not defined in the source spec. The tab exists in the bottom nav; its contents have not been designed yet.</span></Card></div>
+    </>;
+  }
+
+  return (
+    <>
+      <PhoneFrame width={390} height={700}>
+        {body}
+        {!inRound?<V1BottomNav value={deck&&done?"library":tab} onChange={v=>{leave();setTab(v);}}/>:null}
+      </PhoneFrame>
+      <div className="side">
+        <span className="eyebrow">v1 · reference only</span>
+        <Card shape={2} tone="panel" style={{display:"flex",flexDirection:"column",gap:12}}>
+          <span style={{fontSize:14,lineHeight:1.6,color:"var(--muted)"}}>
+            The app screens before the repo rebuild. Superseded by <a href="../spanish-quizzes-app/index.html">the current screens</a>.
+            Open a deck for a three-question round; the Cards tab reveals and grades flashcards.
+          </span>
+          <Button variant="secondary" size="sm" onClick={()=>setTheme(t=>t==="dark"?"light":"dark")}>{theme==="dark"?"Dark theme":"Light theme"}</Button>
+        </Card>
+      </div>
+    </>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script></body></html>

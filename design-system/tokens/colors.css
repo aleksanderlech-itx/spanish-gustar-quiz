@@ -1,0 +1,147 @@
+/* Base palette — mirrors app/quiz-layout-fix.css in aleksanderlech-itx/spanish-gustar-quiz,
+   the runtime source of truth. Light is the default; dark is an equal citizen. */
+:root{
+  /* surfaces */
+  --paper:#F5EFE4;
+  --surface:#FFFCF6;
+  --panel:#EFE7D9;
+  --panel-soft:#F7F1E6;
+
+  /* ink */
+  --ink:#2C2B29;
+  --muted:#6B6459;
+  --line:#DCD2C2;
+
+  /* accents */
+  --primary:#00625D;
+  --primary-dark:var(--primary);
+  --primary-ink:#FFFFFF;
+  --primary-soft:#C9F2EE;
+  --sun:#F2A81D;
+  --sun-soft:#FFEBC2;
+  --clay:#C4553F;
+  --clay-soft:#FBDCD2;
+  --sage:#6E8F5E;
+  --sage-soft:#E2EFD8;
+  --danger:#BA1A1A;
+  --danger-soft:#FFDAD6;
+
+  --shadow-col:#2C2B29;
+  --key:#FCFAF6; /* accent-row keys in Type mode */
+  --hard-shadow:4px 4px 0 var(--shadow-col);
+
+  /* semantic aliases — prefer these in product code */
+  --bg-canvas:var(--paper);
+  --surface-card:var(--surface);
+  --surface-quiet:var(--panel);
+  --surface-quiet-soft:var(--panel-soft);
+  --text-body:var(--ink);
+  --text-muted:var(--muted);
+  --text-on-primary:var(--primary-ink);
+  --border-ink:var(--ink);
+  --border-quiet:var(--line);
+  --action-primary:var(--primary);
+  --action-primary-pressed:var(--primary-dark);
+  --action-secondary-hover:var(--primary-soft);
+  --state-correct:var(--sage);
+  --state-correct-wash:var(--sage-soft);
+  --state-wrong:var(--danger);
+  --state-wrong-wash:var(--danger-soft);
+  --state-again:var(--clay);
+  --state-again-wash:var(--clay-soft);
+  --state-streak:var(--sun);
+  --state-streak-wash:var(--sun-soft);
+  --focus-ring:var(--sun);
+
+  /* legacy names still read by the live app */
+  --success:var(--sage);
+  --success-soft:var(--sage-soft);
+  --accent:var(--clay);
+  --accent-soft:var(--clay-soft);
+  --paper-white:var(--surface);
+  --quiz-surface:var(--surface);
+  --footer:var(--surface);
+
+  /* component details that differ by theme (repo: :root[data-theme="dark"] overrides) */
+  --segment-active-bg:var(--primary-soft);
+  --segment-active-ink:var(--ink);
+  --segment-ink:var(--ink);
+  --streak-panel-bg:var(--sun-soft);
+  --streak-panel-border:var(--border-ink);
+  --streak-count-ink:var(--ink);
+  --streak-day-border:var(--border-ink);
+  --streak-today-border:var(--border-ink);
+  --streak-future-style:dashed; /* @kind other */
+}
+
+[data-theme="dark"]{
+  --paper:#141310;
+  --surface:#262420;
+  --panel:#332F29;
+  --panel-soft:#221F1B;
+
+  --ink:#F4EFE6;
+  --muted:#B5AC9C;
+  --line:#45403A;
+  --border-ink:#6A6358;
+
+  --primary:#67D8D0;
+  --primary-dark:#8FEAE3;
+  --primary-ink:#06322F;
+  --primary-soft:#0C4A46;
+  --sun:#FFC24D;
+  --sun-soft:#4A360F;
+  --clay:#FF9C82;
+  --clay-soft:#5A2418;
+  --sage:#A9D18F;
+  --sage-soft:#2E4227;
+  --danger:#FFB4AB;
+  --danger-soft:#6B1210;
+
+  --shadow-col:#6A6358;
+  --hard-shadow:4px 4px 0 var(--shadow-col);
+  --focus-ring:#FFC24D;
+  --key:#332F29;
+
+  --segment-active-bg:var(--primary);
+  --segment-active-ink:var(--primary-ink);
+  --segment-ink:var(--muted);
+  --streak-panel-bg:var(--surface);
+  --streak-panel-border:var(--sun);
+  --streak-count-ink:var(--sun);
+  --streak-day-border:var(--line);
+  --streak-today-border:var(--sun);
+  --streak-future-style:solid; /* @kind other */
+
+  /* aliases re-declared so a nested [data-theme="dark"] scope resolves them too */
+  /* semantic aliases — prefer these in product code */
+  --bg-canvas:var(--paper);
+  --surface-card:var(--surface);
+  --surface-quiet:var(--panel);
+  --surface-quiet-soft:var(--panel-soft);
+  --text-body:var(--ink);
+  --text-muted:var(--muted);
+  --text-on-primary:var(--primary-ink);
+  --border-quiet:var(--line);
+  --action-primary:var(--primary);
+  --action-primary-pressed:var(--primary-dark);
+  --action-secondary-hover:var(--primary-soft);
+  --state-correct:var(--sage);
+  --state-correct-wash:var(--sage-soft);
+  --state-wrong:var(--danger);
+  --state-wrong-wash:var(--danger-soft);
+  --state-again:var(--clay);
+  --state-again-wash:var(--clay-soft);
+  --state-streak:var(--sun);
+  --state-streak-wash:var(--sun-soft);
+  --focus-ring:var(--sun);
+
+  /* legacy names still read by the live app */
+  --success:var(--sage);
+  --success-soft:var(--sage-soft);
+  --accent:var(--clay);
+  --accent-soft:var(--clay-soft);
+  --paper-white:var(--surface);
+  --quiz-surface:var(--surface);
+  --footer:var(--surface);
+}
