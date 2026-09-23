@@ -1,0 +1,16 @@
+:root{
+  --motion-fast:120ms; /* @kind other */
+  --motion-base:180ms; /* @kind other */
+  --motion-flip:260ms; /* @kind other */
+  --ease-standard:cubic-bezier(.2,0,.2,1); /* @kind other */
+
+  /* press mechanics: hover sinks 2px, active flattens to 4px with no shadow */
+  --press-hover:translate(2px,2px); /* @kind other */
+  --press-active:translate(4px,4px); /* @kind other */
+}
+
+@keyframes qs-nudge{0%,100%{transform:translate(0,0)}30%{transform:translate(-3px,0)}60%{transform:translate(3px,0)}}
+
+@media (prefers-reduced-motion:reduce){
+  :root{--motion-fast:0ms; /* @kind other */ --motion-base:0ms; /* @kind other */ --motion-flip:0ms; /* @kind other */}
+}

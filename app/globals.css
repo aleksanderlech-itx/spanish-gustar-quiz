@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source not "../design-system";
 
 :root {
   --paper: #f8fbeb;

@@ -1,0 +1,24 @@
+:root{
+  /* 4px base unit */
+  --space-1:4px;
+  --space-2:8px;   /* stack-sm, inside chips */
+  --space-3:12px;
+  --space-4:16px;  /* grid gutter, stack-md */
+  --space-5:20px;  /* card padding */
+  --space-6:24px;  /* page margin */
+  --space-8:32px;  /* section separation */
+  --space-10:40px;
+  --space-16:64px; /* between doc sections */
+
+  --stack-sm:var(--space-2);
+  --stack-md:var(--space-4);
+  --card-padding:var(--space-5);
+  --page-margin:var(--space-6);
+  --section-gap:var(--space-8);
+
+  /* touch */
+  --touch-min:44px;
+  --control-height:48px;
+  --control-height-lg:52px;
+  --control-height-xl:56px; /* round options, Next, Start round */
+}

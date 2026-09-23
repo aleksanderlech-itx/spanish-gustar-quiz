@@ -1,0 +1,99 @@
+<!-- @dsCard group="Spanish Quizzes App" viewport="880x820" name="Spanish Quizzes — mobile app" subtitle="Board → topic → round → results, flashcards and the drawer" -->
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;padding:24px;background:var(--panel-soft);display:flex;gap:28px;align-items:flex-start;justify-content:center;font-family:var(--font-body);color:var(--ink)}
+.side{display:flex;flex-direction:column;gap:10px;width:260px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const {PhoneFrame,Button,Card,BoardScreen,Drawer,TopicScreen,RoundScreen,ResultsScreen,FlashcardsScreen}=window.QuizStudioDesignSystem_fb0db2;
+
+const QUESTIONS=[
+ {before:"Ayer yo",after:"al mercado.",infinitive:"ir",answer:"fui",choices:["fui","iba"],level:"A1",en:"Yesterday I went to the market.",explanation:"Ayer marks one completed past action."},
+ {before:"De niño, yo",after:"al parque cada tarde.",infinitive:"ir",answer:"iba",choices:["fui","iba"],level:"A1",en:"As a child, I used to go to the park every afternoon.",explanation:"De niño and cada tarde describe a repeated past habit."},
+ {before:"Mientras Marta",after:"la cena, sonó el teléfono.",infinitive:"preparar",answer:"preparaba",choices:["preparaba","preparó"],level:"A1",en:"While Marta was preparing dinner, the phone rang.",explanation:"Mientras sets background action in progress."},
+ {before:"Anoche Marta",after:"la cena a las ocho.",infinitive:"preparar",answer:"preparó",choices:["preparó","preparaba"],level:"A1",en:"Last night Marta prepared dinner at eight.",explanation:"Anoche and a las ocho frame a completed event."},
+ {before:"Normalmente nosotros",after:"temprano para la escuela.",infinitive:"salir",answer:"salíamos",choices:["salimos","salíamos"],level:"A1",en:"Normally we used to leave early for school.",explanation:"Normalmente signals repeated past routine."}];
+
+const CARDS=[
+ {term:"llegar",meaning:"to arrive",example:"El tren va a llegar tarde.",exampleEnglish:"The train is going to arrive late.",box:1},
+ {term:"hablar",meaning:"to speak",example:"Ana habla tres idiomas.",exampleEnglish:"Ana speaks three languages.",box:2},
+ {term:"vivir",meaning:"to live",example:"Quiero vivir cerca del mar algún día.",exampleEnglish:"I want to live near the sea someday.",box:3},
+ {term:"poder",meaning:"to be able to",example:"Quiero poder hablar español con confianza.",exampleEnglish:"I want to be able to speak Spanish with confidence.",box:1}];
+
+const PINNED={id:"preterite",title:"Preterite vs Imperfect",todayCorrect:3,todayTotal:10,dailyPercent:30,completed:12,total:60};
+const TILES=[
+ {id:"flashcards",variant:"due",kind:"deck",title:"Spanish Verb Flashcards",due:12,mastered:41,total:500,todayCorrect:8,todayTotal:20},
+ {id:"gustar",variant:"due",title:"Gustar Patterns",due:4,mastered:22,total:80},
+ {id:"ser-estar",variant:"quiet",title:"Ser vs Estar",percent:64,todayDone:true},
+ {id:"por-para",variant:"quiet",title:"Por vs Para",percent:92}];
+
+function App(){
+  const [theme,setTheme]=React.useState("light");
+  const [screen,setScreen]=React.useState("board");
+  const [drawer,setDrawer]=React.useState(false);
+  const [roundLength,setRoundLength]=React.useState(5);
+  const [mode,setMode]=React.useState("choose");
+  const [qi,setQi]=React.useState(0);
+  const [answers,setAnswers]=React.useState([]);
+  const [typed,setTyped]=React.useState("");
+  const [notebook,setNotebook]=React.useState(["Preterite vs imperfect"]);
+  const [ci,setCi]=React.useState(0);
+  const [revealed,setRevealed]=React.useState(false);
+  const [difficulty,setDifficulty]=React.useState("all");
+  const [counts,setCounts]=React.useState([18,9,6,41]);
+
+  React.useEffect(()=>{document.documentElement.setAttribute("data-theme",theme);},[theme]);
+
+  const round=QUESTIONS.slice(0,Math.min(roundLength,QUESTIONS.length));
+  const start=()=>{setQi(0);setAnswers([]);setTyped("");setScreen("round");};
+  const commit=a=>{if(answers[qi]===undefined){const n=[...answers];n[qi]=a;setAnswers(n);}};
+  const next=()=>{if(qi+1<round.length){setQi(qi+1);setTyped("");}else{
+    const missed=round.filter((q,i)=>answers[i]!=null&&answers[i].trim().toLowerCase()!==q.answer);
+    if(missed.length) setNotebook(nb=>[...new Set([...nb,"Preterite vs imperfect"])]);
+    setScreen("results");}};
+  const skip=()=>{if(answers[qi]===undefined){const n=[...answers];n[qi]=null;setAnswers(n);}next();};
+  const committed=round.map((q,i)=>({q,a:answers[i]})).filter(x=>x.a!=null);
+  const score=committed.filter(x=>x.a.trim().toLowerCase()===x.q.answer).length;
+  const grade=ok=>{const b=CARDS[ci].box;setCounts(c=>{const n=[...c];n[b-1]--;n[ok?Math.min(3,b):0]++;return n;});setRevealed(false);setCi(i=>(i+1)%CARDS.length);};
+
+  let body;
+  if(screen==="board") body=<BoardScreen pinned={PINNED} tiles={TILES} theme={theme} onToggleTheme={()=>setTheme(t=>t==="dark"?"light":"dark")}
+    onMenu={()=>setDrawer(true)} onOpen={id=>id==="flashcards"?(setCi(0),setRevealed(false),setScreen("flashcards")):setScreen("topic")}/>;
+  else if(screen==="topic") body=<TopicScreen title="Preterite vs imperfect" roundLength={roundLength} mode={mode}
+    onRoundLength={setRoundLength} onMode={setMode} onBack={()=>setScreen("board")} onStart={start}/>;
+  else if(screen==="round") body=<RoundScreen eyebrow="Preterite vs imperfect" question={round[qi]} index={qi} total={round.length} mode={mode}
+    picked={answers[qi]} submitted={answers[qi]!==undefined} typed={typed} onTyped={setTyped} onCommit={commit} onNext={next} onSkip={skip} onBack={()=>setScreen("topic")}/>;
+  else if(screen==="results") body=<ResultsScreen score={score} total={committed.length}
+    rules={committed.length>score?["Preterite vs imperfect"]:[]} hasMissed={notebook.length>0} onPractise={start} onBoard={()=>setScreen("board")}/>;
+  else body=<FlashcardsScreen cards={CARDS} index={ci} revealed={revealed} difficulty={difficulty} counts={counts}
+    onDifficulty={setDifficulty} onReveal={()=>setRevealed(true)} onGrade={grade} onBack={()=>setScreen("board")}/>;
+
+  const go=s=>{setDrawer(false);if(s==="round")start();else if(s==="flashcards"){setRevealed(false);setScreen(s);}else setScreen(s);};
+  return (
+    <>
+      <PhoneFrame width={390} height={780} style={{position:"relative"}}>
+        {body}
+        {drawer?<Drawer notebook={notebook} onClose={()=>setDrawer(false)}/>:null}
+      </PhoneFrame>
+      <div className="side">
+        <span className="eyebrow">Prototype controls</span>
+        <Card shape={2} tone="panel" style={{display:"flex",flexDirection:"column",gap:12}}>
+          <span style={{fontSize:14,lineHeight:1.6,color:"var(--muted)"}}>Tap the pinned tile to open the topic, then start a round. The menu button opens the drawer.</span>
+          <div style={{display:"flex",flexDirection:"column",gap:8}}>
+            {[["board","Board"],["topic","Topic detail"],["round","Round"],["flashcards","Flashcards"]].map(([k,l])=>(
+              <Button key={k} variant={screen===k?"primary":"secondary"} size="sm" onClick={()=>go(k)}>{l}</Button>))}
+            <Button variant="secondary" size="sm" onClick={()=>{setScreen("board");setDrawer(true);}}>Drawer</Button>
+          </div>
+          <Button variant="secondary" size="sm" onClick={()=>setTheme(t=>t==="dark"?"light":"dark")}>{theme==="dark"?"Dark theme":"Light theme"}</Button>
+        </Card>
+      </div>
+    </>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script></body></html>

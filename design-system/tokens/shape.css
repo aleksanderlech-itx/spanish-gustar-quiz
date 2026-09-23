@@ -1,0 +1,23 @@
+:root{
+  --radius-sm:4px;
+  --radius-md:6px;
+  --radius-lg:8px;
+  --radius-phone:26px;
+  --radius-pill:999px;
+
+  /* organic radii — rotate through these so neighbouring cards never match */
+  --radius-organic-1:16px 24px 12px 32px;
+  --radius-organic-2:24px 12px 32px 16px;
+  --radius-organic-3:12px 32px 16px 24px;
+  --radius-organic-4:32px 16px 24px 12px;
+
+  --border-width:2px;
+  --border-width-hair:1px;
+
+  /* depth is a solid ink offset — never a blur, never a gradient */
+  --offset-sm:2px 2px 0 var(--shadow-col);
+  --offset-md:4px 4px 0 var(--shadow-col);
+  --offset-lg:6px 6px 0 var(--shadow-col);
+  --focus-outline:3px solid var(--focus-ring);
+  --focus-offset:2px;
+}

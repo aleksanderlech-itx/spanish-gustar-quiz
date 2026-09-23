@@ -38,6 +38,10 @@ components:
     textColor: "surface"
 ---
 
+> The full design system — tokens, components, specimen cards and screen recreations — lives in
+> [`design-system/`](design-system/readme.md). `app/quiz-layout-fix.css` remains the runtime
+> source of truth for tokens; `design-system/tokens/colors.css` mirrors it name for name.
+
 ## Runtime tokens (board/round redesign)
 
 `app/quiz-layout-fix.css` declares the full token set on `:root` and

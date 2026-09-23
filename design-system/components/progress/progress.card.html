@@ -1,0 +1,25 @@
+<!-- @dsCard group="Components" viewport="700x380" name="Progress" subtitle="ProgressBar, ScoreRing, StreakStrip, LeitnerBoxes" -->
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{padding:18px;background:var(--paper)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}.col{display:flex;flex-direction:column;gap:14px}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const {ProgressBar,LeitnerBoxes,ScoreRing,StreakStrip}=window.QuizStudioDesignSystem_fb0db2;
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <div className="grid">
+    <div className="col">
+      <StreakStrip days={12} todayDone={2} todayTotal={5}/>
+      <ProgressBar value={7} max={10} label="Round progress" valueLabel="7 / 10"/>
+      <ProgressBar value={80} fill="var(--sage)"/>
+    </div>
+    <div className="col">
+      <div style={{display:"flex",gap:16,alignItems:"center"}}><ScoreRing percent={30}/><ScoreRing percent={64} size={84}/></div>
+      <LeitnerBoxes counts={[18,9,6,41]} note={false}/>
+    </div>
+  </div>
+);
+</script></body></html>

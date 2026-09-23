@@ -1,0 +1,35 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Core" subtitle="Button, Chip, Card, StatTile" -->
+<!DOCTYPE html><html><head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{padding:18px;background:var(--paper)}.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.col{display:flex;flex-direction:column;gap:14px}.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const {Button,Chip,Card,StatTile}=window.QuizStudioDesignSystem_fb0db2;
+const App=()=>(
+  <div className="col">
+    <div className="row">
+      <Button variant="primary">Check answer</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="ghost">Skip this one</Button>
+      <Button disabled>Reveal first</Button>
+      <Button variant="primary" size="sm">Small 44</Button>
+    </div>
+    <div className="row">
+      <Chip tone="primary">A2</Chip><Chip tone="sun">24 cards</Chip><Chip>Grammar</Chip>
+      <Chip tone="clay">Weak area</Chip><Chip tone="sage" size="sm">Mastered</Chip><Chip tone="danger" size="sm">Missed</Chip>
+    </div>
+    <div className="row" style={{alignItems:"stretch"}}>
+      <Card shape={1} elevated style={{width:170}}><span className="eyebrow">shape 1 · elevated</span></Card>
+      <Card shape={2} tone="panel" style={{width:170}}><span className="eyebrow">shape 2 · panel</span></Card>
+      <StatTile value="44px" label="minimum touch target" shape={3} tone="sun" style={{width:150}}/>
+      <StatTile value="4px" label="base spacing unit" shape={4} tone="sage" style={{width:150}}/>
+    </div>
+  </div>
+);
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script></body></html>

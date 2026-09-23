@@ -1,0 +1,12 @@
+/* Interaction mechanics shared by every Spanish Quizzes control.
+   Depth is a solid ink offset: hover sinks 2px, active flattens to 0. */
+.qs-press{transition:transform var(--motion-fast) var(--ease-standard),box-shadow var(--motion-fast) var(--ease-standard),background var(--motion-fast) var(--ease-standard)}
+.qs-press:hover:not(:disabled):not([aria-disabled="true"]){transform:var(--press-hover);box-shadow:var(--offset-sm)}
+.qs-press:active:not(:disabled):not([aria-disabled="true"]){transform:var(--press-active);box-shadow:none}
+.qs-press-sm{transition:transform var(--motion-fast) var(--ease-standard),box-shadow var(--motion-fast) var(--ease-standard),background var(--motion-fast) var(--ease-standard)}
+.qs-press-sm:hover:not(:disabled){transform:translate(1px,1px);box-shadow:1px 1px 0 var(--shadow-col)}
+.qs-press-sm:active:not(:disabled){transform:translate(2px,2px);box-shadow:none}
+.qs-tint-hover:hover:not(:disabled){background:var(--action-secondary-hover)}
+.qs-underline{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px}
+.qs-underline:hover{color:var(--clay)}
+.qs-field:focus{outline:var(--focus-outline);outline-offset:var(--focus-offset)}

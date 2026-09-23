@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Spanish Quizzes board screen" description="Phone-frame board home on warm paper: header, streak panel, pinned activity and the 2-up activity grid." -->
+<helmet>
+<script src="./ds-base.js"></script>
+<style>body{margin:0;background:#F7F1E6}</style>
+</helmet>
+<div style="min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:32px 24px;font-family:Karla,system-ui,sans-serif;color:#2C2B29;">
+<div style="width:390px;border:2px solid #2C2B29;border-radius:26px;background:#F5EFE4;overflow:hidden;display:flex;flex-direction:column;box-shadow:6px 6px 0 #2C2B29;padding:22px 11px 32px;gap:0;">
+<header style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+<x-import component-from-global-scope="QuizStudioDesignSystem_fb0db2.IconSquare" icon="menu" label="Open menu" hint-size="44px,44px"></x-import>
+<div style="display:flex;align-items:center;justify-content:center;gap:8px;flex:1;font-family:Fraunces,Georgia,serif;font-size:17px;font-weight:600;">
+<x-import component-from-global-scope="QuizStudioDesignSystem_fb0db2.Logo" size="24" hint-size="24px,24px"></x-import>
+<span>Spanish Quizzes</span>
+</div>
+<x-import component-from-global-scope="QuizStudioDesignSystem_fb0db2.IconSquare" icon="moon" label="Switch to dark mode" hint-size="44px,44px"></x-import>
+</header>
+<x-import component-from-global-scope="QuizStudioDesignSystem_fb0db2.StreakStrip" days="12" today-done="2" today-total="5" style="margin-bottom:22px;" hint-size="100%,130px"></x-import>
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:10px;">
+<p style="margin:0;color:#6B6459;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;">Today's board</p>
+<span style="color:#6B6459;font-size:12px;">sized by what's due</span>
+</div>
+<x-import component-from-global-scope="QuizStudioDesignSystem_fb0db2.BoardTile" variant="pinned" title="Preterite vs Imperfect" today-correct="3" today-total="10" daily-percent="30" completed="12" total="60" style="margin-bottom:22px;" hint-size="100%,190px"></x-import>
+<p style="margin:4px 0 10px;color:#6B6459;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;">Other activities</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+<x-import component-from-global-scope="QuizStudioDesignSystem_fb0db2.BoardTile" variant="due" kind="deck" title="Spanish Verb Flashcards" due="12" mastered="41" total="500" today-correct="8" today-total="20" hint-size="100%,150px"></x-import>
+<x-import component-from-global-scope="QuizStudioDesignSystem_fb0db2.BoardTile" variant="due" title="Gustar Patterns" due="4" mastered="22" total="80" hint-size="100%,150px"></x-import>
+<x-import component-from-global-scope="QuizStudioDesignSystem_fb0db2.BoardTile" variant="quiet" title="Ser vs Estar" percent="64" today-done="true" hint-size="100%,110px"></x-import>
+<x-import component-from-global-scope="QuizStudioDesignSystem_fb0db2.BoardTile" variant="quiet" title="Por vs Para" percent="92" hint-size="100%,110px"></x-import>
+</div>
+</div>
+</div>
+</x-dc>
+</body>
+</html>
