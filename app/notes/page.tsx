@@ -15,6 +15,11 @@ export const metadata: Metadata = {
 
 const POSTS = [
   {
+    href: "/notes/por-vs-para-mistakes",
+    title: "4 mistakes learners make with por vs para",
+    excerpt: "Both usually translate as for. These are the four uses of for where learners pick the wrong one most often.",
+  },
+  {
     href: "/notes/gustar-mistakes",
     title: "3 mistakes learners make with gustar",
     excerpt: "Gustar works backwards compared to English. These are the three slips the gustar quiz is built around.",
