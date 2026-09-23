@@ -129,6 +129,10 @@ Use build and validation commands for targeted diagnosis after a remote failure,
 
 The timeout defaults can be overridden for a controlled canary with `SITES_INSTALL_TIMEOUT`, `SITES_INSTALL_KILL_AFTER`, `SITES_BUILD_TIMEOUT`, and `SITES_BUILD_KILL_AFTER`. A timeout fails the command; the helpers never retry an unchanged install or build.
 
+## Design
+
+Design system: see [design-system/readme.md](design-system/readme.md).
+
 ## Learn More
 
 - [vinext Documentation](https://github.com/cloudflare/vinext)
