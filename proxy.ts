@@ -3,6 +3,7 @@ import type { NextRequest } from "next/server";
 import { isProductionHost } from "./app/is-production-host";
 import { SITE_CONFIG } from "./app/site-config";
 import { QUIZ_SLUGS, type QuizId } from "./app/quiz-config";
+import { buildLlmsFullTxt, buildLlmsTxt } from "./app/llms-txt";
 
 const isQuizId = (value: string | null): value is QuizId =>
   value === "gustar" || value === "ser-estar" || value === "preterite-imperfect" || value === "por-para" || value === "object-pronouns";
@@ -30,6 +31,13 @@ export function proxy(request: NextRequest) {
       ? `User-agent: *\nAllow: /\n\nSitemap: ${SITE_CONFIG.url}/sitemap.xml\n`
       : "User-agent: *\nDisallow: /\n";
     return new NextResponse(body, { headers: { "Content-Type": "text/plain" } });
+  }
+
+  // Served on every host: unlike the sitemap it only describes the app and links
+  // to production URLs, so a preview deployment serving it advertises nothing extra.
+  if (request.nextUrl.pathname === "/llms.txt" || request.nextUrl.pathname === "/llms-full.txt") {
+    const body = request.nextUrl.pathname === "/llms.txt" ? buildLlmsTxt() : buildLlmsFullTxt();
+    return new NextResponse(body, { headers: { "Content-Type": "text/plain; charset=utf-8" } });
   }
 
   if (request.nextUrl.pathname === "/sitemap.xml") {
