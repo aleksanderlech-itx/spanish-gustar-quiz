@@ -14,6 +14,7 @@ import Results from "./results";
 import VerbChart from "./verb-chart";
 import { SkipLink } from "./activity-chrome";
 import SiteHeader from "./site-header";
+import { updateStoredProgress } from "./stored-progress";
 
 type Result = QuizResult;
 
@@ -124,9 +125,13 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
     };
   }, []);
 
-  useEffect(() => {
+  const readStoredHistory = () => {
     const saved = localStorage.getItem(storageKey);
-    const initial = presentOnlyHistory(saved ? (JSON.parse(saved) as Result[]) : [], questions);
+    return presentOnlyHistory(saved ? (JSON.parse(saved) as Result[]) : [], questions);
+  };
+
+  useEffect(() => {
+    const initial = readStoredHistory();
     // Progress lives only in this device's localStorage, which isn't readable until the client mounts.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setHistory(initial);
@@ -135,8 +140,10 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quizId, questions, storageKey]);
 
-  const persistProgress = (nextHistory: Result[]) => {
-    localStorage.setItem(storageKey, JSON.stringify(nextHistory));
+  const updateHistory = (update: (stored: Result[]) => Result[]) => {
+    const next = updateStoredProgress(storageKey, readStoredHistory, update);
+    setHistory(next);
+    return next;
   };
 
   if (!hydrated) return <main className="loading">Preparing your quiz…</main>;
@@ -145,9 +152,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
     const completedAt = readQuizCompletion(quizId);
     const dueDate = completedAt ? repeatDueDate(completedAt) : null;
     const redoSet = () => {
-      const resetHistory = clearRegularHistory(history);
-      setHistory(resetHistory);
-      persistProgress(resetHistory);
+      const resetHistory = updateHistory(clearRegularHistory);
       startRound(false, resetHistory);
     };
     return (
@@ -242,9 +247,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
       mode: practiceMissed ? "review" : "regular",
       tense: committed[0]?.q.tense,
     };
-    const next = [...history, result];
-    setHistory(next);
-    persistProgress(next);
+    const next = updateHistory((stored) => [...stored, result]);
     recordActivityToday(quizId);
     const filteredQuestions = filterQuestions(questions, readQuizFilters(quiz.filterKey));
     const regularPoolExhausted = availableQuestions(filteredQuestions, next, false).length === 0;
