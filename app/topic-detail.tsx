@@ -82,6 +82,8 @@ export default function TopicDetail({ quizId, standalone = false }: { quizId: Qu
         </div>
       </section>
 
+      <details className="topic-practice-options" open>
+        <summary>Practice options</summary>
       <section className="topic-setting">
         <p className="eyebrow">Round length</p>
         <div className="round-length-picker" role="group" aria-label="Round length">
@@ -129,6 +131,8 @@ export default function TopicDetail({ quizId, standalone = false }: { quizId: Qu
         </div>
         <p className="topic-setting-hint">{filteredCount} sentence{filteredCount === 1 ? "" : "s"} selected</p>
       </section>
+
+      </details>
 
       {quizId === "por-para" ? (
         <a className="topic-chart-link" href={`#${quizId}-explainer-heading`}>

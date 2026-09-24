@@ -18,7 +18,7 @@ const CLARITY_PROJECT_ID = "yc2q3b2d9e";
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const karla = Karla({
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f3ede3" },
+    { media: "(prefers-color-scheme: light)", color: "#F8EDE1" },
     { media: "(prefers-color-scheme: dark)", color: "#1f6f6b" },
   ],
 };

@@ -308,6 +308,11 @@ export default function QuizSelector() {
 
         {pinnedItem && (
           <a className="board-tile board-tile-pinned" href={pinnedItem.href}>
+            <div className="board-feature-intro">
+              <p className="eyebrow">Keep learning</p>
+              <h2>Make Spanish part of your day.</h2>
+              <p>A little practice. A little more confidence.</p>
+            </div>
             <span className="board-tile-top-pills">
               <span className="board-tile-pill board-tile-pill-progress">In progress</span>
               {pinnedItem.daily.done ? (
@@ -318,23 +323,23 @@ export default function QuizSelector() {
                 </span>
               ) : null}
             </span>
-            <div className="board-ring" style={{ background: `conic-gradient(var(--primary) ${pinnedItem.daily.percent}%, var(--line) ${pinnedItem.daily.percent}%)` }}>
-              <div className="board-ring-inner"><strong>{pinnedItem.daily.percent}%</strong></div>
-            </div>
             <div className="board-tile-pinned-body">
-              <h2>{pinnedItem.title}</h2>
+              <h3>{pinnedItem.title}</h3>
               <p className="board-tile-meta">
-                Today: {pinnedItem.daily.correct} of {pinnedItem.daily.roundLength || "–"} correct · {pinnedItem.completed} of {pinnedItem.total} total done
+                {pinnedItem.completed} of {pinnedItem.total} {pinnedItem.noun}s studied · {pinnedItem.percent}% complete{pinnedItem.kind === "quiz" ? ` · ${pinnedItem.accuracy}% accuracy` : ""}
               </p>
             </div>
+            <div className="board-feature-progress" role="progressbar" aria-label="Topic progress" aria-valuemin={0} aria-valuemax={100} aria-valuenow={pinnedItem.percent}>
+              <span style={{ width: `${pinnedItem.percent}%` }} />
+            </div>
             <span className="board-icon board-icon-pinned"><BoardIcon kind={pinnedItem.kind} /></span>
-            <span className="board-tile-pinned-cta" aria-hidden="true">Continue →</span>
+            <span className="board-tile-pinned-cta" aria-hidden="true">Continue practice →</span>
           </a>
         )}
 
-        {pinnedItem && restItems.length > 0 && (
+        {restItems.length > 0 && (
           <div className="board-section-head board-section-head-secondary">
-            <p className="eyebrow">Other activities</p>
+            <h2 className="eyebrow">All topics</h2>
           </div>
         )}
 
@@ -377,6 +382,7 @@ export default function QuizSelector() {
                 </span>
               </div>
               <h2>{item.title}</h2>
+              <span className="board-tile-note">{item.completed} of {item.total} {item.noun}s studied</span>
               <div className="board-bar board-bar-quiet" aria-hidden="true"><span style={{ width: `${item.percent}%`, background: dueBarFill(item.percent) }} /></div>
             </a>
           );
