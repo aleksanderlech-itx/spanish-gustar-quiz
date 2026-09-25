@@ -830,10 +830,38 @@ body {
   box-shadow: none;
 }
 
-.board-tile-top {
+.board-grid .board-tile {
   display: flex;
   align-items: center;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.board-tile-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.board-tile-content-header {
+  display: flex;
+  align-items: flex-start;
   justify-content: space-between;
+  gap: 8px;
+}
+
+.board-tile-content-header h2 {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+}
+
+.board-tile-content > .board-tile-note {
+  display: block;
+  margin-top: 4px;
+}
+
+.board-tile-content > .board-bar {
+  margin-top: 8px;
 }
 
 .board-icon {
@@ -910,7 +938,13 @@ body {
 .board-tile-top-pills {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
   gap: 6px;
+}
+
+.board-tile-content-header .board-tile-top-pills {
+  max-width: 52%;
 }
 
 .board-tile-pinned > .board-tile-top-pills {
@@ -982,13 +1016,6 @@ body {
   text-transform: none;
 }
 
-.board-tile-bottom {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-top: auto;
-}
-
 .board-bar {
   height: 8px;
   border: 1px solid var(--border-ink);
@@ -1006,7 +1033,6 @@ body {
 .board-bar-quiet {
   height: 6px;
   border: 2px solid var(--line);
-  margin-top: 10px;
 }
 
 /* Board home, desktop — the mobile board (hamburger + full-bleed streak strip +

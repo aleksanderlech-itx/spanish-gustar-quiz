@@ -352,6 +352,8 @@ export default function QuizSelector() {
 
         <section className="board-grid" aria-label="Available quizzes and decks">
         {restItems.map((item) => {
+          const isDue = item.due > 0;
+          const tilePercent = isDue ? (item.total ? Math.round((item.mastered / item.total) * 100) : 0) : item.percent;
           const todayPill = item.daily.done ? (
             <span className="board-tile-pill board-tile-pill-today">✓ Today</span>
           ) : item.daily.roundLength ? (
@@ -360,37 +362,28 @@ export default function QuizSelector() {
             </span>
           ) : null;
 
-          if (item.due > 0) {
-            return (
-              <a className="board-tile board-tile-due" href={item.href} key={item.id}>
-                <div className="board-tile-top">
-                  <span className="board-icon"><BoardIcon id={item.id} /></span>
+          return (
+            <a className={`board-tile board-tile-${isDue ? "due" : "quiet"}`} href={item.href} key={item.id}>
+              <span className={`board-icon${isDue ? "" : " board-icon-quiet"}`}><BoardIcon id={item.id} /></span>
+              <div className="board-tile-content">
+                <div className="board-tile-content-header">
+                  <h2>{item.title}</h2>
                   <span className="board-tile-top-pills">
                     {todayPill}
-                    <span className="board-tile-pill board-tile-pill-due">{item.due} due</span>
+                    {isDue ? (
+                      <span className="board-tile-pill board-tile-pill-due">{item.due} due</span>
+                    ) : (
+                      <span className="board-tile-note board-tile-note-quiet">nothing due</span>
+                    )}
                   </span>
                 </div>
-                <h2>{item.title}</h2>
-                <div className="board-tile-bottom">
-                  <div className="board-bar" aria-hidden="true"><span style={{ width: `${item.total ? Math.round((item.mastered / item.total) * 100) : 0}%` }} /></div>
-                  <span className="board-tile-note">{item.mastered} of {item.total} mastered</span>
-                </div>
-              </a>
-            );
-          }
-
-          return (
-            <a className="board-tile board-tile-quiet" href={item.href} key={item.id}>
-              <div className="board-tile-top">
-                <span className="board-icon board-icon-quiet"><BoardIcon id={item.id} /></span>
-                <span className="board-tile-top-pills">
-                  {todayPill}
-                  <span className="board-tile-note board-tile-note-quiet">nothing due</span>
+                <span className="board-tile-note">
+                  {isDue ? `${item.mastered} of ${item.total} mastered` : `${item.completed} of ${item.total} ${item.noun}s studied`}
                 </span>
+                <div className={`board-bar${isDue ? "" : " board-bar-quiet"}`} aria-hidden="true">
+                  <span style={{ width: `${tilePercent}%`, background: isDue ? undefined : dueBarFill(item.percent) }} />
+                </div>
               </div>
-              <h2>{item.title}</h2>
-              <span className="board-tile-note">{item.completed} of {item.total} {item.noun}s studied</span>
-              <div className="board-bar board-bar-quiet" aria-hidden="true"><span style={{ width: `${item.percent}%`, background: dueBarFill(item.percent) }} /></div>
             </a>
           );
         })}
