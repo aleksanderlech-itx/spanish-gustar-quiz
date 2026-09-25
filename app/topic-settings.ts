@@ -2,7 +2,7 @@ export type AnswerMode = "choose" | "type";
 export type RoundLength = 5 | 10 | 20;
 export type TopicSettings = { roundLength: RoundLength; mode: AnswerMode };
 
-const DEFAULT_SETTINGS: TopicSettings = { roundLength: 5, mode: "type" };
+export const DEFAULT_SETTINGS: TopicSettings = { roundLength: 5, mode: "type" };
 
 const settingsKey = (quizId: string) => `${quizId}-topic-settings-v1`;
 
