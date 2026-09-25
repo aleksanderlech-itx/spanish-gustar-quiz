@@ -20,7 +20,7 @@ Adapt existing logic through reusable visual primitives. Names below describe re
 | FlashcardSurface | Term, reveal, meaning/example, recall actions | Unrevealed → revealed → assessed |
 | ScoreSummary | Large fraction and accuracy | Real totals, explicit empty result, no divide-by-zero |
 | ReviewArea | Outcome icon, grammar area, mistake action | Active-topic content and correct pluralization |
-| PracticeOptions | Disclosure, grouped radios, checkboxes | Supported options only, empty-filter recovery |
+| PracticeOptions | Disclosure and single-choice controls | Supported options only, empty-filter recovery |
 
 All controls need long-copy wrapping and visible focus. Use links for navigation, buttons for actions. Preserve values on failure.
 
@@ -50,17 +50,17 @@ The specimen's local Check answer demonstrates feedback only. Preserve current g
 
 Title/count → centered Spanish term → reveal → English meaning and Spanish example → Again / Got it. Recall stays disabled until reveal. Each recall action uses a visible label and symbol. Preserve existing speech with an accessible control and no autoplay.
 
-The fixed specimen count and repeated card are illustrative. Retain actual due-first ordering, session size, five Leitner boxes, intervals, migrations, and immediate assessment persistence. Returning to topics never deletes saved progress.
+The fixed specimen count and repeated card are illustrative. Retain actual due-first ordering, session size, four Leitner boxes, intervals, migrations, and immediate assessment persistence. Returning to topics never deletes saved progress.
 
 ## Results
 
 Topic eyebrow → Round complete → score/accuracy → successful areas → review areas → mistake action → Back to topics. Use active-topic categories and real round data.
 
-The specimen's 8/10 is not calculated from its single sample question. Hide mistake practice for perfect rounds, preserve existing review/history functions, and provide a useful next action.
+The specimen's 8/10 is not calculated from its single sample question. Keep historical mistake practice when saved misses remain, even after a perfect round. Preserve existing review/history functions and provide a useful next action.
 
 ## Practice options
 
-Topic → short context → disclosure → round length → answer mode → difficulty → supported verb filters → start action. Single-choice radios can appear as segments; verb choices are checkboxes.
+Topic → short context → disclosure → round length → answer mode → difficulty → supported verb filters → start action. Single-choice filters can appear as segments or radios; use only the choices supported by the current topic.
 
 The specimen summarizes selections only. Production must start a genuinely configured round using actual topic capabilities. Do not require every topic to expose 5/10/20, A1/A2/B1, or verb filtering. Explain empty filters and prevent empty rounds. No standalone settings or results route is mandated: these are view compositions within current flows.
 
@@ -71,7 +71,7 @@ The specimen summarizes selections only. Production must start a genuinely confi
 | Loading | Stable geometry and honest status, no invented progress |
 | Failure | Specific message, applicable retry, retained answers/settings |
 | Empty | Explain absence and supported recovery |
-| Offline/sync unavailable | Local learning usable; local save distinct from confirmed sync |
+| Storage unavailable | Explain unavailable device-local progress without suggesting a sync state |
 | Busy | Prevent duplicate operations without shifting controls |
 | Long text/zoom | Wrap and grow, never hide learning content |
 | Reveal/navigation | Never leave focus on hidden controls |

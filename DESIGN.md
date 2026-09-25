@@ -1,91 +1,23 @@
----
-version: alpha
-colors:
-  paper: "#f4f0ea"
-  surface: "#fffdf9"
-  ink: "#2c2b29"
-  primary: "#00625d"
-  secondary: "#a23d2e"
-  success: "#869d7a"
-  danger: "#ba1a1a"
-typography:
-  display:
-    fontFamily: "Fraunces, Georgia, serif"
-  body:
-    fontFamily: "Karla, system-ui, sans-serif"
-rounded:
-  DEFAULT: "8px"
-spacing:
-  unit: "4px"
-components:
-  questionCard:
-    backgroundColor: "surface"
-    textColor: "ink"
-  supportingPanel:
-    backgroundColor: "paper"
-    textColor: "ink"
-  primaryAction:
-    backgroundColor: "primary"
-    textColor: "surface"
-  secondaryAction:
-    backgroundColor: "secondary"
-    textColor: "surface"
-  successState:
-    backgroundColor: "success"
-    textColor: "ink"
-  dangerState:
-    backgroundColor: "danger"
-    textColor: "surface"
----
+# Spanish Editorial Learning
 
-> The full design system — tokens, components, specimen cards and screen recreations — lives in
-> [`design-system/`](design-system/readme.md). `app/quiz-layout-fix.css` remains the runtime
-> source of truth for tokens; `design-system/tokens/colors.css` mirrors it name for name.
+The approved light appearance is in [docs/design-system-gpt](docs/design-system-gpt/README.md). Its [reference](docs/design-system-gpt/reference.html) shows Library, Quiz, Flashcards, Results and Practice options. The specimen supplies visual hierarchy, not app data or behavior. The older [design-system](design-system/readme.md) and [docs/design.md](docs/design.md) remain historical references.
 
-## Runtime tokens (board/round redesign)
+## Runtime ownership
 
-`app/quiz-layout-fix.css` declares the full token set on `:root` and
-`:root[data-theme="dark"]`, and is the single runtime source of truth — the
-`colors` block above and `docs/design.md` restate it for reference only.
-Tokens added beyond the original set: `--panel`, `--panel-soft`, `--line`,
-`--primary-ink`, `--primary-soft`, `--sun`, `--sun-soft`, `--clay`,
-`--clay-soft`, `--sage`, `--sage-soft`, `--danger-soft`, `--shadow-col`,
-`--key`. `--sun` marks streaks and the current step; `--clay` replaces the
-old `--accent` role (secondary emphasis, eyebrows); `--sage` replaces the old
-`--success` role. Theme is set via `data-theme="light" | "dark"` on
-`<html>`, defaulted from `prefers-color-scheme` and persisted per user
-choice (see `app/layout.tsx`'s pre-paint script).
+`app/quiz-layout-fix.css` owns semantic color tokens and final theme values. The stylesheet order is `globals.css`, `issue-5-design.css`, `quiz-layout-fix.css`, `editorial-polish.css`, then `activity-chrome.css`, imported by `app/layout.tsx`. Screen components keep their existing state and handlers. The light palette maps Paper `#F8EDE1`, Surface `#FFFAF3`, Ink `#0F172A`, Primary `#0F766E`, Muted `#59534B`, decorative Line `#D6C9B8`, and stronger control border `#807366`. Selected controls use `#E8F3EF`. Success uses `#166534` on `#EAF4E6`; errors use `#991B1B` on `#FDECE8`. Gold `#F59E0B` marks level badges, not keyboard focus.
 
----
+The existing dark mapping stays active until the separate [dark preview](docs/design-system-gpt/dark-preview.md) is approved. The theme toggle, pre-paint cookie/local-storage choice, and fixed logo brand colors stay functional. The logo retains teal `#00625D`, clay `#C4553F`, sun `#F2A81D`, and ink stroke `#2C2B29` in both themes.
 
-## Overview
+## Type, shape and layout
 
-Spanish Quizzes uses the Editorial Boutique system from `docs/design.md`. It is a mobile-first language-learning tool. The active exercise is the single visually elevated surface; settings and progress remain quieter.
+Fraunces is the display face for headings, Spanish prompts, flashcard terms and scores. Karla serves controls, answers, supporting text and metadata. The target uses a 32px page heading, 42px Spanish question (36px at 380px and below), and 48px flashcard term or score. Use the documented fallbacks when fonts cannot load.
 
-## Colors
+Cards use a 14px standard radius or the editorial 18px 26px 14px 26px corners. Controls use 10px corners. The active surface may use a restrained `0 4px 14px rgb(15 23 42 / 8%)` shadow; supporting panels stay quiet. Preserve 44px touch targets, visible 3px teal focus rings with 3px offset, naturally wrapping Spanish text, and reduced-motion handling.
 
-Teal identifies primary actions, terracotta identifies secondary emphasis, sage identifies successful progress, and red identifies material still to learn. Semantic meaning is never conveyed by color alone. Runtime ownership remains in `app/quiz-layout-fix.css`.
+Center exercises in a container up to 640px. Allow the library up to 1120px and introduce its grid from 768px where content fits. Maintain natural scrolling and keyboard-safe actions. The specimen's outer phone frame, tabs, sample totals and demo controls do not appear in production.
 
-## Typography
+## Product behavior
 
-Fraunces carries display headings and action labels. Karla carries Spanish prompts, English answers, filters, metadata, and supporting copy.
+The [UX contract](UX-CONTRACT.md) owns interaction rules. The library has five grammar activities plus flashcards. Keep activity IDs, routes, supported filters, Choose and Type modes, saved preferences, grading, score/history timing, chart/help, speech, backup and reset, and device-local persistence. Choose grades immediately; Type submits through Check/Enter, preserves accent insertion and caret position. Skip does not score an answer. Results use real round data; historical mistake practice stays available whenever saved misses remain, including after a perfect round.
 
-## Layout
-
-Keep the compact header and one-exercise-per-screen flow. Primary actions remain reachable on narrow phone screens, including when the virtual keyboard is open.
-
-## Elevation & Depth
-
-Only the active question or flashcard receives a hard 4px offset shadow. Supporting panels use solid paper surfaces and borders without Gaussian shadows.
-
-## Shapes
-
-Use the shared 8px radius for panels and controls. Circular controls are reserved for compact icon actions.
-
-## Components
-
-Flashcards reveal their answer in place. Assessment controls appear only after reveal and use both a symbol and a visible label. Leitner progress is presented as five compact, equally weighted boxes so review cadence is visible without competing with the active card.
-
-## Do's and Don'ts
-
-Do preserve the Citrus Graph identity, visible keyboard focus, readable Spanish text, and 44px minimum touch targets. Do not introduce decorative imagery, gradients on progress bars, or competing elevated cards.
+Flashcards reveal meaning and example before recall. Recall actions display a symbol and a visible “Again” or “Got it” label. Four Leitner boxes use immediate, 1-day, 3-day and 7-day intervals, with due cards first. Assessments persist immediately, including the existing migration from older formats. No sign-in or cross-device synchronization is part of this visual change.

@@ -1,5 +1,11 @@
 # Spanish Quizzes Design System
 
+> **Historical archive.** This earlier Editorial Boutique kit is retained for comparison
+> under its [SKILL.md](SKILL.md) version policy. The approved light appearance is
+> [Spanish Editorial Learning](../docs/design-system-gpt/README.md), with current
+> runtime decisions in [DESIGN.md](../DESIGN.md). The token files and screens below
+> describe the old kit and are not current production mirrors.
+
 **Warm paper, hard edges, bright Spanish light.**
 
 Spanish Quizzes is a mobile-first Spanish learning

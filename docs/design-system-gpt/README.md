@@ -1,6 +1,6 @@
 # Spanish Editorial Learning: Codex handoff
 
-Version 1.0 · 24 September 2026 · Target design system, not deployed application status.
+Version 1.0 · 24 September 2026 · Approved light design target; local integration is tracked separately from deployment.
 
 This package fully replaces the previous image-derived proposal. The five sample views shown in the conversation are now the visual reference: Library, Quiz, Flashcards, Results, and Practice options. The original generated image is no longer part of the package.
 
@@ -13,7 +13,7 @@ This package fully replaces the previous image-derived proposal. The five sample
 
 ## Authority
 
-This folder defines the desired appearance for a future task explicitly adopting this system. Root [DESIGN.md](../../DESIGN.md) and [docs/design-system.md](../design-system.md) describe the current application and provide migration evidence. They do not describe the new visual target.
+This folder defines the approved light appearance. Root [DESIGN.md](../../DESIGN.md) records the current application mapping and behavior boundaries. [docs/design.md](../design.md) and the older [design-system](../../design-system/readme.md) are historical. The separately [proposed dark preview](dark-preview.md) needs approval before its colors replace the current dark mapping.
 
 The [UX contract](../../UX-CONTRACT.md), topic configuration, scoring, persistence, and verified product behavior constrain implementation. Sample data and local demo handlers never override them. Resolve behavior conflicts before changing behavior.
 
@@ -39,4 +39,4 @@ Samples contain illustrative data and transient local interactions. The header a
 
 Sample selectors, the rounded outer preview frame, specimen footer, and “Preview” action labels are review scaffolding, not production UI. The direct reference needs network access only for Fraunces and Karla; fallback fonts keep it usable offline. Its icons and interactions are embedded. The optional conversation design-control helper remains only in the specimen source.
 
-No application code is changed by this handoff. Implementation, deployment, and merging are separate work.
+The specimen files are presentation references. Application integration occurs in maintained app files; deployment and merging are separate work.
