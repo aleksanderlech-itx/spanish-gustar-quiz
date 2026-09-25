@@ -68,22 +68,10 @@ body {
   background: var(--paper);
 }
 
-/* --font-fraunces/--font-karla only exist on body (via the next/font-generated
- * className there) — not on :root/html. A custom property's var() references
- * resolve against the cascade at the element declaring it, not lazily at whatever
- * element later consumes it, so defining --font-display/--font-body up on :root
- * (as before) made both permanently guaranteed-invalid: html has no
- * --font-fraunces/--font-karla to substitute, so the property computed to nothing
- * there and every element inherited that same nothing, never re-resolving lower
- * down where the source variables actually exist. Every heading, button, and this
- * flashcard's word rendered in the browser's plain fallback sans the whole time as
- * a result — declaring them here, where the source variables are actually in
- * scope, is the fix. */
 body {
-  --font-display: var(--font-fraunces), Georgia, serif;
-  --font-body: var(--font-karla), system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Karla", system-ui, sans-serif;
 }
-
 body,
 button,
 input,

@@ -66,10 +66,10 @@ test("mobile quiz design keeps the answer field and actions inside the viewport"
 });
 
 test("editorial design uses approved light tokens and semantic surfaces", async () => {
-  const layout = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
+  const fonts = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   const css = await readFile(new URL("../app/quiz-layout-fix.css", import.meta.url), "utf8");
-  assert.match(layout, /Fraunces/);
-  assert.match(layout, /Karla/);
+  assert.match(fonts, /font-family: "Fraunces"/);
+  assert.match(fonts, /font-family: "Karla"/);
   assert.match(css, /--paper:\s*#F8EDE1/);
   assert.match(css, /--surface:\s*#FFFAF3/);
   assert.match(css, /--primary:\s*#0F766E/);
