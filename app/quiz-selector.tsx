@@ -26,12 +26,14 @@ type BoardItem = BoardTileProgress & {
 
 const EMPTY_DAILY: DailyRoundProgress = { correct: 0, roundLength: 0, percent: 0, done: false };
 
-/** A checkmark reads as "quiz" without borrowing the "?" glyph, which looks like a help button. */
-const QuizIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <path d="M4 12.5l5 5L20 7" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
+/** The first four paths match the approved Library reference exactly. */
+const TOPIC_ICON_PATHS: Record<QuizId, string> = {
+  "ser-estar": "m3 10 9-7 9 7M4 10h16M5 10v9m5-9v9m4-9v9m5-9v9M3 21h18",
+  gustar: "M20.8 8.6c0 4.1-5.1 8.4-8.8 11.2C8.3 17 3.2 12.7 3.2 8.6a5 5 0 0 1 8.8-3.2 5 5 0 0 1 8.8 3.2Z",
+  "por-para": "M12 3v18M4 7h14l3 3-3 3H4l-3-3 3-3Zm16 9H6l-3 3 3 3h14l3-3-3-3Z",
+  "preterite-imperfect": "M12 6c-3.2-2-6.3-2.3-10-1v14c3.7-1.3 6.8-1 10 1 3.2-2 6.3-2.3 10-1V5c-3.7-1.3-6.8-1-10 1Zm0 0v14",
+  "object-pronouns": "M4 12.5l5 5L20 7",
+};
 
 /** Two fanned, empty playing cards for the flashcard deck. The front card's fill is
  * set in CSS (scoped per tile variant) so it occludes the back card like a real fan
@@ -43,7 +45,11 @@ const FlashcardsIcon = () => (
   </svg>
 );
 
-const BoardIcon = ({ kind }: { kind: "quiz" | "deck" }) => (kind === "deck" ? <FlashcardsIcon /> : <QuizIcon />);
+const BoardIcon = ({ id }: { id: ActivityId }) => (id === "flashcards" ? <FlashcardsIcon /> : (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d={TOPIC_ICON_PATHS[id]} />
+  </svg>
+));
 
 const EMPTY_WEEK_DAY = { status: "future" as const, doneCount: 0, total: ACTIVITY_IDS.length };
 const EMPTY_STREAK: StreakSummary = {
@@ -333,7 +339,7 @@ export default function QuizSelector() {
             <div className="board-feature-progress" role="progressbar" aria-label="Topic progress" aria-valuemin={0} aria-valuemax={100} aria-valuenow={featuredItem.percent}>
               <span style={{ width: `${featuredItem.percent}%` }} />
             </div>
-            <span className="board-icon board-icon-pinned"><BoardIcon kind={featuredItem.kind} /></span>
+            <span className="board-icon board-icon-pinned"><BoardIcon id={featuredItem.id} /></span>
             <span className="board-tile-pinned-cta" aria-hidden="true">{featuredItem.completed > 0 ? "Continue practice" : "Start practice"} →</span>
           </a>
         )}
@@ -358,7 +364,7 @@ export default function QuizSelector() {
             return (
               <a className="board-tile board-tile-due" href={item.href} key={item.id}>
                 <div className="board-tile-top">
-                  <span className="board-icon"><BoardIcon kind={item.kind} /></span>
+                  <span className="board-icon"><BoardIcon id={item.id} /></span>
                   <span className="board-tile-top-pills">
                     {todayPill}
                     <span className="board-tile-pill board-tile-pill-due">{item.due} due</span>
@@ -376,7 +382,7 @@ export default function QuizSelector() {
           return (
             <a className="board-tile board-tile-quiet" href={item.href} key={item.id}>
               <div className="board-tile-top">
-                <span className="board-icon board-icon-quiet"><BoardIcon kind={item.kind} /></span>
+                <span className="board-icon board-icon-quiet"><BoardIcon id={item.id} /></span>
                 <span className="board-tile-top-pills">
                   {todayPill}
                   <span className="board-tile-note board-tile-note-quiet">nothing due</span>

@@ -36,7 +36,7 @@ The reference drawer sits within the sample phone frame. Production mobile layou
 
 Header → featured learning surface → All topics → topic rows. The featured surface contains an eyebrow, editorial headline, supporting copy, topic title, progress/accuracy, and Continue practice. Exact promotional copy is optional; hierarchy is not.
 
-Rows use Clay outline icons on Paper tiles, compact Karla topic names, counts, progress, and consistent Gold badges. Bind real availability, URLs, and per-topic progress. New learners see zero progress and a start action. Do not copy fixture counts.
+Rows use Clay outline icons in 44 × 52px warm blocks, compact Karla topic names, counts, progress, and consistent Gold badges. The reference maps Ser vs estar to a landmark, Gustar to a heart, Por vs para to a signpost, and Preterite vs imperfect to an open book. The two current activities absent from the four-row specimen use a checkmark for Object Pronouns and fanned cards for Flashcards. Bind real availability, URLs, and per-topic progress. New learners see zero progress and a start action. Do not copy fixture counts.
 
 ## Quiz
 
