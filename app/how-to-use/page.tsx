@@ -51,14 +51,14 @@ export default function HowToUsePage() {
         <div className={styles.sectionBody}>
           <h2>What Spanish Quizzes is about</h2>
           <p>
-            Spanish Quizzes is a focused practice app for Spanish grammar and vocabulary. You can work on grammar topics such as Gustar, Preterite vs Imperfect, and Ser vs Estar, or practise common verbs with Spanish Verb Flashcards.
+            Spanish Quizzes is a focused practice app for Spanish grammar and vocabulary. Work on Gustar, Ser vs Estar, Por vs Para, Preterite vs Imperfect, or Object Pronouns, or practise common verbs with Spanish Verb Flashcards.
           </p>
           <p>
-            The home board shows what is due, what you have studied, and your progress. Each activity keeps its own history, filters, scoring, audio practice, and review state so you can leave and come back without losing where you were.
+            The home board shows what is due, what you have studied, and your progress. Quiz rounds keep their own history, filters, and scores. Flashcards save each card&apos;s review box and next due date on this device.
           </p>
           <div className={styles.note}>
             <strong>Start or continue?</strong>
-            <p><UiLabel>Start</UiLabel> begins a new activity. <UiLabel>Continue</UiLabel> appears when there is saved progress to return to.</p>
+            <p>The featured topic shows <UiLabel>Start practice</UiLabel> when it is new and <UiLabel>Continue practice</UiLabel> when you have studied some of it. Select the topic to open its practice screen.</p>
           </div>
         </div>
       </section>
@@ -73,19 +73,19 @@ export default function HowToUsePage() {
             <li><UiLabel>Round length</UiLabel> lets you choose 5, 10, or 20 questions.</li>
             <li><UiLabel>Choose</UiLabel> gives you answer options. It is useful when you are learning a topic or want a faster round.</li>
             <li><UiLabel>Type</UiLabel> makes you enter the missing form yourself. It is harder and gives you stronger recall practice.</li>
-            <li><UiLabel>Filters</UiLabel> narrow the practice set by difficulty and, where available, verb.</li>
-            <li><UiLabel>Verb conjugation chart</UiLabel> opens useful verb forms for the selected topic.</li>
+            <li><UiLabel>Filters</UiLabel> narrow the practice set by difficulty and verb. Object Pronouns uses pronoun type instead of verb.</li>
+            <li>The topic reference link opens a conjugation chart where available. Por vs Para opens an explanation of the two words instead.</li>
           </ul>
           <h3>During the round</h3>
           <p>Read the English meaning, then complete the Spanish sentence. In Type mode, use the accented-letter keys when you need á, é, í, ó, ú, or ñ.</p>
           <ul>
             <li><UiLabel>Check</UiLabel> checks a typed answer.</li>
-            <li><UiLabel>Skip</UiLabel> moves on if you do not want to answer the current question.</li>
+            <li><UiLabel>Skip</UiLabel> moves on without scoring the current question. It can return in a later round.</li>
             <li><UiLabel>Next question</UiLabel> continues after an answer has been checked.</li>
             <li><UiLabel>See results</UiLabel> finishes the final question and opens the result summary.</li>
-            <li><UiLabel>Back to topic</UiLabel> returns to the topic setup screen.</li>
+            <li>The back arrow in the round header returns to the topic setup screen.</li>
           </ul>
-          <p>After an answer is checked, read the explanation. Incorrect answers are recorded so you can target them again instead of repeatedly practising only material you already know.</p>
+          <p>Choose mode grades an option as soon as you select it. In Type mode, select <UiLabel>Check</UiLabel> or press Enter. Read the feedback before continuing. Your score and misses are saved when the round ends. Results offer <UiLabel>Practise the misses</UiLabel> whenever you have saved mistakes, even after a perfect round.</p>
         </div>
       </section>
 
@@ -94,12 +94,13 @@ export default function HowToUsePage() {
         <div className={styles.sectionBody}>
           <h2>How to use Spanish Verb Flashcards</h2>
           <p>Flashcards use the Leitner system: cards you remember return less often, while cards you miss come back quickly.</p>
+          <p>Choose <UiLabel>All</UiLabel>, <UiLabel>Easy</UiLabel>, <UiLabel>Medium</UiLabel>, or <UiLabel>Hard</UiLabel> to filter the deck. A session has up to 20 cards, with due cards shown before new ones.</p>
           <ol>
             <li>Read the Spanish verb and think of its English meaning.</li>
             <li>Select <UiLabel>Reveal</UiLabel>, or tap the card, to see the answer and example sentence.</li>
             <li>Use the speaker button if you want to hear the Spanish verb.</li>
-            <li>Select the green <UiLabel>OK</UiLabel> checkmark if you remembered the meaning.</li>
-            <li>Select the red <UiLabel>Not OK</UiLabel> cross if you need more practice.</li>
+            <li>Select <UiLabel>Got it</UiLabel> with the checkmark if you remembered the meaning.</li>
+            <li>Select <UiLabel>Again</UiLabel> with the cross if you need more practice.</li>
           </ol>
           <div className={styles.boxGrid} aria-label="Leitner review intervals">
             <div><strong>Box 1</strong><span>Every session</span></div>
@@ -107,7 +108,7 @@ export default function HowToUsePage() {
             <div><strong>Box 3</strong><span>After 3 days</span></div>
             <div><strong>Box 4</strong><span>After 7 days</span></div>
           </div>
-          <p>A correct recall moves the card forward by one box, up to Box 4. <UiLabel>Not OK</UiLabel> sends it back to Box 1. A card marked <UiLabel>due now</UiLabel> is ready for review.</p>
+          <p><UiLabel>Got it</UiLabel> moves the card forward by one box, up to Box 4. <UiLabel>Again</UiLabel> sends it back to Box 1. Both choices become available after you reveal the card. A card marked <UiLabel>due now</UiLabel> is ready for review.</p>
         </div>
       </section>
 
@@ -138,15 +139,16 @@ export default function HowToUsePage() {
             </div>
           </div>
           <h3>Drawer menu</h3>
-          <p>Open the drawer with <UiLabel>Open menu</UiLabel> in the top-left corner of the board.</p>
+          <p>The <span className={styles.menuExample} role="img" aria-label="three-line menu icon"><span className="hamburger-icon" aria-hidden="true"><span /><span /><span /></span></span> button in the top-left corner of each page opens the drawer. Screen readers announce it as “Open menu”.</p>
           <dl className={styles.drawerGuide}>
             <dt>Progress &amp; history</dt><dd>Rounds played, average accuracy, flashcards studied, weak areas, and recent rounds.</dd>
             <dt>Weekly recap</dt><dd>Your number of rounds and average accuracy for the current week.</dd>
             <dt>Mistake notebook</dt><dd>Rules connected to answers you have missed.</dd>
             <dt>Backup &amp; restore</dt><dd>Download your progress or import a previously saved backup.</dd>
-            <dt>Settings</dt><dd>Contains the option to reset all saved progress.</dd>
-            <dt>Light theme / Dark theme</dt><dd>Changes the appearance without changing your learning data.</dd>
+            <dt>Settings</dt><dd>Reset local progress or return a finished activity to the main board.</dd>
+            <dt>Notes</dt><dd>Short grammar articles with links to related quiz topics.</dd>
           </dl>
+          <p>Use the theme icon at the top-right of a page, or the theme control in the home board&apos;s desktop sidebar, to change appearance without changing your learning data.</p>
         </div>
       </section>
 
@@ -181,7 +183,7 @@ export default function HowToUsePage() {
             <li>Use a five-question round when you only have a few minutes. Frequent short sessions are more useful than waiting for a long study block.</li>
             <li>Use Choose mode when a topic is new, then switch to Type mode when you want stronger recall.</li>
             <li>Read the explanation after a mistake instead of immediately rushing to the next question.</li>
-            <li>Use the conjugation chart when you are stuck, then return to the question and produce the answer yourself.</li>
+            <li>Use the topic reference when you are stuck, then return to the question and produce the answer yourself.</li>
             <li>Review flashcards that are due before worrying about adding more cards to the system.</li>
             <li>Use the Mistake notebook to decide which grammar topic deserves your next round.</li>
             <li>Listen to Spanish audio to connect written forms with pronunciation.</li>
