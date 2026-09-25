@@ -2726,3 +2726,19 @@ body {
   color: var(--muted);
   font-size: 13px;
 }
+
+/* The fixed 24px brand mark keeps its original fills in both themes. */
+.brand-mark {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+:root[data-theme="dark"] .brand-mark {
+  background: #FFFAF3;
+  box-shadow: 0 0 0 4px #FFFAF3;
+  border-radius: 2px;
+}
