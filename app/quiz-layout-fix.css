@@ -12,6 +12,7 @@
   --primary-ink: #FFFFFF;
   --primary-soft: #E8F3EF;
   --sun: #F59E0B;
+  --sun-ink: var(--ink);
   --sun-soft: #FFF0D4;
   --clay: #C75A3A;
   --clay-soft: #FDECE8;
@@ -21,6 +22,7 @@
   --danger-soft: #FDECE8;
   --shadow-col: #0F172A;
   --key: #FFFAF3;
+  --segment-track: var(--panel);
   --focus-ring: var(--primary);
   --shadow: 0 4px 14px rgb(15 23 42 / 8%);
   --soft-shadow: var(--shadow);
@@ -38,29 +40,33 @@
 }
 
 :root[data-theme="dark"] {
-  --paper: #141310;
-  --surface: #262420;
-  --panel: #332F29;
-  --panel-soft: #221F1B;
-  --ink: #F4EFE6;
-  --muted: #B5AC9C;
-  --line: #45403A;
-  --border-ink: #6A6358;
-  --primary: #67D8D0;
-  --primary-dark: #8FEAE3;
-  --primary-ink: #06322F;
-  --primary-soft: #0C4A46;
-  --sun: #FFC24D;
-  --sun-soft: #4A360F;
-  --clay: #FF9C82;
-  --clay-soft: #5A2418;
-  --sage: #A9D18F;
-  --sage-soft: #2E4227;
-  --danger: #FFB4AB;
-  --danger-soft: #6B1210;
-  --shadow-col: #6A6358;
-  --focus-ring: #FFC24D;
-  --key: #332F29;
+  color-scheme: dark;
+  --paper: #1F1D1A;
+  --surface: #2B2824;
+  --panel: #35312C;
+  --panel-soft: #35312C;
+  --ink: #F8EDE1;
+  --muted: #C9BDB0;
+  --line: #665E54;
+  --border-ink: #A49788;
+  --primary: #8BD3C7;
+  --primary-dark: var(--primary);
+  --primary-ink: #142B27;
+  --primary-soft: #243E38;
+  --sun: #F5BC60;
+  --sun-ink: var(--paper);
+  --sun-soft: #35312C;
+  --clay: #E59B7F;
+  --clay-soft: #482B29;
+  --sage: #B8E3AE;
+  --sage-soft: #253629;
+  --danger: #FFC1B5;
+  --danger-soft: #482B29;
+  --shadow-col: #665E54;
+  --shadow: 0 4px 14px rgb(0 0 0 / 18%);
+  --focus-ring: var(--primary);
+  --key: #35312C;
+  --segment-track: #39332D;
 }
 
 html,
@@ -883,7 +889,7 @@ body {
 .board-tile-pill-progress {
   align-self: flex-start;
   background: var(--sun);
-  color: var(--ink);
+  color: var(--sun-ink);
 }
 
 .board-tile-pill-due {
@@ -1366,7 +1372,7 @@ body {
   padding: 4px;
   border: 0;
   border-radius: 10px;
-  background: var(--panel);
+  background: var(--segment-track);
 }
 
 .mode-segmented button {
@@ -1387,16 +1393,20 @@ body {
   background: var(--surface);
 }
 
-/* Dark mode: the light theme's 20% primary tint reads as roughly 2:1 contrast
-   on dark paper — the selected segment needs the full --primary fill instead.
-   See design handoff "Dark mode: segmented control". */
+/* The approved dark palette uses a selected teal wash with a clear teal edge. */
 :root[data-theme="dark"] .mode-segmented button {
   color: var(--muted);
 }
 
 :root[data-theme="dark"] .mode-segmented button.active {
-  background: var(--primary);
-  color: var(--primary-ink);
+  border-color: var(--primary);
+  background: var(--primary-soft);
+  color: var(--ink);
+}
+
+:root[data-theme="dark"] .round-length-picker button.active {
+  border-color: var(--primary);
+  color: var(--ink);
 }
 
 .topic-setting-hint {
@@ -1595,7 +1605,7 @@ body {
   padding: 4px 10px;
   border-radius: 8px;
   background: var(--sun);
-  color: var(--ink);
+  color: var(--sun-ink);
   font-size: 14px;
   font-weight: 700;
 }
@@ -2075,6 +2085,11 @@ body {
   background: var(--clay-soft);
 }
 
+:root[data-theme="dark"] .flashcard-difficulty-btn-active {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+
 .flashcard {
   padding: 24px 20px;
   border-radius: 18px 26px 14px 26px;
@@ -2455,7 +2470,7 @@ body {
   padding: 3px 10px;
   border-radius: 999px;
   background: var(--sun);
-  color: var(--ink);
+  color: var(--sun-ink);
   font-size: 11px;
   font-weight: 700;
 }

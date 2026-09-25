@@ -78,6 +78,25 @@ test("editorial design uses approved light tokens and semantic surfaces", async 
   assert.match(css, /\.flashcard-term-row strong\s*\{[\s\S]*font-size:\s*48px/);
   assert.doesNotMatch(css, /background(?:-image)?:\s*linear-gradient/);
 });
+test("dark runtime tokens match the approved palette", async () => {
+  const css = await readFile(new URL("../app/quiz-layout-fix.css", import.meta.url), "utf8");
+  const tokens = JSON.parse(await readFile(new URL("../docs/design-system-gpt/tokens.json", import.meta.url), "utf8"));
+  const dark = css.split(':root[data-theme="dark"] {')[1]?.split("}")[0];
+  assert.ok(dark, "dark token block exists");
+  const names = {
+    paper: "paper", surface: "surface", raised: "panel", ink: "ink",
+    secondaryText: "muted", primary: "primary", onPrimary: "primary-ink",
+    border: "line", controlBorder: "border-ink", selectedSurface: "primary-soft",
+    successText: "sage", successSurface: "sage-soft", errorText: "danger",
+    errorSurface: "danger-soft", gold: "sun", clay: "clay",
+    segmentTrack: "segment-track",
+  };
+  for (const [role, name] of Object.entries(names)) {
+    assert.match(dark, new RegExp(`^\\s*--${name}:\\s*${tokens.darkColor[role]};`, "im"), role);
+  }
+  assert.match(dark, /--focus-ring:\s*var\(--primary\)/);
+  assert.match(css, /:root\[data-theme="dark"\] \.mode-segmented button\.active\s*\{[^}]*background:\s*var\(--primary-soft\)/s);
+});
 test("the flashcard word's font/color/size rule actually matches the DOM (the word sits inside .flashcard-term-row, not a direct child of .flashcard-face)", async () => {
   const flashcards = await readFile(new URL("../app/flashcards.tsx", import.meta.url), "utf8");
   // A `.flashcard-face > strong` child selector silently never matched, since the

@@ -1,34 +1,37 @@
-/* Base palette — mirrors app/quiz-layout-fix.css in aleksanderlech-itx/spanish-gustar-quiz,
-   the runtime source of truth. Light is the default; dark is an equal citizen. */
+/* Semantic mirror of app/quiz-layout-fix.css, the runtime source of truth. */
 :root{
   /* surfaces */
-  --paper:#F5EFE4;
-  --surface:#FFFCF6;
-  --panel:#EFE7D9;
-  --panel-soft:#F7F1E6;
+  --paper:#F8EDE1;
+  --surface:#FFFAF3;
+  --panel:#E8DED1;
+  --panel-soft:#F8EDE1;
 
   /* ink */
-  --ink:#2C2B29;
-  --muted:#6B6459;
-  --line:#DCD2C2;
+  --ink:#0F172A;
+  --muted:#59534B;
+  --line:#D6C9B8;
+  --border-ink:#807366;
 
   /* accents */
-  --primary:#00625D;
+  --primary:#0F766E;
   --primary-dark:var(--primary);
   --primary-ink:#FFFFFF;
-  --primary-soft:#C9F2EE;
-  --sun:#F2A81D;
-  --sun-soft:#FFEBC2;
-  --clay:#C4553F;
-  --clay-soft:#FBDCD2;
-  --sage:#6E8F5E;
-  --sage-soft:#E2EFD8;
-  --danger:#BA1A1A;
-  --danger-soft:#FFDAD6;
+  --primary-soft:#E8F3EF;
+  --sun:#F59E0B;
+  --sun-ink:var(--ink);
+  --sun-soft:#FFF0D4;
+  --clay:#C75A3A;
+  --clay-soft:#FDECE8;
+  --sage:#166534;
+  --sage-soft:#EAF4E6;
+  --danger:#991B1B;
+  --danger-soft:#FDECE8;
 
-  --shadow-col:#2C2B29;
-  --key:#FCFAF6; /* accent-row keys in Type mode */
-  --hard-shadow:4px 4px 0 var(--shadow-col);
+  --shadow-col:#0F172A;
+  --key:#FFFAF3; /* accent-row keys in Type mode */
+  --shadow:0 4px 14px rgb(15 23 42 / 8%);
+  --hard-shadow:var(--shadow);
+  --segment-track:var(--panel);
 
   /* semantic aliases — prefer these in product code */
   --bg-canvas:var(--paper);
@@ -38,7 +41,6 @@
   --text-body:var(--ink);
   --text-muted:var(--muted);
   --text-on-primary:var(--primary-ink);
-  --border-ink:var(--ink);
   --border-quiet:var(--line);
   --action-primary:var(--primary);
   --action-primary-pressed:var(--primary-dark);
@@ -51,7 +53,7 @@
   --state-again-wash:var(--clay-soft);
   --state-streak:var(--sun);
   --state-streak-wash:var(--sun-soft);
-  --focus-ring:var(--sun);
+  --focus-ring:var(--primary);
 
   /* legacy names still read by the live app */
   --success:var(--sage);
@@ -75,36 +77,40 @@
 }
 
 [data-theme="dark"]{
-  --paper:#141310;
-  --surface:#262420;
-  --panel:#332F29;
-  --panel-soft:#221F1B;
+  color-scheme:dark;
+  --paper:#1F1D1A;
+  --surface:#2B2824;
+  --panel:#35312C;
+  --panel-soft:#35312C;
 
-  --ink:#F4EFE6;
-  --muted:#B5AC9C;
-  --line:#45403A;
-  --border-ink:#6A6358;
+  --ink:#F8EDE1;
+  --muted:#C9BDB0;
+  --line:#665E54;
+  --border-ink:#A49788;
 
-  --primary:#67D8D0;
-  --primary-dark:#8FEAE3;
-  --primary-ink:#06322F;
-  --primary-soft:#0C4A46;
-  --sun:#FFC24D;
-  --sun-soft:#4A360F;
-  --clay:#FF9C82;
-  --clay-soft:#5A2418;
-  --sage:#A9D18F;
-  --sage-soft:#2E4227;
-  --danger:#FFB4AB;
-  --danger-soft:#6B1210;
+  --primary:#8BD3C7;
+  --primary-dark:var(--primary);
+  --primary-ink:#142B27;
+  --primary-soft:#243E38;
+  --sun:#F5BC60;
+  --sun-ink:var(--paper);
+  --sun-soft:#35312C;
+  --clay:#E59B7F;
+  --clay-soft:#482B29;
+  --sage:#B8E3AE;
+  --sage-soft:#253629;
+  --danger:#FFC1B5;
+  --danger-soft:#482B29;
 
-  --shadow-col:#6A6358;
-  --hard-shadow:4px 4px 0 var(--shadow-col);
-  --focus-ring:#FFC24D;
-  --key:#332F29;
+  --shadow-col:#665E54;
+  --shadow:0 4px 14px rgb(0 0 0 / 18%);
+  --hard-shadow:var(--shadow);
+  --focus-ring:var(--primary);
+  --key:#35312C;
+  --segment-track:#39332D;
 
-  --segment-active-bg:var(--primary);
-  --segment-active-ink:var(--primary-ink);
+  --segment-active-bg:var(--surface);
+  --segment-active-ink:var(--ink);
   --segment-ink:var(--muted);
   --streak-panel-bg:var(--surface);
   --streak-panel-border:var(--sun);
@@ -134,7 +140,7 @@
   --state-again-wash:var(--clay-soft);
   --state-streak:var(--sun);
   --state-streak-wash:var(--sun-soft);
-  --focus-ring:var(--sun);
+  --focus-ring:var(--primary);
 
   /* legacy names still read by the live app */
   --success:var(--sage);
