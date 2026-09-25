@@ -6,7 +6,7 @@ The approved light appearance is in [docs/design-system-gpt](docs/design-system-
 
 `app/quiz-layout-fix.css` owns semantic color tokens and final theme values. The stylesheet order is `globals.css`, `issue-5-design.css`, `quiz-layout-fix.css`, `editorial-polish.css`, then `activity-chrome.css`, imported by `app/layout.tsx`. Screen components keep their existing state and handlers. The light palette maps Paper `#F8EDE1`, Surface `#FFFAF3`, Ink `#0F172A`, Primary `#0F766E`, Muted `#59534B`, decorative Line `#D6C9B8`, and stronger control border `#807366`. Selected controls use `#E8F3EF`. Success uses `#166534` on `#EAF4E6`; errors use `#991B1B` on `#FDECE8`. Gold `#F59E0B` marks level badges, not keyboard focus.
 
-The existing dark mapping stays active until the separate [dark preview](docs/design-system-gpt/dark-preview.md) is approved. The theme toggle, pre-paint cookie/local-storage choice, and fixed logo brand colors stay functional. The logo retains teal `#00625D`, clay `#C4553F`, sun `#F2A81D`, and ink stroke `#2C2B29` in both themes.
+The approved [dark palette](docs/design-system-gpt/dark-preview.md) now maps Paper `#1F1D1A`, Surface `#2B2824`, raised panels `#35312C`, Ink `#F8EDE1`, Primary `#8BD3C7`, and selected controls `#243E38`. Success uses `#B8E3AE` on `#253629`; errors use `#FFC1B5` on `#482B29`. Teal remains the focus color. The theme toggle, pre-paint cookie/local-storage choice, and fixed logo brand colors stay functional. The logo retains teal `#00625D`, clay `#C4553F`, sun `#F2A81D`, and ink stroke `#2C2B29` in both themes, with a cream backing in dark mode.
 
 ## Type, shape and layout
 

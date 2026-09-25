@@ -13,7 +13,7 @@ This package fully replaces the previous image-derived proposal. The five sample
 
 ## Authority
 
-This folder defines the approved light appearance. Root [DESIGN.md](../../DESIGN.md) records the current application mapping and behavior boundaries. [docs/design.md](../design.md) and the older [design-system](../../design-system/readme.md) are historical. The separately [proposed dark preview](dark-preview.md) needs approval before its colors replace the current dark mapping.
+This folder defines the approved light appearance and [approved dark palette](dark-preview.md). Root [DESIGN.md](../../DESIGN.md) records the current application mapping and behavior boundaries. [docs/design.md](../design.md) and the older [design-system](../../design-system/readme.md) are historical. The dark preview remains a static reference for the palette now used by the application.
 
 The [UX contract](../../UX-CONTRACT.md), topic configuration, scoring, persistence, and verified product behavior constrain implementation. Sample data and local demo handlers never override them. Resolve behavior conflicts before changing behavior.
 

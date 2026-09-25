@@ -1,6 +1,6 @@
-# Dark preview proposal 01
+# Approved dark palette
 
-Status: review only, not approved production styling.
+Status: approved by the user on 25 September 2026 and applied to the runtime theme. This file remains the static review record.
 
 Open [dark-preview.html](dark-preview.html). This self-contained static board embeds Fraunces 400/600 and Karla 400/600/700 fonts. All six panels are explicitly illustrative: Library, Quiz with success/error feedback, revealed Flashcard, Results, Practice options, and open drawer. Controls are inactive; no app state, persistence, routing, network calls or production imports are present.
 
@@ -30,7 +30,7 @@ Keep the approved typography, spacing, control targets and editorial corner geom
 
 The brand mark retains exact #00625D / #C4553F / #F2A81D fills and #2C2B29 stroke on a #FFFAF3 light backing. The mark itself is 24px; the backing adds 4px on each side. The logo is decorative beside the wordmark.
 
-Production proposal: warm charcoal canvas, slightly raised warm surfaces, cream reading text, soft teal actions. Use paired success/error colors with explicit outcome text. Focus ring uses primary at 3px with 3px offset. Preserve the existing dark theme until this proposal is approved separately.
+Production styling uses a warm charcoal canvas, slightly raised warm surfaces, cream reading text, and soft teal actions. Paired success/error colors carry explicit outcome text. Focus uses the primary teal at 3px with 3px offset.
 
 ## Calculated contrast
 
@@ -66,10 +66,10 @@ All listed text pairs exceed 4.5:1. Control boundaries exceed 3:1 on paper, surf
 - Practice controls illustrate visual treatment only, not new settings or a new route.
 - Review-board columns are presentation scaffolding. Production exercise content max 640px; library max 1120px with a grid from 768px when cards fit.
 - Drawer panel is a static visual sample, not an implemented modal. Production retains its real close control, focus trapping/restoration, background handling, scrolling and keyboard dismissal.
-- No production dark tokens, CSS, components or settings changed by these files.
+- The preview remains static; the approved production palette lives in `app/quiz-layout-fix.css` and its mirror in `design-system/tokens/colors.css`.
 
 ## Verification and limits
 
-Static checks: six labeled panels; six actual activity labels; four box labels; embedded fonts; exact brand colors; no external assets or scripts; preview-only notice; viewport meta and narrow layout rules. Contrast is calculated, not an accessibility certification. Approval requires visual review. Browser rendering, zoom, keyboard, focus and production state checks remain part of integration validation.
+Static checks: six labeled panels; six actual activity labels; four box labels; embedded fonts; exact brand colors; no external assets or scripts; static-preview notice; viewport meta and narrow layout rules. Contrast is calculated, not an accessibility certification. Browser rendering, zoom, keyboard, focus and production state checks remain part of integration validation.
 
 Fonts embedded from Google Fonts: Fraunces and Karla. Original source CSS: https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Karla:wght@400;600;700&display=swap .

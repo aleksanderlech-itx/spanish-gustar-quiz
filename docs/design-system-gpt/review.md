@@ -1,6 +1,6 @@
 # Acceptance and verification
 
-The package checks below record the 24 September specimen inspection. They do not certify the application integration. The [dark preview](dark-preview.md) is a separate, unapproved proposal. Record production browser and test results separately after implementation.
+The package checks below record the 24 September specimen inspection. They do not certify the application integration. The separate [dark palette](dark-preview.md) was approved and implemented on 25 September. Record production browser and test results separately after implementation.
 
 ## Package verification
 
@@ -14,7 +14,7 @@ Export verified 24 September 2026: all five views opened; correct-answer feedbac
 
 ## Known specimen limits
 
-The specimen has no backend, durable progress, full quiz engine, actual mistake queue, or Leitner implementation. Fixed totals do not update from the single sample question. Browser-default focus and hover filtering are illustrative; the explicit foundation contract governs production. A separate unapproved dark preview exists; the five-view reference has no dark palette, desktop shell, or full loading/error gallery. Fonts/icons require network access.
+The specimen has no backend, durable progress, full quiz engine, actual mistake queue, or Leitner implementation. Fixed totals do not update from the single sample question. Browser-default focus and hover filtering are illustrative; the explicit foundation contract governs production. The five-view light reference has no dark palette, desktop shell, or full loading/error gallery; the approved dark palette has its own static six-panel board. Fonts/icons in the light specimen require network access.
 
 ## Contrast baseline
 
@@ -42,7 +42,7 @@ Recheck actual rendered combinations, transparency, adjacent colors, and theme s
 - Verify single-choice controls, disclosures, speech, reveal, overlays and navigation with keyboard only. Check labels, announcements and focus restoration.
 - Test 320/360/380/390px, 767/768px, existing 819/820/821px boundaries, desktop, 200% zoom and open mobile keyboard. No horizontal page overflow or hidden controls.
 - Exercise correct/wrong/empty answers, empty filters, zero progress, perfect results with saved historical misses, mistake review, unavailable audio and storage failure.
-- Preserve functional dark mode; adopt proposed dark colors only after separate approval and contrast review.
+- Verify the approved dark colors, contrast, theme reload and control states in production screens.
 - Respect reduced motion and stable layout during font loading and feedback.
 - Run lint, typecheck, tests/build; report actual outcomes.
 - Keep root visual docs aligned with implemented UI. Document intentional deviations explicitly.

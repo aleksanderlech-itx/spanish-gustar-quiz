@@ -2,7 +2,7 @@
 
 ## Authority
 
-The [reference](reference.html), [tokens](tokens.json), [foundations](foundations.md) and [components](components.md) define the approved **light** appearance. They do not supply app data or handlers. [Root DESIGN.md](../../DESIGN.md) maps the target to the current runtime. [UX-CONTRACT.md](../../UX-CONTRACT.md), current source and tests govern behavior. The [dark preview](dark-preview.md) remains a proposal for separate approval; the existing dark theme stays in use.
+The [reference](reference.html), [tokens](tokens.json), [foundations](foundations.md) and [components](components.md) define the approved **light** appearance. They do not supply app data or handlers. The [approved dark palette](dark-preview.md) is also implemented. [Root DESIGN.md](../../DESIGN.md) maps both themes to the current runtime. [UX-CONTRACT.md](../../UX-CONTRACT.md), current source and tests govern behavior.
 
 The package was authored against an earlier snapshot. The current application already has a drawer, logo component, dedicated round/results/topic-detail screen components and device-local progress. Do not restore removed synchronization or sign-in, add sample totals, or create duplicate navigation.
 
@@ -28,7 +28,7 @@ Retain all six activities, IDs and URLs, supported filters, saved options, Choos
 
 ## Verification
 
-Use the [review checklist](review.md) with real app data. Run `npm run lint`, `npx tsc --noEmit` and `npm test` in the repository's supported Node/Bash environment. Inspect desktop/mobile light and current dark views; the static specimen is not regression coverage. Do not apply proposed dark colors without separate approval.
+Use the [review checklist](review.md) with real app data. Run `npm run lint`, `npx tsc --noEmit` and `npm test` in the repository's supported Node/Bash environment. Inspect desktop/mobile light and dark views; the static specimen is not regression coverage.
 
 ## Maintaining the reference
 

@@ -6,6 +6,8 @@ This contract records the observable behavior shared by the grammar quizzes and 
 |---|---|---|---|---|
 | Round (Choose / Type) | `app/round.tsx` | `DESIGN.md` and this contract | Choose, Type | Unit tests and production build |
 | Results | `app/results.tsx` | `DESIGN.md` and this contract | — | Unit tests and production build |
+| Form | `app/round.tsx` | This contract and `app/quiz-logic.ts` | Choose button commit, Type Check/Enter | Grading tests and browser rounds |
+| Select/Listbox | Native `<select>` in `app/topic-detail.tsx` | Per-topic filters in `app/quiz-filters.ts` | Difficulty and verb single-select | Filter tests and browser setup |
 
 ## Navigation and progress
 

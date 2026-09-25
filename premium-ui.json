@@ -5,6 +5,6 @@
   "requiredCapabilities": ["Select/Listbox", "Form"],
   "ownership": {
     "Select/Listbox": "native",
-    "Form": "app/page.tsx"
+    "Form": "app/round.tsx"
   }
 }

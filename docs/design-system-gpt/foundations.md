@@ -68,4 +68,4 @@ Normal text contrast ≥4.5:1; large text and meaningful non-text boundaries ≥
 
 ## Themes
 
-This target defines the approved light appearance. A separate [dark proposal](dark-preview.md) exists for review and is not approved production styling. Preserve the existing functional dark theme until that proposal is approved. Do not disable the theme toggle or force light colors into dark mode.
+This target defines the approved light appearance. The separately [approved dark palette](dark-preview.md) is implemented through the same semantic runtime tokens. Keep the theme toggle, saved choice, contrast, and focus behavior working in both modes.
