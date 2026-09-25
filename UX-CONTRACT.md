@@ -6,6 +6,8 @@ This contract records the observable behavior shared by the grammar quizzes and 
 |---|---|---|---|---|
 | Round (Choose / Type) | `app/round.tsx` | `DESIGN.md` and this contract | Choose, Type | Unit tests and production build |
 | Results | `app/results.tsx` | `DESIGN.md` and this contract | — | Unit tests and production build |
+| Form | `app/round.tsx` | This contract and `app/quiz-logic.ts` | Choose button commit, Type Check/Enter | Grading tests and browser rounds |
+| Select/Listbox | Native `<select>` in `app/topic-detail.tsx` | Per-topic filters in `app/quiz-filters.ts` | Difficulty and verb single-select | Filter tests and browser setup |
 
 ## Navigation and progress
 
@@ -51,7 +53,7 @@ This contract records the observable behavior shared by the grammar quizzes and 
   expands in place to a real, live panel rather than linking to a separate screen. Backup, restore,
   and reset all act on every quiz's and the flashcards' storage keys together, not one at a time.
 - The "Progress & history" panel also lists recent rounds (newest first, capped to 15, merged
-  across all three quizzes) and a global weak-areas breakdown (`app/history.ts`), the same
+  across all five grammar quizzes) and a global weak-areas breakdown (`app/history.ts`), the same
   Verb/Tense/Agreement/Subject/Pronoun categorization the old per-quiz app used. Agreement/Subject/
   Pronoun are only recorded for gustar — those fields are constant or repurposed to hold the tense
   for ser/estar and preterite/imperfect, so recording them there would produce misleading
@@ -83,12 +85,12 @@ This contract records the observable behavior shared by the grammar quizzes and 
 ## Interaction
 
 - A flashcard must reveal its English meaning and Spanish example before recall can be assessed.
-- Recall actions are icon-only OK / Not OK buttons — a bold green checkmark and a bold red cross — each with an accessible label. They remain disabled before reveal.
+- Recall actions show a symbol and visible “Again” / “Got it” labels, with accessible names. They remain disabled before reveal.
 - All primary touch targets have a minimum height of 44px and a visible keyboard focus state.
 - The active exercise is the only strongly elevated surface. Supporting progress panels remain visually quieter.
 
 ## Feedback and recovery
 
-- Local progress remains usable when cross-device synchronization is unavailable.
+- Progress, preferences and flashcard recall are stored on this device. Backup and restore provide the supported transfer path.
 - Invalid or unavailable stored flashcard data falls back to a new round without blocking the learner.
 - Reduced-motion preferences remove nonessential state transitions.

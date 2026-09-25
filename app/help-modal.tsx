@@ -13,7 +13,7 @@ export const HELP_CONTENT: Record<HelpTopic, HelpContent> = {
       "Round length picks 5, 10 or 20 questions.",
       "Choose gives you answer options — faster, good for a new topic.",
       "Type makes you write the missing form yourself — harder, and it sticks better.",
-      "Filters narrow the sentences by difficulty and verb. They also scope \"Practise the misses\".",
+      "Filters narrow the sentences by difficulty and verb, or pronoun type in Object Pronouns. They also scope \"Practise the misses\".",
       "The ring shows how much of the topic you've practised; \"due\" counts questions ready to review.",
     ],
     guideHref: "/how-to-use#quizzes",
@@ -35,7 +35,7 @@ export const HELP_CONTENT: Record<HelpTopic, HelpContent> = {
     points: [
       "Read the Spanish verb and think of its English meaning.",
       "Tap the card or Reveal to see the meaning and an example sentence. The speaker plays the Spanish.",
-      "Press the green check if you remembered it, the red cross if you didn't.",
+      "After revealing, press Got it with the checkmark if you remembered it, or Again with the cross if you didn't.",
       "Cards move through four boxes: Box 1 every session, then 1, 3 and 7 days. A miss sends a card back to Box 1.",
       "The difficulty buttons filter which verbs come up.",
     ],

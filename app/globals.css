@@ -1,52 +1,20 @@
 @import "tailwindcss";
 @source not "../design-system";
 
-:root {
-  --paper: #f8fbeb;
-  --surface: #ffffff;
-  --panel: rgba(253, 255, 245, .62);
-  --panel-soft: rgba(253, 255, 245, .58);
-  --quiz-surface: #fffef8;
-  --ink: #151f2d;
-  --muted: #687081;
-  --line: #d9e3b2;
-  --primary: #1d5c73;
-  --primary-dark: #123f51;
-  --primary-soft: #e1f2f6;
-  --success: #bfd52f;
-  --success-soft: #f3facd;
-  --accent: #6047a6;
-  --accent-soft: #f0e6ff;
-  --danger: #b84d59;
-  --danger-soft: #fff0f2;
-  --footer: rgba(255, 255, 255, .94);
-  --shadow: 0 24px 60px rgba(52, 82, 91, .18);
-  --soft-shadow: 0 18px 48px rgba(52, 82, 91, .1);
-  --radius: 8px;
-  --keyboard-inset: 0px;
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/fraunces-latin.woff2") format("woff2");
 }
 
-body.dark {
-  --paper: #0f1d2a;
-  --surface: #152638;
-  --panel: rgba(24, 43, 59, .68);
-  --panel-soft: rgba(24, 43, 59, .58);
-  --quiz-surface: #17293b;
-  --ink: #f4f9ff;
-  --muted: #a9bdd0;
-  --line: #2f4d63;
-  --primary: #56b6f7;
-  --primary-dark: #9bd7ff;
-  --primary-soft: #20394c;
-  --success: #5fe0c5;
-  --success-soft: #173c3e;
-  --accent: #b9ddff;
-  --accent-soft: #243348;
-  --danger: #ff8d9c;
-  --danger-soft: #472631;
-  --footer: rgba(21, 38, 56, .94);
-  --shadow: 0 24px 60px rgba(0, 0, 0, .34);
-  --soft-shadow: 0 18px 48px rgba(0, 0, 0, .22);
+@font-face {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/karla-latin.woff2") format("woff2");
 }
 
 * {
@@ -88,17 +56,9 @@ body {
     linear-gradient(180deg, rgba(191, 213, 47, .1) 1px, transparent 1px),
     var(--paper);
   background-size: 24px 24px;
-  font-family: var(--font-atkinson), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--font-body);
   font-size: 16px;
   letter-spacing: 0;
-}
-
-body.dark {
-  background:
-    linear-gradient(90deg, rgba(86, 182, 247, .08) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(95, 224, 197, .08) 1px, transparent 1px),
-    var(--paper);
-  background-size: 24px 24px;
 }
 
 button,
@@ -113,8 +73,10 @@ button {
 
 button:focus-visible,
 a:focus-visible,
+input:focus-visible,
+select:focus-visible,
 summary:focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--primary) 42%, transparent);
+  outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
 }
 
@@ -571,7 +533,7 @@ p {
   border: 2px solid var(--border-ink);
   border-radius: 14px;
   background: var(--surface);
-  box-shadow: 4px 4px 0 var(--shadow-col);
+  box-shadow: none;
 }
 
 .quiz-switch nav button {
@@ -614,10 +576,6 @@ p {
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 2;
-}
-
-body.dark .mode-switch {
-  color: var(--success);
 }
 
 .eyebrow {
@@ -957,7 +915,7 @@ h1 em {
   border-radius: calc(var(--radius) + 6px);
   background: var(--surface);
   color: var(--ink);
-  box-shadow: 4px 4px 0 var(--shadow-col);
+  box-shadow: none;
 }
 
 .conjugation-modal-header {
@@ -1348,10 +1306,6 @@ h1 em {
   color: white;
   background: var(--primary);
   box-shadow: 0 12px 24px color-mix(in srgb, var(--primary) 24%, transparent);
-}
-
-body.dark .primary {
-  color: #08131f;
 }
 
 .primary:hover:not(:disabled) {

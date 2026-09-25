@@ -1,0 +1,187 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Karla:wght@400;600;700&display=swap">
+<style>
+#spanish-samples { --sq-paper:#F8EDE1; --sq-surface:#FFFAF3; --sq-ink:#0F172A; --sq-primary:#0F766E; --sq-border:#D6C9B8; --sq-muted:#59534B; --sq-space:20px; color:var(--sq-ink); font:400 16px/1.5 'Karla',system-ui,sans-serif; color-scheme:light; }
+#spanish-samples * {box-sizing:border-box}
+#spanish-samples .sq-picker {display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 16px}
+#spanish-samples button, #spanish-samples select, #spanish-samples input {font:inherit}
+#spanish-samples button {min-height:44px;border:1px solid #807366;border-radius:10px;padding:10px 16px;background:var(--sq-surface);color:var(--sq-ink);font-weight:600}
+#spanish-samples button:disabled {opacity:.5;cursor:default}
+#spanish-samples button:not(:disabled):hover {filter:brightness(.96)}
+#spanish-samples .sq-picker button {font-size:14px;padding:8px 12px}
+#spanish-samples .sq-picker button[aria-pressed=true],#spanish-samples .sq-primary {background:var(--sq-primary);color:#fff;border-color:var(--sq-primary)}
+#spanish-samples .sq-window {max-width:440px;min-height:680px;margin:auto;background:var(--sq-paper);border:1px solid var(--sq-border);border-radius:24px;padding:var(--sq-space);box-shadow:0 4px 14px rgb(15 23 42 / 8%);position:relative;overflow:hidden}
+#spanish-samples .sq-top {display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center;padding:0 0 20px;border-bottom:1px solid var(--sq-border);margin-bottom:24px}
+#spanish-samples .sq-menu-button {width:44px;padding:10px;display:grid;place-items:center}
+#spanish-samples .sq-top-title {display:flex;align-items:center;gap:12px;min-width:0}
+#spanish-samples .sq-brand {display:inline-flex;align-items:center;gap:8px;white-space:nowrap;font:600 19px/1.15 'Fraunces',Georgia,serif}
+#spanish-samples .sq-brand-mark {width:24px;height:24px;flex:none}
+#spanish-samples .sq-meta {font-size:14px;color:var(--sq-muted)}
+#spanish-samples h2,#spanish-samples h3,#spanish-samples p {margin:0}
+#spanish-samples h2 {font:600 32px/1.15 'Fraunces',Georgia,serif;letter-spacing:-.7px}
+#spanish-samples h3 {font:600 24px/1.2 'Fraunces',Georgia,serif}
+#spanish-samples .sq-section {font:700 18px/1.3 'Karla',system-ui,sans-serif;margin:24px 0 12px}
+#spanish-samples .sq-feature {background:var(--sq-surface);border:1px solid var(--sq-border);border-radius:18px 26px 14px 26px;padding:20px;position:relative}
+#spanish-samples .sq-feature h2 {max-width:270px;margin:8px 0 12px}
+#spanish-samples .sq-primary {width:100%;margin-top:20px;display:flex;gap:12px;justify-content:center;align-items:center}
+#spanish-samples .sq-eyebrow {font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--sq-primary);font-weight:700}
+#spanish-samples .sq-row {display:flex;align-items:center;gap:12px}
+#spanish-samples .sq-spread {justify-content:space-between}
+#spanish-samples .sq-badge {background:#F59E0B;color:#0F172A;font-size:14px;font-weight:700;border-radius:8px;padding:2px 8px;white-space:nowrap}
+#spanish-samples .sq-topic {width:100%;text-align:left;display:flex;gap:12px;align-items:center;margin:8px 0;border-color:var(--sq-border);padding:14px 12px;border-radius:14px;font-weight:400}
+#spanish-samples .sq-topic strong {font-weight:700}
+#spanish-samples .sq-topic-main {flex:1;min-width:0}
+#spanish-samples .sq-emblem {display:grid;place-items:center;width:44px;min-width:44px;height:52px;color:#C75A3A;background:#F8EDE1;border-radius:12px}
+#spanish-samples .sq-track {display:block;height:6px;background:var(--sq-border);border-radius:999px;overflow:hidden;margin-top:8px}
+#spanish-samples .sq-track span {display:block;height:100%;background:var(--sq-primary);border-radius:999px}
+#spanish-samples .sq-prompt {font:600 42px/1.12 'Fraunces',Georgia,serif;margin:20px 0 8px;letter-spacing:-1px}
+#spanish-samples fieldset {border:0;padding:0;margin:20px 0 0;min-width:0}
+#spanish-samples legend {font-weight:600;margin-bottom:10px}
+#spanish-samples .sq-option {display:flex;align-items:center;gap:12px;padding:12px;margin:8px 0;border:1px solid #807366;border-radius:10px;min-height:48px;background:var(--sq-surface)}
+#spanish-samples .sq-option:has(input:checked) {background:#E8F3EF;border-color:var(--sq-primary)}
+#spanish-samples input {accent-color:var(--sq-primary);width:18px;height:18px;flex:none}
+#spanish-samples .sq-feedback {padding:16px;border-radius:14px;background:#EAF4E6;color:#166534;margin-top:20px}
+#spanish-samples .sq-feedback.sq-error {background:#FDECE8;color:#991B1B}
+#spanish-samples .sq-feedback strong {display:block;margin-bottom:4px}
+#spanish-samples .sq-link {border:0;background:transparent;color:var(--sq-primary);padding:10px 0}
+#spanish-samples .sq-flash {text-align:center;padding:64px 20px;min-height:300px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:18px}
+#spanish-samples .sq-flash h2 {font-size:48px}
+#spanish-samples .sq-two {display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+#spanish-samples .sq-two .sq-primary {margin:0}
+#spanish-samples .sq-score {text-align:center;margin-top:24px;padding:28px}
+#spanish-samples .sq-score b {display:block;font:600 48px/1.15 'Fraunces',Georgia,serif;margin-bottom:8px}
+#spanish-samples .sq-result-line {display:flex;gap:12px;align-items:flex-start;margin:14px 0}
+#spanish-samples .sq-success {color:#166534}
+#spanish-samples .sq-warn {color:#991B1B}
+#spanish-samples .sq-segments {display:flex;flex-wrap:wrap;background:#E8DED1;border-radius:10px;padding:4px;gap:4px}
+#spanish-samples .sq-segments label {flex:1;text-align:center;position:relative;min-width:55px}
+#spanish-samples .sq-segments input {position:absolute;opacity:0;width:1px;height:1px}
+#spanish-samples .sq-segments span {display:block;min-height:44px;padding:10px;border-radius:8px}
+#spanish-samples .sq-segments input:checked+span {background:var(--sq-primary);color:white}
+#spanish-samples .sq-segments input:focus-visible+span {outline:3px solid var(--sq-primary);outline-offset:3px}
+#spanish-samples summary {font-weight:700;min-height:44px;padding-top:8px}
+#spanish-samples details {margin-top:24px}
+#spanish-samples .sq-check {display:flex;align-items:center;gap:12px;min-height:44px}
+#spanish-samples .sq-foot {text-align:center;margin-top:20px;font-size:14px;color:var(--sq-muted)}
+#spanish-samples .sq-drawer-backdrop {position:absolute;inset:0;background:rgb(15 23 42 / 48%);z-index:5}
+#spanish-samples .sq-drawer {position:absolute;top:0;left:0;width:min(290px,calc(100% - 48px));height:min(720px,calc(100dvh - 130px));min-height:480px;z-index:6;background:var(--sq-surface);border-right:1px solid var(--sq-ink);padding:18px 16px;display:flex;flex-direction:column;gap:10px;overflow-y:auto}
+#spanish-samples .sq-drawer-head {display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:2px}
+#spanish-samples .sq-drawer-head .sq-brand {font-size:19px}
+#spanish-samples .sq-close {min-width:44px;padding:10px;display:grid;place-items:center}
+#spanish-samples .sq-drawer-streak {border:1px solid var(--sq-ink);background:#FFF0C9;border-radius:14px;padding:12px 14px}
+#spanish-samples .sq-drawer-streak strong {display:block;font-size:14px;font-weight:700}
+#spanish-samples .sq-drawer-streak span {display:block;font-size:13px;color:var(--sq-muted)}
+#spanish-samples .sq-drawer-items {display:grid;gap:8px}
+#spanish-samples .sq-drawer-item {width:100%;min-height:50px;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:8px;border-color:var(--sq-ink);font-size:14px}
+#spanish-samples .sq-drawer-item[aria-expanded=true] {background:#E8F3EF}
+#spanish-samples .sq-drawer-panel {padding:8px 12px 12px;background:var(--sq-paper);border-radius:10px;font-size:14px}
+#spanish-samples .sq-drawer-panel p+p {margin-top:8px}
+#spanish-samples .sq-drawer-panel button {width:100%;margin-top:6px;text-align:left;font-size:14px}
+#spanish-samples .sq-drawer-badge {border-radius:999px;background:#F59E0B;color:var(--sq-ink);font-size:12px;padding:2px 8px;font-weight:700}
+#spanish-samples .sq-drawer-badge.sq-count {background:#FDECE8;color:#991B1B}
+#spanish-samples .sq-drawer-link {text-decoration:none;color:var(--sq-ink);min-height:50px;border:1px solid var(--sq-ink);border-radius:10px;background:var(--sq-surface);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:600;font-size:14px}
+#spanish-samples .sq-drawer-link:hover {background:#E8F3EF}
+#spanish-samples .sq-drawer-bottom {margin-top:auto;display:grid;gap:8px;padding-top:16px}
+#spanish-samples .sq-drawer-support {background:#FDECE8;border-color:#C75A3A}
+#spanish-samples .sq-theme {background:#D3F2F0;border-color:var(--sq-ink)}
+#spanish-samples .sq-theme-dot {width:14px;height:14px;background:#F59E0B;border-radius:999px}
+#spanish-samples .sq-drawer-note {font-size:12px;color:var(--sq-muted);line-height:1.35}
+#spanish-samples [hidden] {display:none!important}
+@media(max-width:380px){#spanish-samples .sq-window{padding:16px}#spanish-samples .sq-feature{padding:16px}#spanish-samples .sq-prompt{font-size:36px}#spanish-samples .sq-topic{gap:8px}#spanish-samples .sq-brand{font-size:18px}}
+</style>
+<div id="spanish-samples" aria-label="Spanish Editorial Learning sample screens">
+  <nav class="sq-picker" aria-label="Sample screen">
+    <button class="cursor-interaction" data-view="library" aria-pressed="true">Library</button>
+    <button class="cursor-interaction" data-view="quiz" aria-pressed="false">Quiz</button>
+    <button class="cursor-interaction" data-view="flashcards" aria-pressed="false">Flashcards</button>
+    <button class="cursor-interaction" data-view="results" aria-pressed="false">Results</button>
+    <button class="cursor-interaction" data-view="settings" aria-pressed="false">Practice options</button>
+  </nav>
+  <div class="sq-window" aria-label="Mobile learning screen">
+    <header class="sq-top"><span class="sq-top-title"><button id="sq-open-menu" class="sq-menu-button cursor-interaction" aria-label="Open menu" aria-haspopup="dialog" aria-controls="sq-drawer" aria-expanded="false"><i data-lucide="menu" aria-hidden="true"></i></button><span class="sq-brand"><svg class="sq-brand-mark" viewBox="0 0 34 34" aria-hidden="true"><rect x="2" y="2" width="30" height="12" fill="#00625d" stroke="#2c2b29" stroke-width="2.5"/><rect x="2" y="18" width="13" height="14" fill="#c4553f" stroke="#2c2b29" stroke-width="2.5"/><rect x="19" y="18" width="13" height="14" fill="#f2a81d" stroke="#2c2b29" stroke-width="2.5"/></svg><span>Spanish Quizzes</span></span></span><span class="sq-meta" id="sq-screen-label">Your learning</span></header>
+    <div id="sq-drawer-backdrop" class="sq-drawer-backdrop" hidden></div>
+    <aside id="sq-drawer" class="sq-drawer" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+      <div class="sq-drawer-head"><strong class="sq-brand"><svg class="sq-brand-mark" viewBox="0 0 34 34" aria-hidden="true"><rect x="2" y="2" width="30" height="12" fill="#00625d" stroke="#2c2b29" stroke-width="2.5"/><rect x="2" y="18" width="13" height="14" fill="#c4553f" stroke="#2c2b29" stroke-width="2.5"/><rect x="19" y="18" width="13" height="14" fill="#f2a81d" stroke="#2c2b29" stroke-width="2.5"/></svg><span>Spanish Quizzes</span></strong><button id="sq-close-menu" class="sq-close cursor-interaction" aria-label="Close menu"><i data-lucide="x" aria-hidden="true"></i></button></div>
+      <div class="sq-drawer-streak"><strong>4-day streak</strong><span>83% accuracy this week</span></div>
+      <div class="sq-drawer-items">
+        <button type="button" class="sq-drawer-item cursor-interaction" data-drawer-section="progress" aria-expanded="false" aria-controls="sq-drawer-progress">Progress &amp; history <span aria-hidden="true">→</span></button>
+        <div id="sq-drawer-progress" class="sq-drawer-panel" hidden><p>9 rounds played · 81% average accuracy</p><p>34 of 500 flashcards studied</p></div>
+        <button type="button" class="sq-drawer-item cursor-interaction" data-drawer-section="weekly" aria-expanded="false" aria-controls="sq-drawer-weekly">Weekly recap <span class="sq-drawer-badge">New</span></button>
+        <div id="sq-drawer-weekly" class="sq-drawer-panel" hidden><p>3 rounds this week · 83% accuracy</p></div>
+        <button type="button" class="sq-drawer-item cursor-interaction" data-drawer-section="mistakes" aria-expanded="false" aria-controls="sq-drawer-mistakes">Mistake notebook <span class="sq-drawer-badge sq-count">2</span></button>
+        <div id="sq-drawer-mistakes" class="sq-drawer-panel" hidden><p>2 missed rules ready for practice.</p><button type="button" data-drawer-go="results">View mistake summary</button></div>
+        <button type="button" class="sq-drawer-item cursor-interaction" data-drawer-section="backup" aria-expanded="false" aria-controls="sq-drawer-backup">Backup &amp; restore <span aria-hidden="true">→</span></button>
+        <div id="sq-drawer-backup" class="sq-drawer-panel" hidden><p>Keep a copy of your learning progress.</p><button type="button" disabled>Download backup</button><button type="button" disabled>Import backup</button><p class="sq-drawer-note">Preview only. No progress data is stored here.</p></div>
+        <button type="button" class="sq-drawer-item cursor-interaction" data-drawer-section="settings" aria-expanded="false" aria-controls="sq-drawer-settings">Settings <span aria-hidden="true">→</span></button>
+        <div id="sq-drawer-settings" class="sq-drawer-panel" hidden><button type="button" disabled>Reset all progress</button><p class="sq-drawer-note">Preview only. No progress data is stored here.</p></div>
+        <a class="sq-drawer-link" href="https://staging.spanish-quizz.es/how-to-use" target="_blank" rel="noopener noreferrer">How to use <span aria-hidden="true">→</span></a>
+        <a class="sq-drawer-link" href="https://staging.spanish-quizz.es/notes" target="_blank" rel="noopener noreferrer">Notes <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="sq-drawer-bottom"><a class="sq-drawer-link sq-drawer-support" href="https://ko-fi.com/spanishquizzes/" target="_blank" rel="noopener noreferrer">Help build more quizzes <span aria-hidden="true">↗</span></a><button type="button" class="sq-drawer-item sq-theme" disabled>Light theme <span class="sq-theme-dot" aria-hidden="true"></span></button><p class="sq-drawer-note">Theme switch is shown for reference. This specimen defines the light theme.</p></div>
+    </aside>
+    <section data-screen="library" aria-label="Topic library">
+      <div class="sq-feature"><span class="sq-eyebrow">Keep learning</span><h2>Make Spanish<br>part of your day.</h2><p class="sq-meta">A little practice. A little more confidence.</p><div style="margin-top:24px"><h3>Gustar patterns</h3><p class="sq-meta" style="margin-top:8px">50% complete · 83% accuracy</p></div><button class="sq-primary cursor-interaction" data-go="quiz">Continue practice <i data-lucide="arrow-right" aria-hidden="true"></i></button></div>
+      <h3 class="sq-section">All topics</h3>
+      <button class="sq-topic cursor-interaction" data-go="settings"><span class="sq-emblem"><i data-lucide="landmark" aria-hidden="true"></i></span><span class="sq-topic-main"><strong>Ser vs estar</strong><span class="sq-meta" style="display:block">18 of 29 questions · 62%</span><span class="sq-track"><span style="width:62%"></span></span></span><span class="sq-badge">A2</span></button>
+      <button class="sq-topic cursor-interaction" data-go="settings"><span class="sq-emblem"><i data-lucide="heart" aria-hidden="true"></i></span><span class="sq-topic-main"><strong>Gustar patterns</strong><span class="sq-meta" style="display:block">12 of 24 questions · 50%</span><span class="sq-track"><span style="width:50%"></span></span></span><span class="sq-badge">A2</span></button>
+      <button class="sq-topic cursor-interaction" data-go="settings"><span class="sq-emblem"><i data-lucide="signpost" aria-hidden="true"></i></span><span class="sq-topic-main"><strong>Por vs para</strong><span class="sq-meta" style="display:block">8 of 26 questions · 31%</span><span class="sq-track"><span style="width:31%"></span></span></span><span class="sq-badge">B1</span></button>
+      <button class="sq-topic cursor-interaction" data-go="settings"><span class="sq-emblem"><i data-lucide="book-open" aria-hidden="true"></i></span><span class="sq-topic-main"><strong>Preterite vs imperfect</strong><span class="sq-meta" style="display:block">6 of 28 questions · 21%</span><span class="sq-track"><span style="width:21%"></span></span></span><span class="sq-badge">B1</span></button>
+    </section>
+    <section data-screen="quiz" aria-label="Grammar question" hidden>
+      <div class="sq-row sq-spread"><span class="sq-meta">Gustar patterns</span><span class="sq-meta">Question 7 of 10</span></div><div class="sq-track" role="progressbar" aria-label="Completed questions" aria-valuenow="6" aria-valuemin="0" aria-valuemax="10" style="margin:12px 0 24px"><span style="width:60%"></span></div>
+      <div class="sq-feature"><div class="sq-row sq-spread"><span class="sq-meta">Translate to English</span><span class="sq-badge">A2</span></div><p class="sq-prompt" lang="es">Me gusta<br>el café.</p></div>
+      <fieldset><legend>Choose the translation</legend><label class="sq-option cursor-interaction"><input type="radio" name="answer" value="correct">I like coffee.</label><label class="sq-option cursor-interaction"><input type="radio" name="answer" value="wrong">I am liking coffee.</label><label class="sq-option cursor-interaction"><input type="radio" name="answer" value="wrong">Coffee likes me.</label><label class="sq-option cursor-interaction"><input type="radio" name="answer" value="wrong">I like the coffee.</label></fieldset>
+      <details><summary class="cursor-interaction">Need help? View conjugation</summary><p class="sq-meta"><span lang="es">Gusta</span> agrees with a singular noun or infinitive. <span lang="es">Gustan</span> agrees with plural nouns.</p></details>
+      <div id="sq-feedback" aria-live="polite"></div><button id="sq-check-answer" class="sq-primary cursor-interaction" disabled>Check answer</button>
+    </section>
+    <section data-screen="flashcards" aria-label="Vocabulary flashcard" hidden>
+      <div class="sq-row sq-spread" style="margin-bottom:24px"><h3>Flashcards</h3><span class="sq-meta">3 of 12</span></div>
+      <div class="sq-feature sq-flash"><span class="sq-eyebrow">Everyday Spanish</span><h2 lang="es">gustar</h2><p id="sq-meaning" hidden>to like<br><span class="sq-meta" lang="es">Me gusta aprender español.</span><br><span class="sq-meta">I like learning Spanish.</span></p><button id="sq-reveal" class="sq-link cursor-interaction">Tap to reveal</button></div>
+      <div class="sq-two"><button id="sq-again" class="cursor-interaction" disabled>Again</button><button id="sq-got" class="sq-primary cursor-interaction" disabled>Got it <i data-lucide="check" aria-hidden="true"></i></button></div><p class="sq-foot" id="sq-recall-status" aria-live="polite">Reveal the meaning before assessing recall.</p>
+    </section>
+    <section data-screen="results" aria-label="Round results" hidden>
+      <span class="sq-eyebrow">Gustar patterns</span><h2 style="margin-top:8px">Round complete!</h2><div class="sq-feature sq-score"><b>8 / 10</b><p>80% accuracy</p></div>
+      <h3 class="sq-section">What you did well</h3><p class="sq-result-line"><i data-lucide="circle-check" class="sq-success" aria-hidden="true"></i><span>Singular nouns with <span lang="es">gusta</span></span></p><p class="sq-result-line"><i data-lucide="circle-check" class="sq-success" aria-hidden="true"></i><span>Expressing likes with <span lang="es">me</span></span></p>
+      <h3 class="sq-section">Review these areas</h3><p class="sq-result-line"><i data-lucide="circle-alert" class="sq-warn" aria-hidden="true"></i><span>Plural nouns with <span lang="es">gustan</span></span></p><div class="sq-feature" style="margin-top:24px"><strong>2 mistakes to practice</strong><p class="sq-meta">Another try helps it stick.</p></div><button class="sq-primary cursor-interaction" data-go="quiz">Practice 2 mistakes</button><button class="sq-link cursor-interaction" data-go="library" style="width:100%;margin-top:8px">Back to topics</button>
+    </section>
+    <section data-screen="settings" aria-label="Practice settings" hidden>
+      <span class="sq-eyebrow">Your next session</span><h2 id="sq-topic-title" style="margin-top:12px">Gustar patterns</h2><p class="sq-meta" style="margin-top:12px">A short round, at your own pace.</p>
+      <details open><summary class="cursor-interaction">Practice options</summary>
+      <fieldset><legend>Number of questions</legend><div class="sq-segments"><label class="cursor-interaction"><input type="radio" name="count" value="5"><span>5</span></label><label class="cursor-interaction"><input type="radio" name="count" value="10" checked><span>10</span></label><label class="cursor-interaction"><input type="radio" name="count" value="20"><span>20</span></label></div></fieldset>
+      <fieldset><legend>Answer mode</legend><div class="sq-segments"><label class="cursor-interaction"><input type="radio" name="mode" checked><span>Choose</span></label><label class="cursor-interaction"><input type="radio" name="mode"><span>Type</span></label></div></fieldset>
+      <fieldset><legend>Difficulty level</legend><div class="sq-segments"><label class="cursor-interaction"><input type="radio" name="level"><span>A1</span></label><label class="cursor-interaction"><input type="radio" name="level" checked><span>A2</span></label><label class="cursor-interaction"><input type="radio" name="level"><span>B1</span></label></div></fieldset>
+      <fieldset><legend>Include verbs</legend><label class="sq-check cursor-interaction"><input type="checkbox" name="verb" checked><span lang="es">gustar</span></label><label class="sq-check cursor-interaction"><input type="checkbox" name="verb" checked><span lang="es">encantar</span></label><label class="sq-check cursor-interaction"><input type="checkbox" name="verb"><span lang="es">interesar</span></label><label class="sq-check cursor-interaction"><input type="checkbox" name="verb"><span lang="es">fascinar</span></label></fieldset></details>
+      <button id="sq-start" class="sq-primary cursor-interaction">Preview practice</button><p id="sq-settings-status" class="sq-foot" aria-live="polite"></p>
+    </section>
+    <footer class="sq-foot">Design sample · Illustrative learning data</footer>
+  </div>
+</div>
+<script>
+(() => {
+ const root=document.getElementById('spanish-samples');
+ const q=s=>root.querySelector(s);
+ const labels={library:'Your learning',quiz:'Practice',flashcards:'Vocabulary',results:'Your progress',settings:'Practice options'};
+ const drawer=q('#sq-drawer'),backdrop=q('#sq-drawer-backdrop'),opener=q('#sq-open-menu');
+ const background=[q('.sq-picker'),...Array.from(q('.sq-window').children).filter(el=>el!==drawer&&el!==backdrop)];
+ function setDrawer(open){drawer.hidden=!open;backdrop.hidden=!open;opener.setAttribute('aria-expanded',String(open));background.forEach(el=>el.inert=open);if(open){q('#sq-close-menu').focus({preventScroll:true})}else{opener.focus({preventScroll:true})}}
+ opener.addEventListener('click',()=>setDrawer(true));
+ q('#sq-close-menu').addEventListener('click',()=>setDrawer(false));
+ backdrop.addEventListener('click',()=>setDrawer(false));
+ drawer.addEventListener('keydown',event=>{if(event.key==='Escape'){event.preventDefault();setDrawer(false)}else if(event.key==='Tab'){const focusable=Array.from(drawer.querySelectorAll('button:not(:disabled),a[href]')).filter(el=>!el.closest('[hidden]'));const first=focusable[0],last=focusable.at(-1);if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}}});
+ root.querySelectorAll('[data-drawer-section]').forEach(button=>button.addEventListener('click',()=>{const wasOpen=button.getAttribute('aria-expanded')==='true';root.querySelectorAll('[data-drawer-section]').forEach(other=>{other.setAttribute('aria-expanded','false');q('#sq-drawer-'+other.dataset.drawerSection).hidden=true});if(!wasOpen){button.setAttribute('aria-expanded','true');q('#sq-drawer-'+button.dataset.drawerSection).hidden=false}}));
+ root.querySelectorAll('[data-drawer-go]').forEach(button=>button.addEventListener('click',()=>{setDrawer(false);show(button.dataset.drawerGo)}));
+ function show(name){root.querySelectorAll('[data-screen]').forEach(el=>el.hidden=el.dataset.screen!==name);root.querySelectorAll('[data-view]').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.view===name)));q('#sq-screen-label').textContent=labels[name];q('[data-view="'+name+'"]').focus({preventScroll:true});}
+ root.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.view)));
+ root.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>{if(b.classList.contains('sq-topic')){const topic=b.querySelector('strong').textContent;q('#sq-topic-title').textContent=topic;q('input[name=verb]').closest('fieldset').hidden=topic!=='Gustar patterns';q('#sq-settings-status').textContent='';}show(b.dataset.go)}));
+ let graded=false;
+ root.querySelectorAll('input[name=answer]').forEach(i=>i.addEventListener('change',()=>{graded=false;q('#sq-feedback').className='';q('#sq-feedback').textContent='';q('#sq-check-answer').disabled=false;q('#sq-check-answer').textContent='Check answer';}));
+ q('#sq-check-answer').addEventListener('click',()=>{if(graded){show('results');return;}const correct=q('input[name=answer]:checked').value==='correct';const f=q('#sq-feedback');f.className='sq-feedback'+(correct?'':' sq-error');f.innerHTML=correct?'<strong>Correct!</strong><span lang="es">Me gusta</span> = I like. Use <span lang="es">gusta</span> with singular nouns.':'<strong>Not quite.</strong>The expected translation is “I like coffee.” Here, <span lang="es">el café</span> means coffee in general.';graded=true;q('#sq-check-answer').textContent='Preview round results';});
+ q('#sq-reveal').addEventListener('click',()=>{q('#sq-meaning').hidden=false;q('#sq-reveal').hidden=true;q('#sq-again').disabled=false;q('#sq-got').disabled=false;q('#sq-recall-status').textContent='Meaning revealed. How well did you remember?';q('#sq-again').focus({preventScroll:true});});
+ function assess(known){q('#sq-recall-status').textContent=known?'Sample assessment: remembered.':'Sample assessment: practice again.';q('#sq-again').disabled=true;q('#sq-got').disabled=true;q('#sq-reveal').hidden=false;q('#sq-reveal').textContent='Reveal again';q('#sq-meaning').hidden=true;q('#sq-reveal').focus({preventScroll:true});}
+ q('#sq-again').addEventListener('click',()=>assess(false));q('#sq-got').addEventListener('click',()=>assess(true));
+ q('#sq-start').textContent='Preview session summary';
+ q('#sq-start').addEventListener('click',()=>{const verbs=q('input[name=verb]').closest('fieldset');if(!verbs.hidden&&!root.querySelector('input[name=verb]:checked')){q('#sq-settings-status').textContent='Select at least one verb.';return;}const count=q('input[name=count]:checked').value,mode=q('input[name=mode]:checked').nextElementSibling.textContent,level=q('input[name=level]:checked').nextElementSibling.textContent;q('#sq-settings-status').textContent=q('#sq-topic-title').textContent+' · '+count+' questions · '+mode+' · '+level+'. Sample configuration only.';});
+ q('[data-screen=results] [data-go=quiz]').textContent='Preview mistake practice';
+ const settings={spacing:20};
+ if(globalThis.Tweak){const tweak=new Tweak({container:q('.sq-window'),onChange:()=>root.style.setProperty('--sq-space',settings.spacing+'px')});tweak.addSlider(settings,'spacing',{label:'Screen padding',min:16,max:24,step:4,unit:'px'});}
+})();
+</script>

@@ -43,9 +43,9 @@ test("flashcard interface reveals answers before recording Leitner progress", as
   assert.match(source, /spanish-flashcards-leitner-v2/);
   assert.match(source, /REVIEW_INTERVAL_DAYS.*1: 0.*2: 1.*3: 3.*4: 7/s);
   assert.match(source, /Math\.min\(MAX_BOX, \(previous\?\.box \?\? 1\) \+ 1\)/);
-  // Icon-only OK / Not OK buttons (bold red cross / green check), each with an accessible label, per UX-CONTRACT.md.
-  assert.match(source, /aria-label="Not OK".*<span aria-hidden="true">✖<\/span>/);
-  assert.match(source, /aria-label="OK".*<span aria-hidden="true">✔<\/span>/);
+  // Recall names stay visible and controls stay disabled until meaning is revealed.
+  assert.match(source, /className="flashcard-again" disabled=\{!revealed\}.*<span aria-hidden="true">✖<\/span><span className="recall-label">Again<\/span>/);
+  assert.match(source, /className="flashcard-known" disabled=\{!revealed\}.*<span aria-hidden="true">✔<\/span><span className="recall-label">Got it<\/span>/);
 });
 
 test("flashcard reveal button and box dots stay accurate before assessment", async () => {
@@ -53,7 +53,7 @@ test("flashcard reveal button and box dots stay accurate before assessment", asy
   const source = await readFile(new URL("../app/flashcards.tsx", import.meta.url), "utf8");
   // The speak button stops propagation so it doesn't flip the card.
   assert.match(source, /event\.stopPropagation\(\);/);
-  // 5 Leitner box indicators, keyed off the box the card on screen currently sits in.
+  // Four Leitner box indicators, keyed off the box the card on screen currently sits in.
   assert.match(source, /const boxState = \(box: LeitnerBox, currentBox: LeitnerBox\)/);
   assert.match(source, /if \(box === currentBox\) return "current";/);
 });

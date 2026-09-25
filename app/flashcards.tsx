@@ -254,14 +254,9 @@ export default function Flashcards({ standalone = false }: { standalone?: boolea
           </div>
 
           <footer className="flashcard-footer">
-            {!revealed ? (
-              <button type="button" className="flashcard-reveal" onClick={reveal}>Reveal</button>
-            ) : (
-              <>
-                <button type="button" className="flashcard-again" aria-label="Not OK" disabled={!revealed} onClick={() => recordAnswer(false)}><span aria-hidden="true">✖</span></button>
-                <button type="button" className="flashcard-known" aria-label="OK" disabled={!revealed} onClick={() => recordAnswer(true)}><span aria-hidden="true">✔</span></button>
-              </>
-            )}
+            {!revealed && <button type="button" className="flashcard-reveal" onClick={reveal}>Reveal</button>}
+            <button type="button" className="flashcard-again" disabled={!revealed} onClick={() => recordAnswer(false)}><span aria-hidden="true">✖</span><span className="recall-label">Again</span></button>
+            <button type="button" className="flashcard-known" disabled={!revealed} onClick={() => recordAnswer(true)}><span aria-hidden="true">✔</span><span className="recall-label">Got it</span></button>
           </footer>
         </section>
       )}

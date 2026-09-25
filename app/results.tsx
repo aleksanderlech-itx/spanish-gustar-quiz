@@ -50,6 +50,7 @@ export default function Results({
           <strong className="results-score-number">{result.score}</strong>
           <span className="results-score-of">of {total} correct</span>
         </div>
+        <p className="results-accuracy">{total > 0 ? `${result.percent}% accuracy` : "No questions answered"}</p>
         <div className="results-score-bar" aria-hidden="true"><span style={{ width: `${result.percent}%` }} /></div>
         {streakDays > 0 && <p className="results-streak-note">Streak extended to {streakDays} day{streakDays === 1 ? "" : "s"}.</p>}
       </section>

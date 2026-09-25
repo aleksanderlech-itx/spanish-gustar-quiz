@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { DEFAULT_CHART_LABEL, DEFAULT_FILTER_LABEL, QUIZ_CONFIG, QUIZ_IDS, type QuizId } from "./quiz-config";
 import { emptyQuizProgress, readQuizProgress, type QuizProgress } from "./quiz-progress";
-import { readTopicSettings, writeTopicSettings, type AnswerMode, type RoundLength } from "./topic-settings";
+import { DEFAULT_SETTINGS, readTopicSettings, writeTopicSettings, type AnswerMode, type RoundLength } from "./topic-settings";
 import { filterQuestions, type QuizFilters } from "./quiz-logic";
-import { readQuizFilters, writeQuizFilters } from "./quiz-filters";
+import { DEFAULT_FILTERS, readQuizFilters, writeQuizFilters } from "./quiz-filters";
 import { quizPath } from "./quiz-config";
 import TopicExplainer from "./topic-explainer";
 import { ActivityChips, ActivityFooter, SkipLink } from "./activity-chrome";
@@ -24,8 +24,10 @@ export default function TopicDetail({ quizId, standalone = false }: { quizId: Qu
   const quiz = QUIZ_CONFIG[quizId];
   const filterLabel = quiz.filterLabel ?? DEFAULT_FILTER_LABEL;
   const [progress, setProgress] = useState<QuizProgress>(() => emptyQuizProgress(quiz.questions.length));
-  const [settings, setSettings] = useState(() => readTopicSettings(quizId));
-  const [filters, setFilters] = useState<QuizFilters>(() => readQuizFilters(quiz.filterKey));
+  // Start with the same defaults on the server and the first client render.
+  // Saved preferences are restored after hydration to avoid a markup mismatch.
+  const [settings, setSettings] = useState(DEFAULT_SETTINGS);
+  const [filters, setFilters] = useState<QuizFilters>(DEFAULT_FILTERS);
 
   useEffect(() => {
     // Browser storage is unavailable during the server render.
@@ -82,6 +84,8 @@ export default function TopicDetail({ quizId, standalone = false }: { quizId: Qu
         </div>
       </section>
 
+      <details className="topic-practice-options" open>
+        <summary>Practice options</summary>
       <section className="topic-setting">
         <p className="eyebrow">Round length</p>
         <div className="round-length-picker" role="group" aria-label="Round length">
@@ -129,6 +133,8 @@ export default function TopicDetail({ quizId, standalone = false }: { quizId: Qu
         </div>
         <p className="topic-setting-hint">{filteredCount} sentence{filteredCount === 1 ? "" : "s"} selected</p>
       </section>
+
+      </details>
 
       {quizId === "por-para" ? (
         <a className="topic-chart-link" href={`#${quizId}-explainer-heading`}>

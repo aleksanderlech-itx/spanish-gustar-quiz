@@ -17,7 +17,7 @@ export type ActivityRegistryEntry = {
   title: string;
   shortDescription: string;
   activityType: ActivityType;
-  /** Which board tile icon to render; see quiz-selector.tsx's BoardIcon. */
+  /** Activity kind; quiz-selector.tsx maps each activity ID to its dashboard icon. */
   icon: "quiz" | "deck";
   storageKey: string;
 };

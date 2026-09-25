@@ -65,22 +65,38 @@ test("mobile quiz design keeps the answer field and actions inside the viewport"
   assert.doesNotMatch(css, /clip-path:\s*polygon/);
 });
 
-test("editorial design owns typography, solid surfaces, and hard depth", async () => {
-  const layout = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
-  const designCss = await readFile(new URL("../app/quiz-layout-fix.css", import.meta.url), "utf8");
-  const baseCss = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
-  assert.match(layout, /Fraunces/);
-  assert.match(layout, /Karla/);
-  assert.match(designCss, /--paper:\s*#F5EFE4/);
-  assert.match(designCss, /--hard-shadow:\s*4px 4px 0 var\(--shadow-col\)/);
-  assert.match(designCss, /border:\s*2px solid var\(--border-ink\)/);
-  assert.match(designCss, /box-shadow:\s*var\(--hard-shadow\)/);
-  assert.match(designCss, /\.flashcard-term-row strong\s*\{[\s\S]*font-size:\s*clamp\(34px,\s*9vw,\s*42px\)/);
-  assert.match(baseCss, /\.conjugation-modal-backdrop\s*\{[\s\S]*background:\s*var\(--paper\)/);
-  assert.doesNotMatch(designCss, /\.flashcard-term-row strong[\s\S]*box-shadow:\s*0/);
-  assert.doesNotMatch(designCss, /background(?:-image)?:\s*linear-gradient/);
+test("editorial design uses approved light tokens and semantic surfaces", async () => {
+  const fonts = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/quiz-layout-fix.css", import.meta.url), "utf8");
+  assert.match(fonts, /font-family: "Fraunces"/);
+  assert.match(fonts, /font-family: "Karla"/);
+  assert.match(css, /--paper:\s*#F8EDE1/);
+  assert.match(css, /--surface:\s*#FFFAF3/);
+  assert.match(css, /--primary:\s*#0F766E/);
+  assert.match(css, /--border-ink:\s*#807366/);
+  assert.match(css, /--hard-shadow:\s*var\(--shadow\)/);
+  assert.match(css, /\.flashcard-term-row strong\s*\{[\s\S]*font-size:\s*48px/);
+  assert.doesNotMatch(css, /background(?:-image)?:\s*linear-gradient/);
 });
-
+test("dark runtime tokens match the approved palette", async () => {
+  const css = await readFile(new URL("../app/quiz-layout-fix.css", import.meta.url), "utf8");
+  const tokens = JSON.parse(await readFile(new URL("../docs/design-system-gpt/tokens.json", import.meta.url), "utf8"));
+  const dark = css.split(':root[data-theme="dark"] {')[1]?.split("}")[0];
+  assert.ok(dark, "dark token block exists");
+  const names = {
+    paper: "paper", surface: "surface", raised: "panel", ink: "ink",
+    secondaryText: "muted", primary: "primary", onPrimary: "primary-ink",
+    border: "line", controlBorder: "border-ink", selectedSurface: "primary-soft",
+    successText: "sage", successSurface: "sage-soft", errorText: "danger",
+    errorSurface: "danger-soft", gold: "sun", clay: "clay",
+    segmentTrack: "segment-track",
+  };
+  for (const [role, name] of Object.entries(names)) {
+    assert.match(dark, new RegExp(`^\\s*--${name}:\\s*${tokens.darkColor[role]};`, "im"), role);
+  }
+  assert.match(dark, /--focus-ring:\s*var\(--primary\)/);
+  assert.match(css, /:root\[data-theme="dark"\] \.mode-segmented button\.active\s*\{[^}]*background:\s*var\(--primary-soft\)/s);
+});
 test("the flashcard word's font/color/size rule actually matches the DOM (the word sits inside .flashcard-term-row, not a direct child of .flashcard-face)", async () => {
   const flashcards = await readFile(new URL("../app/flashcards.tsx", import.meta.url), "utf8");
   // A `.flashcard-face > strong` child selector silently never matched, since the
@@ -164,12 +180,12 @@ test("topic detail persists round length and answer mode per topic", async () =>
   assert.match(topicDetail, /Start round of \{roundLength\}/);
 });
 
-test("round shell's dvh fallback is ordered correctly (vh first, dvh second, so dvh actually wins where supported)", async () => {
+test("round shell permits natural scrolling and respects the viewport height", async () => {
   const css = await readFile(new URL("../app/quiz-layout-fix.css", import.meta.url), "utf8");
-  assert.match(css, /\.round-shell \{[\s\S]*?height: 100vh;[\s\S]*?height: 100dvh;[\s\S]*?\}/);
-  assert.doesNotMatch(css, /\.round-shell \{[\s\S]*?height: 100dvh;[\s\S]*?height: 100vh;[\s\S]*?\}/);
+  assert.match(css, /\.round-shell \{[^}]*height:\s*auto;/);
+  assert.match(css, /\.round-shell \{[^}]*min-height:\s*100dvh;/);
+  assert.match(css, /\.round-shell \{[^}]*overflow:\s*visible;/);
 });
-
 test("round screen falls back to a JS-measured keyboard inset for iOS Safari, where dvh doesn't always react", async () => {
   const round = await readFile(new URL("../app/round.tsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../app/quiz-layout-fix.css", import.meta.url), "utf8");

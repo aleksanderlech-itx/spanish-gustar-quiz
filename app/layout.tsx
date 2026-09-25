@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Karla } from "next/font/google";
 import { cookies, headers } from "next/headers";
 import Script from "next/script";
 import "./globals.css";
@@ -14,18 +13,6 @@ import { isProductionHost } from "./is-production-host";
 
 const GA_MEASUREMENT_ID = "G-88HEZL7EKT";
 const CLARITY_PROJECT_ID = "yc2q3b2d9e";
-
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-});
-
-const karla = Karla({
-  variable: "--font-karla",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
@@ -69,8 +56,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f3ede3" },
-    { media: "(prefers-color-scheme: dark)", color: "#1f6f6b" },
+    { media: "(prefers-color-scheme: light)", color: "#F8EDE1" },
+    { media: "(prefers-color-scheme: dark)", color: "#1F1D1A" },
   ],
 };
 
@@ -113,7 +100,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" data-theme={initialTheme} suppressHydrationWarning>
-      <body className={`${fraunces.variable} ${karla.variable} antialiased`}>
+      <body className="antialiased">
         <script suppressHydrationWarning dangerouslySetInnerHTML={{ __html: THEME_PRE_PAINT_SCRIPT }} />
         {isProduction && (
           <>

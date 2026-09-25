@@ -36,9 +36,9 @@
 .activity-page-title {
   margin: 0 0 10px;
   font-family: var(--font-display);
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 600;
-  line-height: 1.05;
+  line-height: 1.15;
   letter-spacing: -.02em;
   color: var(--ink);
 }
@@ -85,12 +85,12 @@
 
 .activity-footer {
   margin-top: 32px;
-  border-top: 2px solid var(--border-ink);
+  border-top: 1px solid var(--line);
   background: var(--surface);
 }
 
 .activity-footer-inner {
-  max-width: 1160px;
+  max-width: 1120px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -148,8 +148,8 @@
 }
 
 .activity-footer a:focus-visible {
-  outline: 3px solid var(--sun);
-  outline-offset: 2px;
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
 }
 
 @media (max-width: 360px) {

@@ -1,31 +1,34 @@
+/* Spanish Editorial Learning: semantic runtime tokens. Target: docs/design-system-gpt. */
 :root {
-  /* Editorial Boutique runtime tokens — see README "Design tokens" in the
-     board/round design handoff. This block is the single source of truth;
-     DESIGN.md and docs/design.md restate these values for reference. */
-  --paper: #F5EFE4;
-  --surface: #FFFCF6;
-  --panel: #EFE7D9;
-  --panel-soft: #F7F1E6;
-  --ink: #2C2B29;
-  --muted: #6B6459;
-  --line: #DCD2C2;
-  --border-ink: var(--ink);
-  --primary: #00625D;
+  --paper: #F8EDE1;
+  --surface: #FFFAF3;
+  --panel: #E8DED1;
+  --panel-soft: #F8EDE1;
+  --ink: #0F172A;
+  --muted: #59534B;
+  --line: #D6C9B8;
+  --border-ink: #807366;
+  --primary: #0F766E;
   --primary-ink: #FFFFFF;
-  --primary-soft: #C9F2EE;
-  --sun: #F2A81D;
-  --sun-soft: #FFEBC2;
-  --clay: #C4553F;
-  --clay-soft: #FBDCD2;
-  --sage: #6E8F5E;
-  --sage-soft: #E2EFD8;
-  --danger: #BA1A1A;
-  --danger-soft: #FFDAD6;
-  --shadow-col: #2C2B29;
-  --key: #FCFAF6;
-  --hard-shadow: 4px 4px 0 var(--shadow-col);
-
-  /* Aliases kept for existing rules that predate the token pass above. */
+  --primary-soft: #E8F3EF;
+  --sun: #F59E0B;
+  --sun-ink: var(--ink);
+  --sun-soft: #FFF0D4;
+  --clay: #C75A3A;
+  --clay-soft: #FDECE8;
+  --sage: #166534;
+  --sage-soft: #EAF4E6;
+  --danger: #991B1B;
+  --danger-soft: #FDECE8;
+  --shadow-col: #0F172A;
+  --key: #FFFAF3;
+  --segment-track: var(--panel);
+  --focus-ring: var(--primary);
+  --shadow: 0 4px 14px rgb(15 23 42 / 8%);
+  --soft-shadow: var(--shadow);
+  --hard-shadow: var(--shadow);
+  --radius: 14px;
+  --keyboard-inset: 0px;
   --quiz-surface: var(--surface);
   --primary-dark: var(--primary);
   --success: var(--sage);
@@ -37,29 +40,33 @@
 }
 
 :root[data-theme="dark"] {
-  --paper: #141310;
-  --surface: #262420;
-  --panel: #332F29;
-  --panel-soft: #221F1B;
-  --ink: #F4EFE6;
-  --muted: #B5AC9C;
-  --line: #45403A;
-  --border-ink: #6A6358;
-  --primary: #67D8D0;
-  --primary-dark: #8FEAE3;
-  --primary-ink: #06322F;
-  --primary-soft: #0C4A46;
-  --sun: #FFC24D;
-  --sun-soft: #4A360F;
-  --clay: #FF9C82;
-  --clay-soft: #5A2418;
-  --sage: #A9D18F;
-  --sage-soft: #2E4227;
-  --danger: #FFB4AB;
-  --danger-soft: #6B1210;
-  --shadow-col: #6A6358;
-  --focus-ring: #FFC24D;
-  --key: #332F29;
+  color-scheme: dark;
+  --paper: #1F1D1A;
+  --surface: #2B2824;
+  --panel: #35312C;
+  --panel-soft: #35312C;
+  --ink: #F8EDE1;
+  --muted: #C9BDB0;
+  --line: #665E54;
+  --border-ink: #A49788;
+  --primary: #8BD3C7;
+  --primary-dark: var(--primary);
+  --primary-ink: #142B27;
+  --primary-soft: #243E38;
+  --sun: #F5BC60;
+  --sun-ink: var(--paper);
+  --sun-soft: #35312C;
+  --clay: #E59B7F;
+  --clay-soft: #482B29;
+  --sage: #B8E3AE;
+  --sage-soft: #253629;
+  --danger: #FFC1B5;
+  --danger-soft: #482B29;
+  --shadow-col: #665E54;
+  --shadow: 0 4px 14px rgb(0 0 0 / 18%);
+  --focus-ring: var(--primary);
+  --key: #35312C;
+  --segment-track: #39332D;
 }
 
 html,
@@ -67,22 +74,10 @@ body {
   background: var(--paper);
 }
 
-/* --font-fraunces/--font-karla only exist on body (via the next/font-generated
- * className there) — not on :root/html. A custom property's var() references
- * resolve against the cascade at the element declaring it, not lazily at whatever
- * element later consumes it, so defining --font-display/--font-body up on :root
- * (as before) made both permanently guaranteed-invalid: html has no
- * --font-fraunces/--font-karla to substitute, so the property computed to nothing
- * there and every element inherited that same nothing, never re-resolving lower
- * down where the source variables actually exist. Every heading, button, and this
- * flashcard's word rendered in the browser's plain fallback sans the whole time as
- * a result — declaring them here, where the source variables are actually in
- * scope, is the fix. */
 body {
-  --font-display: var(--font-fraunces), Georgia, serif;
-  --font-body: var(--font-karla), system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Karla", system-ui, sans-serif;
 }
-
 body,
 button,
 input,
@@ -92,12 +87,7 @@ select {
 
 h1,
 h2,
-h3,
-button,
-.primary,
-.secondary,
-.back-button,
-.quiz-library-start {
+h3 {
   font-family: var(--font-display);
 }
 
@@ -106,7 +96,7 @@ body {
 }
 
 .app-shell {
-  width: min(100% - 32px, 1160px);
+  width: min(100% - 32px, 640px);
   /* Matches .quiz-library's vertical rhythm so activity pages and the
      front page share the same top/bottom spacing. */
   padding: 34px 0 42px;
@@ -118,7 +108,7 @@ body {
 
 .question-progress {
   padding: 14px 20px;
-  border-bottom: 2px solid var(--border-ink);
+  border-bottom: 1px solid var(--line);
   background: var(--primary);
 }
 
@@ -142,8 +132,8 @@ body {
 .question-card {
   min-height: 360px;
   padding: 34px 34px 30px;
-  border: 2px solid var(--border-ink);
-  border-radius: 16px 24px 12px 32px;
+  border: 1px solid var(--border-ink);
+  border-radius: 18px 26px 14px 26px;
   background: var(--paper-white);
   box-shadow: var(--hard-shadow);
 }
@@ -227,34 +217,39 @@ body {
 }
 
 .primary {
-  background: var(--primary-dark);
-  border: 2px solid var(--border-ink);
-  box-shadow: var(--hard-shadow);
+  background: var(--primary);
+  border: 1px solid var(--border-ink);
+  box-shadow: none;
+  color: var(--primary-ink);
+  border-color: var(--primary);
 }
 
 .primary:hover:not(:disabled),
 .secondary:hover:not(:disabled),
 .back-button:hover:not(:disabled),
 .quiz-library-start:hover {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 var(--shadow-col);
+  transform: translateY(-1px);
+  box-shadow: none;
 }
 
 .primary:active:not(:disabled),
 .secondary:active:not(:disabled),
 .back-button:active:not(:disabled),
 .quiz-library-start:active {
-  transform: translate(4px, 4px);
+  transform: translateY(1px);
   box-shadow: none;
 }
 
 .primary {
-  background: var(--paper-white);
-  color: var(--ink);
+  background: var(--primary);
+  color: var(--primary-ink);
+  border-color: var(--primary);
+  box-shadow: none;
 }
 
 .primary:hover:not(:disabled) {
-  background: var(--primary);
+  background: color-mix(in srgb, var(--primary) 88%, var(--ink));
+  color: var(--primary-ink);
 }
 
 .library-header-actions {
@@ -272,7 +267,7 @@ body {
   place-items: center;
   width: 44px;
   min-height: 44px;
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 12px;
   background: var(--surface);
   color: var(--ink);
@@ -298,7 +293,7 @@ body {
 
 @media (max-width: 767px) {
   .app-shell {
-    width: min(100% - 20px, 1160px);
+    width: min(100% - 32px, 640px);
     padding-top: 22px;
   }
 
@@ -371,7 +366,7 @@ body {
   }
 
   .quiz-library {
-    width: min(100% - 22px, 1040px);
+    width: min(100% - 32px, 1120px);
     padding-top: 22px;
   }
 
@@ -411,7 +406,7 @@ body {
 .library-total,
 .leitner-note,
 .quiz-form {
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   box-shadow: none;
 }
 
@@ -428,6 +423,7 @@ body {
 .question-card,
 .flashcard {
   background: var(--paper-white);
+  border-color: var(--line);
 }
 
 .hero,
@@ -439,7 +435,7 @@ body {
 .quiz-library-card,
 .library-total,
 .leitner-note {
-  border-radius: 16px 24px 12px 32px;
+  border-radius: 18px 26px 14px 26px;
 }
 
 .quiz-form {
@@ -461,7 +457,7 @@ body {
 .progress,
 .quiz-library-progress-track {
   height: 12px;
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 4px;
   background: var(--paper-white);
 }
@@ -479,15 +475,15 @@ body {
 }
 
 .answer-mode {
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 8px;
   background: var(--paper-white);
 }
 
 .answer-mode button.active {
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   background: var(--paper-white);
-  box-shadow: 2px 2px 0 var(--shadow-col);
+  box-shadow: none;
 }
 
 .filters select,
@@ -496,17 +492,17 @@ body {
 .secondary,
 .flashcard-listen,
 .flashcard-actions button {
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 8px;
-  box-shadow: 4px 4px 0 var(--shadow-col);
+  box-shadow: none;
 }
 
 .choice-grid button:hover:not(:disabled),
 .choice-grid button.selected,
 .flashcard-listen:hover,
 .flashcard-actions button:hover:not(:disabled) {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 var(--shadow-col);
+  transform: translateY(-1px);
+  box-shadow: none;
 }
 
 .translation-text,
@@ -528,14 +524,7 @@ body {
   box-shadow: none;
 }
 
-/* Mirrors .round-shell: a self-contained fixed-viewport-height flex column, not
- * reliant on .app-shell's plain-width/padding box. A vh-based min-height on the
- * card (the previous approach) only approximates "fills the screen" — it left a
- * large, inconsistent gap above the footer on real devices/viewports whose actual
- * available height (after browser chrome) didn't match the guessed vh value. Using
- * min-height (not a hard height + overflow:hidden, unlike round-shell) since this
- * screen has extra content below the card+footer (Leitner box stats, a note) that
- * should stay reachable by a normal page scroll rather than being clipped. */
+/* Flashcard content grows naturally, including examples and Leitner progress. */
 /* Width comes from .app-shell, applied alongside this class in flashcards.tsx. */
 .flashcard-shell {
   display: flex;
@@ -565,11 +554,13 @@ body {
  * propagation) right under a tap aimed at the card's visual center. */
 .flashcard {
   flex: 1;
-  border: 2px solid var(--border-ink);
-  border-radius: 16px 28px 14px 34px;
+  border: 1px solid var(--border-ink);
+  border-radius: 18px 26px 14px 26px;
   box-shadow: var(--hard-shadow);
   display: flex;
   flex-direction: column;
+  border-color: var(--line);
+  min-height: 320px;
 }
 
 .flashcard-inner {
@@ -590,19 +581,23 @@ body {
 
 .flashcard-again,
 .flashcard-known {
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 10px;
   box-shadow: var(--hard-shadow);
+  gap: 8px;
+  padding: 12px;
+  box-shadow: none;
 }
 
 .flashcard-again {
-  color: var(--danger);
-  background: var(--danger-soft);
+  color: var(--ink);
+  background: var(--surface);
 }
 
 .flashcard-known {
-  color: var(--ink);
-  background: var(--success-soft);
+  color: var(--primary-ink);
+  background: var(--primary);
+  border-color: var(--primary);
 }
 
 /* Board home — see design handoff README "Board home". */
@@ -619,6 +614,9 @@ body {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 18px;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
 }
 
 .board-title {
@@ -630,14 +628,15 @@ body {
   margin: 0;
   color: var(--ink);
   font-family: var(--font-display);
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 600;
+  flex-wrap: wrap;
 }
 
 .streak-panel {
   padding: 16px 18px;
-  border: 2px solid var(--border-ink);
-  border-radius: 16px 24px 12px 32px;
+  border: 1px solid var(--line);
+  border-radius: 18px 26px 14px 26px;
   background: var(--sun-soft);
   margin-bottom: 22px;
 }
@@ -688,7 +687,7 @@ body {
   flex: 1;
   height: 22px;
   border-radius: 4px;
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
 }
 
 .streak-day-done {
@@ -768,7 +767,7 @@ body {
 
 .board-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 12px;
 }
 
@@ -776,10 +775,12 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 16px;
-  border: 2px solid var(--border-ink);
+  padding: 20px;
+  border: 1px solid var(--border-ink);
   color: var(--ink);
   text-decoration: none;
+  border-color: var(--line);
+  min-width: 0;
 }
 
 .board-tile h2 {
@@ -788,15 +789,27 @@ body {
 }
 
 .board-tile-pinned {
-  border-radius: 16px 26px 12px 32px;
+  border-radius: 18px 26px 14px 26px;
   background: var(--surface);
   box-shadow: var(--hard-shadow);
-  padding: 18px;
-  margin-bottom: 22px;
+  padding: 20px;
+  margin-bottom: 24px;
 }
 
 .board-tile-pinned-cta {
-  display: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: var(--primary);
+  color: var(--primary-ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 16px;
 }
 
 .board-section-head-secondary {
@@ -804,10 +817,10 @@ body {
 }
 
 .board-tile-due {
-  min-height: 150px;
-  border-radius: 26px 14px 30px 14px;
+  min-height: 0;
+  border-radius: 14px;
   background: var(--surface);
-  box-shadow: var(--hard-shadow);
+  box-shadow: none;
 }
 
 .board-tile-quiet {
@@ -817,34 +830,70 @@ body {
   box-shadow: none;
 }
 
-.board-tile-top {
+.board-grid .board-tile {
   display: flex;
   align-items: center;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.board-tile-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.board-tile-content-header {
+  display: flex;
+  align-items: flex-start;
   justify-content: space-between;
+  gap: 8px;
+}
+
+.board-tile-content-header h2 {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+}
+
+.board-tile-content > .board-tile-note {
+  display: block;
+  margin-top: 4px;
+}
+
+.board-tile-content > .board-bar {
+  margin-top: 8px;
 }
 
 .board-icon {
   display: inline-grid;
   place-items: center;
-  width: 24px;
-  height: 24px;
-  border: 2px solid var(--border-ink);
-  border-radius: 5px;
-  background: var(--surface);
-  color: var(--ink);
-  font-size: 13px;
+  width: 44px;
+  height: 52px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--paper);
+  color: var(--clay);
 }
 
 .board-icon svg {
-  width: 60%;
-  height: 60%;
+  width: 20px;
+  height: 20px;
 }
 
 .board-icon .card-front {
-  fill: var(--surface);
+  fill: var(--paper);
+}
+
+:root[data-theme="dark"] .board-icon {
+  background: var(--panel);
+}
+
+:root[data-theme="dark"] .board-icon .card-front {
+  fill: var(--panel);
 }
 
 .board-icon-pinned {
+  display: none;
   position: absolute;
   top: 18px;
   right: 18px;
@@ -858,9 +907,12 @@ body {
 }
 
 .board-icon-quiet {
-  width: 22px;
-  height: 22px;
-  border-color: var(--line);
+  width: 44px;
+  height: 52px;
+  background: var(--surface);
+}
+
+:root[data-theme="dark"] .board-icon-quiet {
   background: var(--surface);
 }
 
@@ -875,18 +927,24 @@ body {
 .board-tile-pill-progress {
   align-self: flex-start;
   background: var(--sun);
-  color: var(--ink);
+  color: var(--sun-ink);
 }
 
 .board-tile-pill-due {
   background: var(--clay-soft);
-  color: var(--clay);
+  color: var(--muted);
 }
 
 .board-tile-top-pills {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
   gap: 6px;
+}
+
+.board-tile-content-header .board-tile-top-pills {
+  max-width: 52%;
 }
 
 .board-tile-pinned > .board-tile-top-pills {
@@ -925,22 +983,24 @@ body {
   font-weight: 700;
 }
 
-.board-tile-pinned h2 {
-  font-size: 21px;
+.board-tile-pinned-body h3 {
+  font-size: 24px;
   font-weight: 600;
-  line-height: 1.1;
+  line-height: 1.2;
 }
 
 .board-tile-due h2 {
   font-size: 18px;
-  font-weight: 600;
-  line-height: 1.1;
+  font-weight: 700;
+  line-height: 1.3;
+  font-family: var(--font-body);
 }
 
 .board-tile-quiet h2 {
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.15;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  font-family: var(--font-body);
 }
 
 .board-tile-meta,
@@ -956,16 +1016,9 @@ body {
   text-transform: none;
 }
 
-.board-tile-bottom {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-top: auto;
-}
-
 .board-bar {
   height: 8px;
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 4px;
   background: var(--surface);
   overflow: hidden;
@@ -980,7 +1033,6 @@ body {
 .board-bar-quiet {
   height: 6px;
   border: 2px solid var(--line);
-  margin-top: 10px;
 }
 
 /* Board home, desktop — the mobile board (hamburger + full-bleed streak strip +
@@ -1004,7 +1056,7 @@ body {
    * row-matching entirely — each wrapper is a single grid item (row 1),
    * stacking its own children with plain flex/block flow instead. */
   .board-home {
-    width: min(100% - 48px, 1240px);
+    width: min(100% - 48px, 1120px);
     display: grid;
     grid-template-columns: 224px minmax(0, 1fr);
     column-gap: 36px;
@@ -1019,8 +1071,8 @@ body {
     flex-direction: column;
     grid-column: 1;
     padding: 18px 16px;
-    border: 2px solid var(--border-ink);
-    border-radius: 16px 22px 12px 26px;
+    border: 1px solid var(--border-ink);
+    border-radius: 18px 26px 14px 26px;
     background: var(--surface);
   }
 
@@ -1067,7 +1119,7 @@ body {
     min-height: 48px;
     margin-top: 16px;
     padding: 0 14px;
-    border: 2px solid var(--border-ink);
+    border: 1px solid var(--border-ink);
     border-radius: 10px;
     background: var(--primary-soft);
     color: var(--ink);
@@ -1107,7 +1159,7 @@ body {
   .board-home .board-total {
     flex: none;
     padding: 12px 16px;
-    border: 2px solid var(--border-ink);
+    border: 1px solid var(--border-ink);
     border-radius: 12px;
     background: var(--surface);
     text-align: right;
@@ -1133,9 +1185,9 @@ body {
      stacking them, now that it's a full-width row rather than half of a 2-up
      grid. */
   .board-home .board-tile-pinned {
-    flex-direction: row;
-    align-items: center;
-    gap: 18px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
   }
 
   /* The corner icon and the Continue button both read as "this one's
@@ -1151,7 +1203,7 @@ body {
     margin-top: 0;
   }
 
-  .board-home .board-tile-pinned h2 {
+  .board-home .board-tile-pinned-body h3 {
     margin: 0 0 4px;
   }
 
@@ -1166,12 +1218,12 @@ body {
     align-items: center;
     gap: 6px;
     padding: 12px 18px;
-    border: 2px solid var(--border-ink);
+    border: 1px solid var(--border-ink);
     border-radius: 10px;
     background: var(--primary);
     color: var(--primary-ink);
-    font-family: var(--font-display);
-    font-size: 15px;
+    font-family: var(--font-body);
+    font-size: 16px;
     font-weight: 600;
   }
 
@@ -1220,6 +1272,23 @@ body {
   }
 }
 
+/* Featured learning introduction and live progress share the topic destination. */
+.board-feature-intro { margin-bottom: 20px; }
+.board-feature-intro .eyebrow { color: var(--primary); }
+.board-tile .board-feature-intro h2 { margin: 8px 0 12px; font-size: 32px; line-height: 1.15; letter-spacing: -.7px; }
+.board-feature-intro p { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.5; }
+.board-feature-progress { height: 6px; margin-top: 12px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.board-feature-progress > span { display: block; height: 100%; background: var(--primary); }
+.recall-label { font-family: var(--font-body); font-size: 16px; font-weight: 600; }
+@media (min-width: 768px) {
+  .board-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 380px) {
+  .board-title { font-size: 18px; }
+  .round-question-card, .board-tile, .flashcard { padding: 16px; }
+  .topic-filter-fields { grid-template-columns: 1fr; }
+}
+
 /* Topic detail — see design handoff README "Topic detail". */
 
 .topic-detail-header {
@@ -1233,7 +1302,7 @@ body {
   display: inline-grid;
   width: 44px;
   min-height: 44px;
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 12px;
   background: var(--surface);
   color: var(--ink);
@@ -1243,7 +1312,7 @@ body {
 
 .eyebrow-clay {
   margin: 0;
-  color: var(--clay);
+  color: var(--muted);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: .12em;
@@ -1253,21 +1322,22 @@ body {
 .topic-detail h1 {
   margin: 0 0 16px;
   font-family: var(--font-display);
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 600;
-  line-height: 1.05;
+  line-height: 1.15;
 }
 
 .topic-summary-card {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 18px;
-  border: 2px solid var(--border-ink);
-  border-radius: 16px 26px 12px 32px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 18px 26px 14px 26px;
   background: var(--surface);
   box-shadow: var(--hard-shadow);
   margin-bottom: 22px;
+  border-color: var(--line);
 }
 
 .topic-summary-ring {
@@ -1319,12 +1389,12 @@ body {
 
 .round-length-picker button {
   min-height: 48px;
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 10px;
   background: var(--surface);
   color: var(--ink);
-  font-family: var(--font-display);
-  font-size: 17px;
+  font-family: var(--font-body);
+  font-size: 16px;
   font-weight: 600;
 }
 
@@ -1336,9 +1406,9 @@ body {
   display: flex;
   gap: 4px;
   padding: 4px;
-  border: 2px solid var(--border-ink);
-  border-radius: 12px;
-  background: var(--surface);
+  border: 0;
+  border-radius: 10px;
+  background: var(--segment-track);
 }
 
 .mode-segmented button {
@@ -1348,26 +1418,31 @@ body {
   border-radius: 8px;
   background: transparent;
   color: var(--ink);
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: 16px;
   font-weight: 600;
+  border-width: 1px;
 }
 
 .mode-segmented button.active {
   border-color: var(--border-ink);
-  background: var(--primary-soft);
+  background: var(--surface);
 }
 
-/* Dark mode: the light theme's 20% primary tint reads as roughly 2:1 contrast
-   on dark paper — the selected segment needs the full --primary fill instead.
-   See design handoff "Dark mode: segmented control". */
+/* The approved dark palette uses a selected teal wash with a clear teal edge. */
 :root[data-theme="dark"] .mode-segmented button {
   color: var(--muted);
 }
 
 :root[data-theme="dark"] .mode-segmented button.active {
-  background: var(--primary);
-  color: var(--primary-ink);
+  border-color: var(--primary);
+  background: var(--primary-soft);
+  color: var(--ink);
+}
+
+:root[data-theme="dark"] .round-length-picker button.active {
+  border-color: var(--primary);
+  color: var(--ink);
 }
 
 .topic-setting-hint {
@@ -1410,13 +1485,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 56px;
+  min-height: 48px;
   background: var(--primary);
   color: var(--primary-ink);
-  font-family: var(--font-display);
-  font-size: 19px;
+  font-family: var(--font-body);
+  font-size: 16px;
   font-weight: 600;
   text-decoration: none;
+  border-radius: 10px;
 }
 
 .topic-start-disabled {
@@ -1444,7 +1520,7 @@ body {
 .topic-filter-field select {
   min-height: 44px;
   padding: 0 10px;
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 10px;
   background: var(--surface);
   color: var(--ink);
@@ -1463,20 +1539,18 @@ body {
 .round-shell {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  height: 100dvh;
-  /* Same side gutter as .app-shell (results, topic detail, verb chart) on narrow
-     viewports, instead of running edge to edge — capped at the same 480px phone-card
-     width this screen has always used on wider viewports. */
-  width: min(100% - 32px, 480px);
-  max-width: 480px;
+  height: auto;
+  width: min(100% - 32px, 640px);
+  max-width: 640px;
   margin: 0 auto;
-  overflow: hidden;
+  overflow: visible;
   background: var(--paper);
   /* Same top gap as .app-shell's base padding (34px 0 42px above), so the round
      screen's header doesn't sit flush against the top of a desktop viewport while
      every .app-shell page has room above it. Overridden to 22px on mobile below. */
   padding-top: 34px;
+  min-height: 100dvh;
+  padding-bottom: 24px;
 }
 
 /* Matches .app-shell's/.quiz-library's mobile gutter and top padding (see the
@@ -1486,7 +1560,7 @@ body {
    this viewport regardless of source order inside a @media block. */
 @media (max-width: 767px) {
   .round-shell {
-    width: min(100% - 20px, 480px);
+    width: min(100% - 32px, 640px);
     padding-top: 22px;
   }
 }
@@ -1496,15 +1570,16 @@ body {
   flex: none;
   align-items: center;
   gap: 10px;
-  padding: 14px 18px 0;
+  padding: 12px 0 0;
+  flex-wrap: wrap;
 }
 
 .round-back {
   display: inline-grid;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   flex: none;
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 12px;
   background: var(--surface);
   color: var(--ink);
@@ -1522,10 +1597,10 @@ body {
 
 .round-step {
   flex: 1;
-  height: 8px;
-  border: 1.5px solid var(--border-ink);
-  border-radius: 2px;
-  background: transparent;
+  height: 6px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--line);
 }
 
 .round-step-past {
@@ -1533,7 +1608,7 @@ body {
 }
 
 .round-step-current {
-  background: var(--sun);
+  background: var(--line);
 }
 
 .round-counter {
@@ -1546,12 +1621,13 @@ body {
 
 .round-question-card {
   flex: none;
-  margin: 14px 18px 0;
-  padding: 18px;
-  border: 2px solid var(--border-ink);
-  border-radius: 16px 26px 12px 32px;
+  margin: 24px 0 0;
+  padding: 20px;
+  border: 1px solid var(--border-ink);
+  border-radius: 18px 26px 14px 26px;
   background: var(--surface);
   box-shadow: var(--hard-shadow);
+  border-color: var(--line);
 }
 
 .round-question-top {
@@ -1563,20 +1639,22 @@ body {
 
 .round-level-badge {
   padding: 4px 10px;
-  border-radius: 999px;
-  background: var(--primary-soft);
-  color: var(--ink);
-  font-size: 12px;
+  border-radius: 8px;
+  background: var(--sun);
+  color: var(--sun-ink);
+  font-size: 14px;
   font-weight: 700;
 }
 
 .round-sentence {
   margin: 0;
   color: var(--ink);
-  font-family: var(--font-body);
-  font-size: 23px;
-  font-weight: 700;
-  line-height: 1.4;
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -1px;
+  overflow-wrap: anywhere;
 }
 
 .round-blank {
@@ -1600,38 +1678,39 @@ body {
 
 .round-answer-area {
   display: flex;
-  flex: 1;
+  flex: none;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 10px;
-  padding: 14px 18px;
-  overflow-y: auto;
+  padding: 24px 0;
+  overflow-y: visible;
 }
 
 .round-option {
-  min-height: 56px;
-  padding: 0 16px;
-  border: 2px solid var(--border-ink);
+  min-height: 48px;
+  padding: 12px 16px;
+  border: 1px solid var(--border-ink);
   border-radius: 10px;
   background: var(--surface);
   color: var(--ink);
   text-align: left;
   font-family: var(--font-body);
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 600;
-  box-shadow: var(--hard-shadow);
+  box-shadow: none;
+  overflow-wrap: anywhere;
 }
 
 .round-option-correct {
   border-color: var(--sage);
   background: var(--sage-soft);
-  box-shadow: 2px 2px 0 var(--shadow-col);
+  box-shadow: none;
 }
 
 .round-option-wrong {
   border-color: var(--danger);
   background: var(--danger-soft);
-  box-shadow: 2px 2px 0 var(--shadow-col);
+  box-shadow: none;
 }
 
 .round-option-other {
@@ -1642,17 +1721,19 @@ body {
 
 .round-explain {
   padding: 14px;
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 12px;
   animation: fadein .18s ease-out;
 }
 
 .round-explain-correct {
   background: var(--sage-soft);
+  border-color: var(--success);
 }
 
 .round-explain-wrong {
-  background: var(--clay-soft);
+  background: var(--danger-soft);
+  border-color: var(--danger);
 }
 
 .round-explain-label {
@@ -1669,7 +1750,7 @@ body {
 }
 
 .round-explain-label-wrong {
-  color: var(--clay);
+  color: var(--danger);
 }
 
 .round-explain-body {
@@ -1685,38 +1766,43 @@ body {
   flex: none;
   gap: 10px;
   padding: 14px 18px;
-  border-top: 2px solid var(--border-ink);
-  background: var(--surface);
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+  flex-wrap: wrap;
+  padding-left: 0;
+  padding-right: 0;
+  margin-top: auto;
 }
 
 .round-skip {
   flex: none;
-  min-height: 56px;
+  min-height: 48px;
   padding: 0 18px;
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 10px;
   background: var(--surface);
   color: var(--ink);
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: 16px;
   font-weight: 600;
 }
 
 .round-next {
   flex: 1;
-  min-height: 56px;
-  border: 2px solid var(--border-ink);
+  min-height: 48px;
+  border: 1px solid var(--border-ink);
   border-radius: 10px;
   background: var(--primary);
   color: var(--primary-ink);
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: 17px;
   font-weight: 600;
-  box-shadow: var(--hard-shadow);
+  box-shadow: none;
+  border-color: var(--primary);
 }
 
 .round-next:active:not(:disabled) {
-  transform: translate(4px, 4px);
+  transform: translateY(1px);
   box-shadow: none;
 }
 
@@ -1731,6 +1817,11 @@ body {
   .round-explain {
     animation: none;
   }
+}
+
+@media (max-width: 380px) {
+  .round-sentence { font-size: 36px; }
+  .round-question-card { padding: 16px; }
 }
 
 /* Round screen, Type mode — see design handoff README "Round — Type mode". */
@@ -1754,7 +1845,7 @@ body {
 .round-type-input {
   min-height: 52px;
   padding: 0 14px;
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 10px;
   background: var(--paper);
   color: var(--ink);
@@ -1764,8 +1855,8 @@ body {
 }
 
 .round-type-input:focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--primary) 42%, transparent);
-  outline-offset: 2px;
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
 }
 
 .round-type-input-correct {
@@ -1785,22 +1876,37 @@ body {
   padding: 8px 2px;
   border-top: 2px solid var(--line);
   background: var(--panel);
+  flex-wrap: wrap;
 }
 
 .round-accent-key {
-  min-width: 40px;
-  min-height: 38px;
+  min-width: 44px;
+  min-height: 44px;
   flex: none;
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 8px;
-  background: var(--sun-soft);
+  background: var(--surface);
   color: var(--ink);
   font-size: 17px;
 }
 
 .round-footer {
   padding-bottom: calc(14px + env(safe-area-inset-bottom) + var(--keyboard-inset, 0px));
+  flex-wrap: wrap;
+  padding-left: 0;
+  padding-right: 0;
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+  margin-top: auto;
 }
+
+
+.topic-practice-options { margin-bottom: 24px; padding: 20px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+.topic-practice-options > summary { min-height: 44px; padding: 8px 0; font-size: 18px; font-weight: 700; cursor: pointer; }
+.topic-practice-options[open] > summary { margin-bottom: 16px; }
+.topic-practice-options .topic-setting:last-child { margin-bottom: 0; }
+.results-accuracy { margin: 12px 0 0; color: var(--muted); font-size: 16px; }
+.flashcard-footer button:disabled { opacity: .5; cursor: not-allowed; }
 
 /* Results, mistake notebook, support prompt — see design handoff README "Results". */
 
@@ -1813,18 +1919,19 @@ body {
 .results-heading {
   margin: 0 0 18px;
   font-family: var(--font-display);
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 600;
-  line-height: 1.05;
+  line-height: 1.15;
 }
 
 .results-score-card {
   padding: 20px;
-  border: 2px solid var(--border-ink);
-  border-radius: 16px 26px 12px 32px;
+  border: 1px solid var(--line);
+  border-radius: 18px 26px 14px 26px;
   background: var(--surface);
   box-shadow: var(--hard-shadow);
   margin-bottom: 18px;
+  border-color: var(--line);
 }
 
 .results-score-top {
@@ -1836,9 +1943,9 @@ body {
 .results-score-number {
   color: var(--ink);
   font-family: var(--font-display);
-  font-size: 52px;
+  font-size: 48px;
   font-weight: 600;
-  line-height: .9;
+  line-height: 1.15;
 }
 
 .results-score-of {
@@ -1847,11 +1954,11 @@ body {
 }
 
 .results-score-bar {
-  height: 12px;
+  height: 6px;
   margin-top: 14px;
-  border: 2px solid var(--border-ink);
-  border-radius: 4px;
-  background: var(--surface);
+  border: 0;
+  border-radius: 999px;
+  background: var(--line);
   overflow: hidden;
 }
 
@@ -1869,7 +1976,7 @@ body {
 
 .results-notebook {
   padding: 16px;
-  border-radius: 26px 14px 30px 14px;
+  border-radius: 18px 26px 14px 26px;
   background: var(--panel);
   margin-bottom: 18px;
 }
@@ -1920,11 +2027,11 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 50px;
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 10px;
   background: var(--surface);
   color: var(--ink);
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: 16px;
   font-weight: 600;
   text-decoration: none;
@@ -1975,7 +2082,7 @@ body {
 .flashcard-box-dot {
   width: 15px;
   height: 15px;
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 0;
   background: var(--surface);
 }
@@ -2000,8 +2107,8 @@ body {
 
 .flashcard-difficulty-btn {
   flex: 1;
-  min-height: 36px;
-  border: 2px solid var(--border-ink);
+  min-height: 44px;
+  border: 1px solid var(--border-ink);
   border-radius: 10px;
   background: var(--surface);
   color: var(--ink);
@@ -2014,10 +2121,17 @@ body {
   background: var(--clay-soft);
 }
 
+:root[data-theme="dark"] .flashcard-difficulty-btn-active {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+
 .flashcard {
   padding: 24px 20px;
-  border-radius: 18px 30px 14px 34px;
+  border-radius: 18px 26px 14px 26px;
   cursor: pointer;
+  border-color: var(--line);
+  min-height: 320px;
 }
 
 /* The word sits inside .flashcard-term-row, one level deeper than .flashcard-face —
@@ -2025,16 +2139,20 @@ body {
  * anything, so this was rendering as an unstyled <strong> (default size/weight/color)
  * the whole time. */
 .flashcard-term-row strong {
-  color: var(--primary);
+  color: var(--ink);
   font-family: var(--font-display);
-  font-size: clamp(34px, 9vw, 42px);
-  line-height: 1.05;
+  font-size: 48px;
+  line-height: 1.15;
+  font-weight: 600;
+  overflow-wrap: anywhere;
 }
 
 .flashcard-term-row {
   display: flex;
   align-items: center;
   gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .flashcard-speak {
@@ -2042,7 +2160,7 @@ body {
   width: 44px;
   height: 44px;
   flex: none;
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 50%;
   background: var(--sun-soft);
   place-items: center;
@@ -2062,8 +2180,8 @@ body {
 }
 
 .flashcard-reveal-divider {
-  height: 2px;
-  background: var(--ink);
+  height: 1px;
+  background: var(--line);
 }
 
 .flashcard-meaning {
@@ -2095,22 +2213,24 @@ body {
 }
 
 .flashcard-footer {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
   margin-top: 16px;
 }
 
 .flashcard-reveal {
+  grid-column: 1 / -1;
   flex: 1;
   min-height: 54px;
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 10px;
   background: var(--primary);
   color: var(--primary-ink);
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: 17px;
   font-weight: 600;
-  box-shadow: var(--hard-shadow);
+  box-shadow: none;
 }
 
 .flashcard-again,
@@ -2120,9 +2240,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 26px;
-  font-weight: 900;
-  -webkit-text-stroke: 1px currentColor;
+  font-size: 20px;
+  font-weight: 600;
+  gap: 8px;
+  padding: 12px;
+  box-shadow: none;
 }
 
 /* Verb conjugation chart — see design handoff README "Verb conjugation chart". */
@@ -2146,7 +2268,7 @@ body {
   padding: 4px 10px;
   border-radius: 999px;
   background: var(--clay-soft);
-  color: var(--clay);
+  color: var(--muted);
   font-size: 12px;
   font-weight: 600;
   text-transform: capitalize;
@@ -2162,14 +2284,14 @@ body {
   justify-content: space-between;
   gap: 10px;
   margin: 0 0 10px;
-  color: var(--clay);
+  color: var(--muted);
   font-family: var(--font-display);
   font-size: 16px;
   font-weight: 600;
 }
 
 .verb-chart-block {
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 14px;
   background: var(--surface);
   overflow: hidden;
@@ -2181,7 +2303,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 10px 14px;
-  border-bottom: 2px solid var(--border-ink);
+  border-bottom: 1px solid var(--line);
 }
 
 .verb-chart-block-primary .verb-chart-block-header {
@@ -2203,7 +2325,7 @@ body {
 .verb-chart-play-all {
   min-height: 36px;
   padding: 0 12px;
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 999px;
   background: var(--surface);
   color: var(--ink);
@@ -2295,7 +2417,7 @@ body {
   max-width: 85vw;
   height: 100%;
   padding: 20px 18px;
-  border-right: 3px solid var(--border-ink);
+  border-right: 1px solid var(--line);
   background: var(--surface);
   overflow-y: auto;
   animation: drawer-slide-in .18s ease-out;
@@ -2330,9 +2452,9 @@ body {
 
 .drawer-close {
   display: inline-grid;
-  width: 40px;
-  height: 40px;
-  border: 2px solid var(--border-ink);
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border-ink);
   border-radius: 10px;
   background: var(--surface);
   color: var(--ink);
@@ -2344,11 +2466,12 @@ body {
   flex-direction: column;
   gap: 4px;
   padding: 12px 14px;
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 14px;
-  background: var(--sun-soft);
+  background: var(--paper);
   font-size: 13px;
   font-weight: 700;
+  border-color: var(--line);
 }
 
 .drawer-summary-card > span:last-child {
@@ -2369,20 +2492,21 @@ body {
   justify-content: space-between;
   min-height: 52px;
   padding: 0 14px;
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 10px;
-  background: var(--paper);
+  background: var(--surface);
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 15px;
   font-weight: 600;
+  border-color: var(--line);
 }
 
 .drawer-pill {
   padding: 3px 10px;
   border-radius: 999px;
   background: var(--sun);
-  color: var(--ink);
+  color: var(--sun-ink);
   font-size: 11px;
   font-weight: 700;
 }
@@ -2392,7 +2516,7 @@ body {
   padding: 2px 8px;
   border-radius: 999px;
   background: var(--clay-soft);
-  color: var(--clay);
+  color: var(--muted);
   font-size: 12px;
   font-weight: 700;
   text-align: center;
@@ -2467,7 +2591,7 @@ body {
 
 .drawer-action-button {
   min-height: 44px;
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 8px;
   background: var(--surface);
   color: var(--ink);
@@ -2520,9 +2644,9 @@ body {
 
 .drawer-finished-toggle {
   align-self: flex-start;
-  min-height: 32px;
+  min-height: 44px;
   padding: 0 10px;
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 6px;
   background: var(--panel-soft);
   color: var(--ink);
@@ -2548,11 +2672,11 @@ body {
 
 .help-button {
   display: inline-grid;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   flex: none;
   margin-left: auto;
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 12px;
   background: var(--surface);
   color: var(--ink);
@@ -2565,7 +2689,7 @@ body {
 .help-button:focus-visible,
 .help-dialog-close:focus-visible {
   outline: 3px solid var(--primary);
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
 
 .help-dialog {
@@ -2617,10 +2741,10 @@ body {
 
 .help-dialog-close {
   display: inline-grid;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   flex: none;
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--border-ink);
   border-radius: 10px;
   background: var(--surface);
   color: var(--ink);
@@ -2652,4 +2776,20 @@ body {
   margin: 0;
   color: var(--muted);
   font-size: 13px;
+}
+
+/* The fixed 24px brand mark keeps its original fills in both themes. */
+.brand-mark {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+:root[data-theme="dark"] .brand-mark {
+  background: #FFFAF3;
+  box-shadow: 0 0 0 4px #FFFAF3;
+  border-radius: 2px;
 }

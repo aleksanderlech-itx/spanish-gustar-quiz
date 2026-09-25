@@ -1,20 +1,20 @@
-/* Editorial Boutique: finish the shared surfaces that predate this system. */
+/* Spanish Editorial Learning: finish the shared surfaces that predate this system. */
 .quiz-switch summary,
 .quiz-icon span,
 .stat-grid,
 .insights > div,
 .history-list article {
-  border: 2px solid var(--border-ink);
+  border: 1px solid var(--line);
   background: var(--paper-white);
   box-shadow: none;
 }
 
 .quiz-switch summary {
-  box-shadow: 2px 2px 0 var(--shadow-col);
+  box-shadow: none;
 }
 
 .quiz-switch summary:active {
-  transform: translate(2px, 2px);
+  transform: translateY(1px);
   box-shadow: none;
 }
 
@@ -22,15 +22,13 @@
   background: var(--primary-soft);
 }
 
-.choice-grid button.correct,
-.choice-grid button.wrong {
-  border-color: var(--border-ink);
-}
+.choice-grid button.correct { border-color: var(--success); }
+.choice-grid button.wrong { border-color: var(--danger); }
 
 .stat-grid div,
 .insights > div,
 .history-list article {
-  border-color: var(--border-ink);
+  border-color: var(--line);
 }
 
 .drawer-help-link {

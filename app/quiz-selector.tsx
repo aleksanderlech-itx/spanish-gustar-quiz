@@ -26,12 +26,14 @@ type BoardItem = BoardTileProgress & {
 
 const EMPTY_DAILY: DailyRoundProgress = { correct: 0, roundLength: 0, percent: 0, done: false };
 
-/** A checkmark reads as "quiz" without borrowing the "?" glyph, which looks like a help button. */
-const QuizIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <path d="M4 12.5l5 5L20 7" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
+/** The first four paths match the approved Library reference exactly. */
+const TOPIC_ICON_PATHS: Record<QuizId, string> = {
+  "ser-estar": "m3 10 9-7 9 7M4 10h16M5 10v9m5-9v9m4-9v9m5-9v9M3 21h18",
+  gustar: "M20.8 8.6c0 4.1-5.1 8.4-8.8 11.2C8.3 17 3.2 12.7 3.2 8.6a5 5 0 0 1 8.8-3.2 5 5 0 0 1 8.8 3.2Z",
+  "por-para": "M12 3v18M4 7h14l3 3-3 3H4l-3-3 3-3Zm16 9H6l-3 3 3 3h14l3-3-3-3Z",
+  "preterite-imperfect": "M12 6c-3.2-2-6.3-2.3-10-1v14c3.7-1.3 6.8-1 10 1 3.2-2 6.3-2.3 10-1V5c-3.7-1.3-6.8-1-10 1Zm0 0v14",
+  "object-pronouns": "M4 12.5l5 5L20 7",
+};
 
 /** Two fanned, empty playing cards for the flashcard deck. The front card's fill is
  * set in CSS (scoped per tile variant) so it occludes the back card like a real fan
@@ -43,7 +45,11 @@ const FlashcardsIcon = () => (
   </svg>
 );
 
-const BoardIcon = ({ kind }: { kind: "quiz" | "deck" }) => (kind === "deck" ? <FlashcardsIcon /> : <QuizIcon />);
+const BoardIcon = ({ id }: { id: ActivityId }) => (id === "flashcards" ? <FlashcardsIcon /> : (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d={TOPIC_ICON_PATHS[id]} />
+  </svg>
+));
 
 const EMPTY_WEEK_DAY = { status: "future" as const, doneCount: 0, total: ACTIVITY_IDS.length };
 const EMPTY_STREAK: StreakSummary = {
@@ -209,7 +215,8 @@ export default function QuizSelector() {
 
   const board = useMemo(() => orderBoard(items), [items]);
   const pinnedItem = board.find((item) => item.pinned);
-  const restItems = board.filter((item) => !item.pinned);
+  const featuredItem = pinnedItem ?? board[0];
+  const restItems = board.filter((item) => item.id !== featuredItem?.id);
   const totalLogged = items.reduce((sum, item) => sum + item.completed, 0);
 
   if (!ready || !open) return null;
@@ -306,40 +313,47 @@ export default function QuizSelector() {
           <div className="board-total"><strong>{totalLogged}</strong><span>cards &amp; questions logged</span></div>
         </div>
 
-        {pinnedItem && (
-          <a className="board-tile board-tile-pinned" href={pinnedItem.href}>
+        {featuredItem && (
+          <a className="board-tile board-tile-pinned" href={featuredItem.href}>
+            <div className="board-feature-intro">
+              <p className="eyebrow">Keep learning</p>
+              <h2>Make Spanish part of your day.</h2>
+              <p>A little practice. A little more confidence.</p>
+            </div>
             <span className="board-tile-top-pills">
-              <span className="board-tile-pill board-tile-pill-progress">In progress</span>
-              {pinnedItem.daily.done ? (
+              <span className="board-tile-pill board-tile-pill-progress">{featuredItem.pinned ? "In progress" : "New"}</span>
+              {featuredItem.daily.done ? (
                 <span className="board-tile-pill board-tile-pill-today">✓ Today</span>
-              ) : pinnedItem.daily.roundLength ? (
+              ) : featuredItem.daily.roundLength ? (
                 <span className="board-tile-pill board-tile-pill-today board-tile-pill-today-pending">
-                  {pinnedItem.daily.correct}/{pinnedItem.daily.roundLength} today
+                  {featuredItem.daily.correct}/{featuredItem.daily.roundLength} today
                 </span>
               ) : null}
             </span>
-            <div className="board-ring" style={{ background: `conic-gradient(var(--primary) ${pinnedItem.daily.percent}%, var(--line) ${pinnedItem.daily.percent}%)` }}>
-              <div className="board-ring-inner"><strong>{pinnedItem.daily.percent}%</strong></div>
-            </div>
             <div className="board-tile-pinned-body">
-              <h2>{pinnedItem.title}</h2>
+              <h3>{featuredItem.title}</h3>
               <p className="board-tile-meta">
-                Today: {pinnedItem.daily.correct} of {pinnedItem.daily.roundLength || "–"} correct · {pinnedItem.completed} of {pinnedItem.total} total done
+                {featuredItem.completed} of {featuredItem.total} {featuredItem.noun}s studied · {featuredItem.percent}% complete{featuredItem.kind === "quiz" ? ` · ${featuredItem.accuracy}% accuracy` : ""}
               </p>
             </div>
-            <span className="board-icon board-icon-pinned"><BoardIcon kind={pinnedItem.kind} /></span>
-            <span className="board-tile-pinned-cta" aria-hidden="true">Continue →</span>
+            <div className="board-feature-progress" role="progressbar" aria-label="Topic progress" aria-valuemin={0} aria-valuemax={100} aria-valuenow={featuredItem.percent}>
+              <span style={{ width: `${featuredItem.percent}%` }} />
+            </div>
+            <span className="board-icon board-icon-pinned"><BoardIcon id={featuredItem.id} /></span>
+            <span className="board-tile-pinned-cta" aria-hidden="true">{featuredItem.completed > 0 ? "Continue practice" : "Start practice"} →</span>
           </a>
         )}
 
-        {pinnedItem && restItems.length > 0 && (
+        {restItems.length > 0 && (
           <div className="board-section-head board-section-head-secondary">
-            <p className="eyebrow">Other activities</p>
+            <h2 className="eyebrow">All topics</h2>
           </div>
         )}
 
         <section className="board-grid" aria-label="Available quizzes and decks">
         {restItems.map((item) => {
+          const isDue = item.due > 0;
+          const tilePercent = isDue ? (item.total ? Math.round((item.mastered / item.total) * 100) : 0) : item.percent;
           const todayPill = item.daily.done ? (
             <span className="board-tile-pill board-tile-pill-today">✓ Today</span>
           ) : item.daily.roundLength ? (
@@ -348,36 +362,28 @@ export default function QuizSelector() {
             </span>
           ) : null;
 
-          if (item.due > 0) {
-            return (
-              <a className="board-tile board-tile-due" href={item.href} key={item.id}>
-                <div className="board-tile-top">
-                  <span className="board-icon"><BoardIcon kind={item.kind} /></span>
+          return (
+            <a className={`board-tile board-tile-${isDue ? "due" : "quiet"}`} href={item.href} key={item.id}>
+              <span className={`board-icon${isDue ? "" : " board-icon-quiet"}`}><BoardIcon id={item.id} /></span>
+              <div className="board-tile-content">
+                <div className="board-tile-content-header">
+                  <h2>{item.title}</h2>
                   <span className="board-tile-top-pills">
                     {todayPill}
-                    <span className="board-tile-pill board-tile-pill-due">{item.due} due</span>
+                    {isDue ? (
+                      <span className="board-tile-pill board-tile-pill-due">{item.due} due</span>
+                    ) : (
+                      <span className="board-tile-note board-tile-note-quiet">nothing due</span>
+                    )}
                   </span>
                 </div>
-                <h2>{item.title}</h2>
-                <div className="board-tile-bottom">
-                  <div className="board-bar" aria-hidden="true"><span style={{ width: `${item.total ? Math.round((item.mastered / item.total) * 100) : 0}%` }} /></div>
-                  <span className="board-tile-note">{item.mastered} of {item.total} mastered</span>
-                </div>
-              </a>
-            );
-          }
-
-          return (
-            <a className="board-tile board-tile-quiet" href={item.href} key={item.id}>
-              <div className="board-tile-top">
-                <span className="board-icon board-icon-quiet"><BoardIcon kind={item.kind} /></span>
-                <span className="board-tile-top-pills">
-                  {todayPill}
-                  <span className="board-tile-note board-tile-note-quiet">nothing due</span>
+                <span className="board-tile-note">
+                  {isDue ? `${item.mastered} of ${item.total} mastered` : `${item.completed} of ${item.total} ${item.noun}s studied`}
                 </span>
+                <div className={`board-bar${isDue ? "" : " board-bar-quiet"}`} aria-hidden="true">
+                  <span style={{ width: `${tilePercent}%`, background: isDue ? undefined : dueBarFill(item.percent) }} />
+                </div>
               </div>
-              <h2>{item.title}</h2>
-              <div className="board-bar board-bar-quiet" aria-hidden="true"><span style={{ width: `${item.percent}%`, background: dueBarFill(item.percent) }} /></div>
             </a>
           );
         })}

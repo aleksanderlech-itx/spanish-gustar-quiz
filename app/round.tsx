@@ -301,12 +301,12 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
       {standalone && <SiteHeader />}
       <header className="round-header">
         <Link className="round-back" href={quizPath(quizId)} aria-label="Back to topic"><span aria-hidden="true">←</span></Link>
-        <div className="round-steps" role="progressbar" aria-valuemin={1} aria-valuemax={round.length} aria-valuenow={index + 1} aria-label={`Question ${index + 1} of ${round.length}`}>
+        <div className="round-steps" role="progressbar" aria-valuemin={0} aria-valuemax={round.length} aria-valuenow={index} aria-label="Completed questions">
           {round.map((q, i) => (
             <span key={q.id} className={`round-step ${i < index ? "round-step-past" : ""} ${i === index ? "round-step-current" : ""}`} />
           ))}
         </div>
-        <span className="round-counter">{index + 1}/{round.length}</span>
+        <span className="round-counter">Question {index + 1} of {round.length}</span>
         <HelpButton topic="round" />
       </header>
 

@@ -113,19 +113,12 @@ spacing:
   stack-lg: 32px
 ---
 
-> The full design system — tokens, components, specimen cards and screen recreations — lives in
-> [`design-system/`](../design-system/readme.md). `app/quiz-layout-fix.css` remains the runtime
-> source of truth for tokens; `design-system/tokens/colors.css` mirrors it name for name.
->
-> **Historical.** This file is kept for reference only. Some of its guidance — the grain overlay,
-> wobbly SVG lines and the 3D card flip — is not used by the live app;
-> [`design-system/readme.md`](../design-system/readme.md) records what is.
-
-> Runtime ownership of these tokens lives in `app/quiz-layout-fix.css` (`:root`
-> and `:root[data-theme="dark"]`) — see `DESIGN.md` for the current token
-> list, including tokens added by the board/round redesign (`--sun`,
-> `--clay`, `--sage`, `--panel-soft`, `--key`, and their dark-mode values).
-> This document stays as the aspirational design-system reference.
+> **Historical reference.** This Editorial Boutique proposal predates the approved
+> [Spanish Editorial Learning light target](design-system-gpt/README.md). Its palette,
+> hard shadows, grain, wobbly lines, 3D flip and layout measurements do not govern
+> current work. See [root DESIGN.md](../DESIGN.md) for runtime ownership and the
+> current product contract. The older [design-system](../design-system/readme.md)
+> is retained for comparison; its token files are not a current runtime mirror.
 
 ## Brand & Style
 
