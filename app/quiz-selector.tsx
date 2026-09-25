@@ -209,7 +209,8 @@ export default function QuizSelector() {
 
   const board = useMemo(() => orderBoard(items), [items]);
   const pinnedItem = board.find((item) => item.pinned);
-  const restItems = board.filter((item) => !item.pinned);
+  const featuredItem = pinnedItem ?? board[0];
+  const restItems = board.filter((item) => item.id !== featuredItem?.id);
   const totalLogged = items.reduce((sum, item) => sum + item.completed, 0);
 
   if (!ready || !open) return null;
@@ -306,34 +307,34 @@ export default function QuizSelector() {
           <div className="board-total"><strong>{totalLogged}</strong><span>cards &amp; questions logged</span></div>
         </div>
 
-        {pinnedItem && (
-          <a className="board-tile board-tile-pinned" href={pinnedItem.href}>
+        {featuredItem && (
+          <a className="board-tile board-tile-pinned" href={featuredItem.href}>
             <div className="board-feature-intro">
               <p className="eyebrow">Keep learning</p>
               <h2>Make Spanish part of your day.</h2>
               <p>A little practice. A little more confidence.</p>
             </div>
             <span className="board-tile-top-pills">
-              <span className="board-tile-pill board-tile-pill-progress">In progress</span>
-              {pinnedItem.daily.done ? (
+              <span className="board-tile-pill board-tile-pill-progress">{featuredItem.pinned ? "In progress" : "New"}</span>
+              {featuredItem.daily.done ? (
                 <span className="board-tile-pill board-tile-pill-today">✓ Today</span>
-              ) : pinnedItem.daily.roundLength ? (
+              ) : featuredItem.daily.roundLength ? (
                 <span className="board-tile-pill board-tile-pill-today board-tile-pill-today-pending">
-                  {pinnedItem.daily.correct}/{pinnedItem.daily.roundLength} today
+                  {featuredItem.daily.correct}/{featuredItem.daily.roundLength} today
                 </span>
               ) : null}
             </span>
             <div className="board-tile-pinned-body">
-              <h3>{pinnedItem.title}</h3>
+              <h3>{featuredItem.title}</h3>
               <p className="board-tile-meta">
-                {pinnedItem.completed} of {pinnedItem.total} {pinnedItem.noun}s studied · {pinnedItem.percent}% complete{pinnedItem.kind === "quiz" ? ` · ${pinnedItem.accuracy}% accuracy` : ""}
+                {featuredItem.completed} of {featuredItem.total} {featuredItem.noun}s studied · {featuredItem.percent}% complete{featuredItem.kind === "quiz" ? ` · ${featuredItem.accuracy}% accuracy` : ""}
               </p>
             </div>
-            <div className="board-feature-progress" role="progressbar" aria-label="Topic progress" aria-valuemin={0} aria-valuemax={100} aria-valuenow={pinnedItem.percent}>
-              <span style={{ width: `${pinnedItem.percent}%` }} />
+            <div className="board-feature-progress" role="progressbar" aria-label="Topic progress" aria-valuemin={0} aria-valuemax={100} aria-valuenow={featuredItem.percent}>
+              <span style={{ width: `${featuredItem.percent}%` }} />
             </div>
-            <span className="board-icon board-icon-pinned"><BoardIcon kind={pinnedItem.kind} /></span>
-            <span className="board-tile-pinned-cta" aria-hidden="true">Continue practice →</span>
+            <span className="board-icon board-icon-pinned"><BoardIcon kind={featuredItem.kind} /></span>
+            <span className="board-tile-pinned-cta" aria-hidden="true">{featuredItem.completed > 0 ? "Continue practice" : "Start practice"} →</span>
           </a>
         )}
 
