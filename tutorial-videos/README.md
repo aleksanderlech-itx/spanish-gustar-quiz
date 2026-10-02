@@ -35,8 +35,13 @@ Rendering needs Chrome. Remotion downloads its own unless `REMOTION_BROWSER` poi
 Chrome or Chromium binary, for example
 `REMOTION_BROWSER=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell`.
 
-The social clips are written to `out/` and not committed. Upload them from there. Only the small app
-clips and their posters are committed, under `../public/tutorials/`.
+Renders are written to `out/`, which is not committed. Two copies are:
+
+- the app clips and their posters, under `../public/tutorials/`
+- `exports/spanish-quizzes-tutorials.zip`, all 12 clips (reel, feed and app) for uploading to Instagram or
+  Facebook. It's a snapshot: after re-rendering, rebuild it with
+  `cd out && zip -0 ../exports/spanish-quizzes-tutorials.zip *-reel.mp4 *-feed.mp4 *-app.mp4`.
+  It stays out of `../public/` because Cloudflare Workers rejects static files over 25 MiB.
 
 ## Changing a tutorial
 
