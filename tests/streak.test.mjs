@@ -12,6 +12,7 @@ globalThis.window = {
   },
 };
 
+const { ACTIVITY_REGISTRY } = await import("../app/activity-registry.ts");
 const { ACTIVITY_IDS, currentStreak, dayKey, weekBars, recordFlashcardDayReviewed, readFlashcardDaysReviewed } = await import("../app/streak.ts");
 
 const daysAgo = (today, count) => {
@@ -77,7 +78,27 @@ test("weekBars reports partial completion counts for today", () => {
   const week = weekBars(records, today);
   const todayBar = week.find((day) => day.status === "today");
   assert.equal(todayBar.doneCount, 2);
-  assert.equal(todayBar.total, ACTIVITY_IDS.length);
+  const liveThen = ACTIVITY_REGISTRY.filter((entry) => !entry.introducedOn || entry.introducedOn <= dayKey(today));
+  assert.equal(todayBar.total, liveThen.length);
+});
+
+test("a newly introduced activity is not required on days before it went live", () => {
+  const added = ACTIVITY_REGISTRY.find((entry) => entry.introducedOn);
+  assert.ok(added, "expected at least one activity with an introducedOn date");
+  const launch = new Date(`${added.introducedOn}T08:00:00`);
+  const before = (count) => daysAgo(launch, count);
+  const withoutAdded = () => new Set(ACTIVITY_IDS.filter((id) => id !== added.id));
+  // Nine full days before the launch, done with every activity that existed then.
+  const records = new Map(Array.from({ length: 9 }, (_, i) => [before(i + 1), withoutAdded()]));
+  for (const [, set] of records) {
+    for (const entry of ACTIVITY_REGISTRY) if (entry.introducedOn && entry.introducedOn > added.introducedOn) set.delete(entry.id);
+  }
+  assert.equal(currentStreak(records, launch, {}), 9);
+  // On launch day it is required: a day done without it does not extend the streak.
+  records.set(dayKey(launch), withoutAdded());
+  assert.equal(currentStreak(records, launch, {}), 9);
+  records.get(dayKey(launch)).add(added.id);
+  assert.equal(currentStreak(records, launch, {}), 10);
 });
 
 test("recordFlashcardDayReviewed/readFlashcardDaysReviewed keep every distinct day, not just the most recent", () => {
