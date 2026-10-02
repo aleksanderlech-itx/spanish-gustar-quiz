@@ -12,6 +12,7 @@ import { isQuizHiddenFromBoard, readQuizCompletion, markQuizCompleted } from "./
 import type { QuizResult } from "./quiz-logic";
 import { ROUND_SIZE as FLASHCARDS_ROUND_SIZE, MAX_BOX as MAX_FLASHCARD_BOX } from "./flashcards";
 import Drawer from "./drawer";
+import TutorialModal from "./tutorial-modal";
 import Logo from "./logo";
 import { SunIcon, MoonIcon } from "./theme-icons";
 
@@ -225,6 +226,7 @@ export default function QuizSelector() {
   return (
     <main className="quiz-library board-home" aria-labelledby="quiz-library-title">
       <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)} returnFocusRef={hamburgerRef} />
+      <TutorialModal />
 
       <div className="board-rail">
         <header className="board-header">
