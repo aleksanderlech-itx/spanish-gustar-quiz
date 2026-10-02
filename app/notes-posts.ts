@@ -4,6 +4,11 @@ export type NotesPost = { href: string; title: string; excerpt: string };
 
 export const NOTES_POSTS: NotesPost[] = [
   {
+    href: "/notes/saber-vs-conocer-mistakes",
+    title: "4 mistakes learners make with saber vs conocer",
+    excerpt: "Both translate as to know. These are the four places where learners pick the wrong one, from facts and skills to met and found out.",
+  },
+  {
     href: "/notes/preterite-vs-imperfect-signal-words",
     title: "Preterite vs imperfect: the words that give it away",
     excerpt: "Ayer, cada, mientras, de repente. The small time words that tell you which past tense to use, and when not to trust them.",
