@@ -9,6 +9,7 @@ export const FlashcardScene = () => {
   const revealed = flip > 0.5;
   const gotIt = useAfter(88);
   const away = useSpring(96, 22);
+  const answerable = revealed && away < 0.5;
   return (
     <>
       <AppHeader />
@@ -55,10 +56,11 @@ export const FlashcardScene = () => {
         </div>
       </div>
       <div style={{ display: "grid", gap: 8, padding: "0 16px" }}>
-        <Button style={{ opacity: revealed ? 0.4 : 1 }}>Reveal</Button>
+        {/* Once the next card is up, the buttons go back to their unrevealed state. */}
+        <Button style={{ opacity: answerable ? 0.4 : 1 }}>Reveal</Button>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
-          <Button variant="secondary" style={{ opacity: revealed ? 1 : 0.5 }}>✕ Again</Button>
-          <Button pressed={gotIt && !away ? 0.6 : 0} style={{ opacity: revealed ? 1 : 0.5, background: T.success, borderColor: T.success }}>✓ Got it</Button>
+          <Button variant="secondary" style={{ opacity: answerable ? 1 : 0.5 }}>✕ Again</Button>
+          <Button pressed={gotIt && !away ? 0.6 : 0} style={{ opacity: answerable ? 1 : 0.5, background: T.success, borderColor: T.success }}>✓ Got it</Button>
         </div>
       </div>
       <Tap x={195} y={570} at={28} />
