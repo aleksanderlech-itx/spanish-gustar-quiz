@@ -1,0 +1,2 @@
+- `mark.svg`: the live three-block mark from `app/logo.tsx`. Fixed colours: `brand-teal` top, `brand-clay` lower-left, `brand-sun` lower-right, `brand-stroke` 2.5-unit outline. Set it at 24px beside the "Spanish Quizzes" wordmark. In dark, put it on a #fffaf3 backing.
+- `app-icon-512.png`: the home-screen / PWA app icon (`public/icon-512.png`). Use it for app manifests only, never inline in UI.

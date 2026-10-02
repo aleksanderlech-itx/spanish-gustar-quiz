@@ -1,0 +1,122 @@
+{
+  "v": 3,
+  "layout": "files",
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-10-02T12:04:23Z"
+  },
+  "title": "Spanish Quizzes",
+  "namespace": "SpanishQuizzes",
+  "libraries": [],
+  "sections": {},
+  "groups": [
+    "Logos",
+    "Icons"
+  ],
+  "assetGroups": {
+    "Logos": {
+      "name": "Logos",
+      "tile": "l",
+      "order": [
+        "mark.svg",
+        "app-icon-512.png"
+      ],
+      "files": {
+        "mark.svg": {
+          "name": "mark.svg",
+          "blob": "11d4fc8a01d7f067127c0f1249cf46aa",
+          "size": 399,
+          "type": "image/svg+xml"
+        },
+        "app-icon-512.png": {
+          "name": "app-icon-512.png",
+          "blob": "283ccf34c59436295ac45d13cbd09df9",
+          "size": 7746,
+          "type": "image/png"
+        }
+      }
+    },
+    "Icons": {
+      "name": "Icons",
+      "tile": "s",
+      "order": [
+        "ser-estar.svg",
+        "gustar.svg",
+        "por-para.svg",
+        "preterite-imperfect.svg",
+        "object-pronouns.svg",
+        "saber-conocer.svg",
+        "flashcards.svg",
+        "sun.svg",
+        "moon.svg"
+      ],
+      "files": {
+        "ser-estar.svg": {
+          "name": "ser-estar.svg",
+          "blob": "ffdbcf079040374aa9b8030cdffb555c",
+          "size": 256,
+          "type": "image/svg+xml"
+        },
+        "gustar.svg": {
+          "name": "gustar.svg",
+          "blob": "809cadcd613b3e5d7b60bdf6a7b4917f",
+          "size": 295,
+          "type": "image/svg+xml"
+        },
+        "por-para.svg": {
+          "name": "por-para.svg",
+          "blob": "fe582fc1b6ec21ad72a6d792bacc3c79",
+          "size": 265,
+          "type": "image/svg+xml"
+        },
+        "preterite-imperfect.svg": {
+          "name": "preterite-imperfect.svg",
+          "blob": "524c6e38056bea2e2b3b24b3ec2af09e",
+          "size": 298,
+          "type": "image/svg+xml"
+        },
+        "object-pronouns.svg": {
+          "name": "object-pronouns.svg",
+          "blob": "e63ceeb382d06c58eba2bc35aa58fccc",
+          "size": 218,
+          "type": "image/svg+xml"
+        },
+        "saber-conocer.svg": {
+          "name": "saber-conocer.svg",
+          "blob": "9858dd62f5a63b8479508a25f4f54bfa",
+          "size": 299,
+          "type": "image/svg+xml"
+        },
+        "flashcards.svg": {
+          "name": "flashcards.svg",
+          "blob": "e4564d48405b918ecd8a3776d9422922",
+          "size": 385,
+          "type": "image/svg+xml"
+        },
+        "sun.svg": {
+          "name": "sun.svg",
+          "blob": "83d442b2f62ae324265202e410ffe886",
+          "size": 353,
+          "type": "image/svg+xml"
+        },
+        "moon.svg": {
+          "name": "moon.svg",
+          "blob": "154954f4c93e458b8f44fd71ee198fdf",
+          "size": 247,
+          "type": "image/svg+xml"
+        }
+      }
+    }
+  },
+  "blobs": {},
+  "docs": {
+    "readme": "project/README.md",
+    "sections": []
+  },
+  "lastChange": {
+    "by": "Aleksander Lech",
+    "at": "2026-10-02T12:04:23Z",
+    "via": "GitHub · aleksanderlech-itx/spanish-gustar-quiz@68f4d66",
+    "note": "Initial system from the runtime styles and the approved Spanish Editorial Learning spec"
+  }
+}
