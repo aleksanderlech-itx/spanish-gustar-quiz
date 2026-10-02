@@ -2778,6 +2778,78 @@ body {
   font-size: 13px;
 }
 
+/* Welcome tutorial modal (tutorial-modal.tsx) reuses the help dialog shell. */
+.tutorial-dialog-poster {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(240px, 32dvh);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.tutorial-dialog-question {
+  margin: 0;
+  line-height: 1.45;
+}
+
+.tutorial-dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tutorial-dialog-primary,
+.tutorial-dialog-secondary {
+  display: inline-flex;
+  min-height: 44px;
+  flex: 1 1 140px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border: 1px solid var(--primary);
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.tutorial-dialog-primary {
+  background: var(--primary);
+  color: var(--surface);
+}
+
+.tutorial-dialog-secondary {
+  background: var(--surface);
+  color: var(--primary);
+}
+
+.tutorial-dialog-optout {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.tutorial-dialog-optout input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--primary);
+}
+
+.tutorial-dialog-primary:focus-visible,
+.tutorial-dialog-secondary:focus-visible,
+.tutorial-dialog-optout input:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+
 /* The fixed 24px brand mark keeps its original fills in both themes. */
 .brand-mark {
   display: block;

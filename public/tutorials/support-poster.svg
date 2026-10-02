@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350">
+  <title>Support the project — Spanish Quizzes tutorial</title>
+  <rect width="1080" height="1350" fill="#F8EDE1"/>
+  <rect x="90" y="335" width="900" height="680" rx="40" fill="#FFFAF3" stroke="#0F172A" stroke-width="6"/>
+  <text x="150" y="455" font-family="Karla, Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="6" fill="#0F766E">TUTORIAL 04</text>
+  <text x="150" y="590" font-family="Fraunces, Georgia, serif" font-size="76" font-weight="600" fill="#0F172A">Support the project</text>
+  <text x="150" y="680" font-family="Karla, Arial, sans-serif" font-size="44" fill="#59534B">Free · no sign-in · Ko-fi</text>
+  <circle cx="540" cy="840" r="78" fill="#0F766E"/>
+  <path d="M515 795v90l75-45z" fill="#FFFAF3"/>
+  <rect x="150" y="955" width="120" height="12" rx="6" fill="#C4553F"/>
+  <rect x="290" y="955" width="60" height="12" rx="6" fill="#F2A81D"/>
+</svg>
