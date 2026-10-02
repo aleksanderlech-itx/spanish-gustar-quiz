@@ -2812,7 +2812,9 @@ body {
   border-radius: 10px;
   font: inherit;
   font-weight: 700;
+  text-align: center;
   text-decoration: none;
+  white-space: nowrap;
   cursor: pointer;
 }
 
