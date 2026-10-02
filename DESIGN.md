@@ -1,6 +1,6 @@
 # Spanish Editorial Learning
 
-The approved light appearance is in [docs/design-system-gpt](docs/design-system-gpt/README.md). Its [reference](docs/design-system-gpt/reference.html) shows Library, Quiz, Flashcards, Results and Practice options. The specimen supplies visual hierarchy, not app data or behavior. The older [design-system](design-system/readme.md) and [docs/design.md](docs/design.md) remain historical references.
+The approved light appearance is in [docs/design-system-gpt](docs/design-system-gpt/README.md). Its [reference](docs/design-system-gpt/reference.html) shows Library, Quiz, Flashcards, Results and Practice options. The specimen supplies visual hierarchy, not app data or behavior. [design-system](design-system/README.md) mirrors the runtime tokens, assets and component guidelines as a [published design system](https://claude.ai/artifact/4F15iyJg272GyLd9uME4XW). [docs/design.md](docs/design.md) remains a historical reference.
 
 ## Runtime ownership
 
