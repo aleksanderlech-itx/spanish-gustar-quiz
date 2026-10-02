@@ -5,6 +5,7 @@ import { SER_ESTAR_QUESTIONS } from "../app/ser-estar-data.ts";
 import { PRETERITE_IMPERFECT_QUESTIONS } from "../app/preterite-imperfect-data.ts";
 import { POR_PARA_QUESTIONS } from "../app/por-para-data.ts";
 import { OBJECT_PRONOUN_QUESTIONS } from "../app/object-pronouns-data.ts";
+import { SABER_CONOCER_QUESTIONS } from "../app/saber-conocer-data.ts";
 import { FLASHCARD_VERBS } from "../app/flashcards-data.ts";
 
 // Stage 6 of docs/issue-24-implementation-plan.md: a single, cross-cutting
@@ -22,6 +23,7 @@ const QUIZZES = [
   { name: "Preterite vs Imperfect", questions: PRETERITE_IMPERFECT_QUESTIONS },
   { name: "Por vs Para", questions: POR_PARA_QUESTIONS },
   { name: "Object Pronouns", questions: OBJECT_PRONOUN_QUESTIONS },
+  { name: "Saber vs Conocer", questions: SABER_CONOCER_QUESTIONS },
 ];
 
 test("each quiz dataset contains exactly 150 questions", () => {
