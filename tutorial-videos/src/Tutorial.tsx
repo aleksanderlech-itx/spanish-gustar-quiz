@@ -176,7 +176,7 @@ export const TutorialVideo = ({ id, format }: TutorialProps) => {
       {FORMATS[format].music && (
         <Audio
           src={staticFile("music.mp3")}
-          volume={(f) => 0.7 * interpolate(f, [0, 15, total - 45, total], [0, 1, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
+          volume={(f) => 0.56 * interpolate(f, [0, 15, total - 45, total], [0, 1, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
         />
       )}
       <div style={{ position: "absolute", width: base.width, height: base.height, transform: `scale(${shrink})`, transformOrigin: "top left" }}>

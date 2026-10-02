@@ -51,5 +51,5 @@ clips and their posters are committed, under `../public/tutorials/`.
 vjgalaxy, from Pixabay, used under the [Pixabay Content License](https://pixabay.com/service/license-summary/).
 That licence lets you use it in videos without crediting the artist, though a credit in the post is welcome.
 
-Each clip plays the track from its start, at 70% volume, and fades it out over the last 1.5 seconds.
+Each clip plays the track from its start, at 56% volume, and fades it out over the last 1.5 seconds.
 To use a different track, replace the file and keep the name.
