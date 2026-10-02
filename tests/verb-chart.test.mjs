@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { readFile } from "node:fs/promises";
 import { PRETERITE_IMPERFECT_CONJUGATIONS, PRETERITE_IMPERFECT_REGULARITY } from "../app/preterite-imperfect-data.ts";
+import { SABER_CONOCER_CONJUGATIONS } from "../app/saber-conocer-data.ts";
 
 test("verb chart never fabricates a six-pronoun paradigm where the data doesn't have one", async () => {
   const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
@@ -35,4 +36,19 @@ test("every preterite/imperfect verb has a regularity classification, and vice v
 test("the regularity badge only renders for preterite/imperfect, never guessed for gustar or ser/estar", async () => {
   const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
   assert.match(source, /const regularityFor = \(quizId: QuizId, infinitive: string\) =>\s*quizId === "preterite-imperfect" \? PRETERITE_IMPERFECT_REGULARITY\[infinitive\] : undefined;/);
+});
+
+test("saber/conocer chart has a full six-pronoun paradigm for both verbs in every tense it shows", () => {
+  assert.deepEqual(SABER_CONOCER_CONJUGATIONS.map((row) => row.subject), ["yo", "tú", "él / ella / usted", "nosotros", "vosotros", "ellos / ellas / ustedes"]);
+  for (const row of SABER_CONOCER_CONJUGATIONS) {
+    for (const verb of ["saber", "conocer"]) {
+      for (const tense of ["present", "preterite", "imperfect"]) assert.ok(row[verb][tense], `${verb} ${tense} ${row.subject}`);
+    }
+  }
+});
+
+test("saber/conocer chart scopes to the question's tense: past-meaning gets preterite/imperfect, other usages present", async () => {
+  const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
+  assert.match(source, /infinitive === "past meaning" \? \(\["preterite", "imperfect"\] as const\)/);
+  assert.match(source, /: infinitive \? \(\["present"\] as const\)/);
 });
