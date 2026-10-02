@@ -46,7 +46,7 @@ for (const composition of compositions) {
     composition,
     serveUrl,
     codec: "h264",
-    output,
+    outputLocation: output,
     browserExecutable,
     muted: app,
     // The in-app clips are small and silent; the social ones keep full quality.
