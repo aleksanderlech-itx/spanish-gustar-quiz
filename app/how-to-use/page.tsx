@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import SiteHeader from "../site-header";
+import { TUTORIALS } from "../tutorials";
 import styles from "./how-to-use.module.css";
 
 export const metadata: Metadata = {
@@ -27,6 +28,7 @@ export default function HowToUsePage() {
       </section>
 
       <nav className={styles.contents} aria-label="On this page">
+        <a href="#tutorials">Video tutorials</a>
         <a href="#about">What this app is about</a>
         <a href="#quizzes">Grammar quizzes</a>
         <a href="#flashcards">Flashcards</a>
@@ -43,6 +45,34 @@ export default function HowToUsePage() {
           <div><strong>1</strong><span>Pick what is due or choose a topic</span></div>
           <div><strong>2</strong><span>Complete a short round or card session</span></div>
           <div><strong>3</strong><span>Review mistakes and return when cards are due</span></div>
+        </div>
+      </section>
+
+      <section className={styles.tutorials} id="tutorials" aria-labelledby="tutorials-title">
+        <p className={styles.eyebrow}>Watch</p>
+        <h2 id="tutorials-title">Video tutorials</h2>
+        <p>Four short clips, each under a minute. The steps under each clip say the same thing in writing.</p>
+        <div className={styles.tutorialGrid}>
+          {TUTORIALS.map((tutorial) => (
+            <article className={styles.tutorialCard} key={tutorial.id} aria-labelledby={`tutorial-${tutorial.id}-title`}>
+              {tutorial.videoSrc ? (
+                <video className={styles.tutorialMedia} controls playsInline preload="none" poster={tutorial.poster} width={1080} height={1350}>
+                  <source src={tutorial.videoSrc} type="video/mp4" />
+                </video>
+              ) : (
+                <div className={styles.tutorialPlaceholder}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img className={styles.tutorialMedia} src={tutorial.poster} alt="" width={1080} height={1350} loading="lazy" />
+                  <span className={styles.tutorialSoon}>Video coming soon</span>
+                </div>
+              )}
+              <h3 id={`tutorial-${tutorial.id}-title`}>{tutorial.title}</h3>
+              <p>{tutorial.summary}</p>
+              <ol>
+                {tutorial.steps.map((step) => <li key={step}>{step}</li>)}
+              </ol>
+            </article>
+          ))}
         </div>
       </section>
 

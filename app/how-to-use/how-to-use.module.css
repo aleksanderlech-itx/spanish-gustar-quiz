@@ -124,6 +124,83 @@
   line-height: 1.35;
 }
 
+.tutorials {
+  margin: 0 0 56px;
+}
+
+.tutorials h2 {
+  font-size: clamp(28px, 4.2vw, 42px);
+}
+
+.tutorials > p {
+  max-width: 62ch;
+  line-height: 1.55;
+}
+
+.tutorialGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.tutorialCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  border: 2px solid var(--border-ink);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.tutorialCard h3 {
+  margin: 8px 0 0;
+  font-family: var(--font-display);
+  font-size: 22px;
+}
+
+.tutorialCard p,
+.tutorialCard ol {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.tutorialCard ol {
+  padding-left: 20px;
+}
+
+.tutorialCard li + li {
+  margin-top: 6px;
+}
+
+.tutorialPlaceholder {
+  position: relative;
+}
+
+.tutorialMedia {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper);
+}
+
+.tutorialSoon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--surface);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
 .section {
   display: grid;
   grid-template-columns: 72px minmax(0, 1fr);
@@ -354,7 +431,8 @@
 
   .contents,
   .definitionGrid,
-  .loopSteps {
+  .loopSteps,
+  .tutorialGrid {
     grid-template-columns: 1fr;
   }
 
