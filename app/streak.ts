@@ -31,8 +31,16 @@ const isExemptOn = (activity: ActivityId, day: string, completions: Record<strin
   return day < dayKey(repeatDueDate(completedAt));
 };
 
+const INTRODUCED_ON = new Map(ACTIVITY_REGISTRY.map((entry) => [entry.id, entry.introducedOn]));
+
+/** An activity added later is only required from the day it went live, so past days stay complete. */
+const existedOn = (activity: ActivityId, day: string) => {
+  const introducedOn = INTRODUCED_ON.get(activity);
+  return !introducedOn || day >= introducedOn;
+};
+
 const requiredActivitiesOn = (day: string, completions: Record<string, string>) =>
-  ACTIVITY_IDS.filter((id) => !isExemptOn(id, day, completions));
+  ACTIVITY_IDS.filter((id) => existedOn(id, day) && !isExemptOn(id, day, completions));
 
 const isDayComplete = (record: Set<ActivityId> | undefined, day: string, completions: Record<string, string>) =>
   !!record && requiredActivitiesOn(day, completions).every((id) => record.has(id));

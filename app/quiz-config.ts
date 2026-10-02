@@ -46,6 +46,9 @@ type QuizConfigEntry = {
   /** Name of the reference chart linked from the topic page and the round's
    * "Stuck?" button. Defaults to "Verb conjugation chart". */
   chartLabel?: string;
+  /** Local day key (YYYY-MM-DD) the activity went live in production. The daily streak
+   * only requires it from this day on, so adding an activity never breaks past days. */
+  introducedOn?: string;
 };
 
 export const DEFAULT_FILTER_LABEL = { label: "Verb", all: "All verbs" };
@@ -133,6 +136,7 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     showInfinitiveBlank: false,
     filterLabel: { label: "Pronoun type", all: "All pronoun types" },
     chartLabel: "Pronoun chart",
+    introducedOn: "2026-09-23",
   },
   "saber-conocer": {
     title: "Saber vs Conocer Quiz",
@@ -149,6 +153,7 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     sources: [],
     rule: { title: "Saber knows facts and skills. Conocer knows people, places and things.", body: "Use saber for information, before que, si or a question word, and with an infinitive for skills. Use conocer for people (with the personal a), places and familiarity with a work or field. In the preterite, supe means found out and conocí means met.", singular: "Sé dónde vive Ana.", plural: "Conozco a Ana." },
     filterLabel: { label: "Usage", all: "All usages" },
+    introducedOn: "2026-10-02",
   },
 };
 

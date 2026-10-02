@@ -20,6 +20,8 @@ export type ActivityRegistryEntry = {
   /** Activity kind; quiz-selector.tsx maps each activity ID to its dashboard icon. */
   icon: "quiz" | "deck";
   storageKey: string;
+  /** Day key the activity went live; the streak doesn't require it on earlier days. */
+  introducedOn?: string;
 };
 
 const quizActivities: ActivityRegistryEntry[] = QUIZ_IDS.map((id) => ({
@@ -31,6 +33,7 @@ const quizActivities: ActivityRegistryEntry[] = QUIZ_IDS.map((id) => ({
   activityType: "fill-in-blank",
   icon: "quiz",
   storageKey: QUIZ_CONFIG[id].storageKey,
+  introducedOn: QUIZ_CONFIG[id].introducedOn,
 }));
 
 const flashcardsActivity: ActivityRegistryEntry = {
