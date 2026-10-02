@@ -13,7 +13,7 @@ page and the welcome modal always say the same thing. Each step has one animated
 |---|---|---|---|
 | `<id>-reel` | 1080×1920 (9:16) | Instagram/Facebook Reels and Stories | Music |
 | `<id>-feed` | 1080×1350 (4:5) | Instagram/Facebook feed posts | Music |
-| `<id>-app` | 720×900 (4:5) | The player on `/how-to-use` | None |
+| `<id>-app` | 720×900 (4:5) | The player on `/how-to-use` | Music |
 
 `<id>` is one of `features`, `how-to-use`, `activities-review`, `support`.
 
@@ -27,6 +27,7 @@ npm ci
 npm run studio            # preview and scrub the clips in the browser
 npm run render            # render every clip to out/; copies the app clips and posters to ../public/tutorials/
 npm run render -- support # render only the listed tutorials
+npm run render -- --app   # render only the in-app clips and posters
 npm run render -- --stills  # a few PNG frames per clip in out/stills/, for checking layout
 npm run music             # regenerate public/music.m4a
 ```

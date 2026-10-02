@@ -22,7 +22,7 @@ export type Format = "reel" | "feed" | "app";
 export const FORMATS: Record<Format, { width: number; height: number; music: boolean }> = {
   reel: { width: 1080, height: 1920, music: true }, // Instagram/FB Reels and Stories, 9:16
   feed: { width: 1080, height: 1350, music: true }, // Instagram/FB feed posts, 4:5
-  app: { width: 720, height: 900, music: false }, // the in-app player on /how-to-use, 4:5
+  app: { width: 720, height: 900, music: true }, // the in-app player on /how-to-use, 4:5
 };
 
 const INTRO = 75;
