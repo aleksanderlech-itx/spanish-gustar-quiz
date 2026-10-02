@@ -184,4 +184,39 @@ export const QUIZ_CONTENT: Record<QuizId, QuizContent> = {
       },
     ],
   },
+  "saber-conocer": {
+    paragraphs: [
+      "Saber and conocer both translate as to know, so English gives you no clue which one a sentence needs. Spanish splits knowing into two kinds: knowing information, and being acquainted with someone or something.",
+      "Saber is for facts and skills. Use it for a piece of information (sé su número), before que, si or a question word (no sé dónde vive), and before an infinitive to say you know how to do something (sabe nadar). Conocer is for acquaintance and familiarity. Use it for people, always with the personal a (conozco a Marta), for places you have been (conocemos Sevilla), and for works, styles or fields you are familiar with (conoces este libro).",
+      "The past tense adds a twist. In the preterite, the moment of knowing becomes an event: supe means I found out, and conocí means I met, or saw a place for the first time. The imperfect keeps the ordinary meaning of a state: sabía means I knew, and conocía means I was acquainted with. Ayer supe la noticia and ayer conocí a tu hermana both describe something that happened, not something you already knew.",
+      "This quiz has 150 sentences split into facts, skills, people, places, familiarity and past-tense meaning, with an explanation for every answer. Use the usage filter to drill one group at a time, then mix them once the choice feels automatic.",
+    ],
+    examples: [
+      { es: "No sé dónde está la estación.", en: "I don't know where the station is." },
+      { es: "Mi hermana sabe tocar el piano.", en: "My sister can play the piano." },
+      { es: "¿Conoces a mis padres?", en: "Do you know my parents?" },
+      { es: "Quiero conocer Japón algún día.", en: "I want to visit Japan someday." },
+      { es: "Ayer conocí a tu hermana y supe que te casas.", en: "Yesterday I met your sister and found out you're getting married." },
+    ],
+    faq: [
+      {
+        question: "What is the simplest way to choose between saber and conocer?",
+        answer:
+          "Ask whether you know a fact or how to do something (saber), or whether you are acquainted with a person, a place or a thing (conocer).",
+      },
+      {
+        question: "Why does conocer take a before people?",
+        answer: "A person who is the direct object of a verb takes the personal a in Spanish: conozco a Ana, conoces al profesor. Saber is never used with a person as its object this way.",
+      },
+      {
+        question: "Can saber be followed by an infinitive?",
+        answer: "Yes. Saber + infinitive means knowing how to do something: sé nadar, ¿sabes cocinar? Conocer is never followed by an infinitive in this sense.",
+      },
+      {
+        question: "Why does supe mean found out?",
+        answer:
+          "The preterite turns a state into an event. With saber, the event is the moment you learned something, so supe means found out. With conocer, the event is the first meeting, so conocí means met. The imperfect forms sabía and conocía keep the ordinary meaning, knew.",
+      },
+    ],
+  },
 };

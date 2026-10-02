@@ -33,6 +33,7 @@ const TOPIC_ICON_PATHS: Record<QuizId, string> = {
   "por-para": "M12 3v18M4 7h14l3 3-3 3H4l-3-3 3-3Zm16 9H6l-3 3 3 3h14l3-3-3-3Z",
   "preterite-imperfect": "M12 6c-3.2-2-6.3-2.3-10-1v14c3.7-1.3 6.8-1 10 1 3.2-2 6.3-2.3 10-1V5c-3.7-1.3-6.8-1-10 1Zm0 0v14",
   "object-pronouns": "M4 12.5l5 5L20 7",
+  "saber-conocer": "M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3Z",
 };
 
 /** Two fanned, empty playing cards for the flashcard deck. The front card's fill is

@@ -10,6 +10,7 @@ export const ruleLabelFor = (question: Question, quizId: QuizId): string => {
   if (quizId === "ser-estar") return "Ser vs estar";
   if (quizId === "por-para") return "Por vs para";
   if (quizId === "object-pronouns") return `Object pronouns: ${question.infinitive}`;
+  if (quizId === "saber-conocer") return `Saber vs conocer: ${question.infinitive}`;
   if (quizId === "preterite-imperfect") return question.tense === "preterite" ? "Preterite" : "Imperfect";
   return `Gustar pattern: ${question.infinitive}`;
 };

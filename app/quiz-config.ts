@@ -3,10 +3,11 @@ import { PRETERITE_IMPERFECT_FORMS, PRETERITE_IMPERFECT_QUESTIONS } from "./pret
 import { SER_ESTAR_FORMS, SER_ESTAR_QUESTIONS } from "./ser-estar-data.ts";
 import { POR_PARA_FORMS, POR_PARA_QUESTIONS } from "./por-para-data.ts";
 import { OBJECT_PRONOUN_FORMS, OBJECT_PRONOUN_QUESTIONS } from "./object-pronouns-data.ts";
+import { SABER_CONOCER_FORMS, SABER_CONOCER_QUESTIONS } from "./saber-conocer-data.ts";
 import { ruleForTense } from "./quiz-logic.ts";
 import type { Question } from "./quiz-data";
 
-export type QuizId = "gustar" | "ser-estar" | "preterite-imperfect" | "por-para" | "object-pronouns";
+export type QuizId = "gustar" | "ser-estar" | "preterite-imperfect" | "por-para" | "object-pronouns" | "saber-conocer";
 
 /** Each quiz's own crawlable URL, so every topic canonicalizes to itself instead of
  * every `?quiz=` variant resolving to the same root page. */
@@ -16,6 +17,7 @@ export const QUIZ_SLUGS: Record<QuizId, string> = {
   "preterite-imperfect": "preterite-vs-imperfect",
   "por-para": "por-vs-para",
   "object-pronouns": "object-pronouns",
+  "saber-conocer": "saber-vs-conocer",
 };
 
 export const quizPath = (quizId: QuizId): string => `/${QUIZ_SLUGS[quizId]}`;
@@ -131,6 +133,22 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     showInfinitiveBlank: false,
     filterLabel: { label: "Pronoun type", all: "All pronoun types" },
     chartLabel: "Pronoun chart",
+  },
+  "saber-conocer": {
+    title: "Saber vs Conocer Quiz",
+    eyebrow: "Saber vs conocer",
+    heading: "Know the fact. Know the face.",
+    copy: "Choose saber or conocer for facts, skills, people, places and the past-tense shift to found out and met.",
+    description: "Choose saber or conocer with 150 sentences covering facts, skills, people, places, familiarity and the past-tense meanings supe (found out) and conocí (met), with an explanation for every answer.",
+    levelBand: "A1–B1",
+    questions: SABER_CONOCER_QUESTIONS,
+    forms: SABER_CONOCER_FORMS,
+    storageKey: "saber-conocer-quiz-progress-v1",
+    filterKey: "saber-conocer-quiz-filters-v1",
+    backupName: "spanish-saber-conocer-quiz-progress.json",
+    sources: [],
+    rule: { title: "Saber knows facts and skills. Conocer knows people, places and things.", body: "Use saber for information, before que, si or a question word, and with an infinitive for skills. Use conocer for people (with the personal a), places and familiarity with a work or field. In the preterite, supe means found out and conocí means met.", singular: "Sé dónde vive Ana.", plural: "Conozco a Ana." },
+    filterLabel: { label: "Usage", all: "All usages" },
   },
 };
 
