@@ -6,7 +6,6 @@
   "scripts": {
     "assets": "node scripts/prepare-assets.mjs",
     "studio": "npm run assets && remotion studio src/index.ts",
-    "music": "node scripts/make-music.mjs",
     "render": "npm run assets && node scripts/render-all.mjs",
     "typecheck": "tsc -p ."
   },

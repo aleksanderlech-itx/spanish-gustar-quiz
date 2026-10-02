@@ -175,8 +175,8 @@ export const TutorialVideo = ({ id, format }: TutorialProps) => {
     <AbsoluteFill style={{ background: T.paper }}>
       {FORMATS[format].music && (
         <Audio
-          src={staticFile("music.m4a")}
-          volume={(f) => 0.8 * interpolate(f, [0, 15, total - 45, total], [0, 1, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
+          src={staticFile("music.mp3")}
+          volume={(f) => 0.7 * interpolate(f, [0, 15, total - 45, total], [0, 1, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
         />
       )}
       <div style={{ position: "absolute", width: base.width, height: base.height, transform: `scale(${shrink})`, transformOrigin: "top left" }}>

@@ -29,7 +29,6 @@ npm run render            # render every clip to out/; copies the app clips and 
 npm run render -- support # render only the listed tutorials
 npm run render -- --app   # render only the in-app clips and posters
 npm run render -- --stills  # a few PNG frames per clip in out/stills/, for checking layout
-npm run music             # regenerate public/music.m4a
 ```
 
 Rendering needs Chrome. Remotion downloads its own unless `REMOTION_BROWSER` points to a
@@ -48,6 +47,9 @@ clips and their posters are committed, under `../public/tutorials/`.
 
 ## Music
 
-`public/music.m4a` is synthesised by `scripts/make-music.mjs`: a soft 84 BPM progression with a pad,
-a plucked arpeggio, a kick and a shaker. It is generated entirely from code, with no third-party
-samples. To use a different track, replace the file and keep the name.
+`public/music.mp3` is ["Old School Salsa 03"](https://pixabay.com/music/salsa-old-school-salsa-03-499570/) by
+vjgalaxy, from Pixabay, used under the [Pixabay Content License](https://pixabay.com/service/license-summary/).
+That licence lets you use it in videos without crediting the artist, though a credit in the post is welcome.
+
+Each clip plays the track from its start, at 70% volume, and fades it out over the last 1.5 seconds.
+To use a different track, replace the file and keep the name.
