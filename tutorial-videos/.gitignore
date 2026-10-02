@@ -1,0 +1,5 @@
+node_modules/
+out/
+# Copied from the app's public/ by scripts/prepare-assets.mjs so there is one source.
+public/fonts/
+public/brand/

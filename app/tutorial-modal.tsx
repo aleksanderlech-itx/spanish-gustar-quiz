@@ -47,7 +47,7 @@ export default function TutorialModal() {
           <button type="button" className="help-dialog-close" aria-label="Close" onClick={close}>✕</button>
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="tutorial-dialog-poster" src={poster} alt="" width={1080} height={1350} />
+        <img className="tutorial-dialog-poster" src={poster} alt="" width={720} height={900} />
         <p className="tutorial-dialog-question">Want a quick tour of the app? Four short videos cover the features, playing a round, reviewing and support.</p>
         <div className="tutorial-dialog-actions">
           <a className="tutorial-dialog-primary" href={TUTORIALS_HREF} onClick={close}>Show me around</a>

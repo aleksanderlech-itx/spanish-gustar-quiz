@@ -1,6 +1,7 @@
 /** Short video tutorials shown on the How to Use page and offered by the welcome
- * modal on the home board. `videoSrc` stays null until a clip is rendered; the page
- * then shows the poster and the written steps instead of a player. */
+ * modal on the home board. The clips are rendered from these same steps by
+ * tutorial-videos/ (see its README); a null `videoSrc` shows the poster and the
+ * written steps without a player. */
 export type TutorialId = "features" | "how-to-use" | "activities-review" | "support";
 
 export type Tutorial = {
@@ -23,8 +24,8 @@ export const TUTORIALS: Tutorial[] = [
       "The streak and week strip track how consistently you practise.",
       "The menu holds your history, mistake notebook, backup and settings.",
     ],
-    poster: "/tutorials/features-poster.svg",
-    videoSrc: null,
+    poster: "/tutorials/features-poster.jpg",
+    videoSrc: "/tutorials/features.mp4",
   },
   {
     id: "how-to-use",
@@ -36,8 +37,8 @@ export const TUTORIALS: Tutorial[] = [
       "Read the explanation after each answer. Misses go to your mistake notebook.",
       "Results show your score and let you practise the misses.",
     ],
-    poster: "/tutorials/how-to-use-poster.svg",
-    videoSrc: null,
+    poster: "/tutorials/how-to-use-poster.jpg",
+    videoSrc: "/tutorials/how-to-use.mp4",
   },
   {
     id: "activities-review",
@@ -49,8 +50,8 @@ export const TUTORIALS: Tutorial[] = [
       "The due count on each tile shows what is ready to review now.",
       "Practise the misses replays the quiz questions you got wrong.",
     ],
-    poster: "/tutorials/activities-review-poster.svg",
-    videoSrc: null,
+    poster: "/tutorials/activities-review-poster.jpg",
+    videoSrc: "/tutorials/activities-review.mp4",
   },
   {
     id: "support",
@@ -61,8 +62,8 @@ export const TUTORIALS: Tutorial[] = [
       "Your progress stays in this browser. Use Backup & restore to move it.",
       "If the app helps you, you can support it on Ko-fi from the results screen or the menu.",
     ],
-    poster: "/tutorials/support-poster.svg",
-    videoSrc: null,
+    poster: "/tutorials/support-poster.jpg",
+    videoSrc: "/tutorials/support.mp4",
   },
 ];
 
@@ -74,6 +75,7 @@ export const TUTORIAL_DISMISSED_KEY = "spanish-tutorial-dismissed";
 export const TUTORIAL_OFFERED_KEY = "spanish-tutorial-offered";
 
 export const TUTORIALS_HREF = "/how-to-use#tutorials";
+export const tutorialHref = (id: TutorialId) => `/how-to-use#tutorial-${id}`;
 
 /** True when the welcome modal should open: not permanently dismissed and not
  * already offered in this session. Storage failures count as "don't show", so a
