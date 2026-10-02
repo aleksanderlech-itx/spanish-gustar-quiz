@@ -7,13 +7,31 @@ const { TUTORIALS, TUTORIAL_DISMISSED_KEY, TUTORIAL_OFFERED_KEY, shouldOfferTuto
 
 const storage = (entries = {}) => ({ getItem: (key) => entries[key] ?? null });
 
-test("four tutorials cover features, using the app, reviewing and Ko-fi support, each with an existing poster", async () => {
+test("four tutorials cover features, using the app, reviewing and Ko-fi support, each with a rendered clip and poster", async () => {
   assert.deepEqual(TUTORIALS.map((t) => t.id), ["features", "how-to-use", "activities-review", "support"]);
   assert.match(TUTORIALS.find((t) => t.id === "support").steps.join(" "), /Ko-fi/);
   for (const tutorial of TUTORIALS) {
     assert.ok(tutorial.steps.length > 0, `${tutorial.id} has written steps`);
     await access(new URL(`../public${tutorial.poster}`, import.meta.url));
+    await access(new URL(`../public${tutorial.videoSrc}`, import.meta.url));
   }
+});
+
+test("each tutorial clip animates exactly one scene per written step", async () => {
+  const source = await read("tutorial-videos/src/Tutorial.tsx");
+  for (const tutorial of TUTORIALS) {
+    const key = tutorial.id.includes("-") ? `"${tutorial.id}"` : tutorial.id;
+    const match = source.match(new RegExp(`\\n  ${key}: \\[([^\\]]*)\\]`));
+    assert.ok(match, `SCENES lists ${tutorial.id}`);
+    assert.equal(match[1].split(",").length, tutorial.steps.length, `${tutorial.id} scenes match its steps`);
+  }
+});
+
+test("help modals link to the matching video in a new tab", async () => {
+  const source = await read("app/help-modal.tsx");
+  assert.match(source, /href=\{tutorialHref\(content\.tutorial\)\} target="_blank"/);
+  assert.match(source, /Watch the video →/);
+  assert.match(await read("app/how-to-use/page.tsx"), /id=\{`tutorial-\$\{tutorial\.id\}`\}/);
 });
 
 test("welcome modal is offered at every app open until the learner opts out", () => {

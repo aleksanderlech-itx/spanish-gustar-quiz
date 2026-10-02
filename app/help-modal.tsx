@@ -1,10 +1,11 @@
 "use client";
 
 import { useRef } from "react";
+import { tutorialHref, type TutorialId } from "./tutorials";
 
 export type HelpTopic = "topic-detail" | "round" | "flashcards";
 
-type HelpContent = { title: string; points: string[]; guideHref: string };
+type HelpContent = { title: string; points: string[]; guideHref: string; tutorial: TutorialId };
 
 export const HELP_CONTENT: Record<HelpTopic, HelpContent> = {
   "topic-detail": {
@@ -17,6 +18,7 @@ export const HELP_CONTENT: Record<HelpTopic, HelpContent> = {
       "The ring shows how much of the topic you've practised; \"due\" counts questions ready to review.",
     ],
     guideHref: "/how-to-use#quizzes",
+    tutorial: "how-to-use",
   },
   round: {
     title: "During a round",
@@ -29,6 +31,7 @@ export const HELP_CONTENT: Record<HelpTopic, HelpContent> = {
       "Your score is saved when you finish the last question.",
     ],
     guideHref: "/how-to-use#quizzes",
+    tutorial: "how-to-use",
   },
   flashcards: {
     title: "Using the flashcards",
@@ -40,6 +43,7 @@ export const HELP_CONTENT: Record<HelpTopic, HelpContent> = {
       "The difficulty buttons filter which verbs come up.",
     ],
     guideHref: "/how-to-use#flashcards",
+    tutorial: "activities-review",
   },
 };
 
@@ -74,6 +78,7 @@ export default function HelpButton({ topic }: { topic: HelpTopic }) {
           {/* New tab: rounds and flashcard sessions live only in memory, so navigating away would lose them. */}
           <div className="help-dialog-guide-row">
             <a className="help-dialog-guide" href={content.guideHref} target="_blank" rel="noopener noreferrer" aria-describedby={`${titleId}-new-tab`}>Read the full guide →</a>
+            <a className="help-dialog-guide" href={tutorialHref(content.tutorial)} target="_blank" rel="noopener noreferrer" aria-describedby={`${titleId}-new-tab`}>Watch the video →</a>
             <p className="help-dialog-note" id={`${titleId}-new-tab`}>Opens in a new tab, so you won&apos;t lose your place here.</p>
           </div>
         </div>

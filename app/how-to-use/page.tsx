@@ -51,18 +51,18 @@ export default function HowToUsePage() {
       <section className={styles.tutorials} id="tutorials" aria-labelledby="tutorials-title">
         <p className={styles.eyebrow}>Watch</p>
         <h2 id="tutorials-title">Video tutorials</h2>
-        <p>Four short clips, each under a minute. The steps under each clip say the same thing in writing.</p>
+        <p>Four short clips, each under a minute. The steps under each clip say the same thing in writing, and the clips have no sound.</p>
         <div className={styles.tutorialGrid}>
           {TUTORIALS.map((tutorial) => (
-            <article className={styles.tutorialCard} key={tutorial.id} aria-labelledby={`tutorial-${tutorial.id}-title`}>
+            <article className={styles.tutorialCard} key={tutorial.id} id={`tutorial-${tutorial.id}`} aria-labelledby={`tutorial-${tutorial.id}-title`}>
               {tutorial.videoSrc ? (
-                <video className={styles.tutorialMedia} controls playsInline preload="none" poster={tutorial.poster} width={1080} height={1350}>
+                <video className={styles.tutorialMedia} controls playsInline preload="none" poster={tutorial.poster} width={720} height={900}>
                   <source src={tutorial.videoSrc} type="video/mp4" />
                 </video>
               ) : (
                 <div className={styles.tutorialPlaceholder}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img className={styles.tutorialMedia} src={tutorial.poster} alt="" width={1080} height={1350} loading="lazy" />
+                  <img className={styles.tutorialMedia} src={tutorial.poster} alt="" width={720} height={900} loading="lazy" />
                   <span className={styles.tutorialSoon}>Video coming soon</span>
                 </div>
               )}
