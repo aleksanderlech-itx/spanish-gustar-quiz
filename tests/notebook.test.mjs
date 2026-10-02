@@ -24,4 +24,5 @@ test("ruleLabelFor names the actual grammar point per quiz", () => {
   assert.equal(ruleLabelFor(baseQuestion, "ser-estar"), "Ser vs estar");
   assert.equal(ruleLabelFor({ ...baseQuestion, tense: "preterite" }, "preterite-imperfect"), "Preterite");
   assert.equal(ruleLabelFor({ ...baseQuestion, tense: "imperfect" }, "preterite-imperfect"), "Imperfect");
+  assert.equal(ruleLabelFor({ ...baseQuestion, infinitive: "people" }, "saber-conocer"), "Saber vs conocer: people");
 });

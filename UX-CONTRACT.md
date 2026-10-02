@@ -37,7 +37,9 @@ This contract records the observable behavior shared by the grammar quizzes and 
   fallback in Type mode: a measured `--keyboard-inset` lifts the footer above the on-screen
   keyboard on iOS Safari versions where `dvh` doesn't fully react to it.
 - The verb conjugation chart (`app/verb-chart.tsx`) only shows a real six-pronoun paradigm for
-  preterite/imperfect verbs, where that data exists. Gustar-pattern verbs are impersonal (they never
+  preterite/imperfect verbs and for saber/conocer, where that data exists. Saber vs conocer shows both
+  verbs side by side: present for most questions, preterite and imperfect for past-meaning questions
+  (supe = found out, conocí = met), and all three tenses from the topic page. Gustar-pattern verbs are impersonal (they never
   conjugate for "yo, tú..."), so they get a singular/plural block instead. The ser/estar quiz compares
   two different verbs rather than conjugating one, so its chart lists "ser" and "estar" directly. A
   regularity badge ("regular" / "irregular" / "spelling change") shows only for preterite/imperfect
@@ -53,7 +55,7 @@ This contract records the observable behavior shared by the grammar quizzes and 
   expands in place to a real, live panel rather than linking to a separate screen. Backup, restore,
   and reset all act on every quiz's and the flashcards' storage keys together, not one at a time.
 - The "Progress & history" panel also lists recent rounds (newest first, capped to 15, merged
-  across all five grammar quizzes) and a global weak-areas breakdown (`app/history.ts`), the same
+  across every grammar quiz) and a global weak-areas breakdown (`app/history.ts`), the same
   Verb/Tense/Agreement/Subject/Pronoun categorization the old per-quiz app used. Agreement/Subject/
   Pronoun are only recorded for gustar — those fields are constant or repurposed to hold the tense
   for ser/estar and preterite/imperfect, so recording them there would produce misleading
