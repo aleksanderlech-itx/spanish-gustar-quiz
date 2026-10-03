@@ -8,8 +8,8 @@ import { useTheme } from "./use-theme";
 import { orderBoard, type BoardTileProgress } from "./board";
 import { readStreakSummary, mergeActivityDays, dayKey, readFlashcardDaysReviewed, ACTIVITY_IDS, type StreakSummary } from "./streak";
 import { emptyQuizProgress, readQuizProgress, readDailyRoundProgress, type DailyRoundProgress, type QuizProgress } from "./quiz-progress";
-import { isQuizHiddenFromBoard, readQuizCompletion, markQuizCompleted } from "./quiz-completion";
-import type { QuizResult } from "./quiz-logic";
+import { clearQuizCompletion, isQuizHiddenFromBoard, readQuizCompletion, markQuizCompleted } from "./quiz-completion";
+import { isCompletionUnearned, type QuizResult } from "./quiz-logic";
 import { ROUND_SIZE as FLASHCARDS_ROUND_SIZE, MAX_BOX as MAX_FLASHCARD_BOX } from "./flashcards";
 import Drawer from "./drawer";
 import TutorialModal from "./tutorial-modal";
@@ -126,6 +126,17 @@ const readFlashcardProgress = (): { progress: Omit<BoardTileProgress, "id">; dai
   }
 };
 
+/** A quiz's stored round history; empty if it's missing or corrupt. */
+const readQuizHistory = (quizId: QuizId): QuizResult[] => {
+  try {
+    const raw = window.localStorage.getItem(QUIZ_CONFIG[quizId].storageKey);
+    const history = raw ? (JSON.parse(raw) as unknown) : [];
+    return Array.isArray(history) ? (history as QuizResult[]) : [];
+  } catch {
+    return [];
+  }
+};
+
 const dueBarFill = (percent: number) => (percent >= 90 ? "var(--sage)" : "var(--primary)");
 
 /**
@@ -188,6 +199,11 @@ export default function QuizSelector() {
     // Self-heal: a quiz fully mastered before this device ever recorded a completion timestamp
     // (e.g. its last outstanding miss was cleared by a review round, which used to skip the mark)
     // gets backfilled here, the same way the streak ledger backfills from history on every load.
+    // Undo completions an older version saved when only the filtered sentences ran out.
+    QUIZ_IDS.forEach((id) => {
+      const completedAt = readQuizCompletion(id);
+      if (completedAt && isCompletionUnearned(QUIZ_CONFIG[id].questions, readQuizHistory(id), completedAt)) clearQuizCompletion(id);
+    });
     QUIZ_IDS.forEach((id) => {
       const progress = progressById[id];
       if (progress.completed > 0 && progress.due === 0 && progress.percent === 100 && !readQuizCompletion(id)) {

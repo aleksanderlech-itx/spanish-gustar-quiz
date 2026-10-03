@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { availableQuestions, filterQuestions, getMissedIds, restartSelectedHistory, ruleForTense, scoreRound } from "../app/quiz-logic.ts";
+import { availableQuestions, filterQuestions, isCompletionUnearned, getMissedIds, restartSelectedHistory, ruleForTense, scoreRound } from "../app/quiz-logic.ts";
 
 const questions = [
   { id: 1, infinitive: "gustar", answer: "gusta", tense: "present", level: "basic" },
@@ -45,4 +45,18 @@ test("restarting a selected set preserves unrelated regular and all review histo
 test("learning guidance covers complex present-tense subjects", () => {
   assert.match(ruleForTense().body, /clause/);
   assert.match(ruleForTense().plural, /gustan/);
+});
+
+test("a completion saved before every sentence was answered is unearned, whatever the filters", () => {
+  const questions = [{ id: 1 }, { id: 2 }, { id: 3 }];
+  const round = (date, questionIds, mode = "regular") => ({ date, questionIds, missedIds: [], mode });
+  const completedAt = "2026-10-01T10:00:00.000Z";
+  // Only the filtered sentences 1 and 2 were answered when it was marked finished.
+  assert.equal(isCompletionUnearned(questions, [round("2026-10-01T09:00:00.000Z", [1, 2])], completedAt), true);
+  // Every sentence answered: a real completion.
+  assert.equal(isCompletionUnearned(questions, [round("2026-09-30T09:00:00.000Z", [1, 2]), round("2026-10-01T09:00:00.000Z", [3])], completedAt), false);
+  // Redone after completing: no regular rounds from before the completion are left, so it stays finished.
+  assert.equal(isCompletionUnearned(questions, [round("2026-10-02T09:00:00.000Z", [1])], completedAt), false);
+  // Review rounds don't count as answering the set.
+  assert.equal(isCompletionUnearned(questions, [round("2026-10-01T08:00:00.000Z", [1, 2]), round("2026-10-01T09:00:00.000Z", [3], "review")], completedAt), true);
 });

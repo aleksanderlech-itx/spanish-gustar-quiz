@@ -53,6 +53,19 @@ export const availableQuestions = <T extends QuizQuestion>(questions: T[], histo
   return questions.filter((question) => !used.has(question.id));
 };
 
+/**
+ * A quiz is finished only once every sentence in the full set has been answered, whatever the
+ * filters. Older versions marked it finished when just the filtered sentences ran out; this spots
+ * such a completion: regular rounds up to the completion date that don't cover the full set. A set
+ * redone after completing has no regular rounds left from before that date, so it's left alone.
+ */
+export const isCompletionUnearned = <T extends QuizQuestion>(questions: T[], history: QuizResult[], completedAt: string) => {
+  const before = history.filter((item) => item.mode !== "review" && item.date <= completedAt);
+  if (!before.length) return false;
+  const answered = new Set(before.flatMap((item) => item.questionIds));
+  return questions.some((question) => !answered.has(question.id));
+};
+
 /** Drops the finished regular-mode rounds so every sentence becomes available again, for an early voluntary redo. Review-mode (missed-practice) history is kept. */
 export const clearRegularHistory = (history: QuizResult[]) => history.filter((item) => item.mode === "review");
 
