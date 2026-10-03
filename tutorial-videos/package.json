@@ -7,6 +7,7 @@
     "assets": "node scripts/prepare-assets.mjs",
     "studio": "npm run assets && remotion studio src/index.ts",
     "render": "npm run assets && node scripts/render-all.mjs",
+    "render:lessons": "npm run assets && node scripts/render-lessons.mjs",
     "typecheck": "tsc -p ."
   },
   "dependencies": {
