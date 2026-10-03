@@ -69,6 +69,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
   const [typed, setTyped] = useState("");
   const [practiceMissed, setPracticeMissed] = useState(false);
   const [poolExhausted, setPoolExhausted] = useState(false);
+  const [fullSetDone, setFullSetDone] = useState(false);
   const [finished, setFinished] = useState(false);
   const [lastResult, setLastResult] = useState<Result | null>(null);
   const [missedRules, setMissedRules] = useState<string[]>([]);
@@ -85,6 +86,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
       pool = availableQuestions(filteredQuestions, sourceHistory, false);
     }
     if (!missedOnly && pool.length === 0) {
+      setFullSetDone(availableQuestions(questions, sourceHistory, false).length === 0);
       setPoolExhausted(true);
       return;
     }
@@ -150,6 +152,26 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
   };
 
   if (!hydrated) return <main className="loading">Preparing your quiz…</main>;
+
+  if (poolExhausted && !fullSetDone) {
+    return (
+      <main className="app-shell">
+        {standalone && <SiteHeader />}
+        <section className="completion-card" aria-live="polite">
+            <p className="eyebrow">Filtered sentences done</p>
+            <h2>You&apos;ve answered every sentence that matches your filters.</h2>
+            <p>
+              Change the filters on the topic page to keep going. The topic counts as finished once every
+              {" "}{quiz.title.replace(" Quiz", "")} sentence is done, so it stays in today&apos;s goal until then.
+            </p>
+            <div>
+              {missedIds.length > 0 && <button type="button" className="secondary" onClick={() => startRound(true, history)}>Practise the misses</button>}
+              <Link className="primary" href={quizPath(quizId)}>Back to topic</Link>
+            </div>
+        </section>
+      </main>
+    );
+  }
 
   if (poolExhausted) {
     const completedAt = readQuizCompletion(quizId);
@@ -253,8 +275,8 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
     };
     const next = updateHistory((stored) => [...stored, result]);
     recordActivityToday(quizId);
-    const filteredQuestions = filterQuestions(questions, readQuizFilters(quiz.filterKey));
-    const regularPoolExhausted = availableQuestions(filteredQuestions, next, false).length === 0;
+    // Finished means every sentence in the full set, whatever the filters.
+    const regularPoolExhausted = availableQuestions(questions, next, false).length === 0;
     // A regular round marks completion as soon as every sentence has been attempted once, misses
     // or not — that's the existing "you've completed every sentence" milestone. A review round
     // (practising misses) only reaches that milestone once it clears the last outstanding miss,

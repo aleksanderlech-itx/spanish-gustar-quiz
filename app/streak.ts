@@ -1,4 +1,4 @@
-import { readAllCompletions, repeatDueDate } from "./quiz-completion.ts";
+import { isQuizReinstated, isRepeatDue, readAllCompletions, repeatDueDate } from "./quiz-completion.ts";
 import { ACTIVITY_REGISTRY, type ActivityId } from "./activity-registry.ts";
 
 const STREAK_KEY = "spanish-quiz-streak-v2";
@@ -6,6 +6,9 @@ const STREAK_KEY = "spanish-quiz-streak-v2";
 export const STREAK_COUNTER_KEY = "spanish-quiz-streak-counter-v1";
 const DAY_MS = 24 * 60 * 60 * 1000;
 const FLASHCARD_DAYS_KEY = "spanish-flashcards-active-days-v1";
+/** dayKey -> the activities that day required when it was completed. Locks a completed day, so an
+ * activity that appears on the board afterwards (new, repeat due, shown again) only counts from the next day. */
+const COMPLETED_DAYS_KEY = "spanish-quiz-completed-days-v1";
 const DAY_LETTERS = ["Lu", "Ma", "Mi", "Ju", "Vi", "Sá", "Do"];
 
 /** Every activity the daily streak tracks, in registry order — sourced from the
@@ -42,11 +45,73 @@ const existedOn = (activity: ActivityId, day: string) => {
   return !introducedOn || day >= introducedOn;
 };
 
-const requiredActivitiesOn = (day: string, completions: Record<string, string>) =>
-  ACTIVITY_IDS.filter((id) => existedOn(id, day) && !isExemptOn(id, day, completions));
+type CompletedDays = Record<string, ActivityId[]>;
 
-const isDayComplete = (record: Set<ActivityId> | undefined, day: string, completions: Record<string, string>) =>
-  !!record && requiredActivitiesOn(day, completions).every((id) => record.has(id));
+const readCompletedDays = (): CompletedDays => {
+  if (typeof window === "undefined") return {};
+  try {
+    const raw = window.localStorage.getItem(COMPLETED_DAYS_KEY);
+    const parsed = raw ? (JSON.parse(raw) as unknown) : {};
+    const days: CompletedDays = {};
+    if (parsed && typeof parsed === "object") {
+      for (const [day, activities] of Object.entries(parsed as Record<string, unknown>)) {
+        if (Array.isArray(activities)) days[day] = activities.filter(isActivityId);
+      }
+    }
+    return days;
+  } catch {
+    return {};
+  }
+};
+
+const lockCompletedDay = (day: string, required: ActivityId[]) => {
+  const days = readCompletedDays();
+  if (days[day]) return;
+  days[day] = required;
+  try {
+    window.localStorage.setItem(COMPLETED_DAYS_KEY, JSON.stringify(days));
+  } catch {
+    // Storage can be unavailable (private mode, quota); the day just won't be locked this session.
+  }
+};
+
+/** What the daily goal is judged against: the completion dates, the current moment, and the locked days. */
+type GoalContext = { completions: Record<string, string>; now: Date; locked: CompletedDays };
+
+const goalContext = (now: Date, completions = readAllCompletions()): GoalContext =>
+  ({ completions, now, locked: readCompletedDays() });
+
+/** Mirrors isQuizHiddenFromBoard: a finished quiz is off the board until its repeat is due or it's shown again. */
+const isOnBoard = (activity: ActivityId, ctx: GoalContext) => {
+  if (activity === "flashcards") return true;
+  const completedAt = ctx.completions[activity];
+  return !completedAt || isRepeatDue(completedAt, ctx.now) || isQuizReinstated(activity);
+};
+
+/**
+ * A locked (already completed) day keeps the requirement it was completed against. Today
+ * requires exactly what's on the board — the same visibility rule the board uses. Past
+ * unlocked days fall back to the completion-date exemption, since the board's past state isn't stored.
+ */
+const requiredActivitiesOn = (day: string, ctx: GoalContext): ActivityId[] => {
+  const locked = ctx.locked[day];
+  if (locked) return locked;
+  const live = ACTIVITY_IDS.filter((id) => existedOn(id, day));
+  if (day === dayKey(ctx.now)) return live.filter((id) => isOnBoard(id, ctx));
+  return live.filter((id) => !isExemptOn(id, day, ctx.completions));
+};
+
+const isDayComplete = (record: Set<ActivityId> | undefined, day: string, ctx: GoalContext) =>
+  !!ctx.locked[day] || (!!record && requiredActivitiesOn(day, ctx).every((id) => record.has(id)));
+
+/** Locks today once it's complete, so its requirement can't grow afterwards. */
+const lockTodayIfComplete = (records: Records, ctx: GoalContext) => {
+  const today = dayKey(ctx.now);
+  if (ctx.locked[today] || !isDayComplete(records.get(today), today, ctx)) return;
+  const required = requiredActivitiesOn(today, ctx);
+  lockCompletedDay(today, required);
+  ctx.locked = { ...ctx.locked, [today]: required };
+};
 
 const readRecords = (): Records => {
   if (typeof window === "undefined") return new Map();
@@ -116,19 +181,19 @@ const isAlive = (counter: StreakCounter, now: Date) =>
  * ledger shows, and since the ledger has no times, treat its last day as completed at
  * 23:59:59 that day, the most generous start for the 24h window.
  */
-const seedCounter = (records: Records, now: Date, completions: Record<string, string>): StreakCounter => {
-  const count = currentStreak(records, now, completions);
+const seedCounter = (records: Records, ctx: GoalContext): StreakCounter => {
+  const count = streakFrom(records, ctx);
   if (!count) return { count: 0, lastCompletedAt: null, lastCompletedDay: null };
-  const last = new Date(now);
-  if (!isDayComplete(records.get(dayKey(last)), dayKey(last), completions)) last.setDate(last.getDate() - 1);
+  const last = new Date(ctx.now);
+  if (!isDayComplete(records.get(dayKey(last)), dayKey(last), ctx)) last.setDate(last.getDate() - 1);
   last.setHours(23, 59, 59, 0);
   return { count, lastCompletedAt: last.toISOString(), lastCompletedDay: dayKey(last) };
 };
 
-const readCounter = (records: Records, now: Date, completions: Record<string, string>): StreakCounter => {
+const readCounter = (records: Records, ctx: GoalContext): StreakCounter => {
   const stored = readStoredCounter();
   if (stored) return stored;
-  const seeded = seedCounter(records, now, completions);
+  const seeded = seedCounter(records, ctx);
   writeCounter(seeded);
   return seeded;
 };
@@ -137,13 +202,15 @@ const readCounter = (records: Records, now: Date, completions: Record<string, st
 export const recordActivityToday = (activity: ActivityId, now = new Date()) => {
   if (typeof window === "undefined") return;
   const today = dayKey(now);
-  const completions = readAllCompletions();
+  const ctx = goalContext(now);
   // Seed from the ledger as it stood before this round, so this round's day isn't counted twice.
-  const counter = readCounter(readRecords(), now, completions);
+  const counter = readCounter(readRecords(), ctx);
   mergeActivityDays([{ activity, day: today }]);
   const alive = isAlive(counter, now);
+  const records = readRecords();
+  lockTodayIfComplete(records, ctx);
 
-  if (counter.lastCompletedDay !== today && isDayComplete(readRecords().get(today), today, completions)) {
+  if (counter.lastCompletedDay !== today && isDayComplete(records.get(today), today, ctx)) {
     writeCounter({ count: alive ? counter.count + 1 : 1, lastCompletedAt: now.toISOString(), lastCompletedDay: today });
   } else if (!alive && counter.count !== 0) {
     writeCounter({ ...counter, count: 0 });
@@ -205,11 +272,14 @@ export const mergeActivityDays = (entries: Array<{ activity: ActivityId; day: st
 
 /** Consecutive days ending today (or yesterday, if today isn't fully done yet) where every required
  * activity was completed. Ledger-based; only used to seed the stored counter. */
-export const currentStreak = (records: Records, today = new Date(), completions = readAllCompletions()): number => {
-  const cursor = new Date(today);
-  if (!isDayComplete(records.get(dayKey(cursor)), dayKey(cursor), completions)) cursor.setDate(cursor.getDate() - 1);
+export const currentStreak = (records: Records, today = new Date(), completions = readAllCompletions()): number =>
+  streakFrom(records, goalContext(today, completions));
+
+const streakFrom = (records: Records, ctx: GoalContext): number => {
+  const cursor = new Date(ctx.now);
+  if (!isDayComplete(records.get(dayKey(cursor)), dayKey(cursor), ctx)) cursor.setDate(cursor.getDate() - 1);
   let streak = 0;
-  while (isDayComplete(records.get(dayKey(cursor)), dayKey(cursor), completions)) {
+  while (isDayComplete(records.get(dayKey(cursor)), dayKey(cursor), ctx)) {
     streak += 1;
     cursor.setDate(cursor.getDate() - 1);
   }
@@ -219,7 +289,11 @@ export const currentStreak = (records: Records, today = new Date(), completions 
 export type WeekDay = { letter: string; status: "done" | "today" | "future"; doneCount: number; total: number };
 
 /** Monday-start week containing `today`, for the streak panel's 7 day bars. */
-export const weekBars = (records: Records, today = new Date(), completions = readAllCompletions()): WeekDay[] => {
+export const weekBars = (records: Records, today = new Date(), completions = readAllCompletions()): WeekDay[] =>
+  weekFrom(records, goalContext(today, completions));
+
+const weekFrom = (records: Records, ctx: GoalContext): WeekDay[] => {
+  const today = ctx.now;
   const mondayOffset = (today.getDay() + 6) % 7;
   const monday = new Date(today);
   monday.setDate(today.getDate() - mondayOffset);
@@ -230,8 +304,8 @@ export const weekBars = (records: Records, today = new Date(), completions = rea
     date.setDate(monday.getDate() + index);
     const key = dayKey(date);
     const record = records.get(key);
-    const required = requiredActivitiesOn(key, completions);
-    const status: WeekDay["status"] = key === todayKey ? "today" : isDayComplete(record, key, completions) ? "done" : "future";
+    const required = requiredActivitiesOn(key, ctx);
+    const status: WeekDay["status"] = key === todayKey ? "today" : isDayComplete(record, key, ctx) ? "done" : "future";
     // Count only required activities, so practising an exempt (already completed) quiz doesn't fill the bar.
     const doneCount = required.filter((id) => record?.has(id)).length;
     return { letter: DAY_LETTERS[index], status, doneCount, total: required.length };
@@ -248,16 +322,17 @@ export type StreakSummary = {
 
 export const readStreakSummary = (today = new Date()): StreakSummary => {
   const records = readRecords();
-  const completions = readAllCompletions();
+  const ctx = goalContext(today);
   const todayKey = dayKey(today);
   const todayRecord = records.get(todayKey);
-  const requiredToday = requiredActivitiesOn(todayKey, completions);
-  const counter = readCounter(records, today, completions);
+  const counter = readCounter(records, ctx);
+  lockTodayIfComplete(records, ctx);
+  const requiredToday = requiredActivitiesOn(todayKey, ctx);
   return {
     streak: isAlive(counter, today) ? counter.count : 0,
-    completedToday: isDayComplete(todayRecord, todayKey, completions),
+    completedToday: isDayComplete(todayRecord, todayKey, ctx),
     todayDone: requiredToday.filter((id) => todayRecord?.has(id)).length,
     todayTotal: requiredToday.length,
-    week: weekBars(records, today, completions),
+    week: weekFrom(records, ctx),
   };
 };

@@ -197,3 +197,44 @@ test("the banked count isn't recomputed from the ledger, so a newly required act
   store.set(LEDGER_KEY, JSON.stringify({})); // ledger shows nothing, as if every past day were now incomplete
   assert.equal(readStreakSummary(hoursAfter(monday, 2)).streak, 9);
 });
+
+// --- Daily goal = every activity on the board; a completed day stays completed ---
+
+const COMPLETIONS_KEY = "spanish-quiz-completions-v1";
+const REINSTATED_KEY = "spanish-quiz-reinstated-v1";
+
+test("today's goal counts a finished quiz that's shown on the board again", () => {
+  const monday = at("2026-10-05T10:00:00");
+  freshStart(4, monday);
+  const quiz = requiredOn(monday).find((id) => id !== "flashcards");
+  store.set(COMPLETIONS_KEY, JSON.stringify({ [quiz]: at("2026-10-01T10:00:00").toISOString() }));
+  assert.equal(readStreakSummary(monday).todayTotal, requiredOn(monday).length - 1); // off the board: not required
+  store.set(REINSTATED_KEY, JSON.stringify({ [quiz]: true }));
+  assert.equal(readStreakSummary(monday).todayTotal, requiredOn(monday).length); // back on the board: required
+});
+
+test("an activity that appears after the day is completed doesn't undo it, and counts from the next day", () => {
+  const monday = at("2026-10-05T10:00:00");
+  freshStart(4, at("2026-10-04T22:00:00"));
+  const quiz = requiredOn(monday).find((id) => id !== "flashcards");
+  store.set(COMPLETIONS_KEY, JSON.stringify({ [quiz]: at("2026-10-01T10:00:00").toISOString() }));
+  requiredOn(monday).filter((id) => id !== quiz).forEach((id) => recordActivityToday(id, monday));
+  let summary = readStreakSummary(monday);
+  assert.equal(summary.completedToday, true);
+  assert.equal(summary.streak, 5);
+
+  // Later the same day the finished quiz is put back on the board.
+  store.set(REINSTATED_KEY, JSON.stringify({ [quiz]: true }));
+  const later = hoursAfter(monday, 2);
+  summary = readStreakSummary(later);
+  assert.equal(summary.completedToday, true);
+  assert.equal(summary.todayDone, summary.todayTotal);
+  assert.equal(summary.week[0].status, "today");
+  assert.equal(summary.week[0].doneCount, summary.week[0].total);
+
+  // The next day it's required like any other activity on the board.
+  const tuesday = hoursAfter(monday, 24);
+  summary = readStreakSummary(tuesday);
+  assert.equal(summary.todayTotal, requiredOn(tuesday).length);
+  assert.equal(summary.week[0].status, "done");
+});
