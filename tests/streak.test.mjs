@@ -82,6 +82,18 @@ test("weekBars reports partial completion counts for today", () => {
   assert.equal(todayBar.total, liveThen.length);
 });
 
+test("weekBars doesn't count a practised exempt activity toward today's bar", () => {
+  const today = new Date("2026-08-25T12:00:00");
+  const exempt = ACTIVITY_IDS.find((id) => id !== "flashcards");
+  // Fully completed yesterday, so it's exempt today; practising it again must not fill the bar.
+  const completions = { [exempt]: new Date("2026-08-24T12:00:00").toISOString() };
+  const done = ACTIVITY_IDS.filter((id) => id !== "flashcards");
+  const records = new Map([[dayKey(today), new Set(done)]]);
+  const todayBar = weekBars(records, today, completions).find((day) => day.status === "today");
+  assert.ok(todayBar.doneCount < todayBar.total);
+  assert.equal(todayBar.doneCount, todayBar.total - 1); // only flashcards is still missing
+});
+
 test("a newly introduced activity is not required on days before it went live", () => {
   const added = ACTIVITY_REGISTRY.find((entry) => entry.introducedOn);
   assert.ok(added, "expected at least one activity with an introducedOn date");

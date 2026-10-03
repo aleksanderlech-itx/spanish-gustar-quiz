@@ -230,9 +230,11 @@ export const weekBars = (records: Records, today = new Date(), completions = rea
     date.setDate(monday.getDate() + index);
     const key = dayKey(date);
     const record = records.get(key);
-    const total = requiredActivitiesOn(key, completions).length;
+    const required = requiredActivitiesOn(key, completions);
     const status: WeekDay["status"] = key === todayKey ? "today" : isDayComplete(record, key, completions) ? "done" : "future";
-    return { letter: DAY_LETTERS[index], status, doneCount: record?.size ?? 0, total };
+    // Count only required activities, so practising an exempt (already completed) quiz doesn't fill the bar.
+    const doneCount = required.filter((id) => record?.has(id)).length;
+    return { letter: DAY_LETTERS[index], status, doneCount, total: required.length };
   });
 };
 
