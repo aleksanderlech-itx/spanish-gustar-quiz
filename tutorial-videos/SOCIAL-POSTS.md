@@ -52,12 +52,12 @@ pixabay.com/music/salsa-old-school-salsa-03-499570/
 
 ### Reel — `reflexive-verbs-reel.mp4`
 
-**Title:** Me, te, se in 30 seconds
+**Title:** Me, te, se in 35 seconds
 
 **Content:**
 
 ```
-Me, te, se in 30 seconds. Can you fill the gap before the answer appears?
+Me, te, se in 35 seconds. Can you fill the gap before the answer appears?
 
 New activity: 150 reflexive-verb sentences, free at spanish-quizz.es
 
@@ -103,7 +103,7 @@ pixabay.com/music/salsa-old-school-salsa-03-499570/
 
 ### Reel — `present-perfect-reel.mp4`
 
-**Title:** Have you ever…? The present perfect in 30 seconds
+**Title:** Have you ever…? The present perfect in 35 seconds
 
 **Content:**
 

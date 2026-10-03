@@ -45,7 +45,7 @@ Renders are written to `out/`, which is not committed. Two copies are:
 
 ## Activity launch lessons
 
-`src/lessons/` holds a 30-second grammar mini-lesson for each new activity in the roadmap
+`src/lessons/` holds a 35-second grammar mini-lesson for each new activity in the roadmap
 (issue #65), as `lesson-<id>-reel` (9:16) and `lesson-<id>-feed` (4:5). The slides live in
 `src/lessons/content.ts`; the post titles, captions and hashtags are in
 [SOCIAL-POSTS.md](SOCIAL-POSTS.md).
@@ -56,7 +56,8 @@ npm run render:lessons -- reflexive-verbs  # only the listed lessons
 npm run render:lessons -- --stills         # PNG frames in out/lessons/stills/
 ```
 
-`npm run render` skips the lessons.
+`npm run render` skips the lessons. `exports/activity-launch-videos.zip` holds all six clips for upload; rebuild it after re-rendering with
+`zip -0 -j exports/activity-launch-videos.zip out/lessons/*.mp4`.
 
 ## Changing a tutorial
 
