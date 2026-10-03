@@ -126,7 +126,7 @@ The timeout defaults can be overridden for a controlled canary with `SITES_INSTA
 
 ## Design
 
-Design system: see [design-system/readme.md](design-system/readme.md).
+Design system: see [design-system/README.md](design-system/README.md) (also published as an [artifact](https://claude.ai/artifact/4F15iyJg272GyLd9uME4XW)). Runtime ownership and behavior rules live in [DESIGN.md](DESIGN.md).
 
 ## Learn More
 

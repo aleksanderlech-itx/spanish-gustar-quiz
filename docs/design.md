@@ -117,8 +117,8 @@ spacing:
 > [Spanish Editorial Learning light target](design-system-gpt/README.md). Its palette,
 > hard shadows, grain, wobbly lines, 3D flip and layout measurements do not govern
 > current work. See [root DESIGN.md](../DESIGN.md) for runtime ownership and the
-> current product contract. The older [design-system](../design-system/readme.md)
-> is retained for comparison; its token files are not a current runtime mirror.
+> current product contract. [design-system](../design-system/README.md) now mirrors
+> the runtime tokens and components.
 
 ## Brand & Style
 
