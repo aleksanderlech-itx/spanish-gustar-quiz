@@ -353,7 +353,7 @@ export default function QuizSelector() {
               <span style={{ width: `${featuredItem.percent}%` }} />
             </div>
             <span className="board-icon board-icon-pinned"><BoardIcon id={featuredItem.id} /></span>
-            <span className="board-tile-pinned-cta" aria-hidden="true">{featuredItem.completed > 0 ? "Continue practice" : "Start practice"} →</span>
+            <span className="board-tile-pinned-cta" aria-hidden="true">{featuredItem.completed > 0 ? "Continue practice" : "Start practice"}</span>
           </a>
         )}
 
