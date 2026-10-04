@@ -35,6 +35,7 @@ Rules:
   too.
 - Pin the comment answering the quiz question on the feed post a day after posting.
 - The clips are in `exports/activity-launch-videos.zip`.
+- `launch-posts.ics` holds the six posting slots, each with its caption and a reminder an hour before. Import it into Google Calendar. After changing a date or caption here, rebuild it with `node scripts/build-calendar.mjs`.
 
 ---
 

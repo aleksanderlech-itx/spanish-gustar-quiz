@@ -1,0 +1,193 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Spanish Quizzes//Launch posts//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Spanish Quizzes launch posts
+X-WR-TIMEZONE:Europe/Madrid
+BEGIN:VTIMEZONE
+TZID:Europe/Madrid
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:reflexive-verbs-reel-20261019@spanish-quizz.es
+DTSTAMP:20261004T160000Z
+DTSTART;TZID=Europe/Madrid:20261019T120000
+DTEND;TZID=Europe/Madrid:20261019T123000
+SUMMARY:Post Reel: Reflexive verbs
+DESCRIPTION:Publish on Instagram and Facebook: Reel.\nOnly if reflexive ver
+ bs is live on spanish-quizz.es. If the release slipped\, move this event b
+ y the same number of days.\n\nClip: reflexive-verbs-reel.mp4 (tutorial-vid
+ eos/exports/activity-launch-videos.zip)\nTitle: Me\, te\, se in 35 seconds
+ \n\nCaption:\nMe\, te\, se in 35 seconds. Can you fill the gap before the 
+ answer appears?\n\nNew activity: 150 reflexive-verb sentences\, free at sp
+ anish-quizz.es\n\n🎵 Music: "Old School Salsa 03" by vjgalaxy from Pixab
+ ay\npixabay.com/music/salsa-old-school-salsa-03-499570/\n\n#LearnSpanish #
+ SpanishGrammar #ReflexiveVerbs #SpanishTips #SpanishReels #AprenderEspaño
+ l #LanguageLearning #StudySpanish
+URL:https://spanish-quizz.es
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Post the Reflexive verbs Reel in 1 hour
+TRIGGER:-PT1H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:reflexive-verbs-feed-20261022@spanish-quizz.es
+DTSTAMP:20261004T160000Z
+DTSTART;TZID=Europe/Madrid:20261022T120000
+DTEND;TZID=Europe/Madrid:20261022T123000
+SUMMARY:Post feed post: Reflexive verbs
+DESCRIPTION:Publish on Instagram and Facebook: Feed post.\nOnly if reflexiv
+ e verbs is live on spanish-quizz.es. If the release slipped\, move this ev
+ ent by the same number of days.\n\nClip: reflexive-verbs-feed.mp4 (tutoria
+ l-videos/exports/activity-launch-videos.zip)\nTitle: New activity: Reflexi
+ ve verbs\n\nCaption:\nNew on Spanish Quizzes: reflexive verbs.\n\nMe levan
+ to\, te duchas\, se acuerda. The pronoun always matches the subject. It go
+ es before a conjugated verb\, or attaches to an infinitive or a gerund: vo
+ y a ducharme\, estoy duchándome.\n\nSome verbs change meaning with se:\nl
+ lamar (to call) → llamarse (to be called)\nir (to go) → irse (to leave
+ )\ndormir (to sleep) → dormirse (to fall asleep)\n\n150 practice sentenc
+ es in Choose or Type mode\, each with an English translation and an explan
+ ation. Free\, no sign-up.\n\nPractise now at spanish-quizz.es\n\nQuick che
+ ck: Nosotros ___ acostamos tarde. Answer in the comments.\n\n🎵 Music: "
+ Old School Salsa 03" by vjgalaxy from Pixabay\npixabay.com/music/salsa-old
+ -school-salsa-03-499570/\n\n#LearnSpanish #SpanishGrammar #ReflexiveVerbs 
+ #VerbosReflexivos #SpanishLessons #SpanishPractice #AprenderEspañol #Span
+ ishQuiz #LanguageLearning #StudySpanish
+URL:https://spanish-quizz.es
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Post the Reflexive verbs feed post in 1 hour
+TRIGGER:-PT1H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:present-perfect-reel-20261102@spanish-quizz.es
+DTSTAMP:20261004T160000Z
+DTSTART;TZID=Europe/Madrid:20261102T120000
+DTEND;TZID=Europe/Madrid:20261102T123000
+SUMMARY:Post Reel: Present perfect
+DESCRIPTION:Publish on Instagram and Facebook: Reel.\nOnly if present perfe
+ ct is live on spanish-quizz.es. If the release slipped\, move this event b
+ y the same number of days.\n\nClip: present-perfect-reel.mp4 (tutorial-vid
+ eos/exports/activity-launch-videos.zip)\nTitle: Have you ever…? The pres
+ ent perfect in 35 seconds\n\nCaption:\nHe\, has\, ha + participle\, and th
+ e six irregulars to learn by heart. Can you fill the gap before the answer
+  appears?\n\nNew activity: 150 present-perfect sentences\, free at spanish
+ -quizz.es\n\n🎵 Music: "Old School Salsa 03" by vjgalaxy from Pixabay\np
+ ixabay.com/music/salsa-old-school-salsa-03-499570/\n\n#LearnSpanish #Spani
+ shGrammar #PresentPerfect #SpanishTips #SpanishReels #AprenderEspañol #La
+ nguageLearning #StudySpanish
+URL:https://spanish-quizz.es
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Post the Present perfect Reel in 1 hour
+TRIGGER:-PT1H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:present-perfect-feed-20261105@spanish-quizz.es
+DTSTAMP:20261004T160000Z
+DTSTART;TZID=Europe/Madrid:20261105T120000
+DTEND;TZID=Europe/Madrid:20261105T123000
+SUMMARY:Post feed post: Present perfect
+DESCRIPTION:Publish on Instagram and Facebook: Feed post.\nOnly if present 
+ perfect is live on spanish-quizz.es. If the release slipped\, move this ev
+ ent by the same number of days.\n\nClip: present-perfect-feed.mp4 (tutoria
+ l-videos/exports/activity-launch-videos.zip)\nTitle: New activity: Present
+  perfect\n\nCaption:\nNew on Spanish Quizzes: the present perfect.\n\nHe h
+ ablado\, has comido\, ha vivido. Use haber + the past participle for what 
+ you have done.\n\n-ar verbs → -ado (hablado)\n-er and -ir verbs → -ido
+  (comido\, vivido)\n\nThe irregular ones to learn: hecho\, dicho\, visto\,
+  escrito\, vuelto\, abierto.\n\nTwo traps: the helper verb is always haber
+ \, never tener\, and the participle never changes (ella ha comido).\n\n150
+  practice sentences in Choose or Type mode\, each with an English translat
+ ion and an explanation. Free\, no sign-up.\n\nPractise now at spanish-quiz
+ z.es\n\nQuick check: ¿Alguna vez ___ estado en México? Answer in the com
+ ments.\n\n🎵 Music: "Old School Salsa 03" by vjgalaxy from Pixabay\npixa
+ bay.com/music/salsa-old-school-salsa-03-499570/\n\n#LearnSpanish #SpanishG
+ rammar #PresentPerfect #PretéritoPerfecto #SpanishLessons #SpanishPractic
+ e #AprenderEspañol #SpanishQuiz #LanguageLearning #StudySpanish
+URL:https://spanish-quizz.es
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Post the Present perfect feed post in 1 hour
+TRIGGER:-PT1H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:present-continuous-reel-20261116@spanish-quizz.es
+DTSTAMP:20261004T160000Z
+DTSTART;TZID=Europe/Madrid:20261116T120000
+DTEND;TZID=Europe/Madrid:20261116T123000
+SUMMARY:Post Reel: Present continuous
+DESCRIPTION:Publish on Instagram and Facebook: Reel.\nOnly if present conti
+ nuous is live on spanish-quizz.es. If the release slipped\, move this even
+ t by the same number of days.\n\nClip: present-continuous-reel.mp4 (tutori
+ al-videos/exports/activity-launch-videos.zip)\nTitle: What are you doing r
+ ight now? Estar + gerund\n\nCaption:\nEstoy\, estás\, está + -ando / -ie
+ ndo\, and where the pronoun goes. Can you fill the gap before the answer a
+ ppears?\n\nNew activity: 150 present-continuous sentences\, free at spanis
+ h-quizz.es\n\n🎵 Music: "Old School Salsa 03" by vjgalaxy from Pixabay\n
+ pixabay.com/music/salsa-old-school-salsa-03-499570/\n\n#LearnSpanish #Span
+ ishGrammar #PresentContinuous #SpanishTips #SpanishReels #AprenderEspañol
+  #LanguageLearning #StudySpanish
+URL:https://spanish-quizz.es
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Post the Present continuous Reel in 1 hour
+TRIGGER:-PT1H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:present-continuous-feed-20261119@spanish-quizz.es
+DTSTAMP:20261004T160000Z
+DTSTART;TZID=Europe/Madrid:20261119T120000
+DTEND;TZID=Europe/Madrid:20261119T123000
+SUMMARY:Post feed post: Present continuous
+DESCRIPTION:Publish on Instagram and Facebook: Feed post.\nOnly if present 
+ continuous is live on spanish-quizz.es. If the release slipped\, move this
+  event by the same number of days.\n\nClip: present-continuous-feed.mp4 (t
+ utorial-videos/exports/activity-launch-videos.zip)\nTitle: New activity: P
+ resent continuous\n\nCaption:\nNew on Spanish Quizzes: the present continu
+ ous.\n\nEstoy hablando\, estás comiendo\, está viviendo. Use estar + the
+  gerund for what is happening right now.\n\n-ar verbs → -ando (hablando)
+ \n-er and -ir verbs → -iendo (comiendo\, viviendo)\n\nThe irregular ones
+  to learn: leyendo\, durmiendo\, pidiendo\, diciendo\, yendo\, oyendo.\n\n
+ Pronouns go before estar or attach to the gerund\, with an accent: lo esto
+ y leyendo = estoy leyéndolo.\n\n150 practice sentences in Choose or Type 
+ mode\, each with an English translation and an explanation. Free\, no sign
+ -up.\n\nPractise now at spanish-quizz.es\n\nQuick check: Los niños ___ du
+ rmiendo. Answer in the comments.\n\n🎵 Music: "Old School Salsa 03" by v
+ jgalaxy from Pixabay\npixabay.com/music/salsa-old-school-salsa-03-499570/\
+ n\n#LearnSpanish #SpanishGrammar #PresentContinuous #PresenteProgresivo #S
+ panishLessons #SpanishPractice #AprenderEspañol #SpanishQuiz #LanguageLea
+ rning #StudySpanish
+URL:https://spanish-quizz.es
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Post the Present continuous feed post in 1 hour
+TRIGGER:-PT1H
+END:VALARM
+END:VEVENT
+END:VCALENDAR
