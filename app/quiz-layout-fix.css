@@ -823,13 +823,6 @@ body {
   box-shadow: none;
 }
 
-.board-tile-quiet {
-  border-radius: 14px;
-  border-color: var(--line);
-  background: var(--panel-soft);
-  box-shadow: none;
-}
-
 .board-grid .board-tile {
   display: flex;
   align-items: center;
@@ -904,16 +897,6 @@ body {
 
 .board-icon-pinned .card-front {
   fill: var(--primary-soft);
-}
-
-.board-icon-quiet {
-  width: 44px;
-  height: 52px;
-  background: var(--surface);
-}
-
-:root[data-theme="dark"] .board-icon-quiet {
-  background: var(--surface);
 }
 
 .board-tile-pill {
@@ -996,13 +979,6 @@ body {
   font-family: var(--font-body);
 }
 
-.board-tile-quiet h2 {
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1.3;
-  font-family: var(--font-body);
-}
-
 .board-tile-meta,
 .board-tile-note {
   margin: 0;
@@ -1028,11 +1004,6 @@ body {
   display: block;
   height: 100%;
   background: var(--primary);
-}
-
-.board-bar-quiet {
-  height: 6px;
-  border: 2px solid var(--line);
 }
 
 /* Board home, desktop — the mobile board (hamburger + full-bleed streak strip +
