@@ -855,6 +855,21 @@ body {
   background: var(--primary-soft);
 }
 
+/* Both actions share one row on phones: smaller text and padding so
+   "Continue practice" + "Pick another topic" fit from ~360px up. */
+@media (max-width: 767px) {
+  .board-tile-pinned-actions {
+    gap: 8px;
+  }
+
+  .board-tile-pinned-actions .board-tile-pinned-cta,
+  .board-tile-pinned-alt {
+    padding: 10px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+}
+
 .board-section-head-secondary {
   margin-top: 4px;
   scroll-margin-top: 16px;
