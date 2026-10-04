@@ -24,6 +24,7 @@ mkdirSync(`${out}stills`, { recursive: true });
 console.log("Bundling…");
 const serveUrl = await bundle({ entryPoint: new URL("../src/index.ts", import.meta.url).pathname });
 const compositions = (await getCompositions(serveUrl, { browserExecutable }))
+  .filter((c) => !c.id.startsWith("lesson-")) // the lesson videos have their own script
   .filter((c) => only.length === 0 || only.includes(c.defaultProps.id))
   .filter((c) => !appOnly || c.defaultProps.format === "app");
 
