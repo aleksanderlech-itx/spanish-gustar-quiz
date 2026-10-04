@@ -235,6 +235,11 @@ export default function QuizSelector() {
   const pinnedItem = board.find((item) => item.pinned);
   const featuredItem = pinnedItem ?? board[0];
   const restItems = board.filter((item) => item.id !== featuredItem?.id);
+
+  const scrollToAllTopics = () => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.getElementById("all-topics")?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+  };
   const totalLogged = items.reduce((sum, item) => sum + item.completed, 0);
 
   if (!ready || !open) return null;
@@ -327,7 +332,7 @@ export default function QuizSelector() {
         </div>
 
         {featuredItem && (
-          <a className="board-tile board-tile-pinned" href={featuredItem.href}>
+          <div className="board-tile board-tile-pinned">
             <div className="board-feature-intro">
               <p className="eyebrow">Keep learning</p>
               <h2>Make Spanish part of your day.</h2>
@@ -353,12 +358,17 @@ export default function QuizSelector() {
               <span style={{ width: `${featuredItem.percent}%` }} />
             </div>
             <span className="board-icon board-icon-pinned"><BoardIcon id={featuredItem.id} /></span>
-            <span className="board-tile-pinned-cta" aria-hidden="true">{featuredItem.completed > 0 ? "Continue practice" : "Start practice"}</span>
-          </a>
+            <div className="board-tile-pinned-actions">
+              <a className="board-tile-pinned-cta" href={featuredItem.href}>{featuredItem.completed > 0 ? "Continue practice" : "Start practice"}</a>
+              {restItems.length > 0 && (
+                <button type="button" className="board-tile-pinned-alt" onClick={scrollToAllTopics}>Pick another topic</button>
+              )}
+            </div>
+          </div>
         )}
 
         {restItems.length > 0 && (
-          <div className="board-section-head board-section-head-secondary">
+          <div id="all-topics" className="board-section-head board-section-head-secondary">
             <h2 className="eyebrow">All topics</h2>
           </div>
         )}
