@@ -812,8 +812,67 @@ body {
   margin-top: 16px;
 }
 
+/* The CTA link's ::after covers the whole tile so the tile stays one big
+   click target; the secondary button sits above that overlay. */
+.board-tile-pinned-cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.board-tile-pinned-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.board-tile-pinned-actions .board-tile-pinned-cta {
+  margin-top: 0;
+  text-decoration: none;
+}
+
+.board-tile-pinned-alt {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.board-tile-pinned-alt:hover {
+  background: var(--primary-soft);
+}
+
+/* Both actions share one row on phones: smaller text and padding so
+   "Continue practice" + "Pick another topic" fit from ~360px up. */
+@media (max-width: 767px) {
+  .board-tile-pinned-actions {
+    gap: 8px;
+  }
+
+  .board-tile-pinned-actions .board-tile-pinned-cta,
+  .board-tile-pinned-alt {
+    padding: 10px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+}
+
 .board-section-head-secondary {
   margin-top: 4px;
+  scroll-margin-top: 16px;
 }
 
 .board-tile-due {
@@ -1100,10 +1159,6 @@ body {
     cursor: pointer;
   }
 
-  .board-home .board-section-head-primary {
-    display: none;
-  }
-
   .board-home .board-page-head {
     display: flex;
     align-items: flex-end;
@@ -1113,7 +1168,7 @@ body {
   }
 
   .board-home .board-page-title {
-    margin: 6px 0 0;
+    margin: 0;
     font-family: var(--font-display);
     font-size: 28px;
     font-weight: 600;
@@ -1196,6 +1251,10 @@ body {
     font-family: var(--font-body);
     font-size: 16px;
     font-weight: 600;
+  }
+
+  .board-home .board-tile-pinned-alt {
+    padding: 12px 18px;
   }
 
   /* Fixed 2-up rather than auto-fill: with the content column free to grow
