@@ -382,8 +382,8 @@ export default function QuizSelector() {
           ) : null;
 
           return (
-            <a className={`board-tile board-tile-${isDue ? "due" : "quiet"}`} href={item.href} key={item.id}>
-              <span className={`board-icon${isDue ? "" : " board-icon-quiet"}`}><BoardIcon id={item.id} /></span>
+            <a className="board-tile board-tile-due" href={item.href} key={item.id}>
+              <span className="board-icon"><BoardIcon id={item.id} /></span>
               <div className="board-tile-content">
                 <div className="board-tile-content-header">
                   <h2>{item.title}</h2>
@@ -399,7 +399,7 @@ export default function QuizSelector() {
                 <span className="board-tile-note">
                   {isDue ? `${item.mastered} of ${item.total} mastered` : `${item.completed} of ${item.total} ${item.noun}s studied`}
                 </span>
-                <div className={`board-bar${isDue ? "" : " board-bar-quiet"}`} aria-hidden="true">
+                <div className="board-bar" aria-hidden="true">
                   <span style={{ width: `${tilePercent}%`, background: isDue ? undefined : dueBarFill(item.percent) }} />
                 </div>
               </div>
