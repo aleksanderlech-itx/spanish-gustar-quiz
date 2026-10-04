@@ -1100,10 +1100,6 @@ body {
     cursor: pointer;
   }
 
-  .board-home .board-section-head-primary {
-    display: none;
-  }
-
   .board-home .board-page-head {
     display: flex;
     align-items: flex-end;
@@ -1113,7 +1109,7 @@ body {
   }
 
   .board-home .board-page-title {
-    margin: 6px 0 0;
+    margin: 0;
     font-family: var(--font-display);
     font-size: 28px;
     font-weight: 600;
