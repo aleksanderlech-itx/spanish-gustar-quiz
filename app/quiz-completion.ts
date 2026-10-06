@@ -2,6 +2,8 @@ import type { QuizId } from "./quiz-config";
 
 const COMPLETION_KEY = "spanish-quiz-completions-v1";
 const REINSTATED_KEY = "spanish-quiz-reinstated-v1";
+/** Which quizzes are finished and which are shown on the board again, for backup/restore. */
+export const QUIZ_COMPLETION_STORAGE_KEYS = [COMPLETION_KEY, REINSTATED_KEY];
 
 type Completions = Record<string, string>;
 type Reinstated = Record<string, boolean>;

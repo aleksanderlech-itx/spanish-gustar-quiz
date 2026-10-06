@@ -154,7 +154,7 @@ export default function HowToUsePage() {
                 <dt>due</dt><dd>Questions or cards ready to practise now.</dd>
                 <dt>done / studied</dt><dd>Material you have already practised.</dd>
                 <dt>Percentage</dt><dd>Your progress through that activity.</dd>
-                <dt>Streak and week</dt><dd>A view of recent practice consistency, not a grade. A day counts once every activity is done; complete the next day within 24 hours of the last one to keep the streak.</dd>
+                <dt>Streak and week</dt><dd>A view of recent practice consistency, not a grade. A day counts once every activity is done; do it again the next calendar day, at any time, to keep the streak.</dd>
               </dl>
             </div>
             <div>
