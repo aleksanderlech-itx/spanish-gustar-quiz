@@ -14,7 +14,8 @@ globalThis.window = {
 };
 
 const { ACTIVITY_REGISTRY } = await import("../app/activity-registry.ts");
-const { ACTIVITY_IDS, currentStreak, dayKey, weekBars, recordFlashcardDayReviewed, readFlashcardDaysReviewed, recordActivityToday, readStreakSummary, STREAK_COUNTER_KEY } = await import("../app/streak.ts");
+const { ACTIVITY_IDS, currentStreak, dayKey, weekBars, recordFlashcardDayReviewed, readFlashcardDaysReviewed, recordActivityToday, readStreakSummary, STREAK_COUNTER_KEY, STREAK_STORAGE_KEYS } = await import("../app/streak.ts");
+const { QUIZ_COMPLETION_STORAGE_KEYS } = await import("../app/quiz-completion.ts");
 
 const daysAgo = (today, count) => {
   const date = new Date(today);
@@ -242,4 +243,26 @@ test("an activity that appears after the day is completed doesn't undo it, and c
   summary = readStreakSummary(tuesday);
   assert.equal(summary.todayTotal, requiredOn(tuesday).length);
   assert.equal(summary.week[0].status, "done");
+});
+
+// --- Backup/restore: the drawer's backup carries every streak and completion key ---
+
+test("restoring the streak and completion keys on a wiped device brings back the streak, week bars and finished quizzes", () => {
+  const monday = at("2026-10-05T07:00:00");
+  freshStart(15, at("2026-10-04T07:00:00"));
+  const quiz = requiredOn(monday).find((id) => id !== "flashcards");
+  store.set(COMPLETIONS_KEY, JSON.stringify({ [quiz]: at("2026-10-01T10:00:00").toISOString() }));
+  requiredOn(monday).filter((id) => id !== quiz).forEach((id) => recordActivityToday(id, monday));
+  recordFlashcardDayReviewed(dayKey(monday));
+  const tuesday = at("2026-10-06T09:00:00");
+  const before = readStreakSummary(tuesday);
+  assert.equal(before.streak, 16);
+
+  const backup = new Map([...STREAK_STORAGE_KEYS, ...QUIZ_COMPLETION_STORAGE_KEYS]
+    .filter((key) => store.has(key)).map((key) => [key, store.get(key)]));
+  store.clear();
+  backup.forEach((value, key) => store.set(key, value));
+
+  assert.deepEqual(readStreakSummary(tuesday), before);
+  assert.deepEqual(readFlashcardDaysReviewed(), [dayKey(monday)]);
 });

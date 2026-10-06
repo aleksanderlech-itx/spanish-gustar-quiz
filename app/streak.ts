@@ -12,6 +12,9 @@ const FLASHCARD_DAYS_KEY = "spanish-flashcards-active-days-v1";
 const COMPLETED_DAYS_KEY = "spanish-quiz-completed-days-v1";
 const DAY_LETTERS = ["Lu", "Ma", "Mi", "Ju", "Vi", "Sá", "Do"];
 
+/** Every key the streak and week bars are built from, so a backup restores them exactly. */
+export const STREAK_STORAGE_KEYS = [STREAK_KEY, FLASHCARD_DAYS_KEY, COMPLETED_DAYS_KEY, STREAK_COUNTER_KEY];
+
 /** Every activity the daily streak tracks, in registry order — sourced from the
  * activity registry so a newly registered activity is required for the streak too. */
 export const ACTIVITY_IDS: readonly ActivityId[] = ACTIVITY_REGISTRY.map((entry) => entry.id);

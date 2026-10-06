@@ -1,17 +1,22 @@
 "use client";
 
 import { useEffect, useRef, useState, type RefObject } from "react";
-import { readStreakSummary, STREAK_COUNTER_KEY } from "./streak";
+import { readStreakSummary, STREAK_STORAGE_KEYS } from "./streak";
 import { readNotebookEntries } from "./notebook";
 import { QUIZ_CONFIG, QUIZ_IDS, type QuizId } from "./quiz-config";
 import type { QuizResult } from "./quiz-logic";
 import { computeRecentRounds, computeWeakAreas, type RecentRound, type WeakArea } from "./history";
-import { readAllCompletions, isQuizReinstated, setQuizReinstated, isRepeatDue, repeatDueDate } from "./quiz-completion";
+import { readAllCompletions, isQuizReinstated, setQuizReinstated, isRepeatDue, repeatDueDate, QUIZ_COMPLETION_STORAGE_KEYS } from "./quiz-completion";
 import Logo from "./logo";
 import KofiButton from "./kofi-button";
 
 const FLASHCARD_KEY = "spanish-flashcards-leitner-v2";
-const ALL_PROGRESS_KEYS = [...QUIZ_IDS.map((id) => QUIZ_CONFIG[id].storageKey), FLASHCARD_KEY, STREAK_COUNTER_KEY];
+const ALL_PROGRESS_KEYS = [
+  ...QUIZ_IDS.map((id) => QUIZ_CONFIG[id].storageKey),
+  FLASHCARD_KEY,
+  ...STREAK_STORAGE_KEYS,
+  ...QUIZ_COMPLETION_STORAGE_KEYS,
+];
 const WEEK_MS = 7 * 86_400_000;
 
 type GlobalStats = {
