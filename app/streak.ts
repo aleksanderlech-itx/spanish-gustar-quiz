@@ -2,9 +2,10 @@ import { isQuizReinstated, isRepeatDue, readAllCompletions, repeatDueDate } from
 import { ACTIVITY_REGISTRY, type ActivityId } from "./activity-registry.ts";
 
 const STREAK_KEY = "spanish-quiz-streak-v2";
-/** The banked day counter. Stored rather than recomputed so later rule or activity changes never rewrite it. */
-export const STREAK_COUNTER_KEY = "spanish-quiz-streak-counter-v1";
-const DAY_MS = 24 * 60 * 60 * 1000;
+/** The banked day counter. Stored rather than recomputed so later rule or activity changes never rewrite it.
+ * v2 counts calendar days; v1 used a 24h window and is dropped, so every device re-seeds once from the ledger. */
+export const STREAK_COUNTER_KEY = "spanish-quiz-streak-counter-v2";
+const LEGACY_COUNTER_KEY = "spanish-quiz-streak-counter-v1";
 const FLASHCARD_DAYS_KEY = "spanish-flashcards-active-days-v1";
 /** dayKey -> the activities that day required when it was completed. Locks a completed day, so an
  * activity that appears on the board afterwards (new, repeat due, shown again) only counts from the next day. */
@@ -22,6 +23,12 @@ export type Records = Map<string, Set<ActivityId>>;
 const pad = (value: number) => String(value).padStart(2, "0");
 
 export const dayKey = (date: Date) => `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+
+const previousDayKey = (date: Date) => {
+  const previous = new Date(date);
+  previous.setDate(previous.getDate() - 1);
+  return dayKey(previous);
+};
 
 const isActivityId = (value: unknown): value is ActivityId => (ACTIVITY_IDS as readonly string[]).includes(value as string);
 
@@ -143,11 +150,11 @@ const writeRecords = (records: Records) => {
 };
 
 /**
- * The day counter: `count` completed days, the latest completed at `lastCompletedAt`.
- * Each completed day must be completed within 24h of the previous one; otherwise the
+ * The day counter: `count` consecutive completed calendar days, the latest being `lastCompletedDay`.
+ * Any time of day counts. Once a whole calendar day passes without a completed day, the
  * counter drops to 0 and the next completed day starts again at 1.
  */
-type StreakCounter = { count: number; lastCompletedAt: string | null; lastCompletedDay: string | null };
+type StreakCounter = { count: number; lastCompletedDay: string | null };
 
 const readStoredCounter = (): StreakCounter | null => {
   try {
@@ -157,7 +164,6 @@ const readStoredCounter = (): StreakCounter | null => {
     if (typeof parsed?.count !== "number") return null;
     return {
       count: parsed.count,
-      lastCompletedAt: typeof parsed.lastCompletedAt === "string" ? parsed.lastCompletedAt : null,
       lastCompletedDay: typeof parsed.lastCompletedDay === "string" ? parsed.lastCompletedDay : null,
     };
   } catch {
@@ -173,21 +179,16 @@ const writeCounter = (counter: StreakCounter) => {
   }
 };
 
+/** Still running while the last completed day is today or yesterday. */
 const isAlive = (counter: StreakCounter, now: Date) =>
-  !!counter.lastCompletedAt && now.getTime() - new Date(counter.lastCompletedAt).getTime() <= DAY_MS;
+  counter.lastCompletedDay === dayKey(now) || counter.lastCompletedDay === previousDayKey(now);
 
-/**
- * One-time seed for devices that predate the stored counter: take the streak the
- * ledger shows, and since the ledger has no times, treat its last day as completed at
- * 23:59:59 that day, the most generous start for the 24h window.
- */
+/** One-time seed for devices without a v2 counter: take the streak the ledger shows. */
 const seedCounter = (records: Records, ctx: GoalContext): StreakCounter => {
   const count = streakFrom(records, ctx);
-  if (!count) return { count: 0, lastCompletedAt: null, lastCompletedDay: null };
-  const last = new Date(ctx.now);
-  if (!isDayComplete(records.get(dayKey(last)), dayKey(last), ctx)) last.setDate(last.getDate() - 1);
-  last.setHours(23, 59, 59, 0);
-  return { count, lastCompletedAt: last.toISOString(), lastCompletedDay: dayKey(last) };
+  if (!count) return { count: 0, lastCompletedDay: null };
+  const today = dayKey(ctx.now);
+  return { count, lastCompletedDay: isDayComplete(records.get(today), today, ctx) ? today : previousDayKey(ctx.now) };
 };
 
 const readCounter = (records: Records, ctx: GoalContext): StreakCounter => {
@@ -195,6 +196,11 @@ const readCounter = (records: Records, ctx: GoalContext): StreakCounter => {
   if (stored) return stored;
   const seeded = seedCounter(records, ctx);
   writeCounter(seeded);
+  try {
+    window.localStorage.removeItem(LEGACY_COUNTER_KEY);
+  } catch {
+    // Storage can be unavailable; the stale v1 counter is simply never read again.
+  }
   return seeded;
 };
 
@@ -211,7 +217,7 @@ export const recordActivityToday = (activity: ActivityId, now = new Date()) => {
   lockTodayIfComplete(records, ctx);
 
   if (counter.lastCompletedDay !== today && isDayComplete(records.get(today), today, ctx)) {
-    writeCounter({ count: alive ? counter.count + 1 : 1, lastCompletedAt: now.toISOString(), lastCompletedDay: today });
+    writeCounter({ count: alive ? counter.count + 1 : 1, lastCompletedDay: today });
   } else if (!alive && counter.count !== 0) {
     writeCounter({ ...counter, count: 0 });
   }

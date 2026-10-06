@@ -8,6 +8,7 @@ globalThis.window = {
   localStorage: {
     getItem: (key) => (store.has(key) ? store.get(key) : null),
     setItem: (key, value) => store.set(key, value),
+    removeItem: (key) => store.delete(key),
     clear: () => store.clear(),
   },
 };
@@ -122,7 +123,7 @@ test("recordFlashcardDayReviewed/readFlashcardDaysReviewed keep every distinct d
   assert.deepEqual(readFlashcardDaysReviewed(), ["2026-09-11", "2026-09-12", "2026-09-13"]);
 });
 
-// --- Stored counter: +1 per completed day, reset if the next day isn't completed within 24h ---
+// --- Stored counter: +1 per completed calendar day, reset once a whole calendar day is missed ---
 
 const LEDGER_KEY = "spanish-quiz-streak-v2";
 const at = (iso) => new Date(iso);
@@ -134,33 +135,36 @@ const requiredOn = (date) => ACTIVITY_REGISTRY
 const completeDay = (date) => requiredOn(date).forEach((id) => recordActivityToday(id, date));
 const freshStart = (count, lastCompletedAt) => {
   store.clear();
-  store.set(STREAK_COUNTER_KEY, JSON.stringify({ count, lastCompletedAt: lastCompletedAt.toISOString(), lastCompletedDay: dayKey(lastCompletedAt) }));
+  store.set(STREAK_COUNTER_KEY, JSON.stringify({ count, lastCompletedDay: dayKey(lastCompletedAt) }));
 };
 
-test("completing a day within 24h of the last completed day adds one", () => {
+test("completing the next calendar day adds one", () => {
   const monday = at("2026-10-05T22:00:00");
   freshStart(4, monday);
   completeDay(hoursAfter(monday, 20));
   assert.equal(readStreakSummary(hoursAfter(monday, 20)).streak, 5);
 });
 
-test("completing the next day more than 24h later resets, then counts that day as 1", () => {
-  const monday = at("2026-10-05T22:00:00");
-  freshStart(4, monday);
-  const tuesday = hoursAfter(monday, 25.5); // Tue 23:30
-  recordActivityToday(requiredOn(tuesday)[0], hoursAfter(monday, 23)); // a round inside the window doesn't save it
+test("completing the next calendar day more than 24h later still adds one", () => {
+  // The case that broke a 15+ day streak: Monday done at 06:46, Tuesday at 07:06.
+  const monday = at("2026-10-05T06:46:10");
+  freshStart(15, monday);
+  const tuesday = at("2026-10-06T07:06:17");
   completeDay(tuesday);
-  assert.equal(readStreakSummary(tuesday).streak, 1);
+  assert.equal(readStreakSummary(tuesday).streak, 16);
+  assert.equal(readStreakSummary(at("2026-10-07T23:59:00")).streak, 16); // Wednesday not done yet: still alive
 });
 
-test("the counter shows 0 as soon as 24h pass without a completed day, and a later round stores 0", () => {
-  const monday = at("2026-10-05T22:00:00");
+test("the counter shows 0 once a whole calendar day is missed, and a later round stores 0", () => {
+  const monday = at("2026-10-05T08:00:00");
   freshStart(4, monday);
-  recordActivityToday(requiredOn(monday)[0], hoursAfter(monday, 23)); // partial Tuesday
-  assert.equal(readStreakSummary(hoursAfter(monday, 23.5)).streak, 4);
-  assert.equal(readStreakSummary(hoursAfter(monday, 24.1)).streak, 0);
-  recordActivityToday(requiredOn(monday)[0], hoursAfter(monday, 36)); // Wednesday round
+  recordActivityToday(requiredOn(monday)[0], at("2026-10-06T23:00:00")); // partial Tuesday
+  assert.equal(readStreakSummary(at("2026-10-06T23:30:00")).streak, 4);
+  assert.equal(readStreakSummary(at("2026-10-07T00:01:00")).streak, 0);
+  recordActivityToday(requiredOn(monday)[0], at("2026-10-07T09:00:00")); // Wednesday round
   assert.equal(JSON.parse(store.get(STREAK_COUNTER_KEY)).count, 0);
+  completeDay(at("2026-10-07T10:00:00"));
+  assert.equal(readStreakSummary(at("2026-10-07T10:00:00")).streak, 1);
 });
 
 test("finishing more rounds on an already completed day doesn't count it twice", () => {
@@ -172,7 +176,7 @@ test("finishing more rounds on an already completed day doesn't count it twice",
   assert.equal(readStreakSummary(hoursAfter(tuesday, 1)).streak, 5);
 });
 
-test("a device without the counter seeds it once from the ledger streak, ending at 23:59:59", () => {
+test("a device without the v2 counter re-seeds once from the ledger and drops the old 24h counter", () => {
   store.clear();
   const today = at("2026-10-02T09:00:00"); // today not completed yet
   const ledger = {};
@@ -182,10 +186,11 @@ test("a device without the counter seeds it once from the ledger streak, ending 
     ledger[dayKey(day)] = requiredOn(day);
   }
   store.set(LEDGER_KEY, JSON.stringify(ledger));
+  // A v1 counter reset by the old 24h rule doesn't carry over.
+  store.set("spanish-quiz-streak-counter-v1", JSON.stringify({ count: 1, lastCompletedAt: at("2026-10-01T07:00:00").toISOString(), lastCompletedDay: "2026-10-01" }));
   assert.equal(readStreakSummary(today).streak, 9);
-  const counter = JSON.parse(store.get(STREAK_COUNTER_KEY));
-  assert.equal(counter.lastCompletedDay, "2026-10-01");
-  assert.equal(new Date(counter.lastCompletedAt).getTime(), at("2026-10-01T23:59:59").getTime());
+  assert.deepEqual(JSON.parse(store.get(STREAK_COUNTER_KEY)), { count: 9, lastCompletedDay: "2026-10-01" });
+  assert.equal(store.has("spanish-quiz-streak-counter-v1"), false);
   // Completing today extends it to 10.
   completeDay(today);
   assert.equal(readStreakSummary(today).streak, 10);
