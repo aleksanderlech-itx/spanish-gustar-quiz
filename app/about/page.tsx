@@ -38,7 +38,7 @@ export default function AboutPage() {
             repetition spread out over weeks, not one chapter you read once and forget.
           </p>
           <p>
-            Spanish Quizzes is built around that idea. Instead of a full course it offers 150 original sentences per
+            Spanish Quizzes is built around that idea. Instead of a full course it offers 150 reviewed sentence pairs per
             topic, an explanation for every answer, and a set of Spanish verb flashcards that use the Leitner system to
             bring back words you miss sooner and let the ones you already know fade into longer reviews.
           </p>
@@ -66,6 +66,20 @@ export default function AboutPage() {
             Everything runs in your browser. Your progress, filters and settings are saved locally on your device,
             there is no account to create and no data leaves your browser unless you choose to back it up. You can
             download a backup from the menu at any time, and load it again later or on another device.
+          </p>
+        </div>
+      </section>
+
+      <section className={styles.section} id="content-sources">
+        <p className={styles.sectionNumber}>04</p>
+        <div className={styles.sectionBody}>
+          <h2>Content sources</h2>
+          <p>
+            Most Spanish-English examples come from the Tatoeba Project corpus distributed by ManyThings under the
+            Creative Commons Attribution 2.0 France licence. Gaps are individually written and reviewed for this app.
+          </p>
+          <p>
+            <a href="/content-attribution.csv" download>Download sentence-level credits and licence details</a>
           </p>
         </div>
       </section>

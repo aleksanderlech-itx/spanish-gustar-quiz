@@ -1,4 +1,5 @@
 import { TRANSLATIONS } from "./translations.ts";
+import { applySourcedQuestionPair } from "./sourced-quiz-content.ts";
 
 export type Question = {
   id: number;
@@ -97,4 +98,4 @@ const QUESTIONS: Question[] = Object.entries(QUESTION_BANKS).flatMap(([infinitiv
 // heavier constructions ("aunque...", "lo que...", "cada vez que...") that were the
 // weakest fit for the A2-B1 audience this quiz targets, and removing them brings the
 // dataset to exactly the 150-question target already reached by QUESTION_BANKS above.
-export const ALL_QUESTIONS = QUESTIONS;
+export const ALL_QUESTIONS = QUESTIONS.map(applySourcedQuestionPair);

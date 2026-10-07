@@ -65,6 +65,13 @@ for (const [name, questions] of quizzes) {
     .filter((item) => item.candidates === 0);
   console.log(`${name}: ${questions.length - uncovered.length}/${questions.length} questions have a direct corpus match`);
   if (uncovered.length) console.log(`  missing: ${uncovered.map((item) => `#${item.id} ${item.answer}`).join(", ")}`);
+  const demand = new Map();
+  for (const question of questions) demand.set(question.answer, (demand.get(question.answer) ?? 0) + 1);
+  const shortages = [...demand].map(([answer, needed]) => ({ answer, needed, available: candidateCount(answer) }))
+    .filter((item) => item.available < item.needed);
+  if (shortages.length) {
+    console.log(`  unique-pair shortages: ${shortages.map((item) => `${item.answer} ${item.available}/${item.needed}`).join(", ")}`);
+  }
 }
 
 const flashcardCoverage = FLASHCARD_VERBS.map((card) => ({

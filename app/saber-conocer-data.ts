@@ -1,4 +1,5 @@
 import type { Question } from "./quiz-data";
+import { applySourcedQuestionPair } from "./sourced-quiz-content.ts";
 
 /** Usage categories double as the topic's "Usage" filter values (stored in `infinitive`). */
 export const SABER_CONOCER_USAGES = ["facts", "skills", "people", "places", "familiarity", "past meaning"] as const;
@@ -197,7 +198,7 @@ export const SABER_CONOCER_QUESTIONS: Question[] = seed.map(([usage, before, aft
   level,
   // The usage label would give the answer away, so the blank shows both verbs instead.
   blankHint: "saber / conocer",
-}));
+})).map(applySourcedQuestionPair);
 
 /** One entry per usage, so the shared "second filter" can list them. */
 export const SABER_CONOCER_FORMS: Record<SaberConocerUsage, [string, string]> = {

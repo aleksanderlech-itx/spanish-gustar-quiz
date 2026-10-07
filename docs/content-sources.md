@@ -1,9 +1,10 @@
 # Learning content sources
 
-Spanish-English sentence pairs used by quizzes and flashcards are selected from
-the Tatoeba Project corpus distributed by ManyThings. The downloaded corpus is
-limited to Spanish sentences written by native speakers and English sentences
-reviewed by the distributor.
+Spanish-English sentence pairs used by quizzes and flashcards come from two
+royalty-free sources. The generator selects unchanged pairs from the Tatoeba
+Project corpus distributed by ManyThings. It uses original pairs where an
+unchanged corpus sentence would not preserve the exercise's exact grammar
+target. Those original pairs are published under CC BY 4.0.
 
 - Source: https://www.manythings.org/anki/
 - Upstream: https://tatoeba.org/
@@ -11,10 +12,23 @@ reviewed by the distributor.
 - License text: https://creativecommons.org/licenses/by/2.0/fr/deed.en
 - Corpus snapshot used: `spa-eng.zip`, dated 2026-02-13
 
-Each row in the source corpus includes both Tatoeba sentence IDs and contributor
-names. Generated provenance records retain that attribution for every selected
-pair. The corpus itself is research input and is not committed to this
-repository.
+Original sentence pairs:
+
+- Author: Spanish Editorial Learning
+- Project: https://github.com/aleksanderlech-itx/spanish-gustar-quiz
+- License: CC BY 4.0
+- License text: https://creativecommons.org/licenses/by/4.0/
+
+The 500-verb ranking comes from FrequencyWords:
+
+- Source: https://github.com/hermitdave/FrequencyWords
+- Content license: CC BY-SA 4.0
+
+Each unchanged Tatoeba row retains both sentence IDs and contributor names.
+Each original row names the project author and its CC BY 4.0 license. The public
+manifest records the source, license and modification status for all 1,400
+runtime sentence pairs. The corpus itself is research input and is not committed
+to this repository.
 
 Tatoeba warns that community data can contain mistakes. Every selected pair
 must therefore pass the automated content checks and a human-language review

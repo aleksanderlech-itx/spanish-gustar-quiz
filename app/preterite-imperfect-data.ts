@@ -1,4 +1,5 @@
 import type { Question } from "./quiz-data";
+import { applySourcedQuestionPair } from "./sourced-quiz-content.ts";
 
 type Level = Question["level"];
 
@@ -196,7 +197,7 @@ export const PRETERITE_IMPERFECT_QUESTIONS: Question[] = templates.map((template
   indirectObject: template.answerTense,
   tense: template.answerTense,
   level: template.level,
-}));
+})).map(applySourcedQuestionPair);
 
 export const PRETERITE_IMPERFECT_FORMS: Record<string, [string, string]> = Object.fromEntries(
   [...new Set(templates.map((template) => template.infinitive))].map((infinitive) => [infinitive, ["preterite", "imperfect"]]),
