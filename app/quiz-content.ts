@@ -1,4 +1,5 @@
 import type { QuizId } from "./quiz-config";
+import { SOURCED_QUIZ_PAIRS } from "./sourced-quiz-content.ts";
 
 export type QuizExample = { es: string; en: string };
 export type QuizFaqItem = { question: string; answer: string };
@@ -9,6 +10,14 @@ export type QuizContent = {
   faq: QuizFaqItem[];
 };
 
+function sourcedExamples(ids: number[]): QuizExample[] {
+  return ids.map((id) => {
+    const pair = SOURCED_QUIZ_PAIRS[id];
+    if (!pair) throw new Error(`Missing sourced example pair for question ${id}`);
+    return { es: pair.spanish, en: pair.english };
+  });
+}
+
 export const QUIZ_CONTENT: Record<QuizId, QuizContent> = {
   gustar: {
     paragraphs: [
@@ -16,13 +25,7 @@ export const QUIZ_CONTENT: Record<QuizId, QuizContent> = {
       "That is why gustar shows up almost only in the third person, gusta or gustan, depending on whether the thing being liked is singular or plural. A mi hermano le gustan los perros uses gustan because perros is plural, even though the sentence is really about my brother. A handful of other verbs follow the exact same pattern: encantar, interesar, molestar, importar, faltar, quedar, doler and parecer.",
       "Once you stop asking who likes what and start asking what is the subject here, the pattern gets a lot easier. This quiz has 150 sentences built around gustar and its relatives so you can practice spotting the subject and picking the right pronoun until it stops feeling backwards.",
     ],
-    examples: [
-      { es: "Me gusta la música clásica.", en: "I like classical music." },
-      { es: "¿Te gustan las películas de terror?", en: "Do you like horror movies?" },
-      { es: "A ella le encanta viajar.", en: "She loves to travel." },
-      { es: "No nos interesa ese programa.", en: "We are not interested in that show." },
-      { es: "A los niños les duelen los pies.", en: "The children's feet hurt." },
-    ],
+    examples: sourcedExamples([1, 2, 36, 58, 128]),
     faq: [
       {
         question: "Why does gustar work backwards in English?",
@@ -50,12 +53,7 @@ export const QUIZ_CONTENT: Record<QuizId, QuizContent> = {
       "Some adjectives actually shift meaning depending on which verb they are paired with. Ser aburrido means a person or thing is boring by nature. Estar aburrido means someone feels bored right now, a completely different idea using the same word.",
       "This quiz walks through 150 sentences covering identity, description, location, events and changing states, with an explanation for every answer, so the pattern starts to feel familiar instead of random.",
     ],
-    examples: [
-      { es: "El museo está cerca de la estación.", en: "The museum is near the station." },
-      { es: "Marta es médica.", en: "Marta is a doctor." },
-      { es: "La puerta está cerrada.", en: "The door is closed." },
-      { es: "Hoy es lunes.", en: "Today is Monday." },
-    ],
+    examples: sourcedExamples([2001, 2002, 2009, 2015]),
     faq: [
       {
         question: "Is there a simple rule for ser vs estar?",
@@ -84,12 +82,7 @@ export const QUIZ_CONTENT: Record<QuizId, QuizContent> = {
       "The two often show up in the same sentence. Mientras Marta preparaba la cena, sonó el teléfono uses imperfect for the ongoing action and preterite for the interruption. A useful trick is picturing imperfect as the scene and preterite as the event that happens inside it.",
       "This quiz has 150 sentences moving between completed actions, habits, background description and interruptions, with the reasoning behind every answer, until the difference stops feeling random.",
     ],
-    examples: [
-      { es: "Anoche Marta preparó la cena a las ocho.", en: "Last night Marta prepared dinner at eight." },
-      { es: "Normalmente salíamos temprano para la escuela.", en: "We usually left early for school." },
-      { es: "El tren llegaba cuando empezó la lluvia.", en: "The train was arriving when the rain started." },
-      { es: "En 2020 Ana vivió en Sevilla.", en: "In 2020 Ana lived in Seville." },
-    ],
+    examples: sourcedExamples([3001, 3002, 3007, 3008]),
     faq: [
       {
         question: "What is the easiest way to tell preterite and imperfect apart?",
@@ -120,13 +113,7 @@ export const QUIZ_CONTENT: Record<QuizId, QuizContent> = {
       "A handful of contexts show the contrast clearly with the same verb. Trabajo por mi familia means I work for my family's sake, out of love or necessity. Trabajo para mi familia means my family's business employs me. Same verb, same object, a completely different relationship because of one preposition.",
       "This quiz has 150 sentences covering cause, duration, exchange, means, movement, purpose, recipients, deadlines and destinations, with an explanation for every answer, until the backward-versus-forward instinct starts to feel automatic.",
     ],
-    examples: [
-      { es: "Cancelaron el partido por la lluvia.", en: "They cancelled the match because of the rain." },
-      { es: "Compré esta bicicleta por cien euros.", en: "I bought this bike for one hundred euros." },
-      { es: "Estudio español para viajar a México.", en: "I study Spanish to travel to Mexico." },
-      { es: "Este regalo es para ti.", en: "This gift is for you." },
-      { es: "La tarea es para el lunes.", en: "The homework is due Monday." },
-    ],
+    examples: sourcedExamples([4001, 4016, 4076, 4091, 4106]),
     faq: [
       {
         question: "What is the simplest way to choose between por and para?",
@@ -155,13 +142,7 @@ export const QUIZ_CONTENT: Record<QuizId, QuizContent> = {
       "Both kinds go before a conjugated verb (lo veo, no le escribo, lo he leído) or attach to the end of a gerund or infinitive (estoy leyéndolo, voy a comprarla). Attaching usually needs a written accent to keep the stress where it was. With two pronouns, the indirect one always goes first, and le or les turns into se before lo, la, los or las: le doy el libro becomes se lo doy, never le lo doy. Because se can mean him, her, you or them, Spanish often adds a + person to make it clear: se lo di a María.",
       "This quiz has 150 sentences split into direct, indirect and double-pronoun items, with an explanation for every answer. Use the pronoun type filter to drill one set at a time, then mix them once the choice feels automatic.",
     ],
-    examples: [
-      { es: "¿El café? Lo tomo sin azúcar.", en: "The coffee? I drink it without sugar." },
-      { es: "Le escribo a mi abuela cada semana.", en: "I write to my grandmother every week." },
-      { es: "¿Las llaves? Se las di a Juan.", en: "The keys? I gave them to Juan." },
-      { es: "¿El libro? Estoy leyéndolo ahora.", en: "The book? I'm reading it now." },
-      { es: "¿La bicicleta? Quiero prestársela a mi primo.", en: "The bike? I want to lend it to my cousin." },
-    ],
+    examples: sourcedExamples([5001, 5051, 5101, 5037, 5146]),
     faq: [
       {
         question: "How do I know whether to use lo or le?",
@@ -191,13 +172,7 @@ export const QUIZ_CONTENT: Record<QuizId, QuizContent> = {
       "The past tense adds a twist. In the preterite, the moment of knowing becomes an event: supe means I found out, and conocí means I met, or saw a place for the first time. The imperfect keeps the ordinary meaning of a state: sabía means I knew, and conocía means I was acquainted with. Ayer supe la noticia and ayer conocí a tu hermana both describe something that happened, not something you already knew.",
       "This quiz has 150 sentences split into facts, skills, people, places, familiarity and past-tense meaning, with an explanation for every answer. Use the usage filter to drill one group at a time, then mix them once the choice feels automatic.",
     ],
-    examples: [
-      { es: "No sé dónde está la estación.", en: "I don't know where the station is." },
-      { es: "Mi hermana sabe tocar el piano.", en: "My sister can play the piano." },
-      { es: "¿Conoces a mis padres?", en: "Do you know my parents?" },
-      { es: "Quiero conocer Japón algún día.", en: "I want to visit Japan someday." },
-      { es: "Ayer conocí a tu hermana y supe que te casas.", en: "Yesterday I met your sister and found out you're getting married." },
-    ],
+    examples: sourcedExamples([6001, 6031, 6061, 6091, 6121]),
     faq: [
       {
         question: "What is the simplest way to choose between saber and conocer?",

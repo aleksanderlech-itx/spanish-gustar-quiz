@@ -1,4 +1,5 @@
 import type { Question } from "./quiz-data";
+import { applySourcedQuestionPair } from "./sourced-quiz-content.ts";
 
 /** Filter values for this quiz. They live in `infinitive`, the field the shared
  * second filter already matches on, so the existing picker filters by pronoun type. */
@@ -208,7 +209,7 @@ export const OBJECT_PRONOUN_QUESTIONS: Question[] = seed.map(([type, before, aft
   tense: "present",
   level,
   ...(blankHint ? { blankHint } : {}),
-}));
+})).map(applySourcedQuestionPair);
 
 /** One entry per pronoun type, so the shared "second filter" and chart can list them. */
 export const OBJECT_PRONOUN_FORMS: Record<string, [string, string]> = {

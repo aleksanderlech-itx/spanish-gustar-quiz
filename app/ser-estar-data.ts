@@ -1,4 +1,5 @@
 import type { Question } from "./quiz-data";
+import { applySourcedQuestionPair } from "./sourced-quiz-content.ts";
 
 const seed = [
   ["Yo", " de México.", "soy", "estoy", "I am from Mexico.", "basic", "Origin is expressed with ser."],
@@ -184,7 +185,7 @@ export const SER_ESTAR_QUESTIONS: Question[] = seed.map(([before, after, answer,
   indirectObject: "",
   tense: "present",
   level,
-}));
+})).map(applySourcedQuestionPair);
 
 export const SER_ESTAR_FORMS: Record<string, [string, string]> = {
   "ser / estar": ["ser", "estar"],

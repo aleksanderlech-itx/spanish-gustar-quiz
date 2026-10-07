@@ -13,7 +13,7 @@ test("flashcard corpus contains 500 unique ranked verbs", () => {
   });
 });
 
-test("every flashcard has a real, project-authored example with an English translation", () => {
+test("every flashcard has a sourced or curated example with an English translation", () => {
   // The old buildExample() fallback produced exactly these three shapes for a verb it
   // didn't have a hand-written sentence for. None should remain now that every verb has
   // a real, authored example (Stage 3 of docs/issue-24-implementation-plan.md).
