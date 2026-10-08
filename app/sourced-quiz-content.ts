@@ -1806,604 +1806,604 @@ export const SOURCED_QUIZ_PAIRS: Record<number, SourcedPair> = {
     "english": "The students studied in pairs."
   },
   "4001": {
-    "spanish": "¿No deberías pasar por alto sus indiscreciones y perdonarle?",
-    "english": "Shouldn't you overlook his indiscretions and forgive him?"
+    "spanish": "Voy a estudiar por dos horas esta tarde.",
+    "english": "I am going to study for two hours this afternoon."
   },
   "4002": {
-    "spanish": "¿Podría traerme una almohada y una manta, por favor?",
-    "english": "Could you bring me a pillow and blanket, please?"
+    "spanish": "Ella trabajó por seis meses en esa empresa.",
+    "english": "She worked for six months at that company."
   },
   "4003": {
-    "spanish": "¿Por qué compraste la misma cámara que tengo yo?",
-    "english": "Why did you buy the same camera I have?"
+    "spanish": "Vivimos en Chile por tres años.",
+    "english": "We lived in Chile for three years."
   },
   "4004": {
-    "spanish": "¿Por qué no cenamos esta noche en un restaurante?",
-    "english": "Why don't we eat at a restaurant tonight?"
+    "spanish": "Practicaré español por media hora cada día.",
+    "english": "I will practise Spanish for half an hour every day."
   },
   "4005": {
-    "spanish": "¿Por qué apagaron las luces tan temprano?",
-    "english": "Why did they turn off the lights so early?"
+    "spanish": "El bebé durmió por diez horas anoche.",
+    "english": "The baby slept for ten hours last night."
   },
   "4006": {
-    "spanish": "¿Por qué cambiaste la fecha de la reunión?",
-    "english": "Why did you change the date of the meeting?"
+    "spanish": "Estuvimos en la playa por todo el día.",
+    "english": "We were at the beach for the whole day."
   },
   "4007": {
-    "spanish": "¿Por qué está cerrada la biblioteca hoy?",
-    "english": "Why is the library closed today?"
+    "spanish": "Van a viajar por dos semanas.",
+    "english": "They are going to travel for two weeks."
   },
   "4008": {
-    "spanish": "¿Por qué dejaron las cajas en el pasillo?",
-    "english": "Why did they leave the boxes in the corridor?"
+    "spanish": "Esperamos por veinte minutos en la parada.",
+    "english": "We waited for twenty minutes at the stop."
   },
   "4009": {
-    "spanish": "¿Por qué no estáis todavía a bordo del barco?",
-    "english": "Why aren't you already on board the ship?"
+    "spanish": "Trabajó por muchos años como enfermera.",
+    "english": "She worked for many years as a nurse."
   },
   "4010": {
-    "spanish": "¿Por qué no estáis ya a bordo del barco?",
-    "english": "Why aren't you already on board the ship?"
+    "spanish": "Caminamos por una hora antes de cenar.",
+    "english": "We walked for an hour before dinner."
   },
   "4011": {
-    "spanish": "¿Por qué no estás todavía a bordo del barco?",
-    "english": "Why aren't you already on board the ship?"
+    "spanish": "Cancelaron el partido por la lluvia.",
+    "english": "They cancelled the match because of the rain."
   },
   "4012": {
-    "spanish": "¿Por qué no podemos usar esta entrada?",
-    "english": "Why can we not use this entrance?"
+    "spanish": "Llegué tarde por el tráfico.",
+    "english": "I arrived late because of the traffic."
   },
   "4013": {
-    "spanish": "¿Por qué no estás ya a bordo del barco?",
-    "english": "Why aren't you already on board the ship?"
+    "spanish": "Lo hago por amor, no por dinero.",
+    "english": "I do it out of love, not for money."
   },
   "4014": {
-    "spanish": "¿Por qué no me dijiste que Tom estaba acá?",
-    "english": "Why didn't you tell me Tom was here?"
+    "spanish": "Se disculpó por su error.",
+    "english": "He apologised for his mistake."
   },
   "4015": {
-    "spanish": "¿Por qué no me llamaste ayer por la noche?",
-    "english": "How come you didn't call me last night?"
+    "spanish": "Está preocupada por los exámenes.",
+    "english": "She is worried about the exams."
   },
   "4016": {
-    "spanish": "¿Por qué no nos vamos a ver una película?",
-    "english": "Why don't we go and see a movie?"
+    "spanish": "Perdimos el vuelo por el retraso del taxi.",
+    "english": "We missed the flight because of the taxi's delay."
   },
   "4017": {
-    "spanish": "¿Por qué no solo nos sentamos aquí y charlamos?",
-    "english": "Why don't we just sit here and talk?"
+    "spanish": "Ganó el premio por su esfuerzo.",
+    "english": "She won the prize because of her effort."
   },
   "4018": {
-    "spanish": "¿Por qué no te vuelves a poner la ropa?",
-    "english": "Why don't you put your clothes back on?"
+    "spanish": "No pudimos salir por el mal tiempo.",
+    "english": "We couldn't go out because of the bad weather."
   },
   "4019": {
-    "spanish": "¿Por qué no vemos lo que hay ahí dentro?",
-    "english": "Why don't we see what's in there?"
+    "spanish": "Te doy las gracias por tu ayuda.",
+    "english": "I thank you for your help."
   },
   "4020": {
-    "spanish": "¿Por qué quieres que vaya a ver a Tom?",
-    "english": "Why do you want me to go see Tom?"
+    "spanish": "Ella lloró por la triste noticia.",
+    "english": "She cried because of the sad news."
   },
   "4021": {
-    "spanish": "¿Por qué te quieres ir pronto a casa hoy?",
-    "english": "Why are you planning on going home early today?"
+    "spanish": "El puente se cerró por las obras.",
+    "english": "The bridge was closed because of the construction work."
   },
   "4022": {
-    "spanish": "¿Por qué Tom no te deja usar su coche?",
-    "english": "Why won't Tom let you use his car?"
+    "spanish": "Nos preocupamos por su salud.",
+    "english": "We worry about his health."
   },
   "4023": {
-    "spanish": "¿Por qué vas a pie si tienes un auto?",
-    "english": "Why do you walk when you have a car?"
+    "spanish": "Se enfermó por comer tanto.",
+    "english": "He got sick from eating so much."
   },
   "4024": {
-    "spanish": "¿Puedes decirme una vez más tu nombre, por favor?",
-    "english": "Can you please tell me your name once more?"
+    "spanish": "Todos aplaudieron por su valentía.",
+    "english": "Everyone applauded because of her bravery."
   },
   "4025": {
-    "spanish": "¿Qué ha pasado? Hay agua por todo el apartamento.",
-    "english": "What happened? There's water all over the apartment."
+    "spanish": "Renunció al trabajo por el estrés.",
+    "english": "She quit the job because of the stress."
   },
   "4026": {
-    "spanish": "¿Te acuerdas de dónde nos vimos por primera vez?",
-    "english": "Do you remember where we first met each other?"
+    "spanish": "Compré esta bicicleta por cien euros.",
+    "english": "I bought this bike for one hundred euros."
   },
   "4027": {
-    "spanish": "Amo el olor de hot cakes por la mañana.",
-    "english": "I love the smell of pancakes in the morning."
+    "spanish": "Cambié mi coche viejo por uno nuevo.",
+    "english": "I traded my old car for a new one."
   },
   "4028": {
-    "spanish": "Arrojé por accidente a la basura un cuchillo caro.",
-    "english": "I accidentally threw an expensive knife into the trash."
+    "spanish": "Pagó treinta dólares por el libro.",
+    "english": "She paid thirty dollars for the book."
   },
   "4029": {
-    "spanish": "Así que, Tom, ¿qué puedo hacer hoy por ti?",
-    "english": "So, Tom, what can I do for you today?"
+    "spanish": "Vendí mi guitarra por ciento cincuenta euros.",
+    "english": "I sold my guitar for one hundred fifty euros."
   },
   "4030": {
-    "spanish": "Cambie por favor estos yenes japoneses a dólares estadounidenses.",
-    "english": "Please change this Japanese yen to U.S. dollars."
+    "spanish": "Te doy mi entrada por la tuya.",
+    "english": "I'll give you my ticket for yours."
   },
   "4031": {
-    "spanish": "Confío en que pueda usted hacer eso por mí.",
-    "english": "I'm hoping you can do that for me."
+    "spanish": "Compramos la casa por un buen precio.",
+    "english": "We bought the house for a good price."
   },
   "4032": {
-    "spanish": "De ahora en adelante déjanos estudiar por las mañanas.",
-    "english": "From now on, let's study in the morning."
+    "spanish": "Pagué diez euros por el taxi.",
+    "english": "I paid ten euros for the taxi."
   },
   "4033": {
-    "spanish": "De niño, se burlaban de mí por llevar gafas.",
-    "english": "As a child, I was teased for wearing glasses."
+    "spanish": "Cambiamos euros por dólares en el banco.",
+    "english": "We exchanged euros for dollars at the bank."
   },
   "4034": {
-    "spanish": "De no ser por la tormenta, habría llegado antes.",
-    "english": "Except for the storm, I would've arrived earlier."
+    "spanish": "Ofreció cincuenta euros por el cuadro.",
+    "english": "He offered fifty euros for the painting."
   },
   "4035": {
-    "spanish": "De vez en cuando, vamos a Londres por trabajo.",
-    "english": "Now and then, we go to London on business."
+    "spanish": "Compré este vestido por muy poco dinero.",
+    "english": "I bought this dress for very little money."
   },
   "4036": {
-    "spanish": "Deberías pedirle perdón a Tom por lo que dijiste.",
-    "english": "You should apologize to Tom for what you said."
+    "spanish": "Te llamo por teléfono esta noche.",
+    "english": "I'll call you by phone tonight."
   },
   "4037": {
-    "spanish": "Después de cenar doy un paseo por la playa.",
-    "english": "After dinner, I take a walk on the beach."
+    "spanish": "Mandaron el paquete por correo.",
+    "english": "They sent the package by mail."
   },
   "4038": {
-    "spanish": "El sendero está cerrado por obras de mantenimiento.",
-    "english": "The path is closed because of maintenance work."
+    "spanish": "Viajamos por avión hasta Madrid.",
+    "english": "We travelled by plane to Madrid."
   },
   "4039": {
-    "spanish": "El banco necesita un cheque por la cantidad exacta.",
-    "english": "The bank needs a check for the exact amount."
+    "spanish": "Nos comunicamos por videollamada.",
+    "english": "We communicate by video call."
   },
   "4040": {
-    "spanish": "Él debería disculparse por ser grosero con los invitados.",
-    "english": "He should apologize for being rude to the guests."
+    "spanish": "Envié el documento por correo electrónico.",
+    "english": "I sent the document by email."
   },
   "4041": {
-    "spanish": "Ella guarda una copia de cada recibo por seguridad.",
-    "english": "She keeps a copy of every receipt for safety."
+    "spanish": "Hablamos por Skype la semana pasada.",
+    "english": "We spoke over Skype last week."
   },
   "4042": {
-    "spanish": "Ella guarda sus ahorros en el banco por seguridad.",
-    "english": "She keeps her savings in the bank for safety."
+    "spanish": "Vinieron por barco desde Argentina.",
+    "english": "They came by boat from Argentina."
   },
   "4043": {
-    "spanish": "El emperador rezó por las almas de los fallecidos.",
-    "english": "The Emperor prayed for the souls of the deceased."
+    "spanish": "Se enteraron de la noticia por la radio.",
+    "english": "They found out about the news through the radio."
   },
   "4044": {
-    "spanish": "El gobierno transportó suministros a la isla por helicóptero.",
-    "english": "The government transported goods to the island by helicopter."
+    "spanish": "Reservamos el hotel por internet.",
+    "english": "We booked the hotel through the internet."
   },
   "4045": {
-    "spanish": "Ella se disculpó conmigo por haberme pisado el pie.",
-    "english": "She apologised to me for stepping on my foot."
+    "spanish": "Nos avisaron por mensaje de texto.",
+    "english": "They notified us by text message."
   },
   "4046": {
-    "spanish": "El ladrón entró en la casa por esta puerta.",
-    "english": "The burglar came into the house through this door."
+    "spanish": "Caminamos por el parque esta mañana.",
+    "english": "We walked through the park this morning."
   },
   "4047": {
-    "spanish": "Él tuvo que buscar su habitación por sí solo.",
-    "english": "He had to look for his room by himself."
+    "spanish": "El río pasa por el centro de la ciudad.",
+    "english": "The river runs through the centre of the city."
   },
   "4048": {
-    "spanish": "Ella le regañó por haber dejado la puerta abierta.",
-    "english": "She scolded him because he left the door open."
+    "spanish": "Fuimos por la autopista para llegar más rápido.",
+    "english": "We went by the highway to arrive faster."
   },
   "4049": {
-    "spanish": "Ella me pidió perdón por haberme pisado el pie.",
-    "english": "She apologized to me for stepping on my foot."
+    "spanish": "Paseamos por la playa al atardecer.",
+    "english": "We strolled along the beach at sunset."
   },
   "4050": {
-    "spanish": "Ella se disculpó conmigo por haber pisado mi pie.",
-    "english": "She apologized to me for stepping on my foot."
+    "spanish": "Entramos por la puerta principal.",
+    "english": "We came in through the main door."
   },
   "4051": {
-    "spanish": "Ella tiene curiosidad por saber quién mandó las flores.",
-    "english": "She is curious to find who sent the flowers."
+    "spanish": "El ladrón escapó por la ventana.",
+    "english": "The thief escaped through the window."
   },
   "4052": {
-    "spanish": "En mi familia, el castigo por mentir era severo.",
-    "english": "In my family, the punishment for lying was severe."
+    "spanish": "Subimos por las escaleras, no por el ascensor.",
+    "english": "We went up by the stairs, not the elevator."
   },
   "4053": {
-    "spanish": "Es lo mejor que podemos hacer por el momento.",
-    "english": "It's the best we can do for now."
+    "spanish": "Conducimos por las montañas todo el fin de semana.",
+    "english": "We drove through the mountains all weekend."
   },
   "4054": {
-    "spanish": "Es por eso que vine a hablar con usted.",
-    "english": "That's why I came to talk to you."
+    "spanish": "Pasamos por tu casa antes de la fiesta.",
+    "english": "We'll swing by your house before the party."
   },
   "4055": {
-    "spanish": "Escogieron sus muebles más por utilidad que por estilo.",
-    "english": "Their furniture was chosen for utility rather than style."
+    "spanish": "Los turistas caminan por las calles antiguas.",
+    "english": "The tourists walk through the old streets."
   },
   "4056": {
-    "spanish": "Esta novela fue escrita por un famoso escritor americano.",
-    "english": "This novel was written by a famous American writer."
+    "spanish": "Firmé el documento por mi jefe porque estaba de viaje.",
+    "english": "I signed the document on behalf of my boss because he was travelling."
   },
   "4057": {
-    "spanish": "Estoy muy preocupado por la seguridad de mi hijo.",
-    "english": "I'm very anxious about my son's safety."
+    "spanish": "Trabajé por mi compañera porque ella estaba enferma.",
+    "english": "I worked in place of my colleague because she was sick."
   },
   "4058": {
-    "spanish": "Estoy un poco corto de efectivo por el momento.",
-    "english": "I'm a little low on cash right now."
+    "spanish": "Hablé por todo el equipo en la reunión.",
+    "english": "I spoke on behalf of the whole team at the meeting."
   },
   "4059": {
-    "spanish": "Fue por pura suerte que Tom ganara el juego.",
-    "english": "It was pure chance that Tom won the game."
+    "spanish": "Ella respondió por su hermano menor.",
+    "english": "She answered on behalf of her younger brother."
   },
   "4060": {
-    "spanish": "Hace diez años que nos vimos por última vez.",
-    "english": "It's been ten years since we last met."
+    "spanish": "El abogado habló por su cliente.",
+    "english": "The lawyer spoke on behalf of his client."
   },
   "4061": {
-    "spanish": "Han resuelto el problema de una vez por todas.",
-    "english": "They have solved the problem once and for all."
+    "spanish": "Voté por mi madre porque no pudo ir.",
+    "english": "I voted on behalf of my mother because she couldn't go."
   },
   "4062": {
-    "spanish": "He buscado por todas partes, pero no puedo encontrarlo.",
-    "english": "I've looked everywhere, but can't find it."
+    "spanish": "Terminé el informe por ti anoche.",
+    "english": "I finished the report for you (in your place) last night."
   },
   "4063": {
-    "spanish": "India fue gobernada por Reino Unido durante muchos años.",
-    "english": "India was governed by Great Britain for many years."
+    "spanish": "Ana cocinó por su madre ese día.",
+    "english": "Ana cooked in place of her mother that day."
   },
   "4064": {
-    "spanish": "Juzgando por su apariencia, él podría ser un soldado.",
-    "english": "Judging from his appearance, he may be a soldier."
+    "spanish": "Pagué la cuenta por mis amigos.",
+    "english": "I paid the bill on behalf of my friends."
   },
   "4065": {
-    "spanish": "La mujer sentada por allá es su esposa actual.",
-    "english": "The woman sitting over there is his present wife."
+    "spanish": "El asistente respondió el correo por el director.",
+    "english": "The assistant answered the email on behalf of the director."
   },
   "4066": {
-    "spanish": "La policía ha estado buscando a Tom por años.",
-    "english": "The police have been searching for Tom for years."
+    "spanish": "Vamos al gimnasio tres veces por semana.",
+    "english": "We go to the gym three times a week."
   },
   "4067": {
-    "spanish": "Me disculpé con ella por pisarle el pie.",
-    "english": "I apologised to her for stepping on her foot."
+    "spanish": "El médico me visita dos veces por mes.",
+    "english": "The doctor visits me twice a month."
   },
   "4068": {
-    "spanish": "Le metieron en la cárcel por escribir el libro.",
-    "english": "He was put in jail for writing the book."
+    "spanish": "El coche corre a cien kilómetros por hora.",
+    "english": "The car goes one hundred kilometres per hour."
   },
   "4069": {
-    "spanish": "Me disculpé con ella por pisarle el pie durante el baile.",
-    "english": "I apologised to her for stepping on her foot during the dance."
+    "spanish": "Cobra veinte euros por hora de clase.",
+    "english": "He charges twenty euros per hour of class."
   },
   "4070": {
-    "spanish": "Los voluntarios organizaron la feria por su comunidad.",
-    "english": "The volunteers organised the fair for the sake of their community."
+    "spanish": "Comemos pescado una vez por semana.",
+    "english": "We eat fish once a week."
   },
   "4071": {
-    "spanish": "Llamamos a nuestro único hijo Tom por mi abuelo.",
-    "english": "We named our only son Tom after my grandfather."
+    "spanish": "La novela fue escrita por un autor famoso.",
+    "english": "The novel was written by a famous author."
   },
   "4072": {
-    "spanish": "Lo conozco de vista, pero no por su nombre.",
-    "english": "I know him by sight, but not by name."
+    "spanish": "El puente fue construido por ingenieros españoles.",
+    "english": "The bridge was built by Spanish engineers."
   },
   "4073": {
-    "spanish": "Londres era muy importante por razones económicas y culturales.",
-    "english": "London was very important for economical and cultural reasons."
+    "spanish": "La ciudad fue fundada por los romanos.",
+    "english": "The city was founded by the Romans."
   },
   "4074": {
-    "spanish": "Los cinco conejos fueron devorados por los lobos hambrientos.",
-    "english": "All five rabbits were eaten by the hungry wolves."
+    "spanish": "El cuadro fue pintado por Picasso.",
+    "english": "The painting was painted by Picasso."
   },
   "4075": {
-    "spanish": "Los soldados estaban dispuestos a morir por su país.",
-    "english": "The soldiers were ready to die for their country."
+    "spanish": "La empresa fue creada por dos hermanos.",
+    "english": "The company was created by two brothers."
   },
   "4076": {
-    "spanish": "¿Alguna vez has decorado tu casa para una fiesta?",
-    "english": "Have you ever decorated your house for a party?"
+    "spanish": "Estudio español para viajar a México.",
+    "english": "I study Spanish (in order) to travel to Mexico."
   },
   "4077": {
-    "spanish": "¿Cuánto hay que sumarle a diecisiete para obtener sesenta?",
-    "english": "What do you have to add to 17 to get 60?"
+    "spanish": "Ahorro dinero para comprar una casa.",
+    "english": "I'm saving money (in order) to buy a house."
   },
   "4078": {
-    "spanish": "¿Le gustaría que se le considerase para el trabajo?",
-    "english": "Would you like to be considered for the job?"
+    "spanish": "Trabaja mucho para mantener a su familia.",
+    "english": "He works hard to support his family."
   },
   "4079": {
-    "spanish": "¿Qué te parece hacer una pausa para el café?",
-    "english": "What do you say to having a coffee break?"
+    "spanish": "Uso gafas para leer mejor.",
+    "english": "I wear glasses to read better."
   },
   "4080": {
-    "spanish": "Algunos ácidos se usan para cauterizar verrugas y callos.",
-    "english": "Some acids are used to cauterize warts and calluses."
+    "spanish": "Necesito una llave para abrir la puerta.",
+    "english": "I need a key to open the door."
   },
   "4081": {
-    "spanish": "Ayer estaba demasiado enfermo para ir a la escuela.",
-    "english": "I was too sick to go to school yesterday."
+    "spanish": "Practicamos cada día para mejorar.",
+    "english": "We practise every day to improve."
   },
   "4082": {
-    "spanish": "Conforme envejecemos, nuestra capacidad para recordar las cosas empeora.",
-    "english": "As we age, our ability to remember gets worse."
+    "spanish": "Compré harina para hacer pan.",
+    "english": "I bought flour to make bread."
   },
   "4083": {
-    "spanish": "Creo que Tom tiene la capacidad para hacer eso.",
-    "english": "I think Tom has the ability to do that."
+    "spanish": "Llamé para pedir información.",
+    "english": "I called to ask for information."
   },
   "4084": {
-    "spanish": "Deberías ir al médico para que examine tus ojos.",
-    "english": "You should get your eyes examined by the doctor."
+    "spanish": "Fuimos al mercado para comprar frutas.",
+    "english": "We went to the market to buy fruit."
   },
   "4085": {
-    "spanish": "Empezamos temprano para llegar a la cumbre antes del mediodía.",
-    "english": "We started early to reach the summit before midday."
+    "spanish": "Estudia de noche para aprobar el examen.",
+    "english": "She studies at night to pass the exam."
   },
   "4086": {
-    "spanish": "Dimos la gran andada para llegar a la cumbre.",
-    "english": "We took a long hike up to the summit."
+    "spanish": "Necesitamos más tiempo para terminar el proyecto.",
+    "english": "We need more time to finish the project."
   },
   "4087": {
-    "spanish": "Durante un momento Tom estuvo demasiado sorprendido para hablar.",
-    "english": "For a moment, Tom was too surprised to speak."
+    "spanish": "Usamos un mapa para no perdernos.",
+    "english": "We used a map so as not to get lost."
   },
   "4088": {
-    "spanish": "El árbitro sopló su silbato para terminar el partido.",
-    "english": "The referee blew his whistle to end the match."
+    "spanish": "Ella corre todos los días para mantenerse en forma.",
+    "english": "She runs every day to stay in shape."
   },
   "4089": {
-    "spanish": "Reunió todos los datos para tomar una decisión informada.",
-    "english": "He gathered all the data to make an informed decision."
+    "spanish": "Escribí una carta para explicar la situación.",
+    "english": "I wrote a letter to explain the situation."
   },
   "4090": {
-    "spanish": "Él asintió para demostrar que estaba de acuerdo conmigo.",
-    "english": "He nodded to show that he agreed with me."
+    "spanish": "Compramos entradas para ver la película.",
+    "english": "We bought tickets to see the movie."
   },
   "4091": {
-    "spanish": "Él fue honesto, fuerte y decidido para tomar decisiones.",
-    "english": "He was honest, strong, and willing to make decisions."
+    "spanish": "Este regalo es para ti.",
+    "english": "This gift is for you."
   },
   "4092": {
-    "spanish": "El hielo es demasiado fino para soportar tu peso.",
-    "english": "The ice is too thin to bear your weight."
+    "spanish": "Compré flores para mi madre.",
+    "english": "I bought flowers for my mother."
   },
   "4093": {
-    "spanish": "El hombre levantó la mano para hacer una pregunta.",
-    "english": "The man raised his hand to ask a question."
+    "spanish": "Hice una tarta para los invitados.",
+    "english": "I made a cake for the guests."
   },
   "4094": {
-    "spanish": "Él le dio una medicina para que se relajara.",
-    "english": "He gave her a drug to make her relax."
+    "spanish": "Traje un café para mi jefe.",
+    "english": "I brought a coffee for my boss."
   },
   "4095": {
-    "spanish": "Él necesita una salida más productiva para su furia.",
-    "english": "He needs a more productive outlet for his anger."
+    "spanish": "Guardé un trozo de pastel para ti.",
+    "english": "I saved a piece of cake for you."
   },
   "4096": {
-    "spanish": "Él se encargó de los preparativos para la fiesta.",
-    "english": "He took charge of the arrangements for the party."
+    "spanish": "Este mensaje es para todos los estudiantes.",
+    "english": "This message is for all the students."
   },
   "4097": {
-    "spanish": "Ella se estiró para aliviar la rigidez de la espalda.",
-    "english": "She stretched to relieve the stiffness in her back."
+    "spanish": "Compramos juguetes para los niños.",
+    "english": "We bought toys for the children."
   },
   "4098": {
-    "spanish": "Él tiene suficiente ingreso para mantener a su familia.",
-    "english": "He has a sufficient income to support his family."
+    "spanish": "Escribí esta canción para mi esposa.",
+    "english": "I wrote this song for my wife."
   },
   "4099": {
-    "spanish": "Ella pasó muchos días tejiendo un suéter para él.",
-    "english": "She spent many days knitting a sweater for him."
+    "spanish": "Reservé una mesa para nosotros.",
+    "english": "I reserved a table for us."
   },
   "4100": {
-    "spanish": "Es bueno para nosotros entender otras culturas.",
-    "english": "It is good for us to understand other cultures."
+    "spanish": "Preparé la cena para mis padres.",
+    "english": "I prepared dinner for my parents."
   },
   "4101": {
-    "spanish": "Compró una lámpara para leer por la noche.",
-    "english": "She bought a lamp for reading at night."
+    "spanish": "Compré un libro para mi sobrino.",
+    "english": "I bought a book for my nephew."
   },
   "4102": {
-    "spanish": "Ella se estiró para aliviar su rigidez de espalda.",
-    "english": "She stretched to relieve the stiffness in her back."
+    "spanish": "Hicimos una fiesta sorpresa para ella.",
+    "english": "We threw a surprise party for her."
   },
   "4103": {
-    "spanish": "Ella utilizó el coche para ir a la oficina.",
-    "english": "She used the car to go to the office."
+    "spanish": "Traje regalos para toda la familia.",
+    "english": "I brought gifts for the whole family."
   },
   "4104": {
-    "spanish": "Entramos en una tienda para conseguir algo de comida.",
-    "english": "We went into a shop to get some food."
+    "spanish": "Este consejo es para ustedes.",
+    "english": "This advice is for you all."
   },
   "4105": {
-    "spanish": "Este café está demasiado caliente para beberlo.",
-    "english": "This coffee is too hot to drink."
+    "spanish": "Compré un ramo de flores para mi abuela.",
+    "english": "I bought a bouquet of flowers for my grandmother."
   },
   "4106": {
-    "spanish": "Es bueno para nosotros el entender de otras culturas.",
-    "english": "It is good for us to understand other cultures."
+    "spanish": "La tarea es para el lunes.",
+    "english": "The homework is due (for) Monday."
   },
   "4107": {
-    "spanish": "Este café está demasiado caliente para que lo beba.",
-    "english": "This coffee is too hot for me to drink."
+    "spanish": "Necesito el informe para mañana.",
+    "english": "I need the report by tomorrow."
   },
   "4108": {
-    "spanish": "Es la tradición vestirse de negro para un funeral.",
-    "english": "It is traditional to wear black to a funeral."
+    "spanish": "El proyecto debe estar listo para el viernes.",
+    "english": "The project must be ready by Friday."
   },
   "4109": {
-    "spanish": "Esta es la mejor época para abonar los campos.",
-    "english": "This is the best time to fertilize the fields."
+    "spanish": "Reserva la mesa para las ocho.",
+    "english": "Book the table for eight o'clock."
   },
   "4110": {
-    "spanish": "Esta teoría es demasiado difícil para que la entienda.",
-    "english": "This theory is too difficult for me to comprehend."
+    "spanish": "Termina esto para el final del día.",
+    "english": "Finish this by the end of the day."
   },
   "4111": {
-    "spanish": "Esta teoría es para mí demasiado difícil de entender.",
-    "english": "This theory is too difficult for me to comprehend."
+    "spanish": "El pago vence para fin de mes.",
+    "english": "The payment is due by the end of the month."
   },
   "4112": {
-    "spanish": "Este bambú es demasiado fino para soportar tanto peso.",
-    "english": "This bamboo is too thin to bear much weight."
+    "spanish": "Quiero el coche reparado para el sábado.",
+    "english": "I want the car fixed by Saturday."
   },
   "4113": {
-    "spanish": "Este es el mejor método para resolver ese problema.",
-    "english": "This is the best method to solve that problem."
+    "spanish": "Necesito la respuesta para esta tarde.",
+    "english": "I need the answer by this afternoon."
   },
   "4114": {
-    "spanish": "Este es un buen lugar para levantar una carpa.",
-    "english": "This is a good place to pitch a tent."
+    "spanish": "El regalo debe llegar para su cumpleaños.",
+    "english": "The gift must arrive by her birthday."
   },
   "4115": {
-    "spanish": "Este libro es demasiado difícil para que lo entienda.",
-    "english": "This book is too difficult for me to understand."
+    "spanish": "Tenemos que entregar el examen para las diez.",
+    "english": "We have to hand in the exam by ten o'clock."
   },
   "4116": {
-    "spanish": "La niña insistió en que la llevaran al zoológico para ver a los pandas.",
-    "english": "The girl insisted that they take her to the zoo to see the pandas."
+    "spanish": "Este tren sale para Barcelona.",
+    "english": "This train leaves for Barcelona."
   },
   "4117": {
-    "spanish": "Este problema es muy difícil de resolver para mí.",
-    "english": "This problem is too difficult for me to solve."
+    "spanish": "Salimos para el aeropuerto en una hora.",
+    "english": "We are leaving for the airport in an hour."
   },
   "4118": {
-    "spanish": "Generalmente, se necesita un pasaporte para ir al extranjero.",
-    "english": "When you travel abroad, you usually need a passport."
+    "spanish": "El autobús va para el centro.",
+    "english": "The bus goes towards the centre."
   },
   "4119": {
-    "spanish": "La niña ahorró dinero para que la llevaran al zoológico.",
-    "english": "The girl saved money so that they would take her to the zoo."
+    "spanish": "Partimos para Argentina la próxima semana.",
+    "english": "We are departing for Argentina next week."
   },
   "4120": {
-    "spanish": "Había un buen puñado de candidatos para el puesto.",
-    "english": "There were a good many candidates for the position."
+    "spanish": "El vuelo sale para México a las nueve.",
+    "english": "The flight leaves for Mexico at nine."
   },
   "4121": {
-    "spanish": "Haría lo que sea para tenerte acá de nuevo.",
-    "english": "I'd do anything to have you here again."
+    "spanish": "Vamos para la playa este fin de semana.",
+    "english": "We're heading to the beach this weekend."
   },
   "4122": {
-    "spanish": "Hay gente que lee libros para matar el tiempo.",
-    "english": "There are people who read books to kill time."
+    "spanish": "El barco navega para las islas Canarias.",
+    "english": "The ship sails towards the Canary Islands."
   },
   "4123": {
-    "spanish": "Hicimos fila para conseguir las entradas para el concierto.",
-    "english": "We queued up to get tickets for the concert."
+    "spanish": "Salió para la oficina muy temprano.",
+    "english": "She left for the office very early."
   },
   "4124": {
-    "spanish": "Hoy llegó un libro para ti en el correo.",
-    "english": "A book came for you in the mail today."
+    "spanish": "Este camino va para el pueblo.",
+    "english": "This road leads to the village."
   },
   "4125": {
-    "spanish": "La soga no era lo suficientemente fuerte para soportarlo.",
-    "english": "The rope wasn't strong enough to support him."
+    "spanish": "Partimos para casa después de la cena.",
+    "english": "We headed home after dinner."
   },
   "4126": {
-    "spanish": "La vida comienza cuando uno está preparado para vivirla.",
-    "english": "Life begins when you're ready to live it."
+    "spanish": " para mí, esta película es aburrida.",
+    "english": "For me, this movie is boring."
   },
   "4127": {
-    "spanish": "Lo que tú dijiste solo aplica para mujeres solteras.",
-    "english": "What you have said applies only to single women."
+    "spanish": " para nosotros, el examen fue muy difícil.",
+    "english": "For us, the exam was very difficult."
   },
   "4128": {
-    "spanish": "Los buenos días se han ido para nunca regresar.",
-    "english": "The good old days have gone, never to return."
+    "spanish": " para ella, el español es fácil.",
+    "english": "For her, Spanish is easy."
   },
   "4129": {
-    "spanish": "Los estudiantes nos pidieron ayuda para empujar el automóvil.",
-    "english": "The students wanted us to help push the car."
+    "spanish": " para mis padres, la puntualidad es muy importante.",
+    "english": "For my parents, punctuality is very important."
   },
   "4130": {
-    "spanish": "Los ingenieros levantaron un plano para un nuevo muelle.",
-    "english": "The engineers drew up plans for a new dock."
+    "spanish": " para ti, todo parece sencillo.",
+    "english": "For you, everything seems simple."
   },
   "4131": {
-    "spanish": "Los pájaros hambrientos estaban comiendo del alimentador para pájaros.",
-    "english": "The hungry birds were eating from the bird feeder."
+    "spanish": "Trabajo para una empresa internacional.",
+    "english": "I work for an international company."
   },
   "4132": {
-    "spanish": "Me estoy devanando los sesos para encontrar una solución.",
-    "english": "I'm racking my brains to find a solution."
+    "spanish": "Ella trabaja para el gobierno.",
+    "english": "She works for the government."
   },
   "4133": {
-    "spanish": "Me hice doctor para poder ayudar a los demás.",
-    "english": "I became a doctor so I could help people."
+    "spanish": "Mi hermano trabaja para un banco.",
+    "english": "My brother works for a bank."
   },
   "4134": {
-    "spanish": "Necesito más práctica para hacerlo bien.",
-    "english": "I need more practice to do it well."
+    "spanish": "Trabajamos para una organización sin fines de lucro.",
+    "english": "We work for a non-profit organisation."
   },
   "4135": {
-    "spanish": "Mi madre está haciendo una tarta para mi padre.",
-    "english": "My mother is making a cake for my father."
+    "spanish": "Él trabaja para sí mismo como diseñador.",
+    "english": "He works for himself as a designer."
   },
   "4136": {
-    "spanish": "Mi mamá me dio permiso para ir al cine.",
-    "english": "My mother permitted me to go to the movies."
+    "spanish": " para ser principiante, hablas muy bien.",
+    "english": "For a beginner, you speak very well."
   },
   "4137": {
-    "spanish": "Mi padre es demasiado terco para admitir sus errores.",
-    "english": "My father is too stubborn to admit his faults."
+    "spanish": " para tener solo diez años, dibuja increíblemente bien.",
+    "english": "For being only ten years old, she draws incredibly well."
   },
   "4138": {
-    "spanish": "Mi padre me regaló un reloj para mi cumpleaños.",
-    "english": "My father gave me a watch for my birthday."
+    "spanish": " para ser tan joven, tiene mucha experiencia.",
+    "english": "For being so young, he has a lot of experience."
   },
   "4139": {
-    "spanish": "Necesito algunas cajas de cartón para empacar mis pertenencias.",
-    "english": "I need some cardboard boxes to pack my possessions."
+    "spanish": " para ser invierno, hace bastante calor.",
+    "english": "For winter, it's quite warm."
   },
   "4140": {
-    "spanish": "Ni Tom ni Mary estaban de humor para hablar.",
-    "english": "Neither Tom nor Mary was in a talkative mood."
+    "spanish": " para llevar poco tiempo aquí, conoces la ciudad muy bien.",
+    "english": "For having been here a short time, you know the city very well."
   },
   "4141": {
-    "spanish": "No es algo para lo que sea muy bueno.",
-    "english": "It's not something I'm very good at."
+    "spanish": "Necesitamos voluntarios para organizar el evento.",
+    "english": "We need volunteers to organise the event."
   },
   "4142": {
-    "spanish": "No había entradas disponibles para la función del viernes.",
-    "english": "There were no tickets available for Friday's performance."
+    "spanish": "Ahorramos para viajar por toda Europa algún día.",
+    "english": "We're saving up to travel all over Europe someday."
   },
   "4143": {
-    "spanish": "No hay nada que pueda hacer para cambiar eso.",
-    "english": "There's nothing I can do to change that."
+    "spanish": "Estudia biología para convertirse en médica.",
+    "english": "She studies biology to become a doctor."
   },
   "4144": {
-    "spanish": "No me gusta, para nada, el queso de cabra.",
-    "english": "I really don't like goat cheese at all."
+    "spanish": "Compramos ingredientes para preparar una paella.",
+    "english": "We bought ingredients to make a paella."
   },
   "4145": {
-    "spanish": "No te vas de Japón para siempre, ¿o sí?",
-    "english": "You're not leaving Japan for good, are you?"
+    "spanish": "Practican cada tarde para ganar el campeonato.",
+    "english": "They practise every afternoon to win the championship."
   },
   "4146": {
-    "spanish": "Nuestros ojos requieren tiempo para adaptarse a la oscuridad.",
-    "english": "Our eyes take time to adjust to the dark."
+    "spanish": "Este premio es para el mejor estudiante del año.",
+    "english": "This prize is for the best student of the year."
   },
   "4147": {
-    "spanish": "Para ciertas tareas, mi ordenador puede ser muy útil.",
-    "english": "For certain tasks, my computer can be very useful."
+    "spanish": "Dejé una nota para el vecino.",
+    "english": "I left a note for the neighbour."
   },
   "4148": {
-    "spanish": "Para mi sorpresa, el museo abrió una sala nueva.",
-    "english": "To my surprise, the museum opened a new gallery."
+    "spanish": "Compré un regalo especial para mi mejor amiga.",
+    "english": "I bought a special gift for my best friend."
   },
   "4149": {
-    "spanish": "El recorrido es corto para una excursión de montaña.",
-    "english": "The route is short for a mountain hike."
+    "spanish": "Preparamos una sorpresa para nuestros abuelos.",
+    "english": "We prepared a surprise for our grandparents."
   },
   "4150": {
-    "spanish": "Tengo fruta y yogur para la merienda.",
-    "english": "I have fruit and yoghurt for an afternoon snack."
+    "spanish": "Este descuento es solo para los socios del club.",
+    "english": "This discount is only for club members."
   },
   "5001": {
     "spanish": "El café estaba frío, pero me lo bebí mientras esperaba el tren.",
@@ -3614,7 +3614,7 @@ function sourcedExplanation(question: SourceableQuestion): string {
   }
   if (question.id < 3000) return `Use “${question.answer}” here; “${question.objectPronoun}” would change the meaning or be ungrammatical.`;
   if (question.id < 4000) return `Use “${question.answer}”, the ${question.tense} form of “${question.infinitive}”, in this past-tense context.`;
-  if (question.id < 5000) return `Use “${question.answer}” for the relationship expressed in this sentence; “${question.objectPronoun}” would express a different relationship.`;
+  if (question.id < 5000) return question.explanation;
   if (question.id < 6000) {
     if (question.infinitive === "direct object") return `Use “${question.answer}” as the direct-object pronoun replacing the person or thing acted upon.`;
     if (question.infinitive === "indirect object") return `Use “${question.answer}” as the indirect-object pronoun marking the recipient or affected person.`;
