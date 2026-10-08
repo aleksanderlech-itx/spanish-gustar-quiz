@@ -65,3 +65,25 @@ test("orderBoard is stable across repeated calls with unchanged input", () => {
   assert.deepEqual(first, second);
   assert.deepEqual(first, ["a", "b", "c"]);
 });
+
+test("orderBoard moves topics whose daily round is done to the end, keeping the due sort within each group", () => {
+  const items = [
+    tile({ id: "done-high", due: 9, daily: { done: true } }),
+    tile({ id: "open-low", due: 1, daily: { done: false } }),
+    tile({ id: "done-low", due: 2, daily: { done: true } }),
+    tile({ id: "open-high", due: 5, daily: { done: false } }),
+    tile({ id: "no-daily", due: 3 }),
+  ];
+  const ordered = orderBoard(items).map((item) => item.id);
+  assert.deepEqual(ordered, ["open-high", "no-daily", "open-low", "done-high", "done-low"]);
+});
+
+test("orderBoard keeps the in-progress topic pinned even when its daily round is done", () => {
+  const items = [
+    tile({ id: "active", completed: 3, total: 10, percent: 30, lastActivity: "2026-08-24", daily: { done: true } }),
+    tile({ id: "other", due: 4, daily: { done: false } }),
+  ];
+  const ordered = orderBoard(items);
+  assert.equal(ordered[0].id, "active");
+  assert.equal(ordered[0].pinned, true);
+});
