@@ -75,8 +75,11 @@ body {
 }
 
 body {
-  --font-display: "Fraunces", Georgia, serif;
-  --font-body: "Karla", system-ui, sans-serif;
+  --font-display: "Literata", Georgia, serif;
+  --font-display-weight: 500;
+  --font-body: "Atkinson Hyperlegible Next", system-ui, sans-serif;
+  /* English glosses under Spanish text: Literata italic, like a dictionary entry. */
+  --font-gloss: "Literata", Georgia, serif;
 }
 body,
 button,
@@ -89,6 +92,7 @@ h1,
 h2,
 h3 {
   font-family: var(--font-display);
+  font-weight: var(--font-display-weight);
 }
 
 body {
@@ -629,7 +633,7 @@ body {
   color: var(--ink);
   font-family: var(--font-display);
   font-size: 19px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
   flex-wrap: wrap;
 }
 
@@ -656,7 +660,7 @@ body {
   color: var(--ink);
   font-family: var(--font-display);
   font-size: 40px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
   line-height: .9;
 }
 
@@ -1171,7 +1175,7 @@ body {
     margin: 0;
     font-family: var(--font-display);
     font-size: 28px;
-    font-weight: 600;
+    font-weight: var(--font-display-weight);
     color: var(--ink);
   }
 
@@ -1353,7 +1357,7 @@ body {
   margin: 0 0 16px;
   font-family: var(--font-display);
   font-size: 32px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
   line-height: 1.15;
 }
 
@@ -1681,7 +1685,7 @@ body {
   color: var(--ink);
   font-family: var(--font-display);
   font-size: 42px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
   line-height: 1.12;
   letter-spacing: -1px;
   overflow-wrap: anywhere;
@@ -1950,7 +1954,7 @@ body {
   margin: 0 0 18px;
   font-family: var(--font-display);
   font-size: 32px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
   line-height: 1.15;
 }
 
@@ -1974,7 +1978,7 @@ body {
   color: var(--ink);
   font-family: var(--font-display);
   font-size: 48px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
   line-height: 1.15;
 }
 
@@ -2078,7 +2082,7 @@ body {
   margin: 0 0 10px;
   font-family: var(--font-display);
   font-size: 16px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
 }
 
 .results-kofi-link {
@@ -2173,7 +2177,7 @@ body {
   font-family: var(--font-display);
   font-size: 48px;
   line-height: 1.15;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
   overflow-wrap: anywhere;
 }
 
@@ -2217,9 +2221,10 @@ body {
 .flashcard-meaning {
   margin: 0;
   color: var(--ink);
-  font-family: var(--font-display);
+  font-family: var(--font-gloss);
   font-size: 21px;
-  font-weight: 600;
+  font-style: italic;
+  font-weight: var(--font-display-weight);
 }
 
 .flashcard-example {
@@ -2232,6 +2237,7 @@ body {
 .flashcard-example-english {
   margin: -10px 0 0;
   color: var(--muted);
+  font-family: var(--font-gloss);
   font-size: 18px;
   font-style: italic;
   line-height: 1.5;
@@ -2291,7 +2297,7 @@ body {
   margin: 0;
   font-family: var(--font-display);
   font-size: 19px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
 }
 
 .verb-chart-regularity-badge {
@@ -2317,7 +2323,7 @@ body {
   color: var(--muted);
   font-family: var(--font-display);
   font-size: 16px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
 }
 
 .verb-chart-block {
@@ -2477,7 +2483,7 @@ body {
   margin: 0;
   font-family: var(--font-display);
   font-size: 19px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
 }
 
 .drawer-close {
@@ -2766,7 +2772,7 @@ body {
   margin: 0;
   font-family: var(--font-display);
   font-size: 22px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
 }
 
 .help-dialog-close {
