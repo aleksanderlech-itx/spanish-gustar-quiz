@@ -6,7 +6,7 @@ Adapt existing logic through reusable visual primitives. Names below describe re
 
 | Component | Anatomy | States and constraints |
 |---|---|---|
-| AppHeader | Live three-block mark, Fraunces “Spanish Quizzes” wordmark, Karla context, quiet divider | Wrap; preserve real back/menu navigation |
+| AppHeader | Live three-block mark, Literata “Spanish Quizzes” wordmark, Atkinson Hyperlegible Next context, quiet divider | Wrap; preserve real back/menu navigation |
 | MenuDrawer | Mobile menu trigger, same mark and wordmark, streak/accuracy summary, stacked navigation and accordion rows | Opens over a dimmed page; close button, Escape and backdrop dismiss; focus moves in and returns to trigger; one section expands at a time |
 | PrimaryAction | Teal, white label, optional arrow | Default/hover/focus/pressed/disabled/busy; 44px minimum |
 | SecondaryAction | Surface, control outline, Ink | Same keyboard and busy behavior |

@@ -75,8 +75,11 @@ body {
 }
 
 body {
-  --font-display: "Fraunces", Georgia, serif;
-  --font-body: "Karla", system-ui, sans-serif;
+  --font-display: "Literata", Georgia, serif;
+  --font-display-weight: 500;
+  --font-body: "Atkinson Hyperlegible Next", system-ui, sans-serif;
+  /* English glosses under Spanish text: Literata italic, like a dictionary entry. */
+  --font-gloss: "Literata", Georgia, serif;
 }
 body,
 button,
@@ -89,6 +92,7 @@ h1,
 h2,
 h3 {
   font-family: var(--font-display);
+  font-weight: var(--font-display-weight);
 }
 
 body {
@@ -629,15 +633,15 @@ body {
   color: var(--ink);
   font-family: var(--font-display);
   font-size: 19px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
   flex-wrap: wrap;
 }
 
 .streak-panel {
   padding: 16px 18px;
   border: 1px solid var(--line);
-  border-radius: 18px 26px 14px 26px;
-  background: var(--sun-soft);
+  border-radius: 14px;
+  background: var(--surface);
   margin-bottom: 22px;
 }
 
@@ -653,95 +657,65 @@ body {
 }
 
 .streak-count > strong {
-  color: var(--ink);
+  color: var(--primary);
   font-family: var(--font-display);
-  font-size: 40px;
-  font-weight: 600;
-  line-height: .9;
+  font-size: 44px;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-weight: var(--font-display-weight);
+  line-height: 1;
 }
 
 .streak-count > div {
   display: flex;
   flex-direction: column;
-  gap: 2px;
 }
 
 .streak-label {
   color: var(--ink);
-  font-size: 15px;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: var(--font-display-weight);
+  line-height: 1.2;
 }
 
 .streak-goal {
   color: var(--muted);
-  font-size: 13px;
+  font-size: 14px;
+  line-height: 1.4;
 }
 
 .streak-week {
-  display: flex;
-  gap: 5px;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
   margin-top: 14px;
 }
 
+/* Thin bars: done days in primary, today filled in sun up to its share of
+   activities (inline background from quiz-selector.tsx), the rest on the track. */
 .streak-day {
-  flex: 1;
-  height: 22px;
+  height: 8px;
   border-radius: 4px;
-  border: 1px solid var(--border-ink);
+  background: var(--segment-track);
 }
 
 .streak-day-done {
-  border-style: solid;
-  background: var(--sun);
-}
-
-.streak-day-today {
-  border-style: dashed;
-  background: transparent;
-}
-
-.streak-day-future {
-  border: 2px dashed var(--line);
-  background: transparent;
+  background: var(--primary);
 }
 
 .streak-week-letters {
-  display: flex;
-  gap: 5px;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
   margin-top: 4px;
 }
 
 .streak-week-letters > span {
-  flex: 1;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
   text-align: center;
-}
-
-/* Dark mode: --sun-soft reads as an olive wash at full-card size, so the streak
-   card keeps the surface fill and lets the --sun border/numeral carry the
-   streak identity instead. See design handoff "Dark mode: streak panel". */
-:root[data-theme="dark"] .streak-panel {
-  background: var(--surface);
-  border-color: var(--sun);
-}
-
-:root[data-theme="dark"] .streak-count > strong {
-  color: var(--sun);
-  font-size: 34px;
-}
-
-:root[data-theme="dark"] .streak-day {
-  border-color: var(--line);
-}
-
-:root[data-theme="dark"] .streak-day-today {
-  border-color: var(--sun);
-}
-
-:root[data-theme="dark"] .streak-day-future {
-  border-style: solid;
-  border-color: var(--line);
 }
 
 .board-section-head {
@@ -1171,7 +1145,7 @@ body {
     margin: 0;
     font-family: var(--font-display);
     font-size: 28px;
-    font-weight: 600;
+    font-weight: var(--font-display-weight);
     color: var(--ink);
   }
 
@@ -1353,7 +1327,7 @@ body {
   margin: 0 0 16px;
   font-family: var(--font-display);
   font-size: 32px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
   line-height: 1.15;
 }
 
@@ -1681,7 +1655,7 @@ body {
   color: var(--ink);
   font-family: var(--font-display);
   font-size: 42px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
   line-height: 1.12;
   letter-spacing: -1px;
   overflow-wrap: anywhere;
@@ -1950,7 +1924,7 @@ body {
   margin: 0 0 18px;
   font-family: var(--font-display);
   font-size: 32px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
   line-height: 1.15;
 }
 
@@ -1974,7 +1948,7 @@ body {
   color: var(--ink);
   font-family: var(--font-display);
   font-size: 48px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
   line-height: 1.15;
 }
 
@@ -2078,7 +2052,7 @@ body {
   margin: 0 0 10px;
   font-family: var(--font-display);
   font-size: 16px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
 }
 
 .results-kofi-link {
@@ -2173,7 +2147,7 @@ body {
   font-family: var(--font-display);
   font-size: 48px;
   line-height: 1.15;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
   overflow-wrap: anywhere;
 }
 
@@ -2217,9 +2191,10 @@ body {
 .flashcard-meaning {
   margin: 0;
   color: var(--ink);
-  font-family: var(--font-display);
+  font-family: var(--font-gloss);
   font-size: 21px;
-  font-weight: 600;
+  font-style: italic;
+  font-weight: var(--font-display-weight);
 }
 
 .flashcard-example {
@@ -2232,6 +2207,7 @@ body {
 .flashcard-example-english {
   margin: -10px 0 0;
   color: var(--muted);
+  font-family: var(--font-gloss);
   font-size: 18px;
   font-style: italic;
   line-height: 1.5;
@@ -2291,7 +2267,7 @@ body {
   margin: 0;
   font-family: var(--font-display);
   font-size: 19px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
 }
 
 .verb-chart-regularity-badge {
@@ -2317,7 +2293,7 @@ body {
   color: var(--muted);
   font-family: var(--font-display);
   font-size: 16px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
 }
 
 .verb-chart-block {
@@ -2477,7 +2453,7 @@ body {
   margin: 0;
   font-family: var(--font-display);
   font-size: 19px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
 }
 
 .drawer-close {
@@ -2766,7 +2742,7 @@ body {
   margin: 0;
   font-family: var(--font-display);
   font-size: 22px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
 }
 
 .help-dialog-close {

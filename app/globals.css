@@ -2,19 +2,27 @@
 @source not "../design-system";
 
 @font-face {
-  font-family: "Fraunces";
+  font-family: "Literata";
   font-style: normal;
   font-weight: 400 700;
   font-display: swap;
-  src: url("/fonts/fraunces-latin.woff2") format("woff2");
+  src: url("/fonts/literata-latin.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Karla";
-  font-style: normal;
+  font-family: "Literata";
+  font-style: italic;
   font-weight: 400 700;
   font-display: swap;
-  src: url("/fonts/karla-latin.woff2") format("woff2");
+  src: url("/fonts/literata-italic-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Atkinson Hyperlegible Next";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("/fonts/atkinson-hyperlegible-next-latin.woff2") format("woff2");
 }
 
 * {

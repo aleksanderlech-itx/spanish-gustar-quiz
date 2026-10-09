@@ -68,8 +68,10 @@ test("mobile quiz design keeps the answer field and actions inside the viewport"
 test("editorial design uses approved light tokens and semantic surfaces", async () => {
   const fonts = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   const css = await readFile(new URL("../app/quiz-layout-fix.css", import.meta.url), "utf8");
-  assert.match(fonts, /font-family: "Fraunces"/);
-  assert.match(fonts, /font-family: "Karla"/);
+  assert.match(fonts, /font-family: "Literata"/);
+  assert.match(fonts, /font-family: "Literata";\s*font-style: italic/);
+  assert.match(fonts, /font-family: "Atkinson Hyperlegible Next"/);
+  assert.doesNotMatch(fonts, /Fraunces|Karla/);
   assert.match(css, /--paper:\s*#F8EDE1/);
   assert.match(css, /--surface:\s*#FFFAF3/);
   assert.match(css, /--primary:\s*#0F766E/);
@@ -101,7 +103,7 @@ test("the flashcard word's font/color/size rule actually matches the DOM (the wo
   const flashcards = await readFile(new URL("../app/flashcards.tsx", import.meta.url), "utf8");
   // A `.flashcard-face > strong` child selector silently never matched, since the
   // word is nested one level deeper — the whole time, it rendered with the
-  // browser's default <strong> styling (16px, no color, no Fraunces) instead.
+  // browser's default <strong> styling (16px, no color, no display face) instead.
   assert.doesNotMatch(await readFile(new URL("../app/quiz-layout-fix.css", import.meta.url), "utf8"), /\.flashcard-face > strong/);
   assert.match(flashcards, /className="flashcard-term-row">\s*<strong/);
 });

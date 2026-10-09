@@ -291,7 +291,7 @@ export default function QuizSelector() {
             <div className="streak-count">
               <strong>{streak.streak}</strong>
               <div>
-                <span className="streak-label">días seguidos</span>
+                <span className="streak-label" lang="es">días seguidos</span>
                 <span className="streak-goal">Goal: a round in all {streak.todayTotal} activities · {streak.todayDone}/{streak.todayTotal} today</span>
               </div>
             </div>
@@ -304,7 +304,7 @@ export default function QuizSelector() {
                 <span
                   key={index}
                   className={`streak-day streak-day-${day.status}`}
-                  style={isToday ? { background: `linear-gradient(90deg, var(--sun) ${fill}%, transparent ${fill}%)` } : undefined}
+                  style={isToday ? { background: `linear-gradient(90deg, var(--sun) ${fill}%, var(--segment-track) ${fill}%)` } : undefined}
                   role="listitem"
                   aria-label={day.status === "done" ? "All activities done" : day.status === "today" ? `${day.doneCount} of ${day.total} activities done today` : "Not yet"}
                 />

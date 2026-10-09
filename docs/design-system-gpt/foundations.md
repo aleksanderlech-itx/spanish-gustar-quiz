@@ -2,9 +2,9 @@
 
 ## Identity
 
-A warm Spanish study notebook: Paper surfaces, Ink text, Teal actions, Fraunces learning headings, Karla controls. The sample views use small outline topic icons rather than the original board's botanical illustrations. Decoration stays secondary to practice.
+A warm Spanish study notebook: Paper surfaces, Ink text, Teal actions, Literata learning headings, Atkinson Hyperlegible Next controls, Literata italic English glosses. The sample views use small outline topic icons rather than the original board's botanical illustrations. Decoration stays secondary to practice.
 
-The product logo retains the live application's identity: a 24px three-block mark followed by the Fraunces wordmark “Spanish Quizzes” with an 8px gap. Its 34 × 34 SVG viewBox contains a wide top block (`x=2 y=2 width=30 height=12`) and two lower blocks (`x=2` and `x=19`, `y=18`, `width=13 height=14`). All three use a 2.5-unit Ink stroke. Keep its live brand colors `#00625D` (top), `#C4553F` (lower left), `#F2A81D` (lower right), and `#2C2B29` (stroke) even when the surrounding target palette differs. Treat the SVG as decorative when adjacent wordmark text supplies the accessible name.
+The product logo retains the live application's identity: a 24px three-block mark followed by the Literata wordmark “Spanish Quizzes” with an 8px gap. Its 34 × 34 SVG viewBox contains a wide top block (`x=2 y=2 width=30 height=12`) and two lower blocks (`x=2` and `x=19`, `y=18`, `width=13 height=14`). All three use a 2.5-unit Ink stroke. Keep its live brand colors `#00625D` (top), `#C4553F` (lower left), `#F2A81D` (lower right), and `#2C2B29` (stroke) even when the surrounding target palette differs. Treat the SVG as decorative when adjacent wordmark text supplies the accessible name.
 
 ## Colors
 
@@ -32,16 +32,17 @@ Gold is not a focus ring. Pale border is not the sole outline for an input. Corr
 
 | Role | Family | Size / line height | Weight |
 |---|---|---|---|
-| Product name | Fraunces | 19px / 1.15; 18px at ≤380px | 600 |
-| Page heading | Fraunces | 32px / 1.15 | 600 |
-| Topic/card heading | Fraunces | 24px / 1.2 | 600 |
-| Spanish question | Fraunces | 42px / 1.12; 36px at ≤380px | 600 |
-| Flashcard term / score | Fraunces | 48px / 1.15 | 600 |
-| Section label | Karla | 18px / 1.3 | 700 |
-| Body / action | Karla | 16px / 1.5 | 400 / 600 |
-| Metadata / badge | Karla | 14px / 1.5 | 400 / 700 |
+| Product name | Literata | 19px / 1.15; 18px at ≤380px | 500 |
+| Page heading | Literata | 32px / 1.15 | 500 |
+| Topic/card heading | Literata | 24px / 1.2 | 500 |
+| Spanish question | Literata | 42px / 1.12; 36px at ≤380px | 500 |
+| Flashcard term / score | Literata | 48px / 1.15 | 500 |
+| Section label | Atkinson Hyperlegible Next | 18px / 1.3 | 700 |
+| English gloss | Literata italic | 16px / 1.45 | 400 |
+| Body / action | Atkinson Hyperlegible Next | 16px / 1.5 | 400 / 600 |
+| Metadata / badge | Atkinson Hyperlegible Next | 14px / 1.5 | 400 / 700 |
 
-Fallbacks: Fraunces → Georgia, serif; Karla → system-ui, sans-serif. Heading tracking -0.7px; question tracking -1px; eyebrow tracking 0.06em. Eyebrows are short uppercase labels. Preserve accents and punctuation, mark Spanish passages `lang="es"`, and wrap learning text naturally. Hard-coded sample line breaks are not language rules.
+Fallbacks: Literata → Georgia, serif; Atkinson Hyperlegible Next → system-ui, sans-serif. Heading tracking -0.7px; question tracking -1px; eyebrow tracking 0.06em. Eyebrows are short uppercase labels. Preserve accents and punctuation, mark Spanish passages `lang="es"`, and wrap learning text naturally. Hard-coded sample line breaks are not language rules.
 
 ## Geometry
 
