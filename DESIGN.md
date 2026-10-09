@@ -10,7 +10,7 @@ The approved [dark palette](docs/design-system-gpt/dark-preview.md) now maps Pap
 
 ## Type, shape and layout
 
-Literata (weight 500, `--font-display-weight`) is the display face for headings, Spanish prompts, flashcard terms and scores. Atkinson Hyperlegible Next serves controls, answers, supporting text and metadata. English glosses that sit under Spanish (round translation, flashcard meaning and example translation) use Literata italic through `--font-gloss`. Fonts are self-hosted latin woff2 subsets in `public/fonts/`, declared in `app/globals.css`. The target uses a 32px page heading, 42px Spanish question (36px at 380px and below), and 48px flashcard term or score. Use the documented fallbacks when fonts cannot load.
+Literata (weight 500, `--font-display-weight`) is the display face for headings, Spanish prompts, flashcard terms and scores. Atkinson Hyperlegible Next serves controls, answers, supporting text and metadata. English glosses that sit under Spanish (round translation, flashcard meaning and example translation) use Literata italic through `--font-gloss`. Fonts are self-hosted latin woff2 subsets in `public/fonts/`, declared in `app/globals.css`. The target uses a 32px page heading, 30px Spanish question (28px at 380px and below), and 48px flashcard term or score. Use the documented fallbacks when fonts cannot load.
 
 Cards use a 14px standard radius or the editorial 18px 26px 14px 26px corners. Controls use 10px corners. The active surface may use a restrained `0 4px 14px rgb(15 23 42 / 8%)` shadow; supporting panels stay quiet. Preserve 44px touch targets, visible 3px teal focus rings with 3px offset, naturally wrapping Spanish text, and reduced-motion handling.
 
