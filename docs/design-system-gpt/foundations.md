@@ -35,14 +35,14 @@ Gold is not a focus ring. Pale border is not the sole outline for an input. Corr
 | Product name | Literata | 19px / 1.15; 18px at ≤380px | 500 |
 | Page heading | Literata | 32px / 1.15 | 500 |
 | Topic/card heading | Literata | 24px / 1.2 | 500 |
-| Spanish question | Literata | 42px / 1.12; 36px at ≤380px | 500 |
+| Spanish question | Literata | 30px / 1.3; 28px at ≤380px | 500 |
 | Flashcard term / score | Literata | 48px / 1.15 | 500 |
 | Section label | Atkinson Hyperlegible Next | 18px / 1.3 | 700 |
 | English gloss | Literata italic | 16px / 1.45 | 400 |
 | Body / action | Atkinson Hyperlegible Next | 16px / 1.5 | 400 / 600 |
 | Metadata / badge | Atkinson Hyperlegible Next | 14px / 1.5 | 400 / 700 |
 
-Fallbacks: Literata → Georgia, serif; Atkinson Hyperlegible Next → system-ui, sans-serif. Heading tracking -0.7px; question tracking -1px; eyebrow tracking 0.06em. Eyebrows are short uppercase labels. Preserve accents and punctuation, mark Spanish passages `lang="es"`, and wrap learning text naturally. Hard-coded sample line breaks are not language rules.
+Fallbacks: Literata → Georgia, serif; Atkinson Hyperlegible Next → system-ui, sans-serif. Heading tracking -0.7px; question tracking -0.01em; eyebrow tracking 0.06em. Eyebrows are short uppercase labels. Preserve accents and punctuation, mark Spanish passages `lang="es"`, and wrap learning text naturally. Hard-coded sample line breaks are not language rules.
 
 ## Geometry
 
