@@ -7,16 +7,16 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "I want to be more patient."
   },
   "estar": {
-    "example": "¿Cómo puedes estar tan optimista con respecto al futuro?",
-    "exampleEnglish": "How can you be so optimistic about the future?"
+    "example": "Voy a estar en casa esta tarde.",
+    "exampleEnglish": "I'm going to be home this afternoon."
   },
   "haber": {
-    "example": "Eso tiene que haber pasado mientras yo estaba fuera.",
-    "exampleEnglish": "That must've taken place while I was away."
+    "example": "Tiene que haber otra solución.",
+    "exampleEnglish": "There has to be another solution."
   },
   "hacer": {
-    "example": "¡Este pozo de petróleo me va a hacer rico!",
-    "exampleEnglish": "This oil well is going to make me rich."
+    "example": "Tengo que hacer la cena.",
+    "exampleEnglish": "I have to make dinner."
   },
   "poder": {
     "example": "Para poder entrar al laboratorio, necesitas una tarjeta especial.",
@@ -27,36 +27,36 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "Will you tell me what I should do next?"
   },
   "ir": {
-    "example": "¿Dónde sueles ir a que te corten el pelo?",
-    "exampleEnglish": "Where do you usually go to get a haircut?"
+    "example": "Vamos a ir al mercado el sábado.",
+    "exampleEnglish": "We're going to go to the market on Saturday."
   },
   "ver": {
     "example": "¿Puedes ver ese edificio grande y blanco de allí?",
     "exampleEnglish": "Can you see the big white building over there?"
   },
   "dar": {
-    "example": "Mira por el retrovisor antes de dar marcha atrás.",
-    "exampleEnglish": "Look in the rear-view mirror before backing up."
+    "example": "Voy a dar mi opinión en la reunión.",
+    "exampleEnglish": "I'm going to give my opinion at the meeting."
   },
   "saber": {
-    "example": "Hacenos saber si estás disponible la semana que viene.",
-    "exampleEnglish": "Let us know if you're available next week."
+    "example": "Quiero saber la verdad.",
+    "exampleEnglish": "I want to know the truth."
   },
   "querer": {
-    "example": "Creo que podrías querer echar un vistazo a esto.",
-    "exampleEnglish": "I think you might want to check this out."
+    "example": "Quiero aprender español.",
+    "exampleEnglish": "I want to learn Spanish."
   },
   "llegar": {
     "example": "Al llegar a la estación, telefoneé a mi amigo.",
     "exampleEnglish": "I called my friend after arriving at the station."
   },
   "pasar": {
-    "example": "Él ha estado haciendo pasar mis ideas como suyas.",
-    "exampleEnglish": "He's been passing off my ideas as his."
+    "example": "No sé qué va a pasar mañana.",
+    "exampleEnglish": "I don't know what's going to happen tomorrow."
   },
   "deber": {
-    "example": "Antes de aceptar el préstamo, calcula cuánto vas a deber al banco.",
-    "exampleEnglish": "Before accepting the loan, calculate how much you will owe the bank."
+    "example": "Debes descansar un poco.",
+    "exampleEnglish": "You should rest a little."
   },
   "poner": {
     "example": "Clara decidió poner las plantas junto a la ventana.",
@@ -67,12 +67,12 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "The route may seem long, but the scenery is worth it."
   },
   "quedar": {
-    "example": "¿Te vas a quedar ahí parado todo el día?",
-    "exampleEnglish": "Are you just going to stand there all day?"
+    "example": "Podemos quedar mañana por la tarde.",
+    "exampleEnglish": "We can meet up tomorrow afternoon."
   },
   "creer": {
-    "example": "No puedo creer que dejé que Tom hiciera eso.",
-    "exampleEnglish": "I can't believe I let Tom do that."
+    "example": "No puedo creer esta noticia.",
+    "exampleEnglish": "I can't believe this news."
   },
   "hablar": {
     "example": "Algunos de mis amigos saben hablar francés bastante bien.",
@@ -83,16 +83,16 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "You can take these folders to the meeting room."
   },
   "dejar": {
-    "example": "No puedo dejar de pensar en lo que vi.",
-    "exampleEnglish": "I can't stop thinking about what I saw."
+    "example": "Voy a dejar las llaves en la mesa.",
+    "exampleEnglish": "I'm going to leave the keys on the table."
   },
   "seguir": {
-    "example": "Decidimos seguir ocultos durante dos o tres días mas.",
-    "exampleEnglish": "We decided to lie hidden for a few days."
+    "example": "Vamos a seguir las instrucciones con cuidado.",
+    "exampleEnglish": "We're going to follow the instructions carefully."
   },
   "encontrar": {
-    "example": "A dondequiera que vayas, vas a encontrar lo mismo.",
-    "exampleEnglish": "Wherever you go, you will find the same thing."
+    "example": "Espero encontrar mis gafas pronto.",
+    "exampleEnglish": "I hope to find my glasses soon."
   },
   "llamar": {
     "example": "Ahora estamos comiendo, ¿podría volver a llamar más tarde?",
@@ -115,20 +115,20 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "He promised to return and yet he didn't."
   },
   "tomar": {
-    "example": "Hubiera sido mejor que le preguntaras qué camino tomar.",
-    "exampleEnglish": "You had better ask him which way to take."
+    "example": "Voy a tomar un café antes de trabajar.",
+    "exampleEnglish": "I'm going to have a coffee before work."
   },
   "conocer": {
     "example": "Es difícil conocer a gente tan agradable como tú.",
     "exampleEnglish": "It's rare to meet nice people like you."
   },
   "vivir": {
-    "example": "El sueño de Tom es vivir en las montañas.",
-    "exampleEnglish": "Tom's dream is to live in the mountains."
+    "example": "Quiero vivir cerca del mar algún día.",
+    "exampleEnglish": "I want to live near the sea someday."
   },
   "sentir": {
-    "example": "Algunos animales pueden sentir la llegada de una tormenta.",
-    "exampleEnglish": "Some animals can sense the coming of a storm."
+    "example": "Puedo sentir el frío en las manos.",
+    "exampleEnglish": "I can feel the cold in my hands."
   },
   "tratar": {
     "example": "Vamos a intentar tratar a los demás con respeto.",
@@ -139,28 +139,28 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "I think watching TV is a waste of time."
   },
   "contar": {
-    "example": "Él sabe alemán y francés, sin contar el inglés.",
-    "exampleEnglish": "He knows German and French, not to mention English."
+    "example": "Mi abuelo siempre cuenta historias interesantes.",
+    "exampleEnglish": "My grandfather always tells interesting stories."
   },
   "empezar": {
-    "example": "Imagina empezar a hipar y que no pudieras parar.",
-    "exampleEnglish": "Imagine if you started hiccoughing and you couldn't stop."
+    "example": "Vamos a empezar la clase en cinco minutos.",
+    "exampleEnglish": "We're going to start class in five minutes."
   },
   "esperar": {
-    "example": "Los hombres estamos acostumbrados a esperar a las mujeres.",
-    "exampleEnglish": "We men are used to waiting for the women."
+    "example": "Voy a esperar tu respuesta con calma.",
+    "exampleEnglish": "I'm going to wait for your answer calmly."
   },
   "buscar": {
-    "example": "¿A qué hora querés que te pase a buscar?",
-    "exampleEnglish": "What time do you want me to pick you up?"
+    "example": "Necesito buscar un regalo para mi hermana.",
+    "exampleEnglish": "I need to look for a gift for my sister."
   },
   "existir": {
-    "example": "Los hechos no dejan de existir por ser ignorados.",
-    "exampleEnglish": "Facts do not cease to exist because they are ignored."
+    "example": "Debe existir una forma más sencilla.",
+    "exampleEnglish": "There must exist a simpler way."
   },
   "entrar": {
-    "example": "Quítate los zapatos antes de entrar a un templo.",
-    "exampleEnglish": "Take off your shoes before going into a temple."
+    "example": "Vamos a entrar por la puerta principal.",
+    "exampleEnglish": "We're going to go in through the main door."
   },
   "trabajar": {
     "example": "El doctor le advirtió que dejara de trabajar tanto.",
@@ -171,40 +171,40 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "He tried to write down everything the teacher said."
   },
   "perder": {
-    "example": "¿Comer sólo vegetales te puede ayudar a perder peso?",
-    "exampleEnglish": "Can eating just vegetables help you lose weight?"
+    "example": "No quiero perder el autobús.",
+    "exampleEnglish": "I don't want to miss the bus."
   },
   "producir": {
-    "example": "Mediante la ingeniería genética, el maíz puede producir sus propios pesticidas.",
-    "exampleEnglish": "Through genetic engineering, corn can produce its own pesticides."
+    "example": "Esta fábrica va a producir más piezas este año.",
+    "exampleEnglish": "This factory is going to produce more parts this year."
   },
   "ocurrir": {
     "example": "Accidentes de tráfico suelen ocurrir en días de lluvia.",
     "exampleEnglish": "Traffic accidents are likely to occur on rainy days."
   },
   "entender": {
-    "example": "Tom fingió no entender lo que Mary estaba diciendo.",
-    "exampleEnglish": "Tom pretended not to understand what Mary was saying."
+    "example": "Necesito entender mejor esta lección.",
+    "exampleEnglish": "I need to understand this lesson better."
   },
   "pedir": {
-    "example": "Tuve que pedir prestado dinero para comprar el coche.",
-    "exampleEnglish": "I had to borrow money to purchase the car."
+    "example": "Voy a pedir ayuda a mi vecino.",
+    "exampleEnglish": "I'm going to ask my neighbour for help."
   },
   "recibir": {
     "example": "Cada participante va a recibir una copia del programa.",
     "exampleEnglish": "Each participant will receive a copy of the programme."
   },
   "recordar": {
-    "example": "Tom admitió que siempre tiene problemas para recordar nombres.",
-    "exampleEnglish": "Tom admitted that he always has trouble remembering names."
+    "example": "Quiero recordar este viaje para siempre.",
+    "exampleEnglish": "I want to remember this trip forever."
   },
   "terminar": {
-    "example": "Tom consiguió terminar de escribir su reporte a tiempo.",
-    "exampleEnglish": "Tom managed to finish writing his report in time."
+    "example": "Voy a terminar el informe esta noche.",
+    "exampleEnglish": "I'm going to finish the report tonight."
   },
   "permitir": {
-    "example": "Este año no me puedo permitir un coche nuevo.",
-    "exampleEnglish": "I can't afford a new car this year."
+    "example": "El médico no le va a permitir viajar todavía.",
+    "exampleEnglish": "The doctor isn't going to allow him to travel yet."
   },
   "aparecer": {
     "example": "Algunas estrellas empezaron a aparecer en el cielo nocturno.",
@@ -223,16 +223,16 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "Could I have a glass of white wine?"
   },
   "sacar": {
-    "example": "A un rábano no se le puede sacar sangre.",
-    "exampleEnglish": "You can't get blood out of a turnip."
+    "example": "Necesito sacar dinero del banco.",
+    "exampleEnglish": "I need to take out money from the bank."
   },
   "necesitar": {
-    "example": "¿Crees que vas a necesitar que Tom te ayude?",
-    "exampleEnglish": "Do you think you'll need Tom's help?"
+    "example": "Vas a necesitar un abrigo hoy.",
+    "exampleEnglish": "You're going to need a coat today."
   },
   "mantener": {
-    "example": "Tú tienes que aprender a mantener la boca cerrada.",
-    "exampleEnglish": "You've got to learn to hold your tongue."
+    "example": "Quiero mantener esta rutina de ejercicio.",
+    "exampleEnglish": "I want to keep up this exercise routine."
   },
   "resultar": {
     "example": "Con instrucciones claras, montar la estantería debería resultar sencillo.",
@@ -247,8 +247,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "Autumn came and the leaves started to fall."
   },
   "cambiar": {
-    "example": "Me pregunto qué le habrá hecho cambiar de idea.",
-    "exampleEnglish": "I wonder what has made him change his mind."
+    "example": "Vamos a cambiar los muebles de sitio.",
+    "exampleEnglish": "We're going to move the furniture around."
   },
   "presentar": {
     "example": "Mañana Elena va a presentar los resultados de su investigación.",
@@ -267,12 +267,12 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "We should consider the problem from a child's perspective."
   },
   "oír": {
-    "example": "Ella colapsó en llanto al oír las malas noticias.",
-    "exampleEnglish": "On hearing the bad news, she burst into tears."
+    "example": "Creo que puedo oír música a lo lejos.",
+    "exampleEnglish": "I think I can hear music in the distance."
   },
   "acabar": {
-    "example": "Tom no puede acabar este trabajo en un día.",
-    "exampleEnglish": "Tom can't finish this job in a day."
+    "example": "Voy a acabar este libro esta semana.",
+    "exampleEnglish": "I'm going to finish this book this week."
   },
   "convertir": {
     "example": "La reforma pretende convertir el antiguo mercado en una biblioteca.",
@@ -283,16 +283,16 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "She stands a good chance of winning the prize."
   },
   "formar": {
-    "example": "Quien quiera formar parte de nuestro club será bienvenido.",
-    "exampleEnglish": "Whoever wants to join our club will be welcome."
+    "example": "Vamos a formar un equipo nuevo.",
+    "exampleEnglish": "We're going to form a new team."
   },
   "traer": {
     "example": "¿Podrías ir a la tienda y traer algunos huevos?",
     "exampleEnglish": "Could you go to the store and grab some eggs?"
   },
   "partir": {
-    "example": "El tren va a partir del andén cuatro a las ocho.",
-    "exampleEnglish": "The train will depart from platform four at eight o'clock."
+    "example": "El tren va a partir en unos minutos.",
+    "exampleEnglish": "The train is about to depart in a few minutes."
   },
   "morir": {
     "example": "La planta puede morir si la tierra permanece seca.",
@@ -303,32 +303,32 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "She had no choice but to accept her fate."
   },
   "realizar": {
-    "example": "Los computadores son capaces de realizar trabajo extremadamente complicado.",
-    "exampleEnglish": "Computers are capable of doing extremely complicated work."
+    "example": "Queremos realizar un buen trabajo este trimestre.",
+    "exampleEnglish": "We want to do a good job this quarter."
   },
   "suponer": {
-    "example": "Su acento da a suponer que él es un extranjero.",
-    "exampleEnglish": "His accent suggests he is a foreigner."
+    "example": "Voy a suponer que todo va bien.",
+    "exampleEnglish": "I'm going to assume everything is fine."
   },
   "comprender": {
-    "example": "Tom no pudo comprender de qué estaba hablando Mary.",
-    "exampleEnglish": "Tom couldn't figure out what Mary was talking about."
+    "example": "Necesito comprender mejor este tema.",
+    "exampleEnglish": "I need to understand this topic better."
   },
   "lograr": {
     "example": "¿Qué te gustaría lograr en los siguientes tres años?",
     "exampleEnglish": "What's something you'd like to achieve in the next three years?"
   },
   "explicar": {
-    "example": "Estoy sin palabras para explicar la ausencia de Tom.",
-    "exampleEnglish": "I'm at a loss to explain Tom's absence."
+    "example": "El profesor va a explicar la lección de nuevo.",
+    "exampleEnglish": "The teacher is going to explain the lesson again."
   },
   "preguntar": {
     "example": "Voy a preguntar cuándo va a venir el tren.",
     "exampleEnglish": "I'll ask when the train will get in."
   },
   "tocar": {
-    "example": "Tom no puede tocar muy bien el tin whistle.",
-    "exampleEnglish": "Tom can't play the tin whistle very well."
+    "example": "Mi hermana sabe tocar el piano.",
+    "exampleEnglish": "My sister knows how to play the piano."
   },
   "reconocer": {
     "example": "Pude reconocer la melodía desde las primeras notas.",
@@ -343,8 +343,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "The traffic accident prevented me from catching the train."
   },
   "nacer": {
-    "example": "Todos mis bisabuelos fallecieron antes de nacer yo.",
-    "exampleEnglish": "All of my great-grandparents died before I was born."
+    "example": "El bebé va a nacer en septiembre.",
+    "exampleEnglish": "The baby is going to be born in September."
   },
   "dirigir": {
     "example": "Una arquitecta joven va a dirigir la restauración del teatro.",
@@ -363,48 +363,48 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "You can pay for the ticket by card at the box office."
   },
   "ayudar": {
-    "example": "Me alegro de que Tom nos vaya a ayudar.",
-    "exampleEnglish": "I'm glad Tom is going to help us."
+    "example": "Quiero ayudar a mis vecinos con la mudanza.",
+    "exampleEnglish": "I want to help my neighbours with the move."
   },
   "gustar": {
     "example": "Estaba seguro de que no te iba a gustar.",
     "exampleEnglish": "I was sure you wouldn't like it."
   },
   "jugar": {
-    "example": "Se me da mejor cocinar que jugar al tenis.",
-    "exampleEnglish": "I can cook better than I can play tennis."
+    "example": "Los niños quieren jugar en el parque.",
+    "exampleEnglish": "The children want to play at the park."
   },
   "escuchar": {
-    "example": "¿De quién fue el discurso más difícil de escuchar?",
-    "exampleEnglish": "Whose speech was the hardest to listen to?"
+    "example": "Me gusta escuchar música mientras trabajo.",
+    "exampleEnglish": "I like listening to music while I work."
   },
   "cumplir": {
     "example": "El proveedor debe cumplir todas las condiciones del contrato.",
     "exampleEnglish": "The supplier must fulfil all the terms of the contract."
   },
   "ofrecer": {
-    "example": "Te puedo ofrecer algunas predicciones estadísticas de los ingresos esperados.",
-    "exampleEnglish": "I can provide you with some statistical predictions of expected revenues."
+    "example": "El hotel va a ofrecer un descuento este mes.",
+    "exampleEnglish": "The hotel is going to offer a discount this month."
   },
   "descubrir": {
-    "example": "Necesito descubrir quién le dio ese consejo a Tom.",
-    "exampleEnglish": "I need to find out who gave Tom that advice."
+    "example": "Quiero descubrir pueblos nuevos este verano.",
+    "exampleEnglish": "I want to discover new villages this summer."
   },
   "levantar": {
     "example": "Entre los dos pudieron levantar la caja sin dañarla.",
     "exampleEnglish": "Together they managed to lift the box without damaging it."
   },
   "intentar": {
-    "example": "No puedes conseguir lo imposible sin intentar lo absurdo.",
-    "exampleEnglish": "You cannot achieve the impossible without attempting the absurd."
+    "example": "Voy a intentar terminar hoy mismo.",
+    "exampleEnglish": "I'm going to try to finish today."
   },
   "usar": {
     "example": "No me gusta usar la ropa de otras personas.",
     "exampleEnglish": "I do not like wearing anybody else's clothes."
   },
   "decidir": {
-    "example": "Tom tiene edad suficiente para decidir por sí mismo.",
-    "exampleEnglish": "Tom is old enough to make his own decisions."
+    "example": "Tenemos que decidir el destino del viaje.",
+    "exampleEnglish": "We have to decide on the trip's destination."
   },
   "repetir": {
     "example": "¿Puedes repetir lo que acabas de decir, por favor?",
@@ -415,8 +415,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "That's something really important that you shouldn't forget."
   },
   "aprender": {
-    "example": "Tenemos que aprender a andar antes de poder correr.",
-    "exampleEnglish": "We must learn to walk before we can run."
+    "example": "Quiero aprender a tocar la guitarra.",
+    "exampleEnglish": "I want to learn to play the guitar."
   },
   "cerrar": {
     "example": "La encargada va a cerrar la tienda a las nueve.",
@@ -427,20 +427,20 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "Where can I wash my hands before I eat?"
   },
   "cantar": {
-    "example": "Tom no sabía que Mary pudiera cantar tan bien.",
-    "exampleEnglish": "Tom didn't know Mary could sing so well."
+    "example": "A mi hija le encanta cantar en el coro.",
+    "exampleEnglish": "My daughter loves singing in the choir."
   },
   "bailar": {
-    "example": "Tom no pudo encontrar a nadie con quien bailar.",
-    "exampleEnglish": "Tom couldn't find anyone to dance with."
+    "example": "Vamos a bailar en la boda de mi prima.",
+    "exampleEnglish": "We're going to dance at my cousin's wedding."
   },
   "comprar": {
-    "example": "A Tom le gustaría comprar una casa en Boston.",
-    "exampleEnglish": "Tom would like to buy a house in Boston."
+    "example": "Necesito comprar pan de camino a casa.",
+    "exampleEnglish": "I need to buy bread on the way home."
   },
   "vender": {
-    "example": "¿Estás pensando seriamente en vender esto en eBay?",
-    "exampleEnglish": "Are you seriously thinking about selling this on eBay?"
+    "example": "Mis padres quieren vender la casa vieja.",
+    "exampleEnglish": "My parents want to sell the old house."
   },
   "viajar": {
     "example": "En aquellos días, poca gente podía viajar al extranjero.",
@@ -451,8 +451,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "In those days, I went out walking before breakfast."
   },
   "conducir": {
-    "example": "¿Cuándo fue la última vez que enseñaste a conducir?",
-    "exampleEnglish": "When was the last time you taught driving?"
+    "example": "Todavía no sé conducir un coche manual.",
+    "exampleEnglish": "I still don't know how to drive a manual car."
   },
   "dormir": {
     "example": "Tenemos que dormir al menos ocho horas al día.",
@@ -463,8 +463,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "It is advisable to drink water before and after exercise."
   },
   "cocinar": {
-    "example": "Todavía no le ha cogido el tranquillo a cocinar.",
-    "exampleEnglish": "She hasn't got the knack of cooking yet."
+    "example": "Me relaja cocinar los domingos.",
+    "exampleEnglish": "Cooking on Sundays relaxes me."
   },
   "lavar": {
     "example": "¿Puedo lavar toda mi ropa de una sola vez?",
@@ -479,8 +479,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "This knife is so dull that it can't cut."
   },
   "romper": {
-    "example": "No podés hacer un omelet sin romper los huevos.",
-    "exampleEnglish": "You can't make an omelet without breaking eggs."
+    "example": "Ten cuidado, ese jarrón se puede romper.",
+    "exampleEnglish": "Be careful, that vase can break."
   },
   "enviar": {
     "example": "Pido disculpas por la demora en enviar la agenda.",
@@ -491,108 +491,108 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "She is capable of teaching both English and French."
   },
   "mostrar": {
-    "example": "¿Me podés mostrar en este mapa dónde vivís?",
-    "exampleEnglish": "Can you show me where you live on this map?"
+    "example": "Te voy a mostrar las fotos del viaje.",
+    "exampleEnglish": "I'm going to show you the trip photos."
   },
   "compartir": {
-    "example": "Él tuvo que compartir una recámara con su hermano.",
-    "exampleEnglish": "He had to share a bedroom with his brother."
+    "example": "Me gusta compartir recetas con mis amigas.",
+    "exampleEnglish": "I like sharing recipes with my friends."
   },
   "elegir": {
     "example": "El jurado deberá elegir el proyecto más sostenible.",
     "exampleEnglish": "The panel must choose the most sustainable project."
   },
   "incluir": {
-    "example": "Vamos a incluir los agradecimientos de siempre.",
-    "exampleEnglish": "We will include the usual acknowledgments."
+    "example": "El precio va a incluir el desayuno.",
+    "exampleEnglish": "The price is going to include breakfast."
   },
   "excluir": {
-    "example": "Sería injusto excluir a Marta del equipo por llegar tarde una vez.",
-    "exampleEnglish": "It would be unfair to exclude Marta from the team for being late once."
+    "example": "Esta oferta va a excluir los fines de semana.",
+    "exampleEnglish": "This offer is going to exclude weekends."
   },
   "mejorar": {
     "example": "Leer en voz alta puede mejorar tu pronunciación.",
     "exampleEnglish": "Reading aloud can improve your pronunciation."
   },
   "empeorar": {
-    "example": "Para empeorar las cosas, su esposa se enfermó.",
-    "exampleEnglish": "To make matters worse, his wife fell ill."
+    "example": "El tiempo puede empeorar por la tarde.",
+    "exampleEnglish": "The weather might get worse in the afternoon."
   },
   "crecer": {
-    "example": "Se dejó crecer la barba mientras estaba de vacaciones.",
-    "exampleEnglish": "He grew a beard while he was on holiday."
+    "example": "Esta planta va a crecer muy rápido.",
+    "exampleEnglish": "This plant is going to grow very fast."
   },
   "reducir": {
     "example": "Por lo tanto es necesario reducir el costo.",
     "exampleEnglish": "Therefore, it is necessary to reduce the cost."
   },
   "aumentar": {
-    "example": "Si el medicamento no surte efecto, quizá deberíamos aumentar la dosis.",
-    "exampleEnglish": "If the medicine isn't working, maybe we should up the dosage."
+    "example": "La empresa va a aumentar los precios.",
+    "exampleEnglish": "The company is going to raise prices."
   },
   "bajar": {
-    "example": "Una cucharada de azúcar ayuda a bajar la medicina.",
-    "exampleEnglish": "A spoonful of sugar helps the medicine go down."
+    "example": "Voy a bajar la música un poco.",
+    "exampleEnglish": "I'm going to turn the music down a bit."
   },
   "subir": {
-    "example": "¿Cómo puedo subir una foto a tu página web?",
-    "exampleEnglish": "How can I upload a photo to your website?"
+    "example": "Vamos a subir la montaña este sábado.",
+    "exampleEnglish": "We're going to climb the mountain this Saturday."
   },
   "regresar": {
-    "example": "Hoy por hoy no pienso regresar a mi país.",
-    "exampleEnglish": "Under present circumstances, I don't intend to return to my country."
+    "example": "Espero regresar antes de que oscurezca.",
+    "exampleEnglish": "I hope to return before it gets dark."
   },
   "permanecer": {
-    "example": "¿Por qué tuviste que permanecer en Boston tanto tiempo?",
-    "exampleEnglish": "Why did you have to stay in Boston for so long?"
+    "example": "Vamos a permanecer aquí unos días más.",
+    "exampleEnglish": "We're going to stay here a few more days."
   },
   "mover": {
-    "example": "Tom debía haber ayudado a Mary a mover el sillón.",
-    "exampleEnglish": "Tom should have helped Mary move the sofa."
+    "example": "Necesito mover el sofá de sitio.",
+    "exampleEnglish": "I need to move the sofa to another spot."
   },
   "parar": {
     "example": "El árbitro de hockey intervino para parar la pelea.",
     "exampleEnglish": "The hockey referee intervened to stop the fight."
   },
   "continuar": {
-    "example": "Tom trabajó hasta que estuvo demasiado cansado para continuar.",
-    "exampleEnglish": "Tom worked until he was too tired to continue."
+    "example": "Vamos a continuar la clase después del descanso.",
+    "exampleEnglish": "We're going to continue the class after the break."
   },
   "preparar": {
     "example": "No todos pueden preparar una buena taza de café.",
     "exampleEnglish": "Not everyone can make a good cup of coffee."
   },
   "responder": {
-    "example": "Tom no pudo responder todas las preguntas de Mary.",
-    "exampleEnglish": "Tom couldn't answer all of Mary's questions."
+    "example": "Voy a responder tu mensaje enseguida.",
+    "exampleEnglish": "I'm going to answer your message right away."
   },
   "añadir": {
     "example": "Creo que deberías añadir una pizca más de pimienta.",
     "exampleEnglish": "I think you should add a bit more pepper."
   },
   "quitar": {
-    "example": "Usa un paño húmedo para quitar la mancha de la mesa.",
-    "exampleEnglish": "Use a damp cloth to remove the stain from the table."
+    "example": "Voy a quitar el polvo de la estantería.",
+    "exampleEnglish": "I'm going to dust off the shelf."
   },
   "quitarse": {
     "example": "Al entrar en casa, decidió quitarse el abrigo mojado.",
     "exampleEnglish": "On entering the house, she decided to take off her wet coat."
   },
   "vestir": {
-    "example": "La diseñadora decidió vestir al actor con un traje azul oscuro.",
-    "exampleEnglish": "The designer decided to dress the actor in a dark blue suit."
+    "example": "Mi madre suele vestir muy elegante.",
+    "exampleEnglish": "My mother usually dresses very elegantly."
   },
   "llevarse": {
     "example": "Pienso que él puede llevarse bien con su vecino.",
     "exampleEnglish": "I think he can get along with his neighbor."
   },
   "levantarse": {
-    "example": "Él está acostumbrado a levantarse temprano en la mañana.",
-    "exampleEnglish": "He's accustomed to getting up early in the morning."
+    "example": "Suelo levantarme a las siete cada día.",
+    "exampleEnglish": "I usually get up at seven every day."
   },
   "sentarse": {
-    "example": "Tom no puede sentarse quieto ni por un momento.",
-    "exampleEnglish": "Tom can't sit still for a moment."
+    "example": "Vamos a sentarnos cerca de la ventana.",
+    "exampleEnglish": "We're going to sit near the window."
   },
   "acostarse": {
     "example": "No olvide apagar todas las luces antes de acostarse.",
@@ -611,12 +611,12 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "My kids don't like taking baths."
   },
   "peinarse": {
-    "example": "Antes de la ceremonia, Lucía subió a peinarse frente al espejo grande.",
-    "exampleEnglish": "Before the ceremony, Lucía went upstairs to do her hair in front of the large mirror."
+    "example": "Voy a peinarme antes de la entrevista.",
+    "exampleEnglish": "I'm going to comb my hair before the interview."
   },
   "afeitarse": {
-    "example": "El rostro de Tom se siente áspero porque debe afeitarse.",
-    "exampleEnglish": "Tom's face feels rough because he needs to shave."
+    "example": "Mi padre suele afeitarse cada mañana.",
+    "exampleEnglish": "My father usually shaves every morning."
   },
   "casar": {
     "example": "Ella quiere casar a su hija con un doctor.",
@@ -631,8 +631,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "He tried to put the fragments of a broken vase together."
   },
   "reunirse": {
-    "example": "Él se escabulló para reunirse con una chica.",
-    "exampleEnglish": "He snuck out to meet up with a girl."
+    "example": "Vamos a reunirnos el lunes para hablar del proyecto.",
+    "exampleEnglish": "We're going to meet on Monday to talk about the project."
   },
   "encontrarse": {
     "example": "Ella prometió encontrarse con él ayer por la noche.",
@@ -643,12 +643,12 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "The delay began to worry the family."
   },
   "preocuparse": {
-    "example": "Preocuparse es como pagar una deuda que no tienes.",
-    "exampleEnglish": "Worrying is like paying a debt you don't owe."
+    "example": "No hace falta preocuparse tanto por eso.",
+    "exampleEnglish": "There's no need to worry so much about that."
   },
   "ocupar": {
-    "example": "Sé que no puedo ocupar el lugar de Tom.",
-    "exampleEnglish": "I know I can't take Tom's place."
+    "example": "Esta caja va a ocupar mucho espacio.",
+    "exampleEnglish": "This box is going to take up a lot of space."
   },
   "ocuparse": {
     "example": "Aquí no hay nadie que pueda ocuparse del problema.",
@@ -667,32 +667,32 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "The neighbours managed to agree on a schedule for the building work."
   },
   "acordarse": {
-    "example": "Tom no logra acordarse de la dirección de Mary.",
-    "exampleEnglish": "Tom can't remember Mary's address."
+    "example": "No consigo acordarme de su nombre.",
+    "exampleEnglish": "I can't manage to remember his name."
   },
   "olvidarse": {
-    "example": "Tom todavía no puede olvidarse de Mary.",
-    "exampleEnglish": "Tom still can't get Mary out of his head."
+    "example": "Espero no olvidarme las llaves otra vez.",
+    "exampleEnglish": "I hope I don't forget my keys again."
   },
   "contestar": {
-    "example": "Estoy manejando, así que no puedo contestar el teléfono.",
-    "exampleEnglish": "I'm driving, so I can't answer the phone."
+    "example": "Voy a contestar el correo por la tarde.",
+    "exampleEnglish": "I'm going to answer the email in the afternoon."
   },
   "describir": {
     "example": "¿Puede describir la situación en la que se encontraba?",
     "exampleEnglish": "Can you describe the situation you were in?"
   },
   "comparar": {
-    "example": "Se puede comparar un libro con un amigo.",
-    "exampleEnglish": "A book can be compared to a friend."
+    "example": "Vamos a comparar los dos presupuestos.",
+    "exampleEnglish": "We're going to compare the two budgets."
   },
   "cambiarse": {
-    "example": "Tom quiere cambiarse la ropa mojada por algo seco.",
-    "exampleEnglish": "Tom wants to change out of his wet clothes into something dry."
+    "example": "Voy a cambiarme antes de salir a cenar.",
+    "exampleEnglish": "I'm going to change clothes before going out to dinner."
   },
   "probar": {
-    "example": "¿Puedes probar que lo que dijiste es verdad?",
-    "exampleEnglish": "Can you prove that what you said is true?"
+    "example": "Quiero probar este plato nuevo del menú.",
+    "exampleEnglish": "I want to try this new dish on the menu."
   },
   "prohibir": {
     "example": "El ayuntamiento decidió prohibir las barbacoas durante la sequía.",
@@ -707,12 +707,12 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "Could you recommend a nice restaurant near here?"
   },
   "aconsejar": {
-    "example": "¿Qué me podés aconsejar?",
-    "exampleEnglish": "What advice can you give me?"
+    "example": "Mi médico me suele aconsejar caminar más.",
+    "exampleEnglish": "My doctor usually advises me to walk more."
   },
   "sugerir": {
-    "example": "Tom no puede creer que María acaba de sugerir eso.",
-    "exampleEnglish": "Tom can't believe Mary just suggested that."
+    "example": "Voy a sugerir otra fecha para la cita.",
+    "exampleEnglish": "I'm going to suggest a different date for the appointment."
   },
   "invitar": {
     "example": "¿La vas a invitar a ella a la fiesta?",
@@ -723,16 +723,16 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "He made me an offer I couldn't refuse."
   },
   "negar": {
-    "example": "Nadie puede negar el hecho de que el fuego quema.",
-    "exampleEnglish": "No one can deny the fact that fire burns."
+    "example": "No puedo negar que estoy nervioso.",
+    "exampleEnglish": "I can't deny that I'm nervous."
   },
   "afirmar": {
     "example": "Sin pruebas sólidas, nadie debería afirmar que el cuadro es falso.",
     "exampleEnglish": "Without solid evidence, nobody should claim that the painting is fake."
   },
   "prometer": {
-    "example": "Tienes que prometer que no quitarás la cuerda.",
-    "exampleEnglish": "You must promise not to take the rope off."
+    "example": "Te prometo llamarte en cuanto llegue.",
+    "exampleEnglish": "I promise to call you as soon as I arrive."
   },
   "fallar": {
     "example": "Un plan así está destinado a fallar.",
@@ -747,24 +747,24 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "It is wise to compare prices before spending your savings."
   },
   "cobrar": {
-    "example": "Yo creo que Tom debe cobrar su dinero.",
-    "exampleEnglish": "I think Tom should ask for his money back."
+    "example": "El taller va a cobrar la reparación mañana.",
+    "exampleEnglish": "The garage is going to charge for the repair tomorrow."
   },
   "costar": {
-    "example": "¿Cuánto más estimas que pueda llegar a costar?",
-    "exampleEnglish": "How much more do you think it'll cost?"
+    "example": "El viaje puede costar más de cien euros.",
+    "exampleEnglish": "The trip can cost more than a hundred euros."
   },
   "valer": {
     "example": "Esta entrada puede valer más si el músico se hace famoso.",
     "exampleEnglish": "This ticket may be worth more if the musician becomes famous."
   },
   "preferir": {
-    "example": "Al probar ambos colchones, Rosa confesó preferir el más firme.",
-    "exampleEnglish": "After trying both mattresses, Rosa admitted that she preferred the firmer one."
+    "example": "Prefiero viajar en tren.",
+    "exampleEnglish": "I prefer to travel by train."
   },
   "odiar": {
-    "example": "Se dice que los animales no pueden odiar.",
-    "exampleEnglish": "They say that animals aren't able to hate."
+    "example": "Odio esperar en filas largas.",
+    "exampleEnglish": "I hate waiting in long lines."
   },
   "amar": {
     "example": "No puedo amar a nadie más que a ti.",
@@ -779,12 +779,12 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "I do not want to disturb anyone while they are studying."
   },
   "importar": {
-    "example": "Ella es linda sin importar lo que se ponga.",
-    "exampleEnglish": "She is beautiful, no matter what she wears."
+    "example": "Lo que piensas puede importar mucho.",
+    "exampleEnglish": "What you think can matter a lot."
   },
   "faltar": {
-    "example": "Procura no faltar a la cita con la orientadora.",
-    "exampleEnglish": "Try not to miss the appointment with the adviser."
+    "example": "Puede faltar una pieza.",
+    "exampleEnglish": "A piece might be missing."
   },
   "doler": {
     "example": "Te prometo que no te va a doler.",
@@ -807,8 +807,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "The answer might surprise you."
   },
   "cansar": {
-    "example": "Me estoy empezando a cansar de oír música navideña por donde quiera que voy.",
-    "exampleEnglish": "I'm getting tired of hearing Christmas music everywhere I go."
+    "example": "Caminar tanto puede cansar a cualquiera.",
+    "exampleEnglish": "Walking that much can tire anyone out."
   },
   "alegrar": {
     "example": "Me acabas de alegrar el día.",
@@ -819,40 +819,40 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "Seeing the park neglected tends to sadden the older residents."
   },
   "asustar": {
-    "example": "Solo quise asustar a Tom, no herirlo.",
-    "exampleEnglish": "I just meant to scare Tom, not to hurt him."
+    "example": "Ese ruido puede asustar al perro.",
+    "exampleEnglish": "That noise can scare the dog."
   },
   "enfadar": {
     "example": "El retraso volvió a enfadar a los pasajeros.",
     "exampleEnglish": "The delay made the passengers angry again."
   },
   "calmar": {
-    "example": "Tom y Mary están intentando calmar a John.",
-    "exampleEnglish": "Tom and Mary are trying to calm John down."
+    "example": "Un té caliente puede calmar los nervios.",
+    "exampleEnglish": "A hot tea can calm the nerves."
   },
   "relajar": {
     "example": "Yo pienso que ahora nos podemos relajar.",
     "exampleEnglish": "I think we can relax now."
   },
   "temer": {
-    "example": "No tienes nada que temer excepto al miedo mismo.",
-    "exampleEnglish": "You have nothing to fear but fear itself."
+    "example": "No debes temer el cambio.",
+    "exampleEnglish": "You shouldn't fear change."
   },
   "confiar": {
     "example": "Él es un hombre en quien siempre puedes confiar.",
     "exampleEnglish": "He is a man who can always be trusted."
   },
   "dudar": {
-    "example": "Dudar de sí mismo es la primera señal de inteligencia.",
-    "exampleEnglish": "To have doubts about oneself is the first sign of intelligence."
+    "example": "Es normal dudar al principio.",
+    "exampleEnglish": "It's normal to doubt yourself at first."
   },
   "planear": {
     "example": "Vamos a planear la ruta antes de reservar los hoteles.",
     "exampleEnglish": "We are going to plan the route before booking the hotels."
   },
   "organizar": {
-    "example": "Ella trató de convencerlo de organizar un boicot.",
-    "exampleEnglish": "She tried to persuade him to organize a boycott."
+    "example": "Necesito organizar mi escritorio hoy.",
+    "exampleEnglish": "I need to organize my desk today."
   },
   "reservar": {
     "example": "Quiero reservar una mesa para cuatro a las seis.",
@@ -867,8 +867,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "We are going to visit our aunt next Sunday."
   },
   "explorar": {
-    "example": "Estamos a punto de explorar territorio virgen.",
-    "exampleEnglish": "We're about to explore some uncharted territory."
+    "example": "Nos encanta explorar pueblos pequeños.",
+    "exampleEnglish": "We love exploring small villages."
   },
   "quedarse": {
     "example": "Ella está acostumbrada a quedarse despierta toda la noche.",
@@ -887,8 +887,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "If I were a bird, I could fly to you."
   },
   "montar": {
-    "example": "Me gusta montar un caballo de vez en cuando.",
-    "exampleEnglish": "I like to ride a horse now and then."
+    "example": "A mi hijo le gusta montar en bicicleta.",
+    "exampleEnglish": "My son likes riding his bike."
   },
   "nadar": {
     "example": "¿Esta tarde prefieres ir a navegar o a nadar?",
@@ -915,36 +915,36 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "I held up my hand to stop a taxi."
   },
   "detenerse": {
-    "example": "Tom quería detenerse y pensar.",
-    "exampleEnglish": "Tom wanted to stop and think."
+    "example": "El coche se va a detener en el semáforo.",
+    "exampleEnglish": "The car is going to stop at the traffic light."
   },
   "aparcar": {
-    "example": "Vi el coche de Tom aparcar en el camino de entrada.",
-    "exampleEnglish": "I saw Tom's car pull into the driveway."
+    "example": "Voy a aparcar cerca de la entrada.",
+    "exampleEnglish": "I'm going to park near the entrance."
   },
   "arrancar": {
-    "example": "El niño trató de arrancar la rama muerta con un serrucho.",
-    "exampleEnglish": "The boy tried to saw off the dead branch."
+    "example": "El coche no quiere arrancar esta mañana.",
+    "exampleEnglish": "The car doesn't want to start this morning."
   },
   "frenar": {
     "example": "El conductor tuvo que frenar al ver el semáforo rojo.",
     "exampleEnglish": "The driver had to brake when he saw the red light."
   },
   "acelerar": {
-    "example": "¿Por qué no intentamos acelerar las cosas?",
-    "exampleEnglish": "Why don't we try to speed things up?"
+    "example": "No hace falta acelerar tanto en esta curva.",
+    "exampleEnglish": "There's no need to accelerate so much on this curve."
   },
   "saltar": {
-    "example": "Tom no quería saltar a través de la zanja.",
-    "exampleEnglish": "Tom didn't want to jump across the ditch."
+    "example": "El perro puede saltar la valla del jardín.",
+    "exampleEnglish": "The dog can jump over the garden fence."
   },
   "lanzar": {
-    "example": "Selena Gomez acaba de lanzar su segundo disco.",
-    "exampleEnglish": "Selena Gomez has just released her second album."
+    "example": "Van a lanzar el nuevo producto en abril.",
+    "exampleEnglish": "They're going to launch the new product in April."
   },
   "tirar": {
-    "example": "A pesar de nuestro apoyo, decidió tirar la toalla.",
-    "exampleEnglish": "In spite of our encouragement, he decided to throw in the towel."
+    "example": "Voy a tirar estas cajas viejas.",
+    "exampleEnglish": "I'm going to throw away these old boxes."
   },
   "recoger": {
     "example": "¿Te importaría recoger algo en el camino de regreso?",
@@ -955,8 +955,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "You should keep your valuables in a safe place."
   },
   "hallar": {
-    "example": "Le aseguro que hacemos todo lo que podemos para hallar a Tom.",
-    "exampleEnglish": "I assure you we're doing everything we can to find Tom."
+    "example": "Espero hallar una solución pronto.",
+    "exampleEnglish": "I hope to find a solution soon."
   },
   "esconder": {
     "example": "Ese secreto no se puede esconder para siempre.",
@@ -967,12 +967,12 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "The studio is very small, with no place to hide."
   },
   "observar": {
-    "example": "Tom podía observar que María se estaba poniendo muy nerviosa.",
-    "exampleEnglish": "Tom could see Mary was getting very nervous."
+    "example": "Nos gusta observar los pájaros en el parque.",
+    "exampleEnglish": "We like to observe the birds in the park."
   },
   "oler": {
-    "example": "Tom podía oler el desayuno cocinándose en la cocina.",
-    "exampleEnglish": "Tom could smell breakfast cooking in the kitchen."
+    "example": "La cocina huele a pan recién hecho.",
+    "exampleEnglish": "The kitchen smells like freshly baked bread."
   },
   "comentar": {
     "example": "Tengo un asunto complicado que quiero comentar contigo.",
@@ -1007,8 +1007,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "It's written in pencil, so you can erase it."
   },
   "dibujar": {
-    "example": "¿Cuáles son las cosas más difíciles de dibujar?",
-    "exampleEnglish": "What are the most difficult things to draw?"
+    "example": "A mi hijo le encanta dibujar animales.",
+    "exampleEnglish": "My son loves drawing animals."
   },
   "pintar": {
     "example": "Pintar es otra cosa que puedo hacer bastante bien.",
@@ -1031,8 +1031,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "You should turn off the light before going to sleep."
   },
   "conectar": {
-    "example": "¿Tienes la sensación de que no puedes conectar con otra gente?",
-    "exampleEnglish": "Do you feel you can't connect with other people?"
+    "example": "Necesito conectar el portátil al proyector.",
+    "exampleEnglish": "I need to connect the laptop to the projector."
   },
   "desconectar": {
     "example": "Conviene desconectar la tostadora antes de limpiarla.",
@@ -1051,12 +1051,12 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "The man tried to install his own antenna."
   },
   "actualizar": {
-    "example": "Tom tiene que actualizar su página web.",
-    "exampleEnglish": "Tom needs to update his website."
+    "example": "Tengo que actualizar el sistema esta noche.",
+    "exampleEnglish": "I have to update the system tonight."
   },
   "reparar": {
-    "example": "El costo de reparar el techo la dejó pasmada.",
-    "exampleEnglish": "The cost of repairing the roof shocked her."
+    "example": "El técnico va a reparar la lavadora mañana.",
+    "exampleEnglish": "The technician is going to repair the washing machine tomorrow."
   },
   "funcionar": {
     "example": "No está claro que podamos hacer funcionar el motor.",
@@ -1091,8 +1091,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "I am going to check the timetable before buying the tickets."
   },
   "comprobar": {
-    "example": "Tom revisó su billetera para comprobar cuánto dinero tenía.",
-    "exampleEnglish": "Tom checked his wallet to see how much money he had."
+    "example": "Vamos a comprobar que todo funciona bien.",
+    "exampleEnglish": "We're going to check that everything works well."
   },
   "medir": {
     "example": "Él se debe medir la presión sanguínea todos los días.",
@@ -1115,8 +1115,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "The recipe requires you to multiply all the quantities by three."
   },
   "dividir": {
-    "example": "Esa crisis amenazaba con dividir a la nación.",
-    "exampleEnglish": "That crisis threatened to split the nation in two."
+    "example": "Vamos a dividir la tarta en ocho trozos.",
+    "exampleEnglish": "We're going to divide the cake into eight pieces."
   },
   "ordenar": {
     "example": "No tengo tiempo de ordenar mis libros antes de irme.",
@@ -1131,8 +1131,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "You can group the pieces according to their shape and colour."
   },
   "mezclar": {
-    "example": "No me gusta mezclar trabajo con placer.",
-    "exampleEnglish": "I don't like to mix business with pleasure."
+    "example": "Vas a mezclar la harina con el azúcar.",
+    "exampleEnglish": "You're going to mix the flour with the sugar."
   },
   "separar": {
     "example": "Ellos se quieren separar después de 40 años de matrimonio.",
@@ -1147,8 +1147,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "We need a new leader to pull our company together."
   },
   "llenar": {
-    "example": "Tom tuvo que llenar un montón de formularios.",
-    "exampleEnglish": "Tom had to fill out lots of forms."
+    "example": "Voy a llenar la botella de agua.",
+    "exampleEnglish": "I'm going to fill the water bottle."
   },
   "vaciar": {
     "example": "El camarero salió a vaciar las botellas en el contenedor verde.",
@@ -1179,24 +1179,24 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "Can you imagine what life would be like without television?"
   },
   "soñar": {
-    "example": "Solo quien tiene el coraje de soñar cambia el mundo.",
-    "exampleEnglish": "Only those who dare to dream change the world."
+    "example": "Me gusta soñar con viajes largos.",
+    "exampleEnglish": "I like to dream about long trips."
   },
   "desear": {
-    "example": "Para hacer dinero, uno debe primero desear el dinero.",
-    "exampleEnglish": "To make money one must want money."
+    "example": "Todos podemos desear algo mejor.",
+    "exampleEnglish": "We can all wish for something better."
   },
   "evitar": {
     "example": "Debemos evitar que este tipo de incidente se repita.",
     "exampleEnglish": "We must prevent this type of incident from recurring."
   },
   "tener": {
-    "example": "¿Sabías que los hombres pueden tener cáncer de mama?",
-    "exampleEnglish": "Did you know that men can get breast cancer?"
+    "example": "Quiero tener más tiempo libre.",
+    "exampleEnglish": "I want to have more free time."
   },
   "convertirse": {
-    "example": "Tom en realidad nunca quiso convertirse en músico profesional.",
-    "exampleEnglish": "Tom never really wanted to become a professional musician."
+    "example": "La idea puede convertirse en un proyecto.",
+    "exampleEnglish": "The idea can turn into a project."
   },
   "disminuir": {
     "example": "Es necesaria la cooperación de los empleados para disminuir los gastos.",
@@ -1219,24 +1219,24 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "The cooperative learnt to make soap from used oil."
   },
   "alquilar": {
-    "example": "Le costó 50 dólares alquilar un coche en Hawái.",
-    "exampleEnglish": "It cost him 50 dollars to rent a car in Hawaii."
+    "example": "Queremos alquilar un piso cerca del centro.",
+    "exampleEnglish": "We want to rent a flat near the centre."
   },
   "devolver": {
-    "example": "Le tengo que devolver el dinero a Tomás.",
-    "exampleEnglish": "I have to give the money back to Tom."
+    "example": "Tengo que devolver este libro a la biblioteca.",
+    "exampleEnglish": "I have to return this book to the library."
   },
   "prestar": {
-    "example": "Deberían prestar más atención a lo que dicen.",
-    "exampleEnglish": "You should pay more attention to what you say."
+    "example": "¿Me puedes prestar tu paraguas?",
+    "exampleEnglish": "Can you lend me your umbrella?"
   },
   "mandar": {
     "example": "Olvidé mandar tarjetas de año nuevo a mis amigos.",
     "exampleEnglish": "I forgot to send New Year's cards to my friends."
   },
   "entregar": {
-    "example": "No le quiero entregar mi llave a Tom.",
-    "exampleEnglish": "I don't want to give Tom my key."
+    "example": "Tengo que entregar el proyecto el viernes.",
+    "exampleEnglish": "I have to hand in the project on Friday."
   },
   "invertir": {
     "example": "El gobierno debería invertir más dinero en la agricultura.",
@@ -1263,16 +1263,16 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "Children depend on their parents for food and clothing."
   },
   "desnudar": {
-    "example": "El viento de otoño empezó a desnudar los árboles de hojas.",
-    "exampleEnglish": "The autumn wind began to strip the leaves from the trees."
+    "example": "La enfermera va a desnudar al paciente para la revisión.",
+    "exampleEnglish": "The nurse is going to undress the patient for the check-up."
   },
   "desnudarse": {
     "example": "Los nadadores entraron en los vestuarios para desnudarse.",
     "exampleEnglish": "The swimmers went into the changing rooms to get undressed."
   },
   "lavarse": {
-    "example": "Tom usó agua y jabón para lavarse las manos.",
-    "exampleEnglish": "Tom used soap and water to wash his hands."
+    "example": "Voy a lavarme las manos antes de comer.",
+    "exampleEnglish": "I'm going to wash my hands before eating."
   },
   "duchar": {
     "example": "Después del paseo, tuvimos que duchar al perro.",
@@ -1283,40 +1283,40 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "Whose turn is it to give the dog a bath?"
   },
   "peinar": {
-    "example": "Ella siempre se hace peinar por un famoso peluquero.",
-    "exampleEnglish": "She always has her hair done by a famous hairdresser."
+    "example": "Voy a peinar a mi hija para el colegio.",
+    "exampleEnglish": "I'm going to comb my daughter's hair for school."
   },
   "afeitar": {
-    "example": "Debería haber probado esta máquina de afeitar antes de comprarla.",
-    "exampleEnglish": "I should've tried out this electric razor before buying it."
+    "example": "El barbero va a afeitar al cliente con cuidado.",
+    "exampleEnglish": "The barber is going to shave the customer carefully."
   },
   "maquillar": {
     "example": "Una artista vino a maquillar a los actores antes del estreno.",
     "exampleEnglish": "A make-up artist came to do the actors' make-up before the première."
   },
   "maquillarse": {
-    "example": "Mary terminó de maquillarse.",
-    "exampleEnglish": "Mary finished putting on her makeup."
+    "example": "Voy a maquillarme antes de la fiesta.",
+    "exampleEnglish": "I'm going to put on makeup before the party."
   },
   "desayunar": {
     "example": "¿Tú crees que desayunar todos los días es importante?",
     "exampleEnglish": "Do you think that eating breakfast every day is important?"
   },
   "almorzar": {
-    "example": "A lo mejor nos podríamos juntar alguna vez y almorzar.",
-    "exampleEnglish": "Maybe we could get together sometime and have lunch."
+    "example": "Vamos a almorzar en aquel restaurante cerca de la oficina.",
+    "exampleEnglish": "We're going to have lunch at that restaurant near the office."
   },
   "cenar": {
-    "example": "Pensé que Tom daría un paseo antes de cenar.",
-    "exampleEnglish": "I thought Tom would take a walk before dinner."
+    "example": "Vamos a cenar temprano hoy.",
+    "exampleEnglish": "We're going to have dinner early today."
   },
   "merendar": {
     "example": "Cuando salíamos del colegio, solíamos merendar pan con chocolate.",
     "exampleEnglish": "When we left school, we used to have bread and chocolate as an afternoon snack."
   },
   "calentar": {
-    "example": "Calentar el agua no cambia su composición química.",
-    "exampleEnglish": "Heating water does not change its chemical composition."
+    "example": "Voy a calentar la sopa para la cena.",
+    "exampleEnglish": "I'm going to heat up the soup for dinner."
   },
   "enfriar": {
     "example": "Es mejor enfriar el vino blanco antes de servirlo.",
@@ -1343,24 +1343,24 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "Remember to add a pinch of salt before serving the soup."
   },
   "secar": {
-    "example": "Secar este tejido a alta temperatura podría causar encogimiento.",
-    "exampleEnglish": "Drying this fabric at a high temperature may cause shrinkage."
+    "example": "Voy a secar la ropa antes de guardarla.",
+    "exampleEnglish": "I'm going to dry the clothes before putting them away."
   },
   "planchar": {
     "example": "Hace falta planchar esta camisa.",
     "exampleEnglish": "This shirt needs to be ironed."
   },
   "barrer": {
-    "example": "Todo lo que tienes que hacer es barrer el piso.",
-    "exampleEnglish": "All you have to do is sweep the floor."
+    "example": "Voy a barrer la cocina después de cenar.",
+    "exampleEnglish": "I'm going to sweep the kitchen after dinner."
   },
   "fregar": {
     "example": "¿Quieres que te ayude a fregar los platos?",
     "exampleEnglish": "Would you like me to help you with washing the dishes?"
   },
   "arreglar": {
-    "example": "Me las apañé para arreglar mi coche yo mismo.",
-    "exampleEnglish": "I managed to repair my car by myself."
+    "example": "Necesito arreglar la bicicleta este fin de semana.",
+    "exampleEnglish": "I need to fix the bike this weekend."
   },
   "reciclar": {
     "example": "La oficina empezó a reciclar todo el papel usado.",
@@ -1383,12 +1383,12 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "I would rather feed my dog before we eat."
   },
   "adoptar": {
-    "example": "Algunos insectos pueden adoptar el color de su entorno.",
-    "exampleEnglish": "Some insects can take on the color of their surroundings."
+    "example": "Queremos adoptar un gato del refugio.",
+    "exampleEnglish": "We want to adopt a cat from the shelter."
   },
   "criar": {
-    "example": "Tenía la esperanza de criar a mis hijos en Boston.",
-    "exampleEnglish": "I was hoping to raise my kids in Boston."
+    "example": "Mis abuelos suelen criar gallinas en el pueblo.",
+    "exampleEnglish": "My grandparents usually raise chickens in the village."
   },
   "cazar": {
     "example": "¿Cuándo fue la última vez que fueron a cazar?",
@@ -1455,8 +1455,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "After the break, we still had twenty kilometres left to cycle."
   },
   "esquiar": {
-    "example": "Yo quiero comprar un par de botas de esquiar.",
-    "exampleEnglish": "I want to buy a pair of ski boots."
+    "example": "Queremos esquiar en los Pirineos este invierno.",
+    "exampleEnglish": "We want to ski in the Pyrenees this winter."
   },
   "patinar": {
     "example": "Yo no esquío pero me gusta mucho patinar.",
@@ -1483,12 +1483,12 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "Passengers must board at gate twelve."
   },
   "informar": {
-    "example": "Creo que deberíamos informar a los padres de Tom.",
-    "exampleEnglish": "I think we should notify Tom's parents."
+    "example": "Voy a informar al equipo de los cambios.",
+    "exampleEnglish": "I'm going to inform the team of the changes."
   },
   "confirmar": {
-    "example": "No hay modo de confirmar que él esté vivo.",
-    "exampleEnglish": "There is no way to confirm that he is alive."
+    "example": "Necesito confirmar la reserva del restaurante.",
+    "exampleEnglish": "I need to confirm the restaurant reservation."
   },
   "avisar": {
     "example": "¿Me podría avisar cuándo me tengo que bajar?",
@@ -1535,12 +1535,12 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "It's difficult to evaluate his ability."
   },
   "completar": {
-    "example": "Tom debería ser capaz de completar el trabajo rápido.",
-    "exampleEnglish": "Tom should be able to complete the job quickly."
+    "example": "Necesito completar este formulario hoy.",
+    "exampleEnglish": "I need to complete this form today."
   },
   "rellenar": {
-    "example": "Tom vino aquí a ayudarnos a rellenar estos formularios.",
-    "exampleEnglish": "Tom came here to help us fill out these forms."
+    "example": "Tienes que rellenar todos los campos del formulario.",
+    "exampleEnglish": "You have to fill in all the fields on the form."
   },
   "investigar": {
     "example": "Investigar las causas del cáncer es muy costoso.",
@@ -1555,8 +1555,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "Don't be afraid to try new things."
   },
   "demostrar": {
-    "example": "Ella está tratando de demostrar la existencia de los fantasmas.",
-    "exampleEnglish": "She is trying to prove the existence of ghosts."
+    "example": "Voy a demostrar que tengo razón.",
+    "exampleEnglish": "I'm going to prove that I'm right."
   },
   "concluir": {
     "example": "Necesito concluir esta tarea antes de que se haga de noche.",
@@ -1571,8 +1571,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "They question your ability to lead."
   },
   "colaborar": {
-    "example": "Tom fue acusado de colaborar con el enemigo.",
-    "exampleEnglish": "Tom was accused of collaborating with the enemy."
+    "example": "Vamos a colaborar con otra empresa este año.",
+    "exampleEnglish": "We're going to collaborate with another company this year."
   },
   "participar": {
     "example": "No pude participar en el encuentro por estar enfermo.",
@@ -1583,12 +1583,12 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "Are you going to attend the meeting tonight?"
   },
   "proponer": {
-    "example": "Está claro que nadie más tiene algo nuevo que proponer.",
-    "exampleEnglish": "It is clear that no one has anything new to suggest."
+    "example": "Voy a proponer una idea nueva en la reunión.",
+    "exampleEnglish": "I'm going to propose a new idea at the meeting."
   },
   "negociar": {
-    "example": "Mi amigo quiere negociar con casas sudamericanas.",
-    "exampleEnglish": "My friend wants to do business with South American firms."
+    "example": "Vamos a negociar el precio del coche.",
+    "exampleEnglish": "We're going to negotiate the price of the car."
   },
   "contratar": {
     "example": "Queremos contratar a alguien que hable un francés fluido.",
@@ -1599,20 +1599,20 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "He went to the airport to see his friend off."
   },
   "emplear": {
-    "example": "Tom convenció a Mary de emplear a John.",
-    "exampleEnglish": "Tom convinced Mary to hire John."
+    "example": "Esta fábrica va a emplear a cien trabajadores.",
+    "exampleEnglish": "This factory is going to employ a hundred workers."
   },
   "solicitar": {
     "example": "Eres demasiado joven para solicitar el empleo.",
     "exampleEnglish": "You're too young to apply for the job."
   },
   "contactar": {
-    "example": "Un caballero lo intentó contactar durante su ausencia, señor.",
-    "exampleEnglish": "A gentleman called in your absence, sir."
+    "example": "Voy a contactar con el proveedor mañana.",
+    "exampleEnglish": "I'm going to contact the supplier tomorrow."
   },
   "apoyar": {
-    "example": "Tom está aquí para apoyar a Mary.",
-    "exampleEnglish": "Tom is here to support Mary."
+    "example": "Vamos a apoyar tu decisión pase lo que pase.",
+    "exampleEnglish": "We're going to support your decision no matter what."
   },
   "resolver": {
     "example": "A fin de cuentas, nadie pudo resolver el problema.",
@@ -1667,20 +1667,20 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "They installed sensors to monitor the humidity in the greenhouse."
   },
   "controlar": {
-    "example": "Tom hizo lo que pudo para controlar su temperamento.",
-    "exampleEnglish": "Tom did his best to keep temper under control."
+    "example": "Necesito controlar mejor mis gastos.",
+    "exampleEnglish": "I need to control my spending better."
   },
   "asegurar": {
-    "example": "Te puedo asegurar que tu honestidad paga a la larga.",
-    "exampleEnglish": "I can assure you that honesty pays in the long run."
+    "example": "Voy a asegurar que todo esté listo mañana.",
+    "exampleEnglish": "I'm going to make sure everything is ready tomorrow."
   },
   "proteger": {
     "example": "Ella arriesgó su vida para proteger a su hijo.",
     "exampleEnglish": "She risked her life to protect her child."
   },
   "bloquear": {
-    "example": "Tom admitió que fue quien se dejó las ventanas sin bloquear.",
-    "exampleEnglish": "Tom admitted he was the one who left the windows unlocked."
+    "example": "Voy a bloquear este número desconocido.",
+    "exampleEnglish": "I'm going to block this unknown number."
   },
   "desbloquear": {
     "example": "Una huella dactilar permite desbloquear el teléfono sin contraseña.",
@@ -1691,12 +1691,12 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "Anyone wishing to attend must register before Friday."
   },
   "iniciar": {
-    "example": "¿Has visto a Tom intentar iniciar un fuego?",
-    "exampleEnglish": "Have you seen Tom try to start a fire?"
+    "example": "Vamos a iniciar la reunión en cinco minutos.",
+    "exampleEnglish": "We're going to start the meeting in five minutes."
   },
   "acceder": {
-    "example": "Parece que Tom no puede acceder a sus datos.",
-    "exampleEnglish": "Tom can't seem to access his data."
+    "example": "No consigo acceder a mi cuenta.",
+    "exampleEnglish": "I can't manage to access my account."
   },
   "denegar": {
     "example": "El banco puede denegar el préstamo si faltan documentos.",
@@ -1715,12 +1715,12 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "When you connect the watch, it starts synchronising the data automatically."
   },
   "exportar": {
-    "example": "No puedo averiguar cómo exportar mis direcciones de correo electrónico a un archivo de texto.",
-    "exampleEnglish": "I can't figure out how to export my email addresses to a text file."
+    "example": "Voy a exportar los datos a una hoja de cálculo.",
+    "exampleEnglish": "I'm going to export the data to a spreadsheet."
   },
   "filtrar": {
-    "example": "Si tus ventanas no son herméticas, se va a filtrar humedad.",
-    "exampleEnglish": "If your windows are not airtight, moisture will seep in."
+    "example": "Vamos a filtrar los resultados por fecha.",
+    "exampleEnglish": "We're going to filter the results by date."
   },
   "desmarcar": {
     "example": "Para dejar de recibir publicidad, debes desmarcar esta casilla.",
@@ -1731,8 +1731,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "Could you move forward so we can close the door?"
   },
   "retroceder": {
-    "example": "Es mejor retroceder que perderse.",
-    "exampleEnglish": "It's better to walk back than to get lost."
+    "example": "Vamos a retroceder un poco en el vídeo.",
+    "exampleEnglish": "We're going to go back a bit in the video."
   },
   "ocultar": {
     "example": "Él trató de ocultar lo que realmente estaba pasando.",
@@ -1755,12 +1755,12 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "I wish I could figure out how to disable comments on my blog."
   },
   "configurar": {
-    "example": "El técnico regresará mañana para configurar el rúter.",
-    "exampleEnglish": "The technician will return tomorrow to configure the router."
+    "example": "Voy a configurar el router esta tarde.",
+    "exampleEnglish": "I'm going to configure the router this afternoon."
   },
   "ajustar": {
-    "example": "Tom trató de ajustar la temperatura de la ducha.",
-    "exampleEnglish": "Tom tried to adjust the temperature of the shower."
+    "example": "Necesito ajustar el volumen de la tele.",
+    "exampleEnglish": "I need to adjust the TV volume."
   },
   "restablecer": {
     "example": "Introduce tu correo electrónico para restablecer la contraseña.",
@@ -1795,12 +1795,12 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "They asked me to scan my passport and send a legible copy."
   },
   "archivar": {
-    "example": "Tom se olvidó de archivar sus impuestos.",
-    "exampleEnglish": "Tom forgot to file his taxes."
+    "example": "Voy a archivar estos correos antiguos.",
+    "exampleEnglish": "I'm going to archive these old emails."
   },
   "mencionar": {
-    "example": "Él tiene muchos sellos extranjeros, sin mencionar los japoneses.",
-    "exampleEnglish": "He has many foreign stamps, not to mention Japanese ones."
+    "example": "Quiero mencionar tu ayuda en el informe.",
+    "exampleEnglish": "I want to mention your help in the report."
   },
   "notificar": {
     "example": "La clínica se comprometió a notificar cualquier cambio de horario.",
@@ -1811,8 +1811,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "You can subscribe the whole office to the monthly newsletter."
   },
   "renovar": {
-    "example": "Tom necesita renovar su pasaporte antes del quince del próximo mes.",
-    "exampleEnglish": "Tom needs to renew his passport before the fifteenth of next month."
+    "example": "Tengo que renovar el pasaporte este año.",
+    "exampleEnglish": "I have to renew my passport this year."
   },
   "vencer": {
     "example": "Cuatro ases es una mano difícil de vencer.",
@@ -1851,8 +1851,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "The thermometer can record variations of one tenth of a degree."
   },
   "vigilar": {
-    "example": "No necesito vigilar a Tom todo el tiempo.",
-    "exampleEnglish": "I don't need to watch Tom all the time."
+    "example": "El guardia va a vigilar el edificio esta noche.",
+    "exampleEnglish": "The guard is going to watch the building tonight."
   },
   "denunciar": {
     "example": "No te voy a denunciar.",
@@ -1863,8 +1863,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "I came near being drowned, trying to rescue a boy."
   },
   "salvar": {
-    "example": "Tom es el único que puede salvar al mundo.",
-    "exampleEnglish": "Tom is the only one who can save the world."
+    "example": "El médico pudo salvar al paciente a tiempo.",
+    "exampleEnglish": "The doctor was able to save the patient in time."
   },
   "atacar": {
     "example": "Este hongo puede atacar las raíces de los árboles jóvenes.",
@@ -1875,16 +1875,16 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "We have to defend our country at any cost."
   },
   "luchar": {
-    "example": "Debe usted luchar contra esa tendencia que tiene.",
-    "exampleEnglish": "You've got to fight that tendency of yours."
+    "example": "Vamos a luchar por mantener nuestros derechos.",
+    "exampleEnglish": "We're going to fight to keep our rights."
   },
   "matar": {
     "example": "Una helada tardía puede matar los brotes jóvenes.",
     "exampleEnglish": "A late frost can kill young shoots."
   },
   "herir": {
-    "example": "Tom no quiso herir los sentimientos de Mary.",
-    "exampleEnglish": "Tom didn't mean to hurt Mary's feelings."
+    "example": "No quiero herir tus sentimientos.",
+    "exampleEnglish": "I don't want to hurt your feelings."
   },
   "curar": {
     "example": "La fisioterapia ayudó a curar la lesión sin cirugía.",
@@ -1907,8 +1907,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "Do you get short of breath easily when walking?"
   },
   "toser": {
-    "example": "Yo paré de toser luego de dos días.",
-    "exampleEnglish": "I stopped coughing after two days."
+    "example": "Empezó a toser mucho durante la reunión.",
+    "exampleEnglish": "Someone started coughing a lot during the meeting."
   },
   "estornudar": {
     "example": "He visto estornudar a mi perro, pero nunca a mi gato.",
@@ -1919,8 +1919,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "I scratched my head so hard it started bleeding."
   },
   "suceder": {
-    "example": "Tom me preguntó qué pensaba que iba a suceder.",
-    "exampleEnglish": "Tom asked me what I thought was going to happen."
+    "example": "Algo parecido puede suceder otra vez.",
+    "exampleEnglish": "Something similar can happen again."
   },
   "pertenecer": {
     "example": "Esos países solían pertenecer a Francia.",
@@ -1947,8 +1947,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "I just don't feel like celebrating my birthday."
   },
   "aprovechar": {
-    "example": "Las literas son una forma de aprovechar el espacio.",
-    "exampleEnglish": "Bunk beds are a way to save space."
+    "example": "Quiero aprovechar el buen tiempo este fin de semana.",
+    "exampleEnglish": "I want to take advantage of the good weather this weekend."
   },
   "manejar": {
     "example": "No tengo ni idea de cómo manejar este problema.",
@@ -1963,12 +1963,12 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "The captain gave the order to abandon the ship."
   },
   "aplicar": {
-    "example": "Tom se hizo aplicar una inyección para la gripa.",
-    "exampleEnglish": "Tom got a flu shot."
+    "example": "Voy a aplicar los mismos cambios al otro archivo.",
+    "exampleEnglish": "I'm going to apply the same changes to the other file."
   },
   "causar": {
-    "example": "Esto significó que eran demasiado débiles para causar más problemas.",
-    "exampleEnglish": "This meant they were too weak to cause more trouble."
+    "example": "Ese ruido puede causar problemas en el vecindario.",
+    "exampleEnglish": "That noise can cause problems in the neighbourhood."
   },
   "conceder": {
     "example": "Tras revisar la solicitud, el juez optó por conceder la libertad provisional.",
@@ -1983,16 +1983,16 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "I had to hold back my laughter during the performance."
   },
   "contribuir": {
-    "example": "Tom me preguntó si acaso estaría dispuesto a contribuir algo de dinero.",
-    "exampleEnglish": "Tom asked me if I would be willing to contribute some money."
+    "example": "Todos queremos contribuir a este proyecto.",
+    "exampleEnglish": "We all want to contribute to this project."
   },
   "desaparecer": {
     "example": "Mi dinero parece desaparecer para el final de mes.",
     "exampleEnglish": "My money seems to disappear by the end of the month."
   },
   "exigir": {
-    "example": "Tenemos derecho a exigir un futuro seguro para nosotros y las generaciones futuras.",
-    "exampleEnglish": "We have a right to demand a safe future for ourselves and future generations."
+    "example": "Los clientes van a exigir una explicación.",
+    "exampleEnglish": "The customers are going to demand an explanation."
   },
   "expresar": {
     "example": "No existen palabras para expresar lo increíble que eres.",

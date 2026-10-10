@@ -3,10 +3,6 @@ export const CURATED_FLASHCARD_OVERRIDES = {
     spanish: "Para poder entrar al laboratorio, necesitas una tarjeta especial.",
     english: "To be able to enter the laboratory, you need a special pass.",
   },
-  deber: {
-    spanish: "Antes de aceptar el préstamo, calcula cuánto vas a deber al banco.",
-    english: "Before accepting the loan, calculate how much you will owe the bank.",
-  },
   poner: {
     spanish: "Clara decidió poner las plantas junto a la ventana.",
     english: "Clara decided to put the plants beside the window.",
@@ -42,10 +38,6 @@ export const CURATED_FLASHCARD_OVERRIDES = {
   mejorar: {
     spanish: "Leer en voz alta puede mejorar tu pronunciación.",
     english: "Reading aloud can improve your pronunciation.",
-  },
-  quitar: {
-    spanish: "Usa un paño húmedo para quitar la mancha de la mesa.",
-    english: "Use a damp cloth to remove the stain from the table.",
   },
   preocupar: {
     spanish: "El retraso empezó a preocupar a la familia.",
@@ -139,14 +131,6 @@ export const CURATED_FLASHCARD_OVERRIDES = {
     spanish: "La reforma pretende convertir el antiguo mercado en una biblioteca.",
     english: "The renovation aims to turn the old market into a library.",
   },
-  excluir: {
-    spanish: "Sería injusto excluir a Marta del equipo por llegar tarde una vez.",
-    english: "It would be unfair to exclude Marta from the team for being late once.",
-  },
-  peinarse: {
-    spanish: "Antes de la ceremonia, Lucía subió a peinarse frente al espejo grande.",
-    english: "Before the ceremony, Lucía went upstairs to do her hair in front of the large mirror.",
-  },
   llamarse: {
     spanish: "En aquella época, el pueblo solía llamarse Villanueva del Río.",
     english: "In those days, the village used to be called Villanueva del Río.",
@@ -162,10 +146,6 @@ export const CURATED_FLASHCARD_OVERRIDES = {
   valer: {
     spanish: "Esta entrada puede valer más si el músico se hace famoso.",
     english: "This ticket may be worth more if the musician becomes famous.",
-  },
-  preferir: {
-    spanish: "Al probar ambos colchones, Rosa confesó preferir el más firme.",
-    english: "After trying both mattresses, Rosa admitted that she preferred the firmer one.",
   },
   interesar: {
     spanish: "La charla podría interesar a quienes estudian arquitectura sostenible.",
@@ -222,10 +202,6 @@ export const CURATED_FLASHCARD_OVERRIDES = {
   fabricar: {
     spanish: "La cooperativa aprendió a fabricar jabón con aceite usado.",
     english: "The cooperative learnt to make soap from used oil.",
-  },
-  desnudar: {
-    spanish: "El viento de otoño empezó a desnudar los árboles de hojas.",
-    english: "The autumn wind began to strip the leaves from the trees.",
   },
   desnudarse: {
     spanish: "Los nadadores entraron en los vestuarios para desnudarse.",
@@ -331,10 +307,6 @@ export const CURATED_FLASHCARD_OVERRIDES = {
     spanish: "Compartir agujas aumenta el riesgo de contraer una infección.",
     english: "Sharing needles increases the risk of contracting an infection.",
   },
-  configurar: {
-    spanish: "El técnico regresará mañana para configurar el rúter.",
-    english: "The technician will return tomorrow to configure the router.",
-  },
   restablecer: {
     spanish: "Introduce tu correo electrónico para restablecer la contraseña.",
     english: "Enter your email address to reset your password.",
@@ -411,10 +383,6 @@ export const CURATED_FLASHCARD_OVERRIDES = {
     spanish: "El jurado deberá elegir el proyecto más sostenible.",
     english: "The panel must choose the most sustainable project.",
   },
-  vestir: {
-    spanish: "La diseñadora decidió vestir al actor con un traje azul oscuro.",
-    english: "The designer decided to dress the actor in a dark blue suit.",
-  },
   sentirse: {
     spanish: "Después de descansar, Marta empezó a sentirse mucho mejor.",
     english: "After resting, Marta began to feel much better.",
@@ -422,10 +390,6 @@ export const CURATED_FLASHCARD_OVERRIDES = {
   gastar: {
     spanish: "Conviene comparar precios antes de gastar los ahorros.",
     english: "It is wise to compare prices before spending your savings.",
-  },
-  faltar: {
-    spanish: "Procura no faltar a la cita con la orientadora.",
-    english: "Try not to miss the appointment with the adviser.",
   },
   enfadar: {
     spanish: "El retraso volvió a enfadar a los pasajeros.",
@@ -474,10 +438,6 @@ export const CURATED_FLASHCARD_OVERRIDES = {
   llevar: {
     spanish: "Puedes llevar estas carpetas a la sala de reuniones.",
     english: "You can take these folders to the meeting room.",
-  },
-  partir: {
-    spanish: "El tren va a partir del andén cuatro a las ocho.",
-    english: "The train will depart from platform four at eight o'clock.",
   },
   morir: {
     spanish: "La planta puede morir si la tierra permanece seca.",
