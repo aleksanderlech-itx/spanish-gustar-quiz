@@ -1230,7 +1230,7 @@ export const SOURCED_QUIZ_PAIRS: Record<number, SourcedPair> = {
     "english": "Normally we used to leave early for school."
   },
   "3007": {
-    "spanish": "De repente, el tren llegó en la estación.",
+    "spanish": "De repente, el tren llegó a la estación.",
     "english": "Suddenly, the train arrived at the station."
   },
   "3008": {

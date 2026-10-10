@@ -6,7 +6,7 @@ export const RESTORED_PRETERITE_IMPERFECT_PAIRS = {
   3003: { spanish: "Anoche Marta preparó la cena a las ocho.", english: "Last night Marta prepared dinner at eight." },
   3005: { spanish: "El sábado nosotros salimos temprano.", english: "On Saturday we left early." },
   3006: { spanish: "Normalmente nosotros salíamos temprano para la escuela.", english: "Normally we used to leave early for school." },
-  3007: { spanish: "De repente, el tren llegó en la estación.", english: "Suddenly, the train arrived at the station." },
+  3007: { spanish: "De repente, el tren llegó a la estación.", english: "Suddenly, the train arrived at the station." },
   3008: { spanish: "El tren llegaba cuando empezó la lluvia.", english: "The train was arriving when the rain started." },
   3009: { spanish: "En 2020 Ana vivió en Sevilla.", english: "In 2020 Ana lived in Seville." },
   3010: { spanish: "Cuando la conocí, Ana vivía en Sevilla.", english: "When I met her, Ana was living in Seville." },
