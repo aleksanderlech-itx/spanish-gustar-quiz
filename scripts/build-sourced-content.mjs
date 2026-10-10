@@ -17,6 +17,7 @@ import { CURATED_OBJECT_PRONOUN_PAIRS } from "./curated-object-pronoun-all.mjs";
 import { CURATED_QUIZ_OVERRIDES } from "./curated-quiz-overrides.mjs";
 import { CURATED_POR_PARA_PAIRS } from "./curated-por-para-all.mjs";
 import { CURATED_SABER_CONOCER_PAIRS } from "./curated-saber-conocer-all.mjs";
+import { PINNED_CORPUS_PAIRS } from "./pinned-corpus-pairs.mjs";
 
 const corpusPath = process.argv[2];
 if (!corpusPath) {
@@ -108,6 +109,14 @@ const exactPhraseRegex = (phrase) => {
 };
 
 const usedSpanish = new Set();
+// Reserve every pinned row up front so no unpinned item can take it first.
+const pinnedRows = new Map();
+for (const [pinKey, attribution] of Object.entries(PINNED_CORPUS_PAIRS)) {
+  const row = corpusRows.find((candidate) => candidate.attribution === attribution);
+  if (!row) throw new Error(`Pinned corpus pair for ${pinKey} is not in the corpus: ${attribution}`);
+  pinnedRows.set(pinKey, row);
+  usedSpanish.add(fold(row.spanish));
+}
 const usedExercisePrompts = new Set();
 const exercisePromptKey = (sentence, phrase) => {
   const match = exactPhraseRegex(phrase).exec(sentence);
@@ -117,8 +126,13 @@ const exercisePromptKey = (sentence, phrase) => {
     .replace(/\s+/g, " ")
     .trim();
 };
-const selectCorpusPair = (key, phrase, alternate = "", requireLeadingText = false) => {
+const selectCorpusPair = (key, pinKey, phrase, alternate = "", requireLeadingText = false) => {
   const regex = exactPhraseRegex(phrase);
+  const pinned = pinnedRows.get(pinKey);
+  if (pinned) {
+    if (!regex.test(pinned.spanish)) throw new Error(`Pinned corpus pair for ${key} does not contain ${phrase}`);
+    return { ...pinned, license: "CC BY 2.0 France", modified: false };
+  }
   const answerTokens = tokens(phrase);
   const alternateTokens = tokens(alternate);
   const alternateIsPartOfAnswer = alternateTokens.length > 0 && answerTokens.join(" ").includes(alternateTokens.join(" "));
@@ -161,7 +175,7 @@ for (const [group, questions] of groups) {
                 : undefined);
     const pair = override
       ? curatedPair(override)
-      : selectCorpusPair(`${group} #${question.id}`, question.answer, question.objectPronoun, group === "object-pronouns");
+      : selectCorpusPair(`${group} #${question.id}`, `quiz-${group}:${question.id}`, question.answer, question.objectPronoun, group === "object-pronouns");
     if (!exactPhraseRegex(question.answer).test(pair.spanish)) {
       throw new Error(`${group} #${question.id} does not contain answer ${question.answer}`);
     }
@@ -178,7 +192,7 @@ for (const card of FLASHCARD_VERBS) {
   const override = CURATED_FLASHCARD_OVERRIDES[card.spanish];
   const pair = override
     ? curatedPair(override)
-    : selectCorpusPair(`flashcard ${card.spanish}`, card.spanish);
+    : selectCorpusPair(`flashcard ${card.spanish}`, `flashcard:${card.spanish}`, card.spanish);
   flashcardPairs[card.spanish] = { example: pair.spanish, exampleEnglish: pair.english };
   provenance.push({ type: "flashcard", key: card.spanish, ...pair });
 }
