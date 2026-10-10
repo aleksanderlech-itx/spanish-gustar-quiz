@@ -2,7 +2,7 @@
 // Source and licensing details: docs/content-sources.md and docs/content-attribution.csv.
 
 type SourcedPair = { spanish: string; english: string };
-type SourceableQuestion = { id: number; answer: string; before: string; after: string; infinitive: string; objectPronoun: string; explanation: string; tense: string; translations: { en: string; pl: string } };
+type SourceableQuestion = { id: number; answer: string; before: string; after: string; explanation: string; translations: { en: string; pl: string } };
 
 export const SOURCED_QUIZ_PAIRS: Record<number, SourcedPair> = {
   "1": {
@@ -3607,31 +3607,9 @@ export const SOURCED_QUIZ_PAIRS: Record<number, SourcedPair> = {
   }
 };
 
-function sourcedExplanation(question: SourceableQuestion): string {
-  if (question.id < 2000) {
-    const [pronoun, verb] = question.answer.split(" ");
-    return `Use “${question.answer}”. “${pronoun}” marks who is affected, and “${verb}” agrees with the grammatical subject.`;
-  }
-  if (question.id < 3000) return `Use “${question.answer}” here; “${question.objectPronoun}” would change the meaning or be ungrammatical.`;
-  if (question.id < 4000) return `Use “${question.answer}”, the ${question.tense} form of “${question.infinitive}”, in this past-tense context.`;
-  if (question.id < 6000) {
-    if (question.infinitive === "direct object") return `Use “${question.answer}” as the direct-object pronoun replacing the person or thing acted upon.`;
-    if (question.infinitive === "indirect object") return `Use “${question.answer}” as the indirect-object pronoun marking the recipient or affected person.`;
-    return `Use “${question.answer}” in this indirect-plus-direct object-pronoun combination.`;
-  }
-  const guidance: Record<string, string> = {
-    facts: "Use saber for facts and information.",
-    skills: "Use saber followed by an infinitive for a learned ability.",
-    people: "Use conocer with the personal a for being acquainted with a person.",
-    places: "Use conocer for firsthand familiarity with a place.",
-    familiarity: "Use conocer for familiarity with a work, subject, or thing.",
-    "past meaning": "In the past, saber can mark finding something out and conocer can mark meeting or first encountering someone or somewhere.",
-  };
-  return `Use “${question.answer}”. ${guidance[question.infinitive]}`;
-}
-
-// An item's own explanation describes its own sentence, so it is kept only when
-// that sentence is the one shown; otherwise the generic fallback is used.
+// An item's seed explanation describes the seed sentence, so it is kept only when
+// that sentence is the one shown. Otherwise the item's entry in
+// app/explanations-<topic>.ts supplies it (app/item-explanation.ts).
 function sentenceKey(sentence: string): string {
   return sentence.normalize("NFC").toLocaleLowerCase("es").replace(/[^\p{L}\p{N}]+/gu, " ").trim();
 }
@@ -3651,7 +3629,7 @@ export function applySourcedQuestionPair<T extends SourceableQuestion>(question:
     ...question,
     before: pair.spanish.slice(0, match.index).trimEnd(),
     after: pair.spanish.slice(match.index + match[0].length).trimStart(),
-    explanation: sourcedExplanation(question),
+    explanation: "",
     translations: { ...question.translations, en: pair.english },
   };
 }
