@@ -19,6 +19,9 @@ export type Question = {
   /** Shown in the empty blank instead of the infinitive — e.g. the bare gerund
    * when the learner has to attach pronouns to it. */
   blankHint?: string;
+  /** The word or phrase in this sentence that decides the answer. It must appear
+   * in the sentence and be named in the explanation (docs/explanation-quality.md). */
+  cue?: string;
 };
 
 export const VERB_FORMS: Record<string, [string, string]> = {
