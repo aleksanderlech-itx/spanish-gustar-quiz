@@ -3,8 +3,8 @@
 
 export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleEnglish: string }> = {
   "ser": {
-    "example": "Cualquier número entero puede ser escrito como una fracción.",
-    "exampleEnglish": "Any whole number can be written as a fraction."
+    "example": "Quiero ser más paciente.",
+    "exampleEnglish": "I want to be more patient."
   },
   "estar": {
     "example": "¿Cómo puedes estar tan optimista con respecto al futuro?",
@@ -103,8 +103,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "Whoever wants to come to my party may come."
   },
   "pensar": {
-    "example": "¿Qué te llevó a pensar que ya había terminado?",
-    "exampleEnglish": "What made you think I was finished doing that?"
+    "example": "Necesito pensar en esta decisión.",
+    "exampleEnglish": "I need to think about this decision."
   },
   "salir": {
     "example": "Estaba a punto de salir cuando sonó el teléfono.",
@@ -803,8 +803,8 @@ export const SOURCED_FLASHCARD_PAIRS: Record<string, { example: string; exampleE
     "exampleEnglish": "The talk might interest people who study sustainable architecture."
   },
   "sorprender": {
-    "example": "Pensé que sería divertido sorprender a Tom.",
-    "exampleEnglish": "I thought it'd be fun to surprise Tom."
+    "example": "La respuesta puede sorprenderte.",
+    "exampleEnglish": "The answer might surprise you."
   },
   "cansar": {
     "example": "Me estoy empezando a cansar de oír música navideña por donde quiera que voy.",

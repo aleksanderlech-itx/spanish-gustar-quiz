@@ -23,6 +23,7 @@ import { RESTORED_SER_ESTAR_PAIRS } from "./restored-ser-estar-pairs.mjs";
 import { RESTORED_PRETERITE_IMPERFECT_PAIRS } from "./restored-preterite-imperfect-pairs.mjs";
 import { RESTORED_OBJECT_PRONOUN_PAIRS } from "./restored-object-pronouns-pairs.mjs";
 import { RESTORED_SABER_CONOCER_PAIRS } from "./restored-saber-conocer-pairs.mjs";
+import { RESTORED_FLASHCARD_PAIRS } from "./restored-flashcard-pairs.mjs";
 
 const corpusPath = process.argv[2];
 if (!corpusPath) {
@@ -214,7 +215,11 @@ for (const [group, questions] of groups) {
 
 const flashcardPairs = {};
 for (const card of FLASHCARD_VERBS) {
-  const override = CURATED_FLASHCARD_OVERRIDES[card.spanish];
+  const restored = RESTORED_FLASHCARD_PAIRS[card.spanish];
+  if (restored && (CURATED_FLASHCARD_OVERRIDES[card.spanish] || PINNED_CORPUS_PAIRS[`flashcard:${card.spanish}`])) {
+    throw new Error(`flashcard ${card.spanish} is restored but still has a superseded override or pin; remove it`);
+  }
+  const override = restored ?? CURATED_FLASHCARD_OVERRIDES[card.spanish];
   const pair = override
     ? curatedPair(override)
     : selectCorpusPair(`flashcard ${card.spanish}`, `flashcard:${card.spanish}`, card.spanish);

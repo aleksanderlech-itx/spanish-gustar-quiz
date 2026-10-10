@@ -5,7 +5,6 @@
 export const PINNED_CORPUS_PAIRS = {
   "quiz-gustar:1": "CC-BY 2.0 (France) Attribution: tatoeba.org #682392 (Source_VOA) & #684559 (Shishir)",
   "quiz-ser-estar:2061": "CC-BY 2.0 (France) Attribution: tatoeba.org #1503 (CK) & #180517 (cueyayotl)",
-  "flashcard:ser": "CC-BY 2.0 (France) Attribution: tatoeba.org #9951068 (ddnktr) & #9951375 (Shishir)",
   "flashcard:estar": "CC-BY 2.0 (France) Attribution: tatoeba.org #322662 (CK) & #1210141 (marcelostockle)",
   "flashcard:haber": "CC-BY 2.0 (France) Attribution: tatoeba.org #6681208 (CK) & #6682038 (arh)",
   "flashcard:hacer": "CC-BY 2.0 (France) Attribution: tatoeba.org #2695855 (catcher) & #1546883 (hayastan)",
@@ -25,7 +24,6 @@ export const PINNED_CORPUS_PAIRS = {
   "flashcard:encontrar": "CC-BY 2.0 (France) Attribution: tatoeba.org #24533 (CK) & #1565011 (marcelostockle)",
   "flashcard:llamar": "CC-BY 2.0 (France) Attribution: tatoeba.org #1830512 (CK) & #1831987 (Shishir)",
   "flashcard:venir": "CC-BY 2.0 (France) Attribution: tatoeba.org #35667 (CK) & #1617096 (marcelostockle)",
-  "flashcard:pensar": "CC-BY 2.0 (France) Attribution: tatoeba.org #6235916 (CK) & #8769656 (SemperAutumnus)",
   "flashcard:salir": "CC-BY 2.0 (France) Attribution: tatoeba.org #279263 (CK) & #1338676 (marcelostockle)",
   "flashcard:volver": "CC-BY 2.0 (France) Attribution: tatoeba.org #295091 (CK) & #1590183 (teskmon)",
   "flashcard:tomar": "CC-BY 2.0 (France) Attribution: tatoeba.org #37943 (CM) & #1292377 (marcelostockle)",
@@ -165,7 +163,6 @@ export const PINNED_CORPUS_PAIRS = {
   "flashcard:importar": "CC-BY 2.0 (France) Attribution: tatoeba.org #2601299 (CK) & #1525877 (marcelostockle)",
   "flashcard:doler": "CC-BY 2.0 (France) Attribution: tatoeba.org #2276553 (CK) & #2323353 (Shishir)",
   "flashcard:aburrir": "CC-BY 2.0 (France) Attribution: tatoeba.org #1473600 (darinmex) & #1474659 (hayastan)",
-  "flashcard:sorprender": "CC-BY 2.0 (France) Attribution: tatoeba.org #1961380 (CK) & #2129604 (marcelostockle)",
   "flashcard:cansar": "CC-BY 2.0 (France) Attribution: tatoeba.org #5705383 (CK) & #5706042 (arh)",
   "flashcard:alegrar": "CC-BY 2.0 (France) Attribution: tatoeba.org #3342872 (CK) & #5569035 (swyter)",
   "flashcard:asustar": "CC-BY 2.0 (France) Attribution: tatoeba.org #2372788 (CK) & #2828923 (marcelostockle)",
