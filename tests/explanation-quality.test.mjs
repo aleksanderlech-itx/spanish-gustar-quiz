@@ -32,6 +32,10 @@ test("lintQuestion flags the generic patterns from before the rewrite", () => {
   assert.ok(lintQuestion({ ...base, explanation: "Repeated background in the past uses the imperfect." }, options)
     .some((problem) => problem.startsWith("explanation does not name the cue")));
   assert.ok(lintQuestion({ ...base, explanation: "Cuando llegaban sets a scene \u2014 so imperfect." }, options).includes("contains an em or en dash"));
+  assert.ok(!lintQuestion({ ...base, explanation: "Cuando llegaban answers ¿Qué pasaba? with a repeated scene. So imperfect." }, options)
+    .includes("more than 2 sentences"), "a quoted ¿...? question is not a sentence");
+  assert.ok(lintQuestion({ ...base, explanation: "Cuando llegaban is the cue. It sets a scene. So imperfect." }, options)
+    .includes("more than 2 sentences"));
   assert.deepEqual(lintQuestion({
     ...base,
     explanation: "Cuando llegaban sets a repeated background scene in the past, so imperfect preparaba. The preterite would make it one finished event.",

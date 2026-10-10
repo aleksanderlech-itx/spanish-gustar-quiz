@@ -31,7 +31,8 @@ export const MAX_SENTENCES = 2;
 
 const fold = (value) => value.normalize("NFC").toLocaleLowerCase("es");
 const escapeRegex = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-const sentenceCount = (value) => value.split(/[.!?](?:\s+|$)/).filter((part) => part.trim()).length;
+// Quoted Spanish questions (¿...?) do not end an English sentence.
+const sentenceCount = (value) => value.replace(/¿[^?]*\?/g, "Q").split(/[.!?](?:\s+|$)/).filter((part) => part.trim()).length;
 
 /** Returns the list of rule violations for one question; empty means it passes. */
 export function lintQuestion(question, { needsCue }) {
