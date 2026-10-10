@@ -13,3 +13,18 @@ test("Ser vs Estar quiz uses original, complete question records", () => {
     assert.ok(question.explanation);
   }
 });
+
+test("Ser vs Estar explanations are unique to each sentence, not a shared template", () => {
+  const explanations = new Set(SER_ESTAR_QUESTIONS.map((question) => question.explanation));
+  assert.equal(explanations.size, SER_ESTAR_QUESTIONS.length, "explanations repeat across questions");
+  for (const question of SER_ESTAR_QUESTIONS) {
+    assert.doesNotMatch(question.explanation, /would change the meaning or be ungrammatical/, `generic explanation for #${question.id}`);
+    assert.match(question.explanation, /\b(ser|estar)\b/i, `explanation for #${question.id} does not name the verb`);
+  }
+});
+
+test("Ser vs Estar sentences are the hand-written items, so each tests one clear rule", () => {
+  for (const question of SER_ESTAR_QUESTIONS) {
+    assert.doesNotMatch(`${question.before} ${question.after}`, /\bTom\b/, `corpus sentence in #${question.id}`);
+  }
+});
