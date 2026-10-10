@@ -6,14 +6,6 @@ export const CURATED_FLAGGED_QUIZ_OVERRIDES = {
     license: "CC BY 2.0 France",
     attribution: "Adapted from CC-BY 2.0 (France) Attribution: tatoeba.org #4013314 (CK) & #5157378 (don_ramon)",
   },
-  5083: {
-    spanish: "Él me prometió que no le diría el secreto a nadie.",
-    english: "He promised me that he would not tell the secret to anyone.",
-  },
-  5094: {
-    spanish: "Tom fue el primero en hacerle caso a la guía.",
-    english: "Tom was the first to listen to the guide.",
-  },
   6128: {
     spanish: "Al revisar el registro, supieron quién había abierto la puerta.",
     english: "After checking the log, they found out who had opened the door.",

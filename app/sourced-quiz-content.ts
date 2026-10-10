@@ -2406,604 +2406,604 @@ export const SOURCED_QUIZ_PAIRS: Record<number, SourcedPair> = {
     "english": "This discount is only for club members."
   },
   "5001": {
-    "spanish": "El café estaba frío, pero me lo bebí mientras esperaba el tren.",
-    "english": "The coffee was cold, but I drank it while I waited for the train."
+    "spanish": "¿El café? Yo lo tomo sin azúcar.",
+    "english": "The coffee? I drink it without sugar."
   },
   "5002": {
-    "spanish": "Como olía a ajo, Clara la probó antes de servirla.",
-    "english": "Because it smelt of garlic, Clara tasted it before serving it."
+    "spanish": "¿La sopa? Mi hijo nunca la come.",
+    "english": "The soup? My son never eats it."
   },
   "5003": {
-    "spanish": "Mis zapatos nuevos se mojaron; los dejé junto al radiador.",
-    "english": "My new shoes got wet, so I left them beside the radiator."
+    "spanish": "¿Los zapatos nuevos? Ana los lleva hoy.",
+    "english": "The new shoes? Ana is wearing them today."
   },
   "5004": {
-    "spanish": "Encontré mis llaves debajo del sofá y las guardé en el cajón.",
-    "english": "I found my keys under the sofa and put them in the drawer."
+    "spanish": "¿Las llaves? Pablo las tiene en el bolsillo.",
+    "english": "The keys? Pablo has them in his pocket."
   },
   "5005": {
-    "spanish": "Compré una revista de ciencia y la leí durante el vuelo.",
-    "english": "I bought a science magazine and read it during the flight."
+    "spanish": "Compré una revista y la leí en el tren.",
+    "english": "I bought a magazine and read it on the train."
   },
   "5006": {
-    "spanish": "Me sobraban dos entradas, así que las ofrecí a mis vecinos.",
-    "english": "I had two tickets left over, so I offered them to my neighbours."
+    "spanish": "Tengo dos entradas, pero no las necesito.",
+    "english": "I have two tickets, but I don't need them."
   },
   "5007": {
-    "spanish": "El mando estaba entre los cojines, pero nadie lo había visto.",
-    "english": "The remote was between the cushions, but nobody had seen it."
+    "spanish": "¿Dónde está el mando? No lo encuentro.",
+    "english": "Where is the remote? I can't find it."
   },
   "5008": {
-    "spanish": "Esa película ganó un premio y la proyectarán otra vez el viernes.",
-    "english": "That film won an award, and they will show it again on Friday."
+    "spanish": "Esta película es muy buena; yo la vi el sábado.",
+    "english": "This film is very good; I saw it on Saturday."
   },
   "5009": {
-    "spanish": "Había galletas de avena; los niños las compartieron en el recreo.",
-    "english": "There were oat biscuits, and the children shared them at break time."
+    "spanish": "Hay galletas en la mesa, pero los niños no las quieren.",
+    "english": "There are biscuits on the table, but the children don't want them."
   },
   "5010": {
-    "spanish": "Terminé varios ejercicios temprano y los revisé antes de cenar.",
-    "english": "I finished several exercises early and checked them before dinner."
+    "spanish": "¿Los deberes? Ya los terminé.",
+    "english": "The homework? I already finished it."
   },
   "5011": {
-    "spanish": "El pan se había puesto duro, por eso lo usé para hacer migas.",
-    "english": "The bread had gone stale, so I used it to make breadcrumbs."
+    "spanish": "El pan está duro; ¿por qué no lo tiras?",
+    "english": "The bread is hard; why don't you throw it away?"
   },
   "5012": {
-    "spanish": "Esta maleta pesa poco porque Marta la llenó solo con ropa ligera.",
-    "english": "This suitcase is light because Marta filled it with light clothes only."
+    "spanish": "La maleta ya está lista; mi padre la lleva al coche.",
+    "english": "The suitcase is ready; my father is taking it to the car."
   },
   "5013": {
-    "spanish": "Carlos no usa el coche entre semana; lo deja en el garaje.",
-    "english": "Carlos does not use the car during the week; he leaves it in the garage."
+    "spanish": "¿El coche? Carlos lo aparca siempre en la calle.",
+    "english": "The car? Carlos always parks it on the street."
   },
   "5014": {
-    "spanish": "Olvidé mis gafas en la biblioteca, pero el conserje las encontró.",
-    "english": "I left my glasses in the library, but the caretaker found them."
+    "spanish": "¿Tienes las gafas? No, las dejé en casa.",
+    "english": "Do you have the glasses? No, I left them at home."
   },
   "5015": {
-    "spanish": "Estas manzanas vienen de Asturias; ya las probamos en el mercado.",
-    "english": "These apples come from Asturias; we already tried them at the market."
+    "spanish": "¿Quieres probar estas manzanas? Yo ya las probé.",
+    "english": "Do you want to try these apples? I already tried them."
   },
   "5016": {
-    "spanish": "Esta tarta necesitaba más tiempo, así que la devolvimos al horno.",
-    "english": "This cake needed more time, so we put it back in the oven."
+    "spanish": "Hice una tarta y mis amigos la probaron enseguida.",
+    "english": "I made a cake and my friends tried it straight away."
   },
   "5017": {
-    "spanish": "Escuchamos varias noticias al amanecer y las comentamos camino del trabajo.",
-    "english": "We heard several news reports at dawn and discussed them on the way to work."
+    "spanish": "¿Las noticias? Siempre las escuchamos en la radio.",
+    "english": "The news? We always listen to it on the radio."
   },
   "5018": {
-    "spanish": "Mi abuela vive cerca, y la visito después del mercado cada sábado.",
-    "english": "My grandmother lives nearby, and I visit her after the market every Saturday."
+    "spanish": "Mi abuela me llama y yo la visito los domingos.",
+    "english": "My grandmother calls me and I visit her on Sundays."
   },
   "5019": {
-    "spanish": "Juan perdió el último autobús, así que su hermana lo recogió en la estación.",
-    "english": "Juan missed the last bus, so his sister picked him up at the station."
+    "spanish": "Juan está en la estación. ¿Tú lo recoges?",
+    "english": "Juan is at the station. Will you pick him up?"
   },
   "5020": {
-    "spanish": "Aunque hay mucho ruido, te oigo con claridad desde aquí.",
-    "english": "Although it is very noisy, I can hear you clearly from here."
+    "spanish": "\"¿Me oyes bien?\" \"Sí, te oigo perfectamente.\"",
+    "english": "\"Can you hear me well?\" \"Yes, I can hear you perfectly.\""
   },
   "5021": {
-    "spanish": "Cuando llegamos tarde, el profesor nos mira por encima de las gafas.",
-    "english": "When we arrive late, the teacher looks at us over his glasses."
+    "spanish": "Cuando llegamos tarde, el profesor nos mira con cara seria.",
+    "english": "When we arrive late, the teacher looks at us with a serious face."
   },
   "5022": {
-    "spanish": "Mis padres me animaron a solicitar aquella beca de idiomas.",
-    "english": "My parents encouraged me to apply for that language scholarship."
+    "spanish": "Mis padres me quieren mucho.",
+    "english": "My parents love me a lot."
   },
   "5023": {
-    "spanish": "Mis primos viven en Glasgow, pero los veo durante las vacaciones.",
-    "english": "My cousins live in Glasgow, but I see them during the holidays."
+    "spanish": "Mis primos viven lejos y casi nunca los veo.",
+    "english": "My cousins live far away and I almost never see them."
   },
   "5024": {
-    "spanish": "Ana y Lucía nos invitaron a una ceremonia pequeña junto al mar.",
-    "english": "Ana and Lucía invited us to a small ceremony by the sea."
+    "spanish": "Ana y Lucía nos invitaron a su boda.",
+    "english": "Ana and Lucía invited us to their wedding."
   },
   "5025": {
-    "spanish": "Mi hermana toca el violín y todo el público la admira.",
-    "english": "My sister plays the violin, and everyone in the audience admires her."
+    "spanish": "Mi hermana es muy simpática; todos la adoran.",
+    "english": "My sister is very friendly; everyone adores her."
   },
   "5026": {
-    "spanish": "Si se estropea el ordenador, te ayudaré después de la reunión.",
-    "english": "If the computer breaks down, I will help you after the meeting."
+    "spanish": "Si tienes problemas, yo te ayudo.",
+    "english": "If you have problems, I'll help you."
   },
   "5027": {
-    "spanish": "De pequeños, nuestros abuelos nos llevaban a buscar moras al bosque.",
-    "english": "When we were little, our grandparents took us to pick blackberries in the woods."
+    "spanish": "Cuando éramos pequeños, nuestros abuelos nos llevaban al parque.",
+    "english": "When we were little, our grandparents took us to the park."
   },
   "5028": {
-    "spanish": "Saldré antes de la oficina y te esperaré junto a la taquilla.",
-    "english": "I will leave the office early and wait for you beside the ticket office."
+    "spanish": "\"¿Me esperas?\" \"Sí, te espero en la puerta.\"",
+    "english": "\"Will you wait for me?\" \"Yes, I'll wait for you at the door.\""
   },
   "5029": {
-    "spanish": "Nuestros amigos nos llaman los domingos para organizar la semana.",
-    "english": "Our friends ring us on Sundays to organise the week."
+    "spanish": "Nuestros amigos nos llaman cada semana.",
+    "english": "Our friends call us every week."
   },
   "5030": {
-    "spanish": "Estas fotos del viaje salieron oscuras, pero aún no las he borrado.",
-    "english": "These holiday photos came out dark, but I have not deleted them yet."
+    "spanish": "¿Las fotos? Todavía no las he visto.",
+    "english": "The photos? I still haven't seen them."
   },
   "5031": {
-    "spanish": "Sonia envió un correo urgente y lo he contestado esta mañana.",
-    "english": "Sonia sent an urgent email, and I answered it this morning."
+    "spanish": "¿El correo de Sonia? Ya lo he leído.",
+    "english": "Sonia's email? I've already read it."
   },
   "5032": {
-    "spanish": "Esta carta llegó sin sello; nadie la había abierto durante el trayecto.",
-    "english": "This letter arrived without a stamp; nobody had opened it on the way."
+    "spanish": "¿Y la carta? Nadie la ha abierto.",
+    "english": "And the letter? Nobody has opened it."
   },
   "5033": {
-    "spanish": "Estos platos ya están secos porque mi hermano los ha lavado a mano.",
-    "english": "These dishes are dry now because my brother has washed them by hand."
+    "spanish": "¿Los platos? Mi hermano ya los ha lavado.",
+    "english": "The dishes? My brother has already washed them."
   },
   "5034": {
-    "spanish": "El guardia te está observando desde la puerta del museo.",
-    "english": "The guard is watching you from the museum entrance."
+    "spanish": "Ese chico te está mirando desde la ventana.",
+    "english": "That guy is looking at you from the window."
   },
   "5035": {
-    "spanish": "El partido empezó tarde, pero lo estamos viendo en casa de Luis.",
-    "english": "The match started late, but we are watching it at Luis's house."
+    "spanish": "¿El partido? Nosotros lo estamos viendo en casa de Luis.",
+    "english": "The match? We're watching it at Luis's place."
   },
   "5036": {
-    "spanish": "Mi madre ha cortado varias flores y las va a poner en una jarra azul.",
-    "english": "My mother has cut several flowers and is going to put them in a blue jug."
+    "spanish": "¿Las flores? Mi madre las va a poner en la mesa.",
+    "english": "The flowers? My mother is going to put them on the table."
   },
   "5037": {
-    "spanish": "Marcos me prestó un libro histórico y sigo leyéndolo en el tren.",
-    "english": "Marcos lent me a historical book, and I am still reading it on the train."
+    "spanish": "¿El libro? Estoy leyéndolo ahora mismo.",
+    "english": "The book? I'm reading it right now."
   },
   "5038": {
-    "spanish": "La cena estará lista pronto; mi padre continúa preparándola con verduras frescas.",
-    "english": "Dinner will be ready soon; my father is still making it with fresh vegetables."
+    "spanish": "¿La cena? Mi padre está preparándola en la cocina.",
+    "english": "Dinner? My father is making it in the kitchen."
   },
   "5039": {
-    "spanish": "Los ejercicios exigen paciencia, pero seguimos haciéndolos con el profesor.",
-    "english": "The exercises require patience, but we are still doing them with the teacher."
+    "spanish": "¿Los ejercicios? Seguimos haciéndolos con el profesor.",
+    "english": "The exercises? We're still doing them with the teacher."
   },
   "5040": {
-    "spanish": "Marta necesita las camisas mañana y está planchándolas esta tarde.",
-    "english": "Marta needs the shirts tomorrow and is ironing them this afternoon."
+    "spanish": "¿Las camisas? Estoy planchándolas ahora.",
+    "english": "The shirts? I'm ironing them now."
   },
   "5041": {
-    "spanish": "Juan no responde; llevo diez minutos llamándolo desde la parada.",
-    "english": "Juan is not answering; I have been ringing him from the bus stop for ten minutes."
+    "spanish": "¿Tu hermano? Estoy llamándolo ahora mismo.",
+    "english": "Your brother? I'm calling him right now."
   },
   "5042": {
-    "spanish": "La chaqueta queda bien y pienso comprarla cuando cobre el viernes.",
-    "english": "The jacket fits well, and I intend to buy it when I am paid on Friday."
+    "spanish": "¿Esta chaqueta? Quiero comprarla hoy.",
+    "english": "This jacket? I want to buy it today."
   },
   "5043": {
-    "spanish": "El abogado corrigió los documentos; ahora debemos firmarlos ante un testigo.",
-    "english": "The solicitor corrected the documents; now we must sign them before a witness."
+    "spanish": "¿Los documentos? Tienes que firmarlos antes del viernes.",
+    "english": "The documents? You have to sign them before Friday."
   },
   "5044": {
-    "spanish": "Laura aterriza a las seis y voy a buscarla a la terminal norte.",
-    "english": "Laura lands at six, and I am going to pick her up at the north terminal."
+    "spanish": "Mi amiga llega a las seis y voy a buscarla al aeropuerto.",
+    "english": "My friend arrives at six and I'm going to pick her up at the airport."
   },
   "5045": {
-    "spanish": "El piso necesita reformas, pero sus dueños han decidido venderlo este verano.",
-    "english": "The flat needs work, but its owners have decided to sell it this summer."
+    "spanish": "¿El piso? Van a venderlo el mes que viene.",
+    "english": "The flat? They're going to sell it next month."
   },
   "5046": {
-    "spanish": "Carla piensa mudarse en abril, aunque todavía no lo sabe su casero.",
-    "english": "Carla plans to move in April, although her landlord does not know it yet."
+    "spanish": "\"¿Sabes que Carla se muda?\" \"Sí, ya lo sé.\"",
+    "english": "\"Do you know that Carla is moving?\" \"Yes, I already know.\""
   },
   "5047": {
-    "spanish": "Dicen que cerrarán el museo, pero yo no lo creo sin un anuncio oficial.",
-    "english": "They say the museum will close, but I do not believe it without an official announcement."
+    "spanish": "\"¿Es verdad que cierran el museo?\" \"No lo creo.\"",
+    "english": "\"Is it true that they're closing the museum?\" \"I don't think so.\""
   },
   "5048": {
-    "spanish": "A su hermana la vi comprando fruta en el mercado cubierto.",
-    "english": "I saw his sister buying fruit in the indoor market."
+    "spanish": "A su hermana la vi ayer en el mercado.",
+    "english": "I saw his sister yesterday at the market."
   },
   "5049": {
-    "spanish": "Estos tomates son frescos; Diego los compró directamente a una agricultora local.",
-    "english": "These tomatoes are fresh; Diego bought them directly from a local farmer."
+    "spanish": "Los tomates los compré en el mercado.",
+    "english": "I bought the tomatoes at the market."
   },
   "5050": {
-    "spanish": "Esa canción la interpreta un coro distinto cada Navidad.",
-    "english": "A different choir performs that song every Christmas."
+    "spanish": "Esa canción la canta todo el mundo.",
+    "english": "Everyone sings that song."
   },
   "5051": {
-    "spanish": "Antes de la excursión, le recordé a él que llevara agua.",
-    "english": "Before the hike, I reminded him to bring water."
+    "spanish": "Mañana es el cumpleaños de mi madre y le voy a regalar flores.",
+    "english": "Tomorrow is my mother's birthday and I'm going to give her flowers."
   },
   "5052": {
-    "spanish": "La directora le comunicó el cambio a la responsable del comedor.",
-    "english": "The head teacher told the canteen manager about the change."
+    "spanish": "¿Qué le vas a decir a tu jefe?",
+    "english": "What are you going to tell your boss?"
   },
   "5053": {
-    "spanish": "En la recepción, me entregaron a mí la única llave disponible.",
-    "english": "At reception, they gave the only available key to me."
+    "spanish": "Mis alumnos me escriben correos a menudo.",
+    "english": "My students often write emails to me."
   },
   "5054": {
-    "spanish": "Esta mañana les confirmé a ustedes la nueva fecha de entrega.",
-    "english": "This morning, I confirmed the new delivery date to you."
+    "spanish": "¿Quién les explicó la lección a los niños?",
+    "english": "Who explained the lesson to the children?"
   },
   "5055": {
-    "spanish": "Ana le prestó su bicicleta a Carlos para volver a casa.",
-    "english": "Ana lent Carlos her bicycle so he could get home."
+    "spanish": "Ana le prestó su bicicleta a Carlos.",
+    "english": "Ana lent her bike to Carlos."
   },
   "5056": {
-    "spanish": "Desde Lisboa les mandé postales a mis padres con sellos antiguos.",
-    "english": "I sent my parents postcards with old stamps from Lisbon."
+    "spanish": "Cuando viajo, les mando postales a mis padres.",
+    "english": "When I travel, I send postcards to my parents."
   },
   "5057": {
-    "spanish": "Tu hermano te devolvió el dinero en cuanto terminó el turno.",
-    "english": "Your brother returned the money to you as soon as his shift ended."
+    "spanish": "¿Tu hermano te devolvió el dinero?",
+    "english": "Did your brother give the money back to you?"
   },
   "5058": {
-    "spanish": "El camarero nos trajo la cuenta sin que tuviéramos que pedirla.",
-    "english": "The waiter brought us the bill without our having to ask for it."
+    "spanish": "El camarero nos trajo la cuenta.",
+    "english": "The waiter brought us the bill."
   },
   "5059": {
-    "spanish": "Siempre le cuento mis dudas a mi mejor amiga durante el paseo.",
-    "english": "I always tell my best friend about my doubts during our walk."
+    "spanish": "Siempre le cuento mis secretos a mi mejor amiga.",
+    "english": "I always tell my secrets to my best friend."
   },
   "5060": {
-    "spanish": "La profesora les preguntó a los estudiantes qué parte resultaba confusa.",
-    "english": "The teacher asked the pupils which part they found confusing."
+    "spanish": "La profesora les preguntó a los estudiantes por el examen.",
+    "english": "The teacher asked the students about the exam."
   },
   "5061": {
-    "spanish": "Con mucha paciencia, me enseñó a mí a reparar la bicicleta.",
-    "english": "With great patience, she taught me how to repair the bicycle."
+    "spanish": "Tengo frío; ¿tú me puedes dar una manta?",
+    "english": "I'm cold; can you give me a blanket?"
   },
   "5062": {
-    "spanish": "El médico le recetó unas pastillas a mi padre para la alergia.",
-    "english": "The doctor prescribed my father some tablets for his allergy."
+    "spanish": "El médico le recetó unas pastillas a mi padre.",
+    "english": "The doctor prescribed some pills for my father."
   },
   "5063": {
-    "spanish": "Algo le pasa a Lucía desde que recibió aquella llamada.",
-    "english": "Something has been wrong with Lucía since she received that call."
+    "spanish": "¿Qué le pasa a Lucía? Está muy callada.",
+    "english": "What's wrong with Lucía? She's very quiet."
   },
   "5064": {
-    "spanish": "Los vecinos les pidieron silencio a los estudiantes del piso superior.",
-    "english": "The neighbours asked the students in the upstairs flat to be quiet."
+    "spanish": "Los vecinos les pidieron silencio a los estudiantes del piso de arriba.",
+    "english": "The neighbours asked the students upstairs to be quiet."
   },
   "5065": {
-    "spanish": "Aunque estés lejos, te escribo una carta cada primer domingo del mes.",
-    "english": "Although you are far away, I write you a letter on the first Sunday of every month."
+    "spanish": "Yo te escribo todos los días, pero tú nunca contestas.",
+    "english": "I write to you every day, but you never answer."
   },
   "5066": {
-    "spanish": "Nuestros padres nos dieron una sorpresa al reservar aquel refugio rural.",
-    "english": "Our parents gave us a surprise by booking that country cottage."
+    "spanish": "Nuestros padres nos dieron una sorpresa el fin de semana.",
+    "english": "Our parents gave us a surprise at the weekend."
   },
   "5067": {
-    "spanish": "El guía le mostró a la turista un sendero menos empinado.",
-    "english": "The guide showed the tourist a less steep path."
+    "spanish": "Cuando llegó el cartero, le di una propina.",
+    "english": "When the postman arrived, I gave him a tip."
   },
   "5068": {
-    "spanish": "A ella le entregaron el premio después del discurso de clausura.",
-    "english": "They presented the prize to her after the closing speech."
+    "spanish": "¿Por qué no le compras un regalo a tu hermana?",
+    "english": "Why don't you buy your sister a present?"
   },
   "5069": {
-    "spanish": "El técnico les explicó el fallo a los propietarios del edificio.",
-    "english": "The technician explained the fault to the building's owners."
+    "spanish": "A mis hijos les encanta el helado.",
+    "english": "My children love ice cream."
   },
   "5070": {
-    "spanish": "La bibliotecaria nos reservó una mesa cerca de la ventana.",
-    "english": "The librarian reserved a table near the window for us."
+    "spanish": "A nosotros nos interesa mucho la historia.",
+    "english": "We're very interested in history."
   },
   "5071": {
-    "spanish": "El ayuntamiento les ofreció alojamiento temporal a las familias afectadas.",
-    "english": "The council offered temporary accommodation to the affected families."
+    "spanish": "¿Ya les mandaste las fotos a tus primos?",
+    "english": "Did you already send the photos to your cousins?"
   },
   "5072": {
-    "spanish": "A usted le corresponde firmar en la última casilla del formulario.",
-    "english": "You need to sign in the last box on the form."
+    "spanish": "El jefe le ofreció un contrato nuevo a Elena.",
+    "english": "The boss offered Elena a new contract."
   },
   "5073": {
-    "spanish": "La enfermera les tomó la temperatura a los dos corredores.",
-    "english": "The nurse took both runners' temperatures."
+    "spanish": "La tienda les devolvió el dinero a los clientes.",
+    "english": "The shop gave the customers their money back."
   },
   "5074": {
-    "spanish": "El vendedor me recomendó un abrigo impermeable para el viaje.",
-    "english": "The shop assistant recommended a waterproof coat for my trip."
+    "spanish": "Mi novio siempre me trae flores.",
+    "english": "My boyfriend always brings me flowers."
   },
   "5075": {
-    "spanish": "La empresa les pagó el hotel a quienes perdieron la conexión.",
-    "english": "The company paid for the hotel for those who missed their connection."
+    "spanish": "Ella nunca les dice mentiras a sus amigos.",
+    "english": "She never tells her friends lies."
   },
   "5076": {
-    "spanish": "Después del registro, les entregaron a ustedes unas acreditaciones verdes.",
-    "english": "After registration, they gave you green passes."
+    "spanish": "El guía les está explicando la historia del castillo a los turistas.",
+    "english": "The guide is explaining the history of the castle to the tourists."
   },
   "5077": {
-    "spanish": "Mi tía le preparó a mi prima una merienda sin frutos secos.",
-    "english": "My aunt made my cousin a snack without nuts."
+    "spanish": "¿Qué le regalaste a tu novia por su cumpleaños?",
+    "english": "What did you give your girlfriend for her birthday?"
   },
   "5078": {
-    "spanish": "El mensajero me dejó el paquete con la vecina de abajo.",
-    "english": "The courier left my parcel with the neighbour downstairs."
+    "spanish": "Cuando era niño, mi madre me leía cuentos cada noche.",
+    "english": "When I was a child, my mother read me stories every night."
   },
   "5079": {
-    "spanish": "Durante la visita, les describieron a los niños cómo funcionaba el molino.",
-    "english": "During the visit, they described to the children how the mill worked."
+    "spanish": "¿Ya les contaste a tus padres lo del viaje?",
+    "english": "Have you told your parents about the trip yet?"
   },
   "5080": {
-    "spanish": "El árbitro les advirtió a los jugadores que el campo estaba resbaladizo.",
-    "english": "The referee warned the players that the pitch was slippery."
+    "spanish": "Los abuelos les dejaron la casa a sus nietos.",
+    "english": "The grandparents left the house to their grandchildren."
   },
   "5081": {
-    "spanish": "Hoy te toca a ti escoger la música para la cena.",
-    "english": "Today it is your turn to choose the music for dinner."
+    "spanish": "¿Quieres que te preste mi coche?",
+    "english": "Do you want me to lend you my car?"
   },
   "5082": {
-    "spanish": "A él le guardaron un asiento en la primera fila.",
-    "english": "They saved him a seat in the front row."
+    "spanish": "El profesor le puso una mala nota a Pedro.",
+    "english": "The teacher gave Pedro a bad mark."
   },
   "5083": {
-    "spanish": "Él me prometió que no le diría el secreto a nadie.",
-    "english": "He promised me that he would not tell the secret to anyone."
+    "spanish": "Los niños le piden dulces a su abuela.",
+    "english": "The children ask their grandmother for sweets."
   },
   "5084": {
-    "spanish": "A mí me devolvieron el depósito al terminar el alquiler.",
-    "english": "They returned the deposit to me when the tenancy ended."
+    "spanish": "Mi jefe no me ha contestado todavía.",
+    "english": "My boss hasn't answered me yet."
   },
   "5085": {
-    "spanish": "El dentista le sacó una muela a mi hermano sin complicaciones.",
-    "english": "The dentist removed one of my brother's teeth without complications."
+    "spanish": "Señora García, le traigo los documentos que pidió.",
+    "english": "Mrs García, I'm bringing you the documents you asked for."
   },
   "5086": {
-    "spanish": "La jueza le hizo una pregunta al último testigo.",
-    "english": "The judge asked the final witness a question."
+    "spanish": "El dentista le sacó una muela a mi hermano.",
+    "english": "The dentist pulled one of my brother's teeth."
   },
   "5087": {
-    "spanish": "Cuando acabes el libro, te prestaré la segunda parte.",
-    "english": "When you finish the book, I will lend you the second volume."
+    "spanish": "Hoy te toca a ti fregar los platos.",
+    "english": "Today it's your turn to wash the dishes."
   },
   "5088": {
-    "spanish": "Señora García, le traigo los documentos que solicitó ayer.",
-    "english": "Mrs García, I am bringing you the documents you requested yesterday."
+    "spanish": "A ella le dieron el premio, no a él.",
+    "english": "They gave the prize to her, not to him."
   },
   "5089": {
-    "spanish": "El chef le añadió un poco de limón a la salsa.",
-    "english": "The chef added a little lemon to the sauce."
+    "spanish": "A usted le debo una explicación.",
+    "english": "I owe you an explanation."
   },
   "5090": {
-    "spanish": "A ustedes les mandaré las instrucciones cuando termine la prueba.",
-    "english": "I will send you the instructions when the test is finished."
+    "spanish": "A ustedes les mando la información por correo.",
+    "english": "I'll send you all the information by email."
   },
   "5091": {
-    "spanish": "Prometí escribirle a Marta en cuanto llegara al albergue.",
-    "english": "I promised to write to Marta as soon as I reached the hostel."
+    "spanish": "Voy a escribirle un mensaje a Marta.",
+    "english": "I'm going to write Marta a message."
   },
   "5092": {
-    "spanish": "Los visitantes parecían perdidos, y la guía siguió diciéndoles dónde esperar.",
-    "english": "The visitors looked lost, and the guide kept telling them where to wait."
+    "spanish": "Estoy diciéndoles la verdad a mis padres.",
+    "english": "I'm telling my parents the truth."
   },
   "5093": {
-    "spanish": "¿Podrías pasarme la sal que está junto a tu vaso?",
-    "english": "Could you pass me the salt beside your glass?"
+    "spanish": "¿Puedes pasarme la sal, por favor?",
+    "english": "Can you pass me the salt, please?"
   },
   "5094": {
-    "spanish": "Tom fue el primero en hacerle caso a la guía.",
-    "english": "Tom was the first to listen to the guide."
+    "spanish": "Necesito hacerle una pregunta, profesora.",
+    "english": "I need to ask you a question, teacher."
   },
   "5095": {
-    "spanish": "Mis abuelos prefieren el correo, por eso continúo escribiéndoles cartas.",
-    "english": "My grandparents prefer post, so I continue writing letters to them."
+    "spanish": "Estamos escribiéndoles una carta a los Reyes Magos.",
+    "english": "We're writing a letter to the Three Kings."
   },
   "5096": {
-    "spanish": "Mi hermano encontró el atlas y me lo prestó para el proyecto.",
-    "english": "My brother found the atlas and lent it to me for the project."
+    "spanish": "¿El libro? Mi hermano me lo prestó ayer.",
+    "english": "The book? My brother lent it to me yesterday."
   },
   "5097": {
-    "spanish": "He retocado la foto y te la mandaré cuando tenga cobertura.",
-    "english": "I have edited the photo and will send it to you when I have a signal."
+    "spanish": "¿La foto? Yo te la mando ahora.",
+    "english": "The photo? I'll send it to you now."
   },
   "5098": {
-    "spanish": "Pedimos el postre de limón, y el camarero nos lo trajo con dos cucharas.",
-    "english": "We ordered the lemon pudding, and the waiter brought it to us with two spoons."
+    "spanish": "¿El postre? El camarero nos lo trae enseguida.",
+    "english": "The dessert? The waiter will bring it to us right away."
   },
   "5099": {
-    "spanish": "Ana imprimió las fotos del viaje y nos las enseñó durante la comida.",
-    "english": "Ana printed the holiday photos and showed them to us over lunch."
+    "spanish": "¿Las fotos del viaje? Ana nos las enseñó ayer.",
+    "english": "The trip photos? Ana showed them to us yesterday."
   },
   "5100": {
-    "spanish": "Encontré tu bolígrafo debajo de la mesa; mañana te lo devuelvo.",
-    "english": "I found your pen under the table; I will return it to you tomorrow."
+    "spanish": "¿Mi bolígrafo? Sí, ahora te lo devuelvo.",
+    "english": "My pen? Yes, I'll give it back to you now."
   },
   "5101": {
-    "spanish": "Mi abuela tejió una bufanda roja y me la regaló en noviembre.",
-    "english": "My grandmother knitted a red scarf and gave it to me in November."
+    "spanish": "¿Quién te regaló esa bufanda? Mi abuela me la regaló.",
+    "english": "Who gave you that scarf? My grandmother gave it to me."
   },
   "5102": {
-    "spanish": "Si necesitas el coche, te lo prestaré durante el fin de semana.",
-    "english": "If you need the car, I will lend it to you for the weekend."
+    "spanish": "Si necesitas el coche, yo te lo presto.",
+    "english": "If you need the car, I'll lend it to you."
   },
   "5103": {
-    "spanish": "El profesor corrigió mi informe y me lo explicó a mí después de clase.",
-    "english": "The teacher marked my report and explained it to me after class."
+    "spanish": "El profesor explicó el ejercicio a Marta y luego me lo explicó a mí.",
+    "english": "The teacher explained the exercise to Marta and then explained it to me."
   },
   "5104": {
-    "spanish": "La nueva ruta nos la explicó a nosotras una guardabosques del parque.",
-    "english": "A park ranger explained the new route to us."
+    "spanish": "¿La receta? Mi tía nos la dio a nosotras.",
+    "english": "The recipe? My aunt gave it to us."
   },
   "5105": {
-    "spanish": "Cuando abra la taquilla, te los compraré a ti sin comisión.",
-    "english": "When the ticket office opens, I will buy the tickets for you without a booking fee."
+    "spanish": "¿Los billetes? Yo te los compro a ti si quieres.",
+    "english": "The tickets? I'll buy them for you if you want."
   },
   "5106": {
-    "spanish": "Limpié tus gafas y te las dejé encima del escritorio.",
-    "english": "I cleaned your glasses and left them on the desk for you."
+    "spanish": "¿Las gafas? Mamá te las ha guardado.",
+    "english": "The glasses? Mum has put them away for you."
   },
   "5107": {
-    "spanish": "Mis amigos restauraron la mesa y me la vendieron por veinte euros.",
-    "english": "My friends restored the table and sold it to me for twenty euros."
+    "spanish": "¿La mesa? Mis amigos me la han vendido a buen precio.",
+    "english": "The table? My friends have sold it to me at a good price."
   },
   "5108": {
-    "spanish": "Necesitaba un traje para la boda y mi padre me lo hizo a medida.",
-    "english": "I needed a suit for the wedding, and my father made it to measure for me."
+    "spanish": "¿El vestido? Mi madre me lo hizo a mí para la boda.",
+    "english": "The dress? My mother made it for me for the wedding."
   },
   "5109": {
-    "spanish": "Guarda mi diccionario hasta el examen; te lo dejo con mucho gusto.",
-    "english": "Keep my dictionary until the exam; I am happy to lend it to you."
+    "spanish": "¿Necesitas mi diccionario? Ahora te lo dejo.",
+    "english": "Do you need my dictionary? I'll lend it to you now."
   },
   "5110": {
-    "spanish": "La moto era de segunda mano, pero mis padres me la compraron igualmente.",
-    "english": "The motorbike was second-hand, but my parents bought it for me anyway."
+    "spanish": "¿Tus padres te compraron la moto? Sí, me la compraron el año pasado.",
+    "english": "Did your parents buy you the motorbike? Yes, they bought it for me last year."
   },
   "5111": {
-    "spanish": "No entiendes el problema todavía; te lo explicaré con otro ejemplo.",
-    "english": "You do not understand the problem yet; I will explain it to you with another example."
+    "spanish": "¿Me explicas el problema? Claro, ahora te lo explico.",
+    "english": "Will you explain the problem to me? Sure, I'll explain it to you now."
   },
   "5112": {
-    "spanish": "Anota mi dirección y te la confirmaré por mensaje esta noche.",
-    "english": "Write down my address, and I will confirm it for you by message tonight."
+    "spanish": "¿Me das tu dirección? Sí, te la doy ahora.",
+    "english": "Will you give me your address? Yes, I'll give it to you now."
   },
   "5113": {
-    "spanish": "He ordenado mis apuntes y te los presto hasta el lunes.",
-    "english": "I have sorted my notes, and I will lend them to you until Monday."
+    "spanish": "¿Me prestas tus apuntes? Sí, te los presto mañana.",
+    "english": "Will you lend me your notes? Yes, I'll lend them to you tomorrow."
   },
   "5114": {
-    "spanish": "Juan guardó las llaves y se las dio a su hermana al salir.",
-    "english": "Juan put away the keys and gave them to his sister as he left."
+    "spanish": "¿Las llaves? Juan se las dio a su hermana.",
+    "english": "The keys? Juan gave them to his sister."
   },
   "5115": {
-    "spanish": "Elegimos un regalo práctico y se lo dimos a Pablo después de comer.",
-    "english": "We chose a practical present and gave it to Pablo after lunch."
+    "spanish": "¿El regalo? Nosotros se lo dimos a Pablo ayer.",
+    "english": "The present? We gave it to Pablo yesterday."
   },
   "5116": {
-    "spanish": "Carmen conserva los apuntes de química y se los presta a sus compañeros.",
-    "english": "Carmen keeps her chemistry notes and lends them to her classmates."
+    "spanish": "¿Los apuntes? Carmen se los presta a sus compañeros.",
+    "english": "The notes? Carmen lends them to her classmates."
   },
   "5117": {
-    "spanish": "Mis padres desconocían la verdad, pero anoche se la conté con calma.",
-    "english": "My parents did not know the truth, but I told it to them calmly last night."
+    "spanish": "¿La verdad? No se la dije a mis padres.",
+    "english": "The truth? I didn't tell it to my parents."
   },
   "5118": {
-    "spanish": "La alumna formuló una pregunta clara y se la hizo a la profesora.",
-    "english": "The pupil formed a clear question and put it to the teacher."
+    "spanish": "¿La pregunta? Ya se la hice a la profesora.",
+    "english": "The question? I already asked the teacher."
   },
   "5119": {
-    "spanish": "Tengo el dinero preparado y mañana se lo devolveré a ustedes.",
-    "english": "I have the money ready and will return it to you tomorrow."
+    "spanish": "¿El dinero? Mañana se lo devuelvo a ustedes.",
+    "english": "The money? I'll give it back to you all tomorrow."
   },
   "5120": {
-    "spanish": "Mi padre escogió unas flores amarillas y se las compró a mi madre.",
-    "english": "My father chose some yellow flowers and bought them for my mother."
+    "spanish": "¿Las flores? Mi padre se las compró a mi madre.",
+    "english": "The flowers? My father bought them for my mother."
   },
   "5121": {
     "spanish": "El médico revisó los resultados y se los explicó a la paciente despacio.",
     "english": "The doctor reviewed the results and explained them slowly to the patient."
   },
   "5122": {
-    "spanish": "El cartero protegió el paquete de la lluvia y se lo entregó a mis vecinos.",
-    "english": "The postman protected the parcel from the rain and delivered it to my neighbours."
+    "spanish": "¿El paquete? El cartero se lo entregó a mis vecinos.",
+    "english": "The parcel? The postman delivered it to my neighbours."
   },
   "5123": {
-    "spanish": "La contraseña es confidencial, y no se la diré a nadie.",
-    "english": "The password is confidential, and I will not tell it to anyone."
+    "spanish": "¿La contraseña? No se la puedo decir a nadie.",
+    "english": "The password? I can't tell it to anyone."
   },
   "5124": {
-    "spanish": "Acabé el informe al mediodía y se lo envié al director para su revisión.",
-    "english": "I finished the report at midday and sent it to the director for review."
+    "spanish": "¿El informe? Ya se lo he enviado al director.",
+    "english": "The report? I've already sent it to the director."
   },
   "5125": {
-    "spanish": "Los niños no conocían las noticias, así que se las contamos con cuidado.",
-    "english": "The children did not know the news, so we told it to them carefully."
+    "spanish": "¿Las noticias? Todavía no se las han contado a los niños.",
+    "english": "The news? They haven't told the children yet."
   },
   "5126": {
-    "spanish": "Laura pidió tu número y se lo di antes de subir al tren.",
-    "english": "Laura asked for your number, and I gave it to her before boarding the train."
+    "spanish": "¿Tu número? Ya se lo he dado a Laura.",
+    "english": "Your number? I've already given it to Laura."
   },
   "5127": {
-    "spanish": "Mi hermano prometió una carta a su novia y se la está escribiendo ahora.",
-    "english": "My brother promised his girlfriend a letter and is writing it to her now."
+    "spanish": "¿La carta? Mi hermano se la está escribiendo a su novia.",
+    "english": "The letter? My brother is writing it to his girlfriend."
   },
   "5128": {
-    "spanish": "Mis amigos conocen el secreto y se lo están contando a todo el barrio.",
-    "english": "My friends know the secret and are telling it to the whole neighbourhood."
+    "spanish": "¿El secreto? Mis amigos se lo están contando a todo el mundo.",
+    "english": "The secret? My friends are telling it to everyone."
   },
   "5129": {
-    "spanish": "La tarta cabe en esta caja; se la llevaremos a la abuela esta tarde.",
-    "english": "The cake fits in this box; we will take it to Grandma this afternoon."
+    "spanish": "¿La tarta? Nosotros se la vamos a llevar a la abuela.",
+    "english": "The cake? We're going to take it to grandma."
   },
   "5130": {
-    "spanish": "Mis padres eligieron los juguetes y se los van a comprar a mi hermano.",
-    "english": "My parents chose the toys and are going to buy them for my brother."
+    "spanish": "¿Los juguetes? Mis padres se los van a comprar a mi hermano.",
+    "english": "The toys? My parents are going to buy them for my brother."
   },
   "5131": {
-    "spanish": "El mensaje era urgente y se lo mandé a él, no a ella.",
-    "english": "The message was urgent, and I sent it to him, not to her."
+    "spanish": "¿El mensaje? Ya se lo mandé a él, no a ella.",
+    "english": "The message? I already sent it to him, not to her."
   },
   "5132": {
-    "spanish": "Conseguí las entradas esta mañana y se las guardé a ustedes en recepción.",
-    "english": "I got the tickets this morning and left them for you at reception."
+    "spanish": "¿Las entradas? Ya se las di a ustedes, ¿no?",
+    "english": "The tickets? I already gave them to you all, didn't I?"
   },
   "5133": {
-    "spanish": "Mario olvidó las llaves, pero se las di antes de cerrar la oficina.",
-    "english": "Mario forgot the keys, but I gave them to him before closing the office."
+    "spanish": "¿Le diste las llaves a Mario? Sí, ya se las di.",
+    "english": "Did you give the keys to Mario? Yes, I already gave them to him."
   },
   "5134": {
-    "spanish": "La invitación estaba lista, aunque todavía no se la había mandado a mis tíos.",
-    "english": "The invitation was ready, although I had not yet sent it to my aunt and uncle."
+    "spanish": "¿Les mandaste la invitación a tus tíos? No, todavía no se la he mandado.",
+    "english": "Did you send the invitation to your aunt and uncle? No, I haven't sent it yet."
   },
   "5135": {
-    "spanish": "Ana eligió el pastel de chocolate y se lo compré aquella misma mañana.",
-    "english": "Ana chose the chocolate cake, and I bought it for her that same morning."
+    "spanish": "¿Le compraste el pastel a Ana? Sí, se lo compré esta mañana.",
+    "english": "Did you buy the cake for Ana? Yes, I bought it for her this morning."
   },
   "5136": {
-    "spanish": "Mi madre admiró los pendientes, por eso se los regalaré en su cumpleaños.",
-    "english": "My mother admired the earrings, so I will give them to her for her birthday."
+    "spanish": "¿Le regalas los pendientes a tu madre? Sí, se los regalo para su cumpleaños.",
+    "english": "Are you giving the earrings to your mother? Yes, I'm giving them to her for her birthday."
   },
   "5137": {
-    "spanish": "Los alumnos pidieron otro ejemplo y la directora se lo explicó en la pizarra.",
-    "english": "The pupils asked for another example, and the head teacher explained it to them on the board."
+    "spanish": "¿Quién les explicó el problema a los alumnos? La directora se lo explicó.",
+    "english": "Who explained the problem to the students? The head teacher explained it to them."
   },
   "5138": {
-    "spanish": "Mi padre necesitaba el permiso firmado, y se lo pedí ayer.",
-    "english": "My father needed the signed permission, and I asked him for it yesterday."
+    "spanish": "¿Le pediste permiso a tu padre? Sí, se lo pedí ayer.",
+    "english": "Did you ask your father for permission? Yes, I asked him for it yesterday."
   },
   "5139": {
-    "spanish": "Sara dejó su chaqueta en mi coche y ya se la devolví.",
-    "english": "Sara left her jacket in my car, and I have already returned it to her."
+    "spanish": "¿Le devolviste la chaqueta a Sara? Sí, ya se la devolví.",
+    "english": "Did you give the jacket back to Sara? Yes, I already gave it back to her."
   },
   "5140": {
-    "spanish": "Mi hija escogió un cuento de aventuras y estoy leyéndoselo antes de dormir.",
-    "english": "My daughter chose an adventure story, and I am reading it to her before bed."
+    "spanish": "¿El cuento? Estoy leyéndoselo a mi hija.",
+    "english": "The story? I'm reading it to my daughter."
   },
   "5141": {
-    "spanish": "Los alumnos no entienden la lección, así que el profesor continúa explicándosela con dibujos.",
-    "english": "The pupils do not understand the lesson, so the teacher is continuing to explain it to them with drawings."
+    "spanish": "¿La lección? El profesor está explicándosela a los alumnos.",
+    "english": "The lesson? The teacher is explaining it to the students."
   },
   "5142": {
-    "spanish": "He seleccionado las mejores fotos y estoy mandándotelas desde el hotel.",
-    "english": "I have selected the best photos and I am sending them to you from the hotel."
+    "spanish": "¿Las fotos? Estoy mandándotelas ahora mismo.",
+    "english": "The photos? I'm sending them to you right now."
   },
   "5143": {
-    "spanish": "Pedimos el menú hace un momento y el camarero viene trayéndonoslo ahora.",
-    "english": "We asked for the menu a moment ago, and the waiter is bringing it to us now."
+    "spanish": "¿El menú? El camarero está trayéndonoslo ahora.",
+    "english": "The menu? The waiter is bringing it to us now."
   },
   "5144": {
-    "spanish": "Los niños esperaban sus regalos y su padre terminó dándoselos uno por uno.",
-    "english": "The children were waiting for their presents, and their father ended up handing them out one by one."
+    "spanish": "¿Los regalos? Papá está dándoselos a los niños.",
+    "english": "The presents? Dad is giving them to the children."
   },
   "5145": {
-    "spanish": "Acabaré tu libro esta noche para devolvértelo mañana en la biblioteca.",
-    "english": "I will finish your book tonight so I can return it to you at the library tomorrow."
+    "spanish": "¿El libro? Voy a devolvértelo mañana.",
+    "english": "The book? I'm going to give it back to you tomorrow."
   },
   "5146": {
-    "spanish": "Mi primo necesita una bicicleta y quiero prestársela durante el verano.",
-    "english": "My cousin needs a bicycle, and I want to lend him mine for the summer."
+    "spanish": "¿La bicicleta? Quiero prestársela a mi primo.",
+    "english": "The bike? I want to lend it to my cousin."
   },
   "5147": {
-    "spanish": "El abogado pidió los documentos originales y debo mandárselos por mensajero.",
-    "english": "The solicitor requested the original documents, and I must send them to him by courier."
+    "spanish": "¿Los documentos? Tengo que mandárselos al abogado hoy.",
+    "english": "The documents? I have to send them to the lawyer today."
   },
   "5148": {
-    "spanish": "Esa canción despierta buenos recuerdos; ¿podrías cantármela otra vez?",
-    "english": "That song brings back good memories; could you sing it to me again?"
+    "spanish": "¿La canción? ¿Puedes cantármela otra vez?",
+    "english": "The song? Can you sing it to me again?"
   },
   "5149": {
-    "spanish": "Nuestros jefes rechazaron el plan porque no supimos explicárselo con claridad.",
-    "english": "Our managers rejected the plan because we could not explain it to them clearly."
+    "spanish": "¿El plan? Queremos explicárselo a nuestros jefes.",
+    "english": "The plan? We want to explain it to our bosses."
   },
   "5150": {
-    "spanish": "Las fotos ya están editadas; puedo enviártelas después de cenar.",
-    "english": "The photos have been edited; I can send them to you after dinner."
+    "spanish": "Si quieres las fotos, puedo enviártelas esta noche.",
+    "english": "If you want the photos, I can send them to you tonight."
   },
   "6001": {
     "spanish": "Todavía no sé dónde guardaron el contrato original.",
@@ -3639,6 +3639,11 @@ function sentenceKey(sentence: string): string {
 export function applySourcedQuestionPair<T extends SourceableQuestion>(question: T): T {
   const pair = SOURCED_QUIZ_PAIRS[question.id];
   if (!pair) throw new Error(`Missing sourced sentence pair for question ${question.id}`);
+  // The item's own sentence: keep its blank position and explanation. Searching
+  // for the answer would match an earlier, unrelated "La" in "¿La sopa? ... la come".
+  if (sentenceKey(`${question.before} ${question.answer} ${question.after}`) === sentenceKey(pair.spanish)) {
+    return { ...question, before: question.before.trimEnd(), after: question.after.trimStart(), translations: { ...question.translations, en: pair.english } };
+  }
   const escaped = question.answer.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const match = new RegExp(`(?<!\\p{L})${escaped}(?!\\p{L})`, "iu").exec(pair.spanish);
   if (!match) throw new Error(`Sourced sentence for question ${question.id} lacks answer ${question.answer}`);
@@ -3646,7 +3651,7 @@ export function applySourcedQuestionPair<T extends SourceableQuestion>(question:
     ...question,
     before: pair.spanish.slice(0, match.index).trimEnd(),
     after: pair.spanish.slice(match.index + match[0].length).trimStart(),
-    explanation: sentenceKey(`${question.before} ${question.answer} ${question.after}`) === sentenceKey(pair.spanish) ? question.explanation : sourcedExplanation(question),
+    explanation: sourcedExplanation(question),
     translations: { ...question.translations, en: pair.english },
   };
 }
