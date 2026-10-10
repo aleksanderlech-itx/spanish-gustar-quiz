@@ -30,15 +30,11 @@ context." It repeats the answer and never says what in the sentence decides it.
 ## Enforcement
 
 `tests/explanation-quality.test.mjs` applies these rules to every quiz item,
-using `scripts/explanation-lint.mjs`. Items that fail today are listed in
-`tests/explanation-quality-baseline.json`. The test fails when an item outside
-the list fails, or when a listed item starts passing and the list was not
-shortened. The list must be empty before the explanation work is merged.
-
-Refresh the list after fixing items:
+using `scripts/explanation-lint.mjs`, and fails on any item that breaks them.
+Run the script directly to list failing items:
 
 ```
-node --experimental-strip-types scripts/explanation-lint.mjs --write-baseline
+node --experimental-strip-types scripts/explanation-lint.mjs
 ```
 
 ## Where explanations live

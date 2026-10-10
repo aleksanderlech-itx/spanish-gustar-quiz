@@ -1,24 +1,15 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
 import test from "node:test";
-import { BASELINE_PATH, TOPICS, lintQuestion } from "../scripts/explanation-lint.mjs";
+import { TOPICS, lintQuestion } from "../scripts/explanation-lint.mjs";
 
-// Rules: docs/explanation-quality.md. Items that still fail are listed in the
-// baseline; the list may only shrink, and it must be empty before merge.
-const baseline = JSON.parse(readFileSync(BASELINE_PATH, "utf8"));
-
+// Rules: docs/explanation-quality.md.
 for (const topic of TOPICS) {
   test(`${topic.key} explanations meet the quality spec`, () => {
-    const known = new Set(baseline[topic.key] ?? []);
-    const newFailures = [];
-    const nowPassing = [];
-    for (const question of topic.questions) {
-      const problems = lintQuestion(question, topic);
-      if (problems.length && !known.has(question.id)) newFailures.push(`#${question.id}: ${problems.join("; ")}`);
-      if (!problems.length && known.has(question.id)) nowPassing.push(question.id);
-    }
-    assert.deepEqual(newFailures, [], "explanations that break the spec");
-    assert.deepEqual(nowPassing, [], "fixed items still listed in tests/explanation-quality-baseline.json; rerun scripts/explanation-lint.mjs --write-baseline");
+    const failures = topic.questions
+      .map((question) => [question.id, lintQuestion(question, topic)])
+      .filter(([, problems]) => problems.length)
+      .map(([id, problems]) => `#${id}: ${problems.join("; ")}`);
+    assert.deepEqual(failures, []);
   });
 }
 

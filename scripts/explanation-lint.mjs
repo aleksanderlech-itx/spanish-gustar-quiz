@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 // Checks every quiz explanation against docs/explanation-quality.md.
-// Run directly for a per-topic summary, or with --write-baseline to refresh
-// tests/explanation-quality-baseline.json after fixing items.
+// Run directly for a per-topic summary of failing items.
 
-import { writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 
 import { ALL_QUESTIONS } from "../app/quiz-data.ts";
@@ -12,8 +10,6 @@ import { PRETERITE_IMPERFECT_QUESTIONS } from "../app/preterite-imperfect-data.t
 import { POR_PARA_QUESTIONS } from "../app/por-para-data.ts";
 import { OBJECT_PRONOUN_QUESTIONS } from "../app/object-pronouns-data.ts";
 import { SABER_CONOCER_QUESTIONS } from "../app/saber-conocer-data.ts";
-
-export const BASELINE_PATH = fileURLToPath(new URL("../tests/explanation-quality-baseline.json", import.meta.url));
 
 export const TOPICS = [
   { key: "gustar", questions: ALL_QUESTIONS, needsCue: true },
@@ -59,29 +55,14 @@ export function lintQuestion(question, { needsCue }) {
   return problems;
 }
 
-/** Failing question ids per topic, sorted. */
-export function collectFailures() {
-  const failures = {};
-  for (const topic of TOPICS) {
-    failures[topic.key] = topic.questions
-      .filter((question) => lintQuestion(question, topic).length > 0)
-      .map((question) => question.id)
-      .sort((a, b) => a - b);
-  }
-  return failures;
-}
-
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const failures = collectFailures();
   let total = 0;
   for (const topic of TOPICS) {
-    const count = failures[topic.key].length;
-    total += count;
-    console.log(`${topic.key.padEnd(20)} ${String(count).padStart(3)} / ${topic.questions.length} failing`);
+    const failing = topic.questions.filter((question) => lintQuestion(question, topic).length > 0);
+    total += failing.length;
+    console.log(`${topic.key.padEnd(20)} ${String(failing.length).padStart(3)} / ${topic.questions.length} failing`);
+    for (const question of failing) console.log(`  #${question.id}: ${lintQuestion(question, topic).join("; ")}`);
   }
   console.log(`${"total".padEnd(20)} ${String(total).padStart(3)}`);
-  if (process.argv.includes("--write-baseline")) {
-    await writeFile(BASELINE_PATH, `${JSON.stringify(failures)}\n`);
-    console.log(`Wrote ${BASELINE_PATH}`);
-  }
+  if (total) process.exitCode = 1;
 }
