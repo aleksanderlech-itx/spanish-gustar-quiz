@@ -399,10 +399,10 @@ export const PRETERITE_IMPERFECT_CONJUGATIONS: Record<string, Array<{ subject: s
 };
 
 /**
- * Regularity scoped strictly to preterite/imperfect behavior — a verb irregular elsewhere
+ * Regularity scoped strictly to preterite/imperfect behavior: a verb irregular elsewhere
  * (e.g. salir's present-tense "salgo") can still be fully regular in these two tenses.
  * "spelling change" marks a yo-preterite orthographic shift (g→gu, c→qu, z→c before e) that
- * keeps the same sound rather than a true stem irregularity — a distinct, real category, not a
+ * keeps the same sound rather than a true stem irregularity. It is a distinct, real category, not a
  * softened "irregular".
  */
 export const PRETERITE_IMPERFECT_REGULARITY: Record<string, "regular" | "irregular" | "spelling change"> = {

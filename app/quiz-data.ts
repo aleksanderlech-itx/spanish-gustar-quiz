@@ -16,7 +16,7 @@ export type Question = {
   indirectObject: string;
   tense: "present" | "preterite" | "imperfect";
   level: "basic" | "intermediate" | "advanced";
-  /** Shown in the empty blank instead of the infinitive — e.g. the bare gerund
+  /** Shown in the empty blank instead of the infinitive, e.g. the bare gerund
    * when the learner has to attach pronouns to it. */
   blankHint?: string;
   /** The word or phrase in this sentence that decides the answer. It must appear
