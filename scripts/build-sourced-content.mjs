@@ -188,6 +188,13 @@ for (const [group, questions] of groups) {
               : group === "saber-conocer"
                 ? CURATED_SABER_CONOCER_PAIRS[question.id]
                 : undefined);
+    if (RESTORED_PAIRS[group]?.[question.id] && (
+      CURATED_FLAGGED_QUIZ_OVERRIDES[question.id]
+      ?? CURATED_QUIZ_OVERRIDES[group === "gustar" ? "gustar" : group === "preterite-imperfect" ? "preteriteImperfect" : ""]?.[question.id]
+      ?? (group === "object-pronouns" ? CURATED_OBJECT_PRONOUN_PAIRS : group === "saber-conocer" ? CURATED_SABER_CONOCER_PAIRS : {})[question.id]
+    )) {
+      throw new Error(`${group} #${question.id} is restored but still has a superseded override; remove it`);
+    }
     if (override && PINNED_CORPUS_PAIRS[`quiz-${group}:${question.id}`]) {
       throw new Error(`${group} #${question.id} uses a curated pair but is still pinned; remove its pin`);
     }
