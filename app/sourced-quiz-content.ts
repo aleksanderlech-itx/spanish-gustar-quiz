@@ -1206,604 +1206,604 @@ export const SOURCED_QUIZ_PAIRS: Record<number, SourcedPair> = {
     "english": "They are attentive to every detail of the project right now."
   },
   "3001": {
-    "spanish": "El mes pasado fui a Los Ángeles de vacaciones.",
-    "english": "I went to Los Angeles on vacation last month."
+    "spanish": "Ayer yo fui al mercado.",
+    "english": "Yesterday I went to the market."
   },
   "3002": {
-    "spanish": "Cuando iba a la escuela, vi a mi tío.",
-    "english": "I saw my uncle on the way to school."
+    "spanish": "De niño, yo iba al parque cada tarde.",
+    "english": "As a child, I used to go to the park every afternoon."
   },
   "3003": {
-    "spanish": "Tom preparó bocadillos de atún para Mary y John.",
-    "english": "Tom made tuna fish sandwiches for Mary and John."
+    "spanish": "Anoche Marta preparó la cena a las ocho.",
+    "english": "Last night Marta prepared dinner at eight."
   },
   "3004": {
     "spanish": "Cuando llegaban los primeros clientes, Nuria preparaba café en la barra.",
     "english": "As the first customers arrived, Nuria was making coffee at the counter."
   },
   "3005": {
-    "spanish": "Anoche salimos del teatro después de la última función.",
-    "english": "Last night we left the theatre after the final performance."
+    "spanish": "El sábado nosotros salimos temprano.",
+    "english": "On Saturday we left early."
   },
   "3006": {
-    "spanish": "Durante aquel verano salíamos a remar antes del amanecer.",
-    "english": "That summer, we used to go rowing before dawn."
+    "spanish": "Normalmente nosotros salíamos temprano para la escuela.",
+    "english": "Normally we used to leave early for school."
   },
   "3007": {
-    "spanish": "A pesar del huracán el barco llegó al puerto.",
-    "english": "In spite of the hurricane, the ship reached port."
+    "spanish": "De repente, el tren llegó en la estación.",
+    "english": "Suddenly, the train arrived at the station."
   },
   "3008": {
-    "spanish": "Ella le preguntó cómo se llegaba a la estación.",
-    "english": "She asked him how to get to the station."
+    "spanish": "El tren llegaba cuando empezó la lluvia.",
+    "english": "The train was arriving when the rain started."
   },
   "3009": {
-    "spanish": "Mi abuela vivió hasta los noventa y cinco años.",
-    "english": "My grandmother lived to be ninety-five years old."
+    "spanish": "En 2020 Ana vivió en Sevilla.",
+    "english": "In 2020 Ana lived in Seville."
   },
   "3010": {
-    "spanish": "Era la primera vez que Tom vivía en ultramar.",
-    "english": "It was Tom's first time living overseas."
+    "spanish": "Cuando la conocí, Ana vivía en Sevilla.",
+    "english": "When I met her, Ana was living in Seville."
   },
   "3011": {
-    "spanish": "Tom le explicó el propósito del proyecto a Mary.",
-    "english": "Tom explained the purpose of the project to Mary."
+    "spanish": "El profesor explicó la regla y luego dio ejemplos.",
+    "english": "The teacher explained the rule and then gave examples."
   },
   "3012": {
-    "spanish": "El guía explicaba el origen del mosaico cuando sonó una alarma.",
-    "english": "The guide was explaining the origin of the mosaic when an alarm sounded."
+    "spanish": "El profesor explicaba la regla cuando entró el director.",
+    "english": "The teacher was explaining the rule when the principal came in."
   },
   "3013": {
-    "spanish": "Él se puso sus lentes y comenzó a leer.",
-    "english": "He put on his glasses and began to read."
+    "spanish": "Al ver las noticias, Luis se puso nervioso.",
+    "english": "When he saw the news, Luis became nervous."
   },
   "3014": {
-    "spanish": "La historia se ponía más y más interesante.",
-    "english": "The story got more and more exciting."
+    "spanish": "Cada vez que hablaba en público, Luis se ponía nervioso.",
+    "english": "Every time he spoke in public, Luis would get nervous."
   },
   "3015": {
-    "spanish": "Él empezó a estudiar inglés desde los once años.",
-    "english": "He started learning English at the age of eleven."
+    "spanish": "La reunión empezó a las diez.",
+    "english": "The meeting started at ten."
   },
   "3016": {
-    "spanish": "Ya empezaba a preocuparme por ti.",
-    "english": "I was beginning to worry about you."
+    "spanish": "La reunión ya empezaba cuando llegué.",
+    "english": "The meeting was already starting when I arrived."
   },
   "3017": {
-    "spanish": "El anciano le escribió una carta a su hijo.",
-    "english": "The old man wrote a letter to his son."
+    "spanish": "Ayer, Marta escribió una carta a su amiga.",
+    "english": "Yesterday, Marta wrote a letter to her friend."
   },
   "3018": {
-    "spanish": "Tom y yo comimos juntos en la cafetería.",
-    "english": "Tom and I ate together in the school cafeteria."
+    "spanish": "Anoche nosotros comimos en aquel restaurante nuevo.",
+    "english": "Last night we ate at that new restaurant."
   },
   "3019": {
-    "spanish": "Compré un sofisticado sistema de seguridad para mi casa.",
-    "english": "I bought a sophisticated security system for my house."
+    "spanish": "El lunes pasado, yo compré un coche nuevo.",
+    "english": "Last Monday, I bought a new car."
   },
   "3020": {
-    "spanish": "¿Qué te hizo pensar que tenías que hacer eso?",
-    "english": "What made you think you had to do that?"
+    "spanish": "Diego hizo toda la tarea anoche.",
+    "english": "Diego did all the homework last night."
   },
   "3021": {
-    "spanish": "Al caer la tarde, las nubes se pusieron de color naranja.",
-    "english": "At sunset, the clouds turned orange."
+    "spanish": "El sábado, mis padres pusieron la mesa para la cena especial.",
+    "english": "On Saturday, my parents set the table for the special dinner."
   },
   "3022": {
-    "spanish": "¿Acaso Tom dijo algo acerca de dónde había estado?",
-    "english": "Did Tom say anything about where he had been?"
+    "spanish": "Ella dijo la verdad por fin.",
+    "english": "She finally told the truth."
   },
   "3023": {
-    "spanish": "Hicimos todo lo que pudimos para salvar al niño.",
-    "english": "We did everything we could to save the boy."
+    "spanish": "Nosotros pudimos terminar el proyecto a tiempo.",
+    "english": "We managed to finish the project on time."
   },
   "3024": {
-    "spanish": "Dije que podía, no que lo fuera a hacer.",
-    "english": "I said that I could, not that I would."
+    "spanish": "Yo le dije la noticia esta mañana.",
+    "english": "I told him the news this morning."
   },
   "3025": {
-    "spanish": "A pesar del huracán la nave llegó al puerto.",
-    "english": "In spite of the hurricane, the ship reached port."
+    "spanish": "El tren llegó con dos horas de retraso.",
+    "english": "The train arrived two hours late."
   },
   "3026": {
-    "spanish": "Le escribí una carta a mis padres en casa.",
-    "english": "I wrote a letter to my parents at home."
+    "spanish": "Yo les escribí un mensaje a mis abuelos el domingo.",
+    "english": "I wrote a message to my grandparents on Sunday."
   },
   "3027": {
-    "spanish": "Ellos hicieron muchos sacrificios para adquirir su propia casa.",
-    "english": "They made many sacrifices to get their own house."
+    "spanish": "Los estudiantes hicieron el examen sin problemas.",
+    "english": "The students did the exam without any problems."
   },
   "3028": {
-    "spanish": "¿Quién te dijo que escribieras con la mano izquierda?",
-    "english": "Who told you to write with your left hand?"
+    "spanish": "Carla dijo que sí sin dudarlo.",
+    "english": "Carla said yes without hesitation."
   },
   "3029": {
-    "spanish": "¿Cuándo fue la última vez que hablaste con Tom?",
-    "english": "When was the last time you spoke to Tom?"
+    "spanish": "Tú hablaste muy bien en la entrevista.",
+    "english": "You spoke very well in the interview."
   },
   "3030": {
-    "spanish": "Él decidió vivir en Tokio en lugar de Osaka.",
-    "english": "He chose to live in Tokyo instead of Osaka."
+    "spanish": "Mi jefe decidió el proyecto la semana pasada.",
+    "english": "My boss decided on the project last week."
   },
   "3031": {
-    "spanish": "El libro que me leí ayer era muy interesante.",
-    "english": "The book I read yesterday was really interesting."
+    "spanish": "Yo leí toda la novela en un fin de semana.",
+    "english": "I read the whole novel in one weekend."
   },
   "3032": {
-    "spanish": "Tanto él como yo supimos resolver ese problema matemático.",
-    "english": "Both he and I were able to solve the math problem."
+    "spanish": "Nosotros supimos la respuesta correcta enseguida.",
+    "english": "We found out the correct answer right away."
   },
   "3033": {
-    "spanish": "Su abuela vivió hasta los ochenta y ocho años.",
-    "english": "Her grandmother lived to be eighty-eight years old."
+    "spanish": "Ana vivió tres años en Londres antes de mudarse.",
+    "english": "Ana lived in London for three years before moving."
   },
   "3034": {
-    "spanish": "El profesor nos explicó el significado de la palabra.",
-    "english": "The teacher explained the meaning of the word to us."
+    "spanish": "El médico explicó el diagnóstico al paciente.",
+    "english": "The doctor explained the diagnosis to the patient."
   },
   "3035": {
-    "spanish": "Entré en la habitación y le di la mano.",
-    "english": "I entered the room and shook hands with him."
+    "spanish": "Yo di mi opinión en la reunión.",
+    "english": "I gave my opinion at the meeting."
   },
   "3036": {
-    "spanish": "Ellos llegaron justo a tiempo para el último tren.",
-    "english": "They arrived just in time for the last train."
+    "spanish": "Mis amigos llegaron a la fiesta a las nueve.",
+    "english": "My friends arrived at the party at nine."
   },
   "3037": {
-    "spanish": "Preparé el catering para la fiesta de mañana.",
-    "english": "I arranged catering for tomorrow's party."
+    "spanish": "Primero yo preparé la cena y luego llamé a mi hermana.",
+    "english": "First I made dinner and then I called my sister."
   },
   "3038": {
-    "spanish": "Nadie sabe quién escribió la nota que dejaron en la puerta.",
-    "english": "Nobody knows who wrote the note left on the door."
+    "spanish": "Luego, Sara escribió su nombre en el registro.",
+    "english": "Then, Sara wrote her name in the register."
   },
   "3039": {
-    "spanish": "¿Qué tal si salimos a comer afuera esta noche?",
-    "english": "How about eating out this evening?"
+    "spanish": "Después de desayunar, nosotros salimos al trabajo juntos.",
+    "english": "After having breakfast, we left for work together."
   },
   "3040": {
-    "spanish": "El niño tropezó, se cayó y empezó a llorar.",
-    "english": "The boy tripped and fell, and started to cry."
+    "spanish": "Entonces el profesor empezó la lección con un ejemplo.",
+    "english": "Then the teacher started the lesson with an example."
   },
   "3041": {
-    "spanish": "Ayer me dijeron la verdad sobre el cambio de horario.",
-    "english": "Yesterday they told me the truth about the schedule change."
+    "spanish": "Finalmente, ellos dijeron que sí a la propuesta.",
+    "english": "Finally, they said yes to the proposal."
   },
   "3042": {
-    "spanish": "Te daré el artículo que escribí sobre ese tema.",
-    "english": "I'll give you the article I wrote on that matter."
+    "spanish": "Después, yo escribí un correo a mi jefe.",
+    "english": "Afterwards, I wrote an email to my boss."
   },
   "3043": {
-    "spanish": "Tom preparó una torta para el cumpleaños de Mary.",
-    "english": "Tom baked a cake for Mary's birthday."
+    "spanish": "Luego, el camarero preparó la mesa rápidamente.",
+    "english": "Then, the waiter prepared the table quickly."
   },
   "3044": {
-    "spanish": "Tom nunca leyó el libro que Mary le regaló.",
-    "english": "Tom never read the book that Mary gave him."
+    "spanish": "Primero, Luis leyó las instrucciones con cuidado.",
+    "english": "First, Luis read the instructions carefully."
   },
   "3045": {
-    "spanish": "Anticipándonos al frío invierno, compramos un calefactor más grande.",
-    "english": "Anticipating a cold winter, we bought a bigger stove."
+    "spanish": "Después de eso, nosotros compramos un café rápido.",
+    "english": "After that, we bought a quick coffee."
   },
   "3046": {
-    "spanish": "Ella me explicó cómo usar el secador de pelo.",
-    "english": "She explained to me how to use the hair drier."
+    "spanish": "Finalmente, el director explicó el nuevo plan al equipo.",
+    "english": "Finally, the director explained the new plan to the team."
   },
   "3047": {
-    "spanish": "Fuimos a la cafetería sobre la que te hablé.",
-    "english": "We went to the café that I told you about."
+    "spanish": "Primero yo hablé con mi hermana y después con mis padres.",
+    "english": "First I talked with my sister and then with my parents."
   },
   "3048": {
-    "spanish": "El Partido Socialista le preparó como candidato presidencial.",
-    "english": "The Socialist Party groomed him as a presidential candidate."
+    "spanish": "Luego, Ana preparó toda la casa antes de la fiesta.",
+    "english": "Then, Ana got the whole house ready before the party."
   },
   "3049": {
-    "spanish": "El guía dio una descripción minuto a minuto del rescate.",
-    "english": "The guide gave a minute-by-minute account of the rescue."
+    "spanish": "Después, el camarero nos dio la cuenta.",
+    "english": "Afterwards, the waiter gave us the bill."
   },
   "3050": {
-    "spanish": "Alguien me dijo que no debería confiar en ti.",
-    "english": "Somebody told me that I shouldn't trust you."
+    "spanish": "Entonces, ella dijo que necesitaba más tiempo.",
+    "english": "Then, she said she needed more time."
   },
   "3051": {
-    "spanish": "Ayer escribimos el informe antes de la reunión.",
-    "english": "Yesterday we wrote the report before the meeting."
+    "spanish": "Primero, nosotros escribimos el correo con cuidado.",
+    "english": "First, we wrote the email carefully."
   },
   "3052": {
-    "spanish": "Los primeros colonos americanos llegaron en el siglo diecisiete.",
-    "english": "The first American colonists arrived in the 17th century."
+    "spanish": "Luego, mis padres llegaron a casa y descansaron.",
+    "english": "Then, my parents arrived home and rested."
   },
   "3053": {
-    "spanish": "Los alumnos no se acordaron de lo que leyeron en ese libro.",
-    "english": "The students didn't remember what they read in that book."
+    "spanish": "Antes de firmar, ellos leyeron el contrato con calma.",
+    "english": "Before signing, they read the contract calmly."
   },
   "3054": {
-    "spanish": "Ella se indignó cuando le dije que estaba mintiendo.",
-    "english": "She was indignant when I said she was lying."
+    "spanish": "Finalmente, yo dije la verdad a mi amigo.",
+    "english": "Finally, I told my friend the truth."
   },
   "3055": {
-    "spanish": "Dio una descripción minuto a minuto de la cena.",
-    "english": "He gave a minute description of the dinner party."
+    "spanish": "Después del discurso, el público dio un fuerte aplauso.",
+    "english": "After the speech, the audience gave a big round of applause."
   },
   "3056": {
-    "spanish": "Japón empezó a importar arroz de los Estados Unidos.",
-    "english": "Japan began to import rice from the United States."
+    "spanish": "De repente, la niña empezó a llorar.",
+    "english": "Suddenly, the girl started crying."
   },
   "3057": {
-    "spanish": "La tierra empezó a temblar y sonó la alarma.",
-    "english": "The ground started to shake and the alarm rang."
+    "spanish": "El partido empezó a las cuatro en punto.",
+    "english": "The match started at four o'clock sharp."
   },
   "3058": {
-    "spanish": "María se puso su vestido nuevo para la fiesta.",
-    "english": "Mary put on her new dress for the party."
+    "spanish": "Cuando oyó la noticia, Marta se puso muy contenta.",
+    "english": "When she heard the news, Marta became very happy."
   },
   "3059": {
-    "spanish": "Ellos decidieron reunirse ahí nuevamente después de veinte años.",
-    "english": "They decided to meet there again after twenty years."
+    "spanish": "Al final del año, ellos decidieron trasladarse a otra ciudad.",
+    "english": "At the end of the year, they decided to move to another city."
   },
   "3060": {
-    "spanish": "Se puso a llorar en cuanto oyó la noticia.",
-    "english": "When she heard the news, she burst into tears."
+    "spanish": "Tras el accidente, Luis se puso mucho más cuidadoso.",
+    "english": "After the accident, Luis became much more careful."
   },
   "3061": {
-    "spanish": "Empecé a aprender francés a los trece años.",
-    "english": "I started studying French when I was thirteen."
+    "spanish": "Yo empecé a trabajar aquí en enero.",
+    "english": "I started working here in January."
   },
   "3062": {
-    "spanish": "Finalmente, supimos la verdad.",
-    "english": "At last, the truth became known to us."
+    "spanish": "En ese momento, nosotros supimos que el plan no iba a funcionar.",
+    "english": "At that moment, we found out the plan wasn't going to work."
   },
   "3063": {
-    "spanish": "Todas las hojas en el árbol se pusieron amarillas.",
-    "english": "All the leaves on the tree have turned yellow."
+    "spanish": "Después de la charla, los estudiantes se pusieron muy motivados.",
+    "english": "After the talk, the students became very motivated."
   },
   "3064": {
-    "spanish": "Perdió los estribos y me empezó a llamar cosas.",
-    "english": "He lost his temper and began calling me names."
+    "spanish": "La tormenta empezó de repente por la tarde.",
+    "english": "The storm started suddenly in the afternoon."
   },
   "3065": {
-    "spanish": "Se puso el abrigo y se fue de casa.",
-    "english": "He put on his coat and left the house."
+    "spanish": "Cuando vio el examen, él se puso pálido.",
+    "english": "When he saw the exam, he turned pale."
   },
   "3066": {
-    "spanish": "Tom empezó a decir algo, pero María lo interrumpió.",
-    "english": "Tom started to say something, but Mary interrupted him."
+    "spanish": "El curso empezó el mes pasado.",
+    "english": "The course started last month."
   },
   "3067": {
-    "spanish": "Decidimos seguir allí dos o tres días más.",
-    "english": "We decided to stay there for two or three more days."
+    "spanish": "Nosotros decidimos hacer las maletas la noche antes.",
+    "english": "We decided to pack the night before."
   },
   "3068": {
-    "spanish": "Ella empezó a besarle en cuanto llegó a casa.",
-    "english": "She started kissing him as soon as he got home."
+    "spanish": "Tan pronto como llegó la carta, ella empezó a llorar de alegría.",
+    "english": "As soon as the letter arrived, she started crying with joy."
   },
   "3069": {
-    "spanish": "Tom decidió dejar el patinaje después de su accidente.",
-    "english": "Tom decided to give up skateboarding after his accident."
+    "spanish": "Después de años dudando, mi padre decidió cambiar de trabajo.",
+    "english": "After years of hesitating, my father decided to change jobs."
   },
   "3070": {
-    "spanish": "Todas las hojas del árbol se pusieron amarillas.",
-    "english": "All of the tree's leaves turned yellow."
+    "spanish": "Cuando sonó la alarma, todos se pusieron nerviosos.",
+    "english": "When the alarm went off, everyone got nervous."
   },
   "3071": {
-    "spanish": "Empezó a elevar la voz a medida que hablaba.",
-    "english": "Her voice began to rise as she spoke."
+    "spanish": "La construcción empezó hace dos años.",
+    "english": "The construction started two years ago."
   },
   "3072": {
-    "spanish": "Estábamos a punto de irnos cuando empezó a llover.",
-    "english": "We were just about to leave when it started raining."
+    "spanish": "Al oír el ruido, el perro empezó a ladrar.",
+    "english": "Upon hearing the noise, the dog started barking."
   },
   "3073": {
-    "spanish": "Sus padres decidieron que ella tocaría el violonchelo.",
-    "english": "Her parents decided that she would play the cello."
+    "spanish": "En esa reunión, ellos decidieron cambiar toda la estrategia.",
+    "english": "In that meeting, they decided to change the whole strategy."
   },
   "3074": {
-    "spanish": "Se puso indignada cuando le dije que estaba mintiendo.",
-    "english": "She was indignant when I said she was lying."
+    "spanish": "Al saber la verdad, Carla se puso muy seria.",
+    "english": "On learning the truth, Carla became very serious."
   },
   "3075": {
-    "spanish": "Tom comía lo que muchas personas llaman una dieta saludable.",
-    "english": "Tom ate what many people call a healthy diet."
+    "spanish": "De niño, yo comía mucho pan con mantequilla.",
+    "english": "As a child, I used to eat a lot of bread with butter."
   },
   "3076": {
-    "spanish": "Desde distintos países, los hermanos se escribían cartas cada domingo.",
-    "english": "From different countries, the siblings used to write letters to each other every Sunday."
+    "spanish": "Todos los veranos, mis abuelos nos escribían muchas cartas.",
+    "english": "Every summer, my grandparents used to write us many letters."
   },
   "3077": {
-    "spanish": "Antes de tener coche, comprábamos la fruta en el mercado cubierto.",
-    "english": "Before we had a car, we used to buy fruit at the covered market."
+    "spanish": "Antes, nosotros comprábamos en aquella tienda pequeña.",
+    "english": "Before, we used to shop at that small store."
   },
   "3078": {
-    "spanish": "Él estudiaba la manera en que vuelan las aves.",
-    "english": "He studied the way birds fly."
+    "spanish": "Cuando era estudiante, Marta estudiaba todas las noches hasta tarde.",
+    "english": "When she was a student, Marta used to study every night until late."
   },
   "3079": {
-    "spanish": "Tom no parecía interesado en lo que decía Mary.",
-    "english": "Tom didn't seem interested in what Mary was saying."
+    "spanish": "Siempre, mi padre nos decía la misma historia antes de dormir.",
+    "english": "My father always used to tell us the same story before bed."
   },
   "3080": {
-    "spanish": "Nosotros a menudo hablábamos acerca de la política Japonesa.",
-    "english": "We often talked about Japanese politics."
+    "spanish": "Cada domingo, nosotros hablábamos con mis abuelos por teléfono.",
+    "english": "Every Sunday, we used to talk with my grandparents on the phone."
   },
   "3081": {
-    "spanish": "Durante mis estudios, trabajaba media jornada en una librería.",
-    "english": "During my studies, I used to work part-time in a bookshop."
+    "spanish": "En aquella época, yo trabajaba muy poco.",
+    "english": "At that time, I used to work very little."
   },
   "3082": {
-    "spanish": "De niños leíamos tebeos a escondidas bajo las mantas.",
-    "english": "As children, we used to read comics secretly under the blankets."
+    "spanish": "De pequeños, nosotros leíamos libros de aventuras todo el verano.",
+    "english": "As kids, we used to read adventure books all summer."
   },
   "3083": {
-    "spanish": "Los británicos tenían más tropas que el otro lado.",
-    "english": "The British had more troops than the other side."
+    "spanish": "A menudo, los vecinos tenían quejas sobre el ruido.",
+    "english": "The neighbours often had complaints about the noise."
   },
   "3084": {
-    "spanish": "Cuanto más viejo se hacía, más modesto se volvía.",
-    "english": "The older he grew, the more modest he became."
+    "spanish": "Cuando vivíamos en el pueblo, mi madre hacía el pan en casa.",
+    "english": "When we lived in the village, my mother used to make bread at home."
   },
   "3085": {
-    "spanish": "Tom y Mary hacían lo que se les decía.",
-    "english": "Tom and Mary did what they were told."
+    "spanish": "Normalmente, yo le decía la verdad a todo el mundo.",
+    "english": "Normally, I used to tell everyone the truth."
   },
   "3086": {
-    "spanish": "Mientras el público buscaba sus asientos, los músicos preparaban los instrumentos.",
-    "english": "While the audience looked for their seats, the musicians were preparing their instruments."
+    "spanish": "Cada verano, mis padres preparaban la casa de la playa.",
+    "english": "Every summer, my parents used to get the beach house ready."
   },
   "3087": {
-    "spanish": "Pensé que habías dicho que no hablabas francés.",
-    "english": "I thought you said you didn't speak French."
+    "spanish": "De adolescente, tú hablabas muchísimo con tus amigos.",
+    "english": "As a teenager, you used to talk a lot with your friends."
   },
   "3088": {
-    "spanish": "En esa época, muchas familias compraban el pan directamente al panadero.",
-    "english": "At that time, many families bought their bread directly from the baker."
+    "spanish": "Habitualmente, ellos compraban café en la misma cafetería.",
+    "english": "They habitually used to buy coffee at the same café."
   },
   "3089": {
-    "spanish": "Ella ponía todas sus joyas en una cajita roja.",
-    "english": "She put all her jewels into a little red box."
+    "spanish": "En esos años, mi abuelo ponía la radio todas las tardes.",
+    "english": "In those years, my grandfather used to put the radio on every afternoon."
   },
   "3090": {
-    "spanish": "Escribíamos mucho.",
-    "english": "We wrote a lot."
+    "spanish": "Cuando éramos niños, nosotros escribíamos cartas a nuestros primos todos los veranos.",
+    "english": "When we were children, we used to write letters to our cousins every summer."
   },
   "3091": {
-    "spanish": "El teléfono sonó mientras me daba una ducha.",
-    "english": "The phone rang while I was taking a shower."
+    "spanish": "Frecuentemente, el jefe nos daba instrucciones muy detalladas.",
+    "english": "The boss would frequently give us very detailed instructions."
   },
   "3092": {
-    "spanish": "Al fondo del taller, mi abuelo preparaba los marcos a mano.",
-    "english": "At the back of the workshop, my grandfather used to prepare the frames by hand."
+    "spanish": "Cada mañana, mi madre preparaba el desayuno para todos.",
+    "english": "Every morning, my mother used to prepare breakfast for everyone."
   },
   "3093": {
-    "spanish": "Él era pobre y no podía comprar un abrigo.",
-    "english": "He was poor and couldn't buy a coat."
+    "spanish": "De joven, ella podía resolver cualquier problema sola.",
+    "english": "As a young woman, she could handle any problem on her own."
   },
   "3094": {
-    "spanish": "Ayer hacía frío, pero hoy hace aún más frío.",
-    "english": "It was cold yesterday, but it is still colder today."
+    "spanish": "Todos los años, la empresa hacía una fiesta de fin de año.",
+    "english": "Every year, the company used to hold an end-of-year party."
   },
   "3095": {
-    "spanish": "El verano pasado trabajaba media jornada en una granja.",
-    "english": "Last summer, I worked part time on a farm."
+    "spanish": "A esa hora, yo todavía trabajaba en la oficina.",
+    "english": "At that hour, I was still working at the office."
   },
   "3096": {
-    "spanish": "Los viernes preparábamos una cena sencilla para todos los voluntarios.",
-    "english": "On Fridays, we used to prepare a simple dinner for all the volunteers."
+    "spanish": "En aquel momento, nosotros preparábamos un plan para el fin de semana.",
+    "english": "At that moment, we were preparing a plan for the weekend."
   },
   "3097": {
-    "spanish": "En el tren, ellos leían el periódico y comentaban las noticias.",
-    "english": "On the train, they would read the newspaper and discuss the news."
+    "spanish": "Aquella tarde, los niños leían tranquilamente en el jardín.",
+    "english": "That afternoon, the children were reading quietly in the garden."
   },
   "3098": {
-    "spanish": "No sólo enseñaba en el colegio, también escribía novelas.",
-    "english": "Not only did he teach school, but he wrote novels."
+    "spanish": "Mientras tanto, Ana escribía un correo importante.",
+    "english": "Meanwhile, Ana was writing an important email."
   },
   "3099": {
-    "spanish": "Aunque él sabía la verdad, no nos dijo nada.",
-    "english": "Though he knew the truth, he told us nothing."
+    "spanish": "A esa edad, yo no sabía nada sobre política.",
+    "english": "At that age, I didn't know anything about politics."
   },
   "3100": {
-    "spanish": "El chico tenía una maliciosa sonrisa en su cara.",
-    "english": "The boy had a mischievous smirk on his face."
+    "spanish": "En esos días, mi hermano tenía un trabajo nuevo.",
+    "english": "In those days, my brother had a new job."
   },
   "3101": {
-    "spanish": "En aquella oficina, todos teníamos una mesa junto a la ventana.",
-    "english": "In that office, we all had a desk by the window."
+    "spanish": "Aquel verano, nosotros teníamos mucho tiempo libre.",
+    "english": "That summer, we had a lot of free time."
   },
   "3102": {
-    "spanish": "Él trabajaba de noche y dormía de día.",
-    "english": "He worked at night and slept in the daytime."
+    "spanish": "Por aquel entonces, ella trabajaba en una empresa pequeña.",
+    "english": "Back then, she was working at a small company."
   },
   "3103": {
-    "spanish": "Ayer llevaba puesto un sombrero porque hacía mucho frío.",
-    "english": "I wore a hat yesterday because it was very cold."
+    "spanish": "Esa mañana hacía mucho frío.",
+    "english": "That morning it was very cold."
   },
   "3104": {
-    "spanish": "Tom y Mary hacían lo que les decían.",
-    "english": "Tom and Mary did what they were told."
+    "spanish": "En aquella casa, los vecinos hacían mucho ruido a esa hora.",
+    "english": "In that house, the neighbours used to make a lot of noise at that hour."
   },
   "3105": {
-    "spanish": "Él tenía la cabeza en las nubes en clase.",
-    "english": "He had his head in the clouds in class."
+    "spanish": "Aquel día, yo tenía un poco de fiebre.",
+    "english": "That day, I had a slight fever."
   },
   "3106": {
-    "spanish": "Él tenía que compartir el dormitorio con su hermano.",
-    "english": "He had to share a bedroom with his brother."
+    "spanish": "En aquella época, el equipo tenía un entrenador muy exigente.",
+    "english": "At that time, the team had a very demanding coach."
   },
   "3107": {
-    "spanish": "Con las ventanas abiertas, preparábamos las cajas para la mudanza.",
-    "english": "With the windows open, we were packing the boxes for the move."
+    "spanish": "A esa hora, nosotros todavía preparábamos la cena.",
+    "english": "At that hour, we were still preparing dinner."
   },
   "3108": {
-    "spanish": "Hablaban demasiado rápido para que yo les entendiera.",
-    "english": "They spoke too quickly for me to understand."
+    "spanish": "Aquel invierno, mis padres hablaban de vender la casa.",
+    "english": "That winter, my parents were talking about selling the house."
   },
   "3109": {
-    "spanish": "Ella no tenía ropa para ir a la fiesta.",
-    "english": "She had no dress to attend the party in."
+    "spanish": "En aquellos años, yo tenía muy poco dinero.",
+    "english": "In those years, I had very little money."
   },
   "3110": {
-    "spanish": "Encontré un ave que tenía el ala gravemente dañada.",
-    "english": "I found a bird whose wing was severely damaged."
+    "spanish": "Por entonces, la ciudad no tenía tanto tráfico como ahora.",
+    "english": "Back then, the city didn't have as much traffic as now."
   },
   "3111": {
-    "spanish": "Ayer mi bicicleta fue robada mientras hacía algunas compras.",
-    "english": "Yesterday my bicycle was stolen while I was doing some shopping."
+    "spanish": "Esa noche, afuera hacía mucho viento.",
+    "english": "That night, it was very windy outside."
   },
   "3112": {
-    "spanish": "A Napoleón Bonaparte le daban miedo los gatos negros.",
-    "english": "Napoleon Bonaparte was afraid of black cats."
+    "spanish": "En aquel restaurante, los camareros daban muy buen servicio.",
+    "english": "At that restaurant, the waiters used to give very good service."
   },
   "3113": {
-    "spanish": "Tomás dijo que se te daba bien el ajedrez.",
-    "english": "Tom said you were good at chess."
+    "spanish": "Mientras tanto, mi jefe daba instrucciones por teléfono.",
+    "english": "Meanwhile, my boss was giving instructions over the phone."
   },
   "3114": {
-    "spanish": "Había una vez un rey que tenía tres hijas.",
-    "english": "There was once a king who had three daughters."
+    "spanish": "En aquella foto, mi madre tenía solo veinte años.",
+    "english": "In that photo, my mother was only twenty years old."
   },
   "3115": {
-    "spanish": "La cara de la anciana tenía miles de arrugas.",
-    "english": "The old woman's face had thousands of wrinkles."
+    "spanish": "Cuando lo conocí, él tenía barba y el pelo largo.",
+    "english": "When I met him, he had a beard and long hair."
   },
   "3116": {
-    "spanish": "Él hacía girar muy rápidamente ambas baquetas en sus manos.",
-    "english": "He spun both drumsticks very fast in his hands."
+    "spanish": "Aquella tarde hacía un día precioso.",
+    "english": "That afternoon it was a beautiful day."
   },
   "3117": {
-    "spanish": "Él se quitó el abrigo porque hacía calor.",
-    "english": "He took the coat off because it was warm."
+    "spanish": "Esa mañana hacía mucho sol.",
+    "english": "That morning it was very sunny."
   },
   "3118": {
-    "spanish": "Le dije a Tom que no sabía hablar francés.",
-    "english": "I told Tom that he couldn't speak French."
+    "spanish": "De joven, mi abuelo sabía mucho de historia.",
+    "english": "As a young man, my grandfather knew a lot about history."
   },
   "3119": {
-    "spanish": "Le preguntó si se sabía mi número de teléfono.",
-    "english": "She asked him if he knew my telephone number."
+    "spanish": "Mi tía sabía tocar el piano de oído.",
+    "english": "My aunt knew how to play the piano by ear."
   },
   "3120": {
-    "spanish": "Le pregunté a él dónde podía aparcar el coche.",
-    "english": "I asked him where I could park my car."
+    "spanish": "De niño, yo podía correr muy rápido.",
+    "english": "As a child, I could run very fast."
   },
   "3121": {
-    "spanish": "No alerté a Tom sobre lo que podía pasar.",
-    "english": "I didn't warn Tom about what might happen."
+    "spanish": "Mi padre podía levantar mucho peso cuando era joven.",
+    "english": "My father could lift a lot of weight when he was young."
   },
   "3122": {
-    "spanish": "Tom y Mary no podían mover el pesado tronco.",
-    "english": "Tom and Mary couldn't move the heavy trunk."
+    "spanish": "En aquella empresa, los empleados podían trabajar desde casa dos días a la semana.",
+    "english": "At that company, employees could work from home two days a week."
   },
   "3123": {
-    "spanish": "Ella le creyó cuando él dijo que la quería.",
-    "english": "She believed him when he said he loved her."
+    "spanish": "De pequeño, yo siempre quería ser piloto.",
+    "english": "As a little kid, I always wanted to be a pilot."
   },
   "3124": {
-    "spanish": "Ella me dijo que quería un perro de mascota.",
-    "english": "She told me that she wanted a pet dog."
+    "spanish": "Mi hermana quería ayudar a los demás siempre.",
+    "english": "My sister always wanted to help others."
   },
   "3125": {
-    "spanish": "Le di al mendigo todo el dinero que tenía.",
-    "english": "I gave the beggar all the money I had."
+    "spanish": "Antes de la operación, mi abuelo tenía mucho miedo.",
+    "english": "Before the surgery, my grandfather was very afraid."
   },
   "3126": {
-    "spanish": "No he comido chocolate desde que tenía trece años.",
-    "english": "I haven't eaten chocolate since I was thirteen."
+    "spanish": "Antes de mudarnos, nuestro piso tenía muy poca luz natural.",
+    "english": "Before we moved, our flat had very little natural light."
   },
   "3127": {
-    "spanish": "Daba por sentado que Tom podía hablar francés.",
-    "english": "I took it for granted that Tom could speak French."
+    "spanish": "Por las tardes, el sol daba directamente en la ventana.",
+    "english": "In the afternoons, the sun used to shine directly into the window."
   },
   "3128": {
-    "spanish": "Tenía aproximadamente el tamaño de una pelota de golf.",
-    "english": "It was about the size of a golf ball."
+    "spanish": "En aquel momento, la habitación tenía un olor extraño.",
+    "english": "At that moment, the room had a strange smell."
   },
   "3129": {
-    "spanish": "Tenía la sensación de que algo malo estaba pasando.",
-    "english": "I had a feeling that something dreadful was happening."
+    "spanish": "Cuando era joven, mi abuela tenía una voz preciosa.",
+    "english": "When she was young, my grandmother had a beautiful voice."
   },
   "3130": {
-    "spanish": "Tenía la sensación de que Tom estaba en problemas.",
-    "english": "I had a feeling that Tom was in trouble."
+    "spanish": "Ese día, el examen tenía cinco preguntas muy difíciles.",
+    "english": "That day, the exam had five very difficult questions."
   },
   "3131": {
-    "spanish": "Tom no tenía derecho a hacer lo que hizo.",
-    "english": "Tom had no right to do what he did."
+    "spanish": "Cuando yo tenía diez años, mi familia tenía un perro enorme.",
+    "english": "When I was ten, my family had a huge dog."
   },
   "3132": {
-    "spanish": "Tom no tenía el coraje de desobedecer a Mary.",
-    "english": "Tom didn't have the courage to disobey Mary."
+    "spanish": "Esa tarde, el parque tenía mucha gente paseando.",
+    "english": "That afternoon, the park had a lot of people strolling around."
   },
   "3133": {
-    "spanish": "Cada víspera de fiesta, la pastelera preparaba una tarta de almendras.",
-    "english": "On the eve of every festival, the baker used to make an almond cake."
+    "spanish": "Mientras yo preparaba la cena, se apagó la luz.",
+    "english": "While I was preparing dinner, the light went out."
   },
   "3134": {
-    "spanish": "Le escribía a menudo cuando era un estudiante.",
-    "english": "I often wrote to her when I was a student."
+    "spanish": "Yo escribía cuando sonó el teléfono.",
+    "english": "I was writing when the phone rang."
   },
   "3135": {
-    "spanish": "Cuando vivíamos cerca del puerto, comíamos pescado recién capturado.",
-    "english": "When we lived near the harbour, we used to eat freshly caught fish."
+    "spanish": "Nosotros comíamos cuando empezó a llover.",
+    "english": "We were eating when it started to rain."
   },
   "3136": {
-    "spanish": "Durante las visitas, el conservador explicaba por qué la sala permanecía oscura.",
-    "english": "During tours, the curator explained why the room was kept dark."
+    "spanish": "Mientras el profesor explicaba el examen, un alumno llegó tarde.",
+    "english": "While the teacher was explaining the exam, a student arrived late."
   },
   "3137": {
-    "spanish": "Él trabajaba duro para mantener a su familia.",
-    "english": "He worked hard to provide for his family."
+    "spanish": "Ana trabajaba cuando se cortó la luz.",
+    "english": "Ana was working when the power went out."
   },
   "3138": {
-    "spanish": "Mientras nosotros hablábamos, él se mantuvo en silencio.",
-    "english": "While we were speaking, he kept silent."
+    "spanish": "Mientras nosotros hablábamos del problema, llegó la solución por correo.",
+    "english": "While we were talking about the problem, the solution arrived by email."
   },
   "3139": {
-    "spanish": "Los viajeros leían los avisos mientras esperaban la salida del ferry.",
-    "english": "The travellers read the notices while waiting for the ferry to depart."
+    "spanish": "Los niños leían cuando su madre los llamó.",
+    "english": "The children were reading when their mother called them."
   },
   "3140": {
-    "spanish": "Debería haber escuchado lo que decía mi madre.",
-    "english": "I should've listened to what my mother said."
+    "spanish": "Mientras yo le decía la verdad, él empezó a llorar.",
+    "english": "While I was telling him the truth, he started to cry."
   },
   "3141": {
-    "spanish": "En la universidad estudiabas hasta tarde en la sala más silenciosa.",
-    "english": "At university, you used to study late in the quietest room."
+    "spanish": "Tú estudiabas cuando te llamé por primera vez.",
+    "english": "You were studying when I called you for the first time."
   },
   "3142": {
-    "spanish": "A primera hora, el cocinero preparaba el caldo que servirían al mediodía.",
-    "english": "Early in the morning, the cook prepared the stock that would be served at midday."
+    "spanish": "Mientras el camarero preparaba la mesa, se rompió un vaso.",
+    "english": "While the waiter was setting the table, a glass broke."
   },
   "3143": {
-    "spanish": "Antes del traslado trabajábamos en una oficina junto a la estación.",
-    "english": "Before the move, we worked in an office beside the station."
+    "spanish": "Nosotros trabajábamos cuando empezó el incendio.",
+    "english": "We were working when the fire started."
   },
   "3144": {
-    "spanish": "Él me escribía de vez en cuando.",
-    "english": "He wrote to me from time to time."
+    "spanish": "Yo le escribía el mensaje cuando se cortó internet.",
+    "english": "I was writing him the message when the internet cut out."
   },
   "3145": {
-    "spanish": "Antes, él no trabajaba los domingos por la noche.",
-    "english": "He did not use to work on Sunday evenings."
+    "spanish": "Mientras Carla trabajaba en el jardín, empezó a nevar.",
+    "english": "While Carla was working in the garden, it started to snow."
   },
   "3146": {
-    "spanish": "Tom no sabía que Mary hablaba francés tan fluidamente.",
-    "english": "Tom didn't know Mary spoke French so fluently."
+    "spanish": "El público hablaba cuando se apagaron las luces del teatro.",
+    "english": "The audience was talking when the theatre lights went out."
   },
   "3147": {
-    "spanish": "En el laboratorio, las técnicas preparaban las muestras con sumo cuidado.",
-    "english": "In the laboratory, the technicians prepared the samples with great care."
+    "spanish": "Mientras mis padres preparaban la cena, yo puse la mesa.",
+    "english": "While my parents were preparing dinner, I set the table."
   },
   "3148": {
-    "spanish": "Mientras trabajaba en un banco, enseñaba economía en una universidad.",
-    "english": "While employed at the bank, he taught economics at college."
+    "spanish": "Yo trabajaba cuando por fin llegó la noticia.",
+    "english": "I was working when the news finally arrived."
   },
   "3149": {
-    "spanish": "Tom leía cualquier cosa que cayera en sus manos.",
-    "english": "Tom read anything he could lay his hands on."
+    "spanish": "Mientras el director leía el discurso, se fue la luz.",
+    "english": "While the director was reading the speech, the power went out."
   },
   "3150": {
-    "spanish": "Los alumnos estudiaban en parejas.",
-    "english": "The students studied in pairs."
+    "spanish": "Los estudiantes estudiaban cuando sonó la alarma de incendios.",
+    "english": "The students were studying when the fire alarm went off."
   },
   "4001": {
     "spanish": "Voy a estudiar por dos horas esta tarde.",
