@@ -31,3 +31,17 @@ every session, since local settings don't follow across devices.
    auto-deletes a PR's head branch once merged. If you create a branch that
    ends up abandoned (superseded, closed without merging), delete it
    yourself once you're done with it.
+
+# Content rule: activity explanations must teach
+
+Applies to every activity, current and future. The explanation shown after
+an answer must have real educational value for that specific sentence:
+
+- Never a shared template or a sentence copied across items (e.g. "Use X
+  here; Y would change the meaning", or "Origin uses ser." on 15 items).
+- Name the rule *and* point to the word or context in this sentence that
+  triggers it; where useful, say what the other option would mean or why
+  it doesn't fit.
+- Generated/sourced content must not overwrite hand-written explanations.
+  If a sentence is replaced, its explanation is rewritten for the new
+  sentence.

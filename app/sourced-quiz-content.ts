@@ -606,604 +606,604 @@ export const SOURCED_QUIZ_PAIRS: Record<number, SourcedPair> = {
     "english": "The terms of the new contract seem reasonable to us."
   },
   "2001": {
-    "spanish": "¿Estás seguro de que soy el único canadiense aquí?",
-    "english": "Are you sure I'm the only Canadian here?"
+    "spanish": "Yo soy de México.",
+    "english": "I am from Mexico."
   },
   "2002": {
-    "spanish": "¿Cómo es que eres capaz de hablar esa lengua?",
-    "english": "How is it that you can speak this language?"
+    "spanish": "Marta es médica.",
+    "english": "Marta is a doctor."
   },
   "2003": {
-    "spanish": "Tanto Tom como yo somos miembros de ese club.",
-    "english": "Both Tom and I are members of that club."
+    "spanish": "Nosotros somos estudiantes de español.",
+    "english": "We are Spanish students."
   },
   "2004": {
-    "spanish": "¿Creés que la pollera de María es muy corta?",
-    "english": "Do you think Mary's skirt is too short?"
+    "spanish": "La mesa es de madera.",
+    "english": "The table is made of wood."
   },
   "2005": {
-    "spanish": "¿Cuál es el largo de ese trozo de tela?",
-    "english": "What is the length of this piece of cloth?"
+    "spanish": "Hoy es lunes.",
+    "english": "Today is Monday."
   },
   "2006": {
-    "spanish": "Algunos de ellos son profesores, y algunos son ingenieros.",
-    "english": "Some of them are teachers, and some are engineers."
+    "spanish": "Las llaves son de Ana.",
+    "english": "The keys belong to Ana."
   },
   "2007": {
-    "spanish": "¿Cuál es la mejor forma de cortar una cebolla?",
-    "english": "What's the best way to chop an onion?"
+    "spanish": "El concierto es en el teatro.",
+    "english": "The concert is at the theatre."
   },
   "2008": {
-    "spanish": "¿Cuál es la mejor manera de resolver este problema?",
-    "english": "What's the best way to solve this problem?"
+    "spanish": "La ventana es grande y luminosa.",
+    "english": "The window is large and bright."
   },
   "2009": {
-    "spanish": "Esta semana estoy aquí para ayudar con el inventario.",
-    "english": "This week I am here to help with the inventory."
+    "spanish": "Yo estoy en casa ahora.",
+    "english": "I am at home now."
   },
   "2010": {
-    "spanish": "Algunos animales salvajes están al borde de la extinción.",
-    "english": "Some wild animals are on the verge of extinction."
+    "spanish": "Las mochilas están debajo de la mesa.",
+    "english": "The backpacks are under the table."
   },
   "2011": {
-    "spanish": "¿Estás a favor o en contra de esa política?",
-    "english": "Are you in favor of or against that policy?"
+    "spanish": "¿Cómo estás tú esta mañana?",
+    "english": "How are you this morning?"
   },
   "2012": {
-    "spanish": "¿A qué hora está programado tu avión para despegar?",
-    "english": "What time is your plane scheduled to take off?"
+    "spanish": "El café está caliente.",
+    "english": "The coffee is hot."
   },
   "2013": {
-    "spanish": "Creo que tanto Tom como Mary aún están nostálgicos.",
-    "english": "I think Tom and Mary are both still homesick."
+    "spanish": "Mis amigos están cansados después del viaje.",
+    "english": "My friends are tired after the trip."
   },
   "2014": {
-    "spanish": "¿Me estás diciendo que mi vida está en peligro?",
-    "english": "Are you saying that my life is in danger?"
+    "spanish": "La puerta está cerrada.",
+    "english": "The door is closed."
   },
   "2015": {
-    "spanish": "¿Qué está pasando en ese sector en este momento?",
-    "english": "What's going on in that area right now?"
+    "spanish": "El museo está cerca de la estación.",
+    "english": "The museum is near the station."
   },
   "2016": {
-    "spanish": "¿Quién está tocando piano en la sala de estar?",
-    "english": "Who is playing the piano in the living room?"
+    "spanish": "La sopa está muy buena hoy.",
+    "english": "The soup tastes very good today."
   },
   "2017": {
-    "spanish": "Al menos sé que Tom está a salvo ahora.",
-    "english": "At least I know Tom is safe right now."
+    "spanish": "Mi hermano está listo para salir.",
+    "english": "My brother is ready to leave."
   },
   "2018": {
-    "spanish": "¿Cuál es tu canción preferida de los Rolling Stones?",
-    "english": "What's your favorite song by the Rolling Stones?"
+    "spanish": "Clara es lista y curiosa.",
+    "english": "Clara is clever and curious."
   },
   "2019": {
-    "spanish": "¿Cuál es tu juego favorito para jugar con amigos?",
-    "english": "What's your favorite game to play with friends?"
+    "spanish": "El barrio es tranquilo por la noche.",
+    "english": "The neighbourhood is quiet at night."
   },
   "2020": {
-    "spanish": "Cada vez que veo a Tom está masticando chicle.",
-    "english": "Every time I see Tom, he's chewing gum."
+    "spanish": "El barrio está vacío esta noche.",
+    "english": "The neighbourhood is empty tonight."
   },
   "2021": {
-    "spanish": "¿Cuál es tu principal distracción los fines de semana?",
-    "english": "What's your favorite way to unwind on weekends?"
+    "spanish": "La camisa es azul.",
+    "english": "The shirt is blue."
   },
   "2022": {
-    "spanish": "Creo que lo que querés está en el cajón.",
-    "english": "I think what you want is in the drawer."
+    "spanish": "La camisa está mojada.",
+    "english": "The shirt is wet."
   },
   "2023": {
-    "spanish": "¿Cuál es tu propósito principal para que estudies inglés?",
-    "english": "What is the main purpose of your studying English?"
+    "spanish": "La reunión es a las tres.",
+    "english": "The meeting is at three."
   },
   "2024": {
-    "spanish": "Las clonaciones de embriones humanos están prohibidas por ley.",
-    "english": "The cloning of human embryos is prohibited by law."
+    "spanish": "Los niños están en el jardín.",
+    "english": "The children are in the garden."
   },
   "2025": {
-    "spanish": "¿Cuál es tu tipo de libro preferido para leer?",
-    "english": "What's your favorite kind of book to read?"
+    "spanish": "La película es aburrida para mí.",
+    "english": "The film is boring to me."
   },
   "2026": {
-    "spanish": "Esta no es la primera vez que estoy acá.",
-    "english": "This isn't my first time to be here."
+    "spanish": "Yo estoy aburrido durante la película.",
+    "english": "I am bored during the film."
   },
   "2027": {
-    "spanish": "El baño de hombres está en el segundo piso.",
-    "english": "The men's room is on the second floor."
+    "spanish": "El profesor está enfermo esta semana.",
+    "english": "The teacher is ill this week."
   },
   "2028": {
-    "spanish": "¿Ella es la dama que estaba vestida de azul?",
-    "english": "Is she the lady who was dressed in blue?"
+    "spanish": "El profesor es muy paciente.",
+    "english": "The teacher is very patient."
   },
   "2029": {
-    "spanish": "El movimiento separatista está creando conflicto dentro del país.",
-    "english": "The separatist movement is creating conflict within the country."
+    "spanish": "La puerta está abierta porque hace calor.",
+    "english": "The door is open because it is hot."
   },
   "2030": {
-    "spanish": "¿Por qué es malo para ti comer demasiada sal?",
-    "english": "Why is eating too much salt bad for you?"
+    "spanish": "La conferencia es en el auditorio principal.",
+    "english": "The conference is in the main auditorium."
   },
   "2031": {
-    "spanish": "Soy mucho más joven de lo que Tom piensa.",
-    "english": "I'm way younger than Tom thinks I am."
+    "spanish": "Yo soy ingeniera.",
+    "english": "I am an engineer."
   },
   "2032": {
-    "spanish": "¿Eres tú el que ha dejado entrar al perro?",
-    "english": "Are you the one who let the dog in?"
+    "spanish": "Tú eres mi mejor amigo.",
+    "english": "You are my best friend."
   },
   "2033": {
-    "spanish": "¿Qué es lo más picante que has comido nunca?",
-    "english": "What's the spiciest thing you've ever eaten?"
+    "spanish": "Ella es periodista.",
+    "english": "She is a journalist."
   },
   "2034": {
-    "spanish": "No somos los únicos aquí que conocen a Tom.",
-    "english": "We're not the only ones here who know Tom."
+    "spanish": "Nosotros somos vecinos desde hace años.",
+    "english": "We have been neighbours for years."
   },
   "2035": {
-    "spanish": "Debes asumir que los e-mails no son privados.",
-    "english": "You should assume that email messages aren't private."
+    "spanish": "Ellos son los dueños de la tienda.",
+    "english": "They are the owners of the shop."
   },
   "2036": {
-    "spanish": "¿Qué es más barato, el autobús o el tranvía?",
-    "english": "Which is cheaper, the bus or the street car?"
+    "spanish": "Mi tío es abogado en Madrid.",
+    "english": "My uncle is a lawyer in Madrid."
   },
   "2037": {
-    "spanish": "Tom es un hombre y yo soy una mujer.",
-    "english": "Tom is a man, and I'm a woman."
+    "spanish": "Yo soy la capitana del equipo.",
+    "english": "I am the team captain."
   },
   "2038": {
-    "spanish": "Esas no son mis reglas. Son las de Tom.",
-    "english": "Those aren't my rules. They're Tom's."
+    "spanish": "Mis padres son dentistas.",
+    "english": "My parents are dentists."
   },
   "2039": {
-    "spanish": "Dime con quién andas y te diré quién eres.",
-    "english": "A man is known by the company he keeps."
+    "spanish": "Tú eres un buen compañero de trabajo.",
+    "english": "You are a good coworker."
   },
   "2040": {
-    "spanish": "La directora es una médica con mucha experiencia.",
-    "english": "The director is a very experienced doctor."
+    "spanish": "El señor García es el director del colegio.",
+    "english": "Mr. García is the school principal."
   },
   "2041": {
-    "spanish": "Somos plenamente conscientes de la importancia de la situación.",
-    "english": "We are fully aware of the importance of the situation."
+    "spanish": "Nosotros somos hermanos, no primos.",
+    "english": "We are brothers, not cousins."
   },
   "2042": {
-    "spanish": "Esta flor es amarilla y las otras son azules.",
-    "english": "This flower is yellow and the others are blue."
+    "spanish": "Ana y Luis son los organizadores del evento.",
+    "english": "Ana and Luis are the organisers of the event."
   },
   "2043": {
-    "spanish": "Tom no sabe que soy el novio de Mary.",
-    "english": "Tom doesn't know I'm Mary's boyfriend."
+    "spanish": "Yo soy cliente habitual de esta cafetería.",
+    "english": "I am a regular customer at this café."
   },
   "2044": {
-    "spanish": "Estos libros son míos y esos son de él.",
-    "english": "These books are mine and those books are his."
+    "spanish": "Ustedes son los nuevos socios de la empresa.",
+    "english": "You all are the new partners in the company."
   },
   "2045": {
-    "spanish": "El edificio de la esquina es una biblioteca pública.",
-    "english": "The building on the corner is a public library."
+    "spanish": "Ella es la autora de esta novela.",
+    "english": "She is the author of this novel."
   },
   "2046": {
-    "spanish": "¿Qué te hace pensar que yo soy tu amigo?",
-    "english": "What makes you think I'm your friend?"
+    "spanish": "Yo soy de Polonia.",
+    "english": "I am from Poland."
   },
   "2047": {
-    "spanish": "Eres aún más linda de lo que Tom decía.",
-    "english": "You're even prettier than Tom said you were."
+    "spanish": "Tú eres de una familia italiana.",
+    "english": "You are from an Italian family."
   },
   "2048": {
-    "spanish": "Éstos son los zapatos que compré la semana pasada.",
-    "english": "These are the shoes that I bought last week."
+    "spanish": "Estos quesos son de Francia.",
+    "english": "These cheeses are from France."
   },
   "2049": {
-    "spanish": "¿Qué tan lejos es de aquí hasta tu casa?",
-    "english": "How far is it from here to your house?"
+    "spanish": "El vino es de la región de Rioja.",
+    "english": "The wine is from the Rioja region."
   },
   "2050": {
-    "spanish": "Asumí que podía confiar en ti porque somos hermanos.",
-    "english": "I assumed because we're brothers that I could trust you."
+    "spanish": "Nosotros somos de la misma ciudad.",
+    "english": "We are from the same city."
   },
   "2051": {
-    "spanish": "¿Qué tan lejos es desde aquí a la estación?",
-    "english": "How far is it from here to the station?"
+    "spanish": "Mi abuela es de un pueblo pequeño.",
+    "english": "My grandmother is from a small village."
   },
   "2052": {
-    "spanish": "Éstos son mis libros y ésos son los suyos.",
-    "english": "These are my books and those are his books."
+    "spanish": "Esas naranjas son de Valencia.",
+    "english": "Those oranges are from Valencia."
   },
   "2053": {
-    "spanish": "Eres el único aquí a quién le agrada Tom.",
-    "english": "You're the only one here who likes Tom."
+    "spanish": "Tú eres de padres extranjeros.",
+    "english": "You are the child of foreign parents."
   },
   "2054": {
-    "spanish": "¿Qué tipo de equipamiento es instalado en las aulas?",
-    "english": "What kind of equipment is installed in the classrooms?"
+    "spanish": "El profesor es de Argentina.",
+    "english": "The teacher is from Argentina."
   },
   "2055": {
-    "spanish": "Las noches son algo frescas, pero los días calurosos.",
-    "english": "The nights are cool, but the days are hot."
+    "spanish": "Estas telas son de la India.",
+    "english": "These fabrics are from India."
   },
   "2056": {
-    "spanish": "Daltónico que soy, no distingo al rojo del verde.",
-    "english": "I'm colorblind. I can't tell red from green."
+    "spanish": "Yo soy originaria de un pueblo costero.",
+    "english": "I originally come from a coastal town."
   },
   "2057": {
-    "spanish": "Los ejemplos de este diccionario son fáciles de entender.",
-    "english": "The examples in this dictionary are easy to understand."
+    "spanish": "Mis compañeros son de distintas partes del país.",
+    "english": "My colleagues are from different parts of the country."
   },
   "2058": {
-    "spanish": "¿Quién crees que es más joven, Tom o Mary?",
-    "english": "Who do you think is younger, Tom or Mary?"
+    "spanish": "Este café es de Colombia.",
+    "english": "This coffee is from Colombia."
   },
   "2059": {
-    "spanish": "Mi esposa y yo somos cotitulares en una cuenta bancaria.",
-    "english": "My wife and I have a joint bank account."
+    "spanish": "Nosotros somos de una tradición familiar muy antigua.",
+    "english": "We come from a very old family tradition."
   },
   "2060": {
-    "spanish": "¿Sabes cuál es la diferencia entre plata y estaño?",
-    "english": "Do you know the difference between silver and tin?"
+    "spanish": "Ella es de ascendencia mexicana.",
+    "english": "She is of Mexican descent."
   },
   "2061": {
-    "spanish": "\"Una piedra rodante no junta musgo\" es un refrán.",
-    "english": "\"A rolling stone gathers no moss\" is a proverb."
+    "spanish": "Mi hermana es muy generosa.",
+    "english": "My sister is very generous."
   },
   "2062": {
-    "spanish": "Eres el único que se presentó voluntario para ayudar.",
-    "english": "You're the only one who volunteered to help."
+    "spanish": "Tú eres alto y delgado.",
+    "english": "You are tall and thin."
   },
   "2063": {
-    "spanish": "A menudo él comete errores, pero no es tonto.",
-    "english": "He often makes mistakes, but he is no fool."
+    "spanish": "Este edificio es muy antiguo.",
+    "english": "This building is very old."
   },
   "2064": {
-    "spanish": "Los ingredientes para esta receta son un poco caros.",
-    "english": "The ingredients for this recipe are a little expensive."
+    "spanish": "Los niños son curiosos por naturaleza.",
+    "english": "Children are curious by nature."
   },
   "2065": {
-    "spanish": "Lo que soy, se lo debo a mi padre.",
-    "english": "I owe what I am to my father."
+    "spanish": "Yo soy bastante paciente.",
+    "english": "I am quite patient."
   },
   "2066": {
-    "spanish": "Ahora él es casi tan alto como su padre.",
-    "english": "He is now almost as tall as his father."
+    "spanish": "Esta ciudad es muy ruidosa.",
+    "english": "This city is very noisy."
   },
   "2067": {
-    "spanish": "Ninguno de los dos somos tan ricos como querríamos.",
-    "english": "We're both not as rich as we wish we were."
+    "spanish": "Nosotros somos muy trabajadores.",
+    "english": "We are very hardworking."
   },
   "2068": {
-    "spanish": "Ahora es el momento en que debemos trabajar juntos.",
-    "english": "Now is the time when we must work together."
+    "spanish": "El examen es bastante difícil.",
+    "english": "The exam is quite difficult."
   },
   "2069": {
-    "spanish": "Los precios son el doble que hace dos años.",
-    "english": "Prices are double what they were two years ago."
+    "spanish": "Sus ojos son verdes.",
+    "english": "Her eyes are green."
   },
   "2070": {
-    "spanish": "Ahora es el momento en que más lo necesitamos.",
-    "english": "Now is the time when we need him most."
+    "spanish": "Este barrio es conocido por sus restaurantes.",
+    "english": "This neighbourhood is known for its restaurants."
   },
   "2071": {
-    "spanish": "Eres la única que se presentó voluntaria para ayudar.",
-    "english": "You're the only one who volunteered to help."
+    "spanish": "Tú eres muy creativa.",
+    "english": "You are very creative."
   },
   "2072": {
-    "spanish": "El efecto invernadero es un fenómeno físico bien documentado.",
-    "english": "The greenhouse effect is a well-documented physical phenomenon."
+    "spanish": "El profesor es muy exigente.",
+    "english": "The teacher is very demanding."
   },
   "2073": {
-    "spanish": "No te preocupes de cosas que no son importantes.",
-    "english": "Don't worry about things that aren't important."
+    "spanish": "Mis padres son bastante estrictos.",
+    "english": "My parents are quite strict."
   },
   "2074": {
-    "spanish": "Algunas personas todavía piensan que la tierra es plana.",
-    "english": "Some people still believe that the world is flat."
+    "spanish": "Esta película es larga y lenta.",
+    "english": "This film is long and slow."
   },
   "2075": {
-    "spanish": "Aquella casa del tejado rojo es la de Tom.",
-    "english": "That's Tom's house with the red roof."
+    "spanish": "El río es ancho y profundo en esta parte.",
+    "english": "The river is wide and deep in this part."
   },
   "2076": {
-    "spanish": "Así que, ¿qué es lo que quieres que haga?",
-    "english": "So what is it you want me to do?"
+    "spanish": "La silla es de plástico.",
+    "english": "The chair is made of plastic."
   },
   "2077": {
-    "spanish": "El agua es esencial para la vida.",
-    "english": "Water is essential for life."
+    "spanish": "Hoy es miércoles.",
+    "english": "Today is Wednesday."
   },
   "2078": {
-    "spanish": "Estos cuadernos son resistentes y fáciles de reciclar.",
-    "english": "These notebooks are durable and easy to recycle."
+    "spanish": "Son las ocho de la mañana.",
+    "english": "It is eight in the morning."
   },
   "2079": {
-    "spanish": "La Tierra es el tercer planeta del sistema solar.",
-    "english": "Earth is the third planet in the solar system."
+    "spanish": "El concierto es el próximo sábado.",
+    "english": "The concert is next Saturday."
   },
   "2080": {
-    "spanish": "Auguste Comte es considerado el padre de la sociología.",
-    "english": "Auguste Comte is regarded as the father of sociology."
+    "spanish": "Esta mesa es de metal.",
+    "english": "This table is made of metal."
   },
   "2081": {
-    "spanish": "Esta guía es muy cuidadosa al explicar cada paso.",
-    "english": "This guide is very careful when explaining each step."
+    "spanish": "Mañana es el cumpleaños de Sara.",
+    "english": "Tomorrow is Sara's birthday."
   },
   "2082": {
-    "spanish": "Cinco mil dólares es una gran suma de dinero.",
-    "english": "Five thousand dollars is a large sum of money."
+    "spanish": "El anillo es de oro.",
+    "english": "The ring is made of gold."
   },
   "2083": {
-    "spanish": "Comparada a su esposo, ella no es muy cuidadosa.",
-    "english": "Compared with her husband, she is not so careful."
+    "spanish": "Hoy es tres de mayo.",
+    "english": "Today is the third of May."
   },
   "2084": {
-    "spanish": "Craps es un juego de azar jugado con dados.",
-    "english": "Craps is a game of chance played with dice."
+    "spanish": "La entrevista es a las cinco.",
+    "english": "The interview is at five o'clock."
   },
   "2085": {
-    "spanish": "La editora y el director son responsables de la nueva edición.",
-    "english": "The editor and the director are responsible for the new edition."
+    "spanish": "Estas copas son de cristal.",
+    "english": "These glasses are made of crystal."
   },
   "2086": {
-    "spanish": "Creo que es hora de que haga mi tarea.",
-    "english": "I think it's time to do my homework."
+    "spanish": "Es la una y media.",
+    "english": "It is half past one."
   },
   "2087": {
-    "spanish": "Creo que es improbable que las plantas sientan dolor.",
-    "english": "I think it's unlikely that plants feel pain."
+    "spanish": "El examen final es el viernes.",
+    "english": "The final exam is on Friday."
   },
   "2088": {
-    "spanish": "Creo que es mejor que esperemos otros treinta minutos.",
-    "english": "I think we'd better wait another thirty minutes."
+    "spanish": "La estatua es de bronce.",
+    "english": "The statue is made of bronze."
   },
   "2089": {
-    "spanish": "Creo que es una pena que él haya mentido.",
-    "english": "I think it's a pity that he lied."
+    "spanish": "La boda es en agosto.",
+    "english": "The wedding is in August."
   },
   "2090": {
-    "spanish": "Decir que este gatito es mono es quedarse corto.",
-    "english": "To call this kitten cute would be an understatement."
+    "spanish": "Esta manta es de lana.",
+    "english": "This blanket is made of wool."
   },
   "2091": {
-    "spanish": "El niño que está nadando es mi hermano menor.",
-    "english": "The boy who is swimming is my younger brother."
+    "spanish": "El supermercado está a dos calles de aquí.",
+    "english": "The supermarket is two streets from here."
   },
   "2092": {
-    "spanish": "Las videocámaras están principalmente para disuadir a los ladrones.",
-    "english": "The video cameras are mainly there to deter thieves."
+    "spanish": "Mis gafas están encima de la mesa.",
+    "english": "My glasses are on the table."
   },
   "2093": {
-    "spanish": "Decir que este gatito es mono sería quedarse corto.",
-    "english": "To call this kitten cute would be an understatement."
+    "spanish": "La boda es en un jardín.",
+    "english": "The wedding is in a garden."
   },
   "2094": {
-    "spanish": "El piano está hecho de una madera oscura y resistente.",
-    "english": "The piano is made of dark, durable wood."
+    "spanish": "El hospital está al lado de la farmacia.",
+    "english": "The hospital is next to the pharmacy."
   },
   "2095": {
-    "spanish": "El autor de este artículo es un crítico famoso.",
-    "english": "The author of this article is a famous critic."
+    "spanish": "La exposición es en el centro cultural.",
+    "english": "The exhibition is at the cultural centre."
   },
   "2096": {
-    "spanish": "Los orígenes de esta tradición están bien documentados.",
-    "english": "The origins of this tradition are well documented."
+    "spanish": "Los libros están en la estantería.",
+    "english": "The books are on the shelf."
   },
   "2097": {
-    "spanish": "Estoy absolutamente seguro de que te equivocas en eso.",
-    "english": "I'm absolutely certain you're wrong about that."
+    "spanish": "Yo estoy en la sala de espera.",
+    "english": "I am in the waiting room."
   },
   "2098": {
-    "spanish": "El chico parado en la puerta es mi hermano.",
-    "english": "The boy standing by the door is my brother."
+    "spanish": "La ceremonia es en la plaza principal.",
+    "english": "The ceremony is in the main square."
   },
   "2099": {
-    "spanish": "El piano está hecho de preciosa madera marrón oscuro.",
-    "english": "The piano was made of beautiful, dark brown wood."
+    "spanish": "El parque está detrás del colegio.",
+    "english": "The park is behind the school."
   },
   "2100": {
-    "spanish": "Estamos agradecidos por el legado musical que él dejó.",
-    "english": "We are grateful for the music he left behind."
+    "spanish": "Nosotros estamos en la última fila.",
+    "english": "We are in the last row."
   },
   "2101": {
-    "spanish": "El choclo es una cosecha importante en Estados Unidos.",
-    "english": "Corn is an important crop in the United States."
+    "spanish": "La feria es fuera de la ciudad este año.",
+    "english": "The fair is outside the city this year."
   },
   "2102": {
-    "spanish": "Los orígenes de esta costumbre están envueltos en misterio.",
-    "english": "The origins of this custom are shrouded in mystery."
+    "spanish": "Tus llaves están dentro del cajón.",
+    "english": "Your keys are inside the drawer."
   },
   "2103": {
-    "spanish": "El problema está en que eso es muy caro.",
-    "english": "The problem is in that it's too expensive."
+    "spanish": "El aeropuerto está lejos del centro.",
+    "english": "The airport is far from the city centre."
   },
   "2104": {
-    "spanish": "El cobarde es el primero en levantar el puño.",
-    "english": "The coward is the first to raise his fist."
+    "spanish": "La reunión anual es en otra ciudad este año.",
+    "english": "The annual meeting is in another city this year."
   },
   "2105": {
-    "spanish": "Todos estos trajes están hechos a medida.",
-    "english": "All these suits are made to measure."
+    "spanish": "Los niños están en el patio.",
+    "english": "The children are in the playground."
   },
   "2106": {
-    "spanish": "Estoy contento de que me recordases sobre la reunión.",
-    "english": "I'm glad you reminded me about the meeting."
+    "spanish": "Yo estoy muy cansada hoy.",
+    "english": "I am very tired today."
   },
   "2107": {
-    "spanish": "El pueblo está en la falda de la colina.",
-    "english": "The village is on the side of the hill."
+    "spanish": "La ventana está abierta.",
+    "english": "The window is open."
   },
   "2108": {
-    "spanish": "El salón está muy bien adornado para la fiesta.",
-    "english": "The room's nicely fixed up for the party."
+    "spanish": "Mi hermano está enfadado conmigo.",
+    "english": "My brother is angry with me."
   },
   "2109": {
-    "spanish": "El segundo botón de tu camisa se está desabrochando.",
-    "english": "The second button of your shirt is coming off."
+    "spanish": "El agua está helada.",
+    "english": "The water is freezing cold."
   },
   "2110": {
-    "spanish": "Estamos acostumbrados a esperar el autobús bajo este toldo.",
-    "english": "We are used to waiting for the bus under this awning."
+    "spanish": "Nosotros estamos preocupados por el examen.",
+    "english": "We are worried about the exam."
   },
   "2111": {
-    "spanish": "Estos uniformes están hechos a medida.",
-    "english": "These uniforms are made to measure."
+    "spanish": "Las tiendas están cerradas los domingos.",
+    "english": "The shops are closed on Sundays."
   },
   "2112": {
-    "spanish": "Estoy contento de que Tom lograra cambiar su nombre.",
-    "english": "I'm happy Tom managed to change his name."
+    "spanish": "Yo estoy emocionada por el viaje.",
+    "english": "I am excited about the trip."
   },
   "2113": {
-    "spanish": "El templo está en la cima de la colina.",
-    "english": "The temple is at the top of the hill."
+    "spanish": "El pastel está todavía caliente.",
+    "english": "The cake is still warm."
   },
   "2114": {
-    "spanish": "Todos los trajes de Tom están hechos a medida.",
-    "english": "Tom had all of his suits made to order."
+    "spanish": "Mis padres están de vacaciones esta semana.",
+    "english": "My parents are on vacation this week."
   },
   "2115": {
-    "spanish": "¿Estás consciente de que no le gustas a Tom?",
-    "english": "Are you aware that Tom doesn't like you?"
+    "spanish": "Tú estás resfriado, ¿verdad?",
+    "english": "You have a cold, right?"
   },
   "2116": {
-    "spanish": "El tren está ahora mismo entrando en la estación.",
-    "english": "The train is just now coming into the station."
+    "spanish": "La leche está a punto de caducar.",
+    "english": "The milk is about to expire."
   },
   "2117": {
-    "spanish": "El yen está subiendo y el dólar está cayendo.",
-    "english": "The yen is rising and the dollar is falling."
+    "spanish": "El equipo está nervioso antes del partido.",
+    "english": "The team is nervous before the match."
   },
   "2118": {
-    "spanish": "Tom y Mary están tratando de vender su casa.",
-    "english": "Tom and Mary are trying to sell their house."
+    "spanish": "Las calles están mojadas después de la lluvia.",
+    "english": "The streets are wet after the rain."
   },
   "2119": {
-    "spanish": "Estoy decepcionado de que mis amigos no estén aquí.",
-    "english": "I am disappointed that my friends are not here."
+    "spanish": "Yo estoy un poco confundida con esta pregunta.",
+    "english": "I am a bit confused by this question."
   },
   "2120": {
-    "spanish": "Ella está desde hace un mes en el hospital.",
-    "english": "She's been in the hospital for a month."
+    "spanish": "El ambiente está tenso en la oficina hoy.",
+    "english": "The atmosphere is tense in the office today."
   },
   "2121": {
-    "spanish": "Ella siempre está en el último lugar del curso.",
-    "english": "She is always at the bottom of the class."
+    "spanish": "El trabajo está ya terminado.",
+    "english": "The work is already finished."
   },
   "2122": {
-    "spanish": "En vista de que está lloviendo, no haré eso.",
-    "english": "Since it's raining, I won't do that."
+    "spanish": "La puerta está rota desde ayer.",
+    "english": "The door has been broken since yesterday."
   },
   "2123": {
-    "spanish": "Es por eso que ella todavía está enojada conmigo.",
-    "english": "This is why she is still angry with me."
+    "spanish": "Después de la operación, mi abuelo está mucho mejor.",
+    "english": "After the surgery, my grandfather is much better."
   },
   "2124": {
-    "spanish": "Está claro que no podemos vivir sin el aire.",
-    "english": "It is clear that we cannot live without air."
+    "spanish": "El pan está duro; llevaba días fuera.",
+    "english": "The bread is hard; it had been out for days."
   },
   "2125": {
-    "spanish": "Está cumpliendo una sentencia de tres años por robo.",
-    "english": "He is serving a three-year sentence for burglary."
+    "spanish": "Desde que empezó a estudiar más, ella está mucho más segura en los exámenes.",
+    "english": "Since she started studying more, she is much more confident in exams."
   },
   "2126": {
-    "spanish": "La coordinadora está segura de que el equipo llegará a tiempo.",
-    "english": "The coordinator is sure that the team will arrive on time."
+    "spanish": "El jarrón está roto en pedazos.",
+    "english": "The vase is broken into pieces."
   },
   "2127": {
-    "spanish": "Está oscureciendo. Es mejor que te vayas a casa.",
-    "english": "It's getting dark. You'd better go home."
+    "spanish": "Después de tantos cambios, la empresa está irreconocible.",
+    "english": "After so many changes, the company is unrecognisable."
   },
   "2128": {
-    "spanish": "Estoy segura que Tom se está ocupando de María.",
-    "english": "I'm sure Tom is looking out for Mary."
+    "spanish": "La fruta está madura ya.",
+    "english": "The fruit is ripe now."
   },
   "2129": {
-    "spanish": "La antena del coche está integrada en el parabrisas.",
-    "english": "The car's antenna is built into the windshield."
+    "spanish": "El niño está más alto que el año pasado.",
+    "english": "The boy has gotten taller than last year."
   },
   "2130": {
-    "spanish": "La calefacción de nuestro dormitorio no está funcionando bien.",
-    "english": "Our dorm's heating system isn't working properly."
+    "spanish": "La habitación está ordenada por fin.",
+    "english": "The room is tidy at last."
   },
   "2131": {
-    "spanish": "¿Las cataratas del Niágara están lejos de tu pueblo?",
-    "english": "Are the Niagara Falls far from your town?"
+    "spanish": "Después del susto, todos están más tranquilos.",
+    "english": "After the scare, everyone is calmer now."
   },
   "2132": {
-    "spanish": "La estación está a diez minutos en coche desde aquí.",
-    "english": "The station is a ten-minute drive from here."
+    "spanish": "El proyecto está casi acabado.",
+    "english": "The project is almost finished."
   },
   "2133": {
-    "spanish": "La cima de la montaña está cubierta de nieve.",
-    "english": "The top of the mountain is covered with snow."
+    "spanish": "Tu español está mucho mejor que antes.",
+    "english": "Your Spanish is much better than before."
   },
   "2134": {
-    "spanish": "Creo que es verdad lo que ustedes están diciendo.",
-    "english": "I think what you're saying is true."
+    "spanish": "Las plantas están secas después de tantos días de calor.",
+    "english": "The plants are dry after so many hot days."
   },
   "2135": {
-    "spanish": "La cima del Monte Fuji está cubierta de nieve.",
-    "english": "The top of Mt. Fuji is covered with snow."
+    "spanish": "El coche está reparado desde el lunes.",
+    "english": "The car has been repaired since Monday."
   },
   "2136": {
-    "spanish": "El colibrí es el ave más pequeña del mundo.",
-    "english": "The hummingbird is the smallest bird in the world."
+    "spanish": "Ese documental es bastante aburrido.",
+    "english": "That documentary is quite boring."
   },
   "2137": {
-    "spanish": "Estoy intentando convencer a Tom para que lo haga.",
-    "english": "I'm trying to convince Tom to do that."
+    "spanish": "Yo estoy aburrido en la clase de historia.",
+    "english": "I am bored in history class."
   },
   "2138": {
-    "spanish": "El desayuno es la comida más importante del día.",
-    "english": "Breakfast is the most important meal of the day."
+    "spanish": "Mi tío es muy rico.",
+    "english": "My uncle is very wealthy."
   },
   "2139": {
-    "spanish": "La fábrica está produciendo un nuevo modelo de coche.",
-    "english": "The factory is producing a new type of car."
+    "spanish": "Esta sopa está riquísima.",
+    "english": "This soup tastes delicious."
   },
   "2140": {
-    "spanish": "Él es ciudadano británico, pero vive en la India.",
-    "english": "He is a British citizen, but lives in India."
+    "spanish": "Este puente es seguro para cruzar.",
+    "english": "This bridge is safe to cross."
   },
   "2141": {
-    "spanish": "Estoy muy feliz al oír acerca de tu compromiso.",
-    "english": "I am very happy to hear about your engagement."
+    "spanish": "Yo estoy segura de mi respuesta.",
+    "english": "I am sure of my answer."
   },
   "2142": {
-    "spanish": "Él es considerado el padre de la antropología moderna.",
-    "english": "He is hailed as the father of modern anthropology."
+    "spanish": "Este plato es malo; no lo pruebes.",
+    "english": "This dish is bad quality; don't try it."
   },
   "2143": {
-    "spanish": "La gente en la otra habitación está hablando francés.",
-    "english": "The people in the other room are speaking French."
+    "spanish": "Mi hijo está malo desde ayer.",
+    "english": "My son has been sick since yesterday."
   },
   "2144": {
-    "spanish": "La iglesia está decorada con flores para la boda.",
-    "english": "The church is decorated with flowers for the wedding."
+    "spanish": "Este plátano está verde todavía.",
+    "english": "This banana is still unripe."
   },
   "2145": {
-    "spanish": "Él es el mayor arquitecto que ha vivido jamás.",
-    "english": "He is the greatest architect that has ever lived."
+    "spanish": "Su color favorito es verde.",
+    "english": "Her favourite colour is green."
   },
   "2146": {
-    "spanish": "La montaña está cubierta con nieve el año entero.",
-    "english": "This mountain is covered with snow all year round."
+    "spanish": "Mi abuelo está muy vivo para su edad.",
+    "english": "My grandfather is very lively for his age."
   },
   "2147": {
-    "spanish": "Él es la última persona que rompería su promesa.",
-    "english": "He is the last person to break his promise."
+    "spanish": "Esta ciudad es muy viva por las noches.",
+    "english": "This city is very lively at night."
   },
   "2148": {
-    "spanish": "¿Estás segura de que no se te olvida nada?",
-    "english": "Are you sure that you haven't forgotten anything?"
+    "spanish": "Tú estás muy despierto para ser tan temprano.",
+    "english": "You are very alert for it being so early."
   },
   "2149": {
-    "spanish": "Él es más rico que cualquiera en esta ciudad.",
-    "english": "He is richer than anyone else in this town."
+    "spanish": "Mi sobrina es muy despierta; aprende rápido.",
+    "english": "My niece is very sharp; she learns quickly."
   },
   "2150": {
-    "spanish": "Deberías ayudar a tus amigos cuando están en problemas.",
-    "english": "You should help your friends when they're in trouble."
+    "spanish": "Ellos están atentos a cada detalle del proyecto.",
+    "english": "They are attentive to every detail of the project right now."
   },
   "3001": {
     "spanish": "El mes pasado fui a Los Ángeles de vacaciones.",
@@ -3612,7 +3612,7 @@ function sourcedExplanation(question: SourceableQuestion): string {
     const [pronoun, verb] = question.answer.split(" ");
     return `Use “${question.answer}”. “${pronoun}” marks who is affected, and “${verb}” agrees with the grammatical subject.`;
   }
-  if (question.id < 3000) return `Use “${question.answer}” here; “${question.objectPronoun}” would change the meaning or be ungrammatical.`;
+  if (question.id < 3000) return question.explanation;
   if (question.id < 4000) return `Use “${question.answer}”, the ${question.tense} form of “${question.infinitive}”, in this past-tense context.`;
   if (question.id < 5000) return question.explanation;
   if (question.id < 6000) {
