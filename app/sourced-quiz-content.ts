@@ -3614,7 +3614,6 @@ function sourcedExplanation(question: SourceableQuestion): string {
   }
   if (question.id < 3000) return `Use “${question.answer}” here; “${question.objectPronoun}” would change the meaning or be ungrammatical.`;
   if (question.id < 4000) return `Use “${question.answer}”, the ${question.tense} form of “${question.infinitive}”, in this past-tense context.`;
-  if (question.id < 5000) return question.explanation;
   if (question.id < 6000) {
     if (question.infinitive === "direct object") return `Use “${question.answer}” as the direct-object pronoun replacing the person or thing acted upon.`;
     if (question.infinitive === "indirect object") return `Use “${question.answer}” as the indirect-object pronoun marking the recipient or affected person.`;
@@ -3631,6 +3630,12 @@ function sourcedExplanation(question: SourceableQuestion): string {
   return `Use “${question.answer}”. ${guidance[question.infinitive]}`;
 }
 
+// An item's own explanation describes its own sentence, so it is kept only when
+// that sentence is the one shown; otherwise the generic fallback is used.
+function sentenceKey(sentence: string): string {
+  return sentence.normalize("NFC").toLocaleLowerCase("es").replace(/[^\p{L}\p{N}]+/gu, " ").trim();
+}
+
 export function applySourcedQuestionPair<T extends SourceableQuestion>(question: T): T {
   const pair = SOURCED_QUIZ_PAIRS[question.id];
   if (!pair) throw new Error(`Missing sourced sentence pair for question ${question.id}`);
@@ -3641,7 +3646,7 @@ export function applySourcedQuestionPair<T extends SourceableQuestion>(question:
     ...question,
     before: pair.spanish.slice(0, match.index).trimEnd(),
     after: pair.spanish.slice(match.index + match[0].length).trimStart(),
-    explanation: sourcedExplanation(question),
+    explanation: sentenceKey(`${question.before} ${question.answer} ${question.after}`) === sentenceKey(pair.spanish) ? question.explanation : sourcedExplanation(question),
     translations: { ...question.translations, en: pair.english },
   };
 }
