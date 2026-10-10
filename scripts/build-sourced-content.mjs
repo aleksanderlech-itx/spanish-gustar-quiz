@@ -17,6 +17,13 @@ import { CURATED_OBJECT_PRONOUN_PAIRS } from "./curated-object-pronoun-all.mjs";
 import { CURATED_QUIZ_OVERRIDES } from "./curated-quiz-overrides.mjs";
 import { CURATED_POR_PARA_PAIRS } from "./curated-por-para-all.mjs";
 import { CURATED_SABER_CONOCER_PAIRS } from "./curated-saber-conocer-all.mjs";
+import { PINNED_CORPUS_PAIRS } from "./pinned-corpus-pairs.mjs";
+import { RESTORED_GUSTAR_PAIRS } from "./restored-gustar-pairs.mjs";
+import { RESTORED_SER_ESTAR_PAIRS } from "./restored-ser-estar-pairs.mjs";
+import { RESTORED_PRETERITE_IMPERFECT_PAIRS } from "./restored-preterite-imperfect-pairs.mjs";
+import { RESTORED_OBJECT_PRONOUN_PAIRS } from "./restored-object-pronouns-pairs.mjs";
+import { RESTORED_SABER_CONOCER_PAIRS } from "./restored-saber-conocer-pairs.mjs";
+import { RESTORED_FLASHCARD_PAIRS } from "./restored-flashcard-pairs.mjs";
 
 const corpusPath = process.argv[2];
 if (!corpusPath) {
@@ -108,6 +115,14 @@ const exactPhraseRegex = (phrase) => {
 };
 
 const usedSpanish = new Set();
+// Reserve every pinned row up front so no unpinned item can take it first.
+const pinnedRows = new Map();
+for (const [pinKey, attribution] of Object.entries(PINNED_CORPUS_PAIRS)) {
+  const row = corpusRows.find((candidate) => candidate.attribution === attribution);
+  if (!row) throw new Error(`Pinned corpus pair for ${pinKey} is not in the corpus: ${attribution}`);
+  pinnedRows.set(pinKey, row);
+  usedSpanish.add(fold(row.spanish));
+}
 const usedExercisePrompts = new Set();
 const exercisePromptKey = (sentence, phrase) => {
   const match = exactPhraseRegex(phrase).exec(sentence);
@@ -117,8 +132,13 @@ const exercisePromptKey = (sentence, phrase) => {
     .replace(/\s+/g, " ")
     .trim();
 };
-const selectCorpusPair = (key, phrase, alternate = "", requireLeadingText = false) => {
+const selectCorpusPair = (key, pinKey, phrase, alternate = "", requireLeadingText = false) => {
   const regex = exactPhraseRegex(phrase);
+  const pinned = pinnedRows.get(pinKey);
+  if (pinned) {
+    if (!regex.test(pinned.spanish)) throw new Error(`Pinned corpus pair for ${key} does not contain ${phrase}`);
+    return { ...pinned, license: "CC BY 2.0 France", modified: false };
+  }
   const answerTokens = tokens(phrase);
   const alternateTokens = tokens(alternate);
   const alternateIsPartOfAnswer = alternateTokens.length > 0 && answerTokens.join(" ").includes(alternateTokens.join(" "));
@@ -137,17 +157,27 @@ const selectCorpusPair = (key, phrase, alternate = "", requireLeadingText = fals
 };
 
 const curatedPair = (pair) => ({
-  ...pair,
   attribution: "Spanish Editorial Learning; original project content; https://creativecommons.org/licenses/by/4.0/",
   license: "CC BY 4.0",
   modified: true,
+  ...pair,
 });
+
+// Pre-#108 originals take precedence over every other source.
+const RESTORED_PAIRS = {
+  gustar: RESTORED_GUSTAR_PAIRS,
+  "ser-estar": RESTORED_SER_ESTAR_PAIRS,
+  "preterite-imperfect": RESTORED_PRETERITE_IMPERFECT_PAIRS,
+  "object-pronouns": RESTORED_OBJECT_PRONOUN_PAIRS,
+  "saber-conocer": RESTORED_SABER_CONOCER_PAIRS,
+};
 
 const quizPairs = {};
 const provenance = [];
 for (const [group, questions] of groups) {
   for (const question of questions) {
-    const override = CURATED_FLAGGED_QUIZ_OVERRIDES[question.id]
+    const override = RESTORED_PAIRS[group]?.[question.id]
+      ?? CURATED_FLAGGED_QUIZ_OVERRIDES[question.id]
       ?? (group === "gustar"
         ? CURATED_QUIZ_OVERRIDES.gustar[question.id]
         : group === "preterite-imperfect"
@@ -159,9 +189,19 @@ for (const [group, questions] of groups) {
               : group === "saber-conocer"
                 ? CURATED_SABER_CONOCER_PAIRS[question.id]
                 : undefined);
+    if (RESTORED_PAIRS[group]?.[question.id] && (
+      CURATED_FLAGGED_QUIZ_OVERRIDES[question.id]
+      ?? CURATED_QUIZ_OVERRIDES[group === "gustar" ? "gustar" : group === "preterite-imperfect" ? "preteriteImperfect" : ""]?.[question.id]
+      ?? (group === "object-pronouns" ? CURATED_OBJECT_PRONOUN_PAIRS : group === "saber-conocer" ? CURATED_SABER_CONOCER_PAIRS : {})[question.id]
+    )) {
+      throw new Error(`${group} #${question.id} is restored but still has a superseded override; remove it`);
+    }
+    if (override && PINNED_CORPUS_PAIRS[`quiz-${group}:${question.id}`]) {
+      throw new Error(`${group} #${question.id} uses a curated pair but is still pinned; remove its pin`);
+    }
     const pair = override
       ? curatedPair(override)
-      : selectCorpusPair(`${group} #${question.id}`, question.answer, question.objectPronoun, group === "object-pronouns");
+      : selectCorpusPair(`${group} #${question.id}`, `quiz-${group}:${question.id}`, question.answer, question.objectPronoun, group === "object-pronouns");
     if (!exactPhraseRegex(question.answer).test(pair.spanish)) {
       throw new Error(`${group} #${question.id} does not contain answer ${question.answer}`);
     }
@@ -175,10 +215,14 @@ for (const [group, questions] of groups) {
 
 const flashcardPairs = {};
 for (const card of FLASHCARD_VERBS) {
-  const override = CURATED_FLASHCARD_OVERRIDES[card.spanish];
+  const restored = RESTORED_FLASHCARD_PAIRS[card.spanish];
+  if (restored && (CURATED_FLASHCARD_OVERRIDES[card.spanish] || PINNED_CORPUS_PAIRS[`flashcard:${card.spanish}`])) {
+    throw new Error(`flashcard ${card.spanish} is restored but still has a superseded override or pin; remove it`);
+  }
+  const override = restored ?? CURATED_FLASHCARD_OVERRIDES[card.spanish];
   const pair = override
     ? curatedPair(override)
-    : selectCorpusPair(`flashcard ${card.spanish}`, card.spanish);
+    : selectCorpusPair(`flashcard ${card.spanish}`, `flashcard:${card.spanish}`, card.spanish);
   flashcardPairs[card.spanish] = { example: pair.spanish, exampleEnglish: pair.english };
   provenance.push({ type: "flashcard", key: card.spanish, ...pair });
 }
@@ -186,34 +230,22 @@ for (const card of FLASHCARD_VERBS) {
 const quizTs = `// Generated by scripts/build-sourced-content.mjs. Do not edit by hand.\n` +
 `// Source and licensing details: docs/content-sources.md and docs/content-attribution.csv.\n\n` +
 `type SourcedPair = { spanish: string; english: string };\n` +
-`type SourceableQuestion = { id: number; answer: string; before: string; after: string; infinitive: string; objectPronoun: string; explanation: string; tense: string; translations: { en: string; pl: string } };\n\n` +
+`type SourceableQuestion = { id: number; answer: string; before: string; after: string; explanation: string; translations: { en: string; pl: string } };\n\n` +
 `export const SOURCED_QUIZ_PAIRS: Record<number, SourcedPair> = ${JSON.stringify(quizPairs, null, 2)};\n\n` +
-`function sourcedExplanation(question: SourceableQuestion): string {\n` +
-`  if (question.id < 2000) {\n` +
-`    const [pronoun, verb] = question.answer.split(" ");\n` +
-`    return \`Use “\${question.answer}”. “\${pronoun}” marks who is affected, and “\${verb}” agrees with the grammatical subject.\`;\n` +
-`  }\n` +
-`  if (question.id < 3000) return \`Use “\${question.answer}” here; “\${question.objectPronoun}” would change the meaning or be ungrammatical.\`;\n` +
-`  if (question.id < 4000) return \`Use “\${question.answer}”, the \${question.tense} form of “\${question.infinitive}”, in this past-tense context.\`;\n` +
-`  if (question.id < 5000) return question.explanation;\n` +
-`  if (question.id < 6000) {\n` +
-`    if (question.infinitive === "direct object") return \`Use “\${question.answer}” as the direct-object pronoun replacing the person or thing acted upon.\`;\n` +
-`    if (question.infinitive === "indirect object") return \`Use “\${question.answer}” as the indirect-object pronoun marking the recipient or affected person.\`;\n` +
-`    return \`Use “\${question.answer}” in this indirect-plus-direct object-pronoun combination.\`;\n` +
-`  }\n` +
-`  const guidance: Record<string, string> = {\n` +
-`    facts: "Use saber for facts and information.",\n` +
-`    skills: "Use saber followed by an infinitive for a learned ability.",\n` +
-`    people: "Use conocer with the personal a for being acquainted with a person.",\n` +
-`    places: "Use conocer for firsthand familiarity with a place.",\n` +
-`    familiarity: "Use conocer for familiarity with a work, subject, or thing.",\n` +
-`    "past meaning": "In the past, saber can mark finding something out and conocer can mark meeting or first encountering someone or somewhere.",\n` +
-`  };\n` +
-`  return \`Use “\${question.answer}”. \${guidance[question.infinitive]}\`;\n` +
+`// An item's seed explanation describes the seed sentence, so it is kept only when\n` +
+`// that sentence is the one shown. Otherwise the item's entry in\n` +
+`// app/explanations-<topic>.ts supplies it (app/item-explanation.ts).\n` +
+`function sentenceKey(sentence: string): string {\n` +
+`  return sentence.normalize("NFC").toLocaleLowerCase("es").replace(/[^\\p{L}\\p{N}]+/gu, " ").trim();\n` +
 `}\n\n` +
 `export function applySourcedQuestionPair<T extends SourceableQuestion>(question: T): T {\n` +
 `  const pair = SOURCED_QUIZ_PAIRS[question.id];\n` +
 `  if (!pair) throw new Error(\`Missing sourced sentence pair for question \${question.id}\`);\n` +
+`  // The item's own sentence: keep its blank position and explanation. Searching\n` +
+`  // for the answer would match an earlier, unrelated "La" in "¿La sopa? ... la come".\n` +
+`  if (sentenceKey(\`\${question.before} \${question.answer} \${question.after}\`) === sentenceKey(pair.spanish)) {\n` +
+`    return { ...question, before: question.before.trimEnd(), after: question.after.trimStart(), translations: { ...question.translations, en: pair.english } };\n` +
+`  }\n` +
 `  const escaped = question.answer.replace(/[.*+?^\${}()|[\\]\\\\]/g, "\\\\$&");\n` +
 `  const match = new RegExp(\`(?<!\\\\p{L})\${escaped}(?!\\\\p{L})\`, "iu").exec(pair.spanish);\n` +
 `  if (!match) throw new Error(\`Sourced sentence for question \${question.id} lacks answer \${question.answer}\`);\n` +
@@ -221,7 +253,7 @@ const quizTs = `// Generated by scripts/build-sourced-content.mjs. Do not edit b
 `    ...question,\n` +
 `    before: pair.spanish.slice(0, match.index).trimEnd(),\n` +
 `    after: pair.spanish.slice(match.index + match[0].length).trimStart(),\n` +
-`    explanation: sourcedExplanation(question),\n` +
+`    explanation: "",\n` +
 `    translations: { ...question.translations, en: pair.english },\n` +
 `  };\n` +
 `}\n`;

@@ -30,6 +30,19 @@ manifest records the source, license and modification status for all 1,400
 runtime sentence pairs. The corpus itself is research input and is not committed
 to this repository.
 
+To regenerate, download the snapshot and run the generator on `spa.txt` (it
+checks the SHA-256):
+
+```
+curl -sSLO https://www.manythings.org/anki/spa-eng.zip
+unzip spa-eng.zip spa.txt -d /tmp/corpus
+node --experimental-strip-types scripts/build-sourced-content.mjs /tmp/corpus/spa.txt
+```
+
+Every corpus-sourced item is pinned to its row in
+`scripts/pinned-corpus-pairs.mjs`, so changing one item's source never shifts
+the sentence another item or flashcard gets.
+
 Tatoeba warns that community data can contain mistakes. Every selected pair
 must therefore pass the automated content checks and a human-language review
 before release.

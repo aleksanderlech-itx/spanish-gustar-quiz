@@ -5,7 +5,7 @@ import Link from "next/link";
 import { type Question } from "./quiz-data";
 import { OBJECT_PRONOUN_TYPES } from "./object-pronouns-data";
 import { SABER_CONOCER_USAGES } from "./saber-conocer-data";
-import { availableQuestions, clearRegularHistory, filterQuestions, getMissedIds, normalizeAnswer, scoreRound, type QuizResult } from "./quiz-logic";
+import { availableQuestions, clearRegularHistory, filterQuestions, getMissedIds, normalizeAnswer, scoreRound, sentenceParts, type QuizResult } from "./quiz-logic";
 import { DEFAULT_CHART_LABEL, QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config";
 import { recordActivityToday } from "./streak";
 import { markQuizCompleted, readQuizCompletion, repeatDueDate } from "./quiz-completion";
@@ -218,6 +218,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
 
   const choices = choiceSets[question.id] ?? answerChoicesFor(question, forms);
   const blankPlaceholder = question.blankHint ?? (quiz.showInfinitiveBlank === false ? "?" : question.infinitive);
+  const sentence = sentenceParts(question);
   const chartLabel = quiz.chartLabel ?? DEFAULT_CHART_LABEL;
   const isSubmitted = submitted[index];
   const picked = answers[index];
@@ -339,9 +340,9 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
           <span className="round-level-badge">{LEVEL_BADGE[question.level]}</span>
         </div>
         <p className="round-sentence" lang="es">
-          {question.before} <span className={`round-blank ${isSubmitted ? "round-blank-filled" : ""}`}>
-            {isSubmitted ? question.answer : mode === "type" ? (typed || blankPlaceholder) : blankPlaceholder}
-          </span> {question.after}
+          {sentence.before}<span className={`round-blank ${isSubmitted ? "round-blank-filled" : ""}`}>
+            {isSubmitted ? sentence.answer : mode === "type" ? (typed || blankPlaceholder) : blankPlaceholder}
+          </span>{sentence.after}
         </p>
         <p className="round-translation" lang="en">{question.translations.en}</p>
       </section>
