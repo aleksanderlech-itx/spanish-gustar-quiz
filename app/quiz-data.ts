@@ -1,5 +1,7 @@
 import { TRANSLATIONS } from "./translations.ts";
 import { applySourcedQuestionPair } from "./sourced-quiz-content.ts";
+import { withItemExplanation } from "./item-explanation.ts";
+import { GUSTAR_EXPLANATIONS } from "./explanations-gustar.ts";
 
 export type Question = {
   id: number;
@@ -82,7 +84,8 @@ const QUESTIONS: Question[] = Object.entries(QUESTION_BANKS).flatMap(([infinitiv
     answer: `${objectPronoun} ${verbAnswer}`,
     verbAnswer,
     objectPronoun,
-    explanation: `Use “${objectPronoun}” as the indirect object pronoun. ${subject.charAt(0).toUpperCase() + subject.slice(1)} ${number === "s" ? "is singular (or an infinitive activity)" : "is plural"}, so the verb is “${verbAnswer}”.`,
+    // Written per item in explanations-gustar.ts.
+    explanation: "",
     translations: {
       en: TRANSLATIONS[Object.entries(QUESTION_BANKS).slice(0, Object.keys(QUESTION_BANKS).indexOf(infinitive)).reduce((n, [, r]) => n + r.length, 0) + index],
       pl: "",
@@ -101,4 +104,4 @@ const QUESTIONS: Question[] = Object.entries(QUESTION_BANKS).flatMap(([infinitiv
 // heavier constructions ("aunque...", "lo que...", "cada vez que...") that were the
 // weakest fit for the A2-B1 audience this quiz targets, and removing them brings the
 // dataset to exactly the 150-question target already reached by QUESTION_BANKS above.
-export const ALL_QUESTIONS = QUESTIONS.map(applySourcedQuestionPair);
+export const ALL_QUESTIONS = QUESTIONS.map(applySourcedQuestionPair).map(withItemExplanation(GUSTAR_EXPLANATIONS));
