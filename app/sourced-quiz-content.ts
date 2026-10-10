@@ -10,600 +10,600 @@ export const SOURCED_QUIZ_PAIRS: Record<number, SourcedPair> = {
     "english": "The little girl doesn't like to wear shoes."
   },
   "2": {
-    "spanish": "En realidad no me gustan las tiendas de ahí.",
-    "english": "I don't really like the stores there."
+    "spanish": "Me gustan los conciertos de rock.",
+    "english": "I like rock concerts."
   },
   "3": {
-    "spanish": "Tom me dijo que te gusta la comida picante.",
-    "english": "Tom told me you like to eat spicy food."
+    "spanish": "¿Te gusta viajar en tren?",
+    "english": "Do you like travelling by train?"
   },
   "4": {
-    "spanish": "A mi hermano y a mí nos gusta la misma comida.",
-    "english": "My brother and I like the same food."
+    "spanish": "Nos gusta esta canción española.",
+    "english": "We like this Spanish song."
   },
   "5": {
-    "spanish": "A las niñas pequeñas en general les gustan las muñecas.",
-    "english": "Little girls in general are fond of dolls."
+    "spanish": "A mis padres les gustan las ciudades pequeñas.",
+    "english": "My parents like small towns."
   },
   "6": {
-    "spanish": "A Tom en realidad no le gusta tanto Mary.",
-    "english": "Tom doesn't really like Mary all that much."
+    "spanish": "No le gusta levantarse temprano.",
+    "english": "He or she does not like getting up early."
   },
   "7": {
-    "spanish": "A Tom no le gusta estar endeudado con nadie.",
-    "english": "Tom doesn't like to be indebted to anyone."
+    "spanish": "A Juan le gusta la comida picante.",
+    "english": "Juan likes spicy food."
   },
   "8": {
-    "spanish": "A mis primas les gustan las novelas históricas.",
-    "english": "My cousins like historical novels."
+    "spanish": "¿A ustedes les gustan estos ejercicios?",
+    "english": "Do you all like these exercises?"
   },
   "9": {
-    "spanish": "A muchos lectores les gusta descubrir autores nuevos.",
-    "english": "Many readers like discovering new authors."
+    "spanish": "Les gusta caminar por la montaña.",
+    "english": "They like walking in the mountains."
   },
   "10": {
-    "spanish": "Las rosas blancas me gustan más que las rojas.",
-    "english": "I like white roses better than red ones."
+    "spanish": "A mí me gustan las películas antiguas.",
+    "english": "I like old films."
   },
   "11": {
-    "spanish": "A Tom no le gusta hablar de su trabajo.",
-    "english": "Tom doesn't like to talk about his work."
+    "spanish": "A Laura le gusta bailar salsa.",
+    "english": "Laura likes dancing salsa."
   },
   "12": {
-    "spanish": "Tenemos un gato. A todos nos gustan los gatos.",
-    "english": "We have a cat. We all love cats."
+    "spanish": "No nos gustan los hoteles grandes.",
+    "english": "We do not like large hotels."
   },
   "13": {
-    "spanish": "No soy el único al que le gusta Tom.",
-    "english": "I'm not the only one who likes Tom."
+    "spanish": "¿Le gusta esta chaqueta azul?",
+    "english": "Does he or she like this blue jacket?"
   },
   "14": {
-    "spanish": "A los vecinos les gustan los mercados de productores locales.",
-    "english": "The neighbours like local farmers' markets."
+    "spanish": "A los niños les gustan los cuentos cortos.",
+    "english": "The children like short stories."
   },
   "15": {
-    "spanish": "¿Con qué frecuencia te gusta ir a la playa?",
-    "english": "How often do you like to go to the beach?"
+    "spanish": "Te gusta cocinar para tus amigos.",
+    "english": "You like cooking for your friends."
   },
   "16": {
-    "spanish": "Me gusta cómo el viento juega con tu pelo.",
-    "english": "I like how the wind plays with your hair."
+    "spanish": "Me gusta la música en directo.",
+    "english": "I like live music."
   },
   "17": {
-    "spanish": "A mis vecinos les gustan los conciertos al aire libre.",
-    "english": "My neighbours like outdoor concerts."
+    "spanish": "A Pedro y Ana les gustan las rutas en bicicleta.",
+    "english": "Pedro and Ana like cycling routes."
   },
   "18": {
-    "spanish": "El tiempo pasa rápido cuando estamos haciendo algo que nos gusta.",
-    "english": "Time passes quickly when we're doing something we like."
+    "spanish": "Nos gusta aprender idiomas.",
+    "english": "We like learning languages."
   },
   "19": {
-    "spanish": "A mis compañeros les gusta estudiar en la biblioteca.",
-    "english": "My classmates like studying in the library."
+    "spanish": "¿Les gusta el nuevo restaurante?",
+    "english": "Do they like the new restaurant?"
   },
   "20": {
-    "spanish": "¿Por qué te gustan tanto las ardillas?",
-    "english": "Why do you like squirrels so much?"
+    "spanish": "No te gustan estas botas negras.",
+    "english": "You do not like these black boots."
   },
   "21": {
-    "spanish": "Sé que a Tom no le gusta hacer eso.",
-    "english": "I know Tom doesn't like to do that."
+    "spanish": "A usted le gusta leer antes de dormir.",
+    "english": "You like reading before going to sleep."
   },
   "22": {
-    "spanish": "Me gustan las alitas de pollo con salsa barbacoa.",
-    "english": "I like my chicken wings with barbeque sauce."
+    "spanish": "Me gustan los domingos tranquilos.",
+    "english": "I like quiet Sundays."
   },
   "23": {
-    "spanish": "¿Cómo le gusta el café, con o sin azúcar?",
-    "english": "How do you take your coffee, with or without sugar?"
+    "spanish": "A Carlos le gusta la cerveza checa.",
+    "english": "Carlos likes Czech beer."
   },
   "24": {
-    "spanish": "A Tom y a mí no nos gustan las mismas clases de películas.",
-    "english": "Tom and I don't like the same kind of movies."
+    "spanish": "Nos gustan las excursiones largas.",
+    "english": "We like long excursions."
   },
   "25": {
-    "spanish": "¿Cuál te gusta más, la primavera o el otoño?",
-    "english": "Which do you like better, spring or fall?"
+    "spanish": "¿Te gusta trabajar desde casa?",
+    "english": "Do you like working from home?"
   },
   "26": {
-    "spanish": "A muchos estudiantes les gusta estudiar en la mañana.",
-    "english": "Many students like to study in the morning."
+    "spanish": "A ellas les gusta este barrio.",
+    "english": "They like this neighbourhood."
   },
   "27": {
-    "spanish": "Me gustan las frutas tales como uvas y duraznos.",
-    "english": "I like fruit such as grapes and peaches."
+    "spanish": "No me gustan los vuelos nocturnos.",
+    "english": "I do not like night flights."
   },
   "28": {
-    "spanish": "¿Cómo sabías que a Tom no le gusta María?",
-    "english": "How did you know that Tom didn't like Mary?"
+    "spanish": "A Pablo le gusta nadar en el mar.",
+    "english": "Pablo likes swimming in the sea."
   },
   "29": {
-    "spanish": "A los estudiantes les gusta practicar español en parejas.",
-    "english": "The students like practising Spanish in pairs."
+    "spanish": "¿A ustedes les gusta la paella?",
+    "english": "Do you all like paella?"
   },
   "30": {
-    "spanish": "A Tom y a María les gustan los caquis.",
-    "english": "Tom and Mary both like persimmons."
+    "spanish": "Les gustan estas fotografías.",
+    "english": "They like these photographs."
   },
   "31": {
-    "spanish": "A todos nos gusta montar en bici.",
-    "english": "We all like to ride bikes."
+    "spanish": "A nosotros nos gusta salir los viernes.",
+    "english": "We like going out on Fridays."
   },
   "32": {
-    "spanish": "¿Por qué no te gusta su manera de hablar?",
-    "english": "Why do you dislike his way of speaking?"
+    "spanish": "Te gusta el clima de España.",
+    "english": "You like Spain's climate."
   },
   "33": {
-    "spanish": "A Lucía no le gustan los trayectos demasiado largos.",
-    "english": "Lucía does not like journeys that are too long."
+    "spanish": "A Sofía le gustan los libros de historia.",
+    "english": "Sofía likes history books."
   },
   "34": {
-    "spanish": "Me gusta llevar a mis hijos a la playa.",
-    "english": "I like to take my children to the beach."
+    "spanish": "Me gusta conducir por carreteras tranquilas.",
+    "english": "I like driving on quiet roads."
   },
   "35": {
-    "spanish": "¿Le gustan las mismas cosas que a mí?",
-    "english": "Do you like the same things I do?"
+    "spanish": "¿Le gustan las clases de español?",
+    "english": "Does he or she like Spanish classes?"
   },
   "36": {
-    "spanish": "Me encanta cómo suena la lluvia en el techo.",
-    "english": "I love the sound of rain on the roof."
+    "spanish": "Me encanta esta banda.",
+    "english": "I love this band."
   },
   "37": {
-    "spanish": "A ella realmente le encantan los gatos.",
-    "english": "She really likes cats a lot."
+    "spanish": "A Elena le encantan los mercados locales.",
+    "english": "Elena loves local markets."
   },
   "38": {
-    "spanish": "Nos encanta comer manzanas.",
-    "english": "We love eating apples."
+    "spanish": "Nos encanta viajar sin prisa.",
+    "english": "We love travelling without rushing."
   },
   "39": {
-    "spanish": "¿No te encantan los gatos?",
-    "english": "Don't you love cats?"
+    "spanish": "¿Te encantan estas tapas?",
+    "english": "Do you love these tapas?"
   },
   "40": {
-    "spanish": "A los niños les encanta cavar en la arena.",
-    "english": "Children love to dig in the sand."
+    "spanish": "A los niños les encanta el chocolate.",
+    "english": "The children love chocolate."
   },
   "41": {
-    "spanish": "A ella le encanta el color de su polera.",
-    "english": "She loves the color of her T-shirt."
+    "spanish": "Le encanta bailar flamenco.",
+    "english": "He or she loves dancing flamenco."
   },
   "42": {
-    "spanish": "A todos les encantan los deportes.",
-    "english": "Everyone loves sports."
+    "spanish": "A ustedes les encantan las playas del norte.",
+    "english": "You all love the northern beaches."
   },
   "43": {
-    "spanish": "Me encanta el olor del café por la mañana.",
-    "english": "I love the smell of coffee in the morning."
+    "spanish": "A mí me encanta la guitarra eléctrica.",
+    "english": "I love the electric guitar."
   },
   "44": {
-    "spanish": "A los niños les encanta jugar en la playa.",
-    "english": "Children really like playing on the beach."
+    "spanish": "Les encanta hacer senderismo.",
+    "english": "They love hiking."
   },
   "45": {
-    "spanish": "Tenemos un gato. A todos nosotros nos encantan los gatos.",
-    "english": "We have a cat. We all love cats."
+    "spanish": "¿Nos encantan los pueblos blancos?",
+    "english": "Do we love the white villages?"
   },
   "46": {
-    "spanish": "A él le encanta este tipo de música.",
-    "english": "He is fond of this kind of music."
+    "spanish": "A Julia le encanta esta novela.",
+    "english": "Julia loves this novel."
   },
   "47": {
-    "spanish": "¿De verdad te encantan los documentales sobre volcanes?",
-    "english": "Do you really love documentaries about volcanoes?"
+    "spanish": "Te encantan los desayunos largos.",
+    "english": "You love long breakfasts."
   },
   "48": {
-    "spanish": "A muchas personas les encanta descubrir cafeterías nuevas.",
-    "english": "Many people love discovering new cafés."
+    "spanish": "A mis amigos les encanta cocinar juntos.",
+    "english": "My friends love cooking together."
   },
   "49": {
-    "spanish": "Me encantan las alitas de pollo de ese restaurante.",
-    "english": "I love the chicken wings from that restaurant."
+    "spanish": "Me encantan las montañas.",
+    "english": "I love the mountains."
   },
   "50": {
-    "spanish": "A Lucía le encanta escuchar melodías mientras cocina.",
-    "english": "Lucía loves listening to melodies while she cooks."
+    "spanish": "A usted le encanta el arte moderno.",
+    "english": "You love modern art."
   },
   "51": {
-    "spanish": "Nos encanta el sistema.",
-    "english": "We love the system."
+    "spanish": "Nos encanta escuchar música en vivo.",
+    "english": "We love listening to live music."
   },
   "52": {
-    "spanish": "A mis sobrinas les encantan los acertijos que requieren paciencia.",
-    "english": "My nieces love puzzles that require patience."
+    "spanish": "¿Les encantan estas vistas?",
+    "english": "Do they love these views?"
   },
   "53": {
-    "spanish": "A Mateo le encanta tocar melodías irlandesas en el violín.",
-    "english": "Mateo loves playing Irish melodies on the violin."
+    "spanish": "A Roberto le encanta la arquitectura antigua.",
+    "english": "Roberto loves old architecture."
   },
   "54": {
-    "spanish": "A los músicos les encantan las salas con buena acústica.",
-    "english": "Musicians love venues with good acoustics."
+    "spanish": "A ustedes les encantan los viajes en bicicleta.",
+    "english": "You all love cycling trips."
   },
   "55": {
-    "spanish": "¿Qué es lo que verdaderamente te encanta hacer?",
-    "english": "What do you really love to do?"
+    "spanish": "Te encanta aprender palabras nuevas.",
+    "english": "You love learning new words."
   },
   "56": {
-    "spanish": "No me interesa la literatura tanto como a ti.",
-    "english": "I am not as interested in literature as you."
+    "spanish": "Me interesa la historia de España.",
+    "english": "I am interested in Spanish history."
   },
   "57": {
-    "spanish": "A Laura le interesan los proyectos de restauración urbana.",
-    "english": "Laura is interested in urban restoration projects."
+    "spanish": "A Daniel le interesan los idiomas.",
+    "english": "Daniel is interested in languages."
   },
   "58": {
-    "spanish": "A nosotros nos interesa cómo se restauran los edificios históricos.",
-    "english": "We are interested in how historic buildings are restored."
+    "spanish": "Nos interesa aprender sobre otras culturas.",
+    "english": "We are interested in learning about other cultures."
   },
   "59": {
-    "spanish": "¿Qué tipo de temas te interesan?",
-    "english": "What kind of topics are of interest to you?"
+    "spanish": "¿Te interesan estas noticias?",
+    "english": "Are you interested in this news?"
   },
   "60": {
-    "spanish": "¿De verdad les interesa lo que yo pienso?",
-    "english": "Do you really care what I think?"
+    "spanish": "A ellos les interesa el ciclismo.",
+    "english": "They are interested in cycling."
   },
   "61": {
-    "spanish": "A Tom no le interesa para nada la política.",
-    "english": "Tom isn't interested in politics at all."
+    "spanish": "No le interesa hablar de política.",
+    "english": "He or she is not interested in talking about politics."
   },
   "62": {
-    "spanish": "A los investigadores les interesan los cambios en la calidad del agua.",
-    "english": "The researchers are interested in changes in water quality."
+    "spanish": "A ustedes les interesan los museos pequeños.",
+    "english": "You all are interested in small museums."
   },
   "63": {
-    "spanish": "No me interesa lo que hagas con esto.",
-    "english": "I don't care what you do with it."
+    "spanish": "A mí me interesa la tecnología.",
+    "english": "I am interested in technology."
   },
   "64": {
-    "spanish": "A ellos no les interesa ahorrar dinero.",
-    "english": "They are not interested in saving money."
+    "spanish": "Les interesa conocer gente nueva.",
+    "english": "They are interested in meeting new people."
   },
   "65": {
-    "spanish": "Nos interesan especialmente los cursos que incluyen prácticas.",
-    "english": "We are especially interested in courses that include practical training."
+    "spanish": "¿Nos interesan estos cursos?",
+    "english": "Are we interested in these courses?"
   },
   "66": {
-    "spanish": "A mi padre no le interesa para nada el dinero.",
-    "english": "My father doesn't care about money at all."
+    "spanish": "A Paula le interesa la fotografía.",
+    "english": "Paula is interested in photography."
   },
   "67": {
-    "spanish": "¿Te interesan los idiomas extranjeros?",
-    "english": "Are you interested in foreign languages?"
+    "spanish": "Te interesan los documentales.",
+    "english": "You are interested in documentaries."
   },
   "68": {
-    "spanish": "A muchos estadounidenses les interesa el jazz.",
-    "english": "Many Americans are interested in jazz."
+    "spanish": "A mis compañeros les interesa mejorar su español.",
+    "english": "My colleagues are interested in improving their Spanish."
   },
   "69": {
-    "spanish": "Me interesan el chelo y el piano.",
-    "english": "I have an interest in cello and piano."
+    "spanish": "Me interesan las rutas históricas.",
+    "english": "I am interested in historical routes."
   },
   "70": {
-    "spanish": "A Tom no le interesa lo que digan de María.",
-    "english": "Tom doesn't mind what people say about Mary."
+    "spanish": "A usted le interesa el proyecto nuevo.",
+    "english": "You are interested in the new project."
   },
   "71": {
-    "spanish": "Nos interesa saber por qué cerró la biblioteca del barrio.",
-    "english": "We are interested in knowing why the neighbourhood library closed."
+    "spanish": "Nos interesa entender la gramática.",
+    "english": "We are interested in understanding grammar."
   },
   "72": {
-    "spanish": "A Clara y a Luis les interesan las rutas menos conocidas de la región.",
-    "english": "Clara and Luis are interested in the region's lesser-known routes."
+    "spanish": "¿Les interesan estas propuestas?",
+    "english": "Are they interested in these proposals?"
   },
   "73": {
-    "spanish": "A Tom no le interesa lo que los demás piensen.",
-    "english": "Tom doesn't care what other people think."
+    "spanish": "A Tomás le interesa la economía.",
+    "english": "Tomás is interested in economics."
   },
   "74": {
-    "spanish": "A mis compañeros les interesan tus ideas para reducir el desperdicio.",
-    "english": "My colleagues are interested in your ideas for reducing waste."
+    "spanish": "A ustedes les interesan los deportes de montaña.",
+    "english": "You all are interested in mountain sports."
   },
   "75": {
-    "spanish": "Parece que lo único que te interesa es el dinero.",
-    "english": "All you seem to think about is money."
+    "spanish": "Te interesa leer en español.",
+    "english": "You are interested in reading in Spanish."
   },
   "76": {
-    "spanish": "No me molesta si hace un poco de frío.",
-    "english": "I do not mind if it gets a little cold."
+    "spanish": "Me molesta el ruido de la calle.",
+    "english": "The street noise bothers me."
   },
   "77": {
-    "spanish": "A Pablo le molestan las etiquetas que pican en el cuello.",
-    "english": "Pablo is bothered by labels that itch around his neck."
+    "spanish": "A Sara le molestan las luces fuertes.",
+    "english": "Bright lights bother Sara."
   },
   "78": {
-    "spanish": "Nos molesta que dejen la puerta abierta en invierno.",
-    "english": "It bothers us when people leave the door open in winter."
+    "spanish": "Nos molesta esperar mucho tiempo.",
+    "english": "Waiting a long time bothers us."
   },
   "79": {
-    "spanish": "¿Te molestan los ojos?",
-    "english": "Are your eyes troubling you?"
+    "spanish": "¿Te molestan estos comentarios?",
+    "english": "Do these comments bother you?"
   },
   "80": {
-    "spanish": "A los vecinos les molesta el zumbido constante del generador.",
-    "english": "The neighbours are bothered by the generator's constant hum."
+    "spanish": "A ellos les molesta el humo.",
+    "english": "Smoke bothers them."
   },
   "81": {
-    "spanish": "A Elena no le molesta esperar unos minutos.",
-    "english": "Elena does not mind waiting a few minutes."
+    "spanish": "No le molesta trabajar los sábados.",
+    "english": "Working on Saturdays does not bother him or her."
   },
   "82": {
-    "spanish": "Les molestan las llamadas comerciales durante la cena.",
-    "english": "Sales calls during dinner bother them."
+    "spanish": "A ustedes les molestan los precios altos.",
+    "english": "High prices bother you all."
   },
   "83": {
-    "spanish": "No me molesta si se pone un poco helado.",
-    "english": "I don't mind if it gets a little cold."
+    "spanish": "A mí me molesta la música demasiado alta.",
+    "english": "Music that is too loud bothers me."
   },
   "84": {
-    "spanish": "A Inés y a Marta les molesta esperar bajo la lluvia.",
-    "english": "Inés and Marta dislike waiting in the rain."
+    "spanish": "Les molesta levantarse tan temprano.",
+    "english": "Getting up so early bothers them."
   },
   "85": {
-    "spanish": "Nos molestan esos reflejos en la pantalla.",
-    "english": "Those reflections on the screen bother us."
+    "spanish": "¿Nos molestan estas interrupciones?",
+    "english": "Do these interruptions bother us?"
   },
   "86": {
-    "spanish": "A Tom no le molesta caminar bajo la lluvia.",
-    "english": "Tom doesn't mind walking in the rain."
+    "spanish": "A David le molesta el frío.",
+    "english": "The cold bothers David."
   },
   "87": {
-    "spanish": "¿Te molestan las serpientes?",
-    "english": "Do snakes bother you?"
+    "spanish": "Te molestan los vuelos con escalas.",
+    "english": "Flights with connections bother you."
   },
   "88": {
-    "spanish": "A los pasajeros les molesta que el conductor frene de golpe.",
-    "english": "The passengers are bothered when the driver brakes suddenly."
+    "spanish": "A mis vecinos les molesta oír al perro por la noche.",
+    "english": "Hearing the dog at night bothers my neighbours."
   },
   "89": {
-    "spanish": "Me molestan un poco estos zapatos.",
-    "english": "These shoes hurt me a little."
+    "spanish": "Me molestan las habitaciones oscuras.",
+    "english": "Dark rooms bother me."
   },
   "90": {
-    "spanish": "A Pablo le molesta el zumbido del ventilador.",
-    "english": "The hum of the fan bothers Pablo."
+    "spanish": "A usted le molesta este olor.",
+    "english": "Does this smell bother you?"
   },
   "91": {
-    "spanish": "No me importa si nuestro equipo gana o no.",
-    "english": "I don't care if our team wins or not."
+    "spanish": "Me importa la calidad del servicio.",
+    "english": "The quality of the service matters to me."
   },
   "92": {
-    "spanish": "A Elena le importan mucho los detalles de la presentación.",
-    "english": "The details of the presentation matter a great deal to Elena."
+    "spanish": "A Luis le importan los pequeños detalles.",
+    "english": "Small details matter to Luis."
   },
   "93": {
-    "spanish": "No nos importa lo que él haga.",
-    "english": "We don't care what he does."
+    "spanish": "Nos importa llegar a tiempo.",
+    "english": "Arriving on time matters to us."
   },
   "94": {
-    "spanish": "¿Te importan las opiniones de personas que no conoces?",
-    "english": "Do the opinions of people you do not know matter to you?"
+    "spanish": "¿Te importan estas diferencias?",
+    "english": "Do these differences matter to you?"
   },
   "95": {
-    "spanish": "¿Les importa que les haga una pregunta?",
-    "english": "Would you mind if I ask you a question?"
+    "spanish": "A ellos les importa el resultado final.",
+    "english": "The final result matters to them."
   },
   "96": {
-    "spanish": "A mi padre no le importa nada el dinero.",
-    "english": "My father doesn't care about money at all."
+    "spanish": "No le importa trabajar solo.",
+    "english": "Working alone does not matter to him or her."
   },
   "97": {
-    "spanish": "A los organizadores les importan tanto la seguridad como la comodidad.",
-    "english": "Safety and comfort matter equally to the organisers."
+    "spanish": "A ustedes les importan los horarios flexibles.",
+    "english": "Flexible schedules matter to you all."
   },
   "98": {
-    "spanish": "No me importa, con tal de que seas feliz.",
-    "english": "I don't care as long as you are happy."
+    "spanish": "A mí me importa la opinión de mi familia.",
+    "english": "My family's opinion matters to me."
   },
   "99": {
-    "spanish": "Eso es porque a ellos no les importa.",
-    "english": "That's because they don't care."
+    "spanish": "Les importa mantenerse activos.",
+    "english": "Staying active matters to them."
   },
   "100": {
-    "spanish": "Nos importan más los resultados duraderos que las soluciones rápidas.",
-    "english": "Lasting results matter more to us than quick solutions."
+    "spanish": "¿Nos importan estos cambios?",
+    "english": "Do these changes matter to us?"
   },
   "101": {
-    "spanish": "A Tom no le importa con quién salga Mary.",
-    "english": "Tom doesn't care who Mary goes out with."
+    "spanish": "A Eva le importa el medio ambiente.",
+    "english": "The environment matters to Eva."
   },
   "102": {
-    "spanish": "¿De verdad te importan esas pequeñas diferencias de color?",
-    "english": "Do those small differences in colour really matter to you?"
+    "spanish": "Te importan las condiciones del viaje.",
+    "english": "The travel conditions matter to you."
   },
   "103": {
-    "spanish": "A ellos realmente no les importa.",
-    "english": "They don't really care."
+    "spanish": "A mis colegas les importa terminar bien el proyecto.",
+    "english": "Finishing the project well matters to my colleagues."
   },
   "104": {
-    "spanish": "No me importan los deportes.",
-    "english": "I don't care about sports."
+    "spanish": "Me importan las respuestas claras.",
+    "english": "Clear answers matter to me."
   },
   "105": {
-    "spanish": "Creo que eres el único al que le importa.",
-    "english": "I think you're the only one who cares."
+    "spanish": "A usted le importa esta decisión.",
+    "english": "Does this decision matter to you?"
   },
   "106": {
-    "spanish": "Solo me falta la careta para que mi disfraz esté completo.",
-    "english": "All I need is the mask, and my costume is complete."
+    "spanish": "Me falta un billete para Madrid.",
+    "english": "I am missing a ticket to Madrid."
   },
   "107": {
-    "spanish": "A este libro le faltan dos páginas.",
-    "english": "This book is missing two pages."
+    "spanish": "A Clara le faltan dos documentos.",
+    "english": "Clara is missing two documents."
   },
   "108": {
-    "spanish": "El problema es que nos falta dinero.",
-    "english": "The trouble is that we are short of money."
+    "spanish": "Nos falta terminar el último ejercicio.",
+    "english": "We still need to finish the last exercise."
   },
   "109": {
-    "spanish": "Todavía te faltan dos sellos para completar la colección.",
-    "english": "You still need two more stamps to complete the collection."
+    "spanish": "¿Te faltan estas páginas?",
+    "english": "Are you missing these pages?"
   },
   "110": {
-    "spanish": "A los participantes les falta una firma para completar el formulario.",
-    "english": "The participants need one more signature to complete the form."
+    "spanish": "A ellos les falta un poco de tiempo.",
+    "english": "They are short of time."
   },
   "111": {
-    "spanish": "A esta sopa le falta un poco de sal.",
-    "english": "This soup needs a bit more salt."
+    "spanish": "Le falta practicar más.",
+    "english": "He or she needs to practise more."
   },
   "112": {
-    "spanish": "A muchos trabajadores les faltan herramientas adecuadas.",
-    "english": "Many workers lack suitable tools."
+    "spanish": "A ustedes les faltan las entradas para el concierto.",
+    "english": "You all are missing the concert tickets."
   },
   "113": {
-    "spanish": "Me falta un calcetín.",
-    "english": "I'm missing a sock."
+    "spanish": "A mí me falta una buena mochila.",
+    "english": "I need a good backpack."
   },
   "114": {
-    "spanish": "A ustedes les falta imaginación.",
-    "english": "You lack imagination."
+    "spanish": "Les falta visitar dos ciudades.",
+    "english": "They still need to visit two cities."
   },
   "115": {
-    "spanish": "Nos faltan ingredientes frescos para terminar la sopa.",
-    "english": "We are short of fresh ingredients to finish the soup."
+    "spanish": "¿Nos faltan algunas sillas?",
+    "english": "Are we missing some chairs?"
   },
   "116": {
-    "spanish": "Ya no me queda dinero en la billetera.",
-    "english": "I have no more money in my wallet."
+    "spanish": "Me queda una semana de vacaciones.",
+    "english": "I have one week of holiday left."
   },
   "117": {
-    "spanish": "A Tom le quedan tres meses para graduarse.",
-    "english": "Tom has three months left until he graduates."
+    "spanish": "A Raúl le quedan tres preguntas.",
+    "english": "Raúl has three questions left."
   },
   "118": {
-    "spanish": "Por desgracia no nos queda otra opción.",
-    "english": "I'm afraid we have no choice."
+    "spanish": "Nos queda reservar el hotel.",
+    "english": "We still need to book the hotel."
   },
   "119": {
-    "spanish": "Te quedan diez minutos para terminar el ejercicio.",
-    "english": "You have ten minutes left to finish the exercise."
+    "spanish": "¿Te quedan bien estos pantalones?",
+    "english": "Do these trousers fit you well?"
   },
   "120": {
-    "spanish": "A los excursionistas les queda una subida difícil antes del refugio.",
-    "english": "The hikers have one difficult climb left before reaching the shelter."
+    "spanish": "A ellos les queda poco dinero.",
+    "english": "They have little money left."
   },
   "121": {
-    "spanish": "A Tom todavía le queda un mes para graduarse.",
-    "english": "Tom still has one more month to go before he graduates."
+    "spanish": "Le queda preparar la cena.",
+    "english": "He or she still needs to prepare dinner."
   },
   "122": {
-    "spanish": "No les quedan excusas.",
-    "english": "You're out of excuses."
+    "spanish": "A ustedes les quedan dos días libres.",
+    "english": "You all have two free days left."
   },
   "123": {
-    "spanish": "La camisa que me diste me queda perfecta.",
-    "english": "The shirt you gave me fits perfectly."
+    "spanish": "A mí me queda bien esta camisa.",
+    "english": "This shirt fits me well."
   },
   "124": {
-    "spanish": "Después de pagar el alquiler, les queda muy poco dinero.",
-    "english": "After paying the rent, they have very little money left."
+    "spanish": "Les queda recorrer diez kilómetros.",
+    "english": "They still have ten kilometres to cover."
   },
   "125": {
-    "spanish": "Todavía nos quedan por andar otras diez millas antes del anochecer.",
-    "english": "We have another ten miles to walk before sunset."
+    "spanish": "¿Nos quedan suficientes botellas de agua?",
+    "english": "Do we have enough bottles of water left?"
   },
   "126": {
-    "spanish": "Después de cargar las cajas, me duele mucho el brazo.",
-    "english": "After carrying the boxes, my arm hurts a lot."
+    "spanish": "Me duele la espalda.",
+    "english": "My back hurts."
   },
   "127": {
-    "spanish": "¿Le duelen los oídos con frecuencia?",
-    "english": "Do you have frequent earaches?"
+    "spanish": "A Carmen le duelen las rodillas.",
+    "english": "Carmen's knees hurt."
   },
   "128": {
-    "spanish": "Nos duele perder un árbol tan antiguo del parque.",
-    "english": "It pains us to lose such an old tree from the park."
+    "spanish": "Nos duele caminar con estas botas.",
+    "english": "Walking in these boots hurts us."
   },
   "129": {
-    "spanish": "¿Te duelen las muñecas después de trabajar con el ordenador?",
-    "english": "Do your wrists hurt after working at the computer?"
+    "spanish": "¿Te duelen los hombros?",
+    "english": "Do your shoulders hurt?"
   },
   "130": {
-    "spanish": "¿Les duele al masticar?",
-    "english": "Does it hurt when you chew?"
+    "spanish": "A ellos les duele la cabeza.",
+    "english": "Their heads hurt."
   },
   "131": {
-    "spanish": "A Mateo le duele el estómago y se encuentra mal.",
-    "english": "Mateo has a stomach ache and feels unwell."
+    "spanish": "Le duele subir escaleras.",
+    "english": "Climbing stairs hurts him or her."
   },
   "132": {
-    "spanish": "A los corredores les duelen los gemelos al final de la carrera.",
-    "english": "The runners' calves hurt at the end of the race."
+    "spanish": "A ustedes les duelen los pies.",
+    "english": "Your feet hurt."
   },
   "133": {
-    "spanish": "Me duele mucho en el brazo que me pegaste.",
-    "english": "I have a very sore arm where you hit me."
+    "spanish": "A mí me duele el brazo derecho.",
+    "english": "My right arm hurts."
   },
   "134": {
-    "spanish": "Después del entrenamiento, a los corredores les duele la espalda.",
-    "english": "After training, the runners' backs hurt."
+    "spanish": "Les duele hacer este movimiento.",
+    "english": "Making this movement hurts them."
   },
   "135": {
-    "spanish": "Nos duelen los pies porque hemos caminado todo el día.",
-    "english": "Our feet hurt because we have been walking all day."
+    "spanish": "¿Nos duelen las piernas después de correr?",
+    "english": "Do our legs hurt after running?"
   },
   "136": {
-    "spanish": "A Julia le duele la garganta después de hablar tanto.",
-    "english": "Julia's throat hurts after talking so much."
+    "spanish": "A Andrés le duele la garganta.",
+    "english": "Andrés's throat hurts."
   },
   "137": {
-    "spanish": "Si te duelen los ojos, descansa un rato de la pantalla.",
-    "english": "If your eyes hurt, take a break from the screen for a while."
+    "spanish": "Te duelen los dedos.",
+    "english": "Your fingers hurt."
   },
   "138": {
-    "spanish": "A mis vecinos les duele perder los árboles de la plaza.",
-    "english": "My neighbours are upset about losing the trees in the square."
+    "spanish": "A mis amigos les duele dormir en el suelo.",
+    "english": "Sleeping on the floor hurts my friends."
   },
   "139": {
-    "spanish": "Me duelen las piernas de estar sentado en tatami.",
-    "english": "My legs ache from sitting on tatami."
+    "spanish": "Me duelen las muñecas.",
+    "english": "My wrists hurt."
   },
   "140": {
-    "spanish": "A Tom le duele el estómago y se encuentra mal.",
-    "english": "Tom has a stomachache and he feels dizzy."
+    "spanish": "A usted le duele el cuello.",
+    "english": "Does your neck hurt?"
   },
   "141": {
-    "spanish": "A mí esa me parece una propuesta super buena.",
-    "english": "That sounds like a very good plan to me."
+    "spanish": "Me parece interesante esta idea.",
+    "english": "This idea seems interesting to me."
   },
   "142": {
-    "spanish": "A Julia le parecen demasiado estrechas estas botas.",
-    "english": "Julia thinks these boots seem too narrow."
+    "spanish": "A Laura le parecen caros estos hoteles.",
+    "english": "These hotels seem expensive to Laura."
   },
   "143": {
-    "spanish": "Este libro nos parece fácil.",
-    "english": "This book seems easy to us."
+    "spanish": "Nos parece útil practicar cada día.",
+    "english": "Practising every day seems useful to us."
   },
   "144": {
-    "spanish": "¿Qué tal te parecen estos zapatos?",
-    "english": "What do you think of these shoes?"
+    "spanish": "¿Te parecen claras estas instrucciones?",
+    "english": "Do these instructions seem clear to you?"
   },
   "145": {
-    "spanish": "A muchos estadounidenses, un sistema político con dos partidos les parece normal.",
-    "english": "To many Americans, a two-party political system seems natural."
+    "spanish": "A ellos les parece buena la propuesta.",
+    "english": "The proposal seems good to them."
   },
   "146": {
-    "spanish": "Cada uno hace lo que le parece.",
-    "english": "Each one does what he wishes."
+    "spanish": "Le parece difícil conducir de noche.",
+    "english": "Driving at night seems difficult to him or her."
   },
   "147": {
-    "spanish": "A los alumnos les parecen claras las instrucciones del experimento.",
-    "english": "The students find the instructions for the experiment clear."
+    "spanish": "A ustedes les parecen largos los ejercicios.",
+    "english": "The exercises seem long to you all."
   },
   "148": {
-    "spanish": "Me parece que no me va a dar tiempo.",
-    "english": "I don't think I'll have time."
+    "spanish": "A mí me parece perfecta esta solución.",
+    "english": "This solution seems perfect to me."
   },
   "149": {
-    "spanish": "¿Les parece interesante?",
-    "english": "Do you think this is interesting?"
+    "spanish": "Les parece mejor salir temprano.",
+    "english": "Leaving early seems better to them."
   },
   "150": {
-    "spanish": "Nos parecen razonables las condiciones del nuevo contrato.",
-    "english": "The terms of the new contract seem reasonable to us."
+    "spanish": "¿Nos parecen correctas estas respuestas?",
+    "english": "Do these answers seem correct to us?"
   },
   "2001": {
     "spanish": "¿Estás seguro de que soy el único canadiense aquí?",
