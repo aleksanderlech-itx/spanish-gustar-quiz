@@ -8,13 +8,5 @@ export const CURATED_QUIZ_OVERRIDES = {
     },
   },
   saberConocer: {
-    6127: {
-      spanish: "Al comparar las firmas, supimos que ambas cartas eran auténticas.",
-      english: "By comparing the signatures, we found out that both letters were genuine.",
-    },
-    6132: {
-      spanish: "Al leer el informe, los médicos supieron qué había causado la infección.",
-      english: "When they read the report, the doctors found out what had caused the infection.",
-    },
   },
 };

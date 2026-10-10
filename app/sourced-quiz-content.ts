@@ -3006,604 +3006,604 @@ export const SOURCED_QUIZ_PAIRS: Record<number, SourcedPair> = {
     "english": "If you want the photos, I can send them to you tonight."
   },
   "6001": {
-    "spanish": "Todavía no sé dónde guardaron el contrato original.",
-    "english": "I still do not know where they kept the original contract."
+    "spanish": "Yo no sé dónde está la estación.",
+    "english": "I don't know where the station is."
   },
   "6002": {
-    "spanish": "¿Sabes a qué andén llega el tren nocturno?",
-    "english": "Do you know which platform the night train arrives at?"
+    "spanish": "¿Tú sabes qué hora es?",
+    "english": "Do you know what time it is?"
   },
   "6003": {
-    "spanish": "La recepcionista sabe el código de la caja fuerte.",
-    "english": "The receptionist knows the code for the safe."
+    "spanish": "Mi madre sabe el número de teléfono del médico.",
+    "english": "My mother knows the doctor's phone number."
   },
   "6004": {
     "spanish": "Por el aviso sabemos que la carretera sigue cerrada.",
     "english": "We know from the notice that the road is still closed."
   },
   "6005": {
-    "spanish": "Sin la última pista, los concursantes no saben la respuesta.",
-    "english": "Without the final clue, the contestants do not know the answer."
+    "spanish": "Los niños no saben la respuesta.",
+    "english": "The children don't know the answer."
   },
   "6006": {
-    "spanish": "¿Sabe usted cuándo termina la exposición?",
-    "english": "Do you know when the exhibition ends?"
+    "spanish": "¿Usted sabe cuánto cuesta el billete?",
+    "english": "Do you know how much the ticket costs?"
   },
   "6007": {
-    "spanish": "Sé de memoria el número de mi pasaporte.",
-    "english": "I know my passport number by heart."
+    "spanish": "Yo sé tu dirección de memoria.",
+    "english": "I know your address by heart."
   },
   "6008": {
-    "spanish": "Ana sabe por qué cancelaron el concierto.",
-    "english": "Ana knows why they cancelled the concert."
+    "spanish": "Ana sabe por qué llegaste tarde.",
+    "english": "Ana knows why you arrived late."
   },
   "6009": {
-    "spanish": "¿Sabéis si quedan entradas para la función de esta noche?",
-    "english": "Do you all know whether there are any tickets left for tonight's performance?"
+    "spanish": "¿Vosotros sabéis si el museo abre los lunes?",
+    "english": "Do you all know if the museum opens on Mondays?"
   },
   "6010": {
-    "spanish": "No sé cómo se abre esta ventana antigua.",
-    "english": "I do not know how this old window opens."
+    "spanish": "No sé cómo se llama ese actor.",
+    "english": "I don't know what that actor's name is."
   },
   "6011": {
-    "spanish": "Mis padres ya saben que nos mudamos en junio.",
-    "english": "My parents already know that we are moving in June."
+    "spanish": "Mis padres ya saben la noticia.",
+    "english": "My parents already know the news."
   },
   "6012": {
-    "spanish": "Cualquier jardinero sabe que estas semillas necesitan sombra.",
-    "english": "Any gardener knows that these seeds need shade."
+    "spanish": "Todo el mundo sabe que el agua hierve a cien grados.",
+    "english": "Everyone knows that water boils at one hundred degrees."
   },
   "6013": {
-    "spanish": "¿Sabes quién dejó este paquete en la entrada?",
-    "english": "Do you know who left this parcel at the entrance?"
+    "spanish": "¿Tú sabes quién ganó el partido?",
+    "english": "Do you know who won the match?"
   },
   "6014": {
-    "spanish": "De ese acuerdo no sé nada más que el título.",
-    "english": "I know nothing about that agreement apart from its title."
+    "spanish": "Yo no sé nada de este asunto.",
+    "english": "I don't know anything about this matter."
   },
   "6015": {
-    "spanish": "El profesor sabe cuándo publicarán las notas.",
-    "english": "The teacher knows when the marks will be published."
+    "spanish": "El profesor sabe cuándo es la fiesta.",
+    "english": "The teacher knows when the party is."
   },
   "6016": {
-    "spanish": "Ellos no saben adónde enviaron los documentos.",
-    "english": "They do not know where the documents were sent."
+    "spanish": "Ellos no saben adónde vamos el sábado.",
+    "english": "They don't know where we are going on Saturday."
   },
   "6017": {
-    "spanish": "Ni siquiera nosotros sabemos qué provocó el apagón.",
-    "english": "Not even we know what caused the power cut."
+    "spanish": "Nosotros no sabemos qué pasó anoche.",
+    "english": "We don't know what happened last night."
   },
   "6018": {
-    "spanish": "Ella sabe la fecha exacta de la inauguración.",
-    "english": "She knows the exact date of the opening."
+    "spanish": "Ella sabe la fecha del examen.",
+    "english": "She knows the date of the exam."
   },
   "6019": {
-    "spanish": "¿Sabes el resultado de la votación?",
-    "english": "Do you know the result of the vote?"
+    "spanish": "¿Tú sabes el resultado del partido?",
+    "english": "Do you know the result of the match?"
   },
   "6020": {
-    "spanish": "Por experiencia sé que este camino se inunda en otoño.",
-    "english": "From experience, I know that this road floods in autumn."
+    "spanish": "Yo sé que tienes razón.",
+    "english": "I know that you are right."
   },
   "6021": {
-    "spanish": "Carlos sabe mucho de astronomía medieval.",
-    "english": "Carlos knows a great deal about medieval astronomy."
+    "spanish": "Carlos sabe mucho de historia.",
+    "english": "Carlos knows a lot about history."
   },
   "6022": {
-    "spanish": "Mis amigos no saben lo que ocurrió durante la reunión.",
-    "english": "My friends do not know what happened during the meeting."
+    "spanish": "Mis amigos no saben lo que pasó.",
+    "english": "My friends don't know what happened."
   },
   "6023": {
-    "spanish": "¿Sabe alguien a qué hora cierra la farmacia de guardia?",
-    "english": "Does anyone know what time the late-night pharmacy closes?"
+    "spanish": "¿Alguien sabe a qué hora sale el tren?",
+    "english": "Does anyone know what time the train leaves?"
   },
   "6024": {
-    "spanish": "Aún no sé si Clara aceptará la propuesta.",
-    "english": "I do not yet know whether Clara will accept the proposal."
+    "spanish": "Yo no sé si Marta viene a cenar.",
+    "english": "I don't know if Marta is coming to dinner."
   },
   "6025": {
-    "spanish": "Usted sabe perfectamente lo que exige el reglamento.",
-    "english": "You know perfectly well what the regulations require."
+    "spanish": "Usted sabe muy bien lo que quiere.",
+    "english": "You know very well what you want."
   },
   "6026": {
-    "spanish": "Los excursionistas no saben cuál de los senderos lleva al refugio.",
-    "english": "The hikers do not know which path leads to the shelter."
+    "spanish": "Los turistas no saben cuál es el autobús correcto.",
+    "english": "The tourists don't know which bus is the right one."
   },
   "6027": {
-    "spanish": "Nadie sabe dónde apareció el manuscrito.",
-    "english": "Nobody knows where the manuscript turned up."
+    "spanish": "Nadie sabe dónde dejó Pablo las llaves.",
+    "english": "Nobody knows where Pablo left the keys."
   },
   "6028": {
-    "spanish": "¿Cómo sabes tú que la firma es auténtica?",
-    "english": "How do you know that the signature is genuine?"
+    "spanish": "¿Cómo sabes tú eso?",
+    "english": "How do you know that?"
   },
   "6029": {
-    "spanish": "Ya sé de memoria los nombres de todas las constelaciones visibles.",
-    "english": "I already know the names of all the visible constellations by heart."
+    "spanish": "Yo ya sé de memoria la lista de verbos.",
+    "english": "I already know the verb list by heart."
   },
   "6030": {
-    "spanish": "Ante una noticia así, ella no sabe qué decir.",
-    "english": "Faced with news like that, she does not know what to say."
+    "spanish": "Ella no sabe qué decir.",
+    "english": "She doesn't know what to say."
   },
   "6031": {
-    "spanish": "Tras meses de clases, sé nadar de espaldas.",
-    "english": "After months of lessons, I know how to swim on my back."
+    "spanish": "Yo sé nadar muy bien.",
+    "english": "I know how to swim very well."
   },
   "6032": {
-    "spanish": "¿Sabes preparar pan sin levadura?",
-    "english": "Do you know how to make bread without yeast?"
+    "spanish": "¿Tú sabes cocinar paella?",
+    "english": "Do you know how to cook paella?"
   },
   "6033": {
-    "spanish": "Mi hermana sabe afinar un violín de oído.",
-    "english": "My sister knows how to tune a violin by ear."
+    "spanish": "Mi hermana sabe tocar el piano.",
+    "english": "My sister can play the piano."
   },
   "6034": {
-    "spanish": "Nosotros no sabemos conducir con hielo en la calzada.",
-    "english": "We do not know how to drive on icy roads."
+    "spanish": "Nosotros no sabemos conducir todavía.",
+    "english": "We don't know how to drive yet."
   },
   "6035": {
-    "spanish": "Mis abuelos saben injertar rosales.",
-    "english": "My grandparents know how to graft rose bushes."
+    "spanish": "Mis abuelos saben bailar tango.",
+    "english": "My grandparents know how to dance the tango."
   },
   "6036": {
-    "spanish": "El niño ya sabe atarse los cordones sin ayuda.",
-    "english": "The child already knows how to tie his shoelaces without help."
+    "spanish": "El niño ya sabe leer y escribir.",
+    "english": "The child already knows how to read and write."
   },
   "6037": {
-    "spanish": "¿Saben ustedes comunicarse en lengua de signos?",
-    "english": "Do you know how to communicate in sign language?"
+    "spanish": "¿Ustedes saben hablar alemán?",
+    "english": "Can you speak German?"
   },
   "6038": {
-    "spanish": "Sin el manual no sé configurar este proyector.",
-    "english": "Without the manual, I do not know how to set up this projector."
+    "spanish": "Yo no sé usar este programa.",
+    "english": "I don't know how to use this program."
   },
   "6039": {
-    "spanish": "Pedro sabe reparar mecanismos de relojería.",
-    "english": "Pedro knows how to repair clockwork mechanisms."
+    "spanish": "Pedro sabe arreglar bicicletas.",
+    "english": "Pedro knows how to fix bikes."
   },
   "6040": {
-    "spanish": "¿Sabéis orientar un mapa con una brújula?",
-    "english": "Do you all know how to orient a map with a compass?"
+    "spanish": "¿Vosotros sabéis esquiar?",
+    "english": "Do you all know how to ski?"
   },
   "6041": {
-    "spanish": "Mi perro sabe traer el periódico sin romperlo.",
-    "english": "My dog knows how to fetch the newspaper without tearing it."
+    "spanish": "Mi perro sabe abrir la puerta solo.",
+    "english": "My dog knows how to open the door by himself."
   },
   "6042": {
-    "spanish": "Ellas saben interpretar planos arquitectónicos.",
-    "english": "They know how to read architectural plans."
+    "spanish": "Ellas saben jugar al ajedrez.",
+    "english": "They know how to play chess."
   },
   "6043": {
-    "spanish": "Tú sabes explicar ideas complejas con claridad.",
-    "english": "You know how to explain complex ideas clearly."
+    "spanish": "Tú sabes escuchar a los demás.",
+    "english": "You know how to listen to others."
   },
   "6044": {
-    "spanish": "Gracias al curso, sé prestar primeros auxilios básicos.",
-    "english": "Thanks to the course, I know how to give basic first aid."
+    "spanish": "Yo sé hacer una tortilla de patatas.",
+    "english": "I know how to make a Spanish omelette."
   },
   "6045": {
-    "spanish": "Mi padre no sabe montar en bicicleta.",
-    "english": "My father does not know how to ride a bicycle."
+    "spanish": "Mi padre no sabe nadar.",
+    "english": "My father can't swim."
   },
   "6046": {
-    "spanish": "Los aprendices ya saben soldar piezas pequeñas.",
-    "english": "The apprentices already know how to weld small parts."
+    "spanish": "Los estudiantes ya saben resolver estas ecuaciones.",
+    "english": "The students already know how to solve these equations."
   },
   "6047": {
-    "spanish": "¿Sabe usted podar un manzano sin dañarlo?",
-    "english": "Do you know how to prune an apple tree without damaging it?"
+    "spanish": "¿Usted sabe montar a caballo?",
+    "english": "Do you know how to ride a horse?"
   },
   "6048": {
-    "spanish": "Entre los dos sabemos instalar una estantería de pared.",
-    "english": "Between us, we know how to install a wall-mounted shelf."
+    "spanish": "Nosotros sabemos cambiar una rueda.",
+    "english": "We know how to change a tyre."
   },
   "6049": {
-    "spanish": "Lucía sabe restaurar fotografías antiguas.",
-    "english": "Lucía knows how to restore old photographs."
+    "spanish": "Lucía sabe dibujar retratos increíbles.",
+    "english": "Lucía knows how to draw incredible portraits."
   },
   "6050": {
-    "spanish": "Quiero saber leer una partitura antes de empezar el conservatorio.",
-    "english": "I want to know how to read music before starting at the conservatoire."
+    "spanish": "Quiero saber programar en Python.",
+    "english": "I want to know how to program in Python."
   },
   "6051": {
-    "spanish": "Conozco a tu hermano del club de ajedrez.",
-    "english": "I know your brother from the chess club."
+    "spanish": "Yo conozco a tu hermano.",
+    "english": "I know your brother."
   },
   "6052": {
-    "spanish": "¿Conoces a mis padres o solo has hablado con ellos por teléfono?",
-    "english": "Do you know my parents, or have you only spoken to them on the phone?"
+    "spanish": "¿Tú conoces a mis padres?",
+    "english": "Do you know my parents?"
   },
   "6053": {
-    "spanish": "Marta conoce a mucha gente del mundo editorial.",
-    "english": "Marta knows many people in publishing."
+    "spanish": "Marta conoce a mucha gente en Madrid.",
+    "english": "Marta knows a lot of people in Madrid."
   },
   "6054": {
-    "spanish": "Como acabamos de llegar, no conocemos al nuevo profesor.",
-    "english": "As we have only just arrived, we do not know the new teacher."
+    "spanish": "Nosotros no conocemos al nuevo profesor.",
+    "english": "We don't know the new teacher."
   },
   "6055": {
-    "spanish": "Mis amigos conocen a un actor que trabaja en ese teatro.",
-    "english": "My friends know an actor who works at that theatre."
+    "spanish": "Mis amigos conocen a un actor famoso.",
+    "english": "My friends know a famous actor."
   },
   "6056": {
-    "spanish": "¿Conoce usted al director de la residencia?",
-    "english": "Do you know the manager of the care home?"
+    "spanish": "¿Usted conoce al director del hotel?",
+    "english": "Do you know the hotel manager?"
   },
   "6057": {
-    "spanish": "Conozco a Laura desde nuestro primer año de universidad.",
-    "english": "I have known Laura since our first year at university."
+    "spanish": "Yo conozco a Laura desde hace diez años.",
+    "english": "I have known Laura for ten years."
   },
   "6058": {
-    "spanish": "¿Conocéis a alguien que pueda traducir islandés?",
-    "english": "Do you all know anyone who can translate Icelandic?"
+    "spanish": "¿Vosotros conocéis a alguien en esta ciudad?",
+    "english": "Do you all know anyone in this city?"
   },
   "6059": {
-    "spanish": "Aunque sonríe a todos, ella no conoce a nadie en la recepción.",
-    "english": "Although she smiles at everyone, she does not know anyone at the reception."
+    "spanish": "Ella no conoce a nadie en la fiesta.",
+    "english": "She doesn't know anyone at the party."
   },
   "6060": {
-    "spanish": "Después de tantos años, conocemos muy bien a nuestros vecinos.",
-    "english": "After so many years, we know our neighbours very well."
+    "spanish": "Nosotros conocemos muy bien a nuestros vecinos.",
+    "english": "We know our neighbours very well."
   },
   "6061": {
-    "spanish": "Durante la visita quiero conocer a tu novia.",
-    "english": "During the visit, I want to meet your girlfriend."
+    "spanish": "Quiero conocer a tu novia.",
+    "english": "I want to meet your girlfriend."
   },
   "6062": {
-    "spanish": "Me encantaría conocer a tus abuelos y escuchar sus historias.",
-    "english": "I would love to meet your grandparents and hear their stories."
+    "spanish": "Me encantaría conocer a tus abuelos.",
+    "english": "I would love to meet your grandparents."
   },
   "6063": {
-    "spanish": "Mi madre conoce a todos mis compañeros por sus nombres.",
-    "english": "My mother knows all my classmates by name."
+    "spanish": "Mi madre conoce a todos mis compañeros de clase.",
+    "english": "My mother knows all my classmates."
   },
   "6064": {
-    "spanish": "Tú conoces a Pablo mejor que su propio jefe.",
-    "english": "You know Pablo better than his own boss does."
+    "spanish": "Tú conoces a Pablo mejor que nadie.",
+    "english": "You know Pablo better than anyone."
   },
   "6065": {
-    "spanish": "Los alumnos todavía no conocen a la orientadora del centro.",
-    "english": "The pupils do not yet know the school's guidance counsellor."
+    "spanish": "Los alumnos todavía no conocen a la directora.",
+    "english": "The students don't know the head teacher yet."
   },
   "6066": {
-    "spanish": "Admiro sus novelas, pero no conozco personalmente al autor.",
-    "english": "I admire his novels, but I do not know the author personally."
+    "spanish": "Yo no conozco personalmente al autor.",
+    "english": "I don't know the author personally."
   },
   "6067": {
-    "spanish": "Ellos conocen al alcalde porque fueron juntos al colegio.",
-    "english": "They know the mayor because they went to school together."
+    "spanish": "Ellos conocen al alcalde del pueblo.",
+    "english": "They know the town's mayor."
   },
   "6068": {
-    "spanish": "Mi jefe conoce a cada cliente por la voz.",
-    "english": "My boss knows each client by their voice."
+    "spanish": "Mi jefe conoce a todos los clientes por su nombre.",
+    "english": "My boss knows all the clients by name."
   },
   "6069": {
-    "spanish": "Después de veinte años, creo que tú no me conoces de verdad.",
-    "english": "After twenty years, I think you do not truly know me."
+    "spanish": "Creo que tú no me conoces de verdad.",
+    "english": "I think you don't really know me."
   },
   "6070": {
-    "spanish": "En el curso conocemos a una chica de Argentina que toca el bandoneón.",
-    "english": "On the course, we know a girl from Argentina who plays the bandoneon."
+    "spanish": "Nosotros conocemos a una chica de Argentina.",
+    "english": "We know a girl from Argentina."
   },
   "6071": {
     "spanish": "Usted conoce al médico de mi familia, ¿cierto?",
     "english": "You know my family's doctor, don't you?"
   },
   "6072": {
-    "spanish": "La conozco del coro, aunque nunca hemos hablado a solas.",
-    "english": "I know her from the choir, although we have never spoken alone."
+    "spanish": "Yo la conozco del colegio.",
+    "english": "I know her from school."
   },
   "6073": {
     "spanish": "Mis hijos conocen bien a su profesora de música.",
     "english": "My children know their music teacher well."
   },
   "6074": {
-    "spanish": "¿Conocéis al chico que organiza el mercadillo solidario?",
-    "english": "Do you all know the lad who organises the charity market?"
+    "spanish": "¿Vosotros conocéis al chico que vive arriba?",
+    "english": "Do you all know the guy who lives upstairs?"
   },
   "6075": {
-    "spanish": "En su nuevo puesto, Ana quiere conocer a gente de otros departamentos.",
-    "english": "In her new role, Ana wants to meet people from other departments."
+    "spanish": "Ana quiere conocer a gente nueva en el trabajo.",
+    "english": "Ana wants to meet new people at work."
   },
   "6076": {
-    "spanish": "Tras vivir allí seis años, conozco Barcelona calle por calle.",
-    "english": "After living there for six years, I know Barcelona street by street."
+    "spanish": "Yo conozco Barcelona muy bien.",
+    "english": "I know Barcelona very well."
   },
   "6077": {
-    "spanish": "¿Conoces México más allá de sus grandes ciudades?",
-    "english": "Do you know Mexico beyond its large cities?"
+    "spanish": "¿Tú conoces México?",
+    "english": "Have you been to Mexico?"
   },
   "6078": {
-    "spanish": "Mis padres no conocen Sevilla, pero planean visitarla en primavera.",
-    "english": "My parents are not familiar with Seville, but they plan to visit it in spring."
+    "spanish": "Mis padres no conocen Sevilla.",
+    "english": "My parents have never been to Seville."
   },
   "6079": {
-    "spanish": "Cerca del puerto conocemos un restaurante pequeño con pescado fresco.",
-    "english": "Near the harbour, we know a small restaurant that serves fresh fish."
+    "spanish": "Nosotros conocemos un restaurante muy bueno cerca de aquí.",
+    "english": "We know a very good restaurant near here."
   },
   "6080": {
-    "spanish": "Ella conoce todos los museos gratuitos de la ciudad.",
-    "english": "She knows all the free museums in the city."
+    "spanish": "Ella conoce todos los museos de la ciudad.",
+    "english": "She knows all the museums in the city."
   },
   "6081": {
-    "spanish": "¿Conoce usted este barrio lo bastante bien para guiarnos?",
-    "english": "Do you know this neighbourhood well enough to guide us?"
+    "spanish": "¿Usted conoce este barrio?",
+    "english": "Do you know this neighbourhood?"
   },
   "6082": {
-    "spanish": "Algún día quiero conocer Japón en tren.",
-    "english": "One day, I want to explore Japan by train."
+    "spanish": "Quiero conocer Japón algún día.",
+    "english": "I want to visit Japan someday."
   },
   "6083": {
-    "spanish": "Mi abuela conoce cada sendero que rodea su pueblo.",
-    "english": "My grandmother knows every path around her village."
+    "spanish": "Mi abuela conoce cada rincón de su pueblo.",
+    "english": "My grandmother knows every corner of her village."
   },
   "6084": {
-    "spanish": "¿Conocéis la playa de La Concha cuando está vacía al amanecer?",
-    "english": "Do you know La Concha beach when it is empty at dawn?"
+    "spanish": "¿Vosotros conocéis la playa de La Concha?",
+    "english": "Have you all been to La Concha beach?"
   },
   "6085": {
-    "spanish": "No conozco esta parte de la ciudad después del anochecer.",
-    "english": "I am not familiar with this part of the city after dark."
+    "spanish": "Yo no conozco esta parte de la ciudad.",
+    "english": "I don't know this part of the city."
   },
   "6086": {
-    "spanish": "El taxista conoce incluso los callejones más estrechos de Madrid.",
-    "english": "The taxi driver knows even the narrowest alleys in Madrid."
+    "spanish": "El taxista conoce todas las calles de Madrid.",
+    "english": "The taxi driver knows all the streets of Madrid."
   },
   "6087": {
-    "spanish": "Tú conoces un lugar tranquilo para cenar junto al río.",
-    "english": "You know a quiet place to have dinner beside the river."
+    "spanish": "Tú conoces un buen lugar para cenar, ¿no?",
+    "english": "You know a good place to have dinner, don't you?"
   },
   "6088": {
-    "spanish": "Todavía no conocemos el nuevo centro cultural del barrio.",
-    "english": "We are not yet familiar with the neighbourhood's new cultural centre."
+    "spanish": "Nosotros todavía no conocemos el nuevo centro comercial.",
+    "english": "We haven't been to the new shopping centre yet."
   },
   "6089": {
-    "spanish": "Por su trabajo, mis amigos conocen muchos puertos del norte de Europa.",
-    "english": "Through their work, my friends know many ports in northern Europe."
+    "spanish": "Mis amigos conocen muchos países de Europa.",
+    "english": "My friends have been to many countries in Europe."
   },
   "6090": {
-    "spanish": "Antes de volver a casa me gustaría conocer Buenos Aires a pie.",
-    "english": "Before returning home, I would like to explore Buenos Aires on foot."
+    "spanish": "Me gustaría conocer Buenos Aires.",
+    "english": "I would like to visit Buenos Aires."
   },
   "6091": {
-    "spanish": "¿Conoces un hotel accesible cerca de la estación?",
-    "english": "Do you know an accessible hotel near the station?"
+    "spanish": "¿Tú conoces un hotel barato en el centro?",
+    "english": "Do you know a cheap hotel in the centre?"
   },
   "6092": {
-    "spanish": "Los guías conocen la catedral desde la cripta hasta el campanario.",
-    "english": "The guides know the cathedral from the crypt to the bell tower."
+    "spanish": "Los guías conocen la catedral como la palma de su mano.",
+    "english": "The guides know the cathedral like the back of their hand."
   },
   "6093": {
-    "spanish": "Conozco una tienda del casco antiguo que vende pan de centeno.",
-    "english": "I know a shop in the old town that sells rye bread."
+    "spanish": "Yo conozco una tienda donde venden pan casero.",
+    "english": "I know a shop where they sell homemade bread."
   },
   "6094": {
-    "spanish": "Usted no conoce el norte de España en invierno, ¿verdad?",
-    "english": "You are not familiar with northern Spain in winter, are you?"
+    "spanish": "Usted no conoce el norte de España, ¿verdad?",
+    "english": "You haven't been to the north of Spain, have you?"
   },
   "6095": {
-    "spanish": "Mi hermano conoce bien las rutas de alta montaña de Asturias.",
-    "english": "My brother knows the high-mountain routes of Asturias well."
+    "spanish": "Mi hermano conoce bien las montañas de Asturias.",
+    "english": "My brother knows the mountains of Asturias well."
   },
   "6096": {
-    "spanish": "Conozco este libro por una edición anotada que heredé de mi tía.",
-    "english": "I know this book through an annotated edition I inherited from my aunt."
+    "spanish": "Yo conozco este libro; lo leí el año pasado.",
+    "english": "I know this book; I read it last year."
   },
   "6097": {
-    "spanish": "¿Conoces la música que Rosalía compuso para esa película?",
-    "english": "Are you familiar with the music Rosalía composed for that film?"
+    "spanish": "¿Tú conoces la música de Rosalía?",
+    "english": "Are you familiar with Rosalía's music?"
   },
   "6098": {
-    "spanish": "Gracias a nuestros vecinos, conocemos bien la cocina peruana.",
-    "english": "Thanks to our neighbours, we are familiar with Peruvian cuisine."
+    "spanish": "Nosotros conocemos bien la cocina peruana.",
+    "english": "We are familiar with Peruvian cuisine."
   },
   "6099": {
-    "spanish": "Mi profesor conoce la obra de Cervantes en sus primeras ediciones.",
-    "english": "My teacher knows Cervantes's work through its early editions."
+    "spanish": "Mi profesor conoce muy bien la obra de Cervantes.",
+    "english": "My teacher knows Cervantes's work very well."
   },
   "6100": {
-    "spanish": "¿Conoce usted este programa de radio sobre ciencia?",
-    "english": "Are you familiar with this radio programme about science?"
+    "spanish": "¿Usted conoce este programa de televisión?",
+    "english": "Are you familiar with this TV show?"
   },
   "6101": {
-    "spanish": "Ellos no conocen esa película muda de los años veinte.",
-    "english": "They are not familiar with that silent film from the 1920s."
+    "spanish": "Ellos no conocen esa película.",
+    "english": "They aren't familiar with that film."
   },
   "6102": {
-    "spanish": "Ella conoce el mercado del arte contemporáneo desde dentro.",
-    "english": "She knows the contemporary art market from the inside."
+    "spanish": "Ella conoce el mercado del arte contemporáneo.",
+    "english": "She knows the contemporary art market."
   },
   "6103": {
-    "spanish": "No conozco esta marca de café ni su método de tueste.",
-    "english": "I am not familiar with this coffee brand or its roasting method."
+    "spanish": "Yo no conozco esta marca de café.",
+    "english": "I'm not familiar with this coffee brand."
   },
   "6104": {
-    "spanish": "¿Conocéis el juego del mus con todas sus señas?",
-    "english": "Are you all familiar with the card game mus and all its signals?"
+    "spanish": "¿Vosotros conocéis el juego del mus?",
+    "english": "Are you all familiar with the card game mus?"
   },
   "6105": {
-    "spanish": "Mi hermano conoce todos los grabados de Goya expuestos en esa sala.",
-    "english": "My brother knows all the Goya prints displayed in that room."
+    "spanish": "Mi hermano conoce todos los cuadros de Goya del Prado.",
+    "english": "My brother knows all of Goya's paintings in the Prado."
   },
   "6106": {
-    "spanish": "Por tu trabajo conoces bien este tipo de problemas técnicos.",
-    "english": "Through your work, you are familiar with this kind of technical problem."
+    "spanish": "Tú conoces bien este tipo de problemas.",
+    "english": "You are familiar with this kind of problem."
   },
   "6107": {
-    "spanish": "El mecánico conoce este modelo de coche hasta el último tornillo.",
-    "english": "The mechanic knows this car model down to the last screw."
+    "spanish": "El mecánico conoce este modelo de coche.",
+    "english": "The mechanic knows this car model."
   },
   "6108": {
-    "spanish": "Nosotros no conocemos la obra temprana de ese pintor.",
-    "english": "We are not familiar with that painter's early work."
+    "spanish": "Nosotros no conocemos la obra de ese pintor.",
+    "english": "We aren't familiar with that painter's work."
   },
   "6109": {
-    "spanish": "¿Conoces alguna aplicación que funcione sin conexión?",
-    "english": "Do you know any app that works offline?"
+    "spanish": "¿Tú conoces alguna aplicación para aprender idiomas?",
+    "english": "Do you know any app for learning languages?"
   },
   "6110": {
-    "spanish": "Los médicos conocen bien los efectos secundarios de este tratamiento.",
-    "english": "The doctors are well acquainted with the side effects of this treatment."
+    "spanish": "Los médicos conocen bien los efectos de este medicamento.",
+    "english": "Doctors are well aware of the effects of this medicine."
   },
   "6111": {
-    "spanish": "Conozco las novelas de Isabel Allende, pero no sus ensayos.",
-    "english": "I know Isabel Allende's novels, but not her essays."
+    "spanish": "Yo conozco las novelas de Isabel Allende.",
+    "english": "I know Isabel Allende's novels."
   },
   "6112": {
-    "spanish": "Mi abuelo conoce todos los vinos elaborados en este valle.",
-    "english": "My grandfather knows all the wines produced in this valley."
+    "spanish": "Mi abuelo conoce todos los tipos de vino de la región.",
+    "english": "My grandfather knows all the kinds of wine in the region."
   },
   "6113": {
-    "spanish": "¿Conoce usted la ceremonia tradicional del té japonés?",
-    "english": "Are you familiar with the traditional Japanese tea ceremony?"
+    "spanish": "¿Usted conoce la cultura japonesa?",
+    "english": "Are you familiar with Japanese culture?"
   },
   "6114": {
-    "spanish": "Ella conoce bien este estilo arquitectónico y su historia.",
-    "english": "She knows this architectural style and its history well."
+    "spanish": "Ella conoce este estilo de arquitectura.",
+    "english": "She is familiar with this style of architecture."
   },
   "6115": {
-    "spanish": "Mis alumnos ya conocen el subjuntivo, aunque todavía cometen errores al usarlo.",
-    "english": "My pupils are already familiar with the subjunctive, although they still make mistakes when using it."
+    "spanish": "Mis alumnos ya conocen el subjuntivo, pero no lo dominan.",
+    "english": "My students are already familiar with the subjunctive, but they haven't mastered it."
   },
   "6116": {
-    "spanish": "Ayer conocí a tu hermana mientras esperábamos el autobús.",
-    "english": "Yesterday I met your sister while we were waiting for the bus."
+    "spanish": "Ayer conocí a tu hermana en la fiesta.",
+    "english": "Yesterday I met your sister at the party."
   },
   "6117": {
-    "spanish": "Mis padres se conocieron durante una campaña de reforestación.",
-    "english": "My parents met during a reforestation campaign."
+    "spanish": "Mis padres se conocieron en la universidad.",
+    "english": "My parents met at university."
   },
   "6118": {
     "spanish": "¿Dónde conociste tú a tu mejor amigo?",
     "english": "Where did you meet your best friend?"
   },
   "6119": {
-    "spanish": "En aquel viaje conocimos Lisboa recorriendo sus barrios a pie.",
-    "english": "On that trip, we discovered Lisbon by exploring its neighbourhoods on foot."
+    "spanish": "El verano pasado conocimos Lisboa por primera vez.",
+    "english": "Last summer we visited Lisbon for the first time."
   },
   "6120": {
-    "spanish": "Ana conoció a su novio en un taller de cerámica.",
-    "english": "Ana met her boyfriend at a pottery workshop."
+    "spanish": "Ana conoció a su novio en un viaje a Italia.",
+    "english": "Ana met her boyfriend on a trip to Italy."
   },
   "6121": {
-    "spanish": "Los niños conocieron al nuevo maestro durante la excursión del lunes.",
-    "english": "The children met the new teacher during Monday's school trip."
+    "spanish": "Los niños conocieron al nuevo maestro el lunes.",
+    "english": "The children met the new teacher on Monday."
   },
   "6122": {
-    "spanish": "Usted conoció al presidente en la cumbre de 2019, ¿verdad?",
-    "english": "You met the president at the 2019 summit, didn't you?"
+    "spanish": "Usted conoció al presidente en 2019, ¿verdad?",
+    "english": "You met the president in 2019, didn't you?"
   },
   "6123": {
-    "spanish": "Cuando recorrimos Perú, conocimos Machu Picchu bajo una lluvia fina.",
-    "english": "When we travelled around Peru, we encountered Machu Picchu for the first time in light rain."
+    "spanish": "Cuando fuimos a Perú, conocimos Machu Picchu.",
+    "english": "When we went to Peru, we saw Machu Picchu."
   },
   "6124": {
-    "spanish": "Ayer supe que te casas por una nota de tu madre.",
-    "english": "Yesterday I found out from a note by your mother that you are getting married."
+    "spanish": "Ayer supe que te casas.",
+    "english": "Yesterday I found out you're getting married."
   },
   "6125": {
-    "spanish": "¿Cuándo supiste tú la noticia del traslado?",
-    "english": "When did you find out about the move?"
+    "spanish": "¿Cuándo supiste tú la noticia?",
+    "english": "When did you find out the news?"
   },
   "6126": {
-    "spanish": "Ella supo la verdad al comparar las dos facturas.",
-    "english": "She found out the truth when she compared the two invoices."
+    "spanish": "Ella supo la verdad al leer la carta.",
+    "english": "She found out the truth when she read the letter."
   },
   "6127": {
-    "spanish": "Al terminar el recuento, supimos el resultado definitivo.",
-    "english": "When the count finished, we found out the final result."
+    "spanish": "Nosotros supimos el resultado esta mañana.",
+    "english": "We found out the result this morning."
   },
   "6128": {
-    "spanish": "Al revisar el registro, supieron quién había abierto la puerta.",
-    "english": "After checking the log, they found out who had opened the door."
+    "spanish": "Mis padres supieron lo del accidente por la radio.",
+    "english": "My parents found out about the accident on the radio."
   },
   "6129": {
-    "spanish": "Al recibir el mensaje, supe que la reunión se había cancelado.",
-    "english": "When I received the message, I found out that the meeting had been cancelled."
+    "spanish": "Por fin supe dónde vivía mi amigo de la infancia.",
+    "english": "I finally found out where my childhood friend lived."
   },
   "6130": {
-    "spanish": "Al ver la huella, el detective supo quién había entrado por la ventana.",
-    "english": "On seeing the footprint, the detective found out who had come through the window."
+    "spanish": "En ese momento, el detective supo quién era el ladrón.",
+    "english": "At that moment, the detective found out who the thief was."
   },
   "6131": {
-    "spanish": "¿Cómo supisteis vosotros que yo estaba enfermo?",
-    "english": "How did you all find out that I was ill?"
+    "spanish": "¿Cómo supisteis vosotros que estaba enfermo?",
+    "english": "How did you all find out I was sick?"
   },
   "6132": {
-    "spanish": "Pese a investigar durante años, ellos nunca supieron por qué se hundió el barco.",
-    "english": "Despite investigating for years, they never found out why the ship sank."
+    "spanish": "Ellos nunca supieron por qué se cerró la tienda.",
+    "english": "They never found out why the shop closed."
   },
   "6133": {
-    "spanish": "De niño, yo ya sabía reparar pinchazos de bicicleta.",
-    "english": "As a child, I already knew how to repair bicycle punctures."
+    "spanish": "De niño, yo ya sabía nadar.",
+    "english": "As a child, I already knew how to swim."
   },
   "6134": {
-    "spanish": "En aquel momento no sabía que tenías un hermano gemelo.",
-    "english": "At that time, I did not know that you had a twin brother."
+    "spanish": "Yo no sabía que tenías un hermano.",
+    "english": "I didn't know you had a brother."
   },
   "6135": {
-    "spanish": "Mi abuela sabía tocar canciones enteras de oído.",
-    "english": "My grandmother knew how to play entire songs by ear."
+    "spanish": "Mi abuela sabía tocar la guitarra.",
+    "english": "My grandmother knew how to play the guitar."
   },
   "6136": {
-    "spanish": "¿Sabías tú que el examen incluía una prueba oral?",
-    "english": "Did you know that the examination included an oral test?"
+    "spanish": "¿Tú sabías que el examen era hoy?",
+    "english": "Did you know the exam was today?"
   },
   "6137": {
-    "spanish": "Sin cobertura, no sabíamos dónde estaba el hotel.",
-    "english": "Without a signal, we did not know where the hotel was."
+    "spanish": "Nosotros no sabíamos dónde estaba el hotel.",
+    "english": "We didn't know where the hotel was."
   },
   "6138": {
-    "spanish": "Al comenzar la clase, todos sabían la respuesta menos yo.",
-    "english": "When the lesson began, everyone knew the answer except me."
+    "spanish": "Todos sabían la respuesta menos yo.",
+    "english": "Everyone knew the answer except me."
   },
   "6139": {
-    "spanish": "Ella sabía que iba a llover porque había observado las nubes.",
-    "english": "She knew it was going to rain because she had watched the clouds."
+    "spanish": "Ella sabía que iba a llover, por eso llevó paraguas.",
+    "english": "She knew it was going to rain, so she took an umbrella."
   },
   "6140": {
-    "spanish": "Usted ya sabía lo que pasaba antes de leer el informe, ¿no?",
-    "english": "You already knew what was happening before reading the report, didn't you?"
+    "spanish": "Usted ya sabía lo que pasaba, ¿no?",
+    "english": "You already knew what was going on, didn't you?"
   },
   "6141": {
-    "spanish": "En aquella época conocía a todos los artesanos del mercado.",
-    "english": "At that time, I knew all the craftspeople at the market."
+    "spanish": "En aquella época, yo conocía a todos los vecinos.",
+    "english": "Back then, I knew all the neighbours."
   },
   "6142": {
-    "spanish": "Mi padre conocía muy bien la ciudad porque repartía cartas allí.",
-    "english": "My father knew the city very well because he delivered post there."
+    "spanish": "Mi padre conocía muy bien la ciudad porque trabajó allí.",
+    "english": "My father knew the city very well because he worked there."
   },
   "6143": {
-    "spanish": "¿Ya conocías tú a Marcos cuando empezasteis el proyecto?",
-    "english": "Did you already know Marcos when you started the project?"
+    "spanish": "¿Ya conocías tú a Marcos antes de la boda?",
+    "english": "Did you already know Marcos before the wedding?"
   },
   "6144": {
-    "spanish": "Antes de la reforma no conocíamos ese restaurante del patio interior.",
-    "english": "Before the renovation, we were not familiar with that restaurant in the inner courtyard."
+    "spanish": "Nosotros no conocíamos ese restaurante hasta ayer.",
+    "english": "We didn't know that restaurant until yesterday."
   },
   "6145": {
-    "spanish": "Los estudiantes no conocían al autor del libro antes de la conferencia.",
-    "english": "The students did not know the author of the book before the lecture."
+    "spanish": "Los estudiantes no conocían al autor del libro.",
+    "english": "The students didn't know the author of the book."
   },
   "6146": {
-    "spanish": "Ella conocía Roma tan bien que nunca llevaba mapa.",
-    "english": "She knew Rome so well that she never carried a map."
+    "spanish": "Ella conocía Roma como la palma de su mano.",
+    "english": "She knew Rome like the back of her hand."
   },
   "6147": {
-    "spanish": "Cuando era joven, Luis conocía a muchos músicos de jazz.",
-    "english": "When he was young, Luis knew many jazz musicians."
+    "spanish": "Cuando era joven, Luis conocía a muchos músicos.",
+    "english": "When he was young, Luis knew a lot of musicians."
   },
   "6148": {
-    "spanish": "Ya la conocía de vista cuando coincidimos en el ascensor.",
-    "english": "I already knew her by sight when we happened to meet in the lift."
+    "spanish": "Yo ya la conocía de vista, pero ayer hablé con ella por primera vez.",
+    "english": "I already knew her by sight, but yesterday I talked to her for the first time."
   },
   "6149": {
-    "spanish": "Lo supe anoche al escuchar el mensaje de su hermana.",
-    "english": "I found out last night when I listened to his sister's message."
+    "spanish": "Lo supe anoche, cuando me llamó su hermana.",
+    "english": "I found out last night, when his sister called me."
   },
   "6150": {
-    "spanish": "Nos conocimos en 2015 mientras catalogábamos el archivo municipal.",
-    "english": "We met in 2015 while cataloguing the municipal archive."
+    "spanish": "Nos conocimos en 2015 y desde entonces somos amigos.",
+    "english": "We met in 2015 and we've been friends ever since."
   }
 };
 

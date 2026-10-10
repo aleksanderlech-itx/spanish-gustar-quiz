@@ -6,16 +6,4 @@ export const CURATED_FLAGGED_QUIZ_OVERRIDES = {
     license: "CC BY 2.0 France",
     attribution: "Adapted from CC-BY 2.0 (France) Attribution: tatoeba.org #4013314 (CK) & #5157378 (don_ramon)",
   },
-  6128: {
-    spanish: "Al revisar el registro, supieron quién había abierto la puerta.",
-    english: "After checking the log, they found out who had opened the door.",
-  },
-  6129: {
-    spanish: "Al recibir el mensaje, supe que la reunión se había cancelado.",
-    english: "When I received the message, I found out that the meeting had been cancelled.",
-  },
-  6013: { spanish: "¿Sabes quién dejó este paquete en la entrada?", english: "Do you know who left this parcel at the entrance?" },
-  6044: { spanish: "Gracias al curso, sé prestar primeros auxilios básicos.", english: "Thanks to the course, I know how to give basic first aid." },
-  6114: { spanish: "Ella conoce bien este estilo arquitectónico y su historia.", english: "She knows this architectural style and its history well." },
-  6119: { spanish: "En aquel viaje conocimos Lisboa recorriendo sus barrios a pie.", english: "On that trip, we discovered Lisbon by exploring its neighbourhoods on foot." },
 };
