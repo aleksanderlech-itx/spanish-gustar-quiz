@@ -60,3 +60,12 @@ test("a completion saved before every sentence was answered is unearned, whateve
   // Review rounds don't count as answering the set.
   assert.equal(isCompletionUnearned(questions, [round("2026-10-01T08:00:00.000Z", [1, 2]), round("2026-10-01T09:00:00.000Z", [3], "review")], completedAt), true);
 });
+
+test("sentenceParts joins the blank without stray spaces and capitalizes an opening answer", async () => {
+  const { sentenceParts } = await import("../app/quiz-logic.ts");
+  assert.deepEqual(sentenceParts({ before: "¿", answer: "sabes", after: "qué hora es?" }), { before: "¿", answer: "Sabes", after: " qué hora es?" });
+  assert.deepEqual(sentenceParts({ before: "", answer: "me gustan", after: "los conciertos de rock." }), { before: "", answer: "Me gustan", after: " los conciertos de rock." });
+  assert.deepEqual(sentenceParts({ before: "Mientras nosotros", answer: "hablábamos", after: ", él se calló." }), { before: "Mientras nosotros ", answer: "hablábamos", after: ", él se calló." });
+  assert.deepEqual(sentenceParts({ before: "¿El café? Yo", answer: "lo", after: "tomo sin azúcar." }), { before: "¿El café? Yo ", answer: "lo", after: " tomo sin azúcar." });
+  assert.deepEqual(sentenceParts({ before: "Hoy hace frío.", answer: "me duele", after: "la cabeza." }), { before: "Hoy hace frío. ", answer: "Me duele", after: " la cabeza." });
+});

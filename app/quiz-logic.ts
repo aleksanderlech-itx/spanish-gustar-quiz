@@ -83,3 +83,17 @@ export const restartSelectedHistory = (history: QuizResult[], selectedIds: Set<n
 export const ruleForTense = () => {
   return { title: "The verb agrees with the thing, not the person.", body: "One thing, a clause, or an activity uses the singular. Several things use the plural, even when the subject follows the verb.", singular: "Me gusta viajar.", plural: "Me gustan los viajes." };
 };
+
+/** The sentence around the blank, ready to render: spaces only where the text
+ * needs them (none after ¿ or before a comma) and the answer capitalized when
+ * the blank opens a sentence. */
+export const sentenceParts = (question: { before: string; answer: string; after: string }) => {
+  const before = question.before.trim();
+  const after = question.after.trim();
+  const opensSentence = !before || /[.?!¿¡]$/.test(before);
+  return {
+    before: before && !/[¿¡«(]$/.test(before) ? `${before} ` : before,
+    answer: opensSentence ? question.answer.charAt(0).toLocaleUpperCase("es") + question.answer.slice(1) : question.answer,
+    after: after && !/^[,.;:?!»)]/.test(after) ? ` ${after}` : after,
+  };
+};
