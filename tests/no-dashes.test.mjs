@@ -12,7 +12,7 @@ test("no tracked text file contains an em or en dash", () => {
   const offenders = [];
   for (const file of files) {
     readFileSync(file, "utf8").split("\n").forEach((line, index) => {
-      if (/[–—]/.test(line)) offenders.push(`${file}:${index + 1}`);
+      if (/[\u2013\u2014]/.test(line)) offenders.push(`${file}:${index + 1}`);
     });
   }
   assert.deepEqual(offenders, [], "replace with a colon, comma, hyphen or new sentence");
