@@ -8,7 +8,7 @@ test("verb chart never fabricates a six-pronoun paradigm where the data doesn't 
   const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
   // Preterite/imperfect verbs get the real paradigm from PRETERITE_IMPERFECT_CONJUGATIONS.
   assert.match(source, /const conjugations = PRETERITE_IMPERFECT_CONJUGATIONS\[infinitive\] \?\? \[\];/);
-  // Gustar-pattern verbs are impersonal — a simple singular/plural block, not a fake "yo, tú..." table.
+  // Gustar-pattern verbs are impersonal: a simple singular/plural block, not a fake "yo, tú..." table.
   assert.match(source, /one thing \/ to do something/);
   // Ser/estar compares two different verbs, not one conjugated across pronouns.
   assert.match(source, /pronoun: "ser", form: ser/);

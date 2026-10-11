@@ -130,7 +130,7 @@ type DrawerRow = "history" | "recap" | "notebook" | "backup" | "settings";
 type FinishedActivity = { quizId: QuizId; title: string; completedAt: string; repeatDue: boolean; reinstated: boolean };
 
 /** Grammar quizzes the user has fully completed, whether or not they're currently
- * shown back on the main screen. Only finished topics are settings' concern —
+ * shown back on the main screen. Only finished topics are settings' concern:
  * an unfinished one is just on the board where it already belongs. */
 const readFinishedActivities = (): FinishedActivity[] => {
   const completions = readAllCompletions();

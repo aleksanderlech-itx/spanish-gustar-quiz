@@ -15,9 +15,9 @@ export type BoardTileDaily = { daily?: { done: boolean } };
 export type OrderedBoardTile<T extends BoardTileProgress> = T & { pinned: boolean };
 
 /**
- * Board ordering: the in-progress topic (if any) pins full-width first —
+ * Board ordering: the in-progress topic (if any) pins full-width first;
  * even when its daily round is already done. The rest move topics whose
- * daily round is done to the end, then sort by descending due count —
+ * daily round is done to the end, then sort by descending due count:
  * zero-due topics fall out last as a consequence, not a separate rule.
  * Ties break on id so the order stays stable within a day.
  */

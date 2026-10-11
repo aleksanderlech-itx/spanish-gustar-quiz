@@ -390,7 +390,7 @@ summary:focus-visible {
 /* Every current .app-shell screen (results, topic detail, verb chart, the
    round's "set completed" state) is a single reading column, not the old
    two-column quiz-with-sidebar-stats layout the 820px rule below used to
-   serve — that page no longer exists. Cap the column at a comfortable
+   serve: that page no longer exists. Cap the column at a comfortable
    reading width on wide viewports instead of stretching cards edge to edge. */
 @media (min-width: 820px) {
   .app-shell {
@@ -596,7 +596,7 @@ p {
 }
 
 /* Dark mode: --muted alone reads a touch flat on uppercase labels at this
-   size — a brighter tone and wider tracking keep them legible without
+   size: a brighter tone and wider tracking keep them legible without
    promoting them to body-text contrast. See design handoff "Dark mode:
    muted text". */
 :root[data-theme="dark"] .eyebrow {

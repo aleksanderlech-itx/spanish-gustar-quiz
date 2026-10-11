@@ -263,7 +263,7 @@ body {
   gap: 10px;
 }
 
-/* 44px header icon squares (theme toggle, listen button) — see design
+/* 44px header icon squares (theme toggle, listen button): see design
    handoff README "Board home" header row. */
 .mode-switch,
 .listen-button {
@@ -553,7 +553,7 @@ body {
 }
 
 /* Card content is revealed by swapping which face is shown (aria-hidden), not by a
- * 3D flip — the design has no flip animation, and the card is tall enough that a
+ * 3D flip: the design has no flip animation, and the card is tall enough that a
  * centered, always-both-rendered flip stack put the speak button (which stops
  * propagation) right under a tap aimed at the card's visual center. */
 .flashcard {
@@ -604,14 +604,14 @@ body {
   border-color: var(--primary);
 }
 
-/* Board home — see design handoff README "Board home". */
+/* Board home: see design handoff README "Board home". */
 
 .board-home .library-header {
   align-items: center;
   margin-bottom: 18px;
 }
 
-/* Board home header row: hamburger left, title centered, theme toggle right —
+/* Board home header row: hamburger left, title centered, theme toggle right;
    see design handoff README "Board home" header row. */
 .board-header {
   display: flex;
@@ -732,7 +732,7 @@ body {
 }
 
 /* Nav rail and rich page head only render usefully once the sidebar split
-   kicks in below — kept out of the flow on mobile. */
+   kicks in below: kept out of the flow on mobile. */
 .board-nav,
 .board-page-head,
 .board-nav-theme {
@@ -1039,14 +1039,14 @@ body {
   background: var(--primary);
 }
 
-/* Board home, desktop — the mobile board (hamburger + full-bleed streak strip +
+/* Board home, desktop: the mobile board (hamburger + full-bleed streak strip +
  * 2-up tile grid) just stretched wider looked like a phone screen blown up: an
  * unused hamburger, two oversized tiles with mostly empty card, a streak panel
  * spanning edge to edge for four numbers. At this width there's room for the
  * header and streak panel to sit as a persistent left rail beside the board
  * instead, and for the in-progress quiz to read as its own full-width row
  * rather than one half of a stretched two-up grid. No DOM change needed for
- * the rail split — .board-home becomes the grid and the header/streak-panel
+ * the rail split: .board-home becomes the grid and the header/streak-panel
  * are simply assigned to its first column, the same technique .app-shell
  * already uses for its sidebar below. */
 @media (min-width: 900px) {
@@ -1057,7 +1057,7 @@ body {
    * e.g. the pinned tile shared a row with the taller nav list and the
    * row stretched to the nav's height, leaving visible dead space under
    * the tile. Wrapping each column's children in one element sidesteps
-   * row-matching entirely — each wrapper is a single grid item (row 1),
+   * row-matching entirely: each wrapper is a single grid item (row 1),
    * stacking its own children with plain flex/block flow instead. */
   .board-home {
     width: min(100% - 48px, 1120px);
@@ -1068,7 +1068,7 @@ body {
   }
 
   /* A plain unstyled column of links read as stray text next to the
-     bordered/shadowed cards beside it — the design frames it as its own
+     bordered/shadowed cards beside it: the design frames it as its own
      panel, matching every other surface in this design system. */
   .board-home .board-rail {
     display: flex;
@@ -1192,7 +1192,7 @@ body {
 
   /* The corner icon and the Continue button both read as "this one's
      active" and land in the same top-right corner once the tile is a row
-     instead of a stacked card — the button already says it, so the badge
+     instead of a stacked card: the button already says it, so the badge
      is dropped rather than repositioned around it. */
   .board-home .board-tile-pinned .board-icon-pinned {
     display: none;
@@ -1293,7 +1293,7 @@ body {
   .topic-filter-fields { grid-template-columns: 1fr; }
 }
 
-/* Topic detail — see design handoff README "Topic detail". */
+/* Topic detail: see design handoff README "Topic detail". */
 
 .topic-detail-header {
   display: flex;
@@ -1533,7 +1533,7 @@ body {
   font-weight: 600;
 }
 
-/* Round screen, Choose mode — see design handoff README "Round — Choose mode". */
+/* Round screen, Choose mode: see design handoff README "Round: Choose mode". */
 
 @keyframes fadein {
   from { opacity: 0; transform: translateY(6px); }
@@ -1828,7 +1828,7 @@ body {
   .round-question-card { padding: 16px; }
 }
 
-/* Round screen, Type mode — see design handoff README "Round — Type mode". */
+/* Round screen, Type mode: see design handoff README "Round: Type mode". */
 
 .round-stuck {
   display: flex;
@@ -1912,7 +1912,7 @@ body {
 .results-accuracy { margin: 12px 0 0; color: var(--muted); font-size: 16px; }
 .flashcard-footer button:disabled { opacity: .5; cursor: not-allowed; }
 
-/* Results, mistake notebook, support prompt — see design handoff README "Results". */
+/* Results, mistake notebook, support prompt: see design handoff README "Results". */
 
 .results-screen {
   display: flex;
@@ -2062,7 +2062,7 @@ body {
   min-height: 48px;
 }
 
-/* Flashcards restyle — see design handoff README "Flashcards". */
+/* Flashcards restyle: see design handoff README "Flashcards". */
 
 .flashcard-top-header {
   display: flex;
@@ -2138,7 +2138,7 @@ body {
   min-height: 320px;
 }
 
-/* The word sits inside .flashcard-term-row, one level deeper than .flashcard-face —
+/* The word sits inside .flashcard-term-row, one level deeper than .flashcard-face:
  * a direct-child selector targeting .flashcard-face's own strong child never matched
  * anything, so this was rendering as an unstyled <strong> (default size/weight/color)
  * the whole time. */
@@ -2253,7 +2253,7 @@ body {
   box-shadow: none;
 }
 
-/* Verb conjugation chart — see design handoff README "Verb conjugation chart". */
+/* Verb conjugation chart: see design handoff README "Verb conjugation chart". */
 
 .verb-chart-header {
   display: flex;
@@ -2386,7 +2386,7 @@ body {
   background: var(--paper);
 }
 
-/* Drawer — see design handoff README "Drawer". */
+/* Drawer: see design handoff README "Drawer". */
 
 .library-header-lead {
   display: flex;
@@ -2674,7 +2674,7 @@ body {
 }
 
 
-/* Help modal (issue #30) — help icon in activity headers, opens a native <dialog>. */
+/* Help modal (issue #30): help icon in activity headers, opens a native <dialog>. */
 
 .help-button {
   display: inline-grid;

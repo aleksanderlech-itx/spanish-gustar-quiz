@@ -17,7 +17,7 @@ const CLARITY_PROJECT_ID = "yc2q3b2d9e";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
   title: {
-    default: "Spanish Quizzes — Gustar, Ser vs Estar and Past-Tense Practice",
+    default: "Spanish Quizzes - Gustar, Ser vs Estar and Past-Tense Practice",
     template: "%s | Spanish Quizzes",
   },
   description: SITE_CONFIG.description,
@@ -65,7 +65,7 @@ export const viewport: Viewport = {
 // right attribute up front. localStorage is still the primary source (it's
 // read first below) but on a browser that blocks or clears it, this script
 // would otherwise have no way to recover the choice and would fall back to
-// "light" on every reload — this keeps whatever the server already rendered
+// "light" on every reload: this keeps whatever the server already rendered
 // from the cookie instead of clobbering it.
 const THEME_PRE_PAINT_SCRIPT = `(function () {
   var html = document.documentElement;

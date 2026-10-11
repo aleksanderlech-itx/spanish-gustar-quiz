@@ -83,7 +83,7 @@ const boardItem = (entry: ActivityRegistryEntry, progress: QuizProgress, daily: 
 /**
  * Flashcards has no round history to read back (each card writes only its current
  * Leitner box, not a per-day log), so the daily gauge is a proxy: cards reviewed today
- * — right or wrong, the Leitner box mechanics stay untouched — against the fixed
+ * (right or wrong, the Leitner box mechanics stay untouched) against the fixed
  * session size, capped at 100%.
  */
 const readFlashcardProgress = (): { progress: Omit<BoardTileProgress, "id">; daily: DailyRoundProgress } => {
@@ -142,8 +142,8 @@ const dueBarFill = (percent: number) => (percent >= 90 ? "var(--sage)" : "var(--
 /**
  * Rebuilds the full activity/day ledger from each quiz's and the flashcard deck's own
  * stored history, not just today's. The streak ledger is only ever written at the moment
- * a round finishes (round.tsx/flashcards.tsx); if that write ever missed a day — an old
- * app version, a closed tab, this one storage key cleared — the streak silently
+ * a round finishes (round.tsx/flashcards.tsx); if that write ever missed a day (an old
+ * app version, a closed tab, this one storage key cleared), the streak silently
  * under-reports forever after, even though the quiz/flashcard history it's derived from
  * is still there. Re-deriving every day on each board load makes the ledger self-healing.
  */
@@ -163,7 +163,7 @@ const backfillEntries = (): Array<{ activity: ActivityId; day: string }> => {
   });
 
   // Each Leitner card record only keeps its own most recent `updatedAt`, so it can't
-  // tell us every day flashcards were reviewed — only readFlashcardDaysReviewed can.
+  // tell us every day flashcards were reviewed: only readFlashcardDaysReviewed can.
   readFlashcardDaysReviewed().forEach((day) => entries.push({ activity: "flashcards", day }));
 
   return entries;

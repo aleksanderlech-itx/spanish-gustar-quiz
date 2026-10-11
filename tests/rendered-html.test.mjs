@@ -102,7 +102,7 @@ test("dark runtime tokens match the approved palette", async () => {
 test("the flashcard word's font/color/size rule actually matches the DOM (the word sits inside .flashcard-term-row, not a direct child of .flashcard-face)", async () => {
   const flashcards = await readFile(new URL("../app/flashcards.tsx", import.meta.url), "utf8");
   // A `.flashcard-face > strong` child selector silently never matched, since the
-  // word is nested one level deeper — the whole time, it rendered with the
+  // word is nested one level deeper: the whole time, it rendered with the
   // browser's default <strong> styling (16px, no color, no display face) instead.
   assert.doesNotMatch(await readFile(new URL("../app/quiz-layout-fix.css", import.meta.url), "utf8"), /\.flashcard-face > strong/);
   assert.match(flashcards, /className="flashcard-term-row">\s*<strong/);
@@ -114,7 +114,7 @@ test("page.tsx is a thin shell dispatching to topic detail, round, and flashcard
   assert.match(page, /if \(params\.get\("play"\) === "1"\) return <Round quizId=\{quizId\} \/>;/);
   assert.match(page, /return <TopicDetail quizId=\{quizId\} \/>;/);
   // Reads via the router-connected useSearchParams, not a one-shot window.location.search
-  // parse — the latter left page.tsx (and QuizSelector) stuck on stale screens after any
+  // parse: the latter left page.tsx (and QuizSelector) stuck on stale screens after any
   // client-side Link navigation (back button, verb chart, "back to board" all broke).
   assert.match(page, /import \{ useSearchParams \} from "next\/navigation";/);
   assert.doesNotMatch(page, /window\.location\.search/);
@@ -129,7 +129,7 @@ test("QuizSelector re-derives its open state from the router on every render, no
   assert.match(quizSelector, /const open = pathname === "\/" && !params\.has\("quiz"\) && params\.get\("play"\) !== "1";/);
   assert.doesNotMatch(quizSelector, /window\.location\.search/);
   // The board's progress numbers re-read from storage whenever it becomes visible
-  // again (dependent on `open`), not only once at first mount — and also when the
+  // again (dependent on `open`), not only once at first mount, and also when the
   // drawer opens or closes, so a Settings change (e.g. "show on main screen") shows
   // up without a page reload.
   assert.match(quizSelector, /\}, \[open, drawerOpen\]\);/);
@@ -151,7 +151,7 @@ test("round screen commits one answer at a time, recolors options, and gates Nex
   // Footer Next/Check is disabled until the current question is answered (Choose) or typed (Type).
   assert.match(round, /const primaryDisabled = mode === "type" \? \(!isSubmitted && !typed\.trim\(\)\) : !isSubmitted;/);
   assert.match(round, /"Pick an answer"\s*: isLast \? "See results" : "Next question";/);
-  // Score increments once per question, at commit time — not on render.
+  // Score increments once per question, at commit time: not on render.
   assert.match(round, /recordActivityToday\(quizId\);/);
   // Answer comparison for Choose mode reuses the existing verb-form/pronoun data, not a parallel bank.
   assert.match(data, /answer: `\$\{objectPronoun\} \$\{verbAnswer\}`/);

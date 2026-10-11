@@ -10,7 +10,7 @@ export const emptyQuizProgress = (total: number): QuizProgress => ({
   completed: 0, total, percent: 0, due: 0, mastered: 0, accuracy: 0, lastActivity: null,
 });
 
-/** Derives board/topic-detail progress from the grammar quiz's own stored history — no new storage shape. */
+/** Derives board/topic-detail progress from the grammar quiz's own stored history: no new storage shape. */
 export const readQuizProgress = (quizId: QuizId): QuizProgress => {
   const quiz = QUIZ_CONFIG[quizId];
   const total = quiz.questions.length;
@@ -43,7 +43,7 @@ export const readQuizProgress = (quizId: QuizId): QuizProgress => {
 export type DailyRoundProgress = { correct: number; roundLength: number; percent: number; done: boolean };
 
 /**
- * The daily goal isn't measured against the whole question bank — it's the round you
+ * The daily goal isn't measured against the whole question bank: it's the round you
  * chose (topic settings' round length) finished today. `percent` gauges accuracy within
  * that round (correct / round length); `done` is true once any regular round is finished
  * today, whatever the score, since finishing the round is what meets the goal.

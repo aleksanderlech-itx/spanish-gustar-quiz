@@ -3,7 +3,7 @@ import { SITE_CONFIG } from "../site-config";
 import { QUIZ_CONTENT } from "../quiz-content";
 import QuizPage from "../quiz-page";
 
-const TITLE = "Saber vs Conocer Quiz — 150 Practice Sentences";
+const TITLE = "Saber vs Conocer Quiz - 150 Practice Sentences";
 const DESCRIPTION =
   "Choose saber or conocer through 150 sentences covering facts, skills, people, places, familiarity and the past-tense meanings found out and met, with instant explanations for every answer.";
 

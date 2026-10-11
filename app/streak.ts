@@ -15,7 +15,7 @@ const DAY_LETTERS = ["Lu", "Ma", "Mi", "Ju", "Vi", "Sá", "Do"];
 /** Every key the streak and week bars are built from, so a backup restores them exactly. */
 export const STREAK_STORAGE_KEYS = [STREAK_KEY, FLASHCARD_DAYS_KEY, COMPLETED_DAYS_KEY, STREAK_COUNTER_KEY];
 
-/** Every activity the daily streak tracks, in registry order — sourced from the
+/** Every activity the daily streak tracks, in registry order: sourced from the
  * activity registry so a newly registered activity is required for the streak too. */
 export const ACTIVITY_IDS: readonly ActivityId[] = ACTIVITY_REGISTRY.map((entry) => entry.id);
 export type { ActivityId };
@@ -37,7 +37,7 @@ const isActivityId = (value: unknown): value is ActivityId => (ACTIVITY_IDS as r
 
 /**
  * A quiz that's been fully completed is exempt from the daily goal for every day from
- * its completion date up to (not including) the day its monthly repeat becomes due —
+ * its completion date up to (not including) the day its monthly repeat becomes due:
  * at which point it's required again like any other activity.
  */
 const isExemptOn = (activity: ActivityId, day: string, completions: Record<string, string>) => {
@@ -100,7 +100,7 @@ const isOnBoard = (activity: ActivityId, ctx: GoalContext) => {
 
 /**
  * A locked (already completed) day keeps the requirement it was completed against. Today
- * requires exactly what's on the board — the same visibility rule the board uses. Past
+ * requires exactly what's on the board: the same visibility rule the board uses. Past
  * unlocked days fall back to the completion-date exemption, since the board's past state isn't stored.
  */
 const requiredActivitiesOn = (day: string, ctx: GoalContext): ActivityId[] => {
@@ -227,7 +227,7 @@ export const recordActivityToday = (activity: ActivityId, now = new Date()) => {
 };
 
 /**
- * Flashcards has no per-round history like the grammar quizzes — each card's Leitner
+ * Flashcards has no per-round history like the grammar quizzes: each card's Leitner
  * record only keeps its own most recent `updatedAt`, so a card reviewed on multiple
  * days remembers only the latest one. That means the streak's self-heal (which
  * rebuilds days from each activity's own stored history) can only ever recover the
@@ -259,7 +259,7 @@ export const readFlashcardDaysReviewed = (): string[] => {
 };
 
 /**
- * Adds activity/day pairs to the ledger without ever removing what's already there — a
+ * Adds activity/day pairs to the ledger without ever removing what's already there: a
  * day's recorded activities only grow. Used both for the live recordActivityToday write
  * and for backfilling the whole ledger from each quiz/flashcard's own stored history, so
  * a day that was actually completed still counts even if its live write never landed
