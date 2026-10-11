@@ -1,4 +1,4 @@
-Use `SegmentedControl` for 2–3 exclusive modes shown side by side.
+Use `SegmentedControl` for 2-3 exclusive modes shown side by side.
 
 ```jsx
 <SegmentedControl options={["Choose","Type"]} value={mode} onChange={setMode} />

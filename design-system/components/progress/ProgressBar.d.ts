@@ -6,7 +6,7 @@ export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   max?: number;
   label?: React.ReactNode;
   valueLabel?: React.ReactNode;
-  /** any colour token — sage for a finished round, primary otherwise */
+  /** any colour token: sage for a finished round, primary otherwise */
   fill?: string;
   height?: string;
 }

@@ -7,4 +7,4 @@ Use `PhoneFrame` when showing a Spanish Quizzes screen inside a wider layout (sp
 </PhoneFrame>
 ```
 
-It is presentation chrome only — never ship it inside the app itself.
+It is presentation chrome only: never ship it inside the app itself.

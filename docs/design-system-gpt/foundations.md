@@ -47,7 +47,7 @@ Fallbacks: Literata → Georgia, serif; Atkinson Hyperlegible Next → system-ui
 ## Geometry
 
 - Spacing scale: 4, 8, 12, 16, 20, 24, 32, 48, 64px.
-- Mobile gutter 16px; wide gutter at least 20px; related items 8–12px apart; sections 24px apart.
+- Mobile gutter 16px; wide gutter at least 20px; related items 8-12px apart; sections 24px apart.
 - Card padding 20px, reducing to 16px at ≤380px when necessary.
 - Standard card radius 14px; editorial corners 18px 26px 14px 26px clockwise from top-left.
 - Controls 10px radius; badges and selected segments 8px; progress track 6px high with pill corners.
@@ -59,7 +59,7 @@ Fallbacks: Literata → Georgia, serif; Atkinson Hyperlegible Next → system-ui
 
 ## Icons and accessible states
 
-Use consistent 20–24px outline icons: landmark, heart, signpost, book, check, and arrow. Decorative icons are hidden from assistive technology. Icon actions need accessible names and 44px targets. Reuse maintained assets before adding dependencies.
+Use consistent 20-24px outline icons: landmark, heart, signpost, book, check, and arrow. Decorative icons are hidden from assistive technology. Icon actions need accessible names and 44px targets. Reuse maintained assets before adding dependencies.
 
 Use semantic native controls. Target focus: 3px Teal ring, 3px separating gap, contrast checked on adjacent surfaces. The specimen uses browser defaults in places; the explicit focus contract governs production.
 

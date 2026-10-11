@@ -1,4 +1,4 @@
-Use `Chip` for non-interactive metadata beside a title — level, counts, topics, weak areas.
+Use `Chip` for non-interactive metadata beside a title: level, counts, topics, weak areas.
 
 ```jsx
 <Chip tone="primary">A2</Chip>
@@ -6,4 +6,4 @@ Use `Chip` for non-interactive metadata beside a title — level, counts, topics
 <Chip tone="clay" size="sm">Weak area</Chip>
 ```
 
-Chips never carry actions and never use a solid accent fill — only the soft washes.
+Chips never carry actions and never use a solid accent fill: only the soft washes.

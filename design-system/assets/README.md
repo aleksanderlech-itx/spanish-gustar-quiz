@@ -1,6 +1,6 @@
 # Assets
 
-- `brand/mark.svg`, `brand/mark-dark.svg` — the Spanish Quizzes mark (light / dark), with 512 and 1024 PNGs.
+- `brand/mark.svg`, `brand/mark-dark.svg`: the Spanish Quizzes mark (light / dark), with 512 and 1024 PNGs.
   Copied from `public/brand/` in `aleksanderlech-itx/spanish-gustar-quiz`. The in-app version
   (`app/logo.tsx`) draws the same mark from `--primary`, `--clay` and `--sun` so it recolours with the theme.
 

@@ -51,7 +51,7 @@ PR preview Workers deploy to their default `*.workers.dev` subdomain and don't n
 - `.github/workflows/ci.yml` validates pull requests and pushes affecting `main`.
 - `.github/workflows/pr-preview.yml` deploys/updates a preview Worker on every PR push, comments the URL, and deletes the preview Worker when the PR closes.
 - `.github/workflows/branch-cleanup.yml` deletes a PR's head branch once it's merged.
-- `.github/workflows/deploy-production.yml` deploys `main` to production with `wrangler deploy --env production`, but only when manually triggered via GitHub Actions `workflow_dispatch` — never automatically on push.
+- `.github/workflows/deploy-production.yml` deploys `main` to production with `wrangler deploy --env production`, but only when manually triggered via GitHub Actions `workflow_dispatch`: never automatically on push.
 
 ## Wrangler
 
