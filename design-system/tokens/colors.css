@@ -33,7 +33,7 @@
   --hard-shadow:var(--shadow);
   --segment-track:var(--panel);
 
-  /* semantic aliases — prefer these in product code */
+  /* semantic aliases: prefer these in product code */
   --bg-canvas:var(--paper);
   --surface-card:var(--surface);
   --surface-quiet:var(--panel);
@@ -120,7 +120,7 @@
   --streak-future-style:solid; /* @kind other */
 
   /* aliases re-declared so a nested [data-theme="dark"] scope resolves them too */
-  /* semantic aliases — prefer these in product code */
+  /* semantic aliases: prefer these in product code */
   --bg-canvas:var(--paper);
   --surface-card:var(--surface);
   --surface-quiet:var(--panel);

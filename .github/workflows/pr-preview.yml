@@ -52,7 +52,7 @@ jobs:
           script: |
             const url = `${{ steps.deploy.outputs.url }}`;
             const marker = '<!-- pr-preview-link -->';
-            const body = `${marker}\n**Preview deployed:** ${url || '(no URL detected — check the deploy log)'}\n\nUpdated automatically for the latest commit on this PR.`;
+            const body = `${marker}\n**Preview deployed:** ${url || '(no URL detected: check the deploy log)'}\n\nUpdated automatically for the latest commit on this PR.`;
             const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,

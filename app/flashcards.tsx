@@ -109,7 +109,7 @@ export default function Flashcards({ standalone = false }: { standalone?: boolea
   );
 
   useEffect(() => {
-    // Selecting a round reads localStorage and shuffles with Math.random — both
+    // Selecting a round reads localStorage and shuffles with Math.random: both
     // unavailable/non-deterministic during the server render. Resolving them as
     // useState lazy initializers (the previous approach) ran that same shuffle
     // again on the client during hydration, so the round rendered on the server
@@ -264,7 +264,7 @@ export default function Flashcards({ standalone = false }: { standalone?: boolea
       <section className="stats leitner-stats" aria-label="Leitner box progress">
         {totals.boxes.map((count, boxIndex) => { const box = (boxIndex + 1) as LeitnerBox; const days = REVIEW_INTERVAL_DAYS[box]; return <div key={box}><span className="leitner-box-label">Box {box}</span><strong>{count}</strong><span>{days === 0 ? "Every session" : `${days} day${days === 1 ? "" : "s"}`}</span></div>; })}
       </section>
-      <p className="leitner-note"><strong>How it works:</strong> Box 1 cards are reviewed immediately. Boxes 2–4 return after 1, 3 and 7 days. One wrong answer sends a card back to Box 1.</p>
+      <p className="leitner-note"><strong>How it works:</strong> Box 1 cards are reviewed immediately. Boxes 2-4 return after 1, 3 and 7 days. One wrong answer sends a card back to Box 1.</p>
 
       {standalone && (
         <>
@@ -295,7 +295,7 @@ export default function Flashcards({ standalone = false }: { standalone?: boolea
               ],
             },
           ]}
-          bottomNote={<><strong>{SITE_CONFIG.name}</strong> — free Spanish grammar quizzes and spaced-repetition flashcards. Nothing to install, no account needed.</>}
+          bottomNote={<><strong>{SITE_CONFIG.name}</strong>: free Spanish grammar quizzes and spaced-repetition flashcards. Nothing to install, no account needed.</>}
         />
       )}
     </>

@@ -15,7 +15,7 @@ const SABER_CONOCER_VERB_LABELS = { saber: "Saber", conocer: "Conocer" } as cons
 
 /** Full six-pronoun paradigms only exist for preterite/imperfect verbs. Gustar-pattern
  * verbs are impersonal (they never conjugate for "yo, tú..."), and the ser/estar quiz
- * compares two different verbs rather than conjugating one — both get an honest,
+ * compares two different verbs rather than conjugating one: both get an honest,
  * simpler block instead of a fabricated pronoun table. */
 const blocksFor = (quizId: QuizId, infinitive: string, forms: Record<string, [string, string]>): ChartBlock[] => {
   if (quizId === "preterite-imperfect") {
@@ -53,7 +53,7 @@ const blocksFor = (quizId: QuizId, infinitive: string, forms: Record<string, [st
   return [{ tenseLabel: "Present", accent: "primary", rows: [{ pronoun: "one thing / to do something", form: singular }, { pronoun: "several things", form: plural }] }];
 };
 
-/** Only preterite/imperfect has verified regular/irregular classification data — see the note above blocksFor. */
+/** Only preterite/imperfect has verified regular/irregular classification data: see the note above blocksFor. */
 const regularityFor = (quizId: QuizId, infinitive: string) =>
   quizId === "preterite-imperfect" ? PRETERITE_IMPERFECT_REGULARITY[infinitive] : undefined;
 

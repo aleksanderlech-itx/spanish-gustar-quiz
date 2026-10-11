@@ -40,7 +40,7 @@ Rules:
 
 ## Cycle 2 · Reflexive verbs · release Mon 19 Oct 2026
 
-### Reel — Mon 19 Oct, 12:00 — `reflexive-verbs-reel.mp4`
+### Reel, Mon 19 Oct, 12:00, `reflexive-verbs-reel.mp4`
 
 **Title:** Me, te, se in 35 seconds
 
@@ -57,7 +57,7 @@ pixabay.com/music/salsa-old-school-salsa-03-499570/
 #LearnSpanish #SpanishGrammar #ReflexiveVerbs #SpanishTips #SpanishReels #AprenderEspañol #LanguageLearning #StudySpanish
 ```
 
-### Feed post — Thu 22 Oct, 12:00 — `reflexive-verbs-feed.mp4`
+### Feed post, Thu 22 Oct, 12:00, `reflexive-verbs-feed.mp4`
 
 **Title:** New activity: Reflexive verbs
 
@@ -89,7 +89,7 @@ pixabay.com/music/salsa-old-school-salsa-03-499570/
 
 ## Cycle 3 · Present perfect · release Mon 2 Nov 2026
 
-### Reel — Mon 2 Nov, 12:00 — `present-perfect-reel.mp4`
+### Reel, Mon 2 Nov, 12:00, `present-perfect-reel.mp4`
 
 **Title:** Have you ever…? The present perfect in 35 seconds
 
@@ -106,7 +106,7 @@ pixabay.com/music/salsa-old-school-salsa-03-499570/
 #LearnSpanish #SpanishGrammar #PresentPerfect #SpanishTips #SpanishReels #AprenderEspañol #LanguageLearning #StudySpanish
 ```
 
-### Feed post — Thu 5 Nov, 12:00 — `present-perfect-feed.mp4`
+### Feed post, Thu 5 Nov, 12:00, `present-perfect-feed.mp4`
 
 **Title:** New activity: Present perfect
 
@@ -140,7 +140,7 @@ pixabay.com/music/salsa-old-school-salsa-03-499570/
 
 ## Cycle 4 · Present continuous · release Mon 16 Nov 2026
 
-### Reel — Mon 16 Nov, 12:00 — `present-continuous-reel.mp4`
+### Reel, Mon 16 Nov, 12:00, `present-continuous-reel.mp4`
 
 **Title:** What are you doing right now? Estar + gerund
 
@@ -157,7 +157,7 @@ pixabay.com/music/salsa-old-school-salsa-03-499570/
 #LearnSpanish #SpanishGrammar #PresentContinuous #SpanishTips #SpanishReels #AprenderEspañol #LanguageLearning #StudySpanish
 ```
 
-### Feed post — Thu 19 Nov, 12:00 — `present-continuous-feed.mp4`
+### Feed post, Thu 19 Nov, 12:00, `present-continuous-feed.mp4`
 
 **Title:** New activity: Present continuous
 

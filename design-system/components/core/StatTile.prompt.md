@@ -1,4 +1,4 @@
-Use `StatTile` in a small grid of facts — deck counts, session totals, rules-of-thumb.
+Use `StatTile` in a small grid of facts: deck counts, session totals, rules-of-thumb.
 
 ```jsx
 <StatTile value="44px" label="minimum touch target, everywhere" shape={1} elevated />

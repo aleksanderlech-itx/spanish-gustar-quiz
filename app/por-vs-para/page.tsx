@@ -3,7 +3,7 @@ import { SITE_CONFIG } from "../site-config";
 import { QUIZ_CONTENT } from "../quiz-content";
 import QuizPage from "../quiz-page";
 
-const TITLE = "Por vs Para Quiz — 150 Practice Sentences";
+const TITLE = "Por vs Para Quiz - 150 Practice Sentences";
 const DESCRIPTION =
   "Choose por or para through 150 sentences covering cause, duration, exchange, means, purpose, recipients, deadlines and destinations, with instant explanations for every answer.";
 

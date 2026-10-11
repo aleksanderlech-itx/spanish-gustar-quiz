@@ -577,7 +577,7 @@ Object.assign(__ds_scope, { ProgressBar });
 // components/progress/ScoreRing.jsx
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-/* Repo: .board-ring / .topic-summary-ring — conic primary over --line, surface disc, no border. */
+/* Repo: .board-ring / .topic-summary-ring; conic primary over --line, surface disc, no border. */
 function ScoreRing({
   percent = 0,
   size = 56,
@@ -2376,7 +2376,7 @@ const clay = {
 const ACCENTS = ["\u00e1", "\u00e9", "\u00ed", "\u00f3", "\u00fa", "\u00f1"];
 const norm = s => (s || "").trim().toLowerCase();
 
-/* Repo: app/round.tsx — Choose and Type modes */
+/* Repo: app/round.tsx; Choose and Type modes */
 function RoundScreen({
   eyebrow,
   question,

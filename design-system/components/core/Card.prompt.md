@@ -1,4 +1,4 @@
-Use `Card` for any grouped block — decks, question prompts, results, quiet supporting panels.
+Use `Card` for any grouped block: decks, question prompts, results, quiet supporting panels.
 
 ```jsx
 <Card shape={1} elevated>

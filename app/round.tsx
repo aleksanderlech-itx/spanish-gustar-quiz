@@ -189,7 +189,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
             <p>
               Your results are saved{completedAt ? ` (done ${new Date(completedAt).toLocaleDateString()})` : ""}.
               This topic isn&apos;t required for today&apos;s goal anymore
-              {dueDate ? ` — we'll suggest a repeat from ${dueDate.toLocaleDateString()}, but you can redo it any time.` : "."}
+              {dueDate ? `. We'll suggest a repeat from ${dueDate.toLocaleDateString()}, but you can redo it any time.` : "."}
             </p>
             <div>
               {missedIds.length > 0 && <button type="button" className="primary" onClick={() => startRound(true, history)}>Practise the misses</button>}
@@ -279,7 +279,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
     // Finished means every sentence in the full set, whatever the filters.
     const regularPoolExhausted = availableQuestions(questions, next, false).length === 0;
     // A regular round marks completion as soon as every sentence has been attempted once, misses
-    // or not — that's the existing "you've completed every sentence" milestone. A review round
+    // or not: that's the existing "you've completed every sentence" milestone. A review round
     // (practising misses) only reaches that milestone once it clears the last outstanding miss,
     // since the regular pool was already exhausted before the review round started.
     if (regularPoolExhausted && (!practiceMissed || getMissedIds(next).length === 0)) markQuizCompleted(quizId);
@@ -405,7 +405,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
         {isSubmitted && (
           <div className={`round-explain ${isCorrect ? "round-explain-correct" : "round-explain-wrong"}`}>
             <span className={`round-explain-label ${isCorrect ? "round-explain-label-correct" : "round-explain-label-wrong"}`}>
-              {isCorrect ? "Correct" : `Not quite — ${question.answer}`}
+              {isCorrect ? "Correct" : `Not quite: ${question.answer}`}
             </span>
             <p className="round-explain-body">{question.explanation}</p>
           </div>

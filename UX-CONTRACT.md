@@ -5,18 +5,18 @@ This contract records the observable behavior shared by the grammar quizzes and 
 | Capability | Canonical owner | Source of truth | Allowed variants | Verification |
 |---|---|---|---|---|
 | Round (Choose / Type) | `app/round.tsx` | `DESIGN.md` and this contract | Choose, Type | Unit tests and production build |
-| Results | `app/results.tsx` | `DESIGN.md` and this contract | — | Unit tests and production build |
+| Results | `app/results.tsx` | `DESIGN.md` and this contract | - | Unit tests and production build |
 | Form | `app/round.tsx` | This contract and `app/quiz-logic.ts` | Choose button commit, Type Check/Enter | Grading tests and browser rounds |
 | Select/Listbox | Native `<select>` in `app/topic-detail.tsx` | Per-topic filters in `app/quiz-filters.ts` | Difficulty and verb single-select | Filter tests and browser setup |
 
 ## Navigation and progress
 
 - Board home (`app/quiz-selector.tsx`) is the common entry point. Tiles route to topic detail
-  (`app/topic-detail.tsx`) for grammar quizzes, or straight into flashcards for the deck — decks have
+  (`app/topic-detail.tsx`) for grammar quizzes, or straight into flashcards for the deck: decks have
   no detail screen. Topic detail's "Start round" opens the round (`app/round.tsx`). Opening a quiz
   preserves its own progress namespace.
 - In a round, each answer is scored and saved to history the moment the round finishes (its last
-  question), not per question — but the learner sees correct/incorrect feedback immediately after
+  question), not per question, but the learner sees correct/incorrect feedback immediately after
   picking, not only at the end. A tap commits an answer; further taps on that question are ignored.
   Skip moves on without recording an answer for that question, so it stays available for a future
   round. Flashcard recall is saved immediately after each assessment.
@@ -30,10 +30,10 @@ This contract records the observable behavior shared by the grammar quizzes and 
   round rather than navigating away, so the in-progress round (not yet saved to history) is never
   lost; closing the chart returns to the exact same question. Outside a round (topic detail's "Verb
   conjugation chart" link, or a direct `?chart=1` URL), the chart still opens as its own page with a
-  "Back to topic" link. The in-round quiz switcher is not present — switching quizzes now happens
+  "Back to topic" link. The in-round quiz switcher is not present: switching quizzes now happens
   from the board (confirmed intentional, matches the design's nav graph).
 - The round screen's height uses `100dvh` (falling back to `100vh` on browsers that don't support
-  it — declared in that order so `dvh` actually wins where supported) with a `visualViewport`
+  it: declared in that order so `dvh` actually wins where supported) with a `visualViewport`
   fallback in Type mode: a measured `--keyboard-inset` lifts the footer above the on-screen
   keyboard on iOS Safari versions where `dvh` doesn't fully react to it.
 - The verb conjugation chart (`app/verb-chart.tsx`) only shows a real six-pronoun paradigm for
@@ -44,24 +44,24 @@ This contract records the observable behavior shared by the grammar quizzes and 
   two different verbs rather than conjugating one, so its chart lists "ser" and "estar" directly. A
   regularity badge ("regular" / "irregular" / "spelling change") shows only for preterite/imperfect
   verbs (`PRETERITE_IMPERFECT_REGULARITY` in `app/preterite-imperfect-data.ts`), scoped strictly to
-  that verb's behavior in those two tenses specifically — a verb irregular elsewhere (e.g. salir's
+  that verb's behavior in those two tenses specifically: a verb irregular elsewhere (e.g. salir's
   present-tense "salgo") can still show "regular" here. No badge is guessed for gustar or ser/estar;
   there's no classification data that applies to them.
   `app/speak.ts` centralizes speechSynthesis use (`es-ES`, rate 0.9, prefers a Spanish voice,
   cancels before speaking); tapping a row speaks it and highlights only that row until it ends,
   "Play all" queues the block's rows in order.
 - The drawer (`app/drawer.tsx`, opened from the board's hamburger button) now hosts progress &
-  history, weekly recap, the mistake notebook, backup & restore, and reset progress — each row
+  history, weekly recap, the mistake notebook, backup & restore, and reset progress: each row
   expands in place to a real, live panel rather than linking to a separate screen. Backup, restore,
   and reset all act on every quiz's and the flashcards' storage keys together, not one at a time.
 - The "Progress & history" panel also lists recent rounds (newest first, capped to 15, merged
   across every grammar quiz) and a global weak-areas breakdown (`app/history.ts`), the same
   Verb/Tense/Agreement/Subject/Pronoun categorization the old per-quiz app used. Agreement/Subject/
-  Pronoun are only recorded for gustar — those fields are constant or repurposed to hold the tense
+  Pronoun are only recorded for gustar: those fields are constant or repurposed to hold the tense
   for ser/estar and preterite/imperfect, so recording them there would produce misleading
   always-0%-or-100% entries now that weak areas are merged across quizzes.
 - Level/verb filters live on the topic detail screen (`app/quiz-filters.ts`, reusing each quiz's
-  pre-redesign `filterKey` and `{level, verb}` shape) and scope the round's question pool —
+  pre-redesign `filterKey` and `{level, verb}` shape) and scope the round's question pool:
   including "Practise the misses". The topic summary card's accuracy/due numbers stay scoped to
   the whole question bank regardless of the active filter.
 - The drawer traps Tab focus within itself while open, moves focus into itself on open, closes on

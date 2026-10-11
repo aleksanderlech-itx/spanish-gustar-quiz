@@ -1,5 +1,5 @@
 /* Identity chrome for standalone activity pages (grammar quiz setup, flashcard
-   deck) — masthead, breadcrumb, footer, chips. See design handoff:
+   deck): masthead, breadcrumb, footer, chips. See design handoff:
    "Activity page identity elements". Suppressed once a round takes over the screen. */
 
 .activity-skip-link {
@@ -23,7 +23,7 @@
 }
 
 /* The shared board-style header (SiteHeader) is styled by .board-header /
-   .board-title / .mode-switch in quiz-layout-fix.css — only its Link-specific
+   .board-title / .mode-switch in quiz-layout-fix.css: only its Link-specific
    override lives here. */
 .site-header-title {
   text-decoration: none;

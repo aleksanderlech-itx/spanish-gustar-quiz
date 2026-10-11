@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SITE_CONFIG } from "../site-config";
 import Flashcards, { FLASHCARDS_DESCRIPTION } from "../flashcards";
 
-const TITLE = "Spanish Verb Flashcards — Leitner Spaced Repetition";
+const TITLE = "Spanish Verb Flashcards - Leitner Spaced Repetition";
 const DESCRIPTION = FLASHCARDS_DESCRIPTION;
 
 export const metadata: Metadata = {
