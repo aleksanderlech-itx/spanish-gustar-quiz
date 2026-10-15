@@ -1,5 +1,6 @@
 import { isQuizReinstated, isRepeatDue, readAllCompletions, repeatDueDate } from "./quiz-completion.ts";
 import { ACTIVITY_REGISTRY, type ActivityId } from "./activity-registry.ts";
+import { markDayCelebrationPending } from "./day-celebration.ts";
 
 const STREAK_KEY = "spanish-quiz-streak-v2";
 /** The banked day counter. Stored rather than recomputed so later rule or activity changes never rewrite it.
@@ -221,6 +222,7 @@ export const recordActivityToday = (activity: ActivityId, now = new Date()) => {
 
   if (counter.lastCompletedDay !== today && isDayComplete(records.get(today), today, ctx)) {
     writeCounter({ count: alive ? counter.count + 1 : 1, lastCompletedDay: today });
+    markDayCelebrationPending(today);
   } else if (!alive && counter.count !== 0) {
     writeCounter({ ...counter, count: 0 });
   }
