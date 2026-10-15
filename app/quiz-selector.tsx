@@ -13,6 +13,8 @@ import { isCompletionUnearned, type QuizResult } from "./quiz-logic";
 import { ROUND_SIZE as FLASHCARDS_ROUND_SIZE, MAX_BOX as MAX_FLASHCARD_BOX } from "./flashcards";
 import Drawer from "./drawer";
 import TutorialModal from "./tutorial-modal";
+import DayCompleteDialog from "./day-complete-dialog";
+import { takeDayCelebration } from "./day-celebration";
 import Logo from "./logo";
 import { SunIcon, MoonIcon } from "./theme-icons";
 
@@ -187,6 +189,7 @@ export default function QuizSelector() {
     EMPTY_DAILY,
   )));
   const [streak, setStreak] = useState<StreakSummary>(EMPTY_STREAK);
+  const [celebrating, setCelebrating] = useState(false);
 
   useEffect(() => {
     // Re-reads progress every time the board becomes visible again, not just on
@@ -222,7 +225,10 @@ export default function QuizSelector() {
     // Browser storage is unavailable during the server render.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setItems(nextItems);
-    setStreak(readStreakSummary());
+    const summary = readStreakSummary();
+    setStreak(summary);
+    // Only right after the round that completed today: takeDayCelebration clears the flag either way.
+    if (takeDayCelebration(dayKey(new Date())) && summary.completedToday) setCelebrating(true);
     setReady(true);
   }, [open, drawerOpen]);
 
@@ -248,6 +254,13 @@ export default function QuizSelector() {
     <main className="quiz-library board-home" aria-labelledby="quiz-library-title">
       <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)} returnFocusRef={hamburgerRef} />
       <TutorialModal />
+      <DayCompleteDialog
+        open={celebrating}
+        streak={streak.streak}
+        done={streak.todayDone}
+        total={streak.todayTotal}
+        onClose={() => setCelebrating(false)}
+      />
 
       <div className="board-rail">
         <header className="board-header">
