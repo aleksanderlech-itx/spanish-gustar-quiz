@@ -40,7 +40,7 @@ const snapshot = (store, wantTest) =>
 const runSession = () => {
   updateStoredProgress("gustar-quiz-progress-v1", () => [], (current) => [...current, { date: "2026-10-16T08:00:00.000Z", score: 4, percent: 80, questionIds: [1, 2, 3, 4, 5], answers: [], missedIds: [5], mode: "regular" }]);
   recordActivityToday("gustar", new Date("2026-10-16T08:00:00"));
-  recordMistakes(["Ser vs estar"]);
+  recordMistakes("ser-estar", [{ question: { id: 2001, infinitive: "ser / estar", tense: "present" }, answer: "está" }]);
   markQuizCompleted("gustar", new Date("2026-10-16T08:00:00"));
   writeTopicSettings("gustar", { roundLength: 10, mode: "choose" });
 };
@@ -167,9 +167,9 @@ test("every progress and settings read or write goes through the storage wrapper
 });
 
 test("highlight and prefill are gated on test mode and absent otherwise", () => {
-  const round = readFileSync(new URL("../app/round.tsx", import.meta.url), "utf8");
+  const round = readFileSync(new URL("../app/round-question.tsx", import.meta.url), "utf8");
   assert.match(round, /testMode && !isSubmitted && choice === question\.answer \? " round-option-test-hint" : ""/);
-  assert.match(round, /setTyped\(isTestMode\(\) \? \(round\[index\]\?\.answer \?\? ""\) : ""\)/);
+  assert.match(round, /setTyped\(isTestMode\(\) \? question\.answer : ""\)/);
   const flashcards = readFileSync(new URL("../app/flashcards.tsx", import.meta.url), "utf8");
   assert.match(flashcards, /data-test-hint=\{isTestMode\(\) \? "" : undefined\}/);
   const css = readFileSync(new URL("../app/test-mode.css", import.meta.url), "utf8");

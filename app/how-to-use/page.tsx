@@ -188,7 +188,7 @@ export default function HowToUsePage() {
           <h2>Backup and restore</h2>
           <p>Your learning progress is kept in browser storage on the device you are using. If you clear browser data or move to another browser or device, that local progress does not automatically follow you.</p>
           <ul>
-            <li>Select <UiLabel>Download backup</UiLabel> to save a JSON backup file containing quiz and flashcard progress.</li>
+            <li>Select <UiLabel>Download backup</UiLabel> to save a JSON backup file containing quiz and flashcard progress and your mistake notebook.</li>
             <li>Select <UiLabel>Import backup</UiLabel> and choose a previous backup file to restore it.</li>
             <li>Download a backup before moving devices, clearing browser data, or resetting progress.</li>
             <li><UiLabel>Reset all progress</UiLabel> removes saved quiz and flashcard progress from the current device. Use it only when you want to start over.</li>
@@ -201,7 +201,8 @@ export default function HowToUsePage() {
         <div className={styles.sectionBody}>
           <h2>Mistake notebook</h2>
           <p>The Mistake notebook collects the grammar rules connected to incorrect quiz answers. It is designed for targeted review: instead of reading every rule again, you can see the areas that actually caused problems.</p>
-          <p>Open it regularly after a few rounds and look for rules that keep returning. If no mistakes have been recorded, the drawer shows <UiLabel>No missed rules yet.</UiLabel></p>
+          <p>Every sentence you miss is saved once, grouped by topic. While a topic has saved mistakes, a temporary mistakes activity for it appears under <UiLabel>Mistakes to retry</UiLabel> on the board and in the drawer. Open it to retry those sentences, or pick a subtopic chip to retry only that one. A wrong retry explains the rule; a correct one is counted on the entry.</p>
+          <p>Retries are practice only: they do not count toward today&apos;s goal, your streak, accuracy or due counts. An entry stays until you select <UiLabel>Dismiss</UiLabel>, and the activity disappears once its topic has none left. If no mistakes have been recorded, the drawer shows <UiLabel>No missed rules yet.</UiLabel></p>
         </div>
       </section>
 
