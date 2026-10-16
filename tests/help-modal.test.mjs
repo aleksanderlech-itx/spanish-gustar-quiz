@@ -6,7 +6,7 @@ const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 
 test("each activity screen renders a help button for its own topic", async () => {
   assert.match(await read("app/topic-detail.tsx"), /<HelpButton topic="topic-detail" \/>/);
-  assert.match(await read("app/round.tsx"), /<HelpButton topic="round" \/>/);
+  assert.match(await read("app/round-question.tsx"), /<HelpButton topic="round" \/>/);
   assert.match(await read("app/flashcards.tsx"), /<HelpButton topic="flashcards" \/>/);
 });
 

@@ -167,9 +167,9 @@ test("every progress and settings read or write goes through the storage wrapper
 });
 
 test("highlight and prefill are gated on test mode and absent otherwise", () => {
-  const round = readFileSync(new URL("../app/round.tsx", import.meta.url), "utf8");
+  const round = readFileSync(new URL("../app/round-question.tsx", import.meta.url), "utf8");
   assert.match(round, /testMode && !isSubmitted && choice === question\.answer \? " round-option-test-hint" : ""/);
-  assert.match(round, /setTyped\(isTestMode\(\) \? \(round\[index\]\?\.answer \?\? ""\) : ""\)/);
+  assert.match(round, /setTyped\(isTestMode\(\) \? question\.answer : ""\)/);
   const flashcards = readFileSync(new URL("../app/flashcards.tsx", import.meta.url), "utf8");
   assert.match(flashcards, /data-test-hint=\{isTestMode\(\) \? "" : undefined\}/);
   const css = readFileSync(new URL("../app/test-mode.css", import.meta.url), "utf8");
