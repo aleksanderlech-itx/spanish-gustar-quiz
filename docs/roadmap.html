@@ -1,0 +1,233 @@
+<title>Spanish Quizzes Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&family=Atkinson+Hyperlegible+Next:wght@400;600;700&display=swap">
+<style>
+/* Layout: a two-week release train drawn as a horizontal track of cycles, then the off-train lanes below. Tokens mirror app/quiz-layout-fix.css. */
+:root {
+  --paper: #F8EDE1; --surface: #FFFAF3; --panel: #E8DED1; --ink: #0F172A; --muted: #59534B;
+  --line: #D6C9B8; --primary: #0F766E; --primary-soft: #E8F3EF; --sun: #B45309; --sun-soft: #FFF0D4;
+  --clay: #C75A3A; --clay-soft: #FDECE8; --sage: #166534; --sage-soft: #EAF4E6; --danger: #991B1B;
+  --display: "Literata", Georgia, serif;
+  --body: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, sans-serif;
+  --radius: 7px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #1F1D1A; --surface: #2B2824; --panel: #35312C; --ink: #F8EDE1; --muted: #C9BDB0;
+  --line: #665E54; --primary: #8BD3C7; --primary-soft: #243E38; --sun: #F5BC60; --sun-soft: #3D3222;
+  --clay: #E59B7F; --clay-soft: #482B29; --sage: #B8E3AE; --sage-soft: #253629; --danger: #FFC1B5;
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #1F1D1A; --surface: #2B2824; --panel: #35312C; --ink: #F8EDE1; --muted: #C9BDB0;
+  --line: #665E54; --primary: #8BD3C7; --primary-soft: #243E38; --sun: #F5BC60; --sun-soft: #3D3222;
+  --clay: #E59B7F; --clay-soft: #482B29; --sage: #B8E3AE; --sage-soft: #253629; --danger: #FFC1B5;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font: 16px/1.5 var(--body); padding-inline: 16px; padding-block: 32px 48px; }
+.wrap { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; }
+.wrap > * { min-width: 0; }
+h1, h2 { font-family: var(--display); font-weight: 700; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); line-height: 1.15; }
+h2 { font-size: 1.35rem; }
+p { margin: 0; }
+a { color: inherit; }
+a:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.lede { color: var(--muted); max-width: 65ch; margin-top: 10px; }
+.meta { font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+header { display: grid; gap: 6px; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: .88rem; color: var(--muted); margin-top: 14px; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+
+.section-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; margin-bottom: 14px; }
+.section-head p { color: var(--muted); font-size: .92rem; }
+
+/* train */
+.scroller { overflow-x: auto; padding-bottom: 8px; }
+.train { display: grid; grid-template-columns: repeat(9, minmax(124px, 1fr)); min-width: 1116px; position: relative; }
+.cycle { border-left: 1px solid var(--line); padding: 0 10px 12px; display: grid; grid-template-rows: auto auto auto 1fr; gap: 10px; position: relative; }
+.cycle:last-child { border-right: 1px solid var(--line); }
+.chead { display: grid; gap: 2px; padding-top: 4px; }
+.cnum { font-family: var(--display); font-weight: 700; font-size: 1.05rem; }
+.cdate { font-size: .82rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.weeks { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; font-size: .68rem; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.weeks span { background: var(--panel); padding: 3px 6px; border-radius: 3px; }
+.release { position: relative; z-index: 1; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--primary); border-radius: var(--radius); padding: 10px; display: grid; gap: 4px; }
+.release.product { border-left-color: var(--sun); background: var(--sun-soft); }
+.release.next { box-shadow: 0 0 0 2px var(--primary); }
+.release .num { font-size: .8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.release .name { font-weight: 700; line-height: 1.25; }
+.release .note { font-size: .78rem; color: var(--muted); }
+.maint { display: grid; gap: 6px; align-content: start; }
+.chip { position: relative; z-index: 1; display: block; font-size: .8rem; line-height: 1.3; padding: 6px 8px; border-radius: var(--radius); background: var(--clay-soft); border: 1px solid transparent; text-decoration: none; }
+.chip b { font-variant-numeric: tabular-nums; }
+.chip .flag { display: block; color: var(--danger); font-size: .74rem; font-weight: 600; margin-top: 2px; }
+.today { position: absolute; top: 0; bottom: 0; width: 0; border-left: 2px dashed var(--clay); z-index: 0; pointer-events: none; }
+.today::before { content: "Today 13 Oct"; position: absolute; top: -22px; left: 6px; white-space: nowrap; font-size: .72rem; font-weight: 700; color: var(--clay); letter-spacing: .04em; text-transform: uppercase; }
+.train-pad { padding-top: 26px; }
+
+/* lanes */
+.lanes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.lane { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.lane h3 { margin: 0; font-family: var(--display); font-size: 1.05rem; }
+.lane .why { font-size: .85rem; color: var(--muted); }
+.lane ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.lane li { display: grid; grid-template-columns: 3.4em 1fr; gap: 8px; font-size: .92rem; line-height: 1.35; }
+.lane li .n { color: var(--muted); font-variant-numeric: tabular-nums; }
+.lane li small { display: block; color: var(--muted); font-size: .8rem; }
+.tag { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: 1px 6px; border-radius: 3px; margin-left: 4px; vertical-align: 1px; }
+.tag.new { background: var(--primary-soft); color: var(--primary); }
+.tag.pr { background: var(--panel); color: var(--muted); }
+
+/* shipped */
+.shipped { display: flex; flex-wrap: wrap; gap: 6px; }
+.shipped a { font-size: .82rem; padding: 4px 8px; border-radius: var(--radius); background: var(--sage-soft); color: var(--sage); text-decoration: none; font-variant-numeric: tabular-nums; }
+.shipped a:hover, .chip:hover { border-color: currentColor; }
+.shipped a { border: 1px solid transparent; }
+
+.changes { display: grid; gap: 6px; padding-left: 1.1em; margin: 0; color: var(--muted); font-size: .92rem; max-width: 75ch; }
+.changes b { color: var(--ink); }
+footer { color: var(--muted); font-size: .85rem; }
+@media (max-width: 520px) { body { padding-block: 20px 32px; } .wrap { gap: 32px; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="meta">Roadmap issue #65 · reviewed 13 Oct 2026</span>
+    <h1>One new activity every two weeks</h1>
+    <p class="lede">Week one builds the activity, week two releases it and works the maintenance backlog. Releases land on Mondays. Dates from Cycle 5 on assume no slips.</p>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--primary)"></i>Activity release</span>
+      <span><i class="sw" style="background:var(--sun)"></i>Product-wide release</span>
+      <span><i class="sw" style="background:var(--clay-soft);border:1px solid var(--clay)"></i>Maintenance added to the cycle</span>
+      <span><i class="sw" style="background:var(--sage-soft);border:1px solid var(--sage)"></i>Shipped</span>
+    </div>
+  </header>
+
+  <section aria-labelledby="train-h">
+    <div class="section-head">
+      <h2 id="train-h">Release train</h2>
+      <p>Scroll sideways on a phone. Cycle 1 shipped object pronouns and saber vs conocer.</p>
+    </div>
+    <div class="scroller train-pad">
+      <div class="train" id="train"></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="off-h">
+    <div class="section-head">
+      <h2 id="off-h">Off the train</h2>
+      <p>Pulled into a maintenance half when capacity allows. Never delays a release.</p>
+    </div>
+    <div class="lanes" id="lanes"></div>
+  </section>
+
+  <section aria-labelledby="ch-h">
+    <div class="section-head"><h2 id="ch-h">What changed in this review</h2></div>
+    <ul class="changes">
+      <li><b>#105 Vosotros switch</b> takes its own cycle (6) after Sentence Builder, so Missing Letters, Idioms and the subjunctives are built vosotros-aware. Everything from Missing Letters on moves two weeks later.</li>
+      <li><b>#116 Mistake notebook retry mode</b> goes into Cycle 3 maintenance. It stays blocked until its 8 open questions are answered.</li>
+      <li><b>#104 Responses carousel</b> goes into Cycle 5 maintenance with the Sentence Builder round-screen work.</li>
+      <li><b>#107 Xteink slideshow</b> starts a side-project track outside the cadence.</li>
+      <li><b>#119 Weekly Notes routine</b> replaces #31 and #78, which asked for the same scheduled posts at different cadences. One illustrated post a week, topic taken from that week's release.</li>
+      <li><b>#84 board order</b> shipped in #110. <b>Saber vs Conocer</b> shipped in #86 without an issue. Both are now marked done.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="done-h">
+    <div class="section-head"><h2 id="done-h">Shipped and guarded by regression checks</h2></div>
+    <div class="shipped" id="shipped"></div>
+  </section>
+
+  <footer>Source of truth: GitHub issue #65 in aleksanderlech-itx/spanish-gustar-quiz. This page is a snapshot of it.</footer>
+</div>
+
+<script>
+const GH = "https://github.com/aleksanderlech-itx/spanish-gustar-quiz/";
+const iss = n => GH + "issues/" + n;
+const pr = n => GH + "pull/" + n;
+
+// Each cycle runs two weeks and releases on its Monday.
+const cycles = [
+  { c: 2, rel: "2026-10-19", item: [68, "Reflexive verbs"], next: true, maint: [[96, "Pinned action buttons on round screen"]] },
+  { c: 3, rel: "2026-11-02", item: [69, "Present perfect"], maint: [[116, "Mistake notebook retry mode", "Blocked on 8 open questions"], [113, "Ser vs estar explanations (PR)", null, true]] },
+  { c: 4, rel: "2026-11-16", item: [70, "Present continuous"], maint: [] },
+  { c: 5, rel: "2026-11-30", item: [72, "Sentence Builder"], note: "New activity type", maint: [[104, "Responses carousel"]] },
+  { c: 6, rel: "2026-12-14", item: [105, "Vosotros switch"], product: true, note: "Settings, charts, content and help", maint: [] },
+  { c: 7, rel: "2026-12-28", item: [25, "Missing Letters"], maint: [] },
+  { c: 8, rel: "2027-01-11", item: [51, "Idioms"], maint: [] },
+  { c: 9, rel: "2027-01-25", item: [71, "Present subjunctive"], note: "Wants, requests, hopes, opinions", maint: [] },
+  { c: 10, rel: "2027-02-08", item: [73, "Past subjunctive"], maint: [] },
+];
+const DAY = 864e5;
+const fmt = d => d.toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "UTC" });
+const train = document.getElementById("train");
+cycles.forEach(cy => {
+  const rel = new Date(cy.rel + "T00:00:00Z");
+  const start = new Date(rel - 14 * DAY);
+  const el = document.createElement("div");
+  el.className = "cycle";
+  const maint = cy.maint.map(([n, t, flag, isPr]) =>
+    `<a class="chip" href="${isPr ? pr(n) : iss(n)}" target="_blank" rel="noopener"><b>#${n}</b> ${t}${flag ? `<span class="flag">${flag}</span>` : ""}</a>`).join("");
+  el.innerHTML = `
+    <div class="chead"><span class="cnum">Cycle ${cy.c}</span><span class="cdate">${fmt(start)} to ${fmt(rel)} ${rel.getUTCFullYear()}</span></div>
+    <div class="weeks"><span>Build</span><span>Ship + fix</span></div>
+    <a class="release${cy.product ? " product" : ""}${cy.next ? " next" : ""}" href="${iss(cy.item[0])}" target="_blank" rel="noopener" style="text-decoration:none">
+      <span class="num">#${cy.item[0]}${cy.next ? " · next up" : ""}</span>
+      <span class="name">${cy.item[1]}</span>
+      ${cy.note ? `<span class="note">${cy.note}</span>` : ""}
+    </a>
+    <div class="maint">${maint}</div>`;
+  train.appendChild(el);
+});
+// Today marker, positioned within the cycle that contains today.
+(() => {
+  const today = new Date("2026-10-13T00:00:00Z");
+  const first = new Date(new Date(cycles[0].rel + "T00:00:00Z") - 14 * DAY);
+  const span = cycles.length * 14 * DAY;
+  const frac = (today - first) / span;
+  if (frac < 0 || frac > 1) return;
+  const m = document.createElement("div");
+  m.className = "today";
+  m.style.left = (frac * 100) + "%";
+  train.appendChild(m);
+})();
+
+const lanes = [
+  { h: "Product backlog", why: "Unscheduled. Pick up when a maintenance half has room.", items: [
+    [117, "Customisable board", "Choose which activities appear. Plan in PR #99. Becomes the channel for announcing each new activity.", "new"],
+    [80, "Contact form", "Email, message, anti-spam, Cloudflare storage."],
+  ]},
+  { h: "Growth", why: "Only when the current release is on track.", items: [
+    [119, "Weekly Notes routine", "One post with a public-domain vintage image every Tuesday, the day after a release. Replaces #31 and #78.", "new"],
+    ["PR 103", "Launch-post calendar file", "Import the Cycle 2 to 4 posting plan into a calendar.", "pr"],
+  ]},
+  { h: "Side projects", why: "Outside the cadence.", items: [
+    [107, "Xteink flashcard slideshow", "This repo only adds a cards.json export. Firmware lives in a separate repo.", "new"],
+  ]},
+  { h: "Open PRs waiting on you", why: "Merge, close or revise.", items: [
+    ["PR 113", "Ser vs estar explanations", "Overlaps the flagged items in #116.", "pr"],
+    ["PR 99", "Activity management plan", "The plan behind #117.", "pr"],
+    ["PR 90", "Design system replacement", "Docs only.", "pr"],
+  ]},
+];
+const lanesEl = document.getElementById("lanes");
+lanes.forEach(l => {
+  const div = document.createElement("div");
+  div.className = "lane";
+  div.innerHTML = `<h3>${l.h}</h3><p class="why">${l.why}</p><ul>${l.items.map(([n, t, d, tag]) => {
+    const isPr = typeof n === "string";
+    const href = isPr ? pr(n.slice(3)) : iss(n);
+    const label = isPr ? "#" + n.slice(3) : "#" + n;
+    const badge = tag === "new" ? '<span class="tag new">Added</span>' : tag === "pr" ? '<span class="tag pr">PR</span>' : "";
+    return `<li><a class="n" href="${href}" target="_blank" rel="noopener">${label}</a><span>${t}${badge}<small>${d}</small></span></li>`;
+  }).join("")}</ul>`;
+  lanesEl.appendChild(div);
+});
+
+const shipped = [[1,"Reset on switch"],[2,"Publishing plan"],[3,"Flashcards"],[4,"Flashcard content"],[5,"Design research"],[11,"Interface fixes"],[14,"Main page"],[15,"Translations"],[16,"Four-box model"],[20,"Animated tutorial"],[22,"Desktop view"],[24,"Content export"],[30,"Help modals"],[32,"Conjugation chart"],[33,"Progress"],[54,"Completed activities"],[55,"Por vs para"],[64,"Fill-in-the-blank"],[66,"Activity registry"],[67,"Object pronouns"],[84,"Board order"],["PR 86","Saber vs conocer"]];
+document.getElementById("shipped").innerHTML = shipped.map(([n, t]) => {
+  const isPr = typeof n === "string";
+  return `<a href="${isPr ? pr(n.slice(3)) : iss(n)}" target="_blank" rel="noopener">#${isPr ? n.slice(3) : n} ${t}</a>`;
+}).join("");
+</script>
