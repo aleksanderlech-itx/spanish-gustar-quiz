@@ -10,6 +10,7 @@ import { PRETERITE_IMPERFECT_QUESTIONS } from "../app/preterite-imperfect-data.t
 import { POR_PARA_QUESTIONS } from "../app/por-para-data.ts";
 import { OBJECT_PRONOUN_QUESTIONS } from "../app/object-pronouns-data.ts";
 import { SABER_CONOCER_QUESTIONS } from "../app/saber-conocer-data.ts";
+import { REFLEXIVE_VERB_QUESTIONS } from "../app/reflexive-verbs-data.ts";
 import { FLASHCARD_VERBS } from "../app/flashcards-data.ts";
 import { CURATED_FLASHCARD_OVERRIDES } from "./curated-flashcard-overrides.mjs";
 import { CURATED_FLAGGED_QUIZ_OVERRIDES } from "./curated-flagged-quiz-overrides.mjs";
@@ -17,6 +18,7 @@ import { CURATED_OBJECT_PRONOUN_PAIRS } from "./curated-object-pronoun-all.mjs";
 import { CURATED_QUIZ_OVERRIDES } from "./curated-quiz-overrides.mjs";
 import { CURATED_POR_PARA_PAIRS } from "./curated-por-para-all.mjs";
 import { CURATED_SABER_CONOCER_PAIRS } from "./curated-saber-conocer-all.mjs";
+import { ORIGINAL_REFLEXIVE_VERB_PAIRS } from "./original-reflexive-verbs-pairs.mjs";
 import { PINNED_CORPUS_PAIRS } from "./pinned-corpus-pairs.mjs";
 import { RESTORED_GUSTAR_PAIRS } from "./restored-gustar-pairs.mjs";
 import { RESTORED_SER_ESTAR_PAIRS } from "./restored-ser-estar-pairs.mjs";
@@ -68,6 +70,7 @@ const groups = [
   ["por-para", POR_PARA_QUESTIONS],
   ["object-pronouns", OBJECT_PRONOUN_QUESTIONS],
   ["saber-conocer", SABER_CONOCER_QUESTIONS],
+  ["reflexive-verbs", REFLEXIVE_VERB_QUESTIONS],
 ];
 
 const fold = (value) => value.normalize("NFC").toLocaleLowerCase("es");
@@ -170,6 +173,8 @@ const RESTORED_PAIRS = {
   "preterite-imperfect": RESTORED_PRETERITE_IMPERFECT_PAIRS,
   "object-pronouns": RESTORED_OBJECT_PRONOUN_PAIRS,
   "saber-conocer": RESTORED_SABER_CONOCER_PAIRS,
+  // Written for this bank from the start (#68), so every pair is original content.
+  "reflexive-verbs": ORIGINAL_REFLEXIVE_VERB_PAIRS,
 };
 
 const quizPairs = {};

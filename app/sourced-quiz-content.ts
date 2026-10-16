@@ -3604,6 +3604,606 @@ export const SOURCED_QUIZ_PAIRS: Record<number, SourcedPair> = {
   "6150": {
     "spanish": "Nos conocimos en 2015 y desde entonces somos amigos.",
     "english": "We met in 2015 and we've been friends ever since."
+  },
+  "7001": {
+    "spanish": "Todos los días yo me levanto a las siete.",
+    "english": "Every day I get up at seven."
+  },
+  "7002": {
+    "spanish": "¿Tú te duchas por la mañana o por la noche?",
+    "english": "Do you shower in the morning or at night?"
+  },
+  "7003": {
+    "spanish": "Mi padre se afeita antes de desayunar.",
+    "english": "My father shaves before breakfast."
+  },
+  "7004": {
+    "spanish": "Nosotros nos acostamos a las once entre semana.",
+    "english": "We go to bed at eleven during the week."
+  },
+  "7005": {
+    "spanish": "Los niños se lavan las manos antes de comer.",
+    "english": "The children wash their hands before eating."
+  },
+  "7006": {
+    "spanish": "¿A qué hora te despiertas tú normalmente?",
+    "english": "What time do you normally wake up?"
+  },
+  "7007": {
+    "spanish": "Ella se viste muy rápido por la mañana.",
+    "english": "She gets dressed very quickly in the morning."
+  },
+  "7008": {
+    "spanish": "Yo me cepillo los dientes tres veces al día.",
+    "english": "I brush my teeth three times a day."
+  },
+  "7009": {
+    "spanish": "Mi hermana se maquilla en el coche de camino al trabajo.",
+    "english": "My sister puts on her make-up in the car on the way to work."
+  },
+  "7010": {
+    "spanish": "Vosotros os ducháis después del partido, ¿verdad?",
+    "english": "You all shower after the match, right?"
+  },
+  "7011": {
+    "spanish": "Cuando hace frío, yo me pongo un abrigo.",
+    "english": "When it's cold, I put on a coat."
+  },
+  "7012": {
+    "spanish": "Al llegar a casa, mi madre se quita los zapatos.",
+    "english": "When she gets home, my mother takes off her shoes."
+  },
+  "7013": {
+    "spanish": "Nosotros nos bañamos en el mar todos los veranos.",
+    "english": "We swim in the sea every summer."
+  },
+  "7014": {
+    "spanish": "¿Ustedes se levantan temprano los domingos?",
+    "english": "Do you get up early on Sundays?"
+  },
+  "7015": {
+    "spanish": "Tú siempre te peinas delante del espejo.",
+    "english": "You always comb your hair in front of the mirror."
+  },
+  "7016": {
+    "spanish": "Mis abuelos se acuestan muy pronto.",
+    "english": "My grandparents go to bed very early."
+  },
+  "7017": {
+    "spanish": "Yo me seco el pelo con una toalla.",
+    "english": "I dry my hair with a towel."
+  },
+  "7018": {
+    "spanish": "Pablo se arregla para la fiesta durante una hora.",
+    "english": "Pablo spends an hour getting ready for the party."
+  },
+  "7019": {
+    "spanish": "¿Tú te vistes antes o después de desayunar?",
+    "english": "Do you get dressed before or after breakfast?"
+  },
+  "7020": {
+    "spanish": "Los domingos nosotros no nos despertamos hasta las diez.",
+    "english": "On Sundays we don't wake up until ten."
+  },
+  "7021": {
+    "spanish": "Ayer yo me levanté a las seis para coger el tren.",
+    "english": "Yesterday I got up at six to catch the train."
+  },
+  "7022": {
+    "spanish": "Anoche los niños se acostaron muy tarde.",
+    "english": "Last night the children went to bed very late."
+  },
+  "7023": {
+    "spanish": "Esta mañana tú no te duchaste, ¿verdad?",
+    "english": "You didn't shower this morning, did you?"
+  },
+  "7024": {
+    "spanish": "De niño, yo me bañaba en el río con mis primos.",
+    "english": "As a child, I used to swim in the river with my cousins."
+  },
+  "7025": {
+    "spanish": "Usted se afeita cada mañana, ¿no?",
+    "english": "You shave every morning, don't you?"
+  },
+  "7026": {
+    "spanish": "Mis hermanas se pintan las uñas los viernes.",
+    "english": "My sisters paint their nails on Fridays."
+  },
+  "7027": {
+    "spanish": "Ella se lava la cara con agua fría.",
+    "english": "She washes her face with cold water."
+  },
+  "7028": {
+    "spanish": "Yo siempre me quito las gafas para leer.",
+    "english": "I always take my glasses off to read."
+  },
+  "7029": {
+    "spanish": "Nosotros nos vestimos de blanco para la boda.",
+    "english": "We are dressing in white for the wedding."
+  },
+  "7030": {
+    "spanish": "Cada noche, antes de dormir, mi hijo se cepilla los dientes.",
+    "english": "Every night, before going to sleep, my son brushes his teeth."
+  },
+  "7031": {
+    "spanish": "¿Ustedes se sientan en la primera fila?",
+    "english": "Are you sitting in the front row?"
+  },
+  "7032": {
+    "spanish": "El perro se acerca a la puerta cuando oye el timbre.",
+    "english": "The dog goes up to the door when it hears the doorbell."
+  },
+  "7033": {
+    "spanish": "Yo me siento siempre al lado de la ventana.",
+    "english": "I always sit next to the window."
+  },
+  "7034": {
+    "spanish": "Cuando ve una araña, mi hermano se aleja corriendo.",
+    "english": "When he sees a spider, my brother runs away from it."
+  },
+  "7035": {
+    "spanish": "Cuando pasa una ambulancia, nosotros nos apartamos a un lado.",
+    "english": "When an ambulance goes by, we move to one side."
+  },
+  "7036": {
+    "spanish": "El gato se esconde debajo de la cama.",
+    "english": "The cat hides under the bed."
+  },
+  "7037": {
+    "spanish": "¿Por qué no te tumbas tú un rato en el sofá?",
+    "english": "Why don't you lie down on the sofa for a while?"
+  },
+  "7038": {
+    "spanish": "Mis vecinos se mudan a Valencia el mes que viene.",
+    "english": "My neighbours are moving to Valencia next month."
+  },
+  "7039": {
+    "spanish": "Cuando entra el profesor, los alumnos se levantan de la silla.",
+    "english": "When the teacher comes in, the students stand up from their chairs."
+  },
+  "7040": {
+    "spanish": "Mi abuelo ya no se mueve mucho por la casa.",
+    "english": "My grandfather doesn't move around the house much any more."
+  },
+  "7041": {
+    "spanish": "Yo me doy la vuelta cuando oigo mi nombre.",
+    "english": "I turn around when I hear my name."
+  },
+  "7042": {
+    "spanish": "Los niños se tiran a la piscina sin miedo.",
+    "english": "The children jump into the pool without fear."
+  },
+  "7043": {
+    "spanish": "¿Vosotros os sentáis delante o detrás?",
+    "english": "Are you all sitting at the front or at the back?"
+  },
+  "7044": {
+    "spanish": "Ella se asoma a la ventana para ver la calle.",
+    "english": "She leans out of the window to look at the street."
+  },
+  "7045": {
+    "spanish": "Ayer, al ver el perro, yo me acerqué despacio.",
+    "english": "Yesterday, when I saw the dog, I went up to it slowly."
+  },
+  "7046": {
+    "spanish": "El coche se detiene delante del semáforo.",
+    "english": "The car stops in front of the traffic light."
+  },
+  "7047": {
+    "spanish": "Cuando hace sol, nosotros nos tumbamos en la playa.",
+    "english": "When it's sunny, we lie down on the beach."
+  },
+  "7048": {
+    "spanish": "Mi hija se mete en el agua aunque está fría.",
+    "english": "My daughter gets into the water even though it's cold."
+  },
+  "7049": {
+    "spanish": "Tú te acercas demasiado al fuego.",
+    "english": "You get too close to the fire."
+  },
+  "7050": {
+    "spanish": "El año pasado mis padres se mudaron al campo.",
+    "english": "Last year my parents moved to the countryside."
+  },
+  "7051": {
+    "spanish": "Mi madre se preocupa mucho cuando llego tarde.",
+    "english": "My mother worries a lot when I arrive late."
+  },
+  "7052": {
+    "spanish": "Yo me aburro mucho en las reuniones largas.",
+    "english": "I get very bored in long meetings."
+  },
+  "7053": {
+    "spanish": "Los niños se divierten mucho en el parque.",
+    "english": "The children have a lot of fun in the park."
+  },
+  "7054": {
+    "spanish": "Mi jefe se enfada cuando llegamos tarde.",
+    "english": "My boss gets angry when we arrive late."
+  },
+  "7055": {
+    "spanish": "¿Tú te cansas cuando subes la montaña?",
+    "english": "Do you get tired when you climb the mountain?"
+  },
+  "7056": {
+    "spanish": "Nosotros nos alegramos mucho de verte.",
+    "english": "We are very glad to see you."
+  },
+  "7057": {
+    "spanish": "Mi hermana pequeña se asusta con las tormentas.",
+    "english": "My little sister gets scared during storms."
+  },
+  "7058": {
+    "spanish": "Hoy yo me siento un poco cansado.",
+    "english": "Today I feel a bit tired."
+  },
+  "7059": {
+    "spanish": "¿Cómo se siente usted después de la operación?",
+    "english": "How do you feel after the operation?"
+  },
+  "7060": {
+    "spanish": "Romeo y Julieta se enamoraron en una fiesta.",
+    "english": "Romeo and Juliet fell in love at a party."
+  },
+  "7061": {
+    "spanish": "Cuando veo una película triste, yo me emociono fácilmente.",
+    "english": "When I watch a sad film, I get emotional easily."
+  },
+  "7062": {
+    "spanish": "Mis padres se sorprendieron al ver la casa tan limpia.",
+    "english": "My parents were surprised to see the house so clean."
+  },
+  "7063": {
+    "spanish": "Después de una ducha caliente, yo siempre me relajo.",
+    "english": "After a hot shower, I always relax."
+  },
+  "7064": {
+    "spanish": "¿Por qué os enfadáis vosotros tan rápido?",
+    "english": "Why do you all get angry so quickly?"
+  },
+  "7065": {
+    "spanish": "Mi abuela se alegra cuando la visitamos.",
+    "english": "My grandmother is happy when we visit her."
+  },
+  "7066": {
+    "spanish": "Nosotros nos preocupamos por el examen de mañana.",
+    "english": "We are worried about tomorrow's exam."
+  },
+  "7067": {
+    "spanish": "Ellos se aburren en clase de matemáticas.",
+    "english": "They get bored in maths class."
+  },
+  "7068": {
+    "spanish": "Yo nunca me enfado con mis amigos.",
+    "english": "I never get angry with my friends."
+  },
+  "7069": {
+    "spanish": "Ella se avergüenza cuando habla en público.",
+    "english": "She gets embarrassed when she speaks in public."
+  },
+  "7070": {
+    "spanish": "¿Tú te divertiste en la fiesta de anoche?",
+    "english": "Did you have fun at the party last night?"
+  },
+  "7071": {
+    "spanish": "Cuando era pequeño, yo me asustaba con los payasos.",
+    "english": "When I was little, I used to get scared of clowns."
+  },
+  "7072": {
+    "spanish": "Mi novio se ofende por cualquier broma.",
+    "english": "My boyfriend takes offence at any joke."
+  },
+  "7073": {
+    "spanish": "Los turistas se cansan de caminar bajo el sol.",
+    "english": "The tourists get tired of walking in the sun."
+  },
+  "7074": {
+    "spanish": "Con esta música, yo me animo enseguida.",
+    "english": "With this music, I cheer up straight away."
+  },
+  "7075": {
+    "spanish": "Ustedes se tranquilizan cuando escuchan su voz.",
+    "english": "You calm down when you hear her voice."
+  },
+  "7076": {
+    "spanish": "Ya es tarde; nosotros nos vamos de la fiesta.",
+    "english": "It's late; we're leaving the party."
+  },
+  "7077": {
+    "spanish": "¿Vosotros os acordáis de la cena del sábado?",
+    "english": "Do you all remember Saturday's dinner?"
+  },
+  "7078": {
+    "spanish": "Los dos países acordaron un alto el fuego.",
+    "english": "The two countries agreed on a ceasefire."
+  },
+  "7079": {
+    "spanish": "Estaba tan cansado que me dormí en cuanto me senté.",
+    "english": "I was so tired that I fell asleep as soon as I sat down."
+  },
+  "7080": {
+    "spanish": "Anoche dormí ocho horas seguidas.",
+    "english": "Last night I slept eight hours straight."
+  },
+  "7081": {
+    "spanish": "Mi hermano se llama Javier.",
+    "english": "My brother is called Javier."
+  },
+  "7082": {
+    "spanish": "Yo llamo a mi madre todos los domingos.",
+    "english": "I call my mother every Sunday."
+  },
+  "7083": {
+    "spanish": "Al final, nosotros nos quedamos en casa porque llovía.",
+    "english": "In the end, we stayed at home because it was raining."
+  },
+  "7084": {
+    "spanish": "Nosotros quedamos con Ana a las ocho en la plaza.",
+    "english": "We're meeting Ana at eight in the square."
+  },
+  "7085": {
+    "spanish": "Antes de salir, yo me despido de todos.",
+    "english": "Before leaving, I say goodbye to everyone."
+  },
+  "7086": {
+    "spanish": "La empresa despidió a veinte trabajadores.",
+    "english": "The company laid off twenty workers."
+  },
+  "7087": {
+    "spanish": "Ana se parece mucho a su madre.",
+    "english": "Ana looks a lot like her mother."
+  },
+  "7088": {
+    "spanish": "Tu idea me parece muy interesante.",
+    "english": "Your idea seems very interesting to me."
+  },
+  "7089": {
+    "spanish": "Mi hermano y yo nos llevamos muy bien.",
+    "english": "My brother and I get on very well."
+  },
+  "7090": {
+    "spanish": "Yo siempre llevo paraguas en invierno.",
+    "english": "I always carry an umbrella in winter."
+  },
+  "7091": {
+    "spanish": "El niño se niega a comer verduras.",
+    "english": "The boy refuses to eat vegetables."
+  },
+  "7092": {
+    "spanish": "El acusado niega todo delante del juez.",
+    "english": "The accused denies everything in front of the judge."
+  },
+  "7093": {
+    "spanish": "Ayer me encontré con Luis en el supermercado.",
+    "english": "Yesterday I ran into Luis at the supermarket."
+  },
+  "7094": {
+    "spanish": "Por fin encontré mis llaves debajo del sofá.",
+    "english": "I finally found my keys under the sofa."
+  },
+  "7095": {
+    "spanish": "Primero la madre acuesta al bebé y después cena.",
+    "english": "First the mother puts the baby to bed and then has dinner."
+  },
+  "7096": {
+    "spanish": "Yo lavo el coche los sábados.",
+    "english": "I wash the car on Saturdays."
+  },
+  "7097": {
+    "spanish": "Con la fama, el actor se volvió muy arrogante.",
+    "english": "With fame, the actor became very arrogant."
+  },
+  "7098": {
+    "spanish": "Mi padre vuelve del trabajo a las seis.",
+    "english": "My father comes back from work at six."
+  },
+  "7099": {
+    "spanish": "En esta ciudad es fácil perderse sin un mapa.",
+    "english": "In this city it's easy to get lost without a map."
+  },
+  "7100": {
+    "spanish": "¿Tú te fijas en los detalles?",
+    "english": "Do you notice the details?"
+  },
+  "7101": {
+    "spanish": "Mi hermana se casa el próximo sábado.",
+    "english": "My sister is getting married next Saturday."
+  },
+  "7102": {
+    "spanish": "Mi socio se ocupa de las cuentas de la empresa.",
+    "english": "My business partner takes care of the company's accounts."
+  },
+  "7103": {
+    "spanish": "Por la mañana, yo despierto a mis hijos a las siete.",
+    "english": "In the morning, I wake my children up at seven."
+  },
+  "7104": {
+    "spanish": "Pedro pone la mesa antes de cenar.",
+    "english": "Pedro sets the table before dinner."
+  },
+  "7105": {
+    "spanish": "La reunión fue tan aburrida que Marta se marchó antes del final.",
+    "english": "The meeting was so boring that Marta left before the end."
+  },
+  "7106": {
+    "spanish": "Mañana tengo que levantarme muy temprano.",
+    "english": "Tomorrow I have to get up very early."
+  },
+  "7107": {
+    "spanish": "Ahora mismo Ana está lavándose el pelo.",
+    "english": "Right now Ana is washing her hair."
+  },
+  "7108": {
+    "spanish": "Esta noche vamos a acostarnos pronto.",
+    "english": "Tonight we're going to go to bed early."
+  },
+  "7109": {
+    "spanish": "¿Quieres sentarte aquí, al lado de la ventana?",
+    "english": "Do you want to sit here, next to the window?"
+  },
+  "7110": {
+    "spanish": "Antes de acostarme, leo un rato en la cama.",
+    "english": "Before going to bed, I read for a while in bed."
+  },
+  "7111": {
+    "spanish": "Los niños están duchándose ahora mismo.",
+    "english": "The children are having a shower right now."
+  },
+  "7112": {
+    "spanish": "No puedo concentrarme con tanto ruido.",
+    "english": "I can't concentrate with so much noise."
+  },
+  "7113": {
+    "spanish": "Mi hermano sigue quejándose del trabajo.",
+    "english": "My brother keeps complaining about work."
+  },
+  "7114": {
+    "spanish": "Nosotros nunca nos aburrimos juntos.",
+    "english": "We never get bored together."
+  },
+  "7115": {
+    "spanish": "Para no perderme, uso el GPS.",
+    "english": "So as not to get lost, I use the GPS."
+  },
+  "7116": {
+    "spanish": "¿Vais a quedaros a cenar?",
+    "english": "Are you all going to stay for dinner?"
+  },
+  "7117": {
+    "spanish": "Estoy vistiéndome; salgo en cinco minutos.",
+    "english": "I'm getting dressed; I'm leaving in five minutes."
+  },
+  "7118": {
+    "spanish": "Ellos quieren casarse en primavera.",
+    "english": "They want to get married in spring."
+  },
+  "7119": {
+    "spanish": "Usted debe cuidarse más.",
+    "english": "You should look after yourself more."
+  },
+  "7120": {
+    "spanish": "Tú tienes que relajarte un poco.",
+    "english": "You need to relax a little."
+  },
+  "7121": {
+    "spanish": "Al despertarse, Marta miró el reloj.",
+    "english": "When she woke up, Marta looked at the clock."
+  },
+  "7122": {
+    "spanish": "Nos estamos preparando para el examen.",
+    "english": "We're getting ready for the exam."
+  },
+  "7123": {
+    "spanish": "¿Te vas a poner la chaqueta?",
+    "english": "Are you going to put on your jacket?"
+  },
+  "7124": {
+    "spanish": "Me tengo que ir ya.",
+    "english": "I have to go now."
+  },
+  "7125": {
+    "spanish": "Los invitados están yéndose porque es medianoche.",
+    "english": "The guests are leaving because it's midnight."
+  },
+  "7126": {
+    "spanish": "Mis amigos siguen divirtiéndose en la fiesta.",
+    "english": "My friends are still having fun at the party."
+  },
+  "7127": {
+    "spanish": "Yo no me acuerdo de su nombre.",
+    "english": "I don't remember his name."
+  },
+  "7128": {
+    "spanish": "Sin despedirse, Luis salió de la casa.",
+    "english": "Without saying goodbye, Luis left the house."
+  },
+  "7129": {
+    "spanish": "Vosotros estáis cansándoos de esperar.",
+    "english": "You all are getting tired of waiting."
+  },
+  "7130": {
+    "spanish": "Tienes que ponerte el cinturón en el coche.",
+    "english": "You have to put your seatbelt on in the car."
+  },
+  "7131": {
+    "spanish": "Mi hermano siempre se pone nervioso antes de un examen.",
+    "english": "My brother always gets nervous before an exam."
+  },
+  "7132": {
+    "spanish": "Lo siento, me olvidé de tu cumpleaños.",
+    "english": "I'm sorry, I forgot your birthday."
+  },
+  "7133": {
+    "spanish": "De repente, yo me di cuenta de mi error.",
+    "english": "Suddenly, I realised my mistake."
+  },
+  "7134": {
+    "spanish": "¿Tú te enteraste de la noticia?",
+    "english": "Did you hear the news?"
+  },
+  "7135": {
+    "spanish": "Los vecinos se quejan del ruido todas las noches.",
+    "english": "The neighbours complain about the noise every night."
+  },
+  "7136": {
+    "spanish": "Yo no me atrevo a saltar desde tan alto.",
+    "english": "I don't dare to jump from so high."
+  },
+  "7137": {
+    "spanish": "Perdona, me equivoqué de número.",
+    "english": "Sorry, I dialled the wrong number."
+  },
+  "7138": {
+    "spanish": "Mis compañeros se burlan de mi acento.",
+    "english": "My classmates make fun of my accent."
+  },
+  "7139": {
+    "spanish": "Mi tío se hizo rico con su empresa.",
+    "english": "My uncle got rich with his company."
+  },
+  "7140": {
+    "spanish": "Ayer en clase, yo me quedé dormido.",
+    "english": "Yesterday in class, I fell asleep."
+  },
+  "7141": {
+    "spanish": "Yo todavía no me acostumbro al horario español.",
+    "english": "I still haven't got used to the Spanish timetable."
+  },
+  "7142": {
+    "spanish": "El perro se porta muy bien en el veterinario.",
+    "english": "The dog behaves very well at the vet's."
+  },
+  "7143": {
+    "spanish": "Nosotros nunca nos ponemos de acuerdo sobre la película.",
+    "english": "We never agree on the film."
+  },
+  "7144": {
+    "spanish": "Ella se arrepiente de lo que dijo.",
+    "english": "She regrets what she said."
+  },
+  "7145": {
+    "spanish": "Yo me muero de hambre; ¿comemos ya?",
+    "english": "I'm starving; shall we eat now?"
+  },
+  "7146": {
+    "spanish": "¿Cómo te llamas tú?",
+    "english": "What's your name?"
+  },
+  "7147": {
+    "spanish": "Mi hermana siempre se queda sin batería a mediodía.",
+    "english": "My sister always runs out of battery by midday."
+  },
+  "7148": {
+    "spanish": "¿Vosotros os disteis cuenta del problema?",
+    "english": "Did you all notice the problem?"
+  },
+  "7149": {
+    "spanish": "Mi abuela se entera de todo lo que pasa en el barrio.",
+    "english": "My grandmother finds out about everything that happens in the neighbourhood."
+  },
+  "7150": {
+    "spanish": "Ustedes se quejan demasiado, ¿no creen?",
+    "english": "You complain too much, don't you think?"
   }
 };
 

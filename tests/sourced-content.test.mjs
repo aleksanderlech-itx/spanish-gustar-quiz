@@ -7,6 +7,7 @@ import { OBJECT_PRONOUN_QUESTIONS } from "../app/object-pronouns-data.ts";
 import { POR_PARA_QUESTIONS } from "../app/por-para-data.ts";
 import { PRETERITE_IMPERFECT_QUESTIONS } from "../app/preterite-imperfect-data.ts";
 import { ALL_QUESTIONS } from "../app/quiz-data.ts";
+import { REFLEXIVE_VERB_QUESTIONS } from "../app/reflexive-verbs-data.ts";
 import { SABER_CONOCER_QUESTIONS } from "../app/saber-conocer-data.ts";
 import { SER_ESTAR_QUESTIONS } from "../app/ser-estar-data.ts";
 import { SOURCED_FLASHCARD_PAIRS } from "../app/sourced-flashcard-content.ts";
@@ -19,10 +20,11 @@ const quizzes = [
   POR_PARA_QUESTIONS,
   OBJECT_PRONOUN_QUESTIONS,
   SABER_CONOCER_QUESTIONS,
+  REFLEXIVE_VERB_QUESTIONS,
 ];
 
 test("every runtime quiz sentence and translation comes from the sourced pair set", () => {
-  assert.equal(Object.keys(SOURCED_QUIZ_PAIRS).length, 900);
+  assert.equal(Object.keys(SOURCED_QUIZ_PAIRS).length, 1050);
   for (const question of quizzes.flat()) {
     const pair = SOURCED_QUIZ_PAIRS[question.id];
     assert.ok(pair, `missing sourced pair for #${question.id}`);
@@ -58,11 +60,11 @@ test("every runtime flashcard example comes from the sourced pair set without fa
 test("attribution manifest covers every sourced quiz and flashcard pair", async () => {
   const manifest = await readFile(new URL("../docs/content-attribution.csv", import.meta.url), "utf8");
   const lines = manifest.trimEnd().split("\n");
-  assert.equal(lines.length, 1 + 900 + 500);
+  assert.equal(lines.length, 1 + 1050 + 500);
   assert.match(lines[0], /^type,key,spanish,english,license,attribution,modified$/);
   assert.equal(
     lines.slice(1).filter((line) => line.includes("CC BY 2.0 France") || line.includes("CC BY 4.0")).length,
-    900 + 500,
+    1050 + 500,
   );
   assert.equal(lines.some((line) => line.includes("Project content")), false);
 });
