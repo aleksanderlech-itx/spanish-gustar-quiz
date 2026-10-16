@@ -12,7 +12,7 @@ import { QUIZ_CONFIG, QUIZ_IDS, quizPath } from "./quiz-config";
 import { SITE_CONFIG } from "./site-config";
 import SupportPrompt from "./support-prompt";
 import { updateStoredProgress } from "./stored-progress";
-import { appStorage } from "./storage";
+import { appStorage, isTestMode } from "./storage";
 
 type LeitnerBox = 1 | 2 | 3 | 4;
 type CardRecord = { box: LeitnerBox; attempts: number; correct: number; updatedAt: string; nextReviewAt: string };
@@ -257,7 +257,7 @@ export default function Flashcards({ standalone = false }: { standalone?: boolea
           <footer className="flashcard-footer">
             {!revealed && <button type="button" className="flashcard-reveal" onClick={reveal}>Reveal</button>}
             <button type="button" className="flashcard-again" disabled={!revealed} onClick={() => recordAnswer(false)}><span aria-hidden="true">✖</span><span className="recall-label">Again</span></button>
-            <button type="button" className="flashcard-known" disabled={!revealed} onClick={() => recordAnswer(true)}><span aria-hidden="true">✔</span><span className="recall-label">Got it</span></button>
+            <button type="button" className={`flashcard-known${isTestMode() ? " flashcard-known-test-hint" : ""}`} disabled={!revealed} onClick={() => recordAnswer(true)}><span aria-hidden="true">✔</span><span className="recall-label">Got it</span></button>
           </footer>
         </section>
       )}
