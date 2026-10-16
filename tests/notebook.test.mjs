@@ -123,3 +123,26 @@ test("the notebook keeps only the 500 most recent misses", () => {
   assert.equal(entries.length, 500);
   assert.ok(!entries.some((entry) => entry.questionId <= 5), "the five oldest were dropped");
 });
+
+const { recordRetry, dismissEntry } = await import("../app/notebook.ts");
+
+test("a retry counts on its entry, and a correct retry keeps the entry", () => {
+  installStorage();
+  recordMistakes("gustar", [{ question: { ...baseQuestion, id: 12 }, answer: "x" }]);
+  recordRetry("q:gustar:12", false, new Date("2026-10-16T09:00:00.000Z"));
+  recordRetry("q:gustar:12", true, new Date("2026-10-16T09:01:00.000Z"));
+  const [entry] = readNotebookEntries();
+  assert.equal(entry.retryCount, 2);
+  assert.equal(entry.retryCorrectCount, 1);
+  assert.equal(entry.missCount, 1, "a wrong retry is not a new miss");
+  assert.equal(entry.lastRetriedAt, "2026-10-16T09:01:00.000Z");
+});
+
+test("a retry for an unknown entry changes nothing, and dismiss removes only its entry", () => {
+  installStorage();
+  recordMistakes("gustar", [{ question: { ...baseQuestion, id: 1 }, answer: "x" }, { question: { ...baseQuestion, id: 2 }, answer: "x" }]);
+  recordRetry("q:gustar:999", true);
+  assert.ok(readNotebookEntries().every((entry) => entry.retryCount === 0));
+  dismissEntry("q:gustar:1");
+  assert.deepEqual(readNotebookEntries().map((entry) => entry.id), ["q:gustar:2"]);
+});

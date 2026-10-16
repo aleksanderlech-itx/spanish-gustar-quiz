@@ -157,3 +157,42 @@ export const recordMistakes = (quizId: QuizId, misses: Miss[], now = new Date())
 /** Every entry, most recent miss first. */
 export const readNotebookEntries = (): NotebookEntry[] =>
   Object.values(readNotebook()).sort((a, b) => b.lastMissedAt.localeCompare(a.lastMissedAt));
+
+/**
+ * Records one retry answer on its entry. This is the only write a retry makes: it never touches
+ * quiz history, the streak, the daily goal or any due count. A correct retry keeps the entry,
+ * which leaves the notebook only when dismissed.
+ */
+export const recordRetry = (entryId: string, correct: boolean, now = new Date()) => {
+  updateNotebook((notebook) => {
+    const entry = notebook[entryId];
+    if (!entry) return;
+    notebook[entryId] = {
+      ...entry,
+      retryCount: entry.retryCount + 1,
+      retryCorrectCount: entry.retryCorrectCount + (correct ? 1 : 0),
+      lastRetriedAt: now.toISOString(),
+    };
+  });
+};
+
+/** Removes one entry. The only way an entry leaves the notebook. */
+export const dismissEntry = (entryId: string) => {
+  updateNotebook((notebook) => {
+    delete notebook[entryId];
+  });
+};
+
+export type NotebookGroup = { quizId: QuizId; entries: NotebookEntry[]; rules: string[] };
+
+/** Entries grouped by activity, the group with the most recent miss first. Each group is one
+ * temporary mistakes activity, shown only while it has entries. */
+export const groupByActivity = (entries: NotebookEntry[]): NotebookGroup[] => {
+  const groups = new Map<QuizId, NotebookEntry[]>();
+  [...entries]
+    .sort((a, b) => b.lastMissedAt.localeCompare(a.lastMissedAt))
+    .forEach((entry) => groups.set(entry.quizId, [...(groups.get(entry.quizId) ?? []), entry]));
+  return [...groups].map(([quizId, list]) => ({ quizId, entries: list, rules: [...new Set(list.map((entry) => entry.rule))] }));
+};
+
+export const readNotebookGroups = (): NotebookGroup[] => groupByActivity(readNotebookEntries());
