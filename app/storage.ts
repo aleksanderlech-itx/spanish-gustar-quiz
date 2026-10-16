@@ -15,6 +15,56 @@
 
 type Store = Pick<Storage, "getItem" | "setItem" | "removeItem">;
 
+/** URL parameter that starts test mode: `?test=1`. */
+export const TEST_MODE_PARAM = "test";
+/** sessionStorage key holding the per-tab test mode flag. Stored outside the test namespace on purpose:
+ * it is what decides the namespace, so it is never prefixed. It dies when the tab closes. */
+export const TEST_MODE_FLAG_KEY = "sq-test-mode";
+
+const hasTestParam = (): boolean => {
+  try {
+    return new URLSearchParams(window.location.search).get(TEST_MODE_PARAM) === "1";
+  } catch {
+    return false;
+  }
+};
+
+const hasTestFlag = (): boolean => {
+  try {
+    return window.sessionStorage.getItem(TEST_MODE_FLAG_KEY) === "1";
+  } catch {
+    return false;
+  }
+};
+
+/** Test mode is on while the URL carries `?test=1`, or the tab's flag is set. The flag is what keeps the
+ * mode when navigation drops the parameter. A fresh tab without the parameter is always normal mode. */
+export const isTestMode = (): boolean => {
+  if (typeof window === "undefined") return false;
+  return hasTestParam() || hasTestFlag();
+};
+
+/** Sets the tab flag once the URL has asked for test mode. Returns false when the flag could not be stored
+ * (blocked storage), in which case the mode lasts only while the parameter stays in the URL. */
+export const rememberTestModeForTab = (): boolean => {
+  if (!hasTestParam()) return hasTestFlag();
+  try {
+    window.sessionStorage.setItem(TEST_MODE_FLAG_KEY, "1");
+    return true;
+  } catch {
+    return false;
+  }
+};
+
+/** Leaves test mode for this tab. The caller then reloads without the parameter. */
+export const forgetTestModeForTab = () => {
+  try {
+    window.sessionStorage.removeItem(TEST_MODE_FLAG_KEY);
+  } catch {
+    // Storage blocked; the flag was never stored, so there is nothing to clear.
+  }
+};
+
 /** Text added in front of every key. Empty in normal mode, so real keys are untouched. */
 export const storageKeyPrefix = (): string => "";
 
