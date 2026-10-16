@@ -123,17 +123,33 @@ const updateNotebook = (update: (entries: Record<string, NotebookEntry>) => void
   writeNotebook(entries);
 };
 
-/** Records one miss per rule, written at round submission. */
-export const recordMistakes = (rules: string[]) => {
-  if (!rules.length) return;
-  const now = new Date().toISOString();
+export type Miss = { question: Question; answer: string };
+
+/**
+ * Records a regular round's misses, written at round submission. A sentence already in the
+ * notebook is updated in place (one more miss, the latest wrong answer) rather than added twice.
+ */
+export const recordMistakes = (quizId: QuizId, misses: Miss[], now = new Date()) => {
+  if (!misses.length) return;
+  const at = now.toISOString();
   updateNotebook((notebook) => {
-    rules.forEach((rule) => {
-      const id = ruleEntryId(rule);
+    misses.forEach(({ question, answer }) => {
+      const id = questionEntryId(quizId, question.id);
       const existing = notebook[id];
       notebook[id] = existing
-        ? { ...existing, missCount: existing.missCount + 1, lastMissedAt: now }
-        : { id, kind: "rule", quizId: quizIdForRule(rule), rule, missCount: 1, lastMissedAt: now, retryCount: 0, retryCorrectCount: 0 };
+        ? { ...existing, wrongAnswer: answer, missCount: existing.missCount + 1, lastMissedAt: at }
+        : {
+          id,
+          kind: "question",
+          quizId,
+          rule: ruleLabelFor(question, quizId),
+          questionId: question.id,
+          wrongAnswer: answer,
+          missCount: 1,
+          lastMissedAt: at,
+          retryCount: 0,
+          retryCorrectCount: 0,
+        };
     });
   });
 };

@@ -174,7 +174,7 @@ export default function Drawer({ open, onClose, returnFocusRef }: { open: boolea
     setStreakDays(readStreakSummary().streak);
     const entries = readNotebookEntries();
     setNotebookCount(entries.length);
-    setNotebookRules(entries.map((entry) => entry.rule));
+    setNotebookRules([...new Set(entries.map((entry) => entry.rule))]);
     setFinishedActivities(readFinishedActivities());
   }, [open]);
 

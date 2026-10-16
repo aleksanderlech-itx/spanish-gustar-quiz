@@ -267,8 +267,9 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
     }
     const { missedIds: missed, score, percent } = scoreRound(committed.map((c) => c.q), committed.map((c) => c.a));
     const missedSet = new Set(missed);
-    const rules = committed.filter((c) => missedSet.has(c.q.id)).map((c) => ruleLabelFor(c.q, quizId));
-    recordMistakes(rules);
+    const misses = committed.filter((c) => missedSet.has(c.q.id));
+    const rules = misses.map((c) => ruleLabelFor(c.q, quizId));
+    recordMistakes(quizId, misses.map((c) => ({ question: c.q, answer: c.a })));
     const result: Result = {
       date: new Date().toISOString(),
       score,

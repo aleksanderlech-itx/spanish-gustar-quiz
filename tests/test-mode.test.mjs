@@ -40,7 +40,7 @@ const snapshot = (store, wantTest) =>
 const runSession = () => {
   updateStoredProgress("gustar-quiz-progress-v1", () => [], (current) => [...current, { date: "2026-10-16T08:00:00.000Z", score: 4, percent: 80, questionIds: [1, 2, 3, 4, 5], answers: [], missedIds: [5], mode: "regular" }]);
   recordActivityToday("gustar", new Date("2026-10-16T08:00:00"));
-  recordMistakes(["Ser vs estar"]);
+  recordMistakes("ser-estar", [{ question: { id: 2001, infinitive: "ser / estar", tense: "present" }, answer: "está" }]);
   markQuizCompleted("gustar", new Date("2026-10-16T08:00:00"));
   writeTopicSettings("gustar", { roundLength: 10, mode: "choose" });
 };

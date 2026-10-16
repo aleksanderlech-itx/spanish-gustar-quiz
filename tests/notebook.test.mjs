@@ -72,7 +72,7 @@ test("quizIdForRule inverts ruleLabelFor for every activity", () => {
 
 test("the first write after migration stores schema v2 under the same key", () => {
   const storage = installStorage({ [NOTEBOOK_KEY]: JSON.stringify(V1) });
-  recordMistakes(["Por vs para"]);
+  recordMistakes("por-para", [{ question: { ...baseQuestion, id: 4001 }, answer: "para" }]);
   const stored = JSON.parse(storage.map.get(NOTEBOOK_KEY));
   assert.equal(stored.version, NOTEBOOK_VERSION);
   assert.equal(Object.keys(stored.entries).length, 4);
@@ -84,5 +84,42 @@ test("corrupt or blocked storage never throws out of the notebook", () => {
   assert.deepEqual(readNotebookEntries(), []);
   globalThis.window = { location: { search: "" }, localStorage: { getItem: () => { throw new Error("blocked"); }, setItem: () => { throw new Error("blocked"); }, removeItem: () => {} }, sessionStorage: {} };
   assert.deepEqual(readNotebookEntries(), []);
-  assert.doesNotThrow(() => recordMistakes(["Ser vs estar"]));
+  assert.doesNotThrow(() => recordMistakes("ser-estar", [{ question: { ...baseQuestion, id: 2001 }, answer: "es" }]));
+});
+
+test("a missed sentence becomes one question entry with its subtopic and wrong answer", () => {
+  installStorage();
+  recordMistakes("gustar", [{ question: { ...baseQuestion, id: 12, infinitive: "doler" }, answer: "me duelen" }], new Date("2026-10-16T08:00:00.000Z"));
+  assert.deepEqual(readNotebookEntries(), [{
+    id: "q:gustar:12", kind: "question", quizId: "gustar", rule: "Gustar pattern: doler", questionId: 12,
+    wrongAnswer: "me duelen", missCount: 1, lastMissedAt: "2026-10-16T08:00:00.000Z", retryCount: 0, retryCorrectCount: 0,
+  }]);
+});
+
+test("missing the same sentence again updates its entry instead of adding a duplicate", () => {
+  installStorage();
+  const question = { ...baseQuestion, id: 12, infinitive: "doler" };
+  recordMistakes("gustar", [{ question, answer: "me duelen" }], new Date("2026-10-16T08:00:00.000Z"));
+  recordMistakes("gustar", [{ question, answer: "te duele" }], new Date("2026-10-17T08:00:00.000Z"));
+  const entries = readNotebookEntries();
+  assert.equal(entries.length, 1);
+  assert.equal(entries[0].missCount, 2);
+  assert.equal(entries[0].wrongAnswer, "te duele");
+  assert.equal(entries[0].lastMissedAt, "2026-10-17T08:00:00.000Z");
+});
+
+test("the same question id in two activities stays two entries", () => {
+  installStorage();
+  recordMistakes("gustar", [{ question: { ...baseQuestion, id: 1 }, answer: "x" }]);
+  recordMistakes("ser-estar", [{ question: { ...baseQuestion, id: 1 }, answer: "x" }]);
+  assert.equal(readNotebookEntries().length, 2);
+});
+
+test("the notebook keeps only the 500 most recent misses", () => {
+  installStorage();
+  const misses = Array.from({ length: 505 }, (_, i) => ({ question: { ...baseQuestion, id: i + 1 }, answer: "x" }));
+  misses.forEach((miss, i) => recordMistakes("gustar", [miss], new Date(Date.UTC(2026, 0, 1, 0, i))));
+  const entries = readNotebookEntries();
+  assert.equal(entries.length, 500);
+  assert.ok(!entries.some((entry) => entry.questionId <= 5), "the five oldest were dropped");
 });
