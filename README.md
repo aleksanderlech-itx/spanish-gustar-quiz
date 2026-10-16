@@ -4,7 +4,7 @@ Reusable, mobile-first Spanish grammar quiz engine deployed through Cloudflare
 Pages at [spanish-quizz.es](https://spanish-quizz.es).
 
 The current quiz collection includes Gustar, Ser vs Estar, Preterite vs
-Imperfect, Por vs Para, Object Pronouns, and Saber vs Conocer. Quiz content is separated from shared scoring, navigation, audio,
+Imperfect, Por vs Para, Object Pronouns, Saber vs Conocer, and Reflexive Verbs. Quiz content is separated from shared scoring, navigation, audio,
 progress, and responsive UI so additional lessons can reuse the same shell.
 
 ## Prerequisites

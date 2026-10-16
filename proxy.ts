@@ -6,7 +6,7 @@ import { QUIZ_SLUGS, type QuizId } from "./app/quiz-config";
 import { buildLlmsFullTxt, buildLlmsTxt } from "./app/llms-txt";
 
 const isQuizId = (value: string | null): value is QuizId =>
-  value === "gustar" || value === "ser-estar" || value === "preterite-imperfect" || value === "por-para" || value === "object-pronouns" || value === "saber-conocer";
+  value === "gustar" || value === "ser-estar" || value === "preterite-imperfect" || value === "por-para" || value === "object-pronouns" || value === "saber-conocer" || value === "reflexive-verbs";
 
 const SITEMAP_PATHS = [
   "/",

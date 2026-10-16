@@ -41,7 +41,10 @@ This contract records the observable behavior shared by the grammar quizzes and 
   verbs side by side: present for most questions, preterite and imperfect for past-meaning questions
   (supe = found out, conocí = met), and all three tenses from the topic page. Gustar-pattern verbs are impersonal (they never
   conjugate for "yo, tú..."), so they get a singular/plural block instead. The ser/estar quiz compares
-  two different verbs rather than conjugating one, so its chart lists "ser" and "estar" directly. A
+  two different verbs rather than conjugating one, so its chart lists "ser" and "estar" directly. Reflexive
+  verbs get one shared chart for every usage group: the six reflexive pronouns, a full present paradigm
+  of levantarse, and where the pronoun goes (before a conjugated verb, or attached to an infinitive or
+  gerund). A
   regularity badge ("regular" / "irregular" / "spelling change") shows only for preterite/imperfect
   verbs (`PRETERITE_IMPERFECT_REGULARITY` in `app/preterite-imperfect-data.ts`), scoped strictly to
   that verb's behavior in those two tenses specifically: a verb irregular elsewhere (e.g. salir's

@@ -194,4 +194,32 @@ export const QUIZ_CONTENT: Record<QuizId, QuizContent> = {
       },
     ],
   },
+  "reflexive-verbs": {
+    paragraphs: [
+      "A reflexive verb describes an action the subject does to itself. English often hides this (I get up, she gets dressed), but Spanish marks it with a pronoun that mirrors the subject: me levanto, se viste. The pronoun always matches the person: me for yo, te for tú, se for él, ella and usted, nos for nosotros, os for vosotros, and se again for ellos and ustedes.",
+      "Many reflexive verbs belong to the daily routine (despertarse, ducharse, acostarse), to movement (sentarse, acercarse, mudarse) and to feelings (preocuparse, aburrirse, enfadarse). Without the pronoun the verb acts on someone else: acuesto al bebé means I put the baby to bed, me acuesto means I go to bed.",
+      "Some verbs change meaning with se. Ir is to go, irse is to leave; dormir is to sleep, dormirse is to fall asleep; acordar is to agree, acordarse de is to remember; llamar is to call, llamarse is to be called. Placement matters too: the pronoun goes before a conjugated verb (no me acuerdo), or on the end of an infinitive or gerund (tengo que levantarme, está duchándose).",
+      "This quiz has 150 sentences split into daily routine, movement, emotions, meaning change, placement and idiomatic uses, with an explanation for every answer. Use the usage filter to drill one group at a time, then mix them once the pronoun comes without thinking.",
+    ],
+    examples: sourcedExamples([7001, 7031, 7051, 7076, 7106, 7131]),
+    faq: [
+      {
+        question: "How do I know which reflexive pronoun to use?",
+        answer: "Find the subject and mirror it: yo me, tú te, él, ella or usted se, nosotros nos, vosotros os, ellos, ellas or ustedes se. Usted and ustedes always take se, never te or os.",
+      },
+      {
+        question: "Where does the reflexive pronoun go?",
+        answer:
+          "Before a conjugated verb (me levanto, no me levanto). With an infinitive or gerund you can attach it to the end (voy a levantarme, estoy levantándome) or put it before the helper verb (me voy a levantar), but never between the two.",
+      },
+      {
+        question: "Why do some attached forms need an accent?",
+        answer: "Adding a pronoun to a gerund adds a syllable, so a written accent keeps the stress where it was: lavando becomes lavándose. An infinitive with one pronoun needs no accent: levantarme.",
+      },
+      {
+        question: "Why does me lavo las manos not say mis manos?",
+        answer: "The reflexive pronoun already shows whose hands they are, so Spanish uses the article with body parts and clothes: me lavo las manos, se pone el abrigo.",
+      },
+    ],
+  },
 };

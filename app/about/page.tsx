@@ -5,7 +5,7 @@ import styles from "../prose-page.module.css";
 
 const TITLE = "About";
 const DESCRIPTION =
-  "What Spanish Quizzes is, who it is for, and how your progress is stored. A small practice app for gustar, ser vs estar, saber vs conocer, por vs para, object pronouns and preterite vs imperfect.";
+  "What Spanish Quizzes is, who it is for, and how your progress is stored. A small practice app for gustar, ser vs estar, saber vs conocer, por vs para, object pronouns, reflexive verbs and preterite vs imperfect.";
 
 export const metadata: Metadata = {
   title: TITLE,

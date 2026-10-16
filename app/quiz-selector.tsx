@@ -38,6 +38,8 @@ const TOPIC_ICON_PATHS: Record<QuizId, string> = {
   "preterite-imperfect": "M12 6c-3.2-2-6.3-2.3-10-1v14c3.7-1.3 6.8-1 10 1 3.2-2 6.3-2.3 10-1V5c-3.7-1.3-6.8-1-10 1Zm0 0v14",
   "object-pronouns": "M4 12.5l5 5L20 7",
   "saber-conocer": "M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3Z",
+  // A circular arrow: the action turns back on the subject.
+  "reflexive-verbs": "M20 12a8 8 0 1 1-2.3-5.7M20 4v4h-4",
 };
 
 /** Two fanned, empty playing cards for the flashcard deck. The front card's fill is

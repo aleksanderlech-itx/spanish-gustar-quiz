@@ -4,10 +4,11 @@ import { SER_ESTAR_FORMS, SER_ESTAR_QUESTIONS } from "./ser-estar-data.ts";
 import { POR_PARA_FORMS, POR_PARA_QUESTIONS } from "./por-para-data.ts";
 import { OBJECT_PRONOUN_FORMS, OBJECT_PRONOUN_QUESTIONS } from "./object-pronouns-data.ts";
 import { SABER_CONOCER_FORMS, SABER_CONOCER_QUESTIONS } from "./saber-conocer-data.ts";
+import { REFLEXIVE_FORMS, REFLEXIVE_VERB_QUESTIONS } from "./reflexive-verbs-data.ts";
 import { ruleForTense } from "./quiz-logic.ts";
 import type { Question } from "./quiz-data";
 
-export type QuizId = "gustar" | "ser-estar" | "preterite-imperfect" | "por-para" | "object-pronouns" | "saber-conocer";
+export type QuizId = "gustar" | "ser-estar" | "preterite-imperfect" | "por-para" | "object-pronouns" | "saber-conocer" | "reflexive-verbs";
 
 /** Each quiz's own crawlable URL, so every topic canonicalizes to itself instead of
  * every `?quiz=` variant resolving to the same root page. */
@@ -18,6 +19,7 @@ export const QUIZ_SLUGS: Record<QuizId, string> = {
   "por-para": "por-vs-para",
   "object-pronouns": "object-pronouns",
   "saber-conocer": "saber-vs-conocer",
+  "reflexive-verbs": "reflexive-verbs",
 };
 
 export const quizPath = (quizId: QuizId): string => `/${QUIZ_SLUGS[quizId]}`;
@@ -154,6 +156,25 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     rule: { title: "Saber knows facts and skills. Conocer knows people, places and things.", body: "Use saber for information, before que, si or a question word, and with an infinitive for skills. Use conocer for people (with the personal a), places and familiarity with a work or field. In the preterite, supe means found out and conocí means met.", singular: "Sé dónde vive Ana.", plural: "Conozco a Ana." },
     filterLabel: { label: "Usage", all: "All usages" },
     introducedOn: "2026-10-02",
+  },
+  "reflexive-verbs": {
+    title: "Reflexive Verbs Quiz",
+    eyebrow: "Reflexive verbs",
+    heading: "Find the subject. Mirror it back.",
+    copy: "Practise me, te, se, nos and os with everyday routines, feelings, movement and verbs whose meaning changes with se.",
+    description: "Practise Spanish reflexive verbs with 150 sentences covering daily routines, movement, emotions, verbs like irse and acordarse whose meaning changes, pronoun placement with infinitives and gerunds, and idioms, with an explanation for every answer.",
+    levelBand: "A1-B1",
+    questions: REFLEXIVE_VERB_QUESTIONS,
+    forms: REFLEXIVE_FORMS,
+    storageKey: "reflexive-verbs-quiz-progress-v1",
+    filterKey: "reflexive-verbs-quiz-filters-v1",
+    backupName: "spanish-reflexive-verbs-quiz-progress.json",
+    sources: [],
+    rule: { title: "The pronoun mirrors the subject.", body: "When the subject does the action to itself, add me, te, se, nos or os to match it. Put the pronoun before a conjugated verb, or attach it to an infinitive or gerund. Some verbs change meaning with se: ir means go, irse means leave.", singular: "Yo me levanto a las siete.", plural: "Vamos a levantarnos temprano." },
+    filterLabel: { label: "Usage", all: "All usages" },
+    chartLabel: "Reflexive chart",
+    // Set to the production go-live day so the streak never requires this activity on earlier days.
+    introducedOn: "2026-10-16",
   },
 };
 
