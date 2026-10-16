@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { readStreakSummary, STREAK_STORAGE_KEYS } from "./streak";
+import { isTestMode } from "./storage";
 import { readNotebookEntries } from "./notebook";
 import { QUIZ_CONFIG, QUIZ_IDS, type QuizId } from "./quiz-config";
 import type { QuizResult } from "./quiz-logic";
@@ -96,7 +97,7 @@ const exportAllProgress = () => {
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
-  link.download = "spanish-quiz-studio-backup.json";
+  link.download = isTestMode() ? "spanish-quiz-studio-test-backup.json" : "spanish-quiz-studio-backup.json";
   link.click();
   URL.revokeObjectURL(url);
 };
@@ -119,7 +120,10 @@ const importAllProgress = async (file: File) => {
 };
 
 const resetAllProgress = () => {
-  if (!window.confirm("Delete all quiz and flashcard progress on this device? This cannot be undone.")) return;
+  const message = isTestMode()
+    ? "Delete all test progress? Your real progress is not affected. This cannot be undone."
+    : "Delete all quiz and flashcard progress on this device? This cannot be undone.";
+  if (!window.confirm(message)) return;
   ALL_PROGRESS_KEYS.forEach((key) => appStorage.removeItem(key));
   window.location.reload();
 };

@@ -86,8 +86,9 @@ export const clearTestData = () => {
   });
 };
 
-/** Text added in front of every key. Empty in normal mode, so real keys are untouched. */
-export const storageKeyPrefix = (): string => "";
+/** Text added in front of every key: the test prefix in test mode, empty otherwise, so real keys are untouched
+ * in test mode and test keys are never read in normal mode. */
+export const storageKeyPrefix = (): string => (isTestMode() ? TEST_KEY_PREFIX : "");
 
 const wrap = (pick: () => Storage): Store => ({
   getItem: (key) => pick().getItem(storageKeyPrefix() + key),
