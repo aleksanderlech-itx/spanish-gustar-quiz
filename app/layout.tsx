@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Suspense } from "react";
 import { cookies, headers } from "next/headers";
 import "./globals.css";
 import "./issue-5-design.css";
@@ -105,7 +106,9 @@ export default async function RootLayout({
       <body className="antialiased">
         <script suppressHydrationWarning dangerouslySetInnerHTML={{ __html: THEME_PRE_PAINT_SCRIPT }} />
         {isProduction && <AnalyticsScripts gaId={GA_MEASUREMENT_ID} clarityId={CLARITY_PROJECT_ID} />}
-        <TestMode />
+        <Suspense fallback={null}>
+          <TestMode />
+        </Suspense>
         <QuizSelector />
         {children}
         <SiteFooter />

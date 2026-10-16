@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { clearTestData, forgetTestModeForTab, isTestMode, rememberTestModeForTab, TEST_MODE_PARAM } from "./storage";
 
 const TITLE_PREFIX = "[Test] ";
@@ -13,6 +13,7 @@ const TITLE_PREFIX = "[Test] ";
  */
 export default function TestMode() {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [active, setActive] = useState(false);
   const [kept, setKept] = useState(true);
   const [open, setOpen] = useState(false);
@@ -34,7 +35,7 @@ export default function TestMode() {
     } catch {
       // URL or history unavailable; the tab flag still holds the mode.
     }
-  }, [pathname]);
+  }, [pathname, searchParams]);
 
   useEffect(() => {
     if (!active) return;
