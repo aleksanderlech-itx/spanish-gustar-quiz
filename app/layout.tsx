@@ -6,7 +6,9 @@ import "./issue-5-design.css";
 import "./quiz-layout-fix.css";
 import "./editorial-polish.css";
 import "./activity-chrome.css";
+import "./test-mode.css";
 import QuizSelector from "./quiz-selector";
+import TestMode from "./test-mode";
 import { SiteFooter } from "./site-footer";
 import { SITE_CONFIG } from "./site-config";
 import { isProductionHost } from "./is-production-host";
@@ -120,6 +122,7 @@ export default async function RootLayout({
             </Script>
           </>
         )}
+        <TestMode />
         <QuizSelector />
         {children}
         <SiteFooter />

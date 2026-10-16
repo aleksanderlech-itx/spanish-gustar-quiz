@@ -65,6 +65,27 @@ export const forgetTestModeForTab = () => {
   }
 };
 
+/** Every key written in test mode starts with this, which no real key does. Reset removes exactly these. */
+export const TEST_KEY_PREFIX = "sq_test_";
+
+/** Removes only test-namespace keys, from both localStorage and sessionStorage. Real keys and the tab flag
+ * are never touched. */
+export const clearTestData = () => {
+  [() => window.localStorage, () => window.sessionStorage].forEach((pick) => {
+    try {
+      const store = pick();
+      const doomed: string[] = [];
+      for (let i = 0; i < store.length; i += 1) {
+        const key = store.key(i);
+        if (key && key.startsWith(TEST_KEY_PREFIX)) doomed.push(key);
+      }
+      doomed.forEach((key) => store.removeItem(key));
+    } catch {
+      // Storage blocked; there is no test data to clear.
+    }
+  });
+};
+
 /** Text added in front of every key. Empty in normal mode, so real keys are untouched. */
 export const storageKeyPrefix = (): string => "";
 
