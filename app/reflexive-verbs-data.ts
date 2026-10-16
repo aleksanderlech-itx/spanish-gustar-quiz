@@ -196,7 +196,7 @@ export const REFLEXIVE_VERB_QUESTIONS: Question[] = seed.map(([usage, before, af
   // Written per item in explanations-reflexive-verbs.ts.
   explanation: "",
   translations: { en, pl: "" },
-  subjectNumber: "singular",
+  subjectNumber: "singular" as const,
   isActivity: false,
   indirectObject: "",
   tense,

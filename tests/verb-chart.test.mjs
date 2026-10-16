@@ -52,3 +52,9 @@ test("saber/conocer chart scopes to the question's tense: past-meaning gets pret
   assert.match(source, /infinitive === "past meaning" \? \(\["preterite", "imperfect"\] as const\)/);
   assert.match(source, /: infinitive \? \(\["present"\] as const\)/);
 });
+
+test("reflexive verbs chart is one shared section with the pronouns, a full paradigm and placement", async () => {
+  const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
+  assert.match(source, /quizId === "reflexive-verbs" \? \[""\]/);
+  assert.match(source, /return REFLEXIVE_CHART\.map\(/);
+});

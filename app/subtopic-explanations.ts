@@ -47,6 +47,13 @@ export function subtopicExplanation(quizId: QuizId, question: Question): string 
       };
       return `${cue} ${rule[question.infinitive] ?? "decides between saber and conocer."}`;
     }
+    case "reflexive-verbs": {
+      const rule: Record<string, string> = {
+        "meaning change": "decides whether the plain verb or the reflexive one fits, since se changes the meaning.",
+        placement: "decides where the pronoun goes: before a conjugated verb, or on the end of an infinitive or gerund.",
+      };
+      return `${cue} ${rule[question.infinitive] ?? "shows who does the action to themselves, so the reflexive pronoun matches that subject."}`;
+    }
   }
 }
 
