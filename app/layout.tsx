@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { cookies, headers } from "next/headers";
-import Script from "next/script";
 import "./globals.css";
 import "./issue-5-design.css";
 import "./quiz-layout-fix.css";
@@ -9,6 +8,7 @@ import "./activity-chrome.css";
 import "./test-mode.css";
 import QuizSelector from "./quiz-selector";
 import TestMode from "./test-mode";
+import AnalyticsScripts from "./analytics-scripts";
 import { SiteFooter } from "./site-footer";
 import { SITE_CONFIG } from "./site-config";
 import { isProductionHost } from "./is-production-host";
@@ -104,24 +104,7 @@ export default async function RootLayout({
     <html lang="en" data-theme={initialTheme} suppressHydrationWarning>
       <body className="antialiased">
         <script suppressHydrationWarning dangerouslySetInnerHTML={{ __html: THEME_PRE_PAINT_SCRIPT }} />
-        {isProduction && (
-          <>
-            <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} strategy="afterInteractive" />
-            <Script id="ga4-init" strategy="afterInteractive">
-              {`window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${GA_MEASUREMENT_ID}');`}
-            </Script>
-            <Script id="ms-clarity-init" strategy="afterInteractive">
-              {`(function(c,l,a,r,i,t,y){
-                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-              })(window, document, "clarity", "script", "${CLARITY_PROJECT_ID}");`}
-            </Script>
-          </>
-        )}
+        {isProduction && <AnalyticsScripts gaId={GA_MEASUREMENT_ID} clarityId={CLARITY_PROJECT_ID} />}
         <TestMode />
         <QuizSelector />
         {children}
