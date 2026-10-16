@@ -18,6 +18,8 @@ import { takeDayCelebration } from "./day-celebration";
 import Logo from "./logo";
 import { SunIcon, MoonIcon } from "./theme-icons";
 import { appStorage } from "./storage";
+import { readNotebookGroups, type NotebookGroup } from "./notebook";
+import { mistakesPath, mistakesTitle } from "./notebook-retry";
 
 type BoardItem = BoardTileProgress & {
   id: ActivityId;
@@ -192,6 +194,7 @@ export default function QuizSelector() {
     EMPTY_DAILY,
   )));
   const [streak, setStreak] = useState<StreakSummary>(EMPTY_STREAK);
+  const [mistakeGroups, setMistakeGroups] = useState<NotebookGroup[]>([]);
   const [celebrating, setCelebrating] = useState(false);
 
   useEffect(() => {
@@ -228,6 +231,8 @@ export default function QuizSelector() {
     // Browser storage is unavailable during the server render.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setItems(nextItems);
+    // Temporary mistakes activities sit outside ACTIVITY_REGISTRY, so the streak and daily goal never see them.
+    setMistakeGroups(readNotebookGroups());
     const summary = readStreakSummary();
     setStreak(summary);
     // Only right after the round that completed today: takeDayCelebration clears the flag either way.
@@ -427,6 +432,30 @@ export default function QuizSelector() {
           );
         })}
       </section>
+
+        {mistakeGroups.length > 0 && (
+          <>
+            <div className="board-section-head board-section-head-secondary">
+              <h2 className="eyebrow">Mistakes to retry</h2>
+            </div>
+            <section className="board-grid" aria-label="Temporary mistakes activities">
+              {mistakeGroups.map((group) => (
+                <a className="board-tile board-tile-due board-tile-mistakes" href={mistakesPath(group.quizId)} key={group.quizId}>
+                  <span className="board-icon"><BoardIcon id={group.quizId} /></span>
+                  <div className="board-tile-content">
+                    <div className="board-tile-content-header">
+                      <h2>{mistakesTitle(group.quizId)}</h2>
+                      <span className="board-tile-top-pills">
+                        <span className="board-tile-pill board-tile-pill-mistakes">{group.entries.length} to retry</span>
+                      </span>
+                    </div>
+                    <span className="board-tile-note">Practice only. Not part of today&apos;s goal.</span>
+                  </div>
+                </a>
+              ))}
+            </section>
+          </>
+        )}
 
         <p className="library-note">Progress, filters, scoring, audio and review history remain attached to each quiz.</p>
       </div>
