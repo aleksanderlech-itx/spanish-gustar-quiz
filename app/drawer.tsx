@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { readStreakSummary, STREAK_STORAGE_KEYS } from "./streak";
 import { isTestMode } from "./storage";
-import { readNotebookGroups, type NotebookGroup } from "./notebook";
+import { NOTEBOOK_KEY, readNotebookGroups, type NotebookGroup } from "./notebook";
 import { mistakesPath, mistakesTitle } from "./notebook-retry";
 import { QUIZ_CONFIG, QUIZ_IDS, type QuizId } from "./quiz-config";
 import type { QuizResult } from "./quiz-logic";
@@ -19,6 +19,7 @@ const ALL_PROGRESS_KEYS = [
   FLASHCARD_KEY,
   ...STREAK_STORAGE_KEYS,
   ...QUIZ_COMPLETION_STORAGE_KEYS,
+  NOTEBOOK_KEY,
 ];
 const WEEK_MS = 7 * 86_400_000;
 

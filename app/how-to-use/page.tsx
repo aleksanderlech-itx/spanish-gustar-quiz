@@ -188,7 +188,7 @@ export default function HowToUsePage() {
           <h2>Backup and restore</h2>
           <p>Your learning progress is kept in browser storage on the device you are using. If you clear browser data or move to another browser or device, that local progress does not automatically follow you.</p>
           <ul>
-            <li>Select <UiLabel>Download backup</UiLabel> to save a JSON backup file containing quiz and flashcard progress.</li>
+            <li>Select <UiLabel>Download backup</UiLabel> to save a JSON backup file containing quiz and flashcard progress and your mistake notebook.</li>
             <li>Select <UiLabel>Import backup</UiLabel> and choose a previous backup file to restore it.</li>
             <li>Download a backup before moving devices, clearing browser data, or resetting progress.</li>
             <li><UiLabel>Reset all progress</UiLabel> removes saved quiz and flashcard progress from the current device. Use it only when you want to start over.</li>
