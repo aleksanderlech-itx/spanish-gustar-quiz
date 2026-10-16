@@ -9,6 +9,7 @@ import { computeRecentRounds, computeWeakAreas, type RecentRound, type WeakArea 
 import { readAllCompletions, isQuizReinstated, setQuizReinstated, isRepeatDue, repeatDueDate, QUIZ_COMPLETION_STORAGE_KEYS } from "./quiz-completion";
 import Logo from "./logo";
 import KofiButton from "./kofi-button";
+import { appStorage } from "./storage";
 
 const FLASHCARD_KEY = "spanish-flashcards-leitner-v2";
 const ALL_PROGRESS_KEYS = [
@@ -35,7 +36,7 @@ type QuizHistoryEntry = { quizId: QuizId; title: string; questions: (typeof QUIZ
 const readAllQuizHistories = (): QuizHistoryEntry[] => QUIZ_IDS.map((id) => {
   const quiz = QUIZ_CONFIG[id];
   try {
-    const raw = window.localStorage.getItem(quiz.storageKey);
+    const raw = appStorage.getItem(quiz.storageKey);
     const history = raw ? (JSON.parse(raw) as QuizResult[]) : [];
     return { quizId: id, title: quiz.title.replace(" Quiz", ""), questions: quiz.questions, history };
   } catch {
@@ -64,7 +65,7 @@ const readGlobalStats = (byQuiz: QuizHistoryEntry[]): GlobalStats => {
 
   let flashcardsStudied = 0;
   try {
-    const raw = window.localStorage.getItem(FLASHCARD_KEY);
+    const raw = appStorage.getItem(FLASHCARD_KEY);
     flashcardsStudied = raw ? Object.keys(JSON.parse(raw) as Record<string, unknown>).length : 0;
   } catch {
     // Ignore; flashcardsStudied stays 0.
@@ -82,7 +83,7 @@ const readGlobalStats = (byQuiz: QuizHistoryEntry[]): GlobalStats => {
 const exportAllProgress = () => {
   const payload: Record<string, unknown> = { version: 1, exportedAt: new Date().toISOString() };
   ALL_PROGRESS_KEYS.forEach((key) => {
-    const raw = window.localStorage.getItem(key);
+    const raw = appStorage.getItem(key);
     if (raw) {
       try {
         payload[key] = JSON.parse(raw);
@@ -106,7 +107,7 @@ const importAllProgress = async (file: File) => {
     let restored = 0;
     ALL_PROGRESS_KEYS.forEach((key) => {
       if (data[key] !== undefined) {
-        window.localStorage.setItem(key, JSON.stringify(data[key]));
+        appStorage.setItem(key, JSON.stringify(data[key]));
         restored += 1;
       }
     });
@@ -119,7 +120,7 @@ const importAllProgress = async (file: File) => {
 
 const resetAllProgress = () => {
   if (!window.confirm("Delete all quiz and flashcard progress on this device? This cannot be undone.")) return;
-  ALL_PROGRESS_KEYS.forEach((key) => window.localStorage.removeItem(key));
+  ALL_PROGRESS_KEYS.forEach((key) => appStorage.removeItem(key));
   window.location.reload();
 };
 

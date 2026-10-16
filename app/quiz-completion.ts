@@ -1,4 +1,5 @@
 import type { QuizId } from "./quiz-config";
+import { appStorage } from "./storage.ts";
 
 const COMPLETION_KEY = "spanish-quiz-completions-v1";
 const REINSTATED_KEY = "spanish-quiz-reinstated-v1";
@@ -11,7 +12,7 @@ type Reinstated = Record<string, boolean>;
 const readCompletions = (): Completions => {
   if (typeof window === "undefined") return {};
   try {
-    const raw = window.localStorage.getItem(COMPLETION_KEY);
+    const raw = appStorage.getItem(COMPLETION_KEY);
     const parsed = raw ? (JSON.parse(raw) as unknown) : {};
     if (!parsed || typeof parsed !== "object") return {};
     const completions: Completions = {};
@@ -26,7 +27,7 @@ const readCompletions = (): Completions => {
 
 const writeCompletions = (completions: Completions) => {
   try {
-    window.localStorage.setItem(COMPLETION_KEY, JSON.stringify(completions));
+    appStorage.setItem(COMPLETION_KEY, JSON.stringify(completions));
   } catch {
     // Storage can be unavailable (private mode, quota); the completion mark just won't persist this session.
   }
@@ -35,7 +36,7 @@ const writeCompletions = (completions: Completions) => {
 const readReinstated = (): Reinstated => {
   if (typeof window === "undefined") return {};
   try {
-    const raw = window.localStorage.getItem(REINSTATED_KEY);
+    const raw = appStorage.getItem(REINSTATED_KEY);
     const parsed = raw ? (JSON.parse(raw) as unknown) : {};
     if (!parsed || typeof parsed !== "object") return {};
     const reinstated: Reinstated = {};
@@ -50,7 +51,7 @@ const readReinstated = (): Reinstated => {
 
 const writeReinstated = (reinstated: Reinstated) => {
   try {
-    window.localStorage.setItem(REINSTATED_KEY, JSON.stringify(reinstated));
+    appStorage.setItem(REINSTATED_KEY, JSON.stringify(reinstated));
   } catch {
     // Storage can be unavailable (private mode, quota); the reinstate choice just won't persist this session.
   }

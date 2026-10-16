@@ -18,6 +18,7 @@ import { SkipLink } from "./activity-chrome";
 import SiteHeader from "./site-header";
 import HelpButton from "./help-modal";
 import { updateStoredProgress } from "./stored-progress";
+import { appStorage } from "./storage";
 
 type Result = QuizResult;
 
@@ -131,7 +132,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
   }, []);
 
   const readStoredHistory = () => {
-    const saved = localStorage.getItem(storageKey);
+    const saved = appStorage.getItem(storageKey);
     return presentOnlyHistory(saved ? (JSON.parse(saved) as Result[]) : [], questions);
   };
 

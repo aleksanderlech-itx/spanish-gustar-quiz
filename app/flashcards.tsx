@@ -12,6 +12,7 @@ import { QUIZ_CONFIG, QUIZ_IDS, quizPath } from "./quiz-config";
 import { SITE_CONFIG } from "./site-config";
 import SupportPrompt from "./support-prompt";
 import { updateStoredProgress } from "./stored-progress";
+import { appStorage } from "./storage";
 
 type LeitnerBox = 1 | 2 | 3 | 4;
 type CardRecord = { box: LeitnerBox; attempts: number; correct: number; updatedAt: string; nextReviewAt: string };
@@ -35,7 +36,7 @@ const DIFFICULTY_OPTIONS: { value: DifficultyFilter; label: string }[] = [
 
 const readStoredDifficulty = (): DifficultyFilter => {
   if (typeof window === "undefined") return "all";
-  const saved = window.localStorage.getItem(DIFFICULTY_STORAGE_KEY);
+  const saved = appStorage.getItem(DIFFICULTY_STORAGE_KEY);
   return saved === "easy" || saved === "medium" || saved === "hard" ? saved : "all";
 };
 
@@ -68,17 +69,17 @@ const migrateLegacyProgress = (legacy: LegacyProgress): LeitnerProgress => Objec
 const readStoredProgress = (): LeitnerProgress => {
   if (typeof window === "undefined") return {};
   try {
-    const saved = window.localStorage.getItem(STORAGE_KEY);
+    const saved = appStorage.getItem(STORAGE_KEY);
     if (saved) {
       const parsed = JSON.parse(saved) as LeitnerProgress;
       // Earlier versions used 5 Leitner boxes; clamp any box 5 records still in
       // storage down into the new 4-box range instead of losing that progress.
       return Object.fromEntries(Object.entries(parsed).map(([spanish, record]) => [spanish, { ...record, box: clampBox(record.box) }]));
     }
-    const legacy = window.localStorage.getItem(LEGACY_STORAGE_KEY);
+    const legacy = appStorage.getItem(LEGACY_STORAGE_KEY);
     if (!legacy) return {};
     const migrated = migrateLegacyProgress(JSON.parse(legacy) as LegacyProgress);
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated));
+    appStorage.setItem(STORAGE_KEY, JSON.stringify(migrated));
     return migrated;
   } catch {
     return {};
@@ -138,7 +139,7 @@ export default function Flashcards({ standalone = false }: { standalone?: boolea
   const changeDifficulty = (next: DifficultyFilter) => {
     if (next === difficulty) return;
     setDifficulty(next);
-    window.localStorage.setItem(DIFFICULTY_STORAGE_KEY, next);
+    appStorage.setItem(DIFFICULTY_STORAGE_KEY, next);
     const nextPool = next === "all" ? FLASHCARD_VERBS : FLASHCARD_VERBS.filter((card) => card.difficulty === next);
     // eslint-disable-next-line react-hooks/purity -- only ever invoked from the filter buttons' onClick
     startRound(progress, nextPool, Date.now());

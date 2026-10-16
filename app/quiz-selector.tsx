@@ -17,6 +17,7 @@ import DayCompleteDialog from "./day-complete-dialog";
 import { takeDayCelebration } from "./day-celebration";
 import Logo from "./logo";
 import { SunIcon, MoonIcon } from "./theme-icons";
+import { appStorage } from "./storage";
 
 type BoardItem = BoardTileProgress & {
   id: ActivityId;
@@ -90,7 +91,7 @@ const boardItem = (entry: ActivityRegistryEntry, progress: QuizProgress, daily: 
  */
 const readFlashcardProgress = (): { progress: Omit<BoardTileProgress, "id">; daily: DailyRoundProgress } => {
   try {
-    const raw = window.localStorage.getItem("spanish-flashcards-leitner-v2") ?? window.localStorage.getItem("spanish-flashcards-progress-v1");
+    const raw = appStorage.getItem("spanish-flashcards-leitner-v2") ?? appStorage.getItem("spanish-flashcards-progress-v1");
     const saved = raw ? JSON.parse(raw) as Record<string, { box?: number; nextReviewAt?: string; updatedAt?: string }> : {};
     const entries = Object.values(saved);
     const completed = entries.length;
@@ -131,7 +132,7 @@ const readFlashcardProgress = (): { progress: Omit<BoardTileProgress, "id">; dai
 /** A quiz's stored round history; empty if it's missing or corrupt. */
 const readQuizHistory = (quizId: QuizId): QuizResult[] => {
   try {
-    const raw = window.localStorage.getItem(QUIZ_CONFIG[quizId].storageKey);
+    const raw = appStorage.getItem(QUIZ_CONFIG[quizId].storageKey);
     const history = raw ? (JSON.parse(raw) as unknown) : [];
     return Array.isArray(history) ? (history as QuizResult[]) : [];
   } catch {
@@ -154,7 +155,7 @@ const backfillEntries = (): Array<{ activity: ActivityId; day: string }> => {
 
   QUIZ_IDS.forEach((quizId) => {
     try {
-      const raw = window.localStorage.getItem(QUIZ_CONFIG[quizId].storageKey);
+      const raw = appStorage.getItem(QUIZ_CONFIG[quizId].storageKey);
       const history = raw ? (JSON.parse(raw) as QuizResult[]) : [];
       history.filter((item) => item.mode !== "review").forEach((item) => {
         entries.push({ activity: quizId, day: dayKey(new Date(item.date)) });
