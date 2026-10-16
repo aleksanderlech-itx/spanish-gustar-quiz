@@ -150,6 +150,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
   if (finished && lastResult) {
     return (
       <Results
+        quizId={quizId}
         result={lastResult}
         missedRuleLabels={missedRules}
         hasMissedOverall={missedIds.length > 0}
