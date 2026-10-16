@@ -52,20 +52,23 @@ export const buildRetrySession = (
   return session;
 };
 
-export type RetryExplanation = { summary: string; rule: string; sentence: string | null };
+export type RetryExplanation = { given: string | null; rule: string | null; sentence: string | null };
 
 /**
- * What a wrong retry shows: the answer given against the right one, the subtopic rule filled from
- * this sentence, then the sentence's own explanation when it adds something beyond the rule.
+ * What a wrong retry shows under the "Not quite" label (which already names the right answer): the answer
+ * given, the subtopic rule filled from this sentence, and the sentence's own explanation. When one of the two
+ * explanations already contains the other, only the longer one is kept, so nothing is said twice.
  */
 export const retryExplanation = (quizId: QuizId, question: Question, answer: string): RetryExplanation => {
-  const rule = subtopicExplanation(quizId, question);
+  const rule = subtopicExplanation(quizId, question).trim();
   const sentence = question.explanation.trim();
   const given = answer.trim();
+  const covers = (longer: string, shorter: string) => longer.toLocaleLowerCase("en").includes(shorter.toLocaleLowerCase("en"));
+  const sentenceCoversRule = !!sentence && covers(sentence, rule);
   return {
-    summary: given ? `You answered “${given}”. The answer is “${question.answer}”.` : `The answer is “${question.answer}”.`,
-    rule,
-    sentence: sentence && sentence !== rule ? sentence : null,
+    given: given ? `You answered “${given}”.` : null,
+    rule: sentenceCoversRule ? null : rule,
+    sentence: !sentence || (!sentenceCoversRule && covers(rule, sentence)) ? null : sentence,
   };
 };
 

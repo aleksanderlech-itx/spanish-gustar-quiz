@@ -71,16 +71,28 @@ test("an entry whose sentence no longer exists is skipped", () => {
   assert.deepEqual(session, []);
 });
 
-test("a wrong retry explains with the answers, the subtopic rule and the sentence's own explanation", () => {
-  const places = saber.find((question) => question.infinitive === "places" && question.explanation !== retryExplanation("saber-conocer", question, "").rule);
-  const explanation = retryExplanation("saber-conocer", places, "sé");
-  assert.equal(explanation.summary, `You answered “sé”. The answer is “${places.answer}”.`);
-  assert.match(explanation.rule, /being familiar with a place uses conocer/);
-  assert.equal(explanation.sentence, places.explanation);
+test("a wrong retry explains with the answer given, the subtopic rule and the sentence's own explanation", () => {
+  const question = { ...saber.find((q) => q.infinitive === "places"), cue: "Barcelona", explanation: "Ir a Barcelona once is enough to say conozco." };
+  const explanation = retryExplanation("saber-conocer", question, "sé");
+  assert.equal(explanation.given, "You answered “sé”.");
+  assert.equal(explanation.rule, "Barcelona is a place, and being familiar with a place uses conocer.");
+  assert.equal(explanation.sentence, question.explanation);
 });
 
-test("the sentence explanation is left out when it only repeats the rule", () => {
-  const question = { ...gustar[0], explanation: "" };
-  assert.equal(retryExplanation("gustar", question, "").sentence, null);
-  assert.equal(retryExplanation("gustar", question, "").summary, `The answer is “${question.answer}”.`);
+test("when one explanation contains the other, only the longer one is shown", () => {
+  const base = gustar[0];
+  const rule = retryExplanation("gustar", { ...base, explanation: "" }, "x").rule;
+  const longer = retryExplanation("gustar", { ...base, explanation: `${rule} Me is the pronoun for I.` }, "x");
+  assert.equal(longer.rule, null);
+  assert.equal(longer.sentence, `${rule} Me is the pronoun for I.`);
+  const same = retryExplanation("gustar", { ...base, explanation: rule }, "x");
+  assert.equal(same.rule, null);
+  assert.equal(same.sentence, rule);
+});
+
+test("with no sentence explanation and a skipped answer, only the rule is shown", () => {
+  const explanation = retryExplanation("gustar", { ...gustar[0], explanation: "" }, "");
+  assert.equal(explanation.given, null);
+  assert.ok(explanation.rule);
+  assert.equal(explanation.sentence, null);
 });

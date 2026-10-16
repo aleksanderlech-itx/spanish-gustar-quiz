@@ -123,8 +123,8 @@ export default function MistakesActivity({ quizId, initialRule = null }: { quizI
           const explanation = retryExplanation(quizId, question, answers[index] ?? "");
           return (
             <>
-              <p className="round-explain-body">{explanation.summary}</p>
-              <p className="round-explain-body">{explanation.rule}</p>
+              {explanation.given && <p className="round-explain-body">{explanation.given}</p>}
+              {explanation.rule && <p className="round-explain-body">{explanation.rule}</p>}
               {explanation.sentence && <p className="round-explain-body">{explanation.sentence}</p>}
             </>
           );

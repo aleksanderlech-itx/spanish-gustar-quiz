@@ -146,6 +146,7 @@ a.mistakes-chip {
 }
 
 .mistakes-start {
+  width: 100%;
   border: 0;
   border-radius: 5px;
   font: inherit;
