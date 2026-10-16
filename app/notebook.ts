@@ -1,5 +1,6 @@
 import type { Question } from "./quiz-data";
 import type { QuizId } from "./quiz-config";
+import { appStorage } from "./storage.ts";
 
 export type NotebookEntry = { rule: string; count: number; lastMissedAt: string };
 
@@ -18,7 +19,7 @@ export const ruleLabelFor = (question: Question, quizId: QuizId): string => {
 const readNotebook = (): Record<string, NotebookEntry> => {
   if (typeof window === "undefined") return {};
   try {
-    const raw = window.localStorage.getItem(NOTEBOOK_KEY);
+    const raw = appStorage.getItem(NOTEBOOK_KEY);
     return raw ? (JSON.parse(raw) as Record<string, NotebookEntry>) : {};
   } catch {
     return {};
@@ -28,7 +29,7 @@ const readNotebook = (): Record<string, NotebookEntry> => {
 const writeNotebook = (entries: Record<string, NotebookEntry>) => {
   if (typeof window === "undefined") return;
   try {
-    window.localStorage.setItem(NOTEBOOK_KEY, JSON.stringify(entries));
+    appStorage.setItem(NOTEBOOK_KEY, JSON.stringify(entries));
   } catch {
     // Storage can be unavailable (private mode, quota); the notebook just won't persist this session.
   }

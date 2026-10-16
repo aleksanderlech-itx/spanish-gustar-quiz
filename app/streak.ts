@@ -1,6 +1,7 @@
 import { isQuizReinstated, isRepeatDue, readAllCompletions, repeatDueDate } from "./quiz-completion.ts";
 import { ACTIVITY_REGISTRY, type ActivityId } from "./activity-registry.ts";
 import { markDayCelebrationPending } from "./day-celebration.ts";
+import { appStorage } from "./storage.ts";
 
 const STREAK_KEY = "spanish-quiz-streak-v2";
 /** The banked day counter. Stored rather than recomputed so later rule or activity changes never rewrite it.
@@ -61,7 +62,7 @@ type CompletedDays = Record<string, ActivityId[]>;
 const readCompletedDays = (): CompletedDays => {
   if (typeof window === "undefined") return {};
   try {
-    const raw = window.localStorage.getItem(COMPLETED_DAYS_KEY);
+    const raw = appStorage.getItem(COMPLETED_DAYS_KEY);
     const parsed = raw ? (JSON.parse(raw) as unknown) : {};
     const days: CompletedDays = {};
     if (parsed && typeof parsed === "object") {
@@ -80,7 +81,7 @@ const lockCompletedDay = (day: string, required: ActivityId[]) => {
   if (days[day]) return;
   days[day] = required;
   try {
-    window.localStorage.setItem(COMPLETED_DAYS_KEY, JSON.stringify(days));
+    appStorage.setItem(COMPLETED_DAYS_KEY, JSON.stringify(days));
   } catch {
     // Storage can be unavailable (private mode, quota); the day just won't be locked this session.
   }
@@ -127,7 +128,7 @@ const lockTodayIfComplete = (records: Records, ctx: GoalContext) => {
 const readRecords = (): Records => {
   if (typeof window === "undefined") return new Map();
   try {
-    const raw = window.localStorage.getItem(STREAK_KEY);
+    const raw = appStorage.getItem(STREAK_KEY);
     const parsed = raw ? (JSON.parse(raw) as unknown) : {};
     const records: Records = new Map();
     if (parsed && typeof parsed === "object") {
@@ -147,7 +148,7 @@ const writeRecords = (records: Records) => {
   try {
     const obj: Record<string, ActivityId[]> = {};
     records.forEach((set, day) => { obj[day] = [...set]; });
-    window.localStorage.setItem(STREAK_KEY, JSON.stringify(obj));
+    appStorage.setItem(STREAK_KEY, JSON.stringify(obj));
   } catch {
     // Storage can be unavailable (private mode, quota); the streak just won't persist this session.
   }
@@ -162,7 +163,7 @@ type StreakCounter = { count: number; lastCompletedDay: string | null };
 
 const readStoredCounter = (): StreakCounter | null => {
   try {
-    const raw = window.localStorage.getItem(STREAK_COUNTER_KEY);
+    const raw = appStorage.getItem(STREAK_COUNTER_KEY);
     if (!raw) return null;
     const parsed = JSON.parse(raw) as Partial<StreakCounter>;
     if (typeof parsed?.count !== "number") return null;
@@ -177,7 +178,7 @@ const readStoredCounter = (): StreakCounter | null => {
 
 const writeCounter = (counter: StreakCounter) => {
   try {
-    window.localStorage.setItem(STREAK_COUNTER_KEY, JSON.stringify(counter));
+    appStorage.setItem(STREAK_COUNTER_KEY, JSON.stringify(counter));
   } catch {
     // Storage can be unavailable (private mode, quota); the counter just won't persist this session.
   }
@@ -201,7 +202,7 @@ const readCounter = (records: Records, ctx: GoalContext): StreakCounter => {
   const seeded = seedCounter(records, ctx);
   writeCounter(seeded);
   try {
-    window.localStorage.removeItem(LEGACY_COUNTER_KEY);
+    appStorage.removeItem(LEGACY_COUNTER_KEY);
   } catch {
     // Storage can be unavailable; the stale v1 counter is simply never read again.
   }
@@ -240,10 +241,10 @@ export const recordActivityToday = (activity: ActivityId, now = new Date()) => {
 export const recordFlashcardDayReviewed = (day: string) => {
   if (typeof window === "undefined") return;
   try {
-    const raw = window.localStorage.getItem(FLASHCARD_DAYS_KEY);
+    const raw = appStorage.getItem(FLASHCARD_DAYS_KEY);
     const days: string[] = raw ? JSON.parse(raw) : [];
     if (days.includes(day)) return;
-    window.localStorage.setItem(FLASHCARD_DAYS_KEY, JSON.stringify([...days, day]));
+    appStorage.setItem(FLASHCARD_DAYS_KEY, JSON.stringify([...days, day]));
   } catch {
     // Storage can be unavailable (private mode, quota); the day log just won't persist this session.
   }
@@ -252,7 +253,7 @@ export const recordFlashcardDayReviewed = (day: string) => {
 export const readFlashcardDaysReviewed = (): string[] => {
   if (typeof window === "undefined") return [];
   try {
-    const raw = window.localStorage.getItem(FLASHCARD_DAYS_KEY);
+    const raw = appStorage.getItem(FLASHCARD_DAYS_KEY);
     const days = raw ? (JSON.parse(raw) as unknown) : [];
     return Array.isArray(days) ? days.filter((day): day is string => typeof day === "string") : [];
   } catch {

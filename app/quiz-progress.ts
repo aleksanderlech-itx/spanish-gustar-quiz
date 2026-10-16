@@ -3,6 +3,7 @@ import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
 import { readTopicSettings } from "./topic-settings";
 import { dayKey } from "./streak";
 import type { BoardTileProgress } from "./board";
+import { appStorage } from "./storage.ts";
 
 export type QuizProgress = Omit<BoardTileProgress, "id">;
 
@@ -17,7 +18,7 @@ export const readQuizProgress = (quizId: QuizId): QuizProgress => {
   if (typeof window === "undefined") return emptyQuizProgress(total);
 
   try {
-    const raw = window.localStorage.getItem(quiz.storageKey);
+    const raw = appStorage.getItem(quiz.storageKey);
     const history = raw ? (JSON.parse(raw) as QuizResult[]) : [];
     const regular = history.filter((item) => item.mode !== "review");
     const completed = new Set(regular.flatMap((item) => item.questionIds)).size;
@@ -55,7 +56,7 @@ export const readDailyRoundProgress = (quizId: QuizId): DailyRoundProgress => {
 
   try {
     const quiz = QUIZ_CONFIG[quizId];
-    const raw = window.localStorage.getItem(quiz.storageKey);
+    const raw = appStorage.getItem(quiz.storageKey);
     const history = raw ? (JSON.parse(raw) as QuizResult[]) : [];
     const today = dayKey(new Date());
     const todaysRounds = history.filter((item) => item.mode !== "review" && dayKey(new Date(item.date)) === today);

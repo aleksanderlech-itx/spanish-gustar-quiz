@@ -18,6 +18,7 @@ import { SkipLink } from "./activity-chrome";
 import SiteHeader from "./site-header";
 import HelpButton from "./help-modal";
 import { updateStoredProgress } from "./stored-progress";
+import { appStorage, isTestMode } from "./storage";
 
 type Result = QuizResult;
 
@@ -104,9 +105,10 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
   };
 
   useEffect(() => {
-    // A fresh question always starts with an empty, focused input.
+    // A fresh question starts with a focused input: empty, or in test mode prefilled with the correct answer
+    // so a tester who does not read Spanish only has to submit.
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setTyped("");
+    setTyped(isTestMode() ? (round[index]?.answer ?? "") : "");
     if (mode === "type") window.requestAnimationFrame(() => inputRef.current?.focus());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index, round]);
@@ -131,7 +133,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
   }, []);
 
   const readStoredHistory = () => {
-    const saved = localStorage.getItem(storageKey);
+    const saved = appStorage.getItem(storageKey);
     return presentOnlyHistory(saved ? (JSON.parse(saved) as Result[]) : [], questions);
   };
 
@@ -224,6 +226,8 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
   const picked = answers[index];
   const isLast = index === round.length - 1;
   const isCorrect = picked !== null && normalizeAnswer(picked) === normalizeAnswer(question.answer);
+  // Test mode only (readable after hydration, since this view renders once the client has mounted).
+  const testMode = isTestMode();
 
   const commit = (choice: string) => {
     if (isSubmitted) return;
@@ -360,7 +364,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
             <button
               type="button"
               key={choice}
-              className={`round-option round-option-${state}`}
+              className={`round-option round-option-${state}${testMode && !isSubmitted && choice === question.answer ? " round-option-test-hint" : ""}`}
               disabled={isSubmitted}
               onClick={() => commit(choice)}
             >
