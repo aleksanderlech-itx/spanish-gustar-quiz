@@ -105,9 +105,10 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
   };
 
   useEffect(() => {
-    // A fresh question always starts with an empty, focused input.
+    // A fresh question starts with a focused input: empty, or in test mode prefilled with the correct answer
+    // so a tester who does not read Spanish only has to submit.
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setTyped("");
+    setTyped(isTestMode() ? (round[index]?.answer ?? "") : "");
     if (mode === "type") window.requestAnimationFrame(() => inputRef.current?.focus());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index, round]);
