@@ -31,3 +31,37 @@ every session, since local settings don't follow across devices.
    auto-deletes a PR's head branch once merged. If you create a branch that
    ends up abandoned (superseded, closed without merging), delete it
    yourself once you're done with it.
+
+# Test mode support for new activities
+
+Test mode (open any page with `?test=1`) lets a tester who does not read
+Spanish finish any activity in an isolated session. It is implemented in
+`app/storage.ts`, `app/test-mode.tsx` and `app/test-mode.css`. Every new
+activity or feature that stores progress or has a right answer must support
+it. Include this checklist in the brief and the PR for every such change.
+
+1. **Storage.** Read and write only through `appStorage` and
+   `appSessionStorage` from `app/storage.ts`. Never call `window.localStorage`
+   or `window.sessionStorage` directly: `tests/test-mode.test.mjs` fails if
+   you do. The theme preference is the only deliberate exception.
+2. **Right answer shown.** In test mode the tester must be able to see what to
+   do. Use `isTestMode()` and render the hint only then:
+   - Choice questions: highlight the correct option (existing activities do
+     this in `app/round.tsx`). Color only, no label, readable in light and dark.
+   - Typed answers: prefill the correct answer.
+   - Self-graded cards: mark the button that records success.
+   - Any new kind of interface: add the equivalent hint. Normal mode must
+     render nothing extra.
+3. **Registry.** Register the activity in `app/activity-registry.ts` so its
+   progress, the streak, and backup, restore and reset include it.
+4. **Defaults.** If the activity has answer modes, test mode starts in choice
+   mode (see `app/topic-settings.ts`).
+5. **State outside browser storage.** Do not keep state in cookies, and do not
+   send analytics events or call outside services with test data. Analytics
+   scripts load through `app/analytics-scripts.tsx`, which skips test sessions.
+6. **Tests.** Extend `tests/test-mode.test.mjs`: a test session of the new
+   activity leaves every real key unchanged, and the hint is gated on test
+   mode.
+7. **Preview check.** On the PR preview, open the activity with `?test=1`,
+   finish it using only the hints, then confirm real progress (open a new tab
+   without the parameter) is untouched.
