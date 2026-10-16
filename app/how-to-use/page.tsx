@@ -201,7 +201,8 @@ export default function HowToUsePage() {
         <div className={styles.sectionBody}>
           <h2>Mistake notebook</h2>
           <p>The Mistake notebook collects the grammar rules connected to incorrect quiz answers. It is designed for targeted review: instead of reading every rule again, you can see the areas that actually caused problems.</p>
-          <p>Open it regularly after a few rounds and look for rules that keep returning. If no mistakes have been recorded, the drawer shows <UiLabel>No missed rules yet.</UiLabel></p>
+          <p>Every sentence you miss is saved once, grouped by topic. While a topic has saved mistakes, a temporary mistakes activity for it appears under <UiLabel>Mistakes to retry</UiLabel> on the board and in the drawer. Open it to retry those sentences, or pick a subtopic chip to retry only that one. A wrong retry explains the rule; a correct one is counted on the entry.</p>
+          <p>Retries are practice only: they do not count toward today&apos;s goal, your streak, accuracy or due counts. An entry stays until you select <UiLabel>Dismiss</UiLabel>, and the activity disappears once its topic has none left. If no mistakes have been recorded, the drawer shows <UiLabel>No missed rules yet.</UiLabel></p>
         </div>
       </section>
 
