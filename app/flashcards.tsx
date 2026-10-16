@@ -257,7 +257,7 @@ export default function Flashcards({ standalone = false }: { standalone?: boolea
           <footer className="flashcard-footer">
             {!revealed && <button type="button" className="flashcard-reveal" onClick={reveal}>Reveal</button>}
             <button type="button" className="flashcard-again" disabled={!revealed} onClick={() => recordAnswer(false)}><span aria-hidden="true">✖</span><span className="recall-label">Again</span></button>
-            <button type="button" className={`flashcard-known${isTestMode() ? " flashcard-known-test-hint" : ""}`} disabled={!revealed} onClick={() => recordAnswer(true)}><span aria-hidden="true">✔</span><span className="recall-label">Got it</span></button>
+            <button type="button" className="flashcard-known" disabled={!revealed} onClick={() => recordAnswer(true)} data-test-hint={isTestMode() ? "" : undefined}><span aria-hidden="true">✔</span><span className="recall-label">Got it</span></button>
           </footer>
         </section>
       )}
