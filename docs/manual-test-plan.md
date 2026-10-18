@@ -39,7 +39,7 @@ Project rules and decisions: `docs/decisions/README.md` in the repo. This plan c
 | 1.3 | B | Open the menu (drawer) | Streak card, Progress & history, Weekly recap, Mistake notebook with count, Backup & restore and Settings render. Closes with the close button and Escape |
 | 1.4 | T | Start one round in every activity on the board | Each loads and finishes |
 | 1.5 | T | Open flashcards, an explanation, a translation and a conjugation chart | No broken views |
-| 1.6 | B | Header and footer links: Notes, About, How to use, Ko-fi | Pages open without errors. Ko-fi opens in a new tab |
+| 1.6 | B | Footer links: About, Notes, Content sources, "Help build more quizzes" (Ko-fi). Menu links: How to use, Notes | Pages open without errors. Content sources jumps to that section of About. Ko-fi opens in a new tab |
 
 ## 2. Test mode
 
@@ -59,7 +59,7 @@ Project rules and decisions: `docs/decisions/README.md` in the repo. This plan c
 | 2.12 | T | Chip menu > Reset test data. First cancel, then confirm | Prompt reads "Delete all test progress? Your real progress is not affected." Cancel keeps data. Confirm clears test data only. Real progress intact |
 | 2.13 | T | Menu > Backup & restore > Download backup, then Settings > Reset all progress | Backup file name is `spanish-quiz-studio-test-backup.json` and holds test data only. Reset shows a test-specific confirmation and clears test data only |
 | 2.14 | T | DevTools network tab on load and during a round | No analytics scripts or events. In normal mode on production the analytics scripts load shortly after page load, so compare the two |
-| 2.15 | T | DevTools > Application > Cookies | Test mode sets no cookies |
+| 2.15 | T | DevTools > Application > Cookies | The only cookie is `spanish-quiz-theme` (the theme, shared with normal mode, see 2.17). Test mode adds no other cookie |
 | 2.16 | T | Block site storage in the browser, open `?test=1` | Chip reads "Test (not kept)" and its tooltip says test mode ends if you leave the page. Mode holds only while `?test=1` stays in the URL |
 | 2.17 | B | Switch theme (light or dark) in test mode | Same theme in normal mode. Theme is the one setting shared between modes |
 
@@ -114,7 +114,7 @@ Known behavior: the notebook keeps the newest 500 entries by last miss. Covered 
 | 5.4 | N | Trigger 5.3 while the welcome tutorial is open | The dialogs never stack. The day dialog waits until the tutorial closes |
 | 5.5 | T | Do a second round on the same day | Streak counts the day once. Week strip marks the day |
 | 5.6 | N | Optional, needs date control: day is completed, then a new activity appears | A completed day stays locked. The new activity counts from the next day |
-| 5.7 | T | Settings > Finished activities | Completed topics are listed with their completion date. Any repeat or reinstate control puts the topic back on the board. Behavior matches the on-screen labels and the How to use page |
+| 5.7 | T | Settings > Finished activities | Each completed topic shows "Done <date> · repeat from <date>", or "Repeat due" once that date passes. "Add to main screen" puts the topic back on the board, "Remove from main screen" takes it off again. With nothing finished: "No finished activities yet." Behavior matches the How to use page |
 | 5.8 | T | Reload after each step above | Values persist |
 
 ## 6. Flashcards
@@ -165,7 +165,7 @@ Also verify the named examples: Nuria, médico, aviso, "Usted conoce", gustar ni
 | 10.4 | N | Play each tutorial on How to use and from the welcome modal | Plays, or shows the poster and steps. The steps match the current UI |
 | 10.5 | N | Search About, results screen, footer, Notes for Ko-fi wording | Tips only. No membership, tiers, member-only content or perks anywhere |
 | 10.6 | N | View page source on the home page, each activity, Notes and an article | Unique title and description per page. Canonical points to the page's own URL |
-| 10.7 | N | Open `/robots.txt` and `/llms.txt` | Both load. Neither contains an outdated topic list |
+| 10.7 | N | Open `/robots.txt`, `/llms.txt` and `/llms-full.txt` | All three load and are not empty. No need to check their content |
 
 ## 11. Copy and UI
 

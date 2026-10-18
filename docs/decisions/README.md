@@ -65,6 +65,9 @@ content. Each links to the record that explains it.
 10. Every activity supports test mode. See
     [0001](0001-test-mode-for-every-activity.md).
 11. Record every new decision here, in the PR that implements it.
+12. The manual test plan is `docs/manual-test-plan.md`. A PR that changes
+    anything a tester can see or do updates it in the same PR. See
+    [0005](0005-manual-test-plan-location.md).
 
 ## Index
 
@@ -74,3 +77,4 @@ content. Each links to the record that explains it.
 | [0002](0002-quiz-engine-ui-direction.md) | Quiz engine UI direction | Accepted | 2026-08-11 |
 | [0003](0003-content-counts-and-notes-for-every-activity.md) | Content counts and a Notes entry for every activity | Accepted | 2026-10-18 |
 | [0004](0004-kofi-tips-only.md) | Ko-fi is for tips only | Accepted | 2026-10-18 |
+| [0005](0005-manual-test-plan-location.md) | One manual test plan, kept in docs and updated with each feature | Accepted | 2026-10-18 |
