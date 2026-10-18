@@ -39,6 +39,7 @@ Spanish finish any activity in an isolated session. It is implemented in
 `app/storage.ts`, `app/test-mode.tsx` and `app/test-mode.css`. Every new
 activity or feature that stores progress or has a right answer must support
 it. Include this checklist in the brief and the PR for every such change.
+Why this was decided: `docs/decisions/0001-test-mode-for-every-activity.md`.
 
 1. **Storage.** Read and write only through `appStorage` and
    `appSessionStorage` from `app/storage.ts`. Never call `window.localStorage`
@@ -65,3 +66,10 @@ it. Include this checklist in the brief and the PR for every such change.
 7. **Preview check.** On the PR preview, open the activity with `?test=1`,
    finish it using only the hints, then confirm real progress (open a new tab
    without the parameter) is untouched.
+
+# Decision log
+
+Decisions and their reasoning are recorded in `docs/decisions/` (format and
+index in its `README.md`). When a change makes a decision that later work must
+follow, add a record there; if it adds a rule for every session, also add the
+rule here and link the record.
