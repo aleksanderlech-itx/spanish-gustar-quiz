@@ -9,8 +9,9 @@ change can tell whether the reasoning still holds.
 1. Copy the format below into `NNNN-short-title.md`, using the next free number.
 2. Fill in every section. Link the PR or issue the decision came from.
 3. Add a line to the index.
-4. If the decision adds a rule that every session must follow, also add the
-   rule to `CLAUDE.md` and link back to the record from there.
+4. If the decision adds a rule that every session must follow, add it to
+   "Project rules" below, linking the record. Do not copy it into `CLAUDE.md`:
+   that file only points here.
 
 A decision that is replaced is not deleted: set its status to
 `Superseded by NNNN` and add the new record.
