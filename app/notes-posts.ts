@@ -4,6 +4,16 @@ export type NotesPost = { href: string; title: string; excerpt: string };
 
 export const NOTES_POSTS: NotesPost[] = [
   {
+    href: "/notes/reflexive-verbs-mistakes",
+    title: "3 mistakes learners make with reflexive verbs",
+    excerpt: "Me levanto, nos vamos, se durmió. The three slips that keep showing up once you know the reflexive pattern.",
+  },
+  {
+    href: "/notes/object-pronouns-mistakes",
+    title: "4 mistakes learners make with object pronouns",
+    excerpt: "Lo, la, le, se lo. These are the four slips that trip learners up once they start replacing nouns with pronouns.",
+  },
+  {
     href: "/notes/saber-vs-conocer-mistakes",
     title: "4 mistakes learners make with saber vs conocer",
     excerpt: "Both translate as to know. These are the four places where learners pick the wrong one, from facts and skills to met and found out.",
