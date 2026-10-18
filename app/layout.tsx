@@ -7,6 +7,7 @@ import "./quiz-layout-fix.css";
 import "./editorial-polish.css";
 import "./activity-chrome.css";
 import "./test-mode.css";
+import "./mistakes.css";
 import QuizSelector from "./quiz-selector";
 import TestMode from "./test-mode";
 import AnalyticsScripts from "./analytics-scripts";

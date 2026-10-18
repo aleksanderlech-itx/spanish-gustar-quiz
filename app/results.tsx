@@ -6,14 +6,18 @@ import type { QuizResult } from "./quiz-logic";
 import { readStreakSummary } from "./streak";
 import SupportPrompt from "./support-prompt";
 import SiteHeader from "./site-header";
+import type { QuizId } from "./quiz-config";
+import { mistakesPath } from "./notebook-retry";
 
 export default function Results({
+  quizId,
   result,
   missedRuleLabels,
   hasMissedOverall,
   onPractiseMisses,
   standalone = false,
 }: {
+  quizId: QuizId;
   result: QuizResult;
   missedRuleLabels: string[];
   hasMissedOverall: boolean;
@@ -61,7 +65,9 @@ export default function Results({
           <div className="results-chip-row">
             {uniqueRules.map((rule) => <span className="results-chip" key={rule}>{rule}</span>)}
           </div>
-          <p className="results-notebook-footnote">These come back as cards tomorrow, and in your next round here.</p>
+          <p className="results-notebook-footnote">
+            Retry them in <a href={mistakesPath(quizId)}>this topic&apos;s mistakes</a>, also listed under Mistakes to retry on the board. Retries are practice only and do not count toward today&apos;s goal.
+          </p>
         </section>
       )}
 

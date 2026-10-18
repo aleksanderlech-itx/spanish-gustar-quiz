@@ -136,7 +136,8 @@ test("QuizSelector re-derives its open state from the router on every render, no
 });
 
 test("round screen commits one answer at a time, recolors options, and gates Next until answered", async () => {
-  const round = await readFile(new URL("../app/round.tsx", import.meta.url), "utf8");
+  // The round view is split: round.tsx owns the round, round-question.tsx renders one question.
+  const round = (await readFile(new URL("../app/round.tsx", import.meta.url), "utf8")) + (await readFile(new URL("../app/round-question.tsx", import.meta.url), "utf8"));
   const data = await readFile(new URL("../app/quiz-data.ts", import.meta.url), "utf8");
 
   // One tap commits; further taps on an already-answered question are ignored.
@@ -158,7 +159,8 @@ test("round screen commits one answer at a time, recolors options, and gates Nex
 });
 
 test("round screen, Type mode: real input, caret-aware accents, Check is a no-op on whitespace, comparison via normalizeAnswer", async () => {
-  const round = await readFile(new URL("../app/round.tsx", import.meta.url), "utf8");
+  // The round view is split: round.tsx owns the round, round-question.tsx renders one question.
+  const round = (await readFile(new URL("../app/round.tsx", import.meta.url), "utf8")) + (await readFile(new URL("../app/round-question.tsx", import.meta.url), "utf8"));
 
   assert.match(round, /autoCapitalize="none"/);
   assert.match(round, /autoCorrect="off"/);
@@ -189,7 +191,8 @@ test("round shell permits natural scrolling and respects the viewport height", a
   assert.match(css, /\.round-shell \{[^}]*overflow:\s*visible;/);
 });
 test("round screen falls back to a JS-measured keyboard inset for iOS Safari, where dvh doesn't always react", async () => {
-  const round = await readFile(new URL("../app/round.tsx", import.meta.url), "utf8");
+  // The round view is split: round.tsx owns the round, round-question.tsx renders one question.
+  const round = (await readFile(new URL("../app/round.tsx", import.meta.url), "utf8")) + (await readFile(new URL("../app/round-question.tsx", import.meta.url), "utf8"));
   const css = await readFile(new URL("../app/quiz-layout-fix.css", import.meta.url), "utf8");
   assert.match(round, /const viewport = window\.visualViewport;/);
   assert.match(round, /document\.documentElement\.style\.setProperty\("--keyboard-inset", `\$\{inset\}px`\);/);

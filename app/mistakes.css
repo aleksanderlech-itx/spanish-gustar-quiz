@@ -1,0 +1,204 @@
+/* Temporary mistakes activity: board tile, drawer groups and the retry landing page.
+   Radii are half of the component each one mirrors: cards and tiles 14px to 7px, buttons 10px to 5px,
+   chips from a 30px pill (15px) to 8px. Colors come from the shared theme tokens, so light and dark both work. */
+
+.mistakes-shell {
+  display: grid;
+  gap: 16px;
+  padding-bottom: 120px;
+}
+
+.mistakes-header {
+  display: grid;
+  gap: 8px;
+}
+
+.mistakes-header h1 {
+  margin: 0;
+}
+
+.mistakes-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.mistakes-card {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+}
+
+.mistakes-card p {
+  margin: 0;
+}
+
+.mistakes-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mistakes-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 5px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.mistakes-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mistakes-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--border-ink);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mistakes-chip[aria-pressed="true"],
+a.mistakes-chip {
+  background: var(--clay-soft);
+}
+
+.mistakes-chip[aria-pressed="true"] {
+  border-color: var(--primary);
+}
+
+.mistakes-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mistakes-entry {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+}
+
+.mistakes-entry-body {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.mistakes-entry-body p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.mistakes-entry-rule {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.mistakes-entry-sentence {
+  color: var(--ink);
+}
+
+.mistakes-entry-meta {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.mistakes-dismiss {
+  flex: none;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--border-ink);
+  border-radius: 5px;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.mistakes-start {
+  width: 100%;
+  border: 0;
+  border-radius: 5px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Board tile: dashed edge and its own label, so it reads as temporary and never as a daily-goal topic. */
+.board-tile.board-tile-mistakes {
+  border-style: dashed;
+  border-radius: 7px;
+}
+
+.board-tile-pill.board-tile-pill-mistakes {
+  border-radius: 8px;
+  background: var(--clay-soft);
+  color: var(--ink);
+}
+
+/* Drawer: one group per activity. */
+.drawer-mistake-groups {
+  display: grid;
+  gap: 12px;
+}
+
+.drawer-mistake-group {
+  display: grid;
+  gap: 8px;
+}
+
+.drawer-mistake-group-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.drawer-mistake-group-head span {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.drawer-mistake-retry {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--border-ink);
+  border-radius: 5px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
