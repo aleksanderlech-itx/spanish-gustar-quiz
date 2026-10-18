@@ -31,6 +31,8 @@ const { markQuizCompleted, readQuizCompletion } = await import("../app/quiz-comp
 const { readTopicSettings, writeTopicSettings } = await import("../app/topic-settings.ts");
 const { updateStoredProgress } = await import("../app/stored-progress.ts");
 const board = await import("../app/board-state.ts");
+const { ACTIVITY_REGISTRY } = await import("../app/activity-registry.ts");
+const { BACKUP_KEYS } = await import("../app/stored-data.ts");
 
 const { TEST_KEY_PREFIX, TEST_MODE_FLAG_KEY } = storage;
 
@@ -272,4 +274,28 @@ test("analytics scripts are not loaded in test sessions", () => {
   assert.match(scripts, /if \(!enabled\) return null;/);
   const layout = readFileSync(new URL("../app/layout.tsx", import.meta.url), "utf8");
   assert.match(layout, /\{isProduction && <AnalyticsScripts /);
+});
+
+// Rounds of every activity except Flashcards are stored in the quiz history shape.
+const ROUND_ACTIVITIES = ACTIVITY_REGISTRY.filter((entry) => entry.activityType !== "flashcards");
+
+test("every activity with rounds keeps its test progress apart from its real progress", () => {
+  assert.ok(ROUND_ACTIVITIES.length > 0);
+  ROUND_ACTIVITIES.forEach(({ id, storageKey: key }) => {
+    const real = JSON.stringify([{ date: "2026-10-01T08:00:00.000Z", score: 5, percent: 100, questionIds: [1], answers: [], missedIds: [], mode: "regular" }]);
+    const { localStorage } = install({ search: "?test=1", local: { [key]: real } });
+    updateStoredProgress(key, () => [], (current) => [...current, { date: "2026-10-16T08:00:00.000Z", score: 4, percent: 80, questionIds: [2], answers: [], missedIds: [2], mode: "regular" }]);
+    assert.equal(localStorage.getItem(key), real, `${id}: real key unchanged`);
+    assert.ok(localStorage.getItem(TEST_KEY_PREFIX + key), `${id}: test key written`);
+    storage.clearTestData();
+    assert.equal(localStorage.getItem(TEST_KEY_PREFIX + key), null, `${id}: reset clears test key`);
+    assert.equal(localStorage.getItem(key), real, `${id}: reset keeps real key`);
+  });
+});
+
+test("backup and reset cover the progress key of every registered activity", () => {
+  const backupKeys = new Set(BACKUP_KEYS.map((spec) => spec.key));
+  ACTIVITY_REGISTRY.forEach(({ id, storageKey }) => {
+    assert.ok(backupKeys.has(storageKey), `${id}: ${storageKey} is in BACKUP_KEYS`);
+  });
 });
