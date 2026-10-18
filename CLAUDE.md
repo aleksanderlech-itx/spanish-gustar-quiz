@@ -67,9 +67,11 @@ Why this was decided: `docs/decisions/0001-test-mode-for-every-activity.md`.
    finish it using only the hints, then confirm real progress (open a new tab
    without the parameter) is untouched.
 
-# Decision log
+# Decision log and project rules
 
-Decisions and their reasoning are recorded in `docs/decisions/` (format and
-index in its `README.md`). When a change makes a decision that later work must
-follow, add a record there; if it adds a rule for every session, also add the
-rule here and link the record.
+Decisions, their reasoning, and the standing rules for writing and content
+live in `docs/decisions/` (format, project rules and index in its
+`README.md`): that is the single source of truth. Read its "Project rules"
+before any change. When a change makes a decision that later work must follow,
+add a record there and, if it is a rule, add it to "Project rules". Do not
+duplicate rules in this file.
