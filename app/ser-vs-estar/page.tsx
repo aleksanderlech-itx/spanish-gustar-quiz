@@ -5,7 +5,7 @@ import QuizPage from "../quiz-page";
 
 const TITLE = "Ser vs Estar Quiz - 150 Practice Sentences";
 const DESCRIPTION =
-  "Choose ser or estar through 150 sentences covering identity, description, location, events and changing states, with instant explanations for every answer.";
+  "Choose ser or estar through about 150 sentences covering identity, description, location, events and changing states, with instant explanations for every answer.";
 
 export const metadata: Metadata = {
   title: TITLE,

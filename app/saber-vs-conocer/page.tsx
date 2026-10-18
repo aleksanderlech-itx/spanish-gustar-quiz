@@ -5,7 +5,7 @@ import QuizPage from "../quiz-page";
 
 const TITLE = "Saber vs Conocer Quiz - 150 Practice Sentences";
 const DESCRIPTION =
-  "Choose saber or conocer through 150 sentences covering facts, skills, people, places, familiarity and the past-tense meanings found out and met, with instant explanations for every answer.";
+  "Choose saber or conocer through about 150 sentences covering facts, skills, people, places, familiarity and the past-tense meanings found out and met, with instant explanations for every answer.";
 
 export const metadata: Metadata = {
   title: TITLE,
