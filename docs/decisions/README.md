@@ -40,3 +40,4 @@ What this makes easier, what it costs, and what every later change must do.
 | # | Decision | Status | Date |
 | --- | --- | --- | --- |
 | [0001](0001-test-mode-for-every-activity.md) | Test mode support for every activity | Accepted | 2026-10-16 |
+| [0002](0002-quiz-engine-ui-direction.md) | Quiz engine UI direction | Accepted | 2026-08-11 |
