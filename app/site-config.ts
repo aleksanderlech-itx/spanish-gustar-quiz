@@ -3,6 +3,6 @@ export const SITE_CONFIG = {
   domain: "spanish-quizz.es",
   url: "https://spanish-quizz.es",
   description:
-    "Interactive Spanish grammar quizzes for gustar, ser vs estar and past-tense practice.",
+    "Free interactive Spanish grammar quizzes and verb flashcards, with an explanation for every answer.",
   kofiUrl: "https://ko-fi.com/spanishquizzes/",
 } as const;

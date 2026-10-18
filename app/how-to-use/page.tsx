@@ -81,7 +81,7 @@ export default function HowToUsePage() {
         <div className={styles.sectionBody}>
           <h2>What Spanish Quizzes is about</h2>
           <p>
-            Spanish Quizzes is a focused practice app for Spanish grammar and vocabulary. Work on Gustar, Ser vs Estar, Por vs Para, Preterite vs Imperfect, or Object Pronouns, or practise common verbs with Spanish Verb Flashcards.
+            Spanish Quizzes is a focused practice app for Spanish grammar and vocabulary. Pick a grammar topic from the home board, or practise common verbs with Spanish Verb Flashcards.
           </p>
           <p>
             The home board shows what is due, what you have studied, and your progress. Quiz rounds keep their own history, filters, and scores. Flashcards save each card&apos;s review box and next due date on this device.

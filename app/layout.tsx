@@ -21,7 +21,7 @@ const CLARITY_PROJECT_ID = "yc2q3b2d9e";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
   title: {
-    default: "Spanish Quizzes - Gustar, Ser vs Estar and Past-Tense Practice",
+    default: "Spanish Quizzes - Spanish Grammar Quizzes and Verb Flashcards",
     template: "%s | Spanish Quizzes",
   },
   description: SITE_CONFIG.description,
