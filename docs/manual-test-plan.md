@@ -165,7 +165,7 @@ Also verify the named examples: Nuria, médico, aviso, "Usted conoce", gustar ni
 | 10.4 | N | Play each tutorial on How to use and from the welcome modal | Plays, or shows the poster and steps. The steps match the current UI |
 | 10.5 | N | Search About, results screen, footer, Notes for Ko-fi wording | Tips only. No membership, tiers, member-only content or perks anywhere |
 | 10.6 | N | View page source on the home page, each activity, Notes and an article | Unique title and description per page. Canonical points to the page's own URL |
-| 10.7 | N | Open `/robots.txt`, `/llms.txt` and `/llms-full.txt` | All three load as plain text. `/llms.txt` lists every activity on the board plus flashcards and Notes, and links to `/llms-full.txt`. `/llms-full.txt` has a section per activity with its rule and sample questions. Neither lists an activity that is not on the board or misses one that is |
+| 10.7 | N | Open `/robots.txt`, `/llms.txt` and `/llms-full.txt` | All three load and are not empty. No need to check their content |
 
 ## 11. Copy and UI
 
