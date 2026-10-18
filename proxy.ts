@@ -21,6 +21,8 @@ const SITEMAP_PATHS = [
   "/notes/por-vs-para-mistakes",
   "/notes/saber-vs-conocer-mistakes",
   "/notes/preterite-vs-imperfect-signal-words",
+  "/notes/object-pronouns-mistakes",
+  "/notes/reflexive-verbs-mistakes",
 ];
 
 export function proxy(request: NextRequest) {
