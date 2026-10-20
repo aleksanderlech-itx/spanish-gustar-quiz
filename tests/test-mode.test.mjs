@@ -30,6 +30,7 @@ const { recordMistakes, readNotebookEntries } = await import("../app/notebook.ts
 const { markQuizCompleted, readQuizCompletion } = await import("../app/quiz-completion.ts");
 const { readTopicSettings, writeTopicSettings } = await import("../app/topic-settings.ts");
 const { updateStoredProgress } = await import("../app/stored-progress.ts");
+const { QUIZ_CONFIG, QUIZ_IDS } = await import("../app/quiz-config.ts");
 
 const { TEST_KEY_PREFIX, TEST_MODE_FLAG_KEY } = storage;
 
@@ -197,4 +198,24 @@ test("analytics scripts are not loaded in test sessions", () => {
   assert.match(scripts, /if \(!enabled\) return null;/);
   const layout = readFileSync(new URL("../app/layout.tsx", import.meta.url), "utf8");
   assert.match(layout, /\{isProduction && <AnalyticsScripts /);
+});
+
+test("every quiz keeps its test progress apart from its real progress", () => {
+  assert.ok(QUIZ_IDS.length > 0);
+  QUIZ_IDS.forEach((id) => {
+    const key = QUIZ_CONFIG[id].storageKey;
+    const real = JSON.stringify([{ date: "2026-10-01T08:00:00.000Z", score: 5, percent: 100, questionIds: [1], answers: [], missedIds: [], mode: "regular" }]);
+    const { localStorage } = install({ search: "?test=1", local: { [key]: real } });
+    updateStoredProgress(key, () => [], (current) => [...current, { date: "2026-10-16T08:00:00.000Z", score: 4, percent: 80, questionIds: [2], answers: [], missedIds: [2], mode: "regular" }]);
+    assert.equal(localStorage.getItem(key), real, `${id}: real key unchanged`);
+    assert.ok(localStorage.getItem(TEST_KEY_PREFIX + key), `${id}: test key written`);
+    storage.clearTestData();
+    assert.equal(localStorage.getItem(TEST_KEY_PREFIX + key), null, `${id}: reset clears test key`);
+    assert.equal(localStorage.getItem(key), real, `${id}: reset keeps real key`);
+  });
+});
+
+test("backup and reset cover the progress key of every quiz", () => {
+  const drawer = readFileSync(new URL("../app/drawer.tsx", import.meta.url), "utf8");
+  assert.match(drawer, /\.\.\.QUIZ_IDS\.map\(\(id\) => QUIZ_CONFIG\[id\]\.storageKey\)/);
 });
