@@ -3,7 +3,7 @@ import { SITE_CONFIG } from "../site-config";
 import { QUIZ_CONTENT } from "../quiz-content";
 import QuizPage from "../quiz-page";
 
-const TITLE = "Reflexive Verbs Quiz - 150 Practice Sentences";
+const TITLE = "Reflexive Verbs Quiz - Free Spanish Practice";
 const DESCRIPTION =
   "Practise Spanish reflexive verbs through about 150 sentences covering daily routines, movement, emotions, verbs whose meaning changes with se, and pronoun placement with infinitives and gerunds, with instant explanations for every answer.";
 
