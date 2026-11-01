@@ -55,15 +55,20 @@ header { display: grid; gap: 6px; }
 .release { position: relative; z-index: 1; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--primary); border-radius: var(--radius); padding: 10px; display: grid; gap: 4px; }
 .release.product { border-left-color: var(--sun); background: var(--sun-soft); }
 .release.next { box-shadow: 0 0 0 2px var(--primary); }
+.release.done { border-left-color: var(--sage); background: var(--sage-soft); }
+.release.done .name { color: var(--sage); }
+.cycle.past .weeks span { opacity: .55; }
 .release .num { font-size: .8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
 .release .name { font-weight: 700; line-height: 1.25; }
 .release .note { font-size: .78rem; color: var(--muted); }
 .maint { display: grid; gap: 6px; align-content: start; }
 .chip { position: relative; z-index: 1; display: block; font-size: .8rem; line-height: 1.3; padding: 6px 8px; border-radius: var(--radius); background: var(--clay-soft); border: 1px solid transparent; text-decoration: none; }
 .chip b { font-variant-numeric: tabular-nums; }
+.chip.shipped-chip { background: var(--sage-soft); color: var(--sage); }
+.chip.shipped-chip .flag { color: var(--sage); }
 .chip .flag { display: block; color: var(--danger); font-size: .74rem; font-weight: 600; margin-top: 2px; }
 .today { position: absolute; top: 0; bottom: 0; width: 0; border-left: 2px dashed var(--clay); z-index: 0; pointer-events: none; }
-.today::before { content: "Today 13 Oct"; position: absolute; top: -22px; left: 6px; white-space: nowrap; font-size: .72rem; font-weight: 700; color: var(--clay); letter-spacing: .04em; text-transform: uppercase; }
+.today::before { content: "Today 1 Nov"; position: absolute; top: -22px; left: 6px; white-space: nowrap; font-size: .72rem; font-weight: 700; color: var(--clay); letter-spacing: .04em; text-transform: uppercase; }
 .train-pad { padding-top: 26px; }
 
 /* lanes */
@@ -93,9 +98,9 @@ footer { color: var(--muted); font-size: .85rem; }
 
 <div class="wrap">
   <header>
-    <span class="meta">Roadmap issue #65 · reviewed 13 Oct 2026</span>
+    <span class="meta">Roadmap issue #65 · reviewed 1 Nov 2026</span>
     <h1>One new activity every two weeks</h1>
-    <p class="lede">Week one builds the activity, week two releases it and works the maintenance backlog. Releases land on Mondays. Dates from Cycle 5 on assume no slips.</p>
+    <p class="lede">Week one builds the activity, week two releases it and works the maintenance backlog. Releases land on Mondays. Cycles 2 and 3 shipped on time. Dates from Cycle 5 on assume no slips.</p>
     <div class="legend">
       <span><i class="sw" style="background:var(--primary)"></i>Activity release</span>
       <span><i class="sw" style="background:var(--sun)"></i>Product-wide release</span>
@@ -125,12 +130,14 @@ footer { color: var(--muted); font-size: .85rem; }
   <section aria-labelledby="ch-h">
     <div class="section-head"><h2 id="ch-h">What changed in this review</h2></div>
     <ul class="changes">
-      <li><b>#105 Vosotros switch</b> takes its own cycle (6) after Sentence Builder, so Missing Letters, Idioms and the subjunctives are built vosotros-aware. Everything from Missing Letters on moves two weeks later.</li>
-      <li><b>#116 Mistake notebook retry mode</b> goes into Cycle 3 maintenance. It stays blocked until its 8 open questions are answered.</li>
-      <li><b>#104 Responses carousel</b> goes into Cycle 5 maintenance with the Sentence Builder round-screen work.</li>
-      <li><b>#107 Xteink slideshow</b> starts a side-project track outside the cadence.</li>
-      <li><b>#119 Weekly Notes routine</b> replaces #31 and #78, which asked for the same scheduled posts at different cadences. One illustrated post a week, topic taken from that week's release.</li>
-      <li><b>#84 board order</b> shipped in #110. <b>Saber vs Conocer</b> shipped in #86 without an issue. Both are now marked done.</li>
+      <li><b>Cycle 2 shipped:</b> #68 Reflexive verbs in #123 on 16 Oct, three days early.</li>
+      <li><b>Cycle 3 shipped:</b> #69 Present perfect in #134 on 1 Nov. Its launch Reel is planned for Mon 2 Nov and needs the production deploy first.</li>
+      <li><b>#116 Mistake notebook retry mode</b> shipped in #124: per-activity retry with explanations, outside daily progress. Closed.</li>
+      <li><b>#96 Pinned action buttons</b> did not ship in Cycle 2. It moves to Cycle 5 maintenance, with #104 and the Sentence Builder round-screen work.</li>
+      <li><b>#125 Por vs para chart</b> added to the backlog: replace the chart with usage examples like the ones in the explanations.</li>
+      <li><b>PR #113</b> was closed without merging. #114 already gave every quiz item a cue-based explanation.</li>
+      <li><b>PR #126</b> (test mode isolation tests for every quiz) added to the open PRs.</li>
+      <li><b>Shipped outside the train:</b> test mode (#121), ¡Día completado! card (#120), decision log (#127, #128, #132), manual test plan (#131), Notes for object pronouns and reflexive verbs (#130), copy fixes (#129, #133).</li>
     </ul>
   </section>
 
@@ -149,10 +156,10 @@ const pr = n => GH + "pull/" + n;
 
 // Each cycle runs two weeks and releases on its Monday.
 const cycles = [
-  { c: 2, rel: "2026-10-19", item: [68, "Reflexive verbs"], next: true, maint: [[96, "Pinned action buttons on round screen"]] },
-  { c: 3, rel: "2026-11-02", item: [69, "Present perfect"], maint: [[116, "Mistake notebook retry mode", "Blocked on 8 open questions"], [113, "Ser vs estar explanations (PR)", null, true]] },
-  { c: 4, rel: "2026-11-16", item: [70, "Present continuous"], maint: [] },
-  { c: 5, rel: "2026-11-30", item: [72, "Sentence Builder"], note: "New activity type", maint: [[104, "Responses carousel"]] },
+  { c: 2, rel: "2026-10-19", item: [68, "Reflexive verbs"], done: "Shipped 16 Oct in #123", maint: [] },
+  { c: 3, rel: "2026-11-02", item: [69, "Present perfect"], done: "Shipped 1 Nov in #134", maint: [[124, "Mistake notebook retry (#116)", "Shipped", true]] },
+  { c: 4, rel: "2026-11-16", item: [70, "Present continuous"], next: true, maint: [] },
+  { c: 5, rel: "2026-11-30", item: [72, "Sentence Builder"], note: "New activity type", maint: [[96, "Pinned action buttons on round screen", "Moved from Cycle 2"], [104, "Responses carousel"]] },
   { c: 6, rel: "2026-12-14", item: [105, "Vosotros switch"], product: true, note: "Settings, charts, content and help", maint: [] },
   { c: 7, rel: "2026-12-28", item: [25, "Missing Letters"], maint: [] },
   { c: 8, rel: "2027-01-11", item: [51, "Idioms"], maint: [] },
@@ -166,23 +173,24 @@ cycles.forEach(cy => {
   const rel = new Date(cy.rel + "T00:00:00Z");
   const start = new Date(rel - 14 * DAY);
   const el = document.createElement("div");
-  el.className = "cycle";
+  el.className = "cycle" + (cy.done ? " past" : "");
   const maint = cy.maint.map(([n, t, flag, isPr]) =>
-    `<a class="chip" href="${isPr ? pr(n) : iss(n)}" target="_blank" rel="noopener"><b>#${n}</b> ${t}${flag ? `<span class="flag">${flag}</span>` : ""}</a>`).join("");
+    `<a class="chip${isPr ? " shipped-chip" : ""}" href="${isPr ? pr(n) : iss(n)}" target="_blank" rel="noopener"><b>#${n}</b> ${t}${flag ? `<span class="flag">${flag}</span>` : ""}</a>`).join("");
   el.innerHTML = `
     <div class="chead"><span class="cnum">Cycle ${cy.c}</span><span class="cdate">${fmt(start)} to ${fmt(rel)} ${rel.getUTCFullYear()}</span></div>
     <div class="weeks"><span>Build</span><span>Ship + fix</span></div>
-    <a class="release${cy.product ? " product" : ""}${cy.next ? " next" : ""}" href="${iss(cy.item[0])}" target="_blank" rel="noopener" style="text-decoration:none">
+    <a class="release${cy.product ? " product" : ""}${cy.next ? " next" : ""}${cy.done ? " done" : ""}" href="${iss(cy.item[0])}" target="_blank" rel="noopener" style="text-decoration:none">
       <span class="num">#${cy.item[0]}${cy.next ? " · next up" : ""}</span>
       <span class="name">${cy.item[1]}</span>
       ${cy.note ? `<span class="note">${cy.note}</span>` : ""}
+      ${cy.done ? `<span class="note">${cy.done}</span>` : ""}
     </a>
     <div class="maint">${maint}</div>`;
   train.appendChild(el);
 });
 // Today marker, positioned within the cycle that contains today.
 (() => {
-  const today = new Date("2026-10-13T00:00:00Z");
+  const today = new Date("2026-11-01T00:00:00Z");
   const first = new Date(new Date(cycles[0].rel + "T00:00:00Z") - 14 * DAY);
   const span = cycles.length * 14 * DAY;
   const frac = (today - first) / span;
@@ -195,18 +203,19 @@ cycles.forEach(cy => {
 
 const lanes = [
   { h: "Product backlog", why: "Unscheduled. Pick up when a maintenance half has room.", items: [
-    [117, "Customisable board", "Choose which activities appear. Plan in PR #99. Becomes the channel for announcing each new activity.", "new"],
+    [117, "Customisable board", "Choose which activities appear. Plan in PR #99. Becomes the channel for announcing each new activity."],
+    [125, "Por vs para: examples instead of the chart", "Replace the chart with usage examples like the ones in the explanations.", "new"],
     [80, "Contact form", "Email, message, anti-spam, Cloudflare storage."],
   ]},
   { h: "Growth", why: "Only when the current release is on track.", items: [
-    [119, "Weekly Notes routine", "One post with a public-domain vintage image every Tuesday, the day after a release. Replaces #31 and #78.", "new"],
+    [119, "Weekly Notes routine", "One post with a public-domain vintage image every Tuesday, the day after a release. Replaces #31 and #78."],
     ["PR 103", "Launch-post calendar file", "Import the Cycle 2 to 4 posting plan into a calendar.", "pr"],
   ]},
   { h: "Side projects", why: "Outside the cadence.", items: [
-    [107, "Xteink flashcard slideshow", "This repo only adds a cards.json export. Firmware lives in a separate repo.", "new"],
+    [107, "Xteink flashcard slideshow", "This repo only adds a cards.json export. Firmware lives in a separate repo."],
   ]},
   { h: "Open PRs waiting on you", why: "Merge, close or revise.", items: [
-    ["PR 113", "Ser vs estar explanations", "Overlaps the flagged items in #116.", "pr"],
+    ["PR 126", "Test mode isolation tests", "Tests only: every quiz in a test session leaves real progress unchanged.", "pr"],
     ["PR 99", "Activity management plan", "The plan behind #117.", "pr"],
     ["PR 90", "Design system replacement", "Docs only.", "pr"],
   ]},
@@ -225,7 +234,7 @@ lanes.forEach(l => {
   lanesEl.appendChild(div);
 });
 
-const shipped = [[1,"Reset on switch"],[2,"Publishing plan"],[3,"Flashcards"],[4,"Flashcard content"],[5,"Design research"],[11,"Interface fixes"],[14,"Main page"],[15,"Translations"],[16,"Four-box model"],[20,"Animated tutorial"],[22,"Desktop view"],[24,"Content export"],[30,"Help modals"],[32,"Conjugation chart"],[33,"Progress"],[54,"Completed activities"],[55,"Por vs para"],[64,"Fill-in-the-blank"],[66,"Activity registry"],[67,"Object pronouns"],[84,"Board order"],["PR 86","Saber vs conocer"]];
+const shipped = [[1,"Reset on switch"],[2,"Publishing plan"],[3,"Flashcards"],[4,"Flashcard content"],[5,"Design research"],[11,"Interface fixes"],[14,"Main page"],[15,"Translations"],[16,"Four-box model"],[20,"Animated tutorial"],[22,"Desktop view"],[24,"Content export"],[30,"Help modals"],[32,"Conjugation chart"],[33,"Progress"],[54,"Completed activities"],[55,"Por vs para"],[64,"Fill-in-the-blank"],[66,"Activity registry"],[67,"Object pronouns"],[84,"Board order"],["PR 86","Saber vs conocer"],[68,"Reflexive verbs"],[69,"Present perfect"],[116,"Mistake notebook retry"],["PR 121","Test mode"],["PR 120","Day complete card"]];
 document.getElementById("shipped").innerHTML = shipped.map(([n, t]) => {
   const isPr = typeof n === "string";
   return `<a href="${isPr ? pr(n.slice(3)) : iss(n)}" target="_blank" rel="noopener">#${isPr ? n.slice(3) : n} ${t}</a>`;
