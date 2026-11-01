@@ -5,7 +5,7 @@ import QuizPage from "../quiz-page";
 
 const TITLE = "Gustar Quiz - Spanish Sentence Structure Practice";
 const DESCRIPTION =
-  "Practise gustar and gustar-pattern verbs (encantar, interesar, molestar, doler and more) with 150 original Spanish sentences, instant explanations and audio.";
+  "Practise gustar and gustar-pattern verbs (encantar, interesar, molestar, doler and more) with original Spanish sentences, instant explanations and audio.";
 
 export const metadata: Metadata = {
   title: TITLE,

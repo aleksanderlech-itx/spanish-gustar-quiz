@@ -62,7 +62,7 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     eyebrow: "Gustar patterns",
     heading: "Build the sentence, prove the rule.",
     copy: "Practise Spanish verbs that work like gustar with short, original sentences.",
-    description: "Practise gustar and gustar-pattern verbs (encantar, interesar, molestar, doler and more) with 150 original Spanish sentences, instant explanations and audio.",
+    description: "Practise gustar and gustar-pattern verbs (encantar, interesar, molestar, doler and more) with original Spanish sentences, instant explanations and audio.",
     levelBand: "A1-B1",
     questions: ALL_QUESTIONS,
     forms: VERB_FORMS,
