@@ -5,10 +5,11 @@ import { POR_PARA_FORMS, POR_PARA_QUESTIONS } from "./por-para-data.ts";
 import { OBJECT_PRONOUN_FORMS, OBJECT_PRONOUN_QUESTIONS } from "./object-pronouns-data.ts";
 import { SABER_CONOCER_FORMS, SABER_CONOCER_QUESTIONS } from "./saber-conocer-data.ts";
 import { REFLEXIVE_FORMS, REFLEXIVE_VERB_QUESTIONS } from "./reflexive-verbs-data.ts";
+import { PRESENT_PERFECT_FORMS, PRESENT_PERFECT_QUESTIONS } from "./present-perfect-data.ts";
 import { ruleForTense } from "./quiz-logic.ts";
 import type { Question } from "./quiz-data";
 
-export type QuizId = "gustar" | "ser-estar" | "preterite-imperfect" | "por-para" | "object-pronouns" | "saber-conocer" | "reflexive-verbs";
+export type QuizId = "gustar" | "ser-estar" | "preterite-imperfect" | "por-para" | "object-pronouns" | "saber-conocer" | "reflexive-verbs" | "present-perfect";
 
 /** Each quiz's own crawlable URL, so every topic canonicalizes to itself instead of
  * every `?quiz=` variant resolving to the same root page. */
@@ -20,6 +21,7 @@ export const QUIZ_SLUGS: Record<QuizId, string> = {
   "object-pronouns": "object-pronouns",
   "saber-conocer": "saber-vs-conocer",
   "reflexive-verbs": "reflexive-verbs",
+  "present-perfect": "present-perfect",
 };
 
 export const quizPath = (quizId: QuizId): string => `/${QUIZ_SLUGS[quizId]}`;
@@ -175,6 +177,25 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     chartLabel: "Reflexive chart",
     // Set to the production go-live day so the streak never requires this activity on earlier days.
     introducedOn: "2026-10-16",
+  },
+  "present-perfect": {
+    title: "Present Perfect Quiz",
+    eyebrow: "Present perfect",
+    heading: "Haber first. Then the participle.",
+    copy: "Practise he, has, ha, hemos, habéis and han with regular and irregular participles in recent-past and life-experience sentences.",
+    description: "Practise the Spanish present perfect with about 150 sentences covering haber in every person, regular -ado and -ido participles, common irregular participles like hecho, dicho and visto, why tener never forms the perfect, and word order with pronouns and negatives, with an explanation for every answer.",
+    levelBand: "A2-B1",
+    questions: PRESENT_PERFECT_QUESTIONS,
+    forms: PRESENT_PERFECT_FORMS,
+    storageKey: "present-perfect-quiz-progress-v1",
+    filterKey: "present-perfect-quiz-filters-v1",
+    backupName: "spanish-present-perfect-quiz-progress.json",
+    sources: [],
+    rule: { title: "Haber plus the participle, never split.", body: "Conjugate haber in the present (he, has, ha, hemos, habéis, han) and add the participle: -ado for -ar verbs, -ido for -er and -ir verbs, or an irregular form like hecho, dicho or visto. The participle never changes, tener never replaces haber, and pronouns and no go before haber.", singular: "Hoy he comido paella.", plural: "¿Habéis visto la película?" },
+    filterLabel: { label: "Usage", all: "All usages" },
+    chartLabel: "Perfect chart",
+    // Set to the production go-live day so the streak never requires this activity on earlier days.
+    introducedOn: "2026-11-01",
   },
 };
 

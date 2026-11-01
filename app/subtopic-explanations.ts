@@ -54,6 +54,14 @@ export function subtopicExplanation(quizId: QuizId, question: Question): string 
       };
       return `${cue} ${rule[question.infinitive] ?? "shows who does the action to themselves, so the reflexive pronoun matches that subject."}`;
     }
+    case "present-perfect": {
+      const rule: Record<string, string> = {
+        "irregular participle": "sets the perfect, and this verb has an irregular participle that does not end in -ado or -ido.",
+        "haber not tener": "sets the perfect, which is always haber plus the participle. Tener never forms it.",
+        "negatives and questions": "sets the perfect. Pronouns, no and adverbs go before haber, never between haber and the participle.",
+      };
+      return `${cue} ${rule[question.infinitive] ?? "sets the perfect: the present of haber that matches the subject, then the participle."}`;
+    }
   }
 }
 

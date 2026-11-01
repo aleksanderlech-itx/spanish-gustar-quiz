@@ -55,6 +55,12 @@ test("saber/conocer chart scopes to the question's tense: past-meaning gets pret
 
 test("reflexive verbs chart is one shared section with the pronouns, a full paradigm and placement", async () => {
   const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
-  assert.match(source, /quizId === "reflexive-verbs" \? \[""\]/);
-  assert.match(source, /return REFLEXIVE_CHART\.map\(/);
+  assert.match(source, /quizId === "reflexive-verbs" \|\| quizId === "present-perfect" \? \[""\]/);
+  assert.match(source, /quizId === "reflexive-verbs" \? REFLEXIVE_CHART : PRESENT_PERFECT_CHART\)\.map\(/);
+});
+
+test("present perfect chart is one shared section with haber, regular and irregular participles and word order", async () => {
+  const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
+  assert.match(source, /if \(quizId === "reflexive-verbs" \|\| quizId === "present-perfect"\) \{/);
+  assert.match(source, /import \{ PRESENT_PERFECT_CHART \} from "\.\/present-perfect-data"/);
 });

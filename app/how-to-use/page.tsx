@@ -103,7 +103,7 @@ export default function HowToUsePage() {
             <li><UiLabel>Round length</UiLabel> lets you choose 5, 10, or 20 questions.</li>
             <li><UiLabel>Choose</UiLabel> gives you answer options. It is useful when you are learning a topic or want a faster round.</li>
             <li><UiLabel>Type</UiLabel> makes you enter the missing form yourself. It is harder and gives you stronger recall practice.</li>
-            <li><UiLabel>Filters</UiLabel> narrow the practice set by difficulty and verb. Object Pronouns uses pronoun type instead of verb.</li>
+            <li><UiLabel>Filters</UiLabel> narrow the practice set by difficulty and by verb. Topics that group sentences another way filter by that group instead, such as pronoun type or usage.</li>
             <li>The topic reference link opens a conjugation chart where available. Por vs Para opens an explanation of the two words instead.</li>
           </ul>
           <h3>During the round</h3>

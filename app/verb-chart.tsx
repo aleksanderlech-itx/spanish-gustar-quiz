@@ -7,6 +7,7 @@ import { PRETERITE_IMPERFECT_CONJUGATIONS, PRETERITE_IMPERFECT_REGULARITY } from
 import { OBJECT_PRONOUN_CHART, type ObjectPronounType } from "./object-pronouns-data";
 import { SABER_CONOCER_CONJUGATIONS } from "./saber-conocer-data";
 import { REFLEXIVE_CHART } from "./reflexive-verbs-data";
+import { PRESENT_PERFECT_CHART } from "./present-perfect-data";
 import { speak, speakQueue } from "./speak";
 
 type ChartRow = { pronoun: string; form: string };
@@ -46,9 +47,10 @@ const blocksFor = (quizId: QuizId, infinitive: string, forms: Record<string, [st
       rows: SABER_CONOCER_CONJUGATIONS.map((row) => ({ pronoun: row.subject, form: row[verb][tense] })),
     })));
   }
-  if (quizId === "reflexive-verbs") {
-    // Usage groups share one chart: the pronouns, a full paradigm and where the pronoun goes.
-    return REFLEXIVE_CHART.map((table, index) => ({
+  if (quizId === "reflexive-verbs" || quizId === "present-perfect") {
+    // Usage groups share one chart: reflexive pronouns, paradigm and placement, or haber,
+    // regular and irregular participles and word order.
+    return (quizId === "reflexive-verbs" ? REFLEXIVE_CHART : PRESENT_PERFECT_CHART).map((table, index) => ({
       tenseLabel: table.title,
       accent: index % 2 === 0 ? "primary" as const : "sun" as const,
       rows: table.rows.map((row) => ({ pronoun: row.label, form: row.form })),
@@ -70,8 +72,8 @@ export default function VerbChart({ quizId, infinitive, onClose }: { quizId: Qui
   const quiz = QUIZ_CONFIG[quizId];
   // Saber vs conocer's "forms" are usage categories, not verbs: the topic-level chart is one
   // section with both full paradigms rather than a repeat of them under every usage.
-  // Reflexive verbs' usage groups share one chart, so that topic always renders a single section.
-  const infinitives = quizId === "reflexive-verbs" ? [""] : infinitive && quiz.forms[infinitive] ? [infinitive] : quizId === "saber-conocer" ? [""] : Object.keys(quiz.forms);
+  // Reflexive verbs' and present perfect's groups share one chart, so those topics always render a single section.
+  const infinitives = quizId === "reflexive-verbs" || quizId === "present-perfect" ? [""] : infinitive && quiz.forms[infinitive] ? [infinitive] : quizId === "saber-conocer" ? [""] : Object.keys(quiz.forms);
   const [speakingKey, setSpeakingKey] = useState<string | null>(null);
 
   const speakRow = (key: string, text: string) => {

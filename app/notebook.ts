@@ -38,6 +38,7 @@ export const ruleLabelFor = (question: Question, quizId: QuizId): string => {
   if (quizId === "object-pronouns") return `Object pronouns: ${question.infinitive}`;
   if (quizId === "saber-conocer") return `Saber vs conocer: ${question.infinitive}`;
   if (quizId === "reflexive-verbs") return `Reflexive verbs: ${question.infinitive}`;
+  if (quizId === "present-perfect") return `Present perfect: ${question.infinitive}`;
   if (quizId === "preterite-imperfect") return question.tense === "preterite" ? "Preterite" : "Imperfect";
   return `Gustar pattern: ${question.infinitive}`;
 };
@@ -49,6 +50,7 @@ export const quizIdForRule = (rule: string): QuizId => {
   if (rule.startsWith("Object pronouns:")) return "object-pronouns";
   if (rule.startsWith("Saber vs conocer:")) return "saber-conocer";
   if (rule.startsWith("Reflexive verbs:")) return "reflexive-verbs";
+  if (rule.startsWith("Present perfect:")) return "present-perfect";
   if (rule === "Preterite" || rule === "Imperfect") return "preterite-imperfect";
   return "gustar";
 };

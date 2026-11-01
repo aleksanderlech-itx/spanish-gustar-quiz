@@ -221,5 +221,31 @@ export const QUIZ_CONTENT: Record<QuizId, QuizContent> = {
         answer: "The reflexive pronoun already shows whose hands they are, so Spanish uses the article with body parts and clothes: me lavo las manos, se pone el abrigo.",
       },
     ],
+  },  "present-perfect": {
+    paragraphs: [
+      "The present perfect talks about past actions that still reach the present: things that happened today, this week or this year, and experiences in your life so far. Spanish builds it like English, with an auxiliary and a participle: he comido is I have eaten. The auxiliary is always haber, conjugated in the present: he, has, ha, hemos, habéis, han.",
+      "Regular participles are easy: -ar verbs take -ado (hablar, hablado) and -er and -ir verbs take -ido (comer, comido; vivir, vivido). A few add an accent to keep the stress: leído, oído, traído. The common irregular ones need memorising: abierto, dicho, escrito, hecho, muerto, puesto, roto, visto and vuelto, plus verbs built on them like descubierto, devuelto and propuesto.",
+      "Two habits keep the tense correct. First, the have of I have eaten is haber, never tener: tengo means I own. Second, haber and the participle stay together. Pronouns, no, ya and nunca all go before haber (no lo he visto, ya hemos comido), and the participle never changes for gender or number after haber.",
+      "This quiz has 150 sentences split into regular -ado participles, regular -ido participles, irregular participles, haber not tener, and negatives and questions, with an explanation for every answer. Use the usage filter to drill one group at a time, then mix them once haber comes without thinking.",
+    ],
+    examples: sourcedExamples([8001, 8036, 8066, 8070, 8111, 8131]),
+    faq: [
+      {
+        question: "When do I use the present perfect instead of the preterite?",
+        answer: "In Spain, use the present perfect for actions in a time period that is still running (hoy, esta semana, este año) and for life experience (alguna vez, nunca). Much of Latin America prefers the preterite for recent events, so hoy comí is also correct there. This quiz never marks the preterite wrong.",
+      },
+      {
+        question: "Why can't I use tener like English have?",
+        answer: "Tener means to own or to have to (tener que). The auxiliary of every compound tense is haber: he comido, never tengo comido.",
+      },
+      {
+        question: "Does the participle agree with the subject?",
+        answer: "Not after haber. The participle always ends in -o: ella ha llegado, nosotras hemos terminado. It only agrees when it works as an adjective, for example after estar: la puerta está abierta.",
+      },
+      {
+        question: "Where do pronouns and no go?",
+        answer: "Before haber, all of them: no lo he visto, ya me he duchado, se lo hemos dicho. Nothing goes between haber and the participle, and you cannot attach a pronoun to the participle.",
+      },
+    ],
   },
 };
