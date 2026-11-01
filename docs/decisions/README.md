@@ -68,6 +68,8 @@ content. Each links to the record that explains it.
 12. The manual test plan is `docs/manual-test-plan.md`. A PR that changes
     anything a tester can see or do updates it in the same PR. See
     [0005](0005-manual-test-plan-location.md).
+13. A wrong answer option must be wrong in every region and every reading of
+    the sentence. See [0006](0006-wrong-options-wrong-in-every-region.md).
 
 ## Index
 
@@ -78,3 +80,4 @@ content. Each links to the record that explains it.
 | [0003](0003-content-counts-and-notes-for-every-activity.md) | Content counts and a Notes entry for every activity | Accepted | 2026-10-18 |
 | [0004](0004-kofi-tips-only.md) | Ko-fi is for tips only | Accepted | 2026-10-18 |
 | [0005](0005-manual-test-plan-location.md) | One manual test plan, kept in docs and updated with each feature | Accepted | 2026-10-18 |
+| [0006](0006-wrong-options-wrong-in-every-region.md) | Wrong options must be wrong in every region | Accepted | 2026-11-01 |
