@@ -26,6 +26,7 @@ test("ruleLabelFor names the actual grammar point per quiz", () => {
   assert.equal(ruleLabelFor({ ...baseQuestion, tense: "imperfect" }, "preterite-imperfect"), "Imperfect");
   assert.equal(ruleLabelFor({ ...baseQuestion, infinitive: "people" }, "saber-conocer"), "Saber vs conocer: people");
   assert.equal(ruleLabelFor({ ...baseQuestion, infinitive: "placement" }, "reflexive-verbs"), "Reflexive verbs: placement");
+  assert.equal(ruleLabelFor({ ...baseQuestion, infinitive: "irregular participle" }, "present-perfect"), "Present perfect: irregular participle");
 });
 
 // A browser stand-in so the notebook's storage reads and writes run unchanged.
@@ -66,6 +67,7 @@ test("quizIdForRule inverts ruleLabelFor for every activity", () => {
   assert.equal(quizIdForRule("Object pronouns: double pronouns"), "object-pronouns");
   assert.equal(quizIdForRule("Saber vs conocer: skills"), "saber-conocer");
   assert.equal(quizIdForRule("Reflexive verbs: placement"), "reflexive-verbs");
+  assert.equal(quizIdForRule("Present perfect: haber not tener"), "present-perfect");
   assert.equal(quizIdForRule("Imperfect"), "preterite-imperfect");
   assert.equal(quizIdForRule("Gustar pattern: interesar"), "gustar");
 });

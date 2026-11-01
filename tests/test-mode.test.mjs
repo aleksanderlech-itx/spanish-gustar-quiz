@@ -67,6 +67,22 @@ test("a full test session leaves every real key byte for byte unchanged", () => 
   assert.ok(Object.keys(snapshot(localStorage, true)).length > 0, "the session wrote into the test namespace");
 });
 
+test("a present perfect test session leaves every real key unchanged and writes only test keys", () => {
+  const realSeed = {
+    ...REAL_SEED,
+    "present-perfect-quiz-progress-v1": JSON.stringify([{ date: "2026-10-30T08:00:00.000Z", score: 3, percent: 60, questionIds: [8001, 8002, 8003, 8004, 8005], answers: [], missedIds: [8004, 8005], mode: "regular" }]),
+  };
+  const { localStorage } = install({ search: "?test=1", local: realSeed });
+  const before = snapshot(localStorage, false);
+  updateStoredProgress("present-perfect-quiz-progress-v1", () => [], (current) => [...current, { date: "2026-11-01T08:00:00.000Z", score: 5, percent: 100, questionIds: [8066, 8111, 8131, 8036, 8001], answers: [], missedIds: [], mode: "regular" }]);
+  recordActivityToday("present-perfect", new Date("2026-11-01T08:00:00"));
+  recordMistakes("present-perfect", [{ question: { id: 8111, infinitive: "haber not tener", tense: "present" }, answer: "tengo dormido" }]);
+  markQuizCompleted("present-perfect", new Date("2026-11-01T08:00:00"));
+  writeTopicSettings("present-perfect", { roundLength: 5, mode: "choose" });
+  assert.deepEqual(snapshot(localStorage, false), before);
+  assert.ok(snapshot(localStorage, true)[`${TEST_KEY_PREFIX}present-perfect-quiz-progress-v1`], "the round was saved in the test namespace");
+});
+
 test("a real session leaves every test key unchanged", () => {
   const testSeed = { [`${TEST_KEY_PREFIX}spanish-quiz-notebook-v1`]: JSON.stringify({ Preterite: { rule: "Preterite", count: 1, lastMissedAt: "2026-10-05T08:00:00.000Z" } }) };
   const { localStorage } = install({ local: testSeed });

@@ -42,6 +42,8 @@ const TOPIC_ICON_PATHS: Record<QuizId, string> = {
   "saber-conocer": "M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3Z",
   // A circular arrow: the action turns back on the subject.
   "reflexive-verbs": "M20 12a8 8 0 1 1-2.3-5.7M20 4v4h-4",
+  // A clock hand landing on now: past actions that reach the present.
+  "present-perfect": "M12 3a9 9 0 1 0 9 9M12 7v5h5",
 };
 
 /** Two fanned, empty playing cards for the flashcard deck. The front card's fill is

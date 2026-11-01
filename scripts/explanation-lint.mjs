@@ -11,6 +11,7 @@ import { POR_PARA_QUESTIONS } from "../app/por-para-data.ts";
 import { OBJECT_PRONOUN_QUESTIONS } from "../app/object-pronouns-data.ts";
 import { SABER_CONOCER_QUESTIONS } from "../app/saber-conocer-data.ts";
 import { REFLEXIVE_VERB_QUESTIONS } from "../app/reflexive-verbs-data.ts";
+import { PRESENT_PERFECT_QUESTIONS } from "../app/present-perfect-data.ts";
 
 export const TOPICS = [
   { key: "gustar", questions: ALL_QUESTIONS, needsCue: true },
@@ -21,6 +22,7 @@ export const TOPICS = [
   { key: "object-pronouns", questions: OBJECT_PRONOUN_QUESTIONS, needsCue: true },
   { key: "saber-conocer", questions: SABER_CONOCER_QUESTIONS, needsCue: true },
   { key: "reflexive-verbs", questions: REFLEXIVE_VERB_QUESTIONS, needsCue: true },
+  { key: "present-perfect", questions: PRESENT_PERFECT_QUESTIONS, needsCue: true },
 ];
 
 export const MIN_LENGTH = 15;

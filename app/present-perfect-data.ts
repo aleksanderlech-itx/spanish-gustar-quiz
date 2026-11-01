@@ -215,7 +215,7 @@ export const PRESENT_PERFECT_FORMS: Record<PresentPerfectGroup, [string, string]
   "regular -ado": ["he hablado", "han viajado"],
   "regular -ido": ["he comido", "han vivido"],
   "irregular participle": ["he visto", "han hecho"],
-  "haber not tener": ["he llegado", "not tengo llegado"],
+  "haber not tener": ["he llegado", "han salido"],
   "negatives and questions": ["no lo he visto", "¿ya has comido?"],
 };
 
