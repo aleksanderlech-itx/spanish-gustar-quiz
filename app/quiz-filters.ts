@@ -1,4 +1,5 @@
 import type { QuizFilters } from "./quiz-logic";
+import { appStorage } from "./storage.ts";
 
 export const DEFAULT_FILTERS: QuizFilters = { level: "all", verb: "all" };
 
@@ -6,7 +7,7 @@ export const DEFAULT_FILTERS: QuizFilters = { level: "all", verb: "all" };
 export const readQuizFilters = (filterKey: string): QuizFilters => {
   if (typeof window === "undefined") return DEFAULT_FILTERS;
   try {
-    const raw = window.localStorage.getItem(filterKey);
+    const raw = appStorage.getItem(filterKey);
     if (!raw) return DEFAULT_FILTERS;
     const parsed = JSON.parse(raw) as Partial<QuizFilters>;
     return { level: parsed.level ?? "all", verb: parsed.verb ?? "all" };
@@ -18,7 +19,7 @@ export const readQuizFilters = (filterKey: string): QuizFilters => {
 export const writeQuizFilters = (filterKey: string, filters: QuizFilters) => {
   if (typeof window === "undefined") return;
   try {
-    window.localStorage.setItem(filterKey, JSON.stringify(filters));
+    appStorage.setItem(filterKey, JSON.stringify(filters));
   } catch {
     // Storage can be unavailable (private mode, quota); the picker just won't persist this session.
   }

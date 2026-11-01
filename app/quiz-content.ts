@@ -23,7 +23,7 @@ export const QUIZ_CONTENT: Record<QuizId, QuizContent> = {
     paragraphs: [
       "Gustar does not work the way most English speakers expect it to. In English you say I like coffee, so I is the subject and coffee is the object. In Spanish it flips around. Me gusta el café means something closer to coffee is pleasing to me, the coffee becomes the subject and you turn into an indirect object, marked by me, te, le, nos or les.",
       "That is why gustar shows up almost only in the third person, gusta or gustan, depending on whether the thing being liked is singular or plural. A mi hermano le gustan los perros uses gustan because perros is plural, even though the sentence is really about my brother. A handful of other verbs follow the exact same pattern: encantar, interesar, molestar, importar, faltar, quedar, doler and parecer.",
-      "Once you stop asking who likes what and start asking what is the subject here, the pattern gets a lot easier. This quiz has 150 sentences built around gustar and its relatives so you can practice spotting the subject and picking the right pronoun until it stops feeling backwards.",
+      "Once you stop asking who likes what and start asking what is the subject here, the pattern gets a lot easier. This quiz has about 150 sentences built around gustar and its relatives so you can practice spotting the subject and picking the right pronoun until it stops feeling backwards.",
     ],
     examples: sourcedExamples([1, 2, 36, 58, 128]),
     faq: [
@@ -51,7 +51,7 @@ export const QUIZ_CONTENT: Record<QuizId, QuizContent> = {
       "Ser and estar both translate as to be, that is exactly why they cause trouble. English only has one verb for it, so learners go looking for a translation rule and there is not really a clean one. What matters is the kind of information the sentence is giving.",
       "Ser is for identity, origin, material, time and traits that do not really change. Soy profesora. La mesa es de madera. La fiesta es el sábado. Estar is for location and for a state that could change. Estoy en casa. La sopa está fría. Los niños están cansados.",
       "Some adjectives actually shift meaning depending on which verb they are paired with. Ser aburrido means a person or thing is boring by nature. Estar aburrido means someone feels bored right now, a completely different idea using the same word.",
-      "This quiz walks through 150 sentences covering identity, description, location, events and changing states, with an explanation for every answer, so the pattern starts to feel familiar instead of random.",
+      "This quiz walks through about 150 sentences covering identity, description, location, events and changing states, with an explanation for every answer, so the pattern starts to feel familiar instead of random.",
     ],
     examples: sourcedExamples([2001, 2002, 2009, 2015]),
     faq: [
@@ -80,7 +80,7 @@ export const QUIZ_CONTENT: Record<QuizId, QuizContent> = {
       "English gets by with one simple past tense, so preterite versus imperfect is often the first real headache in Spanish grammar. Both describe the past, they just answer different questions.",
       "Preterite is for actions that happened and finished. Ayer fui al mercado describes a trip that happened once, at a specific point, and it is over. Imperfect is for the background, things that were ongoing, repeated or still in progress when something else happened. De niño iba al parque cada tarde describes a habit, not a single trip.",
       "The two often show up in the same sentence. Mientras Marta preparaba la cena, sonó el teléfono uses imperfect for the ongoing action and preterite for the interruption. A useful trick is picturing imperfect as the scene and preterite as the event that happens inside it.",
-      "This quiz has 150 sentences moving between completed actions, habits, background description and interruptions, with the reasoning behind every answer, until the difference stops feeling random.",
+      "This quiz has about 150 sentences moving between completed actions, habits, background description and interruptions, with the reasoning behind every answer, until the difference stops feeling random.",
     ],
     examples: sourcedExamples([3001, 3002, 3007, 3008]),
     faq: [
@@ -111,7 +111,7 @@ export const QUIZ_CONTENT: Record<QuizId, QuizContent> = {
       "Por and para both translate as for, which is exactly why English speakers reach for the wrong one so often. Neither preposition is a direct match for anything in English, so the safest approach is to stop translating and start asking what job the word is doing in the sentence.",
       "Por looks backward, toward a cause, a duration, an exchange or a means. Lo hice por amor points at the motive. Estudié por dos horas points at how long. Lo compré por veinte euros points at what was traded for it. Para looks forward, toward a purpose, a recipient or a deadline. Estudio para aprobar el examen points at the goal. Este regalo es para ti points at who receives it.",
       "A handful of contexts show the contrast clearly with the same verb. Trabajo por mi familia means I work for my family's sake, out of love or necessity. Trabajo para mi familia means my family's business employs me. Same verb, same object, a completely different relationship because of one preposition.",
-      "This quiz has 150 sentences covering cause, duration, exchange, means, movement, purpose, recipients, deadlines and destinations, with an explanation for every answer, until the backward-versus-forward instinct starts to feel automatic.",
+      "This quiz has about 150 sentences covering cause, duration, exchange, means, movement, purpose, recipients, deadlines and destinations, with an explanation for every answer, until the backward-versus-forward instinct starts to feel automatic.",
     ],
     examples: sourcedExamples([4001, 4016, 4076, 4091, 4106]),
     faq: [
@@ -140,7 +140,7 @@ export const QUIZ_CONTENT: Record<QuizId, QuizContent> = {
       "Object pronouns let Spanish avoid repeating a noun. Instead of Compro el pan, you say Lo compro once everyone knows what el pan is. The hard part for English speakers is that Spanish has two sets: direct object pronouns for the thing or person the action lands on, and indirect object pronouns for the person who receives it or is affected by it.",
       "Direct objects answer what? or whom?: me, te, lo, la, nos, los, las. Lo and la agree with the noun they replace, so el libro becomes lo and la carta becomes la. Indirect objects answer to whom? or for whom?: me, te, le, nos, les. Le and les don't change for gender, so le doy works for él, ella and usted alike.",
       "Both kinds go before a conjugated verb (lo veo, no le escribo, lo he leído) or attach to the end of a gerund or infinitive (estoy leyéndolo, voy a comprarla). Attaching usually needs a written accent to keep the stress where it was. With two pronouns, the indirect one always goes first, and le or les turns into se before lo, la, los or las: le doy el libro becomes se lo doy, never le lo doy. Because se can mean him, her, you or them, Spanish often adds a + person to make it clear: se lo di a María.",
-      "This quiz has 150 sentences split into direct, indirect and double-pronoun items, with an explanation for every answer. Use the pronoun type filter to drill one set at a time, then mix them once the choice feels automatic.",
+      "This quiz has about 150 sentences split into direct, indirect and double-pronoun items, with an explanation for every answer. Use the pronoun type filter to drill one set at a time, then mix them once the choice feels automatic.",
     ],
     examples: sourcedExamples([5001, 5051, 5101, 5037, 5146]),
     faq: [
@@ -170,7 +170,7 @@ export const QUIZ_CONTENT: Record<QuizId, QuizContent> = {
       "Saber and conocer both translate as to know, so English gives you no clue which one a sentence needs. Spanish splits knowing into two kinds: knowing information, and being acquainted with someone or something.",
       "Saber is for facts and skills. Use it for a piece of information (sé su número), before que, si or a question word (no sé dónde vive), and before an infinitive to say you know how to do something (sabe nadar). Conocer is for acquaintance and familiarity. Use it for people, always with the personal a (conozco a Marta), for places you have been (conocemos Sevilla), and for works, styles or fields you are familiar with (conoces este libro).",
       "The past tense adds a twist. In the preterite, the moment of knowing becomes an event: supe means I found out, and conocí means I met, or saw a place for the first time. The imperfect keeps the ordinary meaning of a state: sabía means I knew, and conocía means I was acquainted with. Ayer supe la noticia and ayer conocí a tu hermana both describe something that happened, not something you already knew.",
-      "This quiz has 150 sentences split into facts, skills, people, places, familiarity and past-tense meaning, with an explanation for every answer. Use the usage filter to drill one group at a time, then mix them once the choice feels automatic.",
+      "This quiz has about 150 sentences split into facts, skills, people, places, familiarity and past-tense meaning, with an explanation for every answer. Use the usage filter to drill one group at a time, then mix them once the choice feels automatic.",
     ],
     examples: sourcedExamples([6001, 6031, 6061, 6091, 6121]),
     faq: [
@@ -191,6 +191,60 @@ export const QUIZ_CONTENT: Record<QuizId, QuizContent> = {
         question: "Why does supe mean found out?",
         answer:
           "The preterite turns a state into an event. With saber, the event is the moment you learned something, so supe means found out. With conocer, the event is the first meeting, so conocí means met. The imperfect forms sabía and conocía keep the ordinary meaning, knew.",
+      },
+    ],
+  },
+  "reflexive-verbs": {
+    paragraphs: [
+      "A reflexive verb describes an action the subject does to itself. English often hides this (I get up, she gets dressed), but Spanish marks it with a pronoun that mirrors the subject: me levanto, se viste. The pronoun always matches the person: me for yo, te for tú, se for él, ella and usted, nos for nosotros, os for vosotros, and se again for ellos and ustedes.",
+      "Many reflexive verbs belong to the daily routine (despertarse, ducharse, acostarse), to movement (sentarse, acercarse, mudarse) and to feelings (preocuparse, aburrirse, enfadarse). Without the pronoun the verb acts on someone else: acuesto al bebé means I put the baby to bed, me acuesto means I go to bed.",
+      "Some verbs change meaning with se. Ir is to go, irse is to leave; dormir is to sleep, dormirse is to fall asleep; acordar is to agree, acordarse de is to remember; llamar is to call, llamarse is to be called. Placement matters too: the pronoun goes before a conjugated verb (no me acuerdo), or on the end of an infinitive or gerund (tengo que levantarme, está duchándose).",
+      "This quiz has about 150 sentences split into daily routine, movement, emotions, meaning change, placement and idiomatic uses, with an explanation for every answer. Use the usage filter to drill one group at a time, then mix them once the pronoun comes without thinking.",
+    ],
+    examples: sourcedExamples([7001, 7031, 7051, 7076, 7106, 7131]),
+    faq: [
+      {
+        question: "How do I know which reflexive pronoun to use?",
+        answer: "Find the subject and mirror it: yo me, tú te, él, ella or usted se, nosotros nos, vosotros os, ellos, ellas or ustedes se. Usted and ustedes always take se, never te or os.",
+      },
+      {
+        question: "Where does the reflexive pronoun go?",
+        answer:
+          "Before a conjugated verb (me levanto, no me levanto). With an infinitive or gerund you can attach it to the end (voy a levantarme, estoy levantándome) or put it before the helper verb (me voy a levantar), but never between the two.",
+      },
+      {
+        question: "Why do some attached forms need an accent?",
+        answer: "Adding a pronoun to a gerund adds a syllable, so a written accent keeps the stress where it was: lavando becomes lavándose. An infinitive with one pronoun needs no accent: levantarme.",
+      },
+      {
+        question: "Why does me lavo las manos not say mis manos?",
+        answer: "The reflexive pronoun already shows whose hands they are, so Spanish uses the article with body parts and clothes: me lavo las manos, se pone el abrigo.",
+      },
+    ],
+  },  "present-perfect": {
+    paragraphs: [
+      "The present perfect talks about past actions that still reach the present: things that happened today, this week or this year, and experiences in your life so far. Spanish builds it like English, with an auxiliary and a participle: he comido is I have eaten. The auxiliary is always haber, conjugated in the present: he, has, ha, hemos, habéis, han.",
+      "Regular participles are easy: -ar verbs take -ado (hablar, hablado) and -er and -ir verbs take -ido (comer, comido; vivir, vivido). A few add an accent to keep the stress: leído, oído, traído. The common irregular ones need memorising: abierto, dicho, escrito, hecho, muerto, puesto, roto, visto and vuelto, plus verbs built on them like descubierto, devuelto and propuesto.",
+      "Two habits keep the tense correct. First, the have of I have eaten is haber, never tener: tengo means I own. Second, haber and the participle stay together. Pronouns, no, ya and nunca all go before haber (no lo he visto, ya hemos comido), and the participle never changes for gender or number after haber.",
+      "This quiz has 150 sentences split into regular -ado participles, regular -ido participles, irregular participles, haber not tener, and negatives and questions, with an explanation for every answer. Use the usage filter to drill one group at a time, then mix them once haber comes without thinking.",
+    ],
+    examples: sourcedExamples([8001, 8036, 8066, 8070, 8111, 8131]),
+    faq: [
+      {
+        question: "When do I use the present perfect instead of the preterite?",
+        answer: "In Spain, use the present perfect for actions in a time period that is still running (hoy, esta semana, este año) and for life experience (alguna vez, nunca). Much of Latin America prefers the preterite for recent events, so hoy comí is also correct there. This quiz never marks the preterite wrong.",
+      },
+      {
+        question: "Why can't I use tener like English have?",
+        answer: "Tener means to own or to have to (tener que). The auxiliary of every compound tense is haber: he comido, never tengo comido.",
+      },
+      {
+        question: "Does the participle agree with the subject?",
+        answer: "Not after haber. The participle always ends in -o: ella ha llegado, nosotras hemos terminado. It only agrees when it works as an adjective, for example after estar: la puerta está abierta.",
+      },
+      {
+        question: "Where do pronouns and no go?",
+        answer: "Before haber, all of them: no lo he visto, ya me he duchado, se lo hemos dicho. Nothing goes between haber and the participle, and you cannot attach a pronoun to the participle.",
       },
     ],
   },

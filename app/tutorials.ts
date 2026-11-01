@@ -19,7 +19,7 @@ export const TUTORIALS: Tutorial[] = [
     title: "What's in the app",
     summary: "A quick look at the board, the grammar topics and the flashcard deck.",
     steps: [
-      "The home board lists six grammar topics and a verb flashcard deck, ordered by what needs attention.",
+      "The home board lists the grammar topics and a verb flashcard deck, ordered by what needs attention.",
       "Each tile shows how much you've practised and what is due today.",
       "The streak and week strip track how consistently you practise.",
       "The menu holds your history, mistake notebook, backup and settings.",

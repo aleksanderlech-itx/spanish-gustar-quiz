@@ -13,8 +13,13 @@ import { isCompletionUnearned, type QuizResult } from "./quiz-logic";
 import { ROUND_SIZE as FLASHCARDS_ROUND_SIZE, MAX_BOX as MAX_FLASHCARD_BOX } from "./flashcards";
 import Drawer from "./drawer";
 import TutorialModal from "./tutorial-modal";
+import DayCompleteDialog from "./day-complete-dialog";
+import { takeDayCelebration } from "./day-celebration";
 import Logo from "./logo";
 import { SunIcon, MoonIcon } from "./theme-icons";
+import { appStorage } from "./storage";
+import { readNotebookGroups, type NotebookGroup } from "./notebook";
+import { mistakesPath, mistakesTitle } from "./notebook-retry";
 
 type BoardItem = BoardTileProgress & {
   id: ActivityId;
@@ -35,6 +40,10 @@ const TOPIC_ICON_PATHS: Record<QuizId, string> = {
   "preterite-imperfect": "M12 6c-3.2-2-6.3-2.3-10-1v14c3.7-1.3 6.8-1 10 1 3.2-2 6.3-2.3 10-1V5c-3.7-1.3-6.8-1-10 1Zm0 0v14",
   "object-pronouns": "M4 12.5l5 5L20 7",
   "saber-conocer": "M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3Z",
+  // A circular arrow: the action turns back on the subject.
+  "reflexive-verbs": "M20 12a8 8 0 1 1-2.3-5.7M20 4v4h-4",
+  // A clock hand landing on now: past actions that reach the present.
+  "present-perfect": "M12 3a9 9 0 1 0 9 9M12 7v5h5",
 };
 
 /** Two fanned, empty playing cards for the flashcard deck. The front card's fill is
@@ -88,7 +97,7 @@ const boardItem = (entry: ActivityRegistryEntry, progress: QuizProgress, daily: 
  */
 const readFlashcardProgress = (): { progress: Omit<BoardTileProgress, "id">; daily: DailyRoundProgress } => {
   try {
-    const raw = window.localStorage.getItem("spanish-flashcards-leitner-v2") ?? window.localStorage.getItem("spanish-flashcards-progress-v1");
+    const raw = appStorage.getItem("spanish-flashcards-leitner-v2") ?? appStorage.getItem("spanish-flashcards-progress-v1");
     const saved = raw ? JSON.parse(raw) as Record<string, { box?: number; nextReviewAt?: string; updatedAt?: string }> : {};
     const entries = Object.values(saved);
     const completed = entries.length;
@@ -129,7 +138,7 @@ const readFlashcardProgress = (): { progress: Omit<BoardTileProgress, "id">; dai
 /** A quiz's stored round history; empty if it's missing or corrupt. */
 const readQuizHistory = (quizId: QuizId): QuizResult[] => {
   try {
-    const raw = window.localStorage.getItem(QUIZ_CONFIG[quizId].storageKey);
+    const raw = appStorage.getItem(QUIZ_CONFIG[quizId].storageKey);
     const history = raw ? (JSON.parse(raw) as unknown) : [];
     return Array.isArray(history) ? (history as QuizResult[]) : [];
   } catch {
@@ -152,7 +161,7 @@ const backfillEntries = (): Array<{ activity: ActivityId; day: string }> => {
 
   QUIZ_IDS.forEach((quizId) => {
     try {
-      const raw = window.localStorage.getItem(QUIZ_CONFIG[quizId].storageKey);
+      const raw = appStorage.getItem(QUIZ_CONFIG[quizId].storageKey);
       const history = raw ? (JSON.parse(raw) as QuizResult[]) : [];
       history.filter((item) => item.mode !== "review").forEach((item) => {
         entries.push({ activity: quizId, day: dayKey(new Date(item.date)) });
@@ -187,6 +196,8 @@ export default function QuizSelector() {
     EMPTY_DAILY,
   )));
   const [streak, setStreak] = useState<StreakSummary>(EMPTY_STREAK);
+  const [mistakeGroups, setMistakeGroups] = useState<NotebookGroup[]>([]);
+  const [celebrating, setCelebrating] = useState(false);
 
   useEffect(() => {
     // Re-reads progress every time the board becomes visible again, not just on
@@ -222,7 +233,12 @@ export default function QuizSelector() {
     // Browser storage is unavailable during the server render.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setItems(nextItems);
-    setStreak(readStreakSummary());
+    // Temporary mistakes activities sit outside ACTIVITY_REGISTRY, so the streak and daily goal never see them.
+    setMistakeGroups(readNotebookGroups());
+    const summary = readStreakSummary();
+    setStreak(summary);
+    // Only right after the round that completed today: takeDayCelebration clears the flag either way.
+    if (takeDayCelebration(dayKey(new Date())) && summary.completedToday) setCelebrating(true);
     setReady(true);
   }, [open, drawerOpen]);
 
@@ -248,6 +264,13 @@ export default function QuizSelector() {
     <main className="quiz-library board-home" aria-labelledby="quiz-library-title">
       <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)} returnFocusRef={hamburgerRef} />
       <TutorialModal />
+      <DayCompleteDialog
+        open={celebrating}
+        streak={streak.streak}
+        done={streak.todayDone}
+        total={streak.todayTotal}
+        onClose={() => setCelebrating(false)}
+      />
 
       <div className="board-rail">
         <header className="board-header">
@@ -411,6 +434,30 @@ export default function QuizSelector() {
           );
         })}
       </section>
+
+        {mistakeGroups.length > 0 && (
+          <>
+            <div className="board-section-head board-section-head-secondary">
+              <h2 className="eyebrow">Mistakes to retry</h2>
+            </div>
+            <section className="board-grid" aria-label="Temporary mistakes activities">
+              {mistakeGroups.map((group) => (
+                <a className="board-tile board-tile-due board-tile-mistakes" href={mistakesPath(group.quizId)} key={group.quizId}>
+                  <span className="board-icon"><BoardIcon id={group.quizId} /></span>
+                  <div className="board-tile-content">
+                    <div className="board-tile-content-header">
+                      <h2>{mistakesTitle(group.quizId)}</h2>
+                      <span className="board-tile-top-pills">
+                        <span className="board-tile-pill board-tile-pill-mistakes">{group.entries.length} to retry</span>
+                      </span>
+                    </div>
+                    <span className="board-tile-note">Practice only. Not part of today&apos;s goal.</span>
+                  </div>
+                </a>
+              ))}
+            </section>
+          </>
+        )}
 
         <p className="library-note">Progress, filters, scoring, audio and review history remain attached to each quiz.</p>
       </div>

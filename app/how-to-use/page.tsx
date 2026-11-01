@@ -81,7 +81,7 @@ export default function HowToUsePage() {
         <div className={styles.sectionBody}>
           <h2>What Spanish Quizzes is about</h2>
           <p>
-            Spanish Quizzes is a focused practice app for Spanish grammar and vocabulary. Work on Gustar, Ser vs Estar, Por vs Para, Preterite vs Imperfect, or Object Pronouns, or practise common verbs with Spanish Verb Flashcards.
+            Spanish Quizzes is a focused practice app for Spanish grammar and vocabulary. Pick a grammar topic from the home board, or practise common verbs with Spanish Verb Flashcards.
           </p>
           <p>
             The home board shows what is due, what you have studied, and your progress. Quiz rounds keep their own history, filters, and scores. Flashcards save each card&apos;s review box and next due date on this device.
@@ -103,7 +103,7 @@ export default function HowToUsePage() {
             <li><UiLabel>Round length</UiLabel> lets you choose 5, 10, or 20 questions.</li>
             <li><UiLabel>Choose</UiLabel> gives you answer options. It is useful when you are learning a topic or want a faster round.</li>
             <li><UiLabel>Type</UiLabel> makes you enter the missing form yourself. It is harder and gives you stronger recall practice.</li>
-            <li><UiLabel>Filters</UiLabel> narrow the practice set by difficulty and verb. Object Pronouns uses pronoun type instead of verb.</li>
+            <li><UiLabel>Filters</UiLabel> narrow the practice set by difficulty and by verb. Topics that group sentences another way filter by that group instead, such as pronoun type or usage.</li>
             <li>The topic reference link opens a conjugation chart where available. Por vs Para opens an explanation of the two words instead.</li>
           </ul>
           <h3>During the round</h3>
@@ -188,7 +188,7 @@ export default function HowToUsePage() {
           <h2>Backup and restore</h2>
           <p>Your learning progress is kept in browser storage on the device you are using. If you clear browser data or move to another browser or device, that local progress does not automatically follow you.</p>
           <ul>
-            <li>Select <UiLabel>Download backup</UiLabel> to save a JSON backup file containing quiz and flashcard progress.</li>
+            <li>Select <UiLabel>Download backup</UiLabel> to save a JSON backup file containing quiz and flashcard progress and your mistake notebook.</li>
             <li>Select <UiLabel>Import backup</UiLabel> and choose a previous backup file to restore it.</li>
             <li>Download a backup before moving devices, clearing browser data, or resetting progress.</li>
             <li><UiLabel>Reset all progress</UiLabel> removes saved quiz and flashcard progress from the current device. Use it only when you want to start over.</li>
@@ -201,7 +201,8 @@ export default function HowToUsePage() {
         <div className={styles.sectionBody}>
           <h2>Mistake notebook</h2>
           <p>The Mistake notebook collects the grammar rules connected to incorrect quiz answers. It is designed for targeted review: instead of reading every rule again, you can see the areas that actually caused problems.</p>
-          <p>Open it regularly after a few rounds and look for rules that keep returning. If no mistakes have been recorded, the drawer shows <UiLabel>No missed rules yet.</UiLabel></p>
+          <p>Every sentence you miss is saved once, grouped by topic. While a topic has saved mistakes, a temporary mistakes activity for it appears under <UiLabel>Mistakes to retry</UiLabel> on the board and in the drawer. Open it to retry those sentences, or pick a subtopic chip to retry only that one. A wrong retry explains the rule; a correct one is counted on the entry.</p>
+          <p>Retries are practice only: they do not count toward today&apos;s goal, your streak, accuracy or due counts. An entry stays until you select <UiLabel>Dismiss</UiLabel>, and the activity disappears once its topic has none left. If no mistakes have been recorded, the drawer shows <UiLabel>No missed rules yet.</UiLabel></p>
         </div>
       </section>
 

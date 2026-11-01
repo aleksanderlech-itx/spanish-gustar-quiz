@@ -5,7 +5,7 @@ import QuizPage from "../quiz-page";
 
 const TITLE = "Preterite vs Imperfect Quiz - Practice Online";
 const DESCRIPTION =
-  "Practise preterite vs imperfect with 150 sentences covering completed actions, past habits, background scenes and interruptions, with an explanation for every answer.";
+  "Practise preterite vs imperfect with about 150 sentences covering completed actions, past habits, background scenes and interruptions, with an explanation for every answer.";
 
 export const metadata: Metadata = {
   title: TITLE,

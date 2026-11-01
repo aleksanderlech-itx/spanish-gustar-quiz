@@ -6,6 +6,8 @@ import { QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config";
 import { PRETERITE_IMPERFECT_CONJUGATIONS, PRETERITE_IMPERFECT_REGULARITY } from "./preterite-imperfect-data";
 import { OBJECT_PRONOUN_CHART, type ObjectPronounType } from "./object-pronouns-data";
 import { SABER_CONOCER_CONJUGATIONS } from "./saber-conocer-data";
+import { REFLEXIVE_CHART } from "./reflexive-verbs-data";
+import { PRESENT_PERFECT_CHART } from "./present-perfect-data";
 import { speak, speakQueue } from "./speak";
 
 type ChartRow = { pronoun: string; form: string };
@@ -45,6 +47,15 @@ const blocksFor = (quizId: QuizId, infinitive: string, forms: Record<string, [st
       rows: SABER_CONOCER_CONJUGATIONS.map((row) => ({ pronoun: row.subject, form: row[verb][tense] })),
     })));
   }
+  if (quizId === "reflexive-verbs" || quizId === "present-perfect") {
+    // Usage groups share one chart: reflexive pronouns, paradigm and placement, or haber,
+    // regular and irregular participles and word order.
+    return (quizId === "reflexive-verbs" ? REFLEXIVE_CHART : PRESENT_PERFECT_CHART).map((table, index) => ({
+      tenseLabel: table.title,
+      accent: index % 2 === 0 ? "primary" as const : "sun" as const,
+      rows: table.rows.map((row) => ({ pronoun: row.label, form: row.form })),
+    }));
+  }
   if (quizId === "por-para") {
     const [por, para] = forms[infinitive] ?? ["por", "para"];
     return [{ tenseLabel: "Preposition", accent: "primary", rows: [{ pronoun: "por", form: por }, { pronoun: "para", form: para }] }];
@@ -61,7 +72,8 @@ export default function VerbChart({ quizId, infinitive, onClose }: { quizId: Qui
   const quiz = QUIZ_CONFIG[quizId];
   // Saber vs conocer's "forms" are usage categories, not verbs: the topic-level chart is one
   // section with both full paradigms rather than a repeat of them under every usage.
-  const infinitives = infinitive && quiz.forms[infinitive] ? [infinitive] : quizId === "saber-conocer" ? [""] : Object.keys(quiz.forms);
+  // Reflexive verbs' and present perfect's groups share one chart, so those topics always render a single section.
+  const infinitives = quizId === "reflexive-verbs" || quizId === "present-perfect" ? [""] : infinitive && quiz.forms[infinitive] ? [infinitive] : quizId === "saber-conocer" ? [""] : Object.keys(quiz.forms);
   const [speakingKey, setSpeakingKey] = useState<string | null>(null);
 
   const speakRow = (key: string, text: string) => {
@@ -88,7 +100,7 @@ export default function VerbChart({ quizId, infinitive, onClose }: { quizId: Qui
         ) : (
           <Link className="round-back" href={quizPath(quizId)} aria-label="Back to topic"><span aria-hidden="true">←</span></Link>
         )}
-        <h1>{infinitives.length === 1 && quizId !== "saber-conocer" ? infinitives[0] : quiz.title.replace(" Quiz", "")}</h1>
+        <h1>{infinitives.length === 1 && infinitives[0] ? infinitives[0] : quiz.title.replace(" Quiz", "")}</h1>
         {infinitives.length === 1 && regularityFor(quizId, infinitives[0]) && (
           <span className="verb-chart-regularity-badge">{regularityFor(quizId, infinitives[0])}</span>
         )}

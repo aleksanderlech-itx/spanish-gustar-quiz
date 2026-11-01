@@ -2871,3 +2871,193 @@ body {
   box-shadow: 0 0 0 4px #FFFAF3;
   border-radius: 2px;
 }
+
+/* Day completed celebration (day-complete-dialog.tsx): shown once on the board right after the round that completes today. */
+.day-complete-dialog {
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 16px;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  overflow: hidden;
+}
+
+.day-complete-dialog[open] {
+  display: grid;
+  place-items: center;
+}
+
+.day-complete-dialog::backdrop {
+  background: rgba(44, 43, 41, .5);
+  animation: day-complete-fade .3s ease-out;
+}
+
+.day-complete-card {
+  position: relative;
+  display: grid;
+  width: min(320px, 100%);
+  justify-items: center;
+  gap: 8px;
+  padding: 24px 22px 20px;
+  border-radius: 18px 26px 14px 26px;
+  background: var(--surface);
+  text-align: center;
+  box-shadow: 0 10px 30px rgb(15 23 42 / 18%);
+  animation: day-complete-card-in .45s cubic-bezier(.2, 1.4, .4, 1) both;
+}
+
+.day-complete-card h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: var(--font-display-weight);
+  line-height: 1.2;
+}
+
+.day-complete-sub {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.day-complete-seal {
+  width: 72px;
+  height: 72px;
+  overflow: visible;
+}
+
+.day-complete-disc {
+  fill: var(--sun);
+  transform-origin: 28px 28px;
+  animation: day-complete-pop .5s cubic-bezier(.3, 1.6, .5, 1) both;
+}
+
+.day-complete-tick {
+  fill: none;
+  stroke: var(--surface);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+  animation: day-complete-draw .35s ease-out .35s forwards;
+}
+
+.day-complete-ray {
+  stroke: var(--sun);
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: 0;
+  transform-origin: 28px 28px;
+  animation: day-complete-burst .7s ease-out .45s both;
+}
+
+.day-complete-stats {
+  display: flex;
+  gap: 20px;
+  margin: 4px 0 6px;
+}
+
+.day-complete-stats div {
+  display: grid;
+}
+
+.day-complete-stats strong {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: var(--font-display-weight);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.day-complete-stats span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.day-complete-dismiss {
+  min-height: 44px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--primary);
+  color: var(--primary-ink);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.day-complete-dismiss:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+
+.day-complete-confetti {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.day-complete-confetti i {
+  position: absolute;
+  top: -12px;
+  width: 7px;
+  height: 11px;
+  border-radius: 2px;
+  opacity: 0;
+  animation: day-complete-fall 1.8s cubic-bezier(.3, .6, .6, 1) forwards;
+}
+
+@keyframes day-complete-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes day-complete-card-in {
+  from { transform: scale(.9) translateY(10px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+@keyframes day-complete-pop {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+@keyframes day-complete-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes day-complete-burst {
+  0% { opacity: 0; transform: scale(.6); }
+  40% { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.35); }
+}
+
+@keyframes day-complete-fall {
+  0% { opacity: 1; transform: translateY(0) rotate(0); }
+  85% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(100dvh) rotate(540deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .day-complete-dialog::backdrop,
+  .day-complete-card,
+  .day-complete-disc,
+  .day-complete-ray {
+    animation: none;
+  }
+
+  .day-complete-tick {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+
+  .day-complete-confetti {
+    display: none;
+  }
+}

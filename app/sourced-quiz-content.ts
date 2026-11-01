@@ -3604,6 +3604,1206 @@ export const SOURCED_QUIZ_PAIRS: Record<number, SourcedPair> = {
   "6150": {
     "spanish": "Nos conocimos en 2015 y desde entonces somos amigos.",
     "english": "We met in 2015 and we've been friends ever since."
+  },
+  "7001": {
+    "spanish": "Todos los días yo me levanto a las siete.",
+    "english": "Every day I get up at seven."
+  },
+  "7002": {
+    "spanish": "¿Tú te duchas por la mañana o por la noche?",
+    "english": "Do you shower in the morning or at night?"
+  },
+  "7003": {
+    "spanish": "Mi padre se afeita antes de desayunar.",
+    "english": "My father shaves before breakfast."
+  },
+  "7004": {
+    "spanish": "Nosotros nos acostamos a las once entre semana.",
+    "english": "We go to bed at eleven during the week."
+  },
+  "7005": {
+    "spanish": "Los niños se lavan las manos antes de comer.",
+    "english": "The children wash their hands before eating."
+  },
+  "7006": {
+    "spanish": "¿A qué hora te despiertas tú normalmente?",
+    "english": "What time do you normally wake up?"
+  },
+  "7007": {
+    "spanish": "Ella se viste muy rápido por la mañana.",
+    "english": "She gets dressed very quickly in the morning."
+  },
+  "7008": {
+    "spanish": "Yo me cepillo los dientes tres veces al día.",
+    "english": "I brush my teeth three times a day."
+  },
+  "7009": {
+    "spanish": "Mi hermana se maquilla en el coche de camino al trabajo.",
+    "english": "My sister puts on her make-up in the car on the way to work."
+  },
+  "7010": {
+    "spanish": "Vosotros os ducháis después del partido, ¿verdad?",
+    "english": "You all shower after the match, right?"
+  },
+  "7011": {
+    "spanish": "Cuando hace frío, yo me pongo un abrigo.",
+    "english": "When it's cold, I put on a coat."
+  },
+  "7012": {
+    "spanish": "Al llegar a casa, mi madre se quita los zapatos.",
+    "english": "When she gets home, my mother takes off her shoes."
+  },
+  "7013": {
+    "spanish": "Nosotros nos bañamos en el mar todos los veranos.",
+    "english": "We swim in the sea every summer."
+  },
+  "7014": {
+    "spanish": "¿Ustedes se levantan temprano los domingos?",
+    "english": "Do you get up early on Sundays?"
+  },
+  "7015": {
+    "spanish": "Tú siempre te peinas delante del espejo.",
+    "english": "You always comb your hair in front of the mirror."
+  },
+  "7016": {
+    "spanish": "Mis abuelos se acuestan muy pronto.",
+    "english": "My grandparents go to bed very early."
+  },
+  "7017": {
+    "spanish": "Yo me seco el pelo con una toalla.",
+    "english": "I dry my hair with a towel."
+  },
+  "7018": {
+    "spanish": "Pablo se arregla para la fiesta durante una hora.",
+    "english": "Pablo spends an hour getting ready for the party."
+  },
+  "7019": {
+    "spanish": "¿Tú te vistes antes o después de desayunar?",
+    "english": "Do you get dressed before or after breakfast?"
+  },
+  "7020": {
+    "spanish": "Los domingos nosotros no nos despertamos hasta las diez.",
+    "english": "On Sundays we don't wake up until ten."
+  },
+  "7021": {
+    "spanish": "Ayer yo me levanté a las seis para coger el tren.",
+    "english": "Yesterday I got up at six to catch the train."
+  },
+  "7022": {
+    "spanish": "Anoche los niños se acostaron muy tarde.",
+    "english": "Last night the children went to bed very late."
+  },
+  "7023": {
+    "spanish": "Esta mañana tú no te duchaste, ¿verdad?",
+    "english": "You didn't shower this morning, did you?"
+  },
+  "7024": {
+    "spanish": "De niño, yo me bañaba en el río con mis primos.",
+    "english": "As a child, I used to swim in the river with my cousins."
+  },
+  "7025": {
+    "spanish": "Usted se afeita cada mañana, ¿no?",
+    "english": "You shave every morning, don't you?"
+  },
+  "7026": {
+    "spanish": "Mis hermanas se pintan las uñas los viernes.",
+    "english": "My sisters paint their nails on Fridays."
+  },
+  "7027": {
+    "spanish": "Ella se lava la cara con agua fría.",
+    "english": "She washes her face with cold water."
+  },
+  "7028": {
+    "spanish": "Yo siempre me quito las gafas para leer.",
+    "english": "I always take my glasses off to read."
+  },
+  "7029": {
+    "spanish": "Nosotros nos vestimos de blanco para la boda.",
+    "english": "We are dressing in white for the wedding."
+  },
+  "7030": {
+    "spanish": "Cada noche, antes de dormir, mi hijo se cepilla los dientes.",
+    "english": "Every night, before going to sleep, my son brushes his teeth."
+  },
+  "7031": {
+    "spanish": "¿Ustedes se sientan en la primera fila?",
+    "english": "Are you sitting in the front row?"
+  },
+  "7032": {
+    "spanish": "El perro se acerca a la puerta cuando oye el timbre.",
+    "english": "The dog goes up to the door when it hears the doorbell."
+  },
+  "7033": {
+    "spanish": "Yo me siento siempre al lado de la ventana.",
+    "english": "I always sit next to the window."
+  },
+  "7034": {
+    "spanish": "Cuando ve una araña, mi hermano se aleja corriendo.",
+    "english": "When he sees a spider, my brother runs away from it."
+  },
+  "7035": {
+    "spanish": "Cuando pasa una ambulancia, nosotros nos apartamos a un lado.",
+    "english": "When an ambulance goes by, we move to one side."
+  },
+  "7036": {
+    "spanish": "El gato se esconde debajo de la cama.",
+    "english": "The cat hides under the bed."
+  },
+  "7037": {
+    "spanish": "¿Por qué no te tumbas tú un rato en el sofá?",
+    "english": "Why don't you lie down on the sofa for a while?"
+  },
+  "7038": {
+    "spanish": "Mis vecinos se mudan a Valencia el mes que viene.",
+    "english": "My neighbours are moving to Valencia next month."
+  },
+  "7039": {
+    "spanish": "Cuando entra el profesor, los alumnos se levantan de la silla.",
+    "english": "When the teacher comes in, the students stand up from their chairs."
+  },
+  "7040": {
+    "spanish": "Mi abuelo ya no se mueve mucho por la casa.",
+    "english": "My grandfather doesn't move around the house much any more."
+  },
+  "7041": {
+    "spanish": "Yo me doy la vuelta cuando oigo mi nombre.",
+    "english": "I turn around when I hear my name."
+  },
+  "7042": {
+    "spanish": "Los niños se tiran a la piscina sin miedo.",
+    "english": "The children jump into the pool without fear."
+  },
+  "7043": {
+    "spanish": "¿Vosotros os sentáis delante o detrás?",
+    "english": "Are you all sitting at the front or at the back?"
+  },
+  "7044": {
+    "spanish": "Ella se asoma a la ventana para ver la calle.",
+    "english": "She leans out of the window to look at the street."
+  },
+  "7045": {
+    "spanish": "Ayer, al ver el perro, yo me acerqué despacio.",
+    "english": "Yesterday, when I saw the dog, I went up to it slowly."
+  },
+  "7046": {
+    "spanish": "El coche se detiene delante del semáforo.",
+    "english": "The car stops in front of the traffic light."
+  },
+  "7047": {
+    "spanish": "Cuando hace sol, nosotros nos tumbamos en la playa.",
+    "english": "When it's sunny, we lie down on the beach."
+  },
+  "7048": {
+    "spanish": "Mi hija se mete en el agua aunque está fría.",
+    "english": "My daughter gets into the water even though it's cold."
+  },
+  "7049": {
+    "spanish": "Tú te acercas demasiado al fuego.",
+    "english": "You get too close to the fire."
+  },
+  "7050": {
+    "spanish": "El año pasado mis padres se mudaron al campo.",
+    "english": "Last year my parents moved to the countryside."
+  },
+  "7051": {
+    "spanish": "Mi madre se preocupa mucho cuando llego tarde.",
+    "english": "My mother worries a lot when I arrive late."
+  },
+  "7052": {
+    "spanish": "Yo me aburro mucho en las reuniones largas.",
+    "english": "I get very bored in long meetings."
+  },
+  "7053": {
+    "spanish": "Los niños se divierten mucho en el parque.",
+    "english": "The children have a lot of fun in the park."
+  },
+  "7054": {
+    "spanish": "Mi jefe se enfada cuando llegamos tarde.",
+    "english": "My boss gets angry when we arrive late."
+  },
+  "7055": {
+    "spanish": "¿Tú te cansas cuando subes la montaña?",
+    "english": "Do you get tired when you climb the mountain?"
+  },
+  "7056": {
+    "spanish": "Nosotros nos alegramos mucho de verte.",
+    "english": "We are very glad to see you."
+  },
+  "7057": {
+    "spanish": "Mi hermana pequeña se asusta con las tormentas.",
+    "english": "My little sister gets scared during storms."
+  },
+  "7058": {
+    "spanish": "Hoy yo me siento un poco cansado.",
+    "english": "Today I feel a bit tired."
+  },
+  "7059": {
+    "spanish": "¿Cómo se siente usted después de la operación?",
+    "english": "How do you feel after the operation?"
+  },
+  "7060": {
+    "spanish": "Romeo y Julieta se enamoraron en una fiesta.",
+    "english": "Romeo and Juliet fell in love at a party."
+  },
+  "7061": {
+    "spanish": "Cuando veo una película triste, yo me emociono fácilmente.",
+    "english": "When I watch a sad film, I get emotional easily."
+  },
+  "7062": {
+    "spanish": "Mis padres se sorprendieron al ver la casa tan limpia.",
+    "english": "My parents were surprised to see the house so clean."
+  },
+  "7063": {
+    "spanish": "Después de una ducha caliente, yo siempre me relajo.",
+    "english": "After a hot shower, I always relax."
+  },
+  "7064": {
+    "spanish": "¿Por qué os enfadáis vosotros tan rápido?",
+    "english": "Why do you all get angry so quickly?"
+  },
+  "7065": {
+    "spanish": "Mi abuela se alegra cuando la visitamos.",
+    "english": "My grandmother is happy when we visit her."
+  },
+  "7066": {
+    "spanish": "Nosotros nos preocupamos por el examen de mañana.",
+    "english": "We are worried about tomorrow's exam."
+  },
+  "7067": {
+    "spanish": "Ellos se aburren en clase de matemáticas.",
+    "english": "They get bored in maths class."
+  },
+  "7068": {
+    "spanish": "Yo nunca me enfado con mis amigos.",
+    "english": "I never get angry with my friends."
+  },
+  "7069": {
+    "spanish": "Ella se avergüenza cuando habla en público.",
+    "english": "She gets embarrassed when she speaks in public."
+  },
+  "7070": {
+    "spanish": "¿Tú te divertiste en la fiesta de anoche?",
+    "english": "Did you have fun at the party last night?"
+  },
+  "7071": {
+    "spanish": "Cuando era pequeño, yo me asustaba con los payasos.",
+    "english": "When I was little, I used to get scared of clowns."
+  },
+  "7072": {
+    "spanish": "Mi novio se ofende por cualquier broma.",
+    "english": "My boyfriend takes offence at any joke."
+  },
+  "7073": {
+    "spanish": "Los turistas se cansan de caminar bajo el sol.",
+    "english": "The tourists get tired of walking in the sun."
+  },
+  "7074": {
+    "spanish": "Con esta música, yo me animo enseguida.",
+    "english": "With this music, I cheer up straight away."
+  },
+  "7075": {
+    "spanish": "Ustedes se tranquilizan cuando escuchan su voz.",
+    "english": "You calm down when you hear her voice."
+  },
+  "7076": {
+    "spanish": "Ya es tarde; nosotros nos vamos de la fiesta.",
+    "english": "It's late; we're leaving the party."
+  },
+  "7077": {
+    "spanish": "¿Vosotros os acordáis de la cena del sábado?",
+    "english": "Do you all remember Saturday's dinner?"
+  },
+  "7078": {
+    "spanish": "Los dos países acordaron un alto el fuego.",
+    "english": "The two countries agreed on a ceasefire."
+  },
+  "7079": {
+    "spanish": "Estaba tan cansado que me dormí en cuanto me senté.",
+    "english": "I was so tired that I fell asleep as soon as I sat down."
+  },
+  "7080": {
+    "spanish": "Anoche dormí ocho horas seguidas.",
+    "english": "Last night I slept eight hours straight."
+  },
+  "7081": {
+    "spanish": "Mi hermano se llama Javier.",
+    "english": "My brother is called Javier."
+  },
+  "7082": {
+    "spanish": "Yo llamo a mi madre todos los domingos.",
+    "english": "I call my mother every Sunday."
+  },
+  "7083": {
+    "spanish": "Al final, nosotros nos quedamos en casa porque llovía.",
+    "english": "In the end, we stayed at home because it was raining."
+  },
+  "7084": {
+    "spanish": "Nosotros quedamos con Ana a las ocho en la plaza.",
+    "english": "We're meeting Ana at eight in the square."
+  },
+  "7085": {
+    "spanish": "Antes de salir, yo me despido de todos.",
+    "english": "Before leaving, I say goodbye to everyone."
+  },
+  "7086": {
+    "spanish": "La empresa despidió a veinte trabajadores.",
+    "english": "The company laid off twenty workers."
+  },
+  "7087": {
+    "spanish": "Ana se parece mucho a su madre.",
+    "english": "Ana looks a lot like her mother."
+  },
+  "7088": {
+    "spanish": "Tu idea me parece muy interesante.",
+    "english": "Your idea seems very interesting to me."
+  },
+  "7089": {
+    "spanish": "Mi hermano y yo nos llevamos muy bien.",
+    "english": "My brother and I get on very well."
+  },
+  "7090": {
+    "spanish": "Yo siempre llevo paraguas en invierno.",
+    "english": "I always carry an umbrella in winter."
+  },
+  "7091": {
+    "spanish": "El niño se niega a comer verduras.",
+    "english": "The boy refuses to eat vegetables."
+  },
+  "7092": {
+    "spanish": "El acusado niega todo delante del juez.",
+    "english": "The accused denies everything in front of the judge."
+  },
+  "7093": {
+    "spanish": "Ayer me encontré con Luis en el supermercado.",
+    "english": "Yesterday I ran into Luis at the supermarket."
+  },
+  "7094": {
+    "spanish": "Por fin encontré mis llaves debajo del sofá.",
+    "english": "I finally found my keys under the sofa."
+  },
+  "7095": {
+    "spanish": "Primero la madre acuesta al bebé y después cena.",
+    "english": "First the mother puts the baby to bed and then has dinner."
+  },
+  "7096": {
+    "spanish": "Yo lavo el coche los sábados.",
+    "english": "I wash the car on Saturdays."
+  },
+  "7097": {
+    "spanish": "Con la fama, el actor se volvió muy arrogante.",
+    "english": "With fame, the actor became very arrogant."
+  },
+  "7098": {
+    "spanish": "Mi padre vuelve del trabajo a las seis.",
+    "english": "My father comes back from work at six."
+  },
+  "7099": {
+    "spanish": "En esta ciudad es fácil perderse sin un mapa.",
+    "english": "In this city it's easy to get lost without a map."
+  },
+  "7100": {
+    "spanish": "¿Tú te fijas en los detalles?",
+    "english": "Do you notice the details?"
+  },
+  "7101": {
+    "spanish": "Mi hermana se casa el próximo sábado.",
+    "english": "My sister is getting married next Saturday."
+  },
+  "7102": {
+    "spanish": "Mi socio se ocupa de las cuentas de la empresa.",
+    "english": "My business partner takes care of the company's accounts."
+  },
+  "7103": {
+    "spanish": "Por la mañana, yo despierto a mis hijos a las siete.",
+    "english": "In the morning, I wake my children up at seven."
+  },
+  "7104": {
+    "spanish": "Pedro pone la mesa antes de cenar.",
+    "english": "Pedro sets the table before dinner."
+  },
+  "7105": {
+    "spanish": "La reunión fue tan aburrida que Marta se marchó antes del final.",
+    "english": "The meeting was so boring that Marta left before the end."
+  },
+  "7106": {
+    "spanish": "Mañana tengo que levantarme muy temprano.",
+    "english": "Tomorrow I have to get up very early."
+  },
+  "7107": {
+    "spanish": "Ahora mismo Ana está lavándose el pelo.",
+    "english": "Right now Ana is washing her hair."
+  },
+  "7108": {
+    "spanish": "Esta noche vamos a acostarnos pronto.",
+    "english": "Tonight we're going to go to bed early."
+  },
+  "7109": {
+    "spanish": "¿Quieres sentarte aquí, al lado de la ventana?",
+    "english": "Do you want to sit here, next to the window?"
+  },
+  "7110": {
+    "spanish": "Antes de acostarme, leo un rato en la cama.",
+    "english": "Before going to bed, I read for a while in bed."
+  },
+  "7111": {
+    "spanish": "Los niños están duchándose ahora mismo.",
+    "english": "The children are having a shower right now."
+  },
+  "7112": {
+    "spanish": "No puedo concentrarme con tanto ruido.",
+    "english": "I can't concentrate with so much noise."
+  },
+  "7113": {
+    "spanish": "Mi hermano sigue quejándose del trabajo.",
+    "english": "My brother keeps complaining about work."
+  },
+  "7114": {
+    "spanish": "Nosotros nunca nos aburrimos juntos.",
+    "english": "We never get bored together."
+  },
+  "7115": {
+    "spanish": "Para no perderme, uso el GPS.",
+    "english": "So as not to get lost, I use the GPS."
+  },
+  "7116": {
+    "spanish": "¿Vais a quedaros a cenar?",
+    "english": "Are you all going to stay for dinner?"
+  },
+  "7117": {
+    "spanish": "Estoy vistiéndome; salgo en cinco minutos.",
+    "english": "I'm getting dressed; I'm leaving in five minutes."
+  },
+  "7118": {
+    "spanish": "Ellos quieren casarse en primavera.",
+    "english": "They want to get married in spring."
+  },
+  "7119": {
+    "spanish": "Usted debe cuidarse más.",
+    "english": "You should look after yourself more."
+  },
+  "7120": {
+    "spanish": "Tú tienes que relajarte un poco.",
+    "english": "You need to relax a little."
+  },
+  "7121": {
+    "spanish": "Al despertarse, Marta miró el reloj.",
+    "english": "When she woke up, Marta looked at the clock."
+  },
+  "7122": {
+    "spanish": "Nos estamos preparando para el examen.",
+    "english": "We're getting ready for the exam."
+  },
+  "7123": {
+    "spanish": "¿Te vas a poner la chaqueta?",
+    "english": "Are you going to put on your jacket?"
+  },
+  "7124": {
+    "spanish": "Me tengo que ir ya.",
+    "english": "I have to go now."
+  },
+  "7125": {
+    "spanish": "Los invitados están yéndose porque es medianoche.",
+    "english": "The guests are leaving because it's midnight."
+  },
+  "7126": {
+    "spanish": "Mis amigos siguen divirtiéndose en la fiesta.",
+    "english": "My friends are still having fun at the party."
+  },
+  "7127": {
+    "spanish": "Yo no me acuerdo de su nombre.",
+    "english": "I don't remember his name."
+  },
+  "7128": {
+    "spanish": "Sin despedirse, Luis salió de la casa.",
+    "english": "Without saying goodbye, Luis left the house."
+  },
+  "7129": {
+    "spanish": "Vosotros estáis cansándoos de esperar.",
+    "english": "You all are getting tired of waiting."
+  },
+  "7130": {
+    "spanish": "Tienes que ponerte el cinturón en el coche.",
+    "english": "You have to put your seatbelt on in the car."
+  },
+  "7131": {
+    "spanish": "Mi hermano siempre se pone nervioso antes de un examen.",
+    "english": "My brother always gets nervous before an exam."
+  },
+  "7132": {
+    "spanish": "Lo siento, me olvidé de tu cumpleaños.",
+    "english": "I'm sorry, I forgot your birthday."
+  },
+  "7133": {
+    "spanish": "De repente, yo me di cuenta de mi error.",
+    "english": "Suddenly, I realised my mistake."
+  },
+  "7134": {
+    "spanish": "¿Tú te enteraste de la noticia?",
+    "english": "Did you hear the news?"
+  },
+  "7135": {
+    "spanish": "Los vecinos se quejan del ruido todas las noches.",
+    "english": "The neighbours complain about the noise every night."
+  },
+  "7136": {
+    "spanish": "Yo no me atrevo a saltar desde tan alto.",
+    "english": "I don't dare to jump from so high."
+  },
+  "7137": {
+    "spanish": "Perdona, me equivoqué de número.",
+    "english": "Sorry, I dialled the wrong number."
+  },
+  "7138": {
+    "spanish": "Mis compañeros se burlan de mi acento.",
+    "english": "My classmates make fun of my accent."
+  },
+  "7139": {
+    "spanish": "Mi tío se hizo rico con su empresa.",
+    "english": "My uncle got rich with his company."
+  },
+  "7140": {
+    "spanish": "Ayer en clase, yo me quedé dormido.",
+    "english": "Yesterday in class, I fell asleep."
+  },
+  "7141": {
+    "spanish": "Yo todavía no me acostumbro al horario español.",
+    "english": "I still haven't got used to the Spanish timetable."
+  },
+  "7142": {
+    "spanish": "El perro se porta muy bien en el veterinario.",
+    "english": "The dog behaves very well at the vet's."
+  },
+  "7143": {
+    "spanish": "Nosotros nunca nos ponemos de acuerdo sobre la película.",
+    "english": "We never agree on the film."
+  },
+  "7144": {
+    "spanish": "Ella se arrepiente de lo que dijo.",
+    "english": "She regrets what she said."
+  },
+  "7145": {
+    "spanish": "Yo me muero de hambre; ¿comemos ya?",
+    "english": "I'm starving; shall we eat now?"
+  },
+  "7146": {
+    "spanish": "¿Cómo te llamas tú?",
+    "english": "What's your name?"
+  },
+  "7147": {
+    "spanish": "Mi hermana siempre se queda sin batería a mediodía.",
+    "english": "My sister always runs out of battery by midday."
+  },
+  "7148": {
+    "spanish": "¿Vosotros os disteis cuenta del problema?",
+    "english": "Did you all notice the problem?"
+  },
+  "7149": {
+    "spanish": "Mi abuela se entera de todo lo que pasa en el barrio.",
+    "english": "My grandmother finds out about everything that happens in the neighbourhood."
+  },
+  "7150": {
+    "spanish": "Ustedes se quejan demasiado, ¿no creen?",
+    "english": "You complain too much, don't you think?"
+  },
+  "8001": {
+    "spanish": "Hoy yo he hablado con mi madre por teléfono.",
+    "english": "Today I have spoken to my mother on the phone."
+  },
+  "8002": {
+    "spanish": "¿Tú has viajado alguna vez en un tren nocturno?",
+    "english": "Have you ever travelled on a night train?"
+  },
+  "8003": {
+    "spanish": "Esta semana mi hermano ha trabajado mucho en la oficina.",
+    "english": "My brother has worked a lot at the office this week."
+  },
+  "8004": {
+    "spanish": "Nosotros ya hemos preparado la cena.",
+    "english": "We have already made dinner."
+  },
+  "8005": {
+    "spanish": "¿Vosotros habéis comprado el billete de vuelta?",
+    "english": "Have you all bought the return ticket?"
+  },
+  "8006": {
+    "spanish": "Mis padres han pintado la casa este verano.",
+    "english": "My parents have painted the house this summer."
+  },
+  "8007": {
+    "spanish": "Este año yo he visitado Japón por primera vez.",
+    "english": "This year I have visited Japan for the first time."
+  },
+  "8008": {
+    "spanish": "Ustedes han jugado muy bien hoy.",
+    "english": "You have played very well today."
+  },
+  "8009": {
+    "spanish": "La profesora ha explicado la lección dos veces.",
+    "english": "The teacher has explained the lesson twice."
+  },
+  "8010": {
+    "spanish": "¿Usted ha pagado ya la factura?",
+    "english": "Have you already paid the bill?"
+  },
+  "8011": {
+    "spanish": "Hoy nosotros hemos cenado en un restaurante italiano.",
+    "english": "Today we have had dinner at an Italian restaurant."
+  },
+  "8012": {
+    "spanish": "Mis amigos han bailado toda la noche.",
+    "english": "My friends have danced all night."
+  },
+  "8013": {
+    "spanish": "Yo nunca he montado a caballo.",
+    "english": "I have never ridden a horse."
+  },
+  "8014": {
+    "spanish": "Esta mañana tú has tomado el autobús de las ocho.",
+    "english": "This morning you took the eight o'clock bus."
+  },
+  "8015": {
+    "spanish": "El tren ha llegado con veinte minutos de retraso.",
+    "english": "The train has arrived twenty minutes late."
+  },
+  "8016": {
+    "spanish": "Las niñas han patinado toda la tarde en el parque.",
+    "english": "The girls have been skating in the park all afternoon."
+  },
+  "8017": {
+    "spanish": "Vosotros habéis hablado mucho hoy en clase.",
+    "english": "You all have talked a lot in class today."
+  },
+  "8018": {
+    "spanish": "¿Ya has preparado tú las maletas?",
+    "english": "Have you packed your suitcases yet?"
+  },
+  "8019": {
+    "spanish": "Últimamente yo he estudiado mucho español.",
+    "english": "Lately I have studied a lot of Spanish."
+  },
+  "8020": {
+    "spanish": "Mi abuela ha horneado una tarta para todos.",
+    "english": "My grandmother has baked a cake for everyone."
+  },
+  "8021": {
+    "spanish": "Nosotros hemos nadado en el lago tres veces este mes.",
+    "english": "We have swum in the lake three times this month."
+  },
+  "8022": {
+    "spanish": "Los vecinos han aparcado el coche delante de mi puerta.",
+    "english": "The neighbours have parked the car in front of my door."
+  },
+  "8023": {
+    "spanish": "¿Ustedes han visitado el museo nuevo?",
+    "english": "Have you visited the new museum?"
+  },
+  "8024": {
+    "spanish": "Este fin de semana yo he limpiado mi habitación.",
+    "english": "This weekend I have cleaned my room."
+  },
+  "8025": {
+    "spanish": "Mi jefe ha aplazado la reunión hasta el lunes.",
+    "english": "My boss has postponed the meeting until Monday."
+  },
+  "8026": {
+    "spanish": "Tú has contestado muy bien en el examen.",
+    "english": "You have answered very well in the exam."
+  },
+  "8027": {
+    "spanish": "Hoy los alumnos han preguntado muchas preguntas.",
+    "english": "Today the students have asked a lot of questions."
+  },
+  "8028": {
+    "spanish": "¿Vosotros habéis celebrado ya el cumpleaños de Ana?",
+    "english": "Have you all celebrated Ana's birthday yet?"
+  },
+  "8029": {
+    "spanish": "Este mes ella ha terminado de leer dos libros.",
+    "english": "This month she has finished reading two books."
+  },
+  "8030": {
+    "spanish": "Yo he dejado las llaves en algún sitio.",
+    "english": "I've left the keys somewhere."
+  },
+  "8031": {
+    "spanish": "Nosotros hemos invitado a todos nuestros amigos a la boda.",
+    "english": "We have invited all our friends to the wedding."
+  },
+  "8032": {
+    "spanish": "¿Usted ha trabajado alguna vez en el extranjero?",
+    "english": "Have you ever worked abroad?"
+  },
+  "8033": {
+    "spanish": "Los precios han aumentado mucho este año.",
+    "english": "Prices have gone up a lot this year."
+  },
+  "8034": {
+    "spanish": "Hasta ahora todo ha funcionado muy bien.",
+    "english": "So far everything has worked very well."
+  },
+  "8035": {
+    "spanish": "Vosotros habéis estudiado mucho para el examen, ¿verdad?",
+    "english": "You all have studied a lot for the exam, right?"
+  },
+  "8036": {
+    "spanish": "Hoy yo he comido demasiado chocolate.",
+    "english": "Today I have eaten too much chocolate."
+  },
+  "8037": {
+    "spanish": "¿Tú has leído ya el correo de Marta?",
+    "english": "Have you read Marta's email yet?"
+  },
+  "8038": {
+    "spanish": "Mi hija ha crecido dos centímetros este año.",
+    "english": "My daughter has grown two centimetres this year."
+  },
+  "8039": {
+    "spanish": "Nosotros hemos vivido en esta ciudad desde 2010.",
+    "english": "We have lived in this city since 2010."
+  },
+  "8040": {
+    "spanish": "Mis primos han salido de vacaciones esta mañana.",
+    "english": "My cousins left on holiday this morning."
+  },
+  "8041": {
+    "spanish": "¿Vosotros habéis dormido bien en el hotel?",
+    "english": "Have you all slept well at the hotel?"
+  },
+  "8042": {
+    "spanish": "Ella ha recibido un premio por su novela.",
+    "english": "She has received a prize for her novel."
+  },
+  "8043": {
+    "spanish": "¿Ustedes han oído la noticia?",
+    "english": "Have you heard the news?"
+  },
+  "8044": {
+    "spanish": "Hoy yo he conocido a tus padres.",
+    "english": "Today I have met your parents."
+  },
+  "8045": {
+    "spanish": "El niño ya ha bebido toda la leche.",
+    "english": "The boy has already drunk all the milk."
+  },
+  "8046": {
+    "spanish": "Nosotros hemos vendido la casa de la playa.",
+    "english": "We have sold the beach house."
+  },
+  "8047": {
+    "spanish": "Las temperaturas han subido mucho esta semana.",
+    "english": "Temperatures have risen a lot this week."
+  },
+  "8048": {
+    "spanish": "¿Tú has ido alguna vez a una ópera?",
+    "english": "Have you ever been to an opera?"
+  },
+  "8049": {
+    "spanish": "Mi abuelo ha vivido en su pueblo toda la vida.",
+    "english": "My grandfather has lived in his village all his life."
+  },
+  "8050": {
+    "spanish": "Esta mañana yo he venido en bici al trabajo.",
+    "english": "This morning I came to work by bike."
+  },
+  "8051": {
+    "spanish": "Vosotros habéis elegido la respuesta correcta.",
+    "english": "You all have chosen the right answer."
+  },
+  "8052": {
+    "spanish": "Ellos han aprendido mucho en este curso.",
+    "english": "They have learned a lot on this course."
+  },
+  "8053": {
+    "spanish": "¿Usted ha pedido ya el menú?",
+    "english": "Have you ordered from the menu yet?"
+  },
+  "8054": {
+    "spanish": "Yo nunca he creído esa historia.",
+    "english": "I have never believed that story."
+  },
+  "8055": {
+    "spanish": "El equipo ha perdido el partido de hoy.",
+    "english": "The team has lost today's match."
+  },
+  "8056": {
+    "spanish": "Nosotras hemos entendido todas las preguntas.",
+    "english": "We have understood all the questions."
+  },
+  "8057": {
+    "spanish": "¿Ustedes han traído el vino para la cena?",
+    "english": "Have you brought the wine for dinner?"
+  },
+  "8058": {
+    "spanish": "Tú has corrido diez kilómetros esta mañana.",
+    "english": "You have run ten kilometres this morning."
+  },
+  "8059": {
+    "spanish": "La empresa ha despedido a veinte personas este año.",
+    "english": "The company has laid off twenty people this year."
+  },
+  "8060": {
+    "spanish": "Mis hermanos han repartido la tarta en partes iguales.",
+    "english": "My brothers have shared out the cake equally."
+  },
+  "8061": {
+    "spanish": "Yo ya he respondido a tu pregunta.",
+    "english": "I have already answered your question."
+  },
+  "8062": {
+    "spanish": "¿Vosotros habéis sabido algo del accidente?",
+    "english": "Have you all heard anything about the accident?"
+  },
+  "8063": {
+    "spanish": "Esta semana ella ha asistido a todas las clases.",
+    "english": "This week she has attended all the classes."
+  },
+  "8064": {
+    "spanish": "Los niños han compartido sus juguetes con los primos.",
+    "english": "The children have shared their toys with their cousins."
+  },
+  "8065": {
+    "spanish": "Hasta hoy nadie ha conseguido resolver el misterio.",
+    "english": "Until today nobody has managed to solve the mystery."
+  },
+  "8066": {
+    "spanish": "Yo he abierto la ventana porque hace calor.",
+    "english": "I have opened the window because it's hot."
+  },
+  "8067": {
+    "spanish": "¿Tú has visto la última película de Almodóvar?",
+    "english": "Have you seen Almodóvar's latest film?"
+  },
+  "8068": {
+    "spanish": "Mi madre ha escrito una carta a su hermana.",
+    "english": "My mother has written a letter to her sister."
+  },
+  "8069": {
+    "spanish": "Nosotros hemos hecho los deberes.",
+    "english": "We have done the homework."
+  },
+  "8070": {
+    "spanish": "¿Qué te ha dicho el médico?",
+    "english": "What has the doctor told you?"
+  },
+  "8071": {
+    "spanish": "Los niños han roto el jarrón del salón.",
+    "english": "The children have broken the vase in the living room."
+  },
+  "8072": {
+    "spanish": "Mi padre ya ha vuelto del trabajo.",
+    "english": "My father has already come back from work."
+  },
+  "8073": {
+    "spanish": "¿Dónde habéis puesto vosotros las llaves?",
+    "english": "Where have you all put the keys?"
+  },
+  "8074": {
+    "spanish": "El viejo perro de mis vecinos ha muerto esta semana.",
+    "english": "My neighbours' old dog has died this week."
+  },
+  "8075": {
+    "spanish": "Los científicos han descubierto una nueva especie.",
+    "english": "The scientists have discovered a new species."
+  },
+  "8076": {
+    "spanish": "Por fin yo he resuelto el problema de matemáticas.",
+    "english": "At last I have solved the maths problem."
+  },
+  "8077": {
+    "spanish": "La nieve ha cubierto todo el jardín.",
+    "english": "The snow has covered the whole garden."
+  },
+  "8078": {
+    "spanish": "¿Ya has devuelto tú los libros a la biblioteca?",
+    "english": "Have you returned the books to the library yet?"
+  },
+  "8079": {
+    "spanish": "Ustedes han hecho mucho por nosotros.",
+    "english": "You have done a lot for us."
+  },
+  "8080": {
+    "spanish": "Yo nunca he visto un fantasma.",
+    "english": "I have never seen a ghost."
+  },
+  "8081": {
+    "spanish": "Mi hermana ha compuesto una canción para la boda.",
+    "english": "My sister has composed a song for the wedding."
+  },
+  "8082": {
+    "spanish": "¿Quién ha abierto la puerta?",
+    "english": "Who has opened the door?"
+  },
+  "8083": {
+    "spanish": "Nosotros hemos dicho la verdad a la policía.",
+    "english": "We have told the police the truth."
+  },
+  "8084": {
+    "spanish": "Esta tarde vosotros habéis puesto la mesa.",
+    "english": "This afternoon you all have set the table."
+  },
+  "8085": {
+    "spanish": "Los turistas han vuelto a su hotel.",
+    "english": "The tourists have gone back to their hotel."
+  },
+  "8086": {
+    "spanish": "Ella ha envuelto los regalos en papel rojo.",
+    "english": "She has wrapped the presents in red paper."
+  },
+  "8087": {
+    "spanish": "Yo no he dicho nada a nadie.",
+    "english": "I haven't told anyone anything."
+  },
+  "8088": {
+    "spanish": "Mis hijos ya han deshecho sus maletas.",
+    "english": "My children have already unpacked their suitcases."
+  },
+  "8089": {
+    "spanish": "El jefe ha propuesto un cambio de horario.",
+    "english": "The boss has proposed a change of schedule."
+  },
+  "8090": {
+    "spanish": "¿Ustedes han visto alguna vez un eclipse?",
+    "english": "Have you ever seen an eclipse?"
+  },
+  "8091": {
+    "spanish": "Nosotros hemos abierto las ventanas para ventilar.",
+    "english": "We have opened the windows to air the room."
+  },
+  "8092": {
+    "spanish": "Tú has dicho muchas tonterías hoy.",
+    "english": "You have said a lot of silly things today."
+  },
+  "8093": {
+    "spanish": "Mis abuelos han visto muchos cambios en el pueblo.",
+    "english": "My grandparents have seen many changes in the village."
+  },
+  "8094": {
+    "spanish": "¿Qué habéis hecho vosotros este fin de semana?",
+    "english": "What have you all done this weekend?"
+  },
+  "8095": {
+    "spanish": "El niño ha roto sus gafas.",
+    "english": "The boy has broken his glasses."
+  },
+  "8096": {
+    "spanish": "Yo he puesto el libro en la estantería.",
+    "english": "I have put the book on the shelf."
+  },
+  "8097": {
+    "spanish": "Los periodistas han escrito toda la historia.",
+    "english": "The journalists have written the whole story."
+  },
+  "8098": {
+    "spanish": "Usted ha descubierto un error en la factura.",
+    "english": "You have discovered an error in the invoice."
+  },
+  "8099": {
+    "spanish": "Este año nosotros hemos vuelto a Italia dos veces.",
+    "english": "This year we have gone back to Italy twice."
+  },
+  "8100": {
+    "spanish": "¿Ya has hecho tú el café?",
+    "english": "Have you made the coffee yet?"
+  },
+  "8101": {
+    "spanish": "Las tiendas han abierto sus puertas a las diez.",
+    "english": "The shops have opened their doors at ten."
+  },
+  "8102": {
+    "spanish": "El ayuntamiento ha resuelto el problema del tráfico.",
+    "english": "The town hall has solved the traffic problem."
+  },
+  "8103": {
+    "spanish": "Vosotros habéis dicho la verdad desde el principio.",
+    "english": "You all have told the truth from the start."
+  },
+  "8104": {
+    "spanish": "Mi hermano ha puesto su casa en venta.",
+    "english": "My brother has put his house up for sale."
+  },
+  "8105": {
+    "spanish": "Yo he escrito una novela de trescientas páginas.",
+    "english": "I have written a three-hundred-page novel."
+  },
+  "8106": {
+    "spanish": "Los médicos han propuesto un nuevo tratamiento.",
+    "english": "The doctors have proposed a new treatment."
+  },
+  "8107": {
+    "spanish": "El resultado ha satisfecho a todo el equipo.",
+    "english": "The result has satisfied the whole team."
+  },
+  "8108": {
+    "spanish": "El arquitecto ha rehecho los planos tres veces.",
+    "english": "The architect has redone the plans three times."
+  },
+  "8109": {
+    "spanish": "Nosotras hemos puesto la mesa para diez personas.",
+    "english": "We have set the table for ten people."
+  },
+  "8110": {
+    "spanish": "Tú siempre has dicho la verdad.",
+    "english": "You have always told the truth."
+  },
+  "8111": {
+    "spanish": "Hoy yo he dormido muy poco.",
+    "english": "Today I have slept very little."
+  },
+  "8112": {
+    "spanish": "¿Tú has hablado ya con el director?",
+    "english": "Have you spoken to the director yet?"
+  },
+  "8113": {
+    "spanish": "Mi hermano ha llegado tarde otra vez.",
+    "english": "My brother has arrived late again."
+  },
+  "8114": {
+    "spanish": "Nosotros hemos llegado tarde a la reunión.",
+    "english": "We have arrived late to the meeting."
+  },
+  "8115": {
+    "spanish": "Mis padres han viajado por toda Europa.",
+    "english": "My parents have travelled all over Europe."
+  },
+  "8116": {
+    "spanish": "¿Vosotros ya habéis vuelto del colegio?",
+    "english": "Have you all come back from school yet?"
+  },
+  "8117": {
+    "spanish": "Ella ha llorado mucho esta semana.",
+    "english": "She has cried a lot this week."
+  },
+  "8118": {
+    "spanish": "Ustedes han caminado muchísimo hoy.",
+    "english": "You have walked a huge amount today."
+  },
+  "8119": {
+    "spanish": "Yo he ido a muchos sitios este año.",
+    "english": "I have been to lots of places this year."
+  },
+  "8120": {
+    "spanish": "El bebé ha crecido mucho este mes.",
+    "english": "The baby has grown a lot this month."
+  },
+  "8121": {
+    "spanish": "Tú has corrido muy bien en la carrera.",
+    "english": "You have run very well in the race."
+  },
+  "8122": {
+    "spanish": "Mis amigas han salido de la fiesta muy tarde.",
+    "english": "My friends have left the party very late."
+  },
+  "8123": {
+    "spanish": "Nosotros hemos vivido en tres países distintos.",
+    "english": "We have lived in three different countries."
+  },
+  "8124": {
+    "spanish": "Usted ha mejorado mucho últimamente.",
+    "english": "You have improved a lot recently."
+  },
+  "8125": {
+    "spanish": "¿Por qué has venido tú tan tarde?",
+    "english": "Why have you come so late?"
+  },
+  "8126": {
+    "spanish": "Vosotros habéis trabajado demasiado hoy.",
+    "english": "You all have worked too much today."
+  },
+  "8127": {
+    "spanish": "Las llaves han desaparecido otra vez.",
+    "english": "The keys have disappeared again."
+  },
+  "8128": {
+    "spanish": "Mi abuela ha salido por fin del hospital.",
+    "english": "My grandmother has finally come out of hospital."
+  },
+  "8129": {
+    "spanish": "Yo he nadado muchísimo esta tarde.",
+    "english": "I have swum a huge amount this afternoon."
+  },
+  "8130": {
+    "spanish": "Ellos han llegado antes que nosotros.",
+    "english": "They have arrived before us."
+  },
+  "8131": {
+    "spanish": "¿El libro? Todavía no lo he leído.",
+    "english": "The book? I haven't read it yet."
+  },
+  "8132": {
+    "spanish": "Hoy me he levantado a las seis.",
+    "english": "Today I got up at six."
+  },
+  "8133": {
+    "spanish": "¿Tú ya te has duchado?",
+    "english": "Have you showered yet?"
+  },
+  "8134": {
+    "spanish": "¿Tú ya has comido?",
+    "english": "Have you eaten yet?"
+  },
+  "8135": {
+    "spanish": "Mis padres ya han salido de casa.",
+    "english": "My parents have already left home."
+  },
+  "8136": {
+    "spanish": "¿Las llaves? No sé dónde las he puesto.",
+    "english": "The keys? I don't know where I've put them."
+  },
+  "8137": {
+    "spanish": "A mi hermana no le hemos dicho la verdad.",
+    "english": "We haven't told my sister the truth."
+  },
+  "8138": {
+    "spanish": "¿Vosotros ya os habéis vestido?",
+    "english": "Have you all got dressed yet?"
+  },
+  "8139": {
+    "spanish": "Mi jefe nunca se ha tomado un día de vacaciones.",
+    "english": "My boss has never taken a day off."
+  },
+  "8140": {
+    "spanish": "¿Ustedes ya se han presentado?",
+    "english": "Have you introduced yourselves yet?"
+  },
+  "8141": {
+    "spanish": "Ellos todavía no nos han dado la noticia.",
+    "english": "They still haven't given us the news."
+  },
+  "8142": {
+    "spanish": "¿Por qué no me lo has dicho antes?",
+    "english": "Why haven't you told me before?"
+  },
+  "8143": {
+    "spanish": "Yo nunca he estado en Argentina.",
+    "english": "I have never been to Argentina."
+  },
+  "8144": {
+    "spanish": "¿La cena? Nosotros ya la hemos preparado.",
+    "english": "Dinner? We have already made it."
+  },
+  "8145": {
+    "spanish": "¿Mis gafas? ¿Vosotros las habéis visto?",
+    "english": "My glasses? Have you all seen them?"
+  },
+  "8146": {
+    "spanish": "Ella todavía no se ha despertado.",
+    "english": "She hasn't woken up yet."
+  },
+  "8147": {
+    "spanish": "A los niños ya les he leído el cuento.",
+    "english": "I've already read the children the story."
+  },
+  "8148": {
+    "spanish": "Mis amigos nunca me han mentido.",
+    "english": "My friends have never lied to me."
+  },
+  "8149": {
+    "spanish": "¿Usted ya le ha dado el regalo a su hijo?",
+    "english": "Have you already given your son the present?"
+  },
+  "8150": {
+    "spanish": "Hoy no me he sentido bien.",
+    "english": "Today I haven't felt well."
   }
 };
 

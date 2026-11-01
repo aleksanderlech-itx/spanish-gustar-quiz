@@ -20,6 +20,8 @@ const { PRETERITE_IMPERFECT_QUESTIONS } = await import("../app/preterite-imperfe
 const { POR_PARA_QUESTIONS } = await import("../app/por-para-data.ts");
 const { OBJECT_PRONOUN_QUESTIONS } = await import("../app/object-pronouns-data.ts");
 const { SABER_CONOCER_QUESTIONS } = await import("../app/saber-conocer-data.ts");
+const { REFLEXIVE_VERB_QUESTIONS } = await import("../app/reflexive-verbs-data.ts");
+const { PRESENT_PERFECT_QUESTIONS } = await import("../app/present-perfect-data.ts");
 const { FLASHCARD_VERBS } = await import("../app/flashcards-data.ts");
 
 const QUIZ_TARGET = 150;
@@ -84,6 +86,8 @@ const preteriteRows = quizRows(PRETERITE_IMPERFECT_QUESTIONS, "quiz-preterite-im
 const porParaRows = quizRows(POR_PARA_QUESTIONS, "quiz-por-para");
 const objectPronounRows = quizRows(OBJECT_PRONOUN_QUESTIONS, "quiz-object-pronouns");
 const saberConocerRows = quizRows(SABER_CONOCER_QUESTIONS, "quiz-saber-conocer");
+const reflexiveVerbRows = quizRows(REFLEXIVE_VERB_QUESTIONS, "quiz-reflexive-verbs");
+const presentPerfectRows = quizRows(PRESENT_PERFECT_QUESTIONS, "quiz-present-perfect");
 
 // ---- Flashcard rows ----------------------------------------------------
 
@@ -109,10 +113,12 @@ await writeFile(path.join(exportsDir, "quiz-preterite-imperfect.csv"), toCsv(HEA
 await writeFile(path.join(exportsDir, "quiz-por-para.csv"), toCsv(HEADER, porParaRows));
 await writeFile(path.join(exportsDir, "quiz-object-pronouns.csv"), toCsv(HEADER, objectPronounRows));
 await writeFile(path.join(exportsDir, "quiz-saber-conocer.csv"), toCsv(HEADER, saberConocerRows));
+await writeFile(path.join(exportsDir, "quiz-reflexive-verbs.csv"), toCsv(HEADER, reflexiveVerbRows));
+await writeFile(path.join(exportsDir, "quiz-present-perfect.csv"), toCsv(HEADER, presentPerfectRows));
 await writeFile(path.join(exportsDir, "flashcards.csv"), toCsv(HEADER, flashcardRows));
 await writeFile(
   path.join(exportsDir, "all-content.csv"),
-  toCsv(HEADER, [...gustarRows, ...serEstarRows, ...preteriteRows, ...porParaRows, ...objectPronounRows, ...saberConocerRows, ...flashcardRows]),
+  toCsv(HEADER, [...gustarRows, ...serEstarRows, ...preteriteRows, ...porParaRows, ...objectPronounRows, ...saberConocerRows, ...reflexiveVerbRows, ...presentPerfectRows, ...flashcardRows]),
 );
 
 // ---- Audit summary --------------------------------------------------------
@@ -139,6 +145,8 @@ report("quiz-preterite-imperfect", preteriteRows, QUIZ_TARGET);
 report("quiz-por-para", porParaRows, QUIZ_TARGET);
 report("quiz-object-pronouns", objectPronounRows, QUIZ_TARGET);
 report("quiz-saber-conocer", saberConocerRows, QUIZ_TARGET);
+report("quiz-reflexive-verbs", reflexiveVerbRows, QUIZ_TARGET);
+report("quiz-present-perfect", presentPerfectRows, QUIZ_TARGET);
 
 console.log("\n=== Flashcards (target: 500, all with real examples) ===");
 const generic = countStatus(flashcardRows, "generic-fallback");

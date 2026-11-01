@@ -266,3 +266,30 @@ test("restoring the streak and completion keys on a wiped device brings back the
   assert.deepEqual(readStreakSummary(tuesday), before);
   assert.deepEqual(readFlashcardDaysReviewed(), [dayKey(monday)]);
 });
+
+// --- Day completed celebration: shown once on the board, only right after the round that completed the day ---
+
+const { takeDayCelebration } = await import("../app/day-celebration.ts");
+
+test("the round that completes the day queues one celebration for that day", () => {
+  const monday = at("2026-10-05T22:00:00");
+  freshStart(4, monday);
+  const tuesday = hoursAfter(monday, 12);
+  const [last, ...rest] = [...requiredOn(tuesday)].reverse();
+  rest.forEach((id) => recordActivityToday(id, tuesday));
+  assert.equal(takeDayCelebration(dayKey(tuesday)), false); // Not complete yet.
+  recordActivityToday(last, tuesday);
+  assert.equal(takeDayCelebration(dayKey(tuesday)), true);
+  assert.equal(takeDayCelebration(dayKey(tuesday)), false); // Shown once.
+  recordActivityToday(last, tuesday); // Another round on the completed day.
+  assert.equal(takeDayCelebration(dayKey(tuesday)), false);
+});
+
+test("a celebration not seen on its day is dropped, not shown later", () => {
+  const monday = at("2026-10-05T22:00:00");
+  freshStart(4, monday);
+  const tuesday = hoursAfter(monday, 12);
+  completeDay(tuesday);
+  assert.equal(takeDayCelebration(dayKey(hoursAfter(tuesday, 24))), false);
+  assert.equal(takeDayCelebration(dayKey(tuesday)), false);
+});

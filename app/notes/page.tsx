@@ -4,7 +4,7 @@ import styles from "../prose-page.module.css";
 import { NOTES_POSTS as POSTS } from "../notes-posts";
 
 const TITLE = "Notes on Spanish Grammar";
-const DESCRIPTION = "Short posts on the Spanish grammar mistakes and patterns that come up again and again, gustar, ser vs estar, por vs para, the past tenses and more.";
+const DESCRIPTION = "Short posts on the Spanish grammar mistakes and patterns that come up again and again when learning Spanish.";
 
 export const metadata: Metadata = {
   title: TITLE,
