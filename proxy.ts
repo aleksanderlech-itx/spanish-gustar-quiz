@@ -23,6 +23,7 @@ const SITEMAP_PATHS = [
   "/notes/preterite-vs-imperfect-signal-words",
   "/notes/object-pronouns-mistakes",
   "/notes/reflexive-verbs-mistakes",
+  "/notes/present-perfect-mistakes",
 ];
 
 export function proxy(request: NextRequest) {

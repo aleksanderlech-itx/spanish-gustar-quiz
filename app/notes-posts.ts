@@ -4,6 +4,11 @@ export type NotesPost = { href: string; title: string; excerpt: string };
 
 export const NOTES_POSTS: NotesPost[] = [
   {
+    href: "/notes/present-perfect-mistakes",
+    title: "4 mistakes learners make with the present perfect",
+    excerpt: "He comido, not tengo comido. The four slips that keep showing up with haber and the past participle.",
+  },
+  {
     href: "/notes/reflexive-verbs-mistakes",
     title: "3 mistakes learners make with reflexive verbs",
     excerpt: "Me levanto, nos vamos, se durmió. The three slips that keep showing up once you know the reflexive pattern.",
