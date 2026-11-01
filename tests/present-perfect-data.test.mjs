@@ -144,3 +144,11 @@ test("present perfect chart lists all six haber forms and the common irregular p
   assert.ok(haber.rows.some((row) => row.label.includes("ustedes")));
   for (const row of irregular.rows) assert.equal(IRREGULAR[row.label], row.form, `chart: ${row.label}`);
 });
+
+test("every chart form is correct Spanish that can be read aloud: no arrows and no wrong examples", () => {
+  for (const table of PRESENT_PERFECT_CHART) {
+    for (const row of table.rows) {
+      assert.doesNotMatch(row.form, /→|\bnot\b/u, `${table.title}: ${row.form} would be spoken as a wrong form`);
+    }
+  }
+});

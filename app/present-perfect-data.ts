@@ -235,14 +235,14 @@ export const PRESENT_PERFECT_CHART: Array<{ title: string; rows: Array<{ label: 
   {
     title: "Regular participles",
     rows: [
-      { label: "-ar", form: "hablar → hablado" },
-      { label: "-er", form: "comer → comido" },
-      { label: "-ir", form: "vivir → vivido" },
-      { label: "with an accent", form: "leer → leído, oír → oído" },
+      { label: "-ar: hablar", form: "hablado" },
+      { label: "-er: comer", form: "comido" },
+      { label: "-ir: vivir", form: "vivido" },
+      { label: "with an accent: leer, oír", form: "leído, oído" },
     ],
   },
   {
-    title: "Common irregular participles",
+    title: "Irregular participles",
     rows: [
       { label: "abrir", form: "abierto" },
       { label: "cubrir", form: "cubierto" },
@@ -263,7 +263,7 @@ export const PRESENT_PERFECT_CHART: Array<{ title: string; rows: Array<{ label: 
       { label: "pronoun before haber", form: "lo he visto" },
       { label: "no before everything", form: "no lo he visto" },
       { label: "ya, nunca before haber", form: "ya he comido" },
-      { label: "never split haber", form: "not he lo visto" },
+      { label: "nothing between haber and the participle", form: "no me he duchado" },
     ],
   },
 ];
