@@ -1,8 +1,8 @@
 # Manual Test Plan: Spanish Quizzes
 
-Last updated: 2026-10-18. Target: production (https://spanish-quizz.es). Testing there is harmless: progress lives only in the tester's own browser, and test mode (`?test=1`) is isolated from real data.
+Last updated: 2026-11-01. Target: production (https://spanish-quizz.es). Testing there is harmless: progress lives only in the tester's own browser, and test mode (`?test=1`) is isolated from real data.
 
-Project rules and decisions: `docs/decisions/README.md` in the repo. This plan covers the app as of main at PR #130, including test mode (PR #121), the mistake notebook with retry mode (PR #124), reflexive verbs, the daily goal and day-complete dialog, and Notes for every activity.
+Project rules and decisions: `docs/decisions/README.md` in the repo. This plan covers the app as of main at PR #130, including test mode (PR #121), the mistake notebook with retry mode (PR #124), reflexive verbs, the present perfect (#69), the daily goal and day-complete dialog, and Notes for every activity.
 
 ## Handover for the tester
 
@@ -78,6 +78,8 @@ Project rules and decisions: `docs/decisions/README.md` in the repo. This plan c
 | 3.9 | T | Results screen after a round with misses | Score shown. "Practise the misses" and "Back to board" work. A line links to this topic's mistakes. The Ko-fi support prompt shows a tips-only message |
 | 3.10 | T | Open the verb chart during a question, then close it | The round in progress is not lost |
 | 3.11 | T | Explanation after each answer | Shown, English, matches the sentence |
+| 3.12 | T | Present perfect: open the topic, filter by each usage group, play a round in Choose and in Type | Every group has questions. Choose shows two options. Type accepts the answer with accents (leído, habéis) |
+| 3.13 | T | Present perfect: open the perfect chart from the topic and during a question | One shared chart: haber in six persons, regular participles, irregular participles, word order. Title reads Present Perfect |
 
 ## 4. Mistake notebook and retry mode
 
