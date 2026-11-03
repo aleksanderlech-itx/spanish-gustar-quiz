@@ -1,17 +1,26 @@
 "use client";
 
 import { useEffect, useRef, useState, type RefObject } from "react";
-import { readStreakSummary, STREAK_COUNTER_KEY } from "./streak";
-import { readNotebookEntries } from "./notebook";
+import { readStreakSummary, STREAK_STORAGE_KEYS } from "./streak";
+import { isTestMode } from "./storage";
+import { NOTEBOOK_KEY, readNotebookGroups, type NotebookGroup } from "./notebook";
+import { mistakesPath, mistakesTitle } from "./notebook-retry";
 import { QUIZ_CONFIG, QUIZ_IDS, type QuizId } from "./quiz-config";
 import type { QuizResult } from "./quiz-logic";
 import { computeRecentRounds, computeWeakAreas, type RecentRound, type WeakArea } from "./history";
-import { readAllCompletions, isQuizReinstated, setQuizReinstated, isRepeatDue, repeatDueDate } from "./quiz-completion";
+import { readAllCompletions, isQuizReinstated, setQuizReinstated, isRepeatDue, repeatDueDate, QUIZ_COMPLETION_STORAGE_KEYS } from "./quiz-completion";
 import Logo from "./logo";
 import KofiButton from "./kofi-button";
+import { appStorage } from "./storage";
 
 const FLASHCARD_KEY = "spanish-flashcards-leitner-v2";
-const ALL_PROGRESS_KEYS = [...QUIZ_IDS.map((id) => QUIZ_CONFIG[id].storageKey), FLASHCARD_KEY, STREAK_COUNTER_KEY];
+const ALL_PROGRESS_KEYS = [
+  ...QUIZ_IDS.map((id) => QUIZ_CONFIG[id].storageKey),
+  FLASHCARD_KEY,
+  ...STREAK_STORAGE_KEYS,
+  ...QUIZ_COMPLETION_STORAGE_KEYS,
+  NOTEBOOK_KEY,
+];
 const WEEK_MS = 7 * 86_400_000;
 
 type GlobalStats = {
@@ -30,7 +39,7 @@ type QuizHistoryEntry = { quizId: QuizId; title: string; questions: (typeof QUIZ
 const readAllQuizHistories = (): QuizHistoryEntry[] => QUIZ_IDS.map((id) => {
   const quiz = QUIZ_CONFIG[id];
   try {
-    const raw = window.localStorage.getItem(quiz.storageKey);
+    const raw = appStorage.getItem(quiz.storageKey);
     const history = raw ? (JSON.parse(raw) as QuizResult[]) : [];
     return { quizId: id, title: quiz.title.replace(" Quiz", ""), questions: quiz.questions, history };
   } catch {
@@ -59,7 +68,7 @@ const readGlobalStats = (byQuiz: QuizHistoryEntry[]): GlobalStats => {
 
   let flashcardsStudied = 0;
   try {
-    const raw = window.localStorage.getItem(FLASHCARD_KEY);
+    const raw = appStorage.getItem(FLASHCARD_KEY);
     flashcardsStudied = raw ? Object.keys(JSON.parse(raw) as Record<string, unknown>).length : 0;
   } catch {
     // Ignore; flashcardsStudied stays 0.
@@ -77,7 +86,7 @@ const readGlobalStats = (byQuiz: QuizHistoryEntry[]): GlobalStats => {
 const exportAllProgress = () => {
   const payload: Record<string, unknown> = { version: 1, exportedAt: new Date().toISOString() };
   ALL_PROGRESS_KEYS.forEach((key) => {
-    const raw = window.localStorage.getItem(key);
+    const raw = appStorage.getItem(key);
     if (raw) {
       try {
         payload[key] = JSON.parse(raw);
@@ -90,7 +99,7 @@ const exportAllProgress = () => {
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
-  link.download = "spanish-quiz-studio-backup.json";
+  link.download = isTestMode() ? "spanish-quiz-studio-test-backup.json" : "spanish-quiz-studio-backup.json";
   link.click();
   URL.revokeObjectURL(url);
 };
@@ -101,7 +110,7 @@ const importAllProgress = async (file: File) => {
     let restored = 0;
     ALL_PROGRESS_KEYS.forEach((key) => {
       if (data[key] !== undefined) {
-        window.localStorage.setItem(key, JSON.stringify(data[key]));
+        appStorage.setItem(key, JSON.stringify(data[key]));
         restored += 1;
       }
     });
@@ -113,8 +122,11 @@ const importAllProgress = async (file: File) => {
 };
 
 const resetAllProgress = () => {
-  if (!window.confirm("Delete all quiz and flashcard progress on this device? This cannot be undone.")) return;
-  ALL_PROGRESS_KEYS.forEach((key) => window.localStorage.removeItem(key));
+  const message = isTestMode()
+    ? "Delete all test progress? Your real progress is not affected. This cannot be undone."
+    : "Delete all quiz and flashcard progress on this device? This cannot be undone.";
+  if (!window.confirm(message)) return;
+  ALL_PROGRESS_KEYS.forEach((key) => appStorage.removeItem(key));
   window.location.reload();
 };
 
@@ -125,7 +137,7 @@ type DrawerRow = "history" | "recap" | "notebook" | "backup" | "settings";
 type FinishedActivity = { quizId: QuizId; title: string; completedAt: string; repeatDue: boolean; reinstated: boolean };
 
 /** Grammar quizzes the user has fully completed, whether or not they're currently
- * shown back on the main screen. Only finished topics are settings' concern —
+ * shown back on the main screen. Only finished topics are settings' concern:
  * an unfinished one is just on the board where it already belongs. */
 const readFinishedActivities = (): FinishedActivity[] => {
   const completions = readAllCompletions();
@@ -148,7 +160,7 @@ export default function Drawer({ open, onClose, returnFocusRef }: { open: boolea
   const [weakAreas, setWeakAreas] = useState<WeakArea[]>([]);
   const [streakDays, setStreakDays] = useState(0);
   const [notebookCount, setNotebookCount] = useState(0);
-  const [notebookRules, setNotebookRules] = useState<string[]>([]);
+  const [notebookGroups, setNotebookGroups] = useState<NotebookGroup[]>([]);
   const [finishedActivities, setFinishedActivities] = useState<FinishedActivity[]>([]);
   const panelRef = useRef<HTMLDivElement | null>(null);
   const importRef = useRef<HTMLInputElement | null>(null);
@@ -162,9 +174,9 @@ export default function Drawer({ open, onClose, returnFocusRef }: { open: boolea
     setRecentRounds(computeRecentRounds(byQuiz));
     setWeakAreas(computeWeakAreas(byQuiz));
     setStreakDays(readStreakSummary().streak);
-    const entries = readNotebookEntries();
-    setNotebookCount(entries.length);
-    setNotebookRules(entries.map((entry) => entry.rule));
+    const groups = readNotebookGroups();
+    setNotebookCount(groups.reduce((sum, group) => sum + group.entries.length, 0));
+    setNotebookGroups(groups);
     setFinishedActivities(readFinishedActivities());
   }, [open]);
 
@@ -294,9 +306,22 @@ export default function Drawer({ open, onClose, returnFocusRef }: { open: boolea
           </button>
           {expanded === "notebook" && (
             <div className="drawer-row-panel">
-              {notebookRules.length ? (
-                <div className="results-chip-row">
-                  {notebookRules.map((rule) => <span className="results-chip" key={rule}>{rule}</span>)}
+              {notebookGroups.length ? (
+                <div className="drawer-mistake-groups">
+                  {notebookGroups.map((group) => (
+                    <div className="drawer-mistake-group" key={group.quizId}>
+                      <div className="drawer-mistake-group-head">
+                        <span>{mistakesTitle(group.quizId)} ({group.entries.length})</span>
+                        <a className="drawer-mistake-retry" href={mistakesPath(group.quizId)} onClick={onClose}>Retry</a>
+                      </div>
+                      <div className="mistakes-chip-row">
+                        {group.rules.map((rule) => (
+                          <a className="mistakes-chip" key={rule} href={mistakesPath(group.quizId, rule)} onClick={onClose}>{rule}</a>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                  <p>Retries are practice only and do not count toward today&apos;s goal.</p>
                 </div>
               ) : <p>No missed rules yet.</p>}
             </div>

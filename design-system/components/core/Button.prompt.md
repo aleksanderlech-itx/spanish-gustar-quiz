@@ -1,4 +1,4 @@
-Use `Button` for any tappable action — checking an answer, advancing a round, opening a deck.
+Use `Button` for any tappable action: checking an answer, advancing a round, opening a deck.
 
 ```jsx
 <Button variant="primary" size="lg" fullWidth>Check answer</Button>
@@ -8,5 +8,5 @@ Use `Button` for any tappable action — checking an answer, advancing a round, 
 ```
 
 - One primary button per screen. Secondary sits beside it; ghost is for opting out.
-- `disabled` drops the ink offset — the shadow is the affordance.
+- `disabled` drops the ink offset: the shadow is the affordance.
 - Labels are sentence case, verb-first, no terminal period.

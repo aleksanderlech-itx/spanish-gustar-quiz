@@ -9,7 +9,7 @@
 **Warm paper, hard edges, bright Spanish light.**
 
 Spanish Quizzes is a mobile-first Spanish learning
-app: grammar quizzes — gustar, ser vs estar, preterite vs imperfect, por vs para — in Choose or Type
+app: grammar quizzes (gustar, ser vs estar, preterite vs imperfect, por vs para) in Choose or Type
 mode, plus a spaced-repetition flashcard deck on a four-box Leitner ladder. The product is one
 surface, a phone-first web app.
 
@@ -52,19 +52,19 @@ exclamation marks, no cheerleading, no gamified hype.
 first person only inside Spanish example sentences (*"Perdí el hilo de la conversación."*). The app
 never refers to itself as "we".
 
-**Casing.** Sentence case everywhere — screen titles, buttons, chips. Uppercase is reserved for
+**Casing.** Sentence case everywhere: screen titles, buttons, chips. Uppercase is reserved for
 eyebrows, metadata labels and state words (`CORRECT`, `WRONG`, `WEAK AREAS`) with wide tracking.
 Never all-caps a sentence.
 
 **Punctuation.** Buttons and labels take no terminal period. Full sentences of body copy do:
-*"Round complete."*, *"The soup is cold — right now."* Em dashes are used sparingly for an
-after-thought clause. Middle dots separate metadata: *"Box 2 · due in 1 day"*, *"62% · 18 of 29
+*"Round complete."*, *"The soup is cold right now."* Never use em or en dashes: use a colon, a comma or a
+new sentence instead. Middle dots separate metadata: *"Box 2 · due in 1 day"*, *"62% · 18 of 29
 questions"*.
 
 **Numbers.** Digits always, with the unit spelled out: *"7 / 10"*, *"12 days in a row"*, *"24
 cards"*, *"9 of 38 questions"*. Percentages are whole numbers.
 
-**Spanish.** Spanish content is never translated in place — the prompt is Spanish, the gloss sits
+**Spanish.** Spanish content is never translated in place: the prompt is Spanish, the gloss sits
 underneath in muted grey. Spanish grammar topics are lower-cased in running copy (*"ser vs
 estar"*) and title-cased as deck names (*"Ser vs estar"*). Weekday initials are Spanish: L M X J V
 S D.
@@ -77,12 +77,12 @@ reason, not an apology. Weak areas are named as grammar concepts (*"Estar + cond
 material"*), never as a judgement of the learner.
 
 **Emoji.** None, ever. The only marks used as marks are unicode glyphs (✓ ✕ ↺ ← → ★) set in the
-body face — see Iconography.
+body face: see Iconography.
 
 ## Visual foundations
 
 **Colour.** Warm paper `#F5EFE4` as canvas, a lighter warm surface `#FFFCF6` for cards, near-black
-warm ink `#2C2B29` for text and every border. One saturated primary — deep teal `#00625D` — plus
+warm ink `#2C2B29` for text and every border. One saturated primary, deep teal `#00625D`, plus
 four accents with fixed jobs: **sun gold** `#F2A81D` for streaks and focus rings only, **clay**
 `#C4553F` for secondary emphasis and section numerals, **sage** `#6E8F5E` for correctness and
 mastery, **danger red** `#BA1A1A` for wrong answers and destructive resets. Each accent has a soft
@@ -90,7 +90,7 @@ wash used for chips, tinted panels and answer states. Dark theme inverts to `#14
 brightened accents; every token resolves in both. Maximum two background colours per screen.
 
 **Type.** Two families, no exceptions. **Fraunces 600** sets display, headlines, card headings and
-every button label — it is the brand's voice. **Karla 400/500/600/700** sets everything a learner
+every button label: it is the brand's voice. **Karla 400/500/600/700** sets everything a learner
 reads: prompts, answers, explanations, metadata. Monospace (`ui-monospace`) appears only in the
 specimen cards to show token names. Display tracks −.02em; body never tracks. The Spanish quiz
 prompt is `clamp(22px, 6.4vw, 28px)` and never drops below 21px at 380px.
@@ -101,7 +101,7 @@ targets: 44px minimum anywhere including with the keyboard open, 48px for standa
 for the main action, 56px for round options, Next and Start round.
 
 **Backgrounds.** Flat warm colour only. No images, no full-bleed photography, no illustration, no
-repeating pattern, no texture, no noise, and **no gradients** — the single exception is the conic
+repeating pattern, no texture, no noise, and **no gradients**: the single exception is the conic
 sweep inside `ScoreRing`, which is two hard stops rather than a blend. `DESIGN.md` rules out
 gradients on progress bars and decorative imagery.
 
@@ -112,13 +112,13 @@ day, an undesigned surface, a rule callout.
 
 **Depth.** There is no blur anywhere. Elevation is a **solid ink offset**: `2px 2px 0` for a lightly
 raised element, `4px 4px 0` for a card or button, `6px 6px 0` for a device shell. No inner shadows.
-Exactly **one elevated surface per screen** — the active exercise. Supporting panels stay flat.
+Exactly **one elevated surface per screen**: the active exercise. Supporting panels stay flat.
 Disabled controls keep their footprint but lose the offset; the shadow is the affordance.
 
 **Corner radii.** 4px on progress bars and small tiles, 6px on Leitner boxes and segmented
 segments, 8px on buttons, inputs and answer rows, `999px` on chips and avatars, 26px on the phone
-shell. Cards use four **organic radius sets** — `16 24 12 32`, `24 12 32 16`, `12 32 16 24`,
-`32 16 24 12` — rotated down a list so neighbouring cards never match. That asymmetry is the most
+shell. Cards use four **organic radius sets**: `16 24 12 32`, `24 12 32 16`, `12 32 16 24`,
+`32 16 24 12`: rotated down a list so neighbouring cards never match. That asymmetry is the most
 recognisable thing about the system.
 
 **Cards.** 2px ink border, warm surface fill, organic radius, 20px padding, offset only when
@@ -133,14 +133,14 @@ changes opacity.
 removed, never replaced by a colour change.
 
 **Motion.** 120ms for press feedback, 180ms base, 260ms for the card flip, all on
-`cubic-bezier(.2,0,.2,1)`. Transitions apply to `transform`, `box-shadow` and `background` only —
+`cubic-bezier(.2,0,.2,1)`. Transitions apply to `transform`, `box-shadow` and `background` only:
 no fades of whole screens, no bounce, no spring, no parallax. A single `nudge` keyframe (a 3px
 horizontal shake) marks a rejected input. `prefers-reduced-motion` zeroes the durations and drops
 the flip entirely; the revealed card state must stand on its own.
 
 **Transparency and blur.** Used once: the "not yet answered" segments of the in-round teal header
 are white at 35% opacity. Nothing else is translucent. There are no backdrop filters, no scrims, no
-protection gradients — a solid ink border does the separating that a gradient would elsewhere.
+protection gradients: a solid ink border does the separating that a gradient would elsewhere.
 
 **Layout.** Mobile-first, one exercise per screen. The board home is the entry point: a header row
 with a hamburger, the brand mark and title, and a theme toggle; then the streak panel and deck tiles.
@@ -156,11 +156,11 @@ icon-only (bold ✓ / ✕) but always carry an accessible label and stay disable
 
 ## Iconography
 
-There is **no icon library, no icon font, and no SVG set** in the source — and none was added. The
+There is **no icon library, no icon font, and no SVG set** in the source, and none was added. The
 app uses two devices, and both are reproduced here:
 
 1. **Unicode marks set in Karla**, exposed through the `Glyph` component: ✓ correct, ✕ wrong,
-   ↺ again, ← back, → forward, ↑ ↓, ⇄ flip, … more, ★ star. They sit at 18–22px, inherit
+   ↺ again, ← back, → forward, ↑ ↓, ⇄ flip, … more, ★ star. They sit at 18-22px, inherit
    `currentColor` or take a state token, are `aria-hidden`, and always keep an adjacent text label.
 2. **The brand mark** in `assets/brand/`: three ink-bordered blocks, a teal bar over a clay tile and a
    sun tile. It sits at 24px before the product name in the header.
@@ -169,7 +169,7 @@ The one emoji is 🔊 on the flashcard speak button, as in the repo. The theme t
 moon SVGs (`app/theme-icons.tsx`) and board tiles use its check and fanned-cards SVGs; both live in `IconSquare` and
 `BoardTile`. No other emoji. No PNG icons. No decorative illustration. If a future need genuinely cannot be
 met by a glyph, add a CDN set with matching 2px stroke weight and square caps
-(Lucide at `stroke-width: 2` is the nearest match) and record the substitution here — but the
+(Lucide at `stroke-width: 2` is the nearest match) and record the substitution here, but the
 default answer is a unicode mark plus a label.
 
 The brand mark lives in `assets/brand/` (`mark.svg`, `mark-dark.svg`, PNGs at 512/1024), copied from
@@ -180,30 +180,30 @@ In product the mark sits at 24px before the name in the header (`AppHeader`'s `m
 
 Root files:
 
-- `readme.md` — this file: brand context, content fundamentals, visual foundations, iconography.
-- `SKILL.md` — Agent Skills front matter so this folder works as a downloadable Claude Code skill.
-- `styles.css` — the single entry point consumers link. `@import` lines only.
-- `thumbnail.html` — homepage tile: brand mark and name on primary teal, accent swatch strip.
-- `github.md` — link to the source repo, last sync, and screen map.
-- `_ds_bundle.js` — generated build artifact (do not edit by hand); the component cards, UI kit and template load it to render.
+- `readme.md`: this file, covering brand context, content fundamentals, visual foundations, iconography.
+- `SKILL.md`: Agent Skills front matter so this folder works as a downloadable Claude Code skill.
+- `styles.css`: the single entry point consumers link. `@import` lines only.
+- `thumbnail.html`: homepage tile: brand mark and name on primary teal, accent swatch strip.
+- `github.md`: link to the source repo, last sync, and screen map.
+- `_ds_bundle.js`: generated build artifact (do not edit by hand); the component cards, UI kit and template load it to render.
 
 Tokens (`tokens/`, all reached from `styles.css`):
 
-- `fonts.css` — Fraunces + Karla via Google Fonts CDN, plus `--font-display` / `--font-body` / `--font-mono`.
-- `colors.css` — base palette (mirrors the repo's `app/quiz-layout-fix.css`), `--key`, legacy aliases (`--success`, `--accent`, `--paper-white`), the `[data-theme="dark"]` scope, and semantic aliases (`--text-body`, `--surface-card`, `--state-correct`, `--focus-ring`, …).
-- `typography.css` — display / body / label scales and the quiz-prompt clamp.
-- `spacing.css` — 4px scale plus touch and control heights.
-- `shape.css` — radii, the four organic radius sets, border widths, solid ink offsets, focus outline.
-- `motion.css` — durations, easing, press transforms, the `qs-nudge` keyframe, reduced-motion overrides.
-- `base.css` — body, link and heading resets.
-- `components/interactions.css` — the shared press/hover/focus mechanics (`.qs-press`, `.qs-press-sm`, `.qs-tint-hover`, `.qs-underline`, `.qs-field`).
+- `fonts.css`: Fraunces + Karla via Google Fonts CDN, plus `--font-display` / `--font-body` / `--font-mono`.
+- `colors.css`: base palette (mirrors the repo's `app/quiz-layout-fix.css`), `--key`, legacy aliases (`--success`, `--accent`, `--paper-white`), the `[data-theme="dark"]` scope, and semantic aliases (`--text-body`, `--surface-card`, `--state-correct`, `--focus-ring`, …).
+- `typography.css`: display / body / label scales and the quiz-prompt clamp.
+- `spacing.css`: 4px scale plus touch and control heights.
+- `shape.css`: radii, the four organic radius sets, border widths, solid ink offsets, focus outline.
+- `motion.css`: durations, easing, press transforms, the `qs-nudge` keyframe, reduced-motion overrides.
+- `base.css`: body, link and heading resets.
+- `components/interactions.css`: the shared press/hover/focus mechanics (`.qs-press`, `.qs-press-sm`, `.qs-tint-hover`, `.qs-underline`, `.qs-field`).
 
 Components (each directory has `<Name>.jsx`, `<Name>.d.ts`, `<Name>.prompt.md` and one `@dsCard` HTML):
 
-- `components/core/` — **Button**, **Chip**, **Card**, **StatTile**
-- `components/forms/` — **Input**, **Select**, **SegmentedControl**, **AnswerOption**, **InlineBlank**
-- `components/progress/` — **ProgressBar**, **ScoreRing**, **StreakStrip**, **LeitnerBoxes**
-- `components/shell/` — **Logo**, **IconSquare**, **AppHeader**, **QuizHeader**, **BoardTile**, **FlashCard**, **PhoneFrame**, **Glyph**
+- `components/core/`: **Button**, **Chip**, **Card**, **StatTile**
+- `components/forms/`: **Input**, **Select**, **SegmentedControl**, **AnswerOption**, **InlineBlank**
+- `components/progress/`: **ProgressBar**, **ScoreRing**, **StreakStrip**, **LeitnerBoxes**
+- `components/shell/`: **Logo**, **IconSquare**, **AppHeader**, **QuizHeader**, **BoardTile**, **FlashCard**, **PhoneFrame**, **Glyph**
 
 Every family above has a counterpart in the repo's CSS (`app/quiz-layout-fix.css`). **Intentional
 additions** with no single class of their own:
@@ -223,14 +223,14 @@ UI kit:
 
 Previous versions (reference only, not part of the design system):
 
-- `ui_kits/spanish-quizzes-app-v1/` — the app screens before the repo rebuild: bottom tab bar, teal round
+- `ui_kits/spanish-quizzes-app-v1/`: the app screens before the repo rebuild: bottom tab bar, teal round
   header, "You" tab, spec-based layouts. Rebuilt from earlier code for comparison; its v1-only components live
   inside that file.
 
-Foundations (`guidelines/`) — 20 specimen cards in the Design System tab, grouped **Colors**,
+Foundations (`guidelines/`): 20 specimen cards in the Design System tab, grouped **Colors**,
 **Type**, **Spacing**, **Brand**.
 
 Not present, and why:
 
 - **No imagery or illustration**, because `DESIGN.md` forbids decorative imagery.
-- **No self-hosted font binaries** — Fraunces and Karla are loaded from the Google Fonts CDN.
+- **No self-hosted font binaries**: Fraunces and Karla are loaded from the Google Fonts CDN.

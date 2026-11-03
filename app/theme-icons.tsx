@@ -1,5 +1,5 @@
 /** Replaces the plain "☀"/"☾" text glyphs, which rendered thin and small at the
- * inherited body font-size — these fill the 44px button like every other icon. */
+ * inherited body font-size: these fill the 44px button like every other icon. */
 export const SunIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
     <circle cx="12" cy="12" r="5" />

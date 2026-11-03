@@ -33,7 +33,7 @@
 .sectionBody h2 {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 650;
+  font-weight: var(--font-display-weight);
   line-height: 1.04;
 }
 
@@ -304,7 +304,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: 25px;
-  font-weight: 650;
+  font-weight: var(--font-display-weight);
 }
 
 .footer a {

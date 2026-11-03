@@ -33,7 +33,7 @@ const applyTheme = (theme: Theme) => {
   // Multiple components call useTheme() at once (site header, drawer, the board's
   // own header). Each keeps its own React state, so without broadcasting a toggle
   // fired from one instance left the others showing the stale theme until they
-  // happened to re-render — the toggle button looked like it needed a second click.
+  // happened to re-render: the toggle button looked like it needed a second click.
   window.dispatchEvent(new CustomEvent<Theme>(THEME_CHANGE_EVENT, { detail: theme }));
 };
 

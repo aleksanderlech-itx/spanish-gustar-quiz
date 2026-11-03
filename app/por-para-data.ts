@@ -1,4 +1,5 @@
 import type { Question } from "./quiz-data";
+import { applySourcedQuestionPair } from "./sourced-quiz-content.ts";
 
 const seed = [
   // --- Duration (por) ---
@@ -200,7 +201,7 @@ export const POR_PARA_QUESTIONS: Question[] = seed.map(([before, after, answer, 
   indirectObject: "",
   tense: "present",
   level,
-}));
+})).map(applySourcedQuestionPair);
 
 export const POR_PARA_FORMS: Record<string, [string, string]> = {
   "por / para": ["por", "para"],

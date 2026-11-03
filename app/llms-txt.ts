@@ -3,6 +3,7 @@ import { QUIZ_CONFIG, QUIZ_IDS, quizPath } from "./quiz-config.ts";
 import { ACTIVITY_REGISTRY } from "./activity-registry.ts";
 import { FLASHCARD_VERBS } from "./flashcards-data.ts";
 import { NOTES_POSTS } from "./notes-posts.ts";
+import { sentenceParts } from "./quiz-logic.ts";
 import type { Question } from "./quiz-data";
 
 /**
@@ -66,7 +67,8 @@ const sampleQuestions = (questions: Question[]): Question[] =>
     .filter((question): question is Question => question !== undefined);
 
 const sampleLine = (question: Question): string => {
-  const prompt = `${question.before.trim()} ___ ${question.after.trim()}`;
+  const { before, after } = sentenceParts(question);
+  const prompt = `${before}___${after}`;
   const translation = question.translations.en ? ` (${question.translations.en})` : "";
   return `- ${prompt} → **${question.answer}**${translation} ${question.explanation}`;
 };

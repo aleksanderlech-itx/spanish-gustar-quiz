@@ -34,7 +34,7 @@ const Featured = () => (
   </Card>
 );
 
-/** Step 1: the board fills in — featured deck, then the six topics. */
+/** Step 1: the board fills in; featured deck, then the six topics. */
 export const BoardScene = () => (
   <>
     <AppHeader />
@@ -46,7 +46,7 @@ export const BoardScene = () => (
   </>
 );
 
-/** Step 2: one tile gets practised — its bar fills and a due count appears. */
+/** Step 2: one tile gets practised; its bar fills and a due count appears. */
 export const TileProgressScene = () => {
   const highlight = useSpring(6);
   const fill = useProgress(20, 70);

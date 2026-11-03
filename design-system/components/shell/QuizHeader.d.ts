@@ -1,6 +1,6 @@
 import * as React from "react";
 
-/** In-round header (repo: .round-header): 40px back square, step strip — past in primary, current in sun — and a muted counter. */
+/** In-round header (repo: .round-header): 40px back square, step strip, past in primary, current in sun, and a muted counter. */
 export interface QuizHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   current?: number;
   total?: number;

@@ -3,6 +3,7 @@ import { QUIZ_CONFIG, type QuizId } from "./quiz-config";
 import { readTopicSettings } from "./topic-settings";
 import { dayKey } from "./streak";
 import type { BoardTileProgress } from "./board";
+import { appStorage } from "./storage.ts";
 
 export type QuizProgress = Omit<BoardTileProgress, "id">;
 
@@ -10,14 +11,14 @@ export const emptyQuizProgress = (total: number): QuizProgress => ({
   completed: 0, total, percent: 0, due: 0, mastered: 0, accuracy: 0, lastActivity: null,
 });
 
-/** Derives board/topic-detail progress from the grammar quiz's own stored history — no new storage shape. */
+/** Derives board/topic-detail progress from the grammar quiz's own stored history: no new storage shape. */
 export const readQuizProgress = (quizId: QuizId): QuizProgress => {
   const quiz = QUIZ_CONFIG[quizId];
   const total = quiz.questions.length;
   if (typeof window === "undefined") return emptyQuizProgress(total);
 
   try {
-    const raw = window.localStorage.getItem(quiz.storageKey);
+    const raw = appStorage.getItem(quiz.storageKey);
     const history = raw ? (JSON.parse(raw) as QuizResult[]) : [];
     const regular = history.filter((item) => item.mode !== "review");
     const completed = new Set(regular.flatMap((item) => item.questionIds)).size;
@@ -43,7 +44,7 @@ export const readQuizProgress = (quizId: QuizId): QuizProgress => {
 export type DailyRoundProgress = { correct: number; roundLength: number; percent: number; done: boolean };
 
 /**
- * The daily goal isn't measured against the whole question bank — it's the round you
+ * The daily goal isn't measured against the whole question bank: it's the round you
  * chose (topic settings' round length) finished today. `percent` gauges accuracy within
  * that round (correct / round length); `done` is true once any regular round is finished
  * today, whatever the score, since finishing the round is what meets the goal.
@@ -55,7 +56,7 @@ export const readDailyRoundProgress = (quizId: QuizId): DailyRoundProgress => {
 
   try {
     const quiz = QUIZ_CONFIG[quizId];
-    const raw = window.localStorage.getItem(quiz.storageKey);
+    const raw = appStorage.getItem(quiz.storageKey);
     const history = raw ? (JSON.parse(raw) as QuizResult[]) : [];
     const today = dayKey(new Date());
     const todaysRounds = history.filter((item) => item.mode !== "review" && dayKey(new Date(item.date)) === today);

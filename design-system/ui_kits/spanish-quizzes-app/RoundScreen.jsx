@@ -8,7 +8,7 @@ const clay={margin:0,color:"var(--clay)",fontSize:12,fontWeight:700,letterSpacin
 const ACCENTS=["\u00e1","\u00e9","\u00ed","\u00f3","\u00fa","\u00f1"];
 const norm=s=>(s||"").trim().toLowerCase();
 
-/* Repo: app/round.tsx — Choose and Type modes */
+/* Repo: app/round.tsx; Choose and Type modes */
 export function RoundScreen({eyebrow,question,index,total,mode="choose",picked,submitted,typed="",onTyped,onCommit,onNext,onSkip,onBack}){
   const isLast=index===total-1;
   const correct=picked!=null&&norm(picked)===norm(question.answer);

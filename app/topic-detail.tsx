@@ -110,7 +110,7 @@ export default function TopicDetail({ quizId, standalone = false }: { quizId: Qu
           <button type="button" className={settings.mode === "type" ? "active" : ""} aria-pressed={settings.mode === "type"} onClick={() => updateSettings({ mode: "type" })}>Type</button>
         </div>
         <p className="topic-setting-hint">
-          {settings.mode === "choose" ? "Pick from three options. Fastest way through a round." : "You write the verb yourself — harder, and it sticks better."}
+          {settings.mode === "choose" ? "Pick from three options. Fastest way through a round." : "You write the verb yourself: harder, and it sticks better."}
         </p>
       </section>
 
@@ -194,7 +194,7 @@ export default function TopicDetail({ quizId, standalone = false }: { quizId: Qu
               ],
             },
           ]}
-          bottomNote={<><strong>{SITE_CONFIG.name}</strong> — free Spanish grammar quizzes and spaced-repetition flashcards. Nothing to install, no account needed.</>}
+          bottomNote={<><strong>{SITE_CONFIG.name}</strong>: free Spanish grammar quizzes and spaced-repetition flashcards. Nothing to install, no account needed.</>}
         />
       )}
     </>

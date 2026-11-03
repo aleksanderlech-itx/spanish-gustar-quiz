@@ -1,4 +1,4 @@
-# Saber vs Conocer quiz — implementation plan
+# Saber vs Conocer quiz: implementation plan
 
 New fill-in-the-blank activity at `/saber-vs-conocer`, built on the same pattern
 as ser/estar, por/para and object pronouns (`af3a76a`, `6c21443`, `a167275`).
@@ -12,7 +12,7 @@ as ser/estar, por/para and object pronouns (`af3a76a`, `6c21443`, `a167275`).
 | Reference | Real six-pronoun conjugation chart for saber and conocer per covered tense, also reachable from "Stuck?" mid-round |
 | Notes post | Separate PR later |
 
-## Stage 1 — Question bank (`app/saber-conocer-data.ts`)
+## Stage 1: Question bank (`app/saber-conocer-data.ts`)
 
 - 150 questions, IDs `6001 + index` (`tests/content-quality.test.mjs` enforces 150).
 - Seed row shape as ser/estar: `[before, after, answer, alternateAnswer, en, level, explanation]`
@@ -20,12 +20,12 @@ as ser/estar, por/para and object pronouns (`af3a76a`, `6c21443`, `a167275`).
   The alternate is the other verb in the same person and tense (sé / conozco).
 - `tense` is `present`, `preterite` or `imperfect`, so the chart can scope to it.
 - Usage categories (≈ count):
-  - Facts — saber + information, que/si/question word (~30)
-  - Skills — saber + infinitive (~20)
-  - People — conocer + personal a (~25)
-  - Places — conocer + place (~20)
-  - Familiarity — conocer + a work, a field, a thing (~20)
-  - Past meaning shift — supe/conocí vs sabía/conocía (~35)
+  - Facts: saber + information, que/si/question word (~30)
+  - Skills: saber + infinitive (~20)
+  - People: conocer + personal a (~25)
+  - Places: conocer + place (~20)
+  - Familiarity: conocer + a work, a field, a thing (~20)
+  - Past meaning shift: supe/conocí vs sabía/conocía (~35)
 - Levels spread across basic / intermediate / advanced.
 - Export `SABER_CONOCER_QUESTIONS`, `SABER_CONOCER_FORMS`, `SABER_CONOCER_USAGES`,
   `SABER_CONOCER_CONJUGATIONS`.
@@ -33,10 +33,10 @@ as ser/estar, por/para and object pronouns (`af3a76a`, `6c21443`, `a167275`).
   (TEMPLATE-HANDOVER.md).
 - Tests: new `tests/saber-conocer-data.test.mjs`; add the bank to `content-quality.test.mjs`.
 
-## Stage 2 — Register the activity
+## Stage 2: Register the activity
 
 - `app/quiz-config.ts`: `"saber-conocer"` id, slug `saber-vs-conocer`, config entry
-  (A1–B1, `saber-conocer-quiz-progress-v1`, `saber-conocer-quiz-filters-v1`,
+  (A1-B1, `saber-conocer-quiz-progress-v1`, `saber-conocer-quiz-filters-v1`,
   `spanish-saber-conocer-quiz-progress.json`, rule card,
   `filterLabel: { label: "Usage", all: "All usages" }`).
 - `app/quiz-content.ts`: explainer paragraphs, examples, FAQ.
@@ -49,12 +49,12 @@ as ser/estar, por/para and object pronouns (`af3a76a`, `6c21443`, `a167275`).
   - `app/quiz-selector.tsx` `TOPIC_ICON_PATHS` → new icon
 - Derived automatically: activity registry, streak, llms.txt, sitemap, board.
 
-## Stage 3 — Copy and docs
+## Stage 3: Copy and docs
 
 - `README.md`, `app/about/page.tsx` quiz lists; `UX-CONTRACT.md` chart section.
 - `tests/notebook.test.mjs`: new rule label; `tests/verb-chart.test.mjs`: chart blocks.
 
-## Stage 4 — Verify and ship
+## Stage 4: Verify and ship
 
 - `npm run lint`, `npm test`.
 - PR into `main`; share PR link and preview link.

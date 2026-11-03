@@ -75,8 +75,11 @@ body {
 }
 
 body {
-  --font-display: "Fraunces", Georgia, serif;
-  --font-body: "Karla", system-ui, sans-serif;
+  --font-display: "Literata", Georgia, serif;
+  --font-display-weight: 500;
+  --font-body: "Atkinson Hyperlegible Next", system-ui, sans-serif;
+  /* English glosses under Spanish text: Literata italic, like a dictionary entry. */
+  --font-gloss: "Literata", Georgia, serif;
 }
 body,
 button,
@@ -89,6 +92,7 @@ h1,
 h2,
 h3 {
   font-family: var(--font-display);
+  font-weight: var(--font-display-weight);
 }
 
 body {
@@ -259,7 +263,7 @@ body {
   gap: 10px;
 }
 
-/* 44px header icon squares (theme toggle, listen button) — see design
+/* 44px header icon squares (theme toggle, listen button): see design
    handoff README "Board home" header row. */
 .mode-switch,
 .listen-button {
@@ -549,7 +553,7 @@ body {
 }
 
 /* Card content is revealed by swapping which face is shown (aria-hidden), not by a
- * 3D flip — the design has no flip animation, and the card is tall enough that a
+ * 3D flip: the design has no flip animation, and the card is tall enough that a
  * centered, always-both-rendered flip stack put the speak button (which stops
  * propagation) right under a tap aimed at the card's visual center. */
 .flashcard {
@@ -600,14 +604,14 @@ body {
   border-color: var(--primary);
 }
 
-/* Board home — see design handoff README "Board home". */
+/* Board home: see design handoff README "Board home". */
 
 .board-home .library-header {
   align-items: center;
   margin-bottom: 18px;
 }
 
-/* Board home header row: hamburger left, title centered, theme toggle right —
+/* Board home header row: hamburger left, title centered, theme toggle right;
    see design handoff README "Board home" header row. */
 .board-header {
   display: flex;
@@ -629,15 +633,15 @@ body {
   color: var(--ink);
   font-family: var(--font-display);
   font-size: 19px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
   flex-wrap: wrap;
 }
 
 .streak-panel {
   padding: 16px 18px;
   border: 1px solid var(--line);
-  border-radius: 18px 26px 14px 26px;
-  background: var(--sun-soft);
+  border-radius: 14px;
+  background: var(--surface);
   margin-bottom: 22px;
 }
 
@@ -653,95 +657,65 @@ body {
 }
 
 .streak-count > strong {
-  color: var(--ink);
+  color: var(--primary);
   font-family: var(--font-display);
-  font-size: 40px;
-  font-weight: 600;
-  line-height: .9;
+  font-size: 44px;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-weight: var(--font-display-weight);
+  line-height: 1;
 }
 
 .streak-count > div {
   display: flex;
   flex-direction: column;
-  gap: 2px;
 }
 
 .streak-label {
   color: var(--ink);
-  font-size: 15px;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: var(--font-display-weight);
+  line-height: 1.2;
 }
 
 .streak-goal {
   color: var(--muted);
-  font-size: 13px;
+  font-size: 14px;
+  line-height: 1.4;
 }
 
 .streak-week {
-  display: flex;
-  gap: 5px;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
   margin-top: 14px;
 }
 
+/* Thin bars: done days in primary, today filled in sun up to its share of
+   activities (inline background from quiz-selector.tsx), the rest on the track. */
 .streak-day {
-  flex: 1;
-  height: 22px;
+  height: 8px;
   border-radius: 4px;
-  border: 1px solid var(--border-ink);
+  background: var(--segment-track);
 }
 
 .streak-day-done {
-  border-style: solid;
-  background: var(--sun);
-}
-
-.streak-day-today {
-  border-style: dashed;
-  background: transparent;
-}
-
-.streak-day-future {
-  border: 2px dashed var(--line);
-  background: transparent;
+  background: var(--primary);
 }
 
 .streak-week-letters {
-  display: flex;
-  gap: 5px;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
   margin-top: 4px;
 }
 
 .streak-week-letters > span {
-  flex: 1;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
   text-align: center;
-}
-
-/* Dark mode: --sun-soft reads as an olive wash at full-card size, so the streak
-   card keeps the surface fill and lets the --sun border/numeral carry the
-   streak identity instead. See design handoff "Dark mode: streak panel". */
-:root[data-theme="dark"] .streak-panel {
-  background: var(--surface);
-  border-color: var(--sun);
-}
-
-:root[data-theme="dark"] .streak-count > strong {
-  color: var(--sun);
-  font-size: 34px;
-}
-
-:root[data-theme="dark"] .streak-day {
-  border-color: var(--line);
-}
-
-:root[data-theme="dark"] .streak-day-today {
-  border-color: var(--sun);
-}
-
-:root[data-theme="dark"] .streak-day-future {
-  border-style: solid;
-  border-color: var(--line);
 }
 
 .board-section-head {
@@ -758,7 +732,7 @@ body {
 }
 
 /* Nav rail and rich page head only render usefully once the sidebar split
-   kicks in below — kept out of the flow on mobile. */
+   kicks in below: kept out of the flow on mobile. */
 .board-nav,
 .board-page-head,
 .board-nav-theme {
@@ -1065,14 +1039,14 @@ body {
   background: var(--primary);
 }
 
-/* Board home, desktop — the mobile board (hamburger + full-bleed streak strip +
+/* Board home, desktop: the mobile board (hamburger + full-bleed streak strip +
  * 2-up tile grid) just stretched wider looked like a phone screen blown up: an
  * unused hamburger, two oversized tiles with mostly empty card, a streak panel
  * spanning edge to edge for four numbers. At this width there's room for the
  * header and streak panel to sit as a persistent left rail beside the board
  * instead, and for the in-progress quiz to read as its own full-width row
  * rather than one half of a stretched two-up grid. No DOM change needed for
- * the rail split — .board-home becomes the grid and the header/streak-panel
+ * the rail split: .board-home becomes the grid and the header/streak-panel
  * are simply assigned to its first column, the same technique .app-shell
  * already uses for its sidebar below. */
 @media (min-width: 900px) {
@@ -1083,7 +1057,7 @@ body {
    * e.g. the pinned tile shared a row with the taller nav list and the
    * row stretched to the nav's height, leaving visible dead space under
    * the tile. Wrapping each column's children in one element sidesteps
-   * row-matching entirely — each wrapper is a single grid item (row 1),
+   * row-matching entirely: each wrapper is a single grid item (row 1),
    * stacking its own children with plain flex/block flow instead. */
   .board-home {
     width: min(100% - 48px, 1120px);
@@ -1094,7 +1068,7 @@ body {
   }
 
   /* A plain unstyled column of links read as stray text next to the
-     bordered/shadowed cards beside it — the design frames it as its own
+     bordered/shadowed cards beside it: the design frames it as its own
      panel, matching every other surface in this design system. */
   .board-home .board-rail {
     display: flex;
@@ -1171,7 +1145,7 @@ body {
     margin: 0;
     font-family: var(--font-display);
     font-size: 28px;
-    font-weight: 600;
+    font-weight: var(--font-display-weight);
     color: var(--ink);
   }
 
@@ -1218,7 +1192,7 @@ body {
 
   /* The corner icon and the Continue button both read as "this one's
      active" and land in the same top-right corner once the tile is a row
-     instead of a stacked card — the button already says it, so the badge
+     instead of a stacked card: the button already says it, so the badge
      is dropped rather than repositioned around it. */
   .board-home .board-tile-pinned .board-icon-pinned {
     display: none;
@@ -1319,7 +1293,7 @@ body {
   .topic-filter-fields { grid-template-columns: 1fr; }
 }
 
-/* Topic detail — see design handoff README "Topic detail". */
+/* Topic detail: see design handoff README "Topic detail". */
 
 .topic-detail-header {
   display: flex;
@@ -1353,7 +1327,7 @@ body {
   margin: 0 0 16px;
   font-family: var(--font-display);
   font-size: 32px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
   line-height: 1.15;
 }
 
@@ -1559,7 +1533,7 @@ body {
   font-weight: 600;
 }
 
-/* Round screen, Choose mode — see design handoff README "Round — Choose mode". */
+/* Round screen, Choose mode: see design handoff README "Round: Choose mode". */
 
 @keyframes fadein {
   from { opacity: 0; transform: translateY(6px); }
@@ -1680,10 +1654,10 @@ body {
   margin: 0;
   color: var(--ink);
   font-family: var(--font-display);
-  font-size: 42px;
-  font-weight: 600;
-  line-height: 1.12;
-  letter-spacing: -1px;
+  font-size: 30px;
+  font-weight: var(--font-display-weight);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
   overflow-wrap: anywhere;
 }
 
@@ -1850,11 +1824,11 @@ body {
 }
 
 @media (max-width: 380px) {
-  .round-sentence { font-size: 36px; }
+  .round-sentence { font-size: 28px; }
   .round-question-card { padding: 16px; }
 }
 
-/* Round screen, Type mode — see design handoff README "Round — Type mode". */
+/* Round screen, Type mode: see design handoff README "Round: Type mode". */
 
 .round-stuck {
   display: flex;
@@ -1938,7 +1912,7 @@ body {
 .results-accuracy { margin: 12px 0 0; color: var(--muted); font-size: 16px; }
 .flashcard-footer button:disabled { opacity: .5; cursor: not-allowed; }
 
-/* Results, mistake notebook, support prompt — see design handoff README "Results". */
+/* Results, mistake notebook, support prompt: see design handoff README "Results". */
 
 .results-screen {
   display: flex;
@@ -1950,7 +1924,7 @@ body {
   margin: 0 0 18px;
   font-family: var(--font-display);
   font-size: 32px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
   line-height: 1.15;
 }
 
@@ -1974,7 +1948,7 @@ body {
   color: var(--ink);
   font-family: var(--font-display);
   font-size: 48px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
   line-height: 1.15;
 }
 
@@ -2078,7 +2052,7 @@ body {
   margin: 0 0 10px;
   font-family: var(--font-display);
   font-size: 16px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
 }
 
 .results-kofi-link {
@@ -2088,7 +2062,7 @@ body {
   min-height: 48px;
 }
 
-/* Flashcards restyle — see design handoff README "Flashcards". */
+/* Flashcards restyle: see design handoff README "Flashcards". */
 
 .flashcard-top-header {
   display: flex;
@@ -2164,7 +2138,7 @@ body {
   min-height: 320px;
 }
 
-/* The word sits inside .flashcard-term-row, one level deeper than .flashcard-face —
+/* The word sits inside .flashcard-term-row, one level deeper than .flashcard-face:
  * a direct-child selector targeting .flashcard-face's own strong child never matched
  * anything, so this was rendering as an unstyled <strong> (default size/weight/color)
  * the whole time. */
@@ -2173,7 +2147,7 @@ body {
   font-family: var(--font-display);
   font-size: 48px;
   line-height: 1.15;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
   overflow-wrap: anywhere;
 }
 
@@ -2217,9 +2191,10 @@ body {
 .flashcard-meaning {
   margin: 0;
   color: var(--ink);
-  font-family: var(--font-display);
+  font-family: var(--font-gloss);
   font-size: 21px;
-  font-weight: 600;
+  font-style: italic;
+  font-weight: var(--font-display-weight);
 }
 
 .flashcard-example {
@@ -2232,6 +2207,7 @@ body {
 .flashcard-example-english {
   margin: -10px 0 0;
   color: var(--muted);
+  font-family: var(--font-gloss);
   font-size: 18px;
   font-style: italic;
   line-height: 1.5;
@@ -2277,7 +2253,7 @@ body {
   box-shadow: none;
 }
 
-/* Verb conjugation chart — see design handoff README "Verb conjugation chart". */
+/* Verb conjugation chart: see design handoff README "Verb conjugation chart". */
 
 .verb-chart-header {
   display: flex;
@@ -2291,7 +2267,7 @@ body {
   margin: 0;
   font-family: var(--font-display);
   font-size: 19px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
 }
 
 .verb-chart-regularity-badge {
@@ -2317,7 +2293,7 @@ body {
   color: var(--muted);
   font-family: var(--font-display);
   font-size: 16px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
 }
 
 .verb-chart-block {
@@ -2410,7 +2386,7 @@ body {
   background: var(--paper);
 }
 
-/* Drawer — see design handoff README "Drawer". */
+/* Drawer: see design handoff README "Drawer". */
 
 .library-header-lead {
   display: flex;
@@ -2477,7 +2453,7 @@ body {
   margin: 0;
   font-family: var(--font-display);
   font-size: 19px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
 }
 
 .drawer-close {
@@ -2698,7 +2674,7 @@ body {
 }
 
 
-/* Help modal (issue #30) — help icon in activity headers, opens a native <dialog>. */
+/* Help modal (issue #30): help icon in activity headers, opens a native <dialog>. */
 
 .help-button {
   display: inline-grid;
@@ -2766,7 +2742,7 @@ body {
   margin: 0;
   font-family: var(--font-display);
   font-size: 22px;
-  font-weight: 600;
+  font-weight: var(--font-display-weight);
 }
 
 .help-dialog-close {
@@ -2894,4 +2870,194 @@ body {
   background: #FFFAF3;
   box-shadow: 0 0 0 4px #FFFAF3;
   border-radius: 2px;
+}
+
+/* Day completed celebration (day-complete-dialog.tsx): shown once on the board right after the round that completes today. */
+.day-complete-dialog {
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 16px;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  overflow: hidden;
+}
+
+.day-complete-dialog[open] {
+  display: grid;
+  place-items: center;
+}
+
+.day-complete-dialog::backdrop {
+  background: rgba(44, 43, 41, .5);
+  animation: day-complete-fade .3s ease-out;
+}
+
+.day-complete-card {
+  position: relative;
+  display: grid;
+  width: min(320px, 100%);
+  justify-items: center;
+  gap: 8px;
+  padding: 24px 22px 20px;
+  border-radius: 18px 26px 14px 26px;
+  background: var(--surface);
+  text-align: center;
+  box-shadow: 0 10px 30px rgb(15 23 42 / 18%);
+  animation: day-complete-card-in .45s cubic-bezier(.2, 1.4, .4, 1) both;
+}
+
+.day-complete-card h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: var(--font-display-weight);
+  line-height: 1.2;
+}
+
+.day-complete-sub {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.day-complete-seal {
+  width: 72px;
+  height: 72px;
+  overflow: visible;
+}
+
+.day-complete-disc {
+  fill: var(--sun);
+  transform-origin: 28px 28px;
+  animation: day-complete-pop .5s cubic-bezier(.3, 1.6, .5, 1) both;
+}
+
+.day-complete-tick {
+  fill: none;
+  stroke: var(--surface);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+  animation: day-complete-draw .35s ease-out .35s forwards;
+}
+
+.day-complete-ray {
+  stroke: var(--sun);
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: 0;
+  transform-origin: 28px 28px;
+  animation: day-complete-burst .7s ease-out .45s both;
+}
+
+.day-complete-stats {
+  display: flex;
+  gap: 20px;
+  margin: 4px 0 6px;
+}
+
+.day-complete-stats div {
+  display: grid;
+}
+
+.day-complete-stats strong {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: var(--font-display-weight);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.day-complete-stats span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.day-complete-dismiss {
+  min-height: 44px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--primary);
+  color: var(--primary-ink);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.day-complete-dismiss:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+
+.day-complete-confetti {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.day-complete-confetti i {
+  position: absolute;
+  top: -12px;
+  width: 7px;
+  height: 11px;
+  border-radius: 2px;
+  opacity: 0;
+  animation: day-complete-fall 1.8s cubic-bezier(.3, .6, .6, 1) forwards;
+}
+
+@keyframes day-complete-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes day-complete-card-in {
+  from { transform: scale(.9) translateY(10px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+@keyframes day-complete-pop {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+@keyframes day-complete-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes day-complete-burst {
+  0% { opacity: 0; transform: scale(.6); }
+  40% { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.35); }
+}
+
+@keyframes day-complete-fall {
+  0% { opacity: 1; transform: translateY(0) rotate(0); }
+  85% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(100dvh) rotate(540deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .day-complete-dialog::backdrop,
+  .day-complete-card,
+  .day-complete-disc,
+  .day-complete-ray {
+    animation: none;
+  }
+
+  .day-complete-tick {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+
+  .day-complete-confetti {
+    display: none;
+  }
 }

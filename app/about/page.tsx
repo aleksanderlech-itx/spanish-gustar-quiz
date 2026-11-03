@@ -5,7 +5,7 @@ import styles from "../prose-page.module.css";
 
 const TITLE = "About";
 const DESCRIPTION =
-  "What Spanish Quizzes is, who it is for, and how your progress is stored. A small practice app for gustar, ser vs estar, saber vs conocer, por vs para, object pronouns and preterite vs imperfect.";
+  "What Spanish Quizzes is, who it is for, and how your progress is stored. A small practice app with grammar quizzes and verb flashcards for the Spanish patterns that give English speakers the most trouble.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -33,12 +33,12 @@ export default function AboutPage() {
         <div className={styles.sectionBody}>
           <h2>Why this exists</h2>
           <p>
-            Most Spanish courses cover gustar, ser versus estar, saber versus conocer and the preterite versus imperfect split somewhere in the
+            Most Spanish courses cover patterns like gustar, ser versus estar and the preterite versus imperfect split somewhere in the
             first year, then move on. The problem is that a single lesson is rarely enough, these patterns need
             repetition spread out over weeks, not one chapter you read once and forget.
           </p>
           <p>
-            Spanish Quizzes is built around that idea. Instead of a full course it offers 150 original sentences per
+            Spanish Quizzes is built around that idea. Instead of a full course it offers about 150 reviewed sentence pairs per
             topic, an explanation for every answer, and a set of Spanish verb flashcards that use the Leitner system to
             bring back words you miss sooner and let the ones you already know fade into longer reviews.
           </p>
@@ -66,6 +66,20 @@ export default function AboutPage() {
             Everything runs in your browser. Your progress, filters and settings are saved locally on your device,
             there is no account to create and no data leaves your browser unless you choose to back it up. You can
             download a backup from the menu at any time, and load it again later or on another device.
+          </p>
+        </div>
+      </section>
+
+      <section className={styles.section} id="content-sources">
+        <p className={styles.sectionNumber}>04</p>
+        <div className={styles.sectionBody}>
+          <h2>Content sources</h2>
+          <p>
+            Most Spanish-English examples come from the Tatoeba Project corpus distributed by ManyThings under the
+            Creative Commons Attribution 2.0 France licence. Gaps are individually written and reviewed for this app.
+          </p>
+          <p>
+            <a href="/content-attribution.csv" download>Download sentence-level credits and licence details</a>
           </p>
         </div>
       </section>

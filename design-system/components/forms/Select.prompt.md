@@ -1,4 +1,4 @@
-Use `Select` when a learner picks one of a short known list — topic, level, deck.
+Use `Select` when a learner picks one of a short known list: topic, level, deck.
 
 ```jsx
 <Select id="topic" label="Topic" options={["Ser vs estar","Gustar patterns","Preterite vs imperfect"]} />

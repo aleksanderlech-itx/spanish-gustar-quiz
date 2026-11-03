@@ -51,7 +51,7 @@ test("welcome modal is a native dialog on the home board with an opt-out saved a
   assert.match(source, /aria-labelledby="tutorial-dialog-title"/);
   assert.match(source, /Don&apos;t show this again/);
   assert.match(source, /onChange=\{\(event\) => onOptOutChange\(event\.target\.checked\)\}/);
-  assert.match(source, /localStorage\.setItem\(TUTORIAL_DISMISSED_KEY, "1"\)/);
+  assert.match(source, /appStorage\.setItem\(TUTORIAL_DISMISSED_KEY, "1"\)/);
   assert.match(await read("app/quiz-selector.tsx"), /<TutorialModal \/>/);
 });
 

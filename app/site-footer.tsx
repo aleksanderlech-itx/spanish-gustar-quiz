@@ -7,6 +7,8 @@ export function SiteFooter() {
       <span aria-hidden="true"> · </span>
       <a href="/notes">Notes</a>
       <span aria-hidden="true"> · </span>
+      <a href="/about#content-sources">Content sources</a>
+      <span aria-hidden="true"> · </span>
       <a href={SITE_CONFIG.kofiUrl} target="_blank" rel="noopener noreferrer">
         Help build more quizzes
       </a>

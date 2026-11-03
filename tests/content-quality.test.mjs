@@ -6,6 +6,8 @@ import { PRETERITE_IMPERFECT_QUESTIONS } from "../app/preterite-imperfect-data.t
 import { POR_PARA_QUESTIONS } from "../app/por-para-data.ts";
 import { OBJECT_PRONOUN_QUESTIONS } from "../app/object-pronouns-data.ts";
 import { SABER_CONOCER_QUESTIONS } from "../app/saber-conocer-data.ts";
+import { REFLEXIVE_VERB_QUESTIONS } from "../app/reflexive-verbs-data.ts";
+import { PRESENT_PERFECT_QUESTIONS } from "../app/present-perfect-data.ts";
 import { FLASHCARD_VERBS } from "../app/flashcards-data.ts";
 
 // Stage 6 of docs/issue-24-implementation-plan.md: a single, cross-cutting
@@ -24,6 +26,8 @@ const QUIZZES = [
   { name: "Por vs Para", questions: POR_PARA_QUESTIONS },
   { name: "Object Pronouns", questions: OBJECT_PRONOUN_QUESTIONS },
   { name: "Saber vs Conocer", questions: SABER_CONOCER_QUESTIONS },
+  { name: "Reflexive Verbs", questions: REFLEXIVE_VERB_QUESTIONS },
+  { name: "Present Perfect", questions: PRESENT_PERFECT_QUESTIONS },
 ];
 
 test("each quiz dataset contains exactly 150 questions", () => {

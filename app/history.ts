@@ -18,7 +18,7 @@ export type WeakArea = [string, { attempts: number; misses: number }];
 
 /**
  * Same categorization the old per-quiz page.tsx used, merged across quizzes. Verb and Tense vary
- * meaningfully for every quiz; Agreement/Subject/Pronoun only vary for gustar-pattern questions —
+ * meaningfully for every quiz; Agreement/Subject/Pronoun only vary for gustar-pattern questions:
  * for ser/estar and preterite/imperfect those fields are constant (or repurposed to hold the
  * tense), so recording them there would produce misleading, always-100%-or-0% "insights".
  */

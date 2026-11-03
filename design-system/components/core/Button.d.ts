@@ -7,7 +7,7 @@ import * as React from "react";
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** primary = teal fill, secondary = paper fill, ghost = underlined clay text */
   variant?: "primary" | "secondary" | "ghost";
-  /** sm 44px, md 48px, lg 52px — never below 44px */
+  /** sm 44px, md 48px, lg 52px: never below 44px */
   size?: "sm" | "md" | "lg";
   disabled?: boolean;
   fullWidth?: boolean;

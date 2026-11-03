@@ -11,7 +11,7 @@ const quizIdFromParams = (params: URLSearchParams): QuizId => resolveQuizId(para
 
 export default function Home() {
   // useSearchParams is router-connected (server: request context, client: reactive
-  // to navigation), unlike a one-shot read of the browser's own location at mount —
+  // to navigation), unlike a one-shot read of the browser's own location at mount:
   // it re-renders this on every client-side Link navigation, not just the first load.
   const params = useSearchParams();
 

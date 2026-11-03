@@ -12,8 +12,8 @@ export const HELP_CONTENT: Record<HelpTopic, HelpContent> = {
     title: "Setting up a round",
     points: [
       "Round length picks 5, 10 or 20 questions.",
-      "Choose gives you answer options — faster, good for a new topic.",
-      "Type makes you write the missing form yourself — harder, and it sticks better.",
+      "Choose gives you answer options: faster, good for a new topic.",
+      "Type makes you write the missing form yourself: harder, and it sticks better.",
       "Filters narrow the sentences by difficulty and verb, or pronoun type in Object Pronouns. They also scope \"Practise the misses\".",
       "The ring shows how much of the topic you've practised; \"due\" counts questions ready to review.",
     ],
@@ -24,7 +24,7 @@ export const HELP_CONTENT: Record<HelpTopic, HelpContent> = {
     title: "During a round",
     points: [
       "Read the English meaning, then complete the Spanish sentence.",
-      "In Choose mode, tap an answer. In Type mode, enter the missing form and press Check — use the accent keys for á é í ó ú ñ.",
+      "In Choose mode, tap an answer. In Type mode, enter the missing form and press Check: use the accent keys for á é í ó ú ñ.",
       "Stuck? Open the conjugation chart; your round stays exactly where it was.",
       "Skip moves on without recording an answer, so the question comes back in a later round.",
       "After each answer, read the explanation. Misses are saved to your mistake notebook.",

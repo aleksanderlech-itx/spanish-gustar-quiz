@@ -8,7 +8,7 @@ test("verb chart never fabricates a six-pronoun paradigm where the data doesn't 
   const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
   // Preterite/imperfect verbs get the real paradigm from PRETERITE_IMPERFECT_CONJUGATIONS.
   assert.match(source, /const conjugations = PRETERITE_IMPERFECT_CONJUGATIONS\[infinitive\] \?\? \[\];/);
-  // Gustar-pattern verbs are impersonal — a simple singular/plural block, not a fake "yo, tú..." table.
+  // Gustar-pattern verbs are impersonal: a simple singular/plural block, not a fake "yo, tú..." table.
   assert.match(source, /one thing \/ to do something/);
   // Ser/estar compares two different verbs, not one conjugated across pronouns.
   assert.match(source, /pronoun: "ser", form: ser/);
@@ -51,4 +51,16 @@ test("saber/conocer chart scopes to the question's tense: past-meaning gets pret
   const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
   assert.match(source, /infinitive === "past meaning" \? \(\["preterite", "imperfect"\] as const\)/);
   assert.match(source, /: infinitive \? \(\["present"\] as const\)/);
+});
+
+test("reflexive verbs chart is one shared section with the pronouns, a full paradigm and placement", async () => {
+  const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
+  assert.match(source, /quizId === "reflexive-verbs" \|\| quizId === "present-perfect" \? \[""\]/);
+  assert.match(source, /quizId === "reflexive-verbs" \? REFLEXIVE_CHART : PRESENT_PERFECT_CHART\)\.map\(/);
+});
+
+test("present perfect chart is one shared section with haber, regular and irregular participles and word order", async () => {
+  const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
+  assert.match(source, /if \(quizId === "reflexive-verbs" \|\| quizId === "present-perfect"\) \{/);
+  assert.match(source, /import \{ PRESENT_PERFECT_CHART \} from "\.\/present-perfect-data"/);
 });

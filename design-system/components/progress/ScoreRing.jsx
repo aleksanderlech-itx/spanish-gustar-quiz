@@ -1,6 +1,6 @@
 import React from "react";
 
-/* Repo: .board-ring / .topic-summary-ring — conic primary over --line, surface disc, no border. */
+/* Repo: .board-ring / .topic-summary-ring; conic primary over --line, surface disc, no border. */
 export function ScoreRing({percent=0,size=56,style,...rest}){
   const p=Math.max(0,Math.min(100,Number(percent)||0));
   const big=size>=80;

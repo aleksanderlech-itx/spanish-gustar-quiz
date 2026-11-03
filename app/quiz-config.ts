@@ -4,10 +4,12 @@ import { SER_ESTAR_FORMS, SER_ESTAR_QUESTIONS } from "./ser-estar-data.ts";
 import { POR_PARA_FORMS, POR_PARA_QUESTIONS } from "./por-para-data.ts";
 import { OBJECT_PRONOUN_FORMS, OBJECT_PRONOUN_QUESTIONS } from "./object-pronouns-data.ts";
 import { SABER_CONOCER_FORMS, SABER_CONOCER_QUESTIONS } from "./saber-conocer-data.ts";
+import { REFLEXIVE_FORMS, REFLEXIVE_VERB_QUESTIONS } from "./reflexive-verbs-data.ts";
+import { PRESENT_PERFECT_FORMS, PRESENT_PERFECT_QUESTIONS } from "./present-perfect-data.ts";
 import { ruleForTense } from "./quiz-logic.ts";
 import type { Question } from "./quiz-data";
 
-export type QuizId = "gustar" | "ser-estar" | "preterite-imperfect" | "por-para" | "object-pronouns" | "saber-conocer";
+export type QuizId = "gustar" | "ser-estar" | "preterite-imperfect" | "por-para" | "object-pronouns" | "saber-conocer" | "reflexive-verbs" | "present-perfect";
 
 /** Each quiz's own crawlable URL, so every topic canonicalizes to itself instead of
  * every `?quiz=` variant resolving to the same root page. */
@@ -18,6 +20,8 @@ export const QUIZ_SLUGS: Record<QuizId, string> = {
   "por-para": "por-vs-para",
   "object-pronouns": "object-pronouns",
   "saber-conocer": "saber-vs-conocer",
+  "reflexive-verbs": "reflexive-verbs",
+  "present-perfect": "present-perfect",
 };
 
 export const quizPath = (quizId: QuizId): string => `/${QUIZ_SLUGS[quizId]}`;
@@ -37,7 +41,7 @@ type QuizConfigEntry = {
   sources: Array<{ label: string; href: string }>;
   rule: ReturnType<typeof ruleForTense>;
   /** Whether the blank shows the question's infinitive before it's answered.
-   * Defaults to true — set false only when the answer isn't a form of that
+   * Defaults to true: set false only when the answer isn't a form of that
    * single infinitive (e.g. gustar's answer is a pronoun + conjugated verb). */
   showInfinitiveBlank?: boolean;
   /** Label for the second filter, which matches each question's `infinitive`.
@@ -60,8 +64,8 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     eyebrow: "Gustar patterns",
     heading: "Build the sentence, prove the rule.",
     copy: "Practise Spanish verbs that work like gustar with short, original sentences.",
-    description: "Practise gustar and gustar-pattern verbs (encantar, interesar, molestar, doler and more) with 150 original Spanish sentences, instant explanations and audio.",
-    levelBand: "A1–B1",
+    description: "Practise gustar and gustar-pattern verbs (encantar, interesar, molestar, doler and more) with original Spanish sentences, instant explanations and audio.",
+    levelBand: "A1-B1",
     questions: ALL_QUESTIONS,
     forms: VERB_FORMS,
     storageKey: "gustar-quiz-progress-v1",
@@ -78,8 +82,8 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     eyebrow: "Ser vs estar",
     heading: "Name the state. Notice the frame.",
     copy: "Choose ser or estar through descriptions, locations, events and changing states.",
-    description: "Choose ser or estar through 150 sentences covering identity, description, location, events and changing states, with instant explanations for every answer.",
-    levelBand: "A1–B1",
+    description: "Choose ser or estar through about 150 sentences covering identity, description, location, events and changing states, with instant explanations for every answer.",
+    levelBand: "A1-B1",
     questions: SER_ESTAR_QUESTIONS,
     forms: SER_ESTAR_FORMS,
     storageKey: "ser-estar-quiz-progress-v1",
@@ -93,8 +97,8 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     eyebrow: "Preterite vs imperfect",
     heading: "Choose the past-tense frame.",
     copy: "Practise completed actions, repeated habits, background scenes and interruptions.",
-    description: "Practise preterite vs imperfect with 150 sentences covering completed actions, past habits, background scenes and interruptions, with an explanation for every answer.",
-    levelBand: "A2–B1",
+    description: "Practise preterite vs imperfect with about 150 sentences covering completed actions, past habits, background scenes and interruptions, with an explanation for every answer.",
+    levelBand: "A2-B1",
     questions: PRETERITE_IMPERFECT_QUESTIONS,
     forms: PRETERITE_IMPERFECT_FORMS,
     storageKey: "preterite-imperfect-quiz-progress-v1",
@@ -108,8 +112,8 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     eyebrow: "Por vs para",
     heading: "Name the reason. Name the goal.",
     copy: "Choose por or para through cause, duration, exchange, purpose, recipients and deadlines.",
-    description: "Choose por or para with 150 sentences covering cause, duration, exchange, means, purpose, recipients, deadlines and destinations, with an explanation for every answer.",
-    levelBand: "A2–B1",
+    description: "Choose por or para with about 150 sentences covering cause, duration, exchange, means, purpose, recipients, deadlines and destinations, with an explanation for every answer.",
+    levelBand: "A2-B1",
     questions: POR_PARA_QUESTIONS,
     forms: POR_PARA_FORMS,
     storageKey: "por-para-quiz-progress-v1",
@@ -123,8 +127,8 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     eyebrow: "Object pronouns",
     heading: "Replace the object. Keep the meaning.",
     copy: "Swap nouns for me, te, lo, la, le, nos, los, las, les and double pronouns like se lo.",
-    description: "Practise Spanish direct, indirect and double object pronouns with 150 sentences covering placement, attachment to gerunds and infinitives, and le turning into se, with an explanation for every answer.",
-    levelBand: "A2–B1",
+    description: "Practise Spanish direct, indirect and double object pronouns with about 150 sentences covering placement, attachment to gerunds and infinitives, and le turning into se, with an explanation for every answer.",
+    levelBand: "A2-B1",
     questions: OBJECT_PRONOUN_QUESTIONS,
     forms: OBJECT_PRONOUN_FORMS,
     storageKey: "object-pronouns-quiz-progress-v1",
@@ -143,8 +147,8 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     eyebrow: "Saber vs conocer",
     heading: "Know the fact. Know the face.",
     copy: "Choose saber or conocer for facts, skills, people, places and the past-tense shift to found out and met.",
-    description: "Choose saber or conocer with 150 sentences covering facts, skills, people, places, familiarity and the past-tense meanings supe (found out) and conocí (met), with an explanation for every answer.",
-    levelBand: "A1–B1",
+    description: "Choose saber or conocer with about 150 sentences covering facts, skills, people, places, familiarity and the past-tense meanings supe (found out) and conocí (met), with an explanation for every answer.",
+    levelBand: "A1-B1",
     questions: SABER_CONOCER_QUESTIONS,
     forms: SABER_CONOCER_FORMS,
     storageKey: "saber-conocer-quiz-progress-v1",
@@ -154,6 +158,44 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     rule: { title: "Saber knows facts and skills. Conocer knows people, places and things.", body: "Use saber for information, before que, si or a question word, and with an infinitive for skills. Use conocer for people (with the personal a), places and familiarity with a work or field. In the preterite, supe means found out and conocí means met.", singular: "Sé dónde vive Ana.", plural: "Conozco a Ana." },
     filterLabel: { label: "Usage", all: "All usages" },
     introducedOn: "2026-10-02",
+  },
+  "reflexive-verbs": {
+    title: "Reflexive Verbs Quiz",
+    eyebrow: "Reflexive verbs",
+    heading: "Find the subject. Mirror it back.",
+    copy: "Practise me, te, se, nos and os with everyday routines, feelings, movement and verbs whose meaning changes with se.",
+    description: "Practise Spanish reflexive verbs with about 150 sentences covering daily routines, movement, emotions, verbs like irse and acordarse whose meaning changes, pronoun placement with infinitives and gerunds, and idioms, with an explanation for every answer.",
+    levelBand: "A1-B1",
+    questions: REFLEXIVE_VERB_QUESTIONS,
+    forms: REFLEXIVE_FORMS,
+    storageKey: "reflexive-verbs-quiz-progress-v1",
+    filterKey: "reflexive-verbs-quiz-filters-v1",
+    backupName: "spanish-reflexive-verbs-quiz-progress.json",
+    sources: [],
+    rule: { title: "The pronoun mirrors the subject.", body: "When the subject does the action to itself, add me, te, se, nos or os to match it. Put the pronoun before a conjugated verb, or attach it to an infinitive or gerund. Some verbs change meaning with se: ir means go, irse means leave.", singular: "Yo me levanto a las siete.", plural: "Vamos a levantarnos temprano." },
+    filterLabel: { label: "Usage", all: "All usages" },
+    chartLabel: "Reflexive chart",
+    // Set to the production go-live day so the streak never requires this activity on earlier days.
+    introducedOn: "2026-10-16",
+  },
+  "present-perfect": {
+    title: "Present Perfect Quiz",
+    eyebrow: "Present perfect",
+    heading: "Haber first. Then the participle.",
+    copy: "Practise he, has, ha, hemos, habéis and han with regular and irregular participles in recent-past and life-experience sentences.",
+    description: "Practise the Spanish present perfect with about 150 sentences covering haber in every person, regular -ado and -ido participles, common irregular participles like hecho, dicho and visto, why tener never forms the perfect, and word order with pronouns and negatives, with an explanation for every answer.",
+    levelBand: "A2-B1",
+    questions: PRESENT_PERFECT_QUESTIONS,
+    forms: PRESENT_PERFECT_FORMS,
+    storageKey: "present-perfect-quiz-progress-v1",
+    filterKey: "present-perfect-quiz-filters-v1",
+    backupName: "spanish-present-perfect-quiz-progress.json",
+    sources: [],
+    rule: { title: "Haber plus the participle, never split.", body: "Conjugate haber in the present (he, has, ha, hemos, habéis, han) and add the participle: -ado for -ar verbs, -ido for -er and -ir verbs, or an irregular form like hecho, dicho or visto. The participle never changes, tener never replaces haber, and pronouns and no go before haber.", singular: "Hoy he comido paella.", plural: "¿Habéis visto la película?" },
+    filterLabel: { label: "Usage", all: "All usages" },
+    chartLabel: "Perfect chart",
+    // Set to the production go-live day so the streak never requires this activity on earlier days.
+    introducedOn: "2026-11-01",
   },
 };
 

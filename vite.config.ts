@@ -54,7 +54,7 @@ export default defineConfig(async () => {
     environments: {
       // Vite's default client build target (~Safari 14+) leaves optional
       // chaining and nullish coalescing untranspiled, which is a hard
-      // SyntaxError — and a blank page — on any older Safari (e.g. an
+      // SyntaxError, and a blank page, on any older Safari (e.g. an
       // iPhone 7 still on an iOS from before 13.4). Widen it to match this
       // app's own tsconfig target.
       client: {

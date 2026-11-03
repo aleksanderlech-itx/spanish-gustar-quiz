@@ -3,9 +3,9 @@ import { SITE_CONFIG } from "../site-config";
 import { QUIZ_CONTENT } from "../quiz-content";
 import QuizPage from "../quiz-page";
 
-const TITLE = "Spanish Object Pronouns Quiz — 150 Practice Sentences";
+const TITLE = "Spanish Object Pronouns Quiz - Free Practice";
 const DESCRIPTION =
-  "Practise Spanish direct, indirect and double object pronouns (lo, la, le, se lo) through 150 sentences covering placement, attachment to gerunds and infinitives, and le turning into se, with instant explanations for every answer.";
+  "Practise Spanish direct, indirect and double object pronouns (lo, la, le, se lo) through about 150 sentences covering placement, attachment to gerunds and infinitives, and le turning into se, with instant explanations for every answer.";
 
 export const metadata: Metadata = {
   title: TITLE,

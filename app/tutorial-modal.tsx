@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { shouldOfferTutorial, TUTORIAL_DISMISSED_KEY, TUTORIAL_OFFERED_KEY, TUTORIALS, TUTORIALS_HREF } from "./tutorials";
+import { appSessionStorage, appStorage } from "./storage";
 
 /** Welcome modal offered on the home board at every app open (once per browser
  * session) until the learner ticks "Don't show this again". Uses a native modal
@@ -12,9 +13,9 @@ export default function TutorialModal() {
   const poster = TUTORIALS[0].poster;
 
   useEffect(() => {
-    if (!shouldOfferTutorial(window.localStorage, window.sessionStorage)) return;
+    if (!shouldOfferTutorial(appStorage, appSessionStorage)) return;
     try {
-      window.sessionStorage.setItem(TUTORIAL_OFFERED_KEY, "1");
+      appSessionStorage.setItem(TUTORIAL_OFFERED_KEY, "1");
     } catch {
       // Session storage blocked; the modal may be offered again on the next visit to the board.
     }
@@ -26,8 +27,8 @@ export default function TutorialModal() {
   const onOptOutChange = (checked: boolean) => {
     setDontShowAgain(checked);
     try {
-      if (checked) window.localStorage.setItem(TUTORIAL_DISMISSED_KEY, "1");
-      else window.localStorage.removeItem(TUTORIAL_DISMISSED_KEY);
+      if (checked) appStorage.setItem(TUTORIAL_DISMISSED_KEY, "1");
+      else appStorage.removeItem(TUTORIAL_DISMISSED_KEY);
     } catch {
       // Storage blocked; the choice can't persist, and the session flag still stops a repeat this visit.
     }
