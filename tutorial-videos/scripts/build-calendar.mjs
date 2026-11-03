@@ -8,8 +8,8 @@ import { readFileSync, writeFileSync } from "node:fs";
 const md = readFileSync(new URL("../SOCIAL-POSTS.md", import.meta.url), "utf8");
 const MONTHS = { Oct: "10", Nov: "11", Dec: "12" };
 
-// "### Reel — Mon 19 Oct, 12:00 — `reflexive-verbs-reel.mp4`", then **Title:** and a ``` caption block.
-const heading = /^### (Reel|Feed post) — \w{3} (\d{1,2}) (\w{3}), (\d{2}):(\d{2}) — `([^`]+)`$/gm;
+// "### Reel, Mon 19 Oct, 12:00, `reflexive-verbs-reel.mp4`", then **Title:** and a ``` caption block.
+const heading = /^### (Reel|Feed post), \w{3} (\d{1,2}) (\w{3}), (\d{2}):(\d{2}), `([^`]+)`$/gm;
 const events = [];
 for (const m of md.matchAll(heading)) {
   const [, format, day, month, hh, mm, clip] = m;
