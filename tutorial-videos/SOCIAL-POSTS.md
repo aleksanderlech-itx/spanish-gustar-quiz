@@ -35,6 +35,7 @@ Rules:
   too.
 - Pin the comment answering the quiz question on the feed post a day after posting.
 - The clips are in `exports/activity-launch-videos.zip`.
+- `launch-posts.ics` holds the six posting slots, each with its caption and a reminder an hour before. Import it into Google Calendar. After changing a date or caption here, rebuild it with `node scripts/build-calendar.mjs`.
 
 ---
 
@@ -49,7 +50,7 @@ Rules:
 ```
 Me, te, se in 35 seconds. Can you fill the gap before the answer appears?
 
-New activity: 150 reflexive-verb sentences, free at spanish-quizz.es
+New activity: about 150 reflexive-verb sentences, free at spanish-quizz.es
 
 🎵 Music: "Old School Salsa 03" by vjgalaxy from Pixabay
 pixabay.com/music/salsa-old-school-salsa-03-499570/
@@ -73,7 +74,7 @@ llamar (to call) → llamarse (to be called)
 ir (to go) → irse (to leave)
 dormir (to sleep) → dormirse (to fall asleep)
 
-150 practice sentences in Choose or Type mode, each with an English translation and an explanation. Free, no sign-up.
+About 150 practice sentences in Choose or Type mode, each with an English translation and an explanation. Free, no sign-up.
 
 Practise now at spanish-quizz.es
 
@@ -98,7 +99,7 @@ pixabay.com/music/salsa-old-school-salsa-03-499570/
 ```
 He, has, ha + participle, and the six irregulars to learn by heart. Can you fill the gap before the answer appears?
 
-New activity: 150 present-perfect sentences, free at spanish-quizz.es
+New activity: about 150 present-perfect sentences, free at spanish-quizz.es
 
 🎵 Music: "Old School Salsa 03" by vjgalaxy from Pixabay
 pixabay.com/music/salsa-old-school-salsa-03-499570/
@@ -124,7 +125,7 @@ The irregular ones to learn: hecho, dicho, visto, escrito, vuelto, abierto.
 
 Two traps: the helper verb is always haber, never tener, and the participle never changes (ella ha comido).
 
-150 practice sentences in Choose or Type mode, each with an English translation and an explanation. Free, no sign-up.
+About 150 practice sentences in Choose or Type mode, each with an English translation and an explanation. Free, no sign-up.
 
 Practise now at spanish-quizz.es
 
@@ -149,7 +150,7 @@ pixabay.com/music/salsa-old-school-salsa-03-499570/
 ```
 Estoy, estás, está + -ando / -iendo, and where the pronoun goes. Can you fill the gap before the answer appears?
 
-New activity: 150 present-continuous sentences, free at spanish-quizz.es
+New activity: about 150 present-continuous sentences, free at spanish-quizz.es
 
 🎵 Music: "Old School Salsa 03" by vjgalaxy from Pixabay
 pixabay.com/music/salsa-old-school-salsa-03-499570/
@@ -175,7 +176,7 @@ The irregular ones to learn: leyendo, durmiendo, pidiendo, diciendo, yendo, oyen
 
 Pronouns go before estar or attach to the gerund, with an accent: lo estoy leyendo = estoy leyéndolo.
 
-150 practice sentences in Choose or Type mode, each with an English translation and an explanation. Free, no sign-up.
+About 150 practice sentences in Choose or Type mode, each with an English translation and an explanation. Free, no sign-up.
 
 Practise now at spanish-quizz.es
 
