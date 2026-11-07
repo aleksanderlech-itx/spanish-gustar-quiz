@@ -80,6 +80,7 @@ Project rules and decisions: `docs/decisions/README.md` in the repo. This plan c
 | 3.11 | T | Explanation after each answer | Shown, English, matches the sentence |
 | 3.12 | T | Present perfect: open the topic, filter by each usage group, play a round in Choose and in Type | Every group has questions. Choose shows two options. Type accepts the answer with accents (leído, habéis) |
 | 3.13 | T | Present perfect: open the perfect chart from the topic and during a question | One shared chart: haber in six persons, regular participles, irregular participles, word order. Title reads Present Perfect |
+| 3.14 | T | Por vs para: during a question, tap "Stuck? Open the usage examples", then close it | Two blocks, Por looks back (cause or motive, duration, exchange or price, means, movement through a place) and Para looks ahead (purpose, recipient, deadline, destination), one Spanish example sentence per usage, each plays audio. No "por / por" table. Title reads Por vs Para. The round in progress is not lost |
 
 ## 4. Mistake notebook and retry mode
 
