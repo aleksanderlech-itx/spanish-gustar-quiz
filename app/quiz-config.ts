@@ -217,7 +217,7 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     filterLabel: { label: "Usage", all: "All usages" },
     chartLabel: "Continuous chart",
     // Set to the production go-live day so the streak never requires this activity on earlier days.
-    introducedOn: "2026-11-16",
+    introducedOn: "2026-11-07",
   },
 };
 
