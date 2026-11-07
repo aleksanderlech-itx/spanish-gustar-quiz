@@ -206,3 +206,27 @@ export const POR_PARA_QUESTIONS: Question[] = seed.map(([before, after, answer, 
 export const POR_PARA_FORMS: Record<string, [string, string]> = {
   "por / para": ["por", "para"],
 };
+
+/** Reference tables for the in-round "Usage examples": one example sentence per usage,
+ * built from the sentences in the topic explainer so the overlay and the explainer agree. */
+export const POR_PARA_CHART: Array<{ title: string; rows: Array<{ label: string; form: string }> }> = [
+  {
+    title: "Por looks back",
+    rows: [
+      { label: "cause or motive", form: "Lo hice por amor." },
+      { label: "duration", form: "Estudié por dos horas." },
+      { label: "exchange or price", form: "Lo compré por veinte euros." },
+      { label: "means", form: "Te llamo por teléfono." },
+      { label: "movement through a place", form: "Caminamos por el parque." },
+    ],
+  },
+  {
+    title: "Para looks ahead",
+    rows: [
+      { label: "purpose", form: "Estudio para aprobar el examen." },
+      { label: "recipient", form: "Este regalo es para ti." },
+      { label: "deadline", form: "La tarea es para el lunes." },
+      { label: "destination", form: "Salimos para Madrid mañana." },
+    ],
+  },
+];

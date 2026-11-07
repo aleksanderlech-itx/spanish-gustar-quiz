@@ -8,6 +8,7 @@ import { OBJECT_PRONOUN_CHART, type ObjectPronounType } from "./object-pronouns-
 import { SABER_CONOCER_CONJUGATIONS } from "./saber-conocer-data";
 import { REFLEXIVE_CHART } from "./reflexive-verbs-data";
 import { PRESENT_PERFECT_CHART } from "./present-perfect-data";
+import { POR_PARA_CHART } from "./por-para-data";
 import { speak, speakQueue } from "./speak";
 
 type ChartRow = { pronoun: string; form: string };
@@ -57,8 +58,12 @@ const blocksFor = (quizId: QuizId, infinitive: string, forms: Record<string, [st
     }));
   }
   if (quizId === "por-para") {
-    const [por, para] = forms[infinitive] ?? ["por", "para"];
-    return [{ tenseLabel: "Preposition", accent: "primary", rows: [{ pronoun: "por", form: por }, { pronoun: "para", form: para }] }];
+    // Por and para don't conjugate: show one example sentence per usage instead of a table.
+    return POR_PARA_CHART.map((table, index) => ({
+      tenseLabel: table.title,
+      accent: index % 2 === 0 ? "primary" as const : "sun" as const,
+      rows: table.rows.map((row) => ({ pronoun: row.label, form: row.form })),
+    }));
   }
   const [singular, plural] = forms[infinitive] ?? ["", ""];
   return [{ tenseLabel: "Present", accent: "primary", rows: [{ pronoun: "one thing / to do something", form: singular }, { pronoun: "several things", form: plural }] }];
@@ -72,8 +77,8 @@ export default function VerbChart({ quizId, infinitive, onClose }: { quizId: Qui
   const quiz = QUIZ_CONFIG[quizId];
   // Saber vs conocer's "forms" are usage categories, not verbs: the topic-level chart is one
   // section with both full paradigms rather than a repeat of them under every usage.
-  // Reflexive verbs' and present perfect's groups share one chart, so those topics always render a single section.
-  const infinitives = quizId === "reflexive-verbs" || quizId === "present-perfect" ? [""] : infinitive && quiz.forms[infinitive] ? [infinitive] : quizId === "saber-conocer" ? [""] : Object.keys(quiz.forms);
+  // Reflexive verbs', present perfect's and por vs para's groups share one chart, so those topics always render a single section.
+  const infinitives = quizId === "reflexive-verbs" || quizId === "present-perfect" || quizId === "por-para" ? [""] : infinitive && quiz.forms[infinitive] ? [infinitive] : quizId === "saber-conocer" ? [""] : Object.keys(quiz.forms);
   const [speakingKey, setSpeakingKey] = useState<string | null>(null);
 
   const speakRow = (key: string, text: string) => {

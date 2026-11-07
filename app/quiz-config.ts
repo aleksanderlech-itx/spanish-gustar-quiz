@@ -120,6 +120,7 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     filterKey: "por-para-quiz-filters-v1",
     backupName: "spanish-por-para-quiz-progress.json",
     sources: [],
+    chartLabel: "Usage examples",
     rule: { title: "Por looks back to the cause. Para looks ahead to the goal.", body: "Use por for cause, duration, exchange, means and movement through a place. Use para for purpose, recipients, deadlines and destinations.", singular: "Lo hice por ti.", plural: "Lo hice para ti." },
   },
   "object-pronouns": {

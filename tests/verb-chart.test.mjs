@@ -3,6 +3,8 @@ import test from "node:test";
 import { readFile } from "node:fs/promises";
 import { PRETERITE_IMPERFECT_CONJUGATIONS, PRETERITE_IMPERFECT_REGULARITY } from "../app/preterite-imperfect-data.ts";
 import { SABER_CONOCER_CONJUGATIONS } from "../app/saber-conocer-data.ts";
+import { POR_PARA_CHART } from "../app/por-para-data.ts";
+import { QUIZ_CONFIG } from "../app/quiz-config.ts";
 
 test("verb chart never fabricates a six-pronoun paradigm where the data doesn't have one", async () => {
   const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
@@ -55,7 +57,7 @@ test("saber/conocer chart scopes to the question's tense: past-meaning gets pret
 
 test("reflexive verbs chart is one shared section with the pronouns, a full paradigm and placement", async () => {
   const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
-  assert.match(source, /quizId === "reflexive-verbs" \|\| quizId === "present-perfect" \? \[""\]/);
+  assert.match(source, /quizId === "reflexive-verbs" \|\| quizId === "present-perfect" \|\| quizId === "por-para" \? \[""\]/);
   assert.match(source, /quizId === "reflexive-verbs" \? REFLEXIVE_CHART : PRESENT_PERFECT_CHART\)\.map\(/);
 });
 
@@ -63,4 +65,18 @@ test("present perfect chart is one shared section with haber, regular and irregu
   const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
   assert.match(source, /if \(quizId === "reflexive-verbs" \|\| quizId === "present-perfect"\) \{/);
   assert.match(source, /import \{ PRESENT_PERFECT_CHART \} from "\.\/present-perfect-data"/);
+});
+
+test("por vs para shows usage examples, one sentence per usage, instead of a conjugation table", async () => {
+  const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
+  assert.match(source, /return POR_PARA_CHART\.map\(/);
+  assert.match(source, /quizId === "present-perfect" \|\| quizId === "por-para" \? \[""\]/);
+  assert.equal(QUIZ_CONFIG["por-para"].chartLabel, "Usage examples");
+  assert.deepEqual(POR_PARA_CHART.map((table) => table.title), ["Por looks back", "Para looks ahead"]);
+  for (const [index, word] of [[0, "por"], [1, "para"]]) {
+    for (const row of POR_PARA_CHART[index].rows) {
+      assert.match(row.form, new RegExp(`\\b${word}\\b`), `${row.label} example must use ${word}`);
+      assert.doesNotMatch(row.form, new RegExp(`\\b${word === "por" ? "para" : "por"}\\b`), `${row.label} example must not use the other word`);
+    }
+  }
 });
