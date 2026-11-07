@@ -1,8 +1,8 @@
 # Manual Test Plan: Spanish Quizzes
 
-Last updated: 2026-11-01. Target: production (https://spanish-quizz.es). Testing there is harmless: progress lives only in the tester's own browser, and test mode (`?test=1`) is isolated from real data.
+Last updated: 2026-11-07. Target: production (https://spanish-quizz.es). Testing there is harmless: progress lives only in the tester's own browser, and test mode (`?test=1`) is isolated from real data.
 
-Project rules and decisions: `docs/decisions/README.md` in the repo. This plan covers the app as of main at PR #130, including test mode (PR #121), the mistake notebook with retry mode (PR #124), reflexive verbs, the present perfect (#69), the daily goal and day-complete dialog, and Notes for every activity.
+Project rules and decisions: `docs/decisions/README.md` in the repo. This plan covers the app as of main at PR #130, including test mode (PR #121), the mistake notebook with retry mode (PR #124), reflexive verbs, the present perfect (#69), the present continuous (#70), the daily goal and day-complete dialog, and Notes for every activity.
 
 ## Handover for the tester
 
@@ -81,6 +81,9 @@ Project rules and decisions: `docs/decisions/README.md` in the repo. This plan c
 | 3.12 | T | Present perfect: open the topic, filter by each usage group, play a round in Choose and in Type | Every group has questions. Choose shows two options. Type accepts the answer with accents (leído, habéis) |
 | 3.13 | T | Present perfect: open the perfect chart from the topic and during a question | One shared chart: haber in six persons, regular participles, irregular participles, word order. Title reads Present Perfect |
 | 3.14 | T | Por vs para: during a question, tap "Stuck? Open the usage examples", then close it | Two blocks, Por looks back (cause or motive, duration, exchange or price, means, movement through a place) and Para looks ahead (purpose, recipient, deadline, destination), one Spanish example sentence per usage, each plays audio. No "por / por" table. Title reads Por vs Para. The round in progress is not lost |
+| 3.15 | T | Present continuous: open the topic, filter by each usage group, play a round in Choose and in Type | Every group has questions. Choose shows two options. Type accepts the answer with accents (estáis, leyéndolo) |
+| 3.16 | T | Present continuous: open the continuous chart from the topic and during a question | One shared chart: estar in six persons, regular gerunds, irregular gerunds, pronouns. Title reads Present Continuous |
+| 3.17 | T | Present continuous with `?test=1`: finish a round using only the hints, then open the topic in a new tab without the parameter | The correct option is highlighted (Choose) or prefilled (Type). Real progress for the topic is unchanged |
 
 ## 4. Mistake notebook and retry mode
 

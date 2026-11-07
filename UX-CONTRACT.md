@@ -46,7 +46,9 @@ This contract records the observable behavior shared by the grammar quizzes and 
   of levantarse, and where the pronoun goes (before a conjugated verb, or attached to an infinitive or
   gerund). The present perfect also gets one shared chart for every group: haber in all six persons,
   regular participle endings, the common irregular participles, and word order (pronouns, no, ya and
-  nunca before haber, never between haber and the participle). A
+  nunca before haber, never between haber and the participle). The present continuous gets one
+  shared chart too: estar in all six persons, regular -ando and -iendo gerunds, the common irregular
+  gerunds, and where pronouns go (before estar, or attached to the gerund with an accent). A
   regularity badge ("regular" / "irregular" / "spelling change") shows only for preterite/imperfect
   verbs (`PRETERITE_IMPERFECT_REGULARITY` in `app/preterite-imperfect-data.ts`), scoped strictly to
   that verb's behavior in those two tenses specifically: a verb irregular elsewhere (e.g. salir's
