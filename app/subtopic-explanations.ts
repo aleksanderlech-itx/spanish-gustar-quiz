@@ -62,6 +62,14 @@ export function subtopicExplanation(quizId: QuizId, question: Question): string 
       };
       return `${cue} ${rule[question.infinitive] ?? "sets the perfect: the present of haber that matches the subject, then the participle."}`;
     }
+    case "present-continuous": {
+      const rule: Record<string, string> = {
+        "irregular gerund": "sets an action in progress, and this verb has an irregular gerund: e to i, o to u, or y.",
+        "pronoun placement": "decides where the pronoun goes: before estar, or attached to the gerund with an accent, never both.",
+        "gerund or infinitive": "decides the form: estar plus the gerund for an action in progress, the infinitive after a preposition or as a noun.",
+      };
+      return `${cue} ${rule[question.infinitive] ?? "sets an action in progress: the present of estar that matches the subject, then the gerund."}`;
+    }
   }
 }
 

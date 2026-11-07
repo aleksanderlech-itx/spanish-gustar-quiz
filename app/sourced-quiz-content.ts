@@ -4804,6 +4804,606 @@ export const SOURCED_QUIZ_PAIRS: Record<number, SourcedPair> = {
   "8150": {
     "spanish": "Hoy no me he sentido bien.",
     "english": "Today I haven't felt well."
+  },
+  "9001": {
+    "spanish": "Ahora mismo yo estoy preparando la cena para todos.",
+    "english": "Right now I am making dinner for everyone."
+  },
+  "9002": {
+    "spanish": "¿Con quién estás hablando tú por teléfono?",
+    "english": "Who are you talking to on the phone?"
+  },
+  "9003": {
+    "spanish": "Mi hermana está trabajando en el jardín en este momento.",
+    "english": "My sister is working in the garden at the moment."
+  },
+  "9004": {
+    "spanish": "Nosotros estamos escuchando la radio en la cocina.",
+    "english": "We are listening to the radio in the kitchen."
+  },
+  "9005": {
+    "spanish": "¿Vosotros estáis estudiando para el examen de mañana?",
+    "english": "Are you all studying for tomorrow's exam?"
+  },
+  "9006": {
+    "spanish": "Los niños están nadando en la piscina ahora.",
+    "english": "The children are swimming in the pool now."
+  },
+  "9007": {
+    "spanish": "Ustedes están caminando demasiado rápido por esta calle.",
+    "english": "You are walking too fast along this street."
+  },
+  "9008": {
+    "spanish": "Perdone, ¿usted está esperando a alguien?",
+    "english": "Excuse me, are you waiting for someone?"
+  },
+  "9009": {
+    "spanish": "Yo estoy enseñando inglés a un grupo de adultos este mes.",
+    "english": "I am teaching English to a group of adults this month."
+  },
+  "9010": {
+    "spanish": "Mira, el bebé está llorando otra vez.",
+    "english": "Look, the baby is crying again."
+  },
+  "9011": {
+    "spanish": "Tú estás cantando muy bien esta canción.",
+    "english": "You are singing this song very well."
+  },
+  "9012": {
+    "spanish": "Mis padres están pintando el salón este fin de semana.",
+    "english": "My parents are painting the living room this weekend."
+  },
+  "9013": {
+    "spanish": "Nosotras estamos planeando un viaje a Portugal.",
+    "english": "We are planning a trip to Portugal."
+  },
+  "9014": {
+    "spanish": "¿Qué estás buscando tú en el ordenador?",
+    "english": "What are you looking for on the computer?"
+  },
+  "9015": {
+    "spanish": "El camarero está limpiando la mesa de la terraza.",
+    "english": "The waiter is cleaning the table on the terrace."
+  },
+  "9016": {
+    "spanish": "Vosotras estáis jugando muy bien en este partido.",
+    "english": "You all are playing very well in this match."
+  },
+  "9017": {
+    "spanish": "Últimamente yo estoy montando mucho en bicicleta.",
+    "english": "Lately I have been riding my bike a lot."
+  },
+  "9018": {
+    "spanish": "Ahora los estudiantes están revisando sus respuestas.",
+    "english": "Now the students are checking their answers."
+  },
+  "9019": {
+    "spanish": "¿Ustedes están descansando bien en el hotel?",
+    "english": "Are you resting well at the hotel?"
+  },
+  "9020": {
+    "spanish": "Mi abuelo está regando las plantas del balcón.",
+    "english": "My grandfather is watering the plants on the balcony."
+  },
+  "9021": {
+    "spanish": "Yo estoy paseando con mis amigos por el parque.",
+    "english": "I am taking a walk with my friends in the park."
+  },
+  "9022": {
+    "spanish": "Esta semana nosotros estamos trabajando en un proyecto nuevo.",
+    "english": "This week we are working on a new project."
+  },
+  "9023": {
+    "spanish": "¡Silencio! El profesor está explicando la lección.",
+    "english": "Quiet! The teacher is explaining the lesson."
+  },
+  "9024": {
+    "spanish": "Las chicas están bailando salsa en la plaza.",
+    "english": "The girls are dancing salsa in the square."
+  },
+  "9025": {
+    "spanish": "¿Tú estás mirando la tele o puedo apagarla?",
+    "english": "Are you watching the TV or can I turn it off?"
+  },
+  "9026": {
+    "spanish": "El avión está aterrizando en este momento.",
+    "english": "The plane is landing at the moment."
+  },
+  "9027": {
+    "spanish": "Vosotros estáis organizando la mudanza muy bien.",
+    "english": "You all are organising the move very well."
+  },
+  "9028": {
+    "spanish": "La gente está esperando en la calle para ver el desfile.",
+    "english": "People are waiting in the street to see the parade."
+  },
+  "9029": {
+    "spanish": "¿Usted está pagando la cuenta con tarjeta?",
+    "english": "Are you paying the bill by card?"
+  },
+  "9030": {
+    "spanish": "Mi familia y yo estamos disfrutando mucho de estas vacaciones.",
+    "english": "My family and I are really enjoying this holiday."
+  },
+  "9031": {
+    "spanish": "Ahora mismo yo estoy escribiendo un correo a mi jefa.",
+    "english": "Right now I am writing an email to my boss."
+  },
+  "9032": {
+    "spanish": "¿Qué estás comiendo tú? Huele muy bien.",
+    "english": "What are you eating? It smells very good."
+  },
+  "9033": {
+    "spanish": "Mi hermano está viviendo en Berlín este año.",
+    "english": "My brother is living in Berlin this year."
+  },
+  "9034": {
+    "spanish": "Nosotros estamos aprendiendo mucho vocabulario nuevo.",
+    "english": "We are learning a lot of new vocabulary."
+  },
+  "9035": {
+    "spanish": "Los corredores están corriendo por el centro de la ciudad.",
+    "english": "The runners are running through the city centre."
+  },
+  "9036": {
+    "spanish": "¿Vosotros estáis haciendo los deberes ahora?",
+    "english": "Are you all doing your homework now?"
+  },
+  "9037": {
+    "spanish": "Shh, los niños están viendo una película.",
+    "english": "Shh, the children are watching a film."
+  },
+  "9038": {
+    "spanish": "Mira por la ventana: está lloviendo mucho.",
+    "english": "Look out of the window: it is raining a lot."
+  },
+  "9039": {
+    "spanish": "Usted está bebiendo demasiado café, señor.",
+    "english": "You are drinking too much coffee, sir."
+  },
+  "9040": {
+    "spanish": "Ustedes están abriendo la tienda muy temprano hoy.",
+    "english": "You are opening the shop very early today."
+  },
+  "9041": {
+    "spanish": "Yo estoy saliendo de casa ahora mismo, te llamo luego.",
+    "english": "I am leaving home right now, I'll call you later."
+  },
+  "9042": {
+    "spanish": "Mi padre está poniendo la mesa para la cena.",
+    "english": "My father is setting the table for dinner."
+  },
+  "9043": {
+    "spanish": "Tú estás subiendo fotos de todo el viaje.",
+    "english": "You are uploading photos of the whole trip."
+  },
+  "9044": {
+    "spanish": "El equipo está perdiendo el partido por dos goles.",
+    "english": "The team is losing the match by two goals."
+  },
+  "9045": {
+    "spanish": "Nosotras estamos compartiendo un piso con dos amigas.",
+    "english": "We are sharing a flat with two friends."
+  },
+  "9046": {
+    "spanish": "Vosotras estáis recibiendo muchos mensajes hoy.",
+    "english": "You all are getting a lot of messages today."
+  },
+  "9047": {
+    "spanish": "Mis tíos están vendiendo su coche viejo.",
+    "english": "My aunt and uncle are selling their old car."
+  },
+  "9048": {
+    "spanish": "Yo no estoy entendiendo nada de lo que dice.",
+    "english": "I am not understanding anything he is saying."
+  },
+  "9049": {
+    "spanish": "La abuela está encendiendo las luces del salón.",
+    "english": "Grandma is turning on the lights in the living room."
+  },
+  "9050": {
+    "spanish": "¿Ustedes están escogiendo el postre?",
+    "english": "Are you choosing dessert?"
+  },
+  "9051": {
+    "spanish": "El paciente está sufriendo mucho dolor hoy.",
+    "english": "The patient is in a lot of pain today."
+  },
+  "9052": {
+    "spanish": "Los chicos están discutiendo sobre fútbol otra vez.",
+    "english": "The boys are arguing about football again."
+  },
+  "9053": {
+    "spanish": "Yo estoy barriendo la cocina después de la cena.",
+    "english": "I am sweeping the kitchen after dinner."
+  },
+  "9054": {
+    "spanish": "Todo el mundo está viendo la final en la tele.",
+    "english": "Everyone is watching the final on TV."
+  },
+  "9055": {
+    "spanish": "Mi amiga y yo estamos escribiendo una novela juntas.",
+    "english": "My friend and I are writing a novel together."
+  },
+  "9056": {
+    "spanish": "¿Tú estás cosiendo un vestido para la boda?",
+    "english": "Are you sewing a dress for the wedding?"
+  },
+  "9057": {
+    "spanish": "El profesor está resolviendo el problema en la pizarra.",
+    "english": "The teacher is solving the problem on the board."
+  },
+  "9058": {
+    "spanish": "Vosotros estáis decidiendo adónde ir de vacaciones.",
+    "english": "You all are deciding where to go on holiday."
+  },
+  "9059": {
+    "spanish": "La testigo está describiendo al ladrón a la policía.",
+    "english": "The witness is describing the thief to the police."
+  },
+  "9060": {
+    "spanish": "Mi perro está escondiendo un hueso en el jardín.",
+    "english": "My dog is hiding a bone in the garden."
+  },
+  "9061": {
+    "spanish": "Ahora mismo yo estoy leyendo el periódico.",
+    "english": "Right now I am reading the newspaper."
+  },
+  "9062": {
+    "spanish": "¿Qué estás diciendo tú? No te oigo bien.",
+    "english": "What are you saying? I can't hear you well."
+  },
+  "9063": {
+    "spanish": "El bebé está durmiendo en su cuna.",
+    "english": "The baby is sleeping in his cot."
+  },
+  "9064": {
+    "spanish": "Nosotros estamos pidiendo una pizza por teléfono.",
+    "english": "We are ordering a pizza by phone."
+  },
+  "9065": {
+    "spanish": "Los camareros están sirviendo la comida ahora.",
+    "english": "The waiters are serving the food now."
+  },
+  "9066": {
+    "spanish": "¿Vosotros estáis oyendo ese ruido?",
+    "english": "Can you all hear that noise?"
+  },
+  "9067": {
+    "spanish": "Mi madre está friendo patatas para la tortilla.",
+    "english": "My mother is frying potatoes for the omelette."
+  },
+  "9068": {
+    "spanish": "¿De qué estás riendo tú? ¿Qué es tan gracioso?",
+    "english": "What are you laughing at? What's so funny?"
+  },
+  "9069": {
+    "spanish": "Ustedes están repitiendo las mismas preguntas una y otra vez.",
+    "english": "You are repeating the same questions over and over."
+  },
+  "9070": {
+    "spanish": "Usted está siguiendo las instrucciones muy bien.",
+    "english": "You are following the instructions very well."
+  },
+  "9071": {
+    "spanish": "Ya estoy yendo para allá, llego en diez minutos.",
+    "english": "I'm on my way there already, I'll arrive in ten minutes."
+  },
+  "9072": {
+    "spanish": "Los obreros están construyendo un puente nuevo sobre el río.",
+    "english": "The workers are building a new bridge over the river."
+  },
+  "9073": {
+    "spanish": "Mira, las hojas están cayendo de los árboles.",
+    "english": "Look, the leaves are falling from the trees."
+  },
+  "9074": {
+    "spanish": "Mi hijo está consiguiendo muy buenas notas este trimestre.",
+    "english": "My son is getting very good marks this term."
+  },
+  "9075": {
+    "spanish": "La profesora está corrigiendo los exámenes en su despacho.",
+    "english": "The teacher is marking the exams in her office."
+  },
+  "9076": {
+    "spanish": "Cuidado, el agua está hirviendo en la olla.",
+    "english": "Careful, the water is boiling in the pot."
+  },
+  "9077": {
+    "spanish": "Tú me estás mintiendo otra vez, lo sé.",
+    "english": "You are lying to me again, I know it."
+  },
+  "9078": {
+    "spanish": "Los atletas están compitiendo por la medalla de oro.",
+    "english": "The athletes are competing for the gold medal."
+  },
+  "9079": {
+    "spanish": "Vosotras estáis eligiendo el regalo para Marta.",
+    "english": "You all are choosing the present for Marta."
+  },
+  "9080": {
+    "spanish": "Mis amigos me están trayendo un recuerdo de México.",
+    "english": "My friends are bringing me a souvenir from Mexico."
+  },
+  "9081": {
+    "spanish": "Yo estoy sintiendo mucho frío en esta casa.",
+    "english": "I am feeling very cold in this house."
+  },
+  "9082": {
+    "spanish": "El ladrón está huyendo de la policía por los tejados.",
+    "english": "The thief is fleeing from the police across the rooftops."
+  },
+  "9083": {
+    "spanish": "Los gatos están durmiendo al sol.",
+    "english": "The cats are sleeping in the sun."
+  },
+  "9084": {
+    "spanish": "Las plantas están muriendo por falta de agua.",
+    "english": "The plants are dying from lack of water."
+  },
+  "9085": {
+    "spanish": "¿Usted está oyendo bien lo que digo?",
+    "english": "Can you hear what I'm saying properly?"
+  },
+  "9086": {
+    "spanish": "Nosotros estamos siguiendo el río hasta el pueblo.",
+    "english": "We are following the river to the village."
+  },
+  "9087": {
+    "spanish": "La tormenta está destruyendo muchos árboles del parque.",
+    "english": "The storm is destroying a lot of trees in the park."
+  },
+  "9088": {
+    "spanish": "La enfermera está midiendo la temperatura a los pacientes.",
+    "english": "The nurse is taking the patients' temperature."
+  },
+  "9089": {
+    "spanish": "¿Qué estáis leyendo vosotros en el club de lectura?",
+    "english": "What are you all reading in the book club?"
+  },
+  "9090": {
+    "spanish": "El jefe está despidiendo a varios empleados.",
+    "english": "The boss is firing several employees."
+  },
+  "9091": {
+    "spanish": "¿El periódico? Estoy leyéndolo en el sofá.",
+    "english": "The newspaper? I am reading it on the sofa."
+  },
+  "9092": {
+    "spanish": "¿La carta? Mi madre está escribiéndola en la cocina.",
+    "english": "The letter? My mother is writing it in the kitchen."
+  },
+  "9093": {
+    "spanish": "Ahora mismo estoy duchándome con agua fría.",
+    "english": "Right now I am having a shower with cold water."
+  },
+  "9094": {
+    "spanish": "Los niños están vistiéndose para ir al colegio.",
+    "english": "The children are getting dressed for school."
+  },
+  "9095": {
+    "spanish": "¿Las fotos? Estamos mirándolas ahora.",
+    "english": "The photos? We are looking at them now."
+  },
+  "9096": {
+    "spanish": "¿Tu coche? Mi hermano está arreglándolo en el garaje.",
+    "english": "Your car? My brother is fixing it in the garage."
+  },
+  "9097": {
+    "spanish": "Ana, ¿estás divirtiéndote en la fiesta?",
+    "english": "Ana, are you having fun at the party?"
+  },
+  "9098": {
+    "spanish": "¿El regalo? Estoy dándoselo a mi hermana ahora.",
+    "english": "The present? I am giving it to my sister now."
+  },
+  "9099": {
+    "spanish": "¿La verdad? El testigo está diciéndosela al juez.",
+    "english": "The truth? The witness is telling it to the judge."
+  },
+  "9100": {
+    "spanish": "Mis padres están relajándose en el sofá.",
+    "english": "My parents are relaxing on the sofa."
+  },
+  "9101": {
+    "spanish": "¿Los platos? Vosotros estáis lavándolos muy rápido.",
+    "english": "The dishes? You all are washing them very fast."
+  },
+  "9102": {
+    "spanish": "¿La cena? Estamos preparándola para todos.",
+    "english": "Dinner? We are making it for everyone."
+  },
+  "9103": {
+    "spanish": "¿Las instrucciones? Ustedes están leyéndolas con mucha atención.",
+    "english": "The instructions? You are reading them very carefully."
+  },
+  "9104": {
+    "spanish": "El perro está secándose al sol en la terraza.",
+    "english": "The dog is drying off in the sun on the terrace."
+  },
+  "9105": {
+    "spanish": "¿El problema? La profesora está explicándoselo a los alumnos paso a paso.",
+    "english": "The problem? The teacher is explaining it to the students step by step."
+  },
+  "9106": {
+    "spanish": "¿El libro? Yo lo estoy leyendo ahora mismo.",
+    "english": "The book? I'm reading it right now."
+  },
+  "9107": {
+    "spanish": "Mi hermana se está secando el pelo en el baño.",
+    "english": "My sister is drying her hair in the bathroom."
+  },
+  "9108": {
+    "spanish": "¿Las llaves? Nosotros las estamos buscando por toda la casa.",
+    "english": "The keys? We are looking for them all over the house."
+  },
+  "9109": {
+    "spanish": "Tranquila, yo te estoy escuchando con atención.",
+    "english": "Don't worry, I am listening to you carefully."
+  },
+  "9110": {
+    "spanish": "¿La película? Los niños la están viendo en el salón.",
+    "english": "The film? The children are watching it in the living room."
+  },
+  "9111": {
+    "spanish": "Vosotros os estáis divirtiendo muchísimo en la fiesta, ¿verdad?",
+    "english": "You all are having a great time at the party, aren't you?"
+  },
+  "9112": {
+    "spanish": "¿Usted me está oyendo bien desde ahí?",
+    "english": "Can you hear me properly from there?"
+  },
+  "9113": {
+    "spanish": "Yo me estoy preparando para la entrevista de trabajo.",
+    "english": "I am getting ready for the job interview."
+  },
+  "9114": {
+    "spanish": "¿El informe? Mi jefe me lo está pidiendo ahora mismo.",
+    "english": "The report? My boss is asking me for it right now."
+  },
+  "9115": {
+    "spanish": "Tú se lo estás contando a todo el mundo.",
+    "english": "You are telling it to everyone."
+  },
+  "9116": {
+    "spanish": "Los invitados se están despidiendo ya.",
+    "english": "The guests are saying goodbye now."
+  },
+  "9117": {
+    "spanish": "¿La casa? Mis abuelos la están vendiendo este año.",
+    "english": "The house? My grandparents are selling it this year."
+  },
+  "9118": {
+    "spanish": "Ustedes se están quejando mucho con este calor.",
+    "english": "You are complaining a lot in this heat."
+  },
+  "9119": {
+    "spanish": "Nosotras nos estamos arreglando para salir.",
+    "english": "We are getting ready to go out."
+  },
+  "9120": {
+    "spanish": "¿Los deberes? Tú los estás haciendo sin ganas.",
+    "english": "Your homework? You are doing it half-heartedly."
+  },
+  "9121": {
+    "spanish": "Me encanta nadar en el mar en verano.",
+    "english": "I love swimming in the sea in summer."
+  },
+  "9122": {
+    "spanish": "Para mí, correr es el mejor ejercicio.",
+    "english": "For me, running is the best exercise."
+  },
+  "9123": {
+    "spanish": "Antes de comer, me lavo las manos.",
+    "english": "Before eating, I wash my hands."
+  },
+  "9124": {
+    "spanish": "Estoy cansado de esperar el autobús cada mañana.",
+    "english": "I'm tired of waiting for the bus every morning."
+  },
+  "9125": {
+    "spanish": "Aquí está prohibido fumar.",
+    "english": "Smoking is not allowed here."
+  },
+  "9126": {
+    "spanish": "Después de cenar, vamos a dar un paseo.",
+    "english": "After having dinner, we are going for a walk."
+  },
+  "9127": {
+    "spanish": "Mi hermano odia levantarse temprano los domingos.",
+    "english": "My brother hates getting up early on Sundays."
+  },
+  "9128": {
+    "spanish": "Gracias por venir a la fiesta.",
+    "english": "Thank you for coming to the party."
+  },
+  "9129": {
+    "spanish": "Estamos pensando en comprar un coche nuevo.",
+    "english": "We are thinking about buying a new car."
+  },
+  "9130": {
+    "spanish": "Sin decir nada, se fue de la reunión.",
+    "english": "Without saying anything, he left the meeting."
+  },
+  "9131": {
+    "spanish": "Lo que más me gusta es viajar con mis amigos.",
+    "english": "What I like most is travelling with my friends."
+  },
+  "9132": {
+    "spanish": "Quiero aprender a tocar la guitarra este año.",
+    "english": "I want to learn to play the guitar this year."
+  },
+  "9133": {
+    "spanish": "Mis padres van a pintar la cocina este verano.",
+    "english": "My parents are going to paint the kitchen this summer."
+  },
+  "9134": {
+    "spanish": "¡Deja de hablar y escúchame!",
+    "english": "Stop talking and listen to me!"
+  },
+  "9135": {
+    "spanish": "Tengo que terminar el informe antes del viernes.",
+    "english": "I have to finish the report before Friday."
+  },
+  "9136": {
+    "spanish": "Ahora mismo yo estoy nadando en el mar.",
+    "english": "Right now I am swimming in the sea."
+  },
+  "9137": {
+    "spanish": "Mira, Pablo está corriendo por la playa.",
+    "english": "Look, Pablo is running along the beach."
+  },
+  "9138": {
+    "spanish": "Nosotros estamos comiendo ahora, ¿te llamo luego?",
+    "english": "We are eating now, shall I call you later?"
+  },
+  "9139": {
+    "spanish": "Shh, los vecinos están durmiendo la siesta.",
+    "english": "Shh, the neighbours are having a nap."
+  },
+  "9140": {
+    "spanish": "¿Vosotros estáis esperando el autobús o el tren?",
+    "english": "Are you all waiting for the bus or the train?"
+  },
+  "9141": {
+    "spanish": "Ella está aprendiendo a tocar la guitarra este año.",
+    "english": "She is learning to play the guitar this year."
+  },
+  "9142": {
+    "spanish": "¿Qué estás haciendo tú en este momento?",
+    "english": "What are you doing at the moment?"
+  },
+  "9143": {
+    "spanish": "Mis amigos están viajando por Asia este verano.",
+    "english": "My friends are travelling around Asia this summer."
+  },
+  "9144": {
+    "spanish": "Ustedes están hablando demasiado alto.",
+    "english": "You are talking too loudly."
+  },
+  "9145": {
+    "spanish": "Usted está terminando el informe ahora, ¿verdad?",
+    "english": "You are finishing the report now, aren't you?"
+  },
+  "9146": {
+    "spanish": "Ahora mi hermano está pintando la habitación.",
+    "english": "Now my brother is painting the bedroom."
+  },
+  "9147": {
+    "spanish": "Yo estoy visitando a mis abuelos esta semana.",
+    "english": "I am visiting my grandparents this week."
+  },
+  "9148": {
+    "spanish": "Nosotras estamos buscando un piso nuevo en el centro.",
+    "english": "We are looking for a new flat in the centre."
+  },
+  "9149": {
+    "spanish": "Tú estás leyendo mucho últimamente.",
+    "english": "You are reading a lot lately."
+  },
+  "9150": {
+    "spanish": "Vosotros estáis preparando la cena en la cocina.",
+    "english": "You all are making dinner in the kitchen."
   }
 };
 

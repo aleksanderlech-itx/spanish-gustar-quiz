@@ -3,13 +3,14 @@ import { OBJECT_PRONOUN_TYPES } from "./object-pronouns-data";
 import { SABER_CONOCER_USAGES } from "./saber-conocer-data";
 import { REFLEXIVE_USAGES } from "./reflexive-verbs-data";
 import { PRESENT_PERFECT_GROUPS } from "./present-perfect-data";
+import { PRESENT_CONTINUOUS_GROUPS } from "./present-continuous-data";
 
 export const shuffle = <T,>(items: T[]) => [...items].sort(() => Math.random() - 0.5);
 const PRONOUNS = ["me", "te", "le", "nos", "les"];
 
 /** Up to 3 options: the correct answer plus distractors drawn from the quiz's own verb forms/pronouns. */
 export const answerChoicesFor = (question: Question, forms: Record<string, [string, string]>) => {
-  if (question.infinitive === "ser / estar" || question.infinitive === "por / para" || (OBJECT_PRONOUN_TYPES as readonly string[]).includes(question.infinitive) || (SABER_CONOCER_USAGES as readonly string[]).includes(question.infinitive) || (REFLEXIVE_USAGES as readonly string[]).includes(question.infinitive) || (PRESENT_PERFECT_GROUPS as readonly string[]).includes(question.infinitive) || question.tense === "preterite" || question.tense === "imperfect") {
+  if (question.infinitive === "ser / estar" || question.infinitive === "por / para" || (OBJECT_PRONOUN_TYPES as readonly string[]).includes(question.infinitive) || (SABER_CONOCER_USAGES as readonly string[]).includes(question.infinitive) || (REFLEXIVE_USAGES as readonly string[]).includes(question.infinitive) || (PRESENT_PERFECT_GROUPS as readonly string[]).includes(question.infinitive) || (PRESENT_CONTINUOUS_GROUPS as readonly string[]).includes(question.infinitive) || question.tense === "preterite" || question.tense === "imperfect") {
     return shuffle([question.answer, question.objectPronoun].filter(Boolean));
   }
   const choices = new Set<string>([question.answer]);

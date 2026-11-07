@@ -248,4 +248,31 @@ export const QUIZ_CONTENT: Record<QuizId, QuizContent> = {
       },
     ],
   },
+  "present-continuous": {
+    paragraphs: [
+      "The present continuous describes what is happening right now or around now: estoy leyendo is I am reading. Spanish builds it like English, with a form of to be and an -ing form. The verb is always estar, conjugated in the present: estoy, estás, está, estamos, estáis, están. Ser never forms the continuous.",
+      "The gerund is regular for most verbs: -ar verbs take -ando (hablar, hablando) and -er and -ir verbs take -iendo (comer, comiendo; vivir, viviendo). A few change. Many -ir verbs swap e for i or o for u (pedir, pidiendo; decir, diciendo; dormir, durmiendo), and when the stem ends in a vowel the i becomes y (leer, leyendo; oír, oyendo; construir, construyendo). Ir gives yendo.",
+      "Pronouns have two homes: before estar (lo estoy leyendo, me estoy duchando) or attached to the end of the gerund, which then needs a written accent (estoy leyéndolo, estoy duchándome). Pick one: the pronoun never sits between estar and the gerund, and it never appears twice.",
+      "English uses -ing in places where Spanish uses the infinitive: after a preposition (antes de comer), after verbs like gustar, querer or tener que, and when the activity is a noun (nadar es sano). This quiz has about 150 sentences split into regular -ando gerunds, regular -iendo gerunds, irregular gerunds, pronoun placement, and gerund or infinitive, with an explanation for every answer.",
+    ],
+    examples: sourcedExamples([9001, 9031, 9061, 9091, 9106, 9121]),
+    faq: [
+      {
+        question: "When do I use the present continuous instead of the simple present?",
+        answer: "Use it to stress that an action is in progress right now or during a temporary period: estoy leyendo, este mes estoy trabajando mucho. The simple present can also describe the moment (ahora leo), so it is never wrong in this quiz.",
+      },
+      {
+        question: "Why is it estar and not ser?",
+        answer: "The continuous is always estar plus the gerund. Soy leyendo is never correct, in any region.",
+      },
+      {
+        question: "Where do the pronouns go?",
+        answer: "Either before estar (lo estoy haciendo) or attached to the gerund with an accent (estoy haciéndolo). Both are correct. Never put it between the two words, and never use it twice.",
+      },
+      {
+        question: "Why can't I translate every -ing with a gerund?",
+        answer: "Spanish uses the infinitive as the noun form of a verb. Swimming is fun is nadar es divertido, and before eating is antes de comer. The gerund only follows estar and a few verbs like seguir.",
+      },
+    ],
+  },
 };

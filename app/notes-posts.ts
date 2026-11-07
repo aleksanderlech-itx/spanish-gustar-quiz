@@ -4,6 +4,11 @@ export type NotesPost = { href: string; title: string; excerpt: string };
 
 export const NOTES_POSTS: NotesPost[] = [
   {
+    href: "/notes/present-continuous-mistakes",
+    title: "4 mistakes learners make with the present continuous",
+    excerpt: "Estoy leyendo, not soy leyendo. The four slips that keep showing up with estar and the gerund.",
+  },
+  {
     href: "/notes/present-perfect-mistakes",
     title: "4 mistakes learners make with the present perfect",
     excerpt: "He comido, not tengo comido. The four slips that keep showing up with haber and the past participle.",

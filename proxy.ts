@@ -6,7 +6,7 @@ import { QUIZ_SLUGS, type QuizId } from "./app/quiz-config";
 import { buildLlmsFullTxt, buildLlmsTxt } from "./app/llms-txt";
 
 const isQuizId = (value: string | null): value is QuizId =>
-  value === "gustar" || value === "ser-estar" || value === "preterite-imperfect" || value === "por-para" || value === "object-pronouns" || value === "saber-conocer" || value === "reflexive-verbs" || value === "present-perfect";
+  value === "gustar" || value === "ser-estar" || value === "preterite-imperfect" || value === "por-para" || value === "object-pronouns" || value === "saber-conocer" || value === "reflexive-verbs" || value === "present-perfect" || value === "present-continuous";
 
 const SITEMAP_PATHS = [
   "/",
@@ -24,6 +24,7 @@ const SITEMAP_PATHS = [
   "/notes/object-pronouns-mistakes",
   "/notes/reflexive-verbs-mistakes",
   "/notes/present-perfect-mistakes",
+  "/notes/present-continuous-mistakes",
 ];
 
 export function proxy(request: NextRequest) {

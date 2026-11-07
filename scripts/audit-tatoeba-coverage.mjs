@@ -11,6 +11,7 @@ import { OBJECT_PRONOUN_QUESTIONS } from "../app/object-pronouns-data.ts";
 import { SABER_CONOCER_QUESTIONS } from "../app/saber-conocer-data.ts";
 import { REFLEXIVE_VERB_QUESTIONS } from "../app/reflexive-verbs-data.ts";
 import { PRESENT_PERFECT_QUESTIONS } from "../app/present-perfect-data.ts";
+import { PRESENT_CONTINUOUS_QUESTIONS } from "../app/present-continuous-data.ts";
 import { FLASHCARD_VERBS } from "../app/flashcards-data.ts";
 
 const corpusPath = process.argv[2];
@@ -38,6 +39,7 @@ const quizzes = [
   ["saber-conocer", SABER_CONOCER_QUESTIONS],
   ["reflexive-verbs", REFLEXIVE_VERB_QUESTIONS],
   ["present-perfect", PRESENT_PERFECT_QUESTIONS],
+  ["present-continuous", PRESENT_CONTINUOUS_QUESTIONS],
 ];
 
 const fold = (value) => value.normalize("NFC").toLocaleLowerCase("es");

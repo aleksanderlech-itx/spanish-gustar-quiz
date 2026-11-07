@@ -22,6 +22,7 @@ const { OBJECT_PRONOUN_QUESTIONS } = await import("../app/object-pronouns-data.t
 const { SABER_CONOCER_QUESTIONS } = await import("../app/saber-conocer-data.ts");
 const { REFLEXIVE_VERB_QUESTIONS } = await import("../app/reflexive-verbs-data.ts");
 const { PRESENT_PERFECT_QUESTIONS } = await import("../app/present-perfect-data.ts");
+const { PRESENT_CONTINUOUS_QUESTIONS } = await import("../app/present-continuous-data.ts");
 const { FLASHCARD_VERBS } = await import("../app/flashcards-data.ts");
 
 const QUIZ_TARGET = 150;
@@ -88,6 +89,7 @@ const objectPronounRows = quizRows(OBJECT_PRONOUN_QUESTIONS, "quiz-object-pronou
 const saberConocerRows = quizRows(SABER_CONOCER_QUESTIONS, "quiz-saber-conocer");
 const reflexiveVerbRows = quizRows(REFLEXIVE_VERB_QUESTIONS, "quiz-reflexive-verbs");
 const presentPerfectRows = quizRows(PRESENT_PERFECT_QUESTIONS, "quiz-present-perfect");
+const presentContinuousRows = quizRows(PRESENT_CONTINUOUS_QUESTIONS, "quiz-present-continuous");
 
 // ---- Flashcard rows ----------------------------------------------------
 
@@ -115,10 +117,11 @@ await writeFile(path.join(exportsDir, "quiz-object-pronouns.csv"), toCsv(HEADER,
 await writeFile(path.join(exportsDir, "quiz-saber-conocer.csv"), toCsv(HEADER, saberConocerRows));
 await writeFile(path.join(exportsDir, "quiz-reflexive-verbs.csv"), toCsv(HEADER, reflexiveVerbRows));
 await writeFile(path.join(exportsDir, "quiz-present-perfect.csv"), toCsv(HEADER, presentPerfectRows));
+await writeFile(path.join(exportsDir, "quiz-present-continuous.csv"), toCsv(HEADER, presentContinuousRows));
 await writeFile(path.join(exportsDir, "flashcards.csv"), toCsv(HEADER, flashcardRows));
 await writeFile(
   path.join(exportsDir, "all-content.csv"),
-  toCsv(HEADER, [...gustarRows, ...serEstarRows, ...preteriteRows, ...porParaRows, ...objectPronounRows, ...saberConocerRows, ...reflexiveVerbRows, ...presentPerfectRows, ...flashcardRows]),
+  toCsv(HEADER, [...gustarRows, ...serEstarRows, ...preteriteRows, ...porParaRows, ...objectPronounRows, ...saberConocerRows, ...reflexiveVerbRows, ...presentPerfectRows, ...presentContinuousRows, ...flashcardRows]),
 );
 
 // ---- Audit summary --------------------------------------------------------
@@ -147,6 +150,7 @@ report("quiz-object-pronouns", objectPronounRows, QUIZ_TARGET);
 report("quiz-saber-conocer", saberConocerRows, QUIZ_TARGET);
 report("quiz-reflexive-verbs", reflexiveVerbRows, QUIZ_TARGET);
 report("quiz-present-perfect", presentPerfectRows, QUIZ_TARGET);
+report("quiz-present-continuous", presentContinuousRows, QUIZ_TARGET);
 
 console.log("\n=== Flashcards (target: 500, all with real examples) ===");
 const generic = countStatus(flashcardRows, "generic-fallback");
