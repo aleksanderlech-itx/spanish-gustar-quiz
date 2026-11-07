@@ -83,6 +83,22 @@ test("a present perfect test session leaves every real key unchanged and writes 
   assert.ok(snapshot(localStorage, true)[`${TEST_KEY_PREFIX}present-perfect-quiz-progress-v1`], "the round was saved in the test namespace");
 });
 
+test("a present continuous test session leaves every real key unchanged and writes only test keys", () => {
+  const realSeed = {
+    ...REAL_SEED,
+    "present-continuous-quiz-progress-v1": JSON.stringify([{ date: "2026-11-06T08:00:00.000Z", score: 3, percent: 60, questionIds: [9001, 9002, 9003, 9004, 9005], answers: [], missedIds: [9004, 9005], mode: "regular" }]),
+  };
+  const { localStorage } = install({ search: "?test=1", local: realSeed });
+  const before = snapshot(localStorage, false);
+  updateStoredProgress("present-continuous-quiz-progress-v1", () => [], (current) => [...current, { date: "2026-11-07T08:00:00.000Z", score: 5, percent: 100, questionIds: [9031, 9061, 9091, 9121, 9001], answers: [], missedIds: [], mode: "regular" }]);
+  recordActivityToday("present-continuous", new Date("2026-11-07T08:00:00"));
+  recordMistakes("present-continuous", [{ question: { id: 9061, infinitive: "irregular gerund", tense: "present" }, answer: "estoy leiendo" }]);
+  markQuizCompleted("present-continuous", new Date("2026-11-07T08:00:00"));
+  writeTopicSettings("present-continuous", { roundLength: 5, mode: "choose" });
+  assert.deepEqual(snapshot(localStorage, false), before);
+  assert.ok(snapshot(localStorage, true)[`${TEST_KEY_PREFIX}present-continuous-quiz-progress-v1`], "the round was saved in the test namespace");
+});
+
 test("a real session leaves every test key unchanged", () => {
   const testSeed = { [`${TEST_KEY_PREFIX}spanish-quiz-notebook-v1`]: JSON.stringify({ Preterite: { rule: "Preterite", count: 1, lastMissedAt: "2026-10-05T08:00:00.000Z" } }) };
   const { localStorage } = install({ local: testSeed });

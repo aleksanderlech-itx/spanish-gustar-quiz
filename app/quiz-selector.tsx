@@ -44,6 +44,8 @@ const TOPIC_ICON_PATHS: Record<QuizId, string> = {
   "reflexive-verbs": "M20 12a8 8 0 1 1-2.3-5.7M20 4v4h-4",
   // A clock hand landing on now: past actions that reach the present.
   "present-perfect": "M12 3a9 9 0 1 0 9 9M12 7v5h5",
+  // A play arrow inside a circle: an action in progress right now.
+  "present-continuous": "M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M10 8.5v7l5.5-3.5z",
 };
 
 /** Two fanned, empty playing cards for the flashcard deck. The front card's fill is

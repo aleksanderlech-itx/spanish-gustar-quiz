@@ -57,20 +57,21 @@ test("saber/conocer chart scopes to the question's tense: past-meaning gets pret
 
 test("reflexive verbs chart is one shared section with the pronouns, a full paradigm and placement", async () => {
   const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
-  assert.match(source, /quizId === "reflexive-verbs" \|\| quizId === "present-perfect" \|\| quizId === "por-para" \? \[""\]/);
-  assert.match(source, /quizId === "reflexive-verbs" \? REFLEXIVE_CHART : PRESENT_PERFECT_CHART\)\.map\(/);
+  assert.match(source, /quizId === "reflexive-verbs" \|\| quizId === "present-perfect" \|\| quizId === "present-continuous" \|\| quizId === "por-para" \? \[""\]/);
+  assert.match(source, /"reflexive-verbs": REFLEXIVE_CHART, "present-perfect": PRESENT_PERFECT_CHART/);
+  assert.match(source, /return charts\[quizId\]\.map\(/);
 });
 
 test("present perfect chart is one shared section with haber, regular and irregular participles and word order", async () => {
   const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
-  assert.match(source, /if \(quizId === "reflexive-verbs" \|\| quizId === "present-perfect"\) \{/);
+  assert.match(source, /if \(quizId === "reflexive-verbs" \|\| quizId === "present-perfect" \|\| quizId === "present-continuous"\) \{/);
   assert.match(source, /import \{ PRESENT_PERFECT_CHART \} from "\.\/present-perfect-data"/);
 });
 
 test("por vs para shows usage examples, one sentence per usage, instead of a conjugation table", async () => {
   const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
   assert.match(source, /return POR_PARA_CHART\.map\(/);
-  assert.match(source, /quizId === "present-perfect" \|\| quizId === "por-para" \? \[""\]/);
+  assert.match(source, /quizId === "present-continuous" \|\| quizId === "por-para" \? \[""\]/);
   assert.equal(QUIZ_CONFIG["por-para"].chartLabel, "Usage examples");
   assert.deepEqual(POR_PARA_CHART.map((table) => table.title), ["Por looks back", "Para looks ahead"]);
   for (const [index, word] of [[0, "por"], [1, "para"]]) {
@@ -79,4 +80,10 @@ test("por vs para shows usage examples, one sentence per usage, instead of a con
       assert.doesNotMatch(row.form, new RegExp(`\\b${word === "por" ? "para" : "por"}\\b`), `${row.label} example must not use the other word`);
     }
   }
+});
+
+test("present continuous chart is one shared section with estar, regular and irregular gerunds and pronouns", async () => {
+  const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
+  assert.match(source, /"present-continuous": PRESENT_CONTINUOUS_CHART/);
+  assert.match(source, /import \{ PRESENT_CONTINUOUS_CHART \} from "\.\/present-continuous-data"/);
 });

@@ -8,6 +8,7 @@ import { OBJECT_PRONOUN_CHART, type ObjectPronounType } from "./object-pronouns-
 import { SABER_CONOCER_CONJUGATIONS } from "./saber-conocer-data";
 import { REFLEXIVE_CHART } from "./reflexive-verbs-data";
 import { PRESENT_PERFECT_CHART } from "./present-perfect-data";
+import { PRESENT_CONTINUOUS_CHART } from "./present-continuous-data";
 import { POR_PARA_CHART } from "./por-para-data";
 import { speak, speakQueue } from "./speak";
 
@@ -48,10 +49,11 @@ const blocksFor = (quizId: QuizId, infinitive: string, forms: Record<string, [st
       rows: SABER_CONOCER_CONJUGATIONS.map((row) => ({ pronoun: row.subject, form: row[verb][tense] })),
     })));
   }
-  if (quizId === "reflexive-verbs" || quizId === "present-perfect") {
-    // Usage groups share one chart: reflexive pronouns, paradigm and placement, or haber,
-    // regular and irregular participles and word order.
-    return (quizId === "reflexive-verbs" ? REFLEXIVE_CHART : PRESENT_PERFECT_CHART).map((table, index) => ({
+  if (quizId === "reflexive-verbs" || quizId === "present-perfect" || quizId === "present-continuous") {
+    // Usage groups share one chart: reflexive pronouns, paradigm and placement; haber,
+    // regular and irregular participles and word order; or estar, gerunds and pronouns.
+    const charts = { "reflexive-verbs": REFLEXIVE_CHART, "present-perfect": PRESENT_PERFECT_CHART, "present-continuous": PRESENT_CONTINUOUS_CHART };
+    return charts[quizId].map((table, index) => ({
       tenseLabel: table.title,
       accent: index % 2 === 0 ? "primary" as const : "sun" as const,
       rows: table.rows.map((row) => ({ pronoun: row.label, form: row.form })),
@@ -78,7 +80,7 @@ export default function VerbChart({ quizId, infinitive, onClose }: { quizId: Qui
   // Saber vs conocer's "forms" are usage categories, not verbs: the topic-level chart is one
   // section with both full paradigms rather than a repeat of them under every usage.
   // Reflexive verbs', present perfect's and por vs para's groups share one chart, so those topics always render a single section.
-  const infinitives = quizId === "reflexive-verbs" || quizId === "present-perfect" || quizId === "por-para" ? [""] : infinitive && quiz.forms[infinitive] ? [infinitive] : quizId === "saber-conocer" ? [""] : Object.keys(quiz.forms);
+  const infinitives = quizId === "reflexive-verbs" || quizId === "present-perfect" || quizId === "present-continuous" || quizId === "por-para" ? [""] : infinitive && quiz.forms[infinitive] ? [infinitive] : quizId === "saber-conocer" ? [""] : Object.keys(quiz.forms);
   const [speakingKey, setSpeakingKey] = useState<string | null>(null);
 
   const speakRow = (key: string, text: string) => {

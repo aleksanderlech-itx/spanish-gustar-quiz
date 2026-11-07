@@ -6,10 +6,11 @@ import { OBJECT_PRONOUN_FORMS, OBJECT_PRONOUN_QUESTIONS } from "./object-pronoun
 import { SABER_CONOCER_FORMS, SABER_CONOCER_QUESTIONS } from "./saber-conocer-data.ts";
 import { REFLEXIVE_FORMS, REFLEXIVE_VERB_QUESTIONS } from "./reflexive-verbs-data.ts";
 import { PRESENT_PERFECT_FORMS, PRESENT_PERFECT_QUESTIONS } from "./present-perfect-data.ts";
+import { PRESENT_CONTINUOUS_FORMS, PRESENT_CONTINUOUS_QUESTIONS } from "./present-continuous-data.ts";
 import { ruleForTense } from "./quiz-logic.ts";
 import type { Question } from "./quiz-data";
 
-export type QuizId = "gustar" | "ser-estar" | "preterite-imperfect" | "por-para" | "object-pronouns" | "saber-conocer" | "reflexive-verbs" | "present-perfect";
+export type QuizId = "gustar" | "ser-estar" | "preterite-imperfect" | "por-para" | "object-pronouns" | "saber-conocer" | "reflexive-verbs" | "present-perfect" | "present-continuous";
 
 /** Each quiz's own crawlable URL, so every topic canonicalizes to itself instead of
  * every `?quiz=` variant resolving to the same root page. */
@@ -22,6 +23,7 @@ export const QUIZ_SLUGS: Record<QuizId, string> = {
   "saber-conocer": "saber-vs-conocer",
   "reflexive-verbs": "reflexive-verbs",
   "present-perfect": "present-perfect",
+  "present-continuous": "present-continuous",
 };
 
 export const quizPath = (quizId: QuizId): string => `/${QUIZ_SLUGS[quizId]}`;
@@ -197,6 +199,25 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     chartLabel: "Perfect chart",
     // Set to the production go-live day so the streak never requires this activity on earlier days.
     introducedOn: "2026-11-01",
+  },
+  "present-continuous": {
+    title: "Present Continuous Quiz",
+    eyebrow: "Present continuous",
+    heading: "Estar now. Then the gerund.",
+    copy: "Practise estoy, estás, está, estamos, estáis and están with -ando and -iendo gerunds, irregular gerunds and pronoun placement.",
+    description: "Practise the Spanish present continuous with about 150 sentences covering estar in every person, regular -ando and -iendo gerunds, irregular gerunds like pidiendo, durmiendo and leyendo, where pronouns go, and when Spanish needs the infinitive instead of -ing, with an explanation for every answer.",
+    levelBand: "A2-B1",
+    questions: PRESENT_CONTINUOUS_QUESTIONS,
+    forms: PRESENT_CONTINUOUS_FORMS,
+    storageKey: "present-continuous-quiz-progress-v1",
+    filterKey: "present-continuous-quiz-filters-v1",
+    backupName: "spanish-present-continuous-quiz-progress.json",
+    sources: [],
+    rule: { title: "Estar plus the gerund, for what is happening now.", body: "Conjugate estar in the present (estoy, estás, está, estamos, estáis, están) and add the gerund: -ando for -ar verbs, -iendo for -er and -ir verbs, with changes like pidiendo, durmiendo and leyendo. Pronouns go before estar or attach to the gerund with an accent. After a preposition or as a noun, Spanish uses the infinitive, not the gerund.", singular: "Ahora estoy leyendo.", plural: "¿Estáis viendo la tele?" },
+    filterLabel: { label: "Usage", all: "All usages" },
+    chartLabel: "Continuous chart",
+    // Set to the production go-live day so the streak never requires this activity on earlier days.
+    introducedOn: "2026-11-16",
   },
 };
 
