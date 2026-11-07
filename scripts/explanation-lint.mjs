@@ -12,6 +12,7 @@ import { OBJECT_PRONOUN_QUESTIONS } from "../app/object-pronouns-data.ts";
 import { SABER_CONOCER_QUESTIONS } from "../app/saber-conocer-data.ts";
 import { REFLEXIVE_VERB_QUESTIONS } from "../app/reflexive-verbs-data.ts";
 import { PRESENT_PERFECT_QUESTIONS } from "../app/present-perfect-data.ts";
+import { PRESENT_CONTINUOUS_QUESTIONS } from "../app/present-continuous-data.ts";
 
 export const TOPICS = [
   { key: "gustar", questions: ALL_QUESTIONS, needsCue: true },
@@ -23,6 +24,7 @@ export const TOPICS = [
   { key: "saber-conocer", questions: SABER_CONOCER_QUESTIONS, needsCue: true },
   { key: "reflexive-verbs", questions: REFLEXIVE_VERB_QUESTIONS, needsCue: true },
   { key: "present-perfect", questions: PRESENT_PERFECT_QUESTIONS, needsCue: true },
+  { key: "present-continuous", questions: PRESENT_CONTINUOUS_QUESTIONS, needsCue: true },
 ];
 
 export const MIN_LENGTH = 15;
