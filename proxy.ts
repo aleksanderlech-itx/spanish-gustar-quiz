@@ -24,6 +24,7 @@ const SITEMAP_PATHS = [
   "/notes/object-pronouns-mistakes",
   "/notes/reflexive-verbs-mistakes",
   "/notes/present-perfect-mistakes",
+  "/notes/present-continuous-mistakes",
 ];
 
 export function proxy(request: NextRequest) {
