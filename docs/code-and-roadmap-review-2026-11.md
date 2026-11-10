@@ -10,6 +10,18 @@ changed. Each finding carries a severity and how it was established:
   by running the tool named.
 - **From code**: read in the source, not executed.
 
+## Status after the review (10 Nov 2026)
+
+Decisions taken once the review was read. The findings below are kept as
+written, with a "Resolved" or "Withdrawn" line where a decision closed them.
+
+- The High and Medium findings are issues #138 to #152, listed in issue #65.
+- Present continuous (#70) is confirmed released; the launch posts keep their
+  planned dates.
+- The Vosotros switch (#105) is cancelled and closed as not planned.
+- The roadmap visualisation is dropped; PR #118 is closed without merging.
+- Cycle 6 (14 Dec) becomes a maintenance cycle with #117 as its main item.
+
 What was run: `npm run lint` (passes), `npm test` (215 tests pass),
 `npx tsc --noEmit` (fails, see G1), `npm audit` (33 advisories, see G3), and a
 Playwright script against `vinext start` for the browser checks.
@@ -214,7 +226,7 @@ the How to use text to match.
 same helper also overwrites every result's `tense` with `"present"`.
 
 Fix: filter in one shared reader and drop the `tense` override. This matters
-for the Vosotros switch (#105), which removes and replaces sentences.
+whenever a sentence is retired from a bank.
 
 ### C5. One month later is not always one month (Low, From code)
 
@@ -456,6 +468,9 @@ screen at a time, deleting rules the later layers override.
 Fix: update the issue, and add "deployed to production on" as a column in the
 release table so the roadmap separates merged from live.
 
+Resolved: issue #65 is updated. The release is confirmed, the launch posts
+keep their dates, and the visualisation link is removed with PR #118 closed.
+
 ### R2. The daily goal grows with every release (Medium)
 
 The streak requires a round in every activity on the board, and every release
@@ -465,6 +480,8 @@ keep a streak, and each launch makes it harder. The fix on the roadmap is #117
 
 Fix: schedule #117 before Cycle 6, or as a stopgap cap the daily goal (for
 example any three activities) and record the rule in `docs/decisions/`.
+
+Resolved: #117 is the main item of Cycle 6, now a maintenance cycle.
 
 ### R3. Cycle 5 is overloaded (Medium)
 
@@ -476,6 +493,9 @@ Fix: use the nine days gained from Cycle 4 for H1, H2, A1 and A2. Keep #96 in
 Cycle 5 and move #104 to a later maintenance half.
 
 ### R4. Vosotros switch needs a design record first (Medium)
+
+Withdrawn: #105 is cancelled, so no decision record is needed. C4 stands on
+its own as a low-severity finding.
 
 #105 replaces sentences when the switch is off. That changes each bank's
 total, which feeds completion ("every sentence in the full set"),
@@ -500,16 +520,17 @@ them in specific cycles. Proposed placement:
 | Now, before Cycle 5 | A1, A2, A3, G1, F1 step 1 (privacy page) |
 | Cycle 5 maintenance half | C1, D1, D2, D3, E3, G2, H1 |
 | Cycle 6 maintenance half | E1, E2, F1 step 2, G3, G4, B1, B2 |
-| Before #105 | C4, R4 |
+| When a sentence is next retired | C4 |
 | Before #51 Idioms | B3 |
 
-### R6. Five pull requests are waiting for a decision (Low)
+### R6. Pull requests waiting for a decision (Low)
 
 #90 (since 2 Oct), #99 (draft, 3 Oct), #103 (4 Oct), #118 (13 Oct) and #126
 (18 Oct). Each drifts further from `main` with every release.
 
-Fix: merge or close each one this week. #126 and #103 are small and useful;
-#118 is referenced by the roadmap itself.
+Fix: merge or close each one this week. #126 and #103 are small and useful.
+
+Partly resolved: #118 is closed. #90, #99, #103 and #126 are still open.
 
 ### R7. Gaps in the plan (Low)
 
