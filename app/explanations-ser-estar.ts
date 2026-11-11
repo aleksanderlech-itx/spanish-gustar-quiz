@@ -5,7 +5,7 @@ export const SER_ESTAR_EXPLANATIONS: Record<number, ItemExplanation> = {
   2001: { cue: "de México", explanation: "De México states where you come from, and origin uses ser." },
   2002: { cue: "médica", explanation: "Médica is a profession, and professions use ser." },
   2003: { cue: "estudiantes", explanation: "Estudiantes says what you are, an identity or role, so ser." },
-  2004: { cue: "muy corta", explanation: "Muy corta judges the skirt itself, so ser. Está would also work if you meant it looks short right now, for example after washing." },
+  2004: { cue: "de madera", explanation: "De madera says what the table is made of, and material uses ser." },
   2005: { cue: "lunes", explanation: "Lunes names the day, and days and dates use ser." },
   2006: { cue: "de Ana", explanation: "De Ana says who owns the keys, and possession uses ser de." },
   2007: { cue: "el concierto", explanation: "El concierto is an event, and where an event takes place uses ser, not estar." },

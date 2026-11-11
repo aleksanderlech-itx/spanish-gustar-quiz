@@ -32,3 +32,13 @@ test("lintQuestion flags the generic patterns from before the rewrite", () => {
     explanation: "Cuando llegaban sets a repeated background scene in the past, so imperfect preparaba. The preterite would make it one finished event.",
   }, options), []);
 });
+
+test("lintQuestion flags an explanation that admits a second correct answer (project rule 13)", () => {
+  const base = { answer: "es", before: "¿Crees que la falda de María", after: "muy corta?", cue: "muy corta" };
+  const problems = lintQuestion({
+    ...base,
+    explanation: "Muy corta judges the skirt itself, so ser. Está would also work if you meant it looks short right now.",
+  }, { needsCue: true });
+  assert.ok(problems.includes("says another answer is also correct"));
+  assert.deepEqual(lintQuestion({ ...base, explanation: "Muy corta judges the skirt itself, so ser." }, { needsCue: true }), []);
+});

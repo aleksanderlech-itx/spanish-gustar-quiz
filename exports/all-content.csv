@@ -152,7 +152,7 @@ quiz-gustar,parecer,¿ ___ correctas estas respuestas?,Do these answers seem cor
 quiz-ser-estar,ser / estar,Yo ___ de México.,I am from Mexico.,soy,"De México states where you come from, and origin uses ser.",ok,
 quiz-ser-estar,ser / estar,Marta ___ médica.,Marta is a doctor.,es,"Médica is a profession, and professions use ser.",ok,
 quiz-ser-estar,ser / estar,Nosotros ___ estudiantes de español.,We are Spanish students.,somos,"Estudiantes says what you are, an identity or role, so ser.",ok,
-quiz-ser-estar,ser / estar,¿Crees que la falda de María ___ muy corta?,Do you think María's skirt is too short?,es,"Muy corta judges the skirt itself, so ser. Está would also work if you meant it looks short right now, for example after washing.",ok,
+quiz-ser-estar,ser / estar,La mesa ___ de madera.,The table is made of wood.,es,"De madera says what the table is made of, and material uses ser.",ok,
 quiz-ser-estar,ser / estar,Hoy ___ lunes.,Today is Monday.,es,"Lunes names the day, and days and dates use ser.",ok,
 quiz-ser-estar,ser / estar,Las llaves ___ de Ana.,The keys belong to Ana.,son,"De Ana says who owns the keys, and possession uses ser de.",ok,
 quiz-ser-estar,ser / estar,El concierto ___ en el teatro.,The concert is at the theatre.,es,"El concierto is an event, and where an event takes place uses ser, not estar.",ok,

@@ -4,6 +4,7 @@ export const RESTORED_SER_ESTAR_PAIRS = {
   2001: { spanish: "Yo soy de México.", english: "I am from Mexico." },
   2002: { spanish: "Marta es médica.", english: "Marta is a doctor." },
   2003: { spanish: "Nosotros somos estudiantes de español.", english: "We are Spanish students." },
+  2004: { spanish: "La mesa es de madera.", english: "The table is made of wood." },
   2005: { spanish: "Hoy es lunes.", english: "Today is Monday." },
   2006: { spanish: "Las llaves son de Ana.", english: "The keys belong to Ana." },
   2007: { spanish: "El concierto es en el teatro.", english: "The concert is at the theatre." },
