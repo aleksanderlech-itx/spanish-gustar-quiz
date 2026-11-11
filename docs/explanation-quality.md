@@ -22,6 +22,8 @@ context." It repeats the answer and never says what in the sentence decides it.
 - At most 2 sentences and 200 characters.
 - Do not open by restating the answer ("Use “X”...").
 - No em dashes or en dashes.
+- Never say that another answer would also work or is also correct. If it is,
+  the item breaks project rule 13: change the sentence, not the explanation.
 - Every item outside Por vs Para carries a `cue` field: a word or phrase copied
   from the sentence (outside the blank) that the explanation names verbatim.
   Por vs Para keeps its per-sentence explanations from #109 and is exempt from

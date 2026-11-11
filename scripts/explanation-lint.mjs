@@ -31,6 +31,9 @@ export const MIN_LENGTH = 15;
 export const MAX_LENGTH = 200;
 export const MAX_SENTENCES = 2;
 
+/** Wording that admits a second correct answer. */
+export const ALSO_CORRECT = /\b(?:(?:would|could|can|may|might) also (?:work|fit|be)|also (?:works?|fits?|correct|possible|acceptable|valid)|both (?:are|work|fit)|either (?:one|form|verb|option) (?:works?|fits?|is))\b/i;
+
 const fold = (value) => value.normalize("NFC").toLocaleLowerCase("es");
 const escapeRegex = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 // Quoted Spanish questions (¿...?) do not end an English sentence.
@@ -48,6 +51,9 @@ export function lintQuestion(question, { needsCue }) {
   if (new RegExp(`^Use\\s+["“'‘]${escapeRegex(question.answer)}["”'’]`, "iu").test(explanation)) {
     problems.push("opens by restating the answer");
   }
+  // Project rule 13 (docs/decisions/0006): the wrong option is wrong in every reading, so an
+  // explanation never says the other form is possible too.
+  if (ALSO_CORRECT.test(explanation)) problems.push("says another answer is also correct");
   if (needsCue) {
     const cue = question.cue?.trim();
     if (!cue) {

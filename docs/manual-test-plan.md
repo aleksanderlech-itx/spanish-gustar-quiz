@@ -159,7 +159,7 @@ Pick across every activity on the board and the flashcards, including retry expl
 
 For each: cue word named, one-line rule, contrast when useful, max 2 sentences and about 200 characters, English only, no regional forms ("Creés", "pollera") unless it is the point, not just "Use X".
 
-Also verify the named examples: Nuria, médico, aviso, "Usted conoce", gustar niña pequeña, refrán, falda/pollera.
+Also verify the named examples: Nuria, médico, aviso, "Usted conoce", gustar niña pequeña, refrán, and ser vs estar "La mesa ... de madera" (explanation names de madera and material).
 
 ## 10. Content, Notes and pages
 

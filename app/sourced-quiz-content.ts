@@ -618,8 +618,8 @@ export const SOURCED_QUIZ_PAIRS: Record<number, SourcedPair> = {
     "english": "We are Spanish students."
   },
   "2004": {
-    "spanish": "¿Crees que la falda de María es muy corta?",
-    "english": "Do you think María's skirt is too short?"
+    "spanish": "La mesa es de madera.",
+    "english": "The table is made of wood."
   },
   "2005": {
     "spanish": "Hoy es lunes.",
