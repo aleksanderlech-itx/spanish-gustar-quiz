@@ -9,13 +9,22 @@ progress connect, and lists the places where a future change can break them.
 Findings already filed as #138 to #152 are not repeated; each risk says whether
 it is new or extends one of those issues.
 
-## Fix first
+## Status (11 Nov 2026)
 
-| # | Risk | Severity |
+The High and Medium risks are issues #154 to #162, listed in issue #65 with a
+proposed slot each. The Low risks (R10 to R13) stay in this file.
+
+| Risk | Issue | Severity |
 | --- | --- | --- |
-| R1 | Question ids are array positions | High |
-| R2 | The content generator needs a file that is not in the repo | High |
-| R3 | Changing a bank's size removes completions | High |
+| R1 Question ids are array positions | #154 | High |
+| R2 The content generator needs a file that is not in the repo | #155 | High |
+| R3 Changing a bank's size removes completions | #156 | High |
+| R4 Two copies of every sentence | #157 | Medium |
+| R5 Group names live in learners' browsers as text | #158 | Medium |
+| R6 Rule 13 is broken once and cannot be tested | #159 | Medium |
+| R7 Activity ids are permanent, and the ledger forgets unknown ones | #160 | Medium |
+| R8 Stored data has no version and no migration path | #161 | Medium |
+| R9 A new activity needs edits in lists that #151 does not name | #162 | Medium |
 
 ## 1. Entities and the keys that join them
 
