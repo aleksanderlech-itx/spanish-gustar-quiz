@@ -55,7 +55,9 @@ falls back to the subtopic rule only when an item has none. Do not write a
 separate set of retry templates.
 
 To find the item again, a notebook entry must store the quiz id and the
-question id. Question ids are stable (gustar 1 to 150, ser/estar 2001 to 2150,
+question id. Question ids are written in each seed row and are permanent
+(`docs/decisions/0007-question-ids-are-explicit-and-permanent.md`). Today's
+ranges (gustar 1 to 150, ser/estar 2001 to 2150,
 preterite/imperfect 3001 to 3150, por/para 4001 to 4150, object pronouns 5001
 to 5150, saber/conocer 6001 to 6150, reflexive verbs 7001 to 7150, present perfect
 8001 to 8150, present continuous 9001 to 9150).
