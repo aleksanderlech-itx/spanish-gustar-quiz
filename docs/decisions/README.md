@@ -70,6 +70,10 @@ content. Each links to the record that explains it.
     [0005](0005-manual-test-plan-location.md).
 13. A wrong answer option must be wrong in every region and every reading of
     the sentence. See [0006](0006-wrong-options-wrong-in-every-region.md).
+14. A question id is written in its seed row and belongs to one sentence for
+    good: never renumber or reuse one. A content change updates
+    `tests/question-id-snapshot.json` with its script in the same PR. See
+    [0007](0007-question-ids-are-explicit-and-permanent.md).
 
 ## Index
 
@@ -81,3 +85,4 @@ content. Each links to the record that explains it.
 | [0004](0004-kofi-tips-only.md) | Ko-fi is for tips only | Accepted | 2026-10-18 |
 | [0005](0005-manual-test-plan-location.md) | One manual test plan, kept in docs and updated with each feature | Accepted | 2026-10-18 |
 | [0006](0006-wrong-options-wrong-in-every-region.md) | Wrong options must be wrong in every region | Accepted | 2026-11-01 |
+| [0007](0007-question-ids-are-explicit-and-permanent.md) | Question ids are explicit and permanent | Accepted | 2026-11-11 |
