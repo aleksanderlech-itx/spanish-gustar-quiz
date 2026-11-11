@@ -31,16 +31,60 @@ import { RESTORED_OBJECT_PRONOUN_PAIRS } from "./restored-object-pronouns-pairs.
 import { RESTORED_SABER_CONOCER_PAIRS } from "./restored-saber-conocer-pairs.mjs";
 import { RESTORED_FLASHCARD_PAIRS } from "./restored-flashcard-pairs.mjs";
 
-const corpusPath = process.argv[2];
-if (!corpusPath) {
-  throw new Error("Usage: node --experimental-strip-types scripts/build-sourced-content.mjs <spa.txt>");
+// Usage:
+//   node --experimental-strip-types scripts/build-sourced-content.mjs [spa.txt] [--check]
+//
+// Without spa.txt the generator needs no outside file: every corpus pair already in use is
+// pinned in scripts/pinned-corpus-pairs.mjs and its text is recorded in
+// docs/content-attribution.csv, which is read back here. The corpus file is needed only to
+// pick a NEW corpus sentence for an item that has no override and no recorded pin.
+//
+// --check writes nothing and fails when the generated files differ from the committed ones.
+const args = process.argv.slice(2);
+const checkOnly = args.includes("--check");
+const corpusPath = args.find((arg) => !arg.startsWith("--"));
+const ATTRIBUTION_CSV = "docs/content-attribution.csv";
+
+const corpusText = corpusPath ? await readFile(resolve(corpusPath), "utf8") : "";
+if (corpusPath) {
+  // Picks made so far came from this snapshot (spa-eng.zip of 2026-02-13). Another snapshot
+  // is fine for new picks, because each pick is pinned and recorded once it is made.
+  const corpusHash = createHash("sha256").update(corpusText).digest("hex");
+  const originalCorpusHash = "eb9502b1ce4c6f2342795343c1f119f167f48c58af3e45d98a6ae0f16f0984f1";
+  if (corpusHash !== originalCorpusHash) {
+    console.warn(`Note: this corpus is not the 2026-02-13 snapshot (SHA-256 ${corpusHash}). Pin every new pick.`);
+  }
 }
 
-const corpusText = await readFile(resolve(corpusPath), "utf8");
-const corpusHash = createHash("sha256").update(corpusText).digest("hex");
-const expectedCorpusHash = "eb9502b1ce4c6f2342795343c1f119f167f48c58af3e45d98a6ae0f16f0984f1";
-if (corpusHash !== expectedCorpusHash) {
-  throw new Error(`Unexpected corpus SHA-256: ${corpusHash}`);
+const parseCsv = (text) => {
+  const rows = [];
+  let row = [];
+  let field = "";
+  let quoted = false;
+  for (let index = 0; index < text.length; index += 1) {
+    const char = text[index];
+    if (quoted) {
+      if (char === '"' && text[index + 1] === '"') { field += '"'; index += 1; }
+      else if (char === '"') quoted = false;
+      else field += char;
+    } else if (char === '"') quoted = true;
+    else if (char === ",") { row.push(field); field = ""; }
+    else if (char === "\n") { row.push(field); rows.push(row); row = []; field = ""; }
+    else field += char;
+  }
+  if (field || row.length) { row.push(field); rows.push(row); }
+  return rows;
+};
+
+// Corpus pairs already chosen, as recorded by the last run: "<type>:<key>" -> row.
+const recordedCorpusPairs = new Map();
+try {
+  const [, ...rows] = parseCsv(await readFile(resolve(ATTRIBUTION_CSV), "utf8"));
+  for (const [type, key, spanish, english, license, attribution, modified] of rows) {
+    if (license === "CC BY 2.0 France" && modified === "false") recordedCorpusPairs.set(`${type}:${key}`, { english, spanish, attribution });
+  }
+} catch (error) {
+  if (!corpusPath) throw new Error(`${ATTRIBUTION_CSV} is missing and no corpus file was given: ${error.message}`);
 }
 
 const corpusRows = corpusText
@@ -127,8 +171,15 @@ const usedSpanish = new Set();
 // Reserve every pinned row up front so no unpinned item can take it first.
 const pinnedRows = new Map();
 for (const [pinKey, attribution] of Object.entries(PINNED_CORPUS_PAIRS)) {
-  const row = corpusRows.find((candidate) => candidate.attribution === attribution);
-  if (!row) throw new Error(`Pinned corpus pair for ${pinKey} is not in the corpus: ${attribution}`);
+  const recorded = recordedCorpusPairs.get(pinKey);
+  const row = recorded?.attribution === attribution
+    ? recorded
+    : corpusRows.find((candidate) => candidate.attribution === attribution);
+  if (!row) {
+    throw new Error(corpusPath
+      ? `Pinned corpus pair for ${pinKey} is not in the corpus: ${attribution}`
+      : `Pinned corpus pair for ${pinKey} is not recorded in ${ATTRIBUTION_CSV}. Pass the corpus file (docs/content-sources.md).`);
+  }
   pinnedRows.set(pinKey, row);
   usedSpanish.add(fold(row.spanish));
 }
@@ -148,6 +199,9 @@ const selectCorpusPair = (key, pinKey, phrase, alternate = "", requireLeadingTex
     if (!regex.test(pinned.spanish)) throw new Error(`Pinned corpus pair for ${key} does not contain ${phrase}`);
     return { ...pinned, license: "CC BY 2.0 France", modified: false };
   }
+  if (!corpusPath) {
+    throw new Error(`${key} has no override and no pinned corpus pair. Write an original pair for it, or pass the corpus file to pick one (docs/content-sources.md).`);
+  }
   const answerTokens = tokens(phrase);
   const alternateTokens = tokens(alternate);
   const alternateIsPartOfAnswer = alternateTokens.length > 0 && answerTokens.join(" ").includes(alternateTokens.join(" "));
@@ -162,6 +216,7 @@ const selectCorpusPair = (key, pinKey, phrase, alternate = "", requireLeadingTex
   });
   if (!selected) throw new Error(`No corpus pair for ${key}: ${phrase}`);
   usedSpanish.add(fold(selected.spanish));
+  console.warn(`New corpus pick. Add to scripts/pinned-corpus-pairs.mjs:\n  ${JSON.stringify(pinKey)}: ${JSON.stringify(selected.attribution)},`);
   return { ...selected, license: "CC BY 2.0 France", modified: false };
 };
 
@@ -286,8 +341,23 @@ const csv = [
   ...provenance.map((item) => [item.type, item.key, item.spanish, item.english, item.license, item.attribution, item.modified]),
 ].map((row) => row.map(csvField).join(",")).join("\n") + "\n";
 
-await writeFile(resolve("app/sourced-quiz-content.ts"), quizTs);
-await writeFile(resolve("app/sourced-flashcard-content.ts"), flashcardTs);
-await writeFile(resolve("docs/content-attribution.csv"), csv);
-await writeFile(resolve("public/content-attribution.csv"), csv);
+const outputs = [
+  ["app/sourced-quiz-content.ts", quizTs],
+  ["app/sourced-flashcard-content.ts", flashcardTs],
+  [ATTRIBUTION_CSV, csv],
+  ["public/content-attribution.csv", csv],
+];
+if (checkOnly) {
+  const stale = [];
+  for (const [path, content] of outputs) {
+    if (await readFile(resolve(path), "utf8").catch(() => null) !== content) stale.push(path);
+  }
+  if (stale.length) {
+    console.error(`Generated files do not match their sources: ${stale.join(", ")}.\nRun: node --experimental-strip-types scripts/build-sourced-content.mjs`);
+    process.exit(1);
+  }
+  console.log(`Generated files match their sources (${Object.keys(quizPairs).length} quiz pairs, ${Object.keys(flashcardPairs).length} flashcard pairs).`);
+  process.exit(0);
+}
+for (const [path, content] of outputs) await writeFile(resolve(path), content);
 console.log(`Wrote ${Object.keys(quizPairs).length} quiz pairs and ${Object.keys(flashcardPairs).length} flashcard pairs.`);
