@@ -9,16 +9,19 @@ One practice unit the user can put on their Board: a topic quiz or the verb flas
 _Avoid_: topic (when meaning flashcards too), module
 
 **Board**:
-The user's chosen set of Activities, shown on the home page. Once chosen, it always holds at least one Activity. Before the user's first Selection, the Board is the set of Activities they have played.
+The user's chosen set of Activities, shown on the home page. It always holds at least one Activity. Before the Starter Board exists, the Board is the set of Activities the user has played.
 _Avoid_: dashboard, library
 
 **Shelf**:
-Every Activity that is not on the Board, whether the user never chose it or it was Finished.
+Every Activity that is not on the Board, whether the user never chose it or it was Finished. Shown in the drawer; on a new user's first visit also below the Board.
 _Avoid_: hidden, archive, aside
 
 **Selection**:
-The act of choosing which Activities are on the Board, on first visit or at any later time.
-_Avoid_: setup (when meaning later edits)
+The act of choosing which Activities are on the Board, at any time after the first visit.
+_Avoid_: setup
+
+**Starter Board**:
+A new user's first Board: Gustar, Por vs Para, Preterite vs Imperfect and Saber vs Conocer, plus any Activity already played. Made for them, not chosen.
 
 **Finished**:
 An Activity whose completion rule has been met; it moves from the Board to the Shelf. Flashcards is never Finished.

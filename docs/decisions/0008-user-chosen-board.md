@@ -1,6 +1,6 @@
 # 0008. The Board is chosen by the user
 
-- Status: Accepted
+- Status: Accepted; rules 2 and 4 amended by [0011](0011-starter-board-and-shelf-in-drawer.md)
 - Date: 2026-11-21
 - Source: design session on branch `claude/gifted-clarke-v47c3w`; replaces the specs in issue #117 and PR #99
 

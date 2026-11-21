@@ -150,8 +150,7 @@ export default function HowToUsePage() {
             <div>
               <h3>Home board</h3>
               <dl>
-                <dt>Today&apos;s board</dt><dd>The activities you chose, prioritised by what needs attention. On your first visit you pick them; change them any time under <UiLabel>Your activities</UiLabel>.</dd>
-                <dt>On your shelf</dt><dd>Activities that are not on your board. They are not part of your daily goal. <UiLabel>Add to board</UiLabel> brings one back.</dd>
+                <dt>Today&apos;s board</dt><dd>The activities on your board, prioritised by what needs attention. Change them any time under <UiLabel>Your activities</UiLabel>.</dd>
                 <dt>due</dt><dd>Questions or cards ready to practise now.</dd>
                 <dt>done / studied</dt><dd>Material you have already practised.</dd>
                 <dt>Percentage</dt><dd>Your progress through that activity.</dd>
@@ -172,11 +171,12 @@ export default function HowToUsePage() {
           <h3>Drawer menu</h3>
           <p>The <span className={styles.menuExample} role="img" aria-label="three-line menu icon"><span className="hamburger-icon" aria-hidden="true"><span /><span /><span /></span></span> button in the top-left corner of each page opens the drawer. Screen readers announce it as “Open menu”.</p>
           <dl className={styles.drawerGuide}>
+            <dt>On your shelf</dt><dd>Activities that are not on your board and not part of your daily goal, each with <UiLabel>Add to board</UiLabel>, plus <UiLabel>Edit your activities</UiLabel>.</dd>
             <dt>Progress &amp; history</dt><dd>Rounds played, average accuracy, flashcards studied, weak areas, and recent rounds.</dd>
             <dt>Weekly recap</dt><dd>Your number of rounds and average accuracy for the current week.</dd>
             <dt>Mistake notebook</dt><dd>Rules connected to answers you have missed.</dd>
             <dt>Backup &amp; restore</dt><dd>Download your progress or import a previously saved backup.</dd>
-            <dt>Settings</dt><dd>Reset local progress, see your shelf and add an activity back to your board, or open <UiLabel>Edit your activities</UiLabel>.</dd>
+            <dt>Settings</dt><dd>Reset local progress on this device.</dd>
             <dt>Notes</dt><dd>Short grammar articles with links to related quiz topics.</dd>
           </dl>
           <p>Use the theme icon at the top-right of a page, or the theme control in the home board&apos;s desktop sidebar, to change appearance without changing your learning data.</p>
@@ -187,10 +187,10 @@ export default function HowToUsePage() {
         <p className={styles.sectionNumber}>05</p>
         <div className={styles.sectionBody}>
           <h2>Choosing your activities</h2>
-          <p>Your daily goal is a round in every activity on your board, so the board holds only what you choose. Everything else waits on your shelf.</p>
+          <p>Your daily goal is a round in every activity on your board, so the board holds only what you choose. Everything else waits on your shelf, the first item in the menu.</p>
           <ul>
-            <li>On your first visit, pick as many activities as you like, or select <UiLabel>Use all</UiLabel>. If you arrived through a link to one activity, it is already ticked.</li>
-            <li>Change your choice any time under <UiLabel>Your activities</UiLabel>. At least one activity stays on your board.</li>
+            <li>Your first board holds Gustar, Por vs Para, Preterite vs Imperfect and Saber vs Conocer, plus any activity you already practised through a link. On that first visit the rest of the activities are listed below your board, under <UiLabel>On your shelf</UiLabel>.</li>
+            <li>Open the menu and select <UiLabel>On your shelf</UiLabel> to see every activity that is not on your board and <UiLabel>Add to board</UiLabel> to bring one in. To change the whole choice, select <UiLabel>Edit your activities</UiLabel> (also <UiLabel>Your activities</UiLabel> in the desktop sidebar). At least one activity stays on your board.</li>
             <li>When you finish every sentence in a topic, it moves to your shelf and the board suggests up to three activities to add. The one you just finished can be among them. Adding a finished topic starts its sentences over; your mistakes stay.</li>
             <li>A month after you finish a topic it is marked <UiLabel>Repeat due</UiLabel> on your shelf and suggested first. It does not come back on its own.</li>
             <li>New activities appear once as a suggestion. Nothing is added to your board unless you choose it.</li>
