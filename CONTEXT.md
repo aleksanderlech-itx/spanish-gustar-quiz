@@ -38,6 +38,8 @@ A round in every Activity on the Board today. Meeting it extends the streak.
 - Every **Activity** is on exactly one of the **Board** or the **Shelf**
 - A **Finished** **Activity** moves to the **Shelf** and triggers a **Suggestion**
 - The **Daily goal** is defined by what is on the **Board**
+- Moving an **Activity** to the **Shelf** keeps its progress; adding a **Finished** **Activity** back to the **Board** starts it over
+- Each time an **Activity** becomes **Finished** it triggers one **Suggestion**; declining it does not bring it back
 
 ## Example dialogue
 
