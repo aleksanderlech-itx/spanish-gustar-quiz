@@ -1,0 +1,18 @@
+{
+  "_note": "localStorage as production wrote it in November 2026 (schema 1). Values are the raw stored strings.",
+  "storage": {
+    "gustar-quiz-progress-v1": "[{\"date\":\"2026-11-18T09:12:00.000Z\",\"score\":4,\"percent\":80,\"questionIds\":[1,2,3,4,5],\"answers\":[\"gusta\",\"gustan\",\"encanta\",\"duele\",\"interesa\"],\"missedIds\":[3],\"mode\":\"regular\"},{\"date\":\"2026-11-19T09:15:00.000Z\",\"score\":1,\"percent\":100,\"questionIds\":[3],\"answers\":[\"encantan\"],\"missedIds\":[],\"mode\":\"review\"}]",
+    "ser-estar-quiz-progress-v1": "[{\"date\":\"2026-11-19T10:00:00.000Z\",\"score\":5,\"percent\":100,\"questionIds\":[1001,1002,1003,1004,1005],\"answers\":[\"es\",\"está\",\"son\",\"están\",\"es\"],\"missedIds\":[]}]",
+    "gustar-quiz-filters-v1": "{\"level\":\"all\",\"verb\":\"gustar\"}",
+    "gustar-topic-settings-v1": "{\"roundLength\":10,\"mode\":\"choose\"}",
+    "spanish-flashcards-leitner-v2": "{\"hablar\":{\"box\":3,\"attempts\":4,\"correct\":3,\"updatedAt\":\"2026-11-19T08:00:00.000Z\",\"nextReviewAt\":\"2026-11-22T08:00:00.000Z\"},\"comer\":{\"box\":1,\"attempts\":1,\"correct\":0,\"updatedAt\":\"2026-11-19T08:01:00.000Z\",\"nextReviewAt\":\"2026-11-19T08:01:00.000Z\"}}",
+    "spanish-flashcards-difficulty-v1": "easy",
+    "spanish-quiz-streak-v2": "{\"2026-11-18\":[\"gustar\"],\"2026-11-19\":[\"gustar\",\"ser-estar\",\"flashcards\"]}",
+    "spanish-flashcards-active-days-v1": "[\"2026-11-19\"]",
+    "spanish-quiz-completed-days-v1": "{\"2026-11-19\":[\"gustar\",\"ser-estar\",\"flashcards\"]}",
+    "spanish-quiz-streak-counter-v2": "{\"count\":1,\"lastCompletedDay\":\"2026-11-19\"}",
+    "spanish-quiz-completions-v1": "{\"por-para\":\"2026-11-02T12:00:00.000Z\"}",
+    "spanish-quiz-reinstated-v1": "{\"por-para\":true}",
+    "spanish-quiz-notebook-v1": "{\"version\":2,\"entries\":{\"q:gustar:3\":{\"id\":\"q:gustar:3\",\"kind\":\"question\",\"quizId\":\"gustar\",\"rule\":\"Gustar pattern: encantar\",\"questionId\":3,\"wrongAnswer\":\"encanta\",\"missCount\":1,\"lastMissedAt\":\"2026-11-18T09:12:00.000Z\"}}}"
+  }
+}
