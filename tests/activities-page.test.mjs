@@ -26,12 +26,23 @@ test("/activities is in neither the sitemap nor llms.txt", async () => {
   assert.doesNotMatch(llms, /\/activities\b/);
 });
 
-test("the home page shows the Selection screen until the user has a Board", async () => {
+test("a new user gets the starter Board, the Shelf on the Board only in the first session, and no tutorial", async () => {
   const source = await readFile(new URL("../app/quiz-selector.tsx", import.meta.url), "utf8");
-  assert.match(source, /setNeedsSelection\(!hasChosenBoard\(\)\)/);
-  assert.match(source, /<ActivitySelection mode="first"/);
+  assert.match(source, /if \(!hasChosenBoard\(\)\) \{\s*createStarterBoard\(\);/);
+  assert.match(source, /appSessionStorage\.setItem\(TUTORIAL_OFFERED_KEY, "1"\)/);
+  assert.match(source, /\{firstVisit && shelf\.length > 0 && \(\s*<details className="board-shelf" open>/);
+  assert.doesNotMatch(source, /<ActivitySelection/);
+});
+
+test("the Shelf is the first row of the drawer, not part of Settings", async () => {
+  const drawer = await readFile(new URL("../app/drawer.tsx", import.meta.url), "utf8");
+  const rows = [...drawer.matchAll(/toggleRow\("(\w+)"\)/g)].map((match) => match[1]);
+  assert.equal(rows[0], "shelf");
+  const settings = drawer.slice(drawer.indexOf('expanded === "settings" &&'));
+  assert.doesNotMatch(settings.slice(0, settings.indexOf("</div>")), /shelfItems/);
+});
+
+test("/activities saves with at least one ticked", async () => {
   const selection = await readFile(new URL("../app/activity-selection.tsx", import.meta.url), "utf8");
-  // The first visit shows only the Selection screen: the tutorial waits for the next visit.
-  assert.match(selection, /appSessionStorage\.setItem\(TUTORIAL_OFFERED_KEY, "1"\)/);
   assert.match(selection, /disabled=\{!checked\.size\}/);
 });

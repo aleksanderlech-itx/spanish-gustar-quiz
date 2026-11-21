@@ -22,7 +22,7 @@ const install = (local = {}) => {
 
 install();
 const {
-  BOARD_KEY, addToBoard, answerSuggestion, boardActivityIds, chooseBoard, hasChosenBoard, moveFinishedToShelf,
+  BOARD_KEY, FIRST_VISIT_KEY, STARTER_BOARD, addToBoard, createStarterBoard, isFirstVisitSession, answerSuggestion, boardActivityIds, chooseBoard, hasChosenBoard, moveFinishedToShelf,
   newActivities, rankSuggestions, readBoardState, removeFromBoard, shelfEntries,
 } = await import("../app/board-state.ts");
 const { ACTIVITY_REGISTRY } = await import("../app/activity-registry.ts");
@@ -139,4 +139,28 @@ test("ids this build doesn't know stay in the stored Board but are not shown (de
   assert.deepEqual(boardActivityIds(), ["gustar", "flashcards"]);
   removeFromBoard("gustar");
   assert.ok(JSON.parse(store.getItem(BOARD_KEY)).onBoard.includes("retired-activity"));
+});
+
+test("a new user's starter Board is Gustar, Por vs Para, Preterite vs Imperfect and Saber vs Conocer", () => {
+  install();
+  assert.deepEqual([...STARTER_BOARD].sort(), ["gustar", "por-para", "preterite-imperfect", "saber-conocer"]);
+  createStarterBoard();
+  assert.deepEqual([...boardActivityIds()].sort(), [...STARTER_BOARD].sort());
+  assert.equal(isFirstVisitSession(), true);
+  assert.deepEqual(readBoardState().known, ALL, "nothing is offered as New to a new user");
+});
+
+test("an Activity played through a link before the first Board joins the starter Board", () => {
+  install({ "present-perfect-quiz-progress-v1": JSON.stringify([round("regular", [8001])]) });
+  createStarterBoard();
+  assert.equal(boardActivityIds().includes("present-perfect"), true);
+  assert.equal(boardActivityIds().length, STARTER_BOARD.length + 1);
+});
+
+test("the starter Board is created once; a later session is not a first visit", () => {
+  install({ [BOARD_KEY]: board(["flashcards"]) });
+  createStarterBoard();
+  assert.deepEqual(boardActivityIds(), ["flashcards"]);
+  assert.equal(isFirstVisitSession(), false);
+  assert.equal(window.sessionStorage.getItem(FIRST_VISIT_KEY), null);
 });

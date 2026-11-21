@@ -131,7 +131,7 @@ const resetAllProgress = () => {
 
 const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
-type DrawerRow = "history" | "recap" | "notebook" | "backup" | "settings";
+type DrawerRow = "shelf" | "history" | "recap" | "notebook" | "backup" | "settings";
 
 type ShelfItem = { id: ActivityId; title: string; status: ShelfStatus; completedAt: string | null };
 
@@ -252,6 +252,36 @@ export default function Drawer({ open, onClose, returnFocusRef }: { open: boolea
         </div>
 
         <div className="drawer-row-group">
+          <button type="button" className="drawer-row" aria-expanded={expanded === "shelf"} onClick={() => toggleRow("shelf")}>
+            <span>On your shelf{shelfItems.length ? ` (${shelfItems.length})` : ""}</span>
+            <span aria-hidden="true">{expanded === "shelf" ? "︿" : "→"}</span>
+          </button>
+          {expanded === "shelf" && (
+            <div className="drawer-row-panel drawer-row-panel-actions">
+              <p>Activities not on your board. They are not part of your daily goal.</p>
+              {shelfItems.length ? (
+                <ul className="drawer-finished-list">
+                  {shelfItems.map((item) => (
+                    <li key={item.id} className="drawer-finished-item">
+                      <div className="drawer-finished-item-info">
+                        <span>{item.title}</span>
+                        <span className="drawer-finished-item-meta">
+                          {item.status === "finished" && item.completedAt
+                            ? `Done ${new Date(item.completedAt).toLocaleDateString()} · repeat from ${repeatDueDate(item.completedAt).toLocaleDateString()}`
+                            : SHELF_META[item.status]}
+                        </span>
+                      </div>
+                      <button type="button" className="drawer-finished-toggle" onClick={() => addShelfItem(item.id)}>
+                        Add to board
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              ) : <p>Every activity is on your board.</p>}
+              <a className="drawer-action-button" href="/activities" onClick={onClose}>Edit your activities</a>
+            </div>
+          )}
+
           <button type="button" className="drawer-row" aria-expanded={expanded === "history"} onClick={() => toggleRow("history")}>
             <span>Progress &amp; history</span>
             <span aria-hidden="true">{expanded === "history" ? "︿" : "→"}</span>
@@ -359,28 +389,6 @@ export default function Drawer({ open, onClose, returnFocusRef }: { open: boolea
           {expanded === "settings" && (
             <div className="drawer-row-panel drawer-row-panel-actions">
               <button type="button" className="drawer-action-button drawer-danger" onClick={resetAllProgress}>Reset all progress</button>
-
-              <p className="drawer-subhead">Your shelf</p>
-              {shelfItems.length ? (
-                <ul className="drawer-finished-list">
-                  {shelfItems.map((item) => (
-                    <li key={item.id} className="drawer-finished-item">
-                      <div className="drawer-finished-item-info">
-                        <span>{item.title}</span>
-                        <span className="drawer-finished-item-meta">
-                          {item.status === "finished" && item.completedAt
-                            ? `Done ${new Date(item.completedAt).toLocaleDateString()} · repeat from ${repeatDueDate(item.completedAt).toLocaleDateString()}`
-                            : SHELF_META[item.status]}
-                        </span>
-                      </div>
-                      <button type="button" className="drawer-finished-toggle" onClick={() => addShelfItem(item.id)}>
-                        Add to board
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              ) : <p>Every activity is on your board.</p>}
-              <a className="drawer-action-button" href="/activities" onClick={onClose}>Edit your activities</a>
             </div>
           )}
 

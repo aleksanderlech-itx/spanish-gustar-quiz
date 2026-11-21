@@ -9,9 +9,9 @@ import { orderBoard, type BoardTileProgress } from "./board";
 import { readStreakSummary, mergeActivityDays, dayKey, readFlashcardDaysReviewed, ACTIVITY_IDS, type StreakSummary } from "./streak";
 import { emptyQuizProgress, readQuizProgress, readDailyRoundProgress, type DailyRoundProgress, type QuizProgress } from "./quiz-progress";
 import { clearQuizCompletion, readQuizCompletion, markQuizCompleted } from "./quiz-completion";
-import { addToBoard, boardActivityIds, hasChosenBoard, moveFinishedToShelf, newActivities, rankSuggestions, readBoardState, shelfEntries, type ShelfEntry } from "./board-state";
+import { addToBoard, boardActivityIds, createStarterBoard, hasChosenBoard, isFirstVisitSession, moveFinishedToShelf, newActivities, rankSuggestions, readBoardState, shelfEntries, type ShelfEntry } from "./board-state";
+import { TUTORIAL_OFFERED_KEY } from "./tutorials";
 import SuggestionDialog, { type SuggestionContent } from "./suggestion-dialog";
-import ActivitySelection from "./activity-selection";
 import { isCompletionUnearned, type QuizResult } from "./quiz-logic";
 import { ROUND_SIZE as FLASHCARDS_ROUND_SIZE, MAX_BOX as MAX_FLASHCARD_BOX } from "./flashcards";
 import Drawer from "./drawer";
@@ -20,7 +20,7 @@ import DayCompleteDialog from "./day-complete-dialog";
 import { takeDayCelebration } from "./day-celebration";
 import Logo from "./logo";
 import { SunIcon, MoonIcon } from "./theme-icons";
-import { appStorage } from "./storage";
+import { appSessionStorage, appStorage } from "./storage";
 import { readNotebookGroups, type NotebookGroup } from "./notebook";
 import { mistakesPath, mistakesTitle } from "./notebook-retry";
 
@@ -210,8 +210,8 @@ export default function QuizSelector() {
   const [streak, setStreak] = useState<StreakSummary>(EMPTY_STREAK);
   const [mistakeGroups, setMistakeGroups] = useState<NotebookGroup[]>([]);
   const [celebrating, setCelebrating] = useState(false);
-  // A new user (no Board yet) sees the Selection screen in place of the Board (decision 0008).
-  const [needsSelection, setNeedsSelection] = useState(false);
+  // The Shelf shows below the Board only in a new user's first browser session; later it lives in the drawer.
+  const [firstVisit, setFirstVisit] = useState(false);
   const [boardVersion, setBoardVersion] = useState(0);
   const [suggestion, setSuggestion] = useState<SuggestionContent | null>(null);
   const [shelf, setShelf] = useState<ShelfEntry[]>([]);
@@ -240,6 +240,15 @@ export default function QuizSelector() {
         moveFinishedToShelf(id);
       }
     });
+    // A new user gets the starter Board (decision 0008). The welcome tutorial waits for the next visit.
+    if (!hasChosenBoard()) {
+      createStarterBoard();
+      try {
+        appSessionStorage.setItem(TUTORIAL_OFFERED_KEY, "1");
+      } catch {
+        // Session storage blocked; the tutorial may be offered on this visit.
+      }
+    }
     const onBoard = boardActivityIds();
     const nextItems: BoardItem[] = ACTIVITY_REGISTRY
       .filter((entry) => onBoard.includes(entry.id))
@@ -253,7 +262,7 @@ export default function QuizSelector() {
     // Browser storage is unavailable during the server render.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setItems(nextItems);
-    setNeedsSelection(!hasChosenBoard());
+    setFirstVisit(isFirstVisitSession());
     const shelfNow = shelfEntries();
     setShelf(shelfNow);
     // The Suggestion: after a Finished event, once for New Activities, and whenever the Board is empty.
@@ -298,14 +307,6 @@ export default function QuizSelector() {
   const totalLogged = items.reduce((sum, item) => sum + item.completed, 0);
 
   if (!ready || !open) return null;
-
-  if (needsSelection) {
-    return (
-      <main className="quiz-library activity-selection-home">
-        <ActivitySelection mode="first" onDone={() => setBoardVersion((version) => version + 1)} />
-      </main>
-    );
-  }
 
   return (
     <main className="quiz-library board-home" aria-labelledby="quiz-library-title">
@@ -484,8 +485,8 @@ export default function QuizSelector() {
         })}
       </section>
 
-        {shelf.length > 0 && (
-          <details className="board-shelf">
+        {firstVisit && shelf.length > 0 && (
+          <details className="board-shelf" open>
             <summary>
               <span className="eyebrow">On your shelf</span>
               <span className="board-shelf-count">{shelf.length}</span>

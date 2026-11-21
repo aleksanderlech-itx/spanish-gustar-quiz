@@ -1,7 +1,7 @@
 import { ACTIVITY_REGISTRY, type ActivityId } from "./activity-registry.ts";
 import { QUIZ_CONFIG, isQuizId } from "./quiz-config.ts";
 import { clearQuizCompletion, isRepeatDue, readAllCompletions } from "./quiz-completion.ts";
-import { appStorage } from "./storage.ts";
+import { appSessionStorage, appStorage } from "./storage.ts";
 
 /**
  * Which Activities are on the user's Board and which are on the Shelf (terms in `CONTEXT.md`,
@@ -10,6 +10,11 @@ import { appStorage } from "./storage.ts";
  */
 
 export const BOARD_KEY = "spanish-quiz-board-v1";
+/** Session flag: this browser session created the starter Board, so the Board shows the Shelf below it, expanded. */
+export const FIRST_VISIT_KEY = "spanish-board-first-visit";
+
+/** A new user's first Board (decision 0008), plus anything they already played through a link. */
+export const STARTER_BOARD: readonly ActivityId[] = ["gustar", "por-para", "preterite-imperfect", "saber-conocer"];
 const FLASHCARD_PROGRESS_KEY = "spanish-flashcards-leitner-v2";
 
 export type BoardState = {
@@ -185,6 +190,30 @@ export const chooseBoard = (ids: ActivityId[]) => {
     known: unique([...(state?.known ?? []), ...REGISTRY_IDS]),
     suggestion: state?.suggestion ?? null,
   });
+};
+
+/**
+ * A new user's first visit: the starter Board plus any Activity already played, and a session flag so the
+ * Board shows the Shelf, expanded, for the rest of this browser session. Does nothing once a Board exists.
+ */
+export const createStarterBoard = () => {
+  if (hasChosenBoard()) return;
+  const played = boardActivityIds();
+  chooseBoard(REGISTRY_IDS.filter((id) => STARTER_BOARD.includes(id) || played.includes(id)));
+  try {
+    appSessionStorage.setItem(FIRST_VISIT_KEY, "1");
+  } catch {
+    // Session storage blocked; the Shelf is then only in the drawer.
+  }
+};
+
+/** Whether this browser session is the new user's first visit (the starter Board was created in it). */
+export const isFirstVisitSession = (): boolean => {
+  try {
+    return appSessionStorage.getItem(FIRST_VISIT_KEY) === "1";
+  } catch {
+    return false;
+  }
 };
 
 /** Moves Activities from the Shelf to the Board. */

@@ -100,11 +100,12 @@ test("a present continuous test session leaves every real key unchanged and writ
   assert.ok(snapshot(localStorage, true)[`${TEST_KEY_PREFIX}present-continuous-quiz-progress-v1`], "the round was saved in the test namespace");
 });
 
-test("a Board test session (Selection, Finished, Suggestion, Shelf add) leaves every real key unchanged", () => {
+test("a Board test session (starter Board, Selection, Finished, Suggestion, Shelf add) leaves every real key unchanged", () => {
   const realSeed = { ...REAL_SEED, "spanish-quiz-board-v1": JSON.stringify({ onBoard: ["gustar", "flashcards"], known: ["gustar"], suggestion: null }) };
   const { localStorage } = install({ search: "?test=1", local: realSeed });
   const before = snapshot(localStorage, false);
-  assert.equal(board.hasChosenBoard(), false, "a test session starts at the Selection screen");
+  assert.equal(board.hasChosenBoard(), false, "a test session starts as a new user");
+  board.createStarterBoard();
   board.chooseBoard(["ser-estar", "por-para"]);
   markQuizCompleted("ser-estar", new Date("2026-11-07T08:00:00"));
   board.moveFinishedToShelf("ser-estar");

@@ -2,9 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ACTIVITY_REGISTRY, type ActivityId } from "./activity-registry";
-import { answerSuggestion, boardActivityIds, chooseBoard, hasChosenBoard, shelfEntries, type ShelfStatus } from "./board-state";
-import { appSessionStorage } from "./storage";
-import { TUTORIAL_OFFERED_KEY } from "./tutorials";
+import { answerSuggestion, boardActivityIds, chooseBoard, shelfEntries, type ShelfStatus } from "./board-state";
 
 const STATUS_NOTE: Partial<Record<ShelfStatus, string>> = {
   "repeat-due": "Repeat due. Starts over when added; your mistakes stay.",
@@ -12,36 +10,25 @@ const STATUS_NOTE: Partial<Record<ShelfStatus, string>> = {
   started: "In progress",
 };
 
-type Props = {
-  /** "first": a new user's first visit to the home page. "edit": the /activities page. */
-  mode: "first" | "edit";
-  onDone: () => void;
-};
+type Props = { onDone: () => void };
 
 /**
- * The Selection screen (decision 0008): one row per Activity with a checkbox. Saving puts exactly the
- * ticked Activities on the Board; at least one is required.
+ * The Selection screen at /activities (decision 0008): one row per Activity with a checkbox. Saving puts
+ * exactly the ticked Activities on the Board; at least one is required. New users don't see it first:
+ * they start with the starter Board.
  */
-export default function ActivitySelection({ mode, onDone }: Props) {
+export default function ActivitySelection({ onDone }: Props) {
   const [ready, setReady] = useState(false);
   const [checked, setChecked] = useState<Set<ActivityId>>(new Set());
   const [notes, setNotes] = useState<Partial<Record<ActivityId, string>>>({});
 
   useEffect(() => {
-    // First visit: Activities played through a direct link start ticked. Later: the current Board.
+    // The current Board (before any Board exists: the Activities played so far).
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setChecked(new Set(boardActivityIds()));
     setNotes(Object.fromEntries(shelfEntries().map((entry) => [entry.id, STATUS_NOTE[entry.status]])));
-    if (mode === "first" && !hasChosenBoard()) {
-      // The first visit shows only this screen: the welcome tutorial waits for the next visit.
-      try {
-        appSessionStorage.setItem(TUTORIAL_OFFERED_KEY, "1");
-      } catch {
-        // Session storage blocked; the tutorial may be offered once the Board appears.
-      }
-    }
     setReady(true);
-  }, [mode]);
+  }, []);
 
   const toggle = (id: ActivityId) => setChecked((current) => {
     const next = new Set(current);
@@ -62,8 +49,8 @@ export default function ActivitySelection({ mode, onDone }: Props) {
 
   return (
     <section className="activity-selection" aria-labelledby="activity-selection-title">
-      <p className="eyebrow">{mode === "first" ? "Welcome" : "Your activities"}</p>
-      <h1 id="activity-selection-title">{mode === "first" ? "Choose your activities" : "Choose what's on your board"}</h1>
+      <p className="eyebrow">Your activities</p>
+      <h1 id="activity-selection-title">Choose what&apos;s on your board</h1>
       <p className="activity-selection-lead">
         Your daily goal is a round in every activity on your board, so pick as many as you want to keep up.
         The rest wait on your shelf, and you can change this any time.
@@ -82,7 +69,7 @@ export default function ActivitySelection({ mode, onDone }: Props) {
               <span className="activity-selection-text">
                 <strong>{entry.title}</strong>
                 <span>{entry.shortDescription}</span>
-                {mode === "edit" && notes[entry.id] && <em>{notes[entry.id]}</em>}
+                {notes[entry.id] && <em>{notes[entry.id]}</em>}
               </span>
             </label>
           </li>
@@ -90,7 +77,7 @@ export default function ActivitySelection({ mode, onDone }: Props) {
       </ul>
       <div className="activity-selection-actions">
         <button type="button" className="activity-selection-save" onClick={save} disabled={!checked.size}>
-          {mode === "first" ? "Continue" : "Save"}
+          Save
         </button>
         {!checked.size && <span className="activity-selection-hint">Pick at least one activity.</span>}
       </div>
