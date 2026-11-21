@@ -9,7 +9,7 @@ One practice unit the user can put on their Board: a topic quiz or the verb flas
 _Avoid_: topic (when meaning flashcards too), module
 
 **Board**:
-The user's chosen set of Activities, shown on the home page. Always holds at least one Activity.
+The user's chosen set of Activities, shown on the home page. Once chosen, it always holds at least one Activity. Before the user's first Selection, the Board is the set of Activities they have played.
 _Avoid_: dashboard, library
 
 **Shelf**:
@@ -39,6 +39,8 @@ A round in every Activity on the Board today. Meeting it extends the streak.
 - A **Finished** **Activity** moves to the **Shelf** and triggers a **Suggestion**
 - The **Daily goal** is defined by what is on the **Board**
 - Moving an **Activity** to the **Shelf** keeps its progress; adding a **Finished** **Activity** back to the **Board** starts it over
+- Playing an **Activity** from the **Shelf** is practice only; it joins the **Board** only if the user adds it
+- A newly released **Activity** starts on the **Shelf** for users who already have a **Board**
 - Each time an **Activity** becomes **Finished** it triggers one **Suggestion**; declining it does not bring it back
 
 ## Example dialogue
