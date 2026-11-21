@@ -6,7 +6,8 @@ export type TopicSettings = { roundLength: RoundLength; mode: AnswerMode };
 
 export const DEFAULT_SETTINGS: TopicSettings = { roundLength: 5, mode: "type" };
 
-const settingsKey = (quizId: string) => `${quizId}-topic-settings-v1`;
+export const topicSettingsKey = (quizId: string) => `${quizId}-topic-settings-v1`;
+const settingsKey = topicSettingsKey;
 
 /** Defaults for a topic with nothing saved. Test mode starts in choice mode, where the correct option is
  * highlighted for testers who do not read Spanish; normal mode keeps typed answers. */

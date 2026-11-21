@@ -8,6 +8,7 @@ import "./editorial-polish.css";
 import "./activity-chrome.css";
 import "./test-mode.css";
 import "./mistakes.css";
+import StoredDataUpgrade from "./stored-data-upgrade";
 import QuizSelector from "./quiz-selector";
 import TestMode from "./test-mode";
 import AnalyticsScripts from "./analytics-scripts";
@@ -107,6 +108,7 @@ export default async function RootLayout({
       <body className="antialiased">
         <script suppressHydrationWarning dangerouslySetInnerHTML={{ __html: THEME_PRE_PAINT_SCRIPT }} />
         {isProduction && <AnalyticsScripts gaId={GA_MEASUREMENT_ID} clarityId={CLARITY_PROJECT_ID} />}
+        <StoredDataUpgrade />
         <Suspense fallback={null}>
           <TestMode />
         </Suspense>
