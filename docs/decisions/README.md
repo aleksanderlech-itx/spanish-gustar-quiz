@@ -74,6 +74,9 @@ content. Each links to the record that explains it.
     good: never renumber or reuse one. A content change updates
     `tests/question-id-snapshot.json` with its script in the same PR. See
     [0007](0007-question-ids-are-explicit-and-permanent.md).
+15. The user chooses the Board. A new activity appears on the Selection screen,
+    starts on the Shelf for users who already have a Board, and is offered once
+    as a New Suggestion; never add it to their Board by default. See [0008](0008-user-chosen-board.md).
 
 ## Index
 
@@ -86,3 +89,4 @@ content. Each links to the record that explains it.
 | [0005](0005-manual-test-plan-location.md) | One manual test plan, kept in docs and updated with each feature | Accepted | 2026-10-18 |
 | [0006](0006-wrong-options-wrong-in-every-region.md) | Wrong options must be wrong in every region | Accepted | 2026-11-01 |
 | [0007](0007-question-ids-are-explicit-and-permanent.md) | Question ids are explicit and permanent | Accepted | 2026-11-11 |
+| [0008](0008-user-chosen-board.md) | The Board is chosen by the user | Accepted | 2026-11-21 |
