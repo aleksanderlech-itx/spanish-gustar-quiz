@@ -1,26 +1,19 @@
 "use client";
 
 import { useEffect, useRef, useState, type RefObject } from "react";
-import { readStreakSummary, STREAK_STORAGE_KEYS } from "./streak";
+import { readStreakSummary } from "./streak";
 import { isTestMode } from "./storage";
-import { NOTEBOOK_KEY, readNotebookGroups, type NotebookGroup } from "./notebook";
+import { readNotebookGroups, type NotebookGroup } from "./notebook";
 import { mistakesPath, mistakesTitle } from "./notebook-retry";
 import { QUIZ_CONFIG, QUIZ_IDS, type QuizId } from "./quiz-config";
 import type { QuizResult } from "./quiz-logic";
 import { computeRecentRounds, computeWeakAreas, type RecentRound, type WeakArea } from "./history";
-import { readAllCompletions, isQuizReinstated, setQuizReinstated, isRepeatDue, repeatDueDate, QUIZ_COMPLETION_STORAGE_KEYS } from "./quiz-completion";
+import { readAllCompletions, isQuizReinstated, setQuizReinstated, isRepeatDue, repeatDueDate } from "./quiz-completion";
 import Logo from "./logo";
 import KofiButton from "./kofi-button";
 import { appStorage } from "./storage";
+import { applyBackup, buildBackup, FLASHCARD_PROGRESS_KEY, parseBackup, resetStoredData } from "./stored-data";
 
-const FLASHCARD_KEY = "spanish-flashcards-leitner-v2";
-const ALL_PROGRESS_KEYS = [
-  ...QUIZ_IDS.map((id) => QUIZ_CONFIG[id].storageKey),
-  FLASHCARD_KEY,
-  ...STREAK_STORAGE_KEYS,
-  ...QUIZ_COMPLETION_STORAGE_KEYS,
-  NOTEBOOK_KEY,
-];
 const WEEK_MS = 7 * 86_400_000;
 
 type GlobalStats = {
@@ -68,7 +61,7 @@ const readGlobalStats = (byQuiz: QuizHistoryEntry[]): GlobalStats => {
 
   let flashcardsStudied = 0;
   try {
-    const raw = appStorage.getItem(FLASHCARD_KEY);
+    const raw = appStorage.getItem(FLASHCARD_PROGRESS_KEY);
     flashcardsStudied = raw ? Object.keys(JSON.parse(raw) as Record<string, unknown>).length : 0;
   } catch {
     // Ignore; flashcardsStudied stays 0.
@@ -84,17 +77,7 @@ const readGlobalStats = (byQuiz: QuizHistoryEntry[]): GlobalStats => {
 };
 
 const exportAllProgress = () => {
-  const payload: Record<string, unknown> = { version: 1, exportedAt: new Date().toISOString() };
-  ALL_PROGRESS_KEYS.forEach((key) => {
-    const raw = appStorage.getItem(key);
-    if (raw) {
-      try {
-        payload[key] = JSON.parse(raw);
-      } catch {
-        // Skip a corrupt entry rather than fail the whole export.
-      }
-    }
-  });
+  const payload = buildBackup();
   const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
@@ -104,29 +87,43 @@ const exportAllProgress = () => {
   URL.revokeObjectURL(url);
 };
 
+const IMPORT_MESSAGES = {
+  confirm: "This replaces the progress on this device.",
+  confirmTest: "This replaces the test progress in this tab. Your real progress is not affected.",
+  newer: "This file is from a newer version of Spanish Quizzes. Reload the page to update, then try again.",
+  invalid: "This backup file is damaged or not a Spanish Quizzes backup. Nothing was changed.",
+};
+
+/** Checks the whole file first; storage changes only after it passes and the user confirms. */
 const importAllProgress = async (file: File) => {
+  let text: string;
   try {
-    const data = JSON.parse(await file.text()) as Record<string, unknown>;
-    let restored = 0;
-    ALL_PROGRESS_KEYS.forEach((key) => {
-      if (data[key] !== undefined) {
-        appStorage.setItem(key, JSON.stringify(data[key]));
-        restored += 1;
-      }
-    });
-    if (restored === 0) throw new Error("no recognised keys");
-    window.location.reload();
+    text = await file.text();
   } catch {
-    window.alert("This is not a valid Spanish Quizzes backup file.");
+    window.alert(IMPORT_MESSAGES.invalid);
+    return;
   }
+  const parsed = parseBackup(text);
+  if (!parsed.ok) {
+    window.alert(parsed.reason === "newer" ? IMPORT_MESSAGES.newer : IMPORT_MESSAGES.invalid);
+    return;
+  }
+  if (!window.confirm(isTestMode() ? IMPORT_MESSAGES.confirmTest : IMPORT_MESSAGES.confirm)) return;
+  try {
+    applyBackup(parsed.data);
+  } catch {
+    window.alert("Progress could not be saved on this device.");
+    return;
+  }
+  window.location.reload();
 };
 
 const resetAllProgress = () => {
   const message = isTestMode()
     ? "Delete all test progress? Your real progress is not affected. This cannot be undone."
-    : "Delete all quiz and flashcard progress on this device? This cannot be undone.";
+    : "Delete all progress and settings on this device? This cannot be undone.";
   if (!window.confirm(message)) return;
-  ALL_PROGRESS_KEYS.forEach((key) => appStorage.removeItem(key));
+  resetStoredData();
   window.location.reload();
 };
 
@@ -340,7 +337,13 @@ export default function Drawer({ open, onClose, returnFocusRef }: { open: boolea
                 className="sr-only"
                 type="file"
                 accept="application/json"
-                onChange={(event) => { const file = event.target.files?.[0]; if (file) void importAllProgress(file); }}
+                onChange={(event) => {
+                  const input = event.currentTarget;
+                  const file = input.files?.[0];
+                  // Cleared every time, so choosing the same file again still fires a change.
+                  input.value = "";
+                  if (file) void importAllProgress(file);
+                }}
               />
             </div>
           )}

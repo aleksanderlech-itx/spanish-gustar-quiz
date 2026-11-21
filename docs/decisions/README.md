@@ -80,6 +80,9 @@ content. Each links to the record that explains it.
 16. An activity id never changes and is never reused. Stored data keeps ids the
     build does not know; filter them only when evaluating, never when writing.
     See [0009](0009-activity-ids-are-permanent.md).
+17. A change to a stored shape raises the schema version and adds an upgrade
+    step and shape check in `app/stored-data.ts`. Every stored key is in its
+    `BACKUP_KEYS`. See [0010](0010-stored-data-schema-and-migrations.md).
 
 ## Index
 
@@ -94,3 +97,4 @@ content. Each links to the record that explains it.
 | [0007](0007-question-ids-are-explicit-and-permanent.md) | Question ids are explicit and permanent | Accepted | 2026-11-11 |
 | [0008](0008-user-chosen-board.md) | The Board is chosen by the user | Accepted | 2026-11-21 |
 | [0009](0009-activity-ids-are-permanent.md) | Activity ids are permanent | Accepted | 2026-11-21 |
+| [0010](0010-stored-data-schema-and-migrations.md) | One schema version for stored data, upgraded in one place | Accepted | 2026-11-21 |

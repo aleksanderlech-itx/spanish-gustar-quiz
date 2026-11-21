@@ -18,7 +18,13 @@ test("drawer's slide-in animation is dropped under prefers-reduced-motion", asyn
   assert.match(css, /@media \(prefers-reduced-motion: reduce\) \{\s*\.drawer-panel \{\s*animation: none;/);
 });
 
-test("drawer's backup/restore and reset act on every quiz, flashcard, streak, completion and notebook storage key, not just one", async () => {
+test("drawer's backup, restore and reset go through the stored-data module, and import checks before it writes", async () => {
   const source = await readFile(new URL("../app/drawer.tsx", import.meta.url), "utf8");
-  assert.match(source, /const ALL_PROGRESS_KEYS = \[\s*\.\.\.QUIZ_IDS\.map\(\(id\) => QUIZ_CONFIG\[id\]\.storageKey\),\s*FLASHCARD_KEY,\s*\.\.\.STREAK_STORAGE_KEYS,\s*\.\.\.QUIZ_COMPLETION_STORAGE_KEYS,\s*NOTEBOOK_KEY,\s*\];/);
+  assert.match(source, /const payload = buildBackup\(\);/);
+  assert.match(source, /resetStoredData\(\);/);
+  assert.doesNotMatch(source, /ALL_PROGRESS_KEYS/);
+  const importer = source.slice(source.indexOf("const importAllProgress"), source.indexOf("const resetAllProgress"));
+  assert.ok(importer.indexOf("parseBackup(") < importer.indexOf("window.confirm("));
+  assert.ok(importer.indexOf("window.confirm(") < importer.indexOf("applyBackup("));
+  assert.match(source, /input\.value = "";/);
 });
