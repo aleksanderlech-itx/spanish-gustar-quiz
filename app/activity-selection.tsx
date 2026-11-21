@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ACTIVITY_REGISTRY, type ActivityId } from "./activity-registry";
-import { boardActivityIds, chooseBoard, hasChosenBoard, shelfEntries, type ShelfStatus } from "./board-state";
+import { answerSuggestion, boardActivityIds, chooseBoard, hasChosenBoard, shelfEntries, type ShelfStatus } from "./board-state";
 import { appSessionStorage } from "./storage";
 import { TUTORIAL_OFFERED_KEY } from "./tutorials";
 
@@ -53,6 +53,8 @@ export default function ActivitySelection({ mode, onDone }: Props) {
   const save = () => {
     if (!checked.size) return;
     chooseBoard(ACTIVITY_REGISTRY.map((entry) => entry.id).filter((id) => checked.has(id)));
+    // Saving a Selection answers any pending Suggestion: the user just chose their whole Board.
+    answerSuggestion([]);
     onDone();
   };
 

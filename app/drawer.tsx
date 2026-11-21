@@ -8,7 +8,9 @@ import { mistakesPath, mistakesTitle } from "./notebook-retry";
 import { QUIZ_CONFIG, QUIZ_IDS, type QuizId } from "./quiz-config";
 import type { QuizResult } from "./quiz-logic";
 import { computeRecentRounds, computeWeakAreas, type RecentRound, type WeakArea } from "./history";
-import { readAllCompletions, isQuizReinstated, setQuizReinstated, isRepeatDue, repeatDueDate } from "./quiz-completion";
+import { readAllCompletions, repeatDueDate } from "./quiz-completion";
+import { findActivity, type ActivityId } from "./activity-registry";
+import { addToBoard, hasChosenBoard, shelfEntries, type ShelfStatus } from "./board-state";
 import Logo from "./logo";
 import KofiButton from "./kofi-button";
 import { appStorage } from "./storage";
@@ -131,23 +133,25 @@ const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), input:not([disabled
 
 type DrawerRow = "history" | "recap" | "notebook" | "backup" | "settings";
 
-type FinishedActivity = { quizId: QuizId; title: string; completedAt: string; repeatDue: boolean; reinstated: boolean };
+type ShelfItem = { id: ActivityId; title: string; status: ShelfStatus; completedAt: string | null };
 
-/** Grammar quizzes the user has fully completed, whether or not they're currently
- * shown back on the main screen. Only finished topics are settings' concern:
- * an unfinished one is just on the board where it already belongs. */
-const readFinishedActivities = (): FinishedActivity[] => {
+/** Every Activity on the Shelf (decision 0008), for the drawer's Settings. Empty before the first Selection. */
+const readShelfItems = (): ShelfItem[] => {
+  if (!hasChosenBoard()) return [];
   const completions = readAllCompletions();
-  return QUIZ_IDS
-    .filter((id) => completions[id])
-    .map((id) => ({
-      quizId: id,
-      title: QUIZ_CONFIG[id].title.replace(" Quiz", ""),
-      completedAt: completions[id],
-      repeatDue: isRepeatDue(completions[id]),
-      reinstated: isQuizReinstated(id),
-    }))
-    .sort((a, b) => b.completedAt.localeCompare(a.completedAt));
+  return shelfEntries().map((entry) => ({
+    id: entry.id,
+    title: findActivity(entry.id)?.title ?? entry.id,
+    status: entry.status,
+    completedAt: completions[entry.id] ?? null,
+  }));
+};
+
+const SHELF_META: Record<ShelfStatus, string> = {
+  "repeat-due": "Repeat due",
+  "not-started": "Not started",
+  started: "In progress",
+  finished: "Finished",
 };
 
 export default function Drawer({ open, onClose, returnFocusRef }: { open: boolean; onClose: () => void; returnFocusRef: RefObject<HTMLButtonElement | null> }) {
@@ -158,7 +162,7 @@ export default function Drawer({ open, onClose, returnFocusRef }: { open: boolea
   const [streakDays, setStreakDays] = useState(0);
   const [notebookCount, setNotebookCount] = useState(0);
   const [notebookGroups, setNotebookGroups] = useState<NotebookGroup[]>([]);
-  const [finishedActivities, setFinishedActivities] = useState<FinishedActivity[]>([]);
+  const [shelfItems, setShelfItems] = useState<ShelfItem[]>([]);
   const panelRef = useRef<HTMLDivElement | null>(null);
   const importRef = useRef<HTMLInputElement | null>(null);
 
@@ -174,12 +178,12 @@ export default function Drawer({ open, onClose, returnFocusRef }: { open: boolea
     const groups = readNotebookGroups();
     setNotebookCount(groups.reduce((sum, group) => sum + group.entries.length, 0));
     setNotebookGroups(groups);
-    setFinishedActivities(readFinishedActivities());
+    setShelfItems(readShelfItems());
   }, [open]);
 
-  const toggleReinstated = (quizId: QuizId, reinstated: boolean) => {
-    setQuizReinstated(quizId, reinstated);
-    setFinishedActivities(readFinishedActivities());
+  const addShelfItem = (id: ActivityId) => {
+    addToBoard([id]);
+    setShelfItems(readShelfItems());
   };
 
   useEffect(() => {
@@ -356,32 +360,27 @@ export default function Drawer({ open, onClose, returnFocusRef }: { open: boolea
             <div className="drawer-row-panel drawer-row-panel-actions">
               <button type="button" className="drawer-action-button drawer-danger" onClick={resetAllProgress}>Reset all progress</button>
 
-              <p className="drawer-subhead">Finished activities</p>
-              {finishedActivities.length ? (
+              <p className="drawer-subhead">Your shelf</p>
+              {shelfItems.length ? (
                 <ul className="drawer-finished-list">
-                  {finishedActivities.map((item) => (
-                    <li key={item.quizId} className="drawer-finished-item">
+                  {shelfItems.map((item) => (
+                    <li key={item.id} className="drawer-finished-item">
                       <div className="drawer-finished-item-info">
                         <span>{item.title}</span>
                         <span className="drawer-finished-item-meta">
-                          {item.repeatDue
-                            ? "Repeat due"
-                            : `Done ${new Date(item.completedAt).toLocaleDateString()} · repeat from ${repeatDueDate(item.completedAt).toLocaleDateString()}`}
+                          {item.status === "finished" && item.completedAt
+                            ? `Done ${new Date(item.completedAt).toLocaleDateString()} · repeat from ${repeatDueDate(item.completedAt).toLocaleDateString()}`
+                            : SHELF_META[item.status]}
                         </span>
                       </div>
-                      {!item.repeatDue && (
-                        <button
-                          type="button"
-                          className="drawer-finished-toggle"
-                          onClick={() => toggleReinstated(item.quizId, !item.reinstated)}
-                        >
-                          {item.reinstated ? "Remove from main screen" : "Add to main screen"}
-                        </button>
-                      )}
+                      <button type="button" className="drawer-finished-toggle" onClick={() => addShelfItem(item.id)}>
+                        Add to board
+                      </button>
                     </li>
                   ))}
                 </ul>
-              ) : <p>No finished activities yet.</p>}
+              ) : <p>Every activity is on your board.</p>}
+              <a className="drawer-action-button" href="/activities" onClick={onClose}>Edit your activities</a>
             </div>
           )}
 

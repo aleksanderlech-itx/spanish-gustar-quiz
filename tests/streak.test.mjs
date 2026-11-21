@@ -215,7 +215,6 @@ test("the banked count isn't recomputed from the ledger, so a newly required act
 // --- Daily goal = every activity on the board; a completed day stays completed ---
 
 const COMPLETIONS_KEY = "spanish-quiz-completions-v1";
-const REINSTATED_KEY = "spanish-quiz-reinstated-v1";
 
 test("today's goal is the Board: an Activity moved to the Shelf isn't required, one added back is", () => {
   const monday = at("2026-10-05T10:00:00");

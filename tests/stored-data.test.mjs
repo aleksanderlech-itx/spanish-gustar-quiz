@@ -37,7 +37,8 @@ const ALL_IDS = ACTIVITY_REGISTRY.map((entry) => entry.id);
 const REINSTATED_KEY = "spanish-quiz-reinstated-v1";
 /** The fixture after the schema 2 step: the Board replaces the "show on main screen" choices. */
 const upgradedFixture = () => {
-  const { [REINSTATED_KEY]: _ignored, ...rest } = FIXTURE;
+  const rest = { ...FIXTURE };
+  delete rest[REINSTATED_KEY];
   return rest;
 };
 const { readStreakSummary } = await import("../app/streak.ts");
