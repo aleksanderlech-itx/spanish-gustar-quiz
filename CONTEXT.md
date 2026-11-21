@@ -25,10 +25,10 @@ An Activity whose completion rule has been met; it moves from the Board to the S
 _Avoid_: done, mastered
 
 **Repeat due**:
-A Finished Activity one month or more after it was Finished. It ranks first among suggestions; it does not return to the Board on its own.
+A Finished Activity one month or more after it was Finished. It ranks first among Suggestions and is marked on the Shelf; it does not return to the Board on its own.
 
 **Suggestion**:
-The offer, made when an Activity is Finished, to move one or more Activities from the Shelf to the Board. May include the Activity just Finished.
+The offer to move one or more Activities from the Shelf to the Board. Made when an Activity is Finished (may include the Activity just Finished), and once for each newly released Activity (a New Suggestion).
 
 **Daily goal**:
 A round in every Activity on the Board today. Meeting it extends the streak.
@@ -38,9 +38,9 @@ A round in every Activity on the Board today. Meeting it extends the streak.
 - Every **Activity** is on exactly one of the **Board** or the **Shelf**
 - A **Finished** **Activity** moves to the **Shelf** and triggers a **Suggestion**
 - The **Daily goal** is defined by what is on the **Board**
-- Moving an **Activity** to the **Shelf** keeps its progress; adding a **Finished** **Activity** back to the **Board** starts it over
+- Moving an **Activity** to the **Shelf** keeps its progress; adding a **Finished** **Activity** back to the **Board** starts its sentences over but keeps its past mistakes
 - Playing an **Activity** from the **Shelf** is practice only; it joins the **Board** only if the user adds it
-- A newly released **Activity** starts on the **Shelf** for users who already have a **Board**
+- A newly released **Activity** starts on the **Shelf** for users who already have a **Board** and is offered to them once as a New **Suggestion**
 - Each time an **Activity** becomes **Finished** it triggers one **Suggestion**; declining it does not bring it back
 
 ## Example dialogue

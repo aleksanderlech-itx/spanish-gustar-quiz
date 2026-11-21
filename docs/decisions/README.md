@@ -74,9 +74,9 @@ content. Each links to the record that explains it.
     good: never renumber or reuse one. A content change updates
     `tests/question-id-snapshot.json` with its script in the same PR. See
     [0007](0007-question-ids-are-explicit-and-permanent.md).
-15. The user chooses the Board. A new activity appears on the Selection screen
-    and starts on the Shelf for users who already have a Board; never add it
-    to their Board by default. See [0008](0008-user-chosen-board.md).
+15. The user chooses the Board. A new activity appears on the Selection screen,
+    starts on the Shelf for users who already have a Board, and is offered once
+    as a New Suggestion; never add it to their Board by default. See [0008](0008-user-chosen-board.md).
 
 ## Index
 
