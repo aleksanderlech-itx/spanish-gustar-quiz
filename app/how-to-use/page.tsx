@@ -150,11 +150,12 @@ export default function HowToUsePage() {
             <div>
               <h3>Home board</h3>
               <dl>
-                <dt>Today&apos;s board</dt><dd>Your quizzes and deck, prioritised by what needs attention.</dd>
+                <dt>Today&apos;s board</dt><dd>The activities you chose, prioritised by what needs attention. On your first visit you pick them; change them any time under <UiLabel>Your activities</UiLabel>.</dd>
+                <dt>On your shelf</dt><dd>Activities that are not on your board. They are not part of your daily goal. <UiLabel>Add to board</UiLabel> brings one back.</dd>
                 <dt>due</dt><dd>Questions or cards ready to practise now.</dd>
                 <dt>done / studied</dt><dd>Material you have already practised.</dd>
                 <dt>Percentage</dt><dd>Your progress through that activity.</dd>
-                <dt>Streak and week</dt><dd>A view of recent practice consistency, not a grade. A day counts once every activity is done; do it again the next calendar day, at any time, to keep the streak.</dd>
+                <dt>Streak and week</dt><dd>A view of recent practice consistency, not a grade. A day counts once every activity on your board is done; do it again the next calendar day, at any time, to keep the streak.</dd>
               </dl>
             </div>
             <div>
@@ -175,15 +176,31 @@ export default function HowToUsePage() {
             <dt>Weekly recap</dt><dd>Your number of rounds and average accuracy for the current week.</dd>
             <dt>Mistake notebook</dt><dd>Rules connected to answers you have missed.</dd>
             <dt>Backup &amp; restore</dt><dd>Download your progress or import a previously saved backup.</dd>
-            <dt>Settings</dt><dd>Reset local progress or return a finished activity to the main board.</dd>
+            <dt>Settings</dt><dd>Reset local progress, see your shelf and add an activity back to your board, or open <UiLabel>Edit your activities</UiLabel>.</dd>
             <dt>Notes</dt><dd>Short grammar articles with links to related quiz topics.</dd>
           </dl>
           <p>Use the theme icon at the top-right of a page, or the theme control in the home board&apos;s desktop sidebar, to change appearance without changing your learning data.</p>
         </div>
       </section>
 
-      <section className={styles.section} id="backup">
+      <section className={styles.section} id="your-board">
         <p className={styles.sectionNumber}>05</p>
+        <div className={styles.sectionBody}>
+          <h2>Choosing your activities</h2>
+          <p>Your daily goal is a round in every activity on your board, so the board holds only what you choose. Everything else waits on your shelf.</p>
+          <ul>
+            <li>On your first visit, pick as many activities as you like, or select <UiLabel>Use all</UiLabel>. If you arrived through a link to one activity, it is already ticked.</li>
+            <li>Change your choice any time under <UiLabel>Your activities</UiLabel>. At least one activity stays on your board.</li>
+            <li>When you finish every sentence in a topic, it moves to your shelf and the board suggests up to three activities to add. The one you just finished can be among them. Adding a finished topic starts its sentences over; your mistakes stay.</li>
+            <li>A month after you finish a topic it is marked <UiLabel>Repeat due</UiLabel> on your shelf and suggested first. It does not come back on its own.</li>
+            <li>New activities appear once as a suggestion. Nothing is added to your board unless you choose it.</li>
+            <li>You can still open an activity on your shelf through a link. That round is practice only, and its results offer <UiLabel>Add to your board</UiLabel>.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section className={styles.section} id="backup">
+        <p className={styles.sectionNumber}>06</p>
         <div className={styles.sectionBody}>
           <h2>Backup and restore</h2>
           <p>Your learning progress is kept in browser storage on the device you are using. If you clear browser data or move to another browser or device, that local progress does not automatically follow you.</p>
@@ -197,7 +214,7 @@ export default function HowToUsePage() {
       </section>
 
       <section className={styles.section} id="mistakes">
-        <p className={styles.sectionNumber}>06</p>
+        <p className={styles.sectionNumber}>07</p>
         <div className={styles.sectionBody}>
           <h2>Mistake notebook</h2>
           <p>The Mistake notebook collects the grammar rules connected to incorrect quiz answers. It is designed for targeted review: instead of reading every rule again, you can see the areas that actually caused problems.</p>
@@ -207,7 +224,7 @@ export default function HowToUsePage() {
       </section>
 
       <section className={styles.section} id="tips">
-        <p className={styles.sectionNumber}>07</p>
+        <p className={styles.sectionNumber}>08</p>
         <div className={styles.sectionBody}>
           <h2>Useful practice tips</h2>
           <ul>

@@ -49,6 +49,15 @@ wanted it back.
     at the Selection screen.
 12. Mistakes to retry tiles still appear for Shelf activities.
 
+13. Implementation (PR for #117): the Board lives in `spanish-quiz-board-v1`
+    (`app/board-state.ts`). Schema 2 (decision 0010) derives an existing
+    user's Board from what their board showed and removes the
+    `spanish-quiz-reinstated-v1` key; a device with no progress gets no Board
+    and its user sees the Selection screen. The welcome tutorial is not offered
+    on the visit that shows the first-visit Selection screen. A day with an
+    empty Board (its last activity just finished) counts once a round was
+    played that day.
+
 ## Consequences
 
 - Scheduled for roadmap Cycle 6 (issue #65), after #160, #161 and #141, which
