@@ -1,6 +1,6 @@
 # Manual Test Plan: Spanish Quizzes
 
-Last updated: 2026-11-07. Target: production (https://spanish-quizz.es). Testing there is harmless: progress lives only in the tester's own browser, and test mode (`?test=1`) is isolated from real data.
+Last updated: 2026-11-21. Target: production (https://spanish-quizz.es). Testing there is harmless: progress lives only in the tester's own browser, and test mode (`?test=1`) is isolated from real data.
 
 Project rules and decisions: `docs/decisions/README.md` in the repo. This plan covers the app as of main at PR #130, including test mode (PR #121), the mistake notebook with retry mode (PR #124), reflexive verbs, the present perfect (#69), the present continuous (#70), the daily goal and day-complete dialog, and Notes for every activity.
 
@@ -138,10 +138,13 @@ Known behavior: the notebook keeps the newest 500 entries by last miss. Covered 
 | # | Mode | Step | Expected |
 |---|------|------|----------|
 | 7.1 | N | Menu > Backup & restore > Download backup | File `spanish-quiz-studio-backup.json` downloads |
-| 7.2 | N | Settings > Reset all progress, confirm | Board, streak, notebook, flashcards and history are cleared |
-| 7.3 | N | Import backup with the file from 7.1 | Streak, completed days, flashcards, notebook, topic settings, history and completions are restored and match the values you noted |
-| 7.4 | N | Import a non-JSON file and a JSON file from another source | A clear error or a safe ignore. No existing data lost, no crash |
-| 7.5 | T | Import a backup while in test mode | Only test data changes. Real data untouched |
+| 7.2 | N | Settings > Reset all progress, confirm | Prompt reads "Delete all progress and settings on this device?" Board, streak, notebook, flashcards, history, quiz settings (round length, answer mode, filters) and flashcard difficulty are cleared. Flashcard progress does not come back after a reload |
+| 7.3 | N | Import backup with the file from 7.1. First cancel the prompt, then import again and confirm | Prompt reads "This replaces the progress on this device." Cancel changes nothing. Confirm restores streak, completed days, flashcards, notebook, topic settings, filters, flashcard difficulty, history and completions, matching the values you noted |
+| 7.4 | N | Import a non-JSON file, a JSON file from another source, and a backup with one value edited to the wrong type (for example a quiz history set to `{}`) | Each shows "This backup file is damaged or not a Spanish Quizzes backup. Nothing was changed." No existing data changes, no crash |
+| 7.5 | N | Edit a backup file's `version` to `99` and import it | Shows "This file is from a newer version of Spanish Quizzes. Reload the page to update, then try again." Nothing changes |
+| 7.6 | N | Make progress in a quiz that is not in an older backup file, then import that file and confirm | The newer quiz's progress is cleared: the device matches the backup exactly, not a mix |
+| 7.7 | N | Import the same file twice in a row | The second import shows the prompt again (choosing the same file is not ignored) |
+| 7.8 | T | Import a backup while in test mode | Prompt reads "This replaces the test progress in this tab. Your real progress is not affected." Only test data changes. Real data untouched |
 
 ## 8. Storage resilience
 
