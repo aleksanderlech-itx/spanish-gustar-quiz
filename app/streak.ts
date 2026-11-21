@@ -1,4 +1,5 @@
-import { isQuizReinstated, isRepeatDue, readAllCompletions, repeatDueDate } from "./quiz-completion.ts";
+import { isRepeatDue, readAllCompletions, repeatDueDate } from "./quiz-completion.ts";
+import { boardActivityIds, hasChosenBoard } from "./board-state.ts";
 import { ACTIVITY_REGISTRY, type ActivityId } from "./activity-registry.ts";
 import { markDayCelebrationPending } from "./day-celebration.ts";
 import { appStorage } from "./storage.ts";
@@ -99,22 +100,27 @@ const lockCompletedDay = (day: string, required: ActivityId[]) => {
   }
 };
 
-/** What the daily goal is judged against: the completion dates, the current moment, and the locked days. */
-type GoalContext = { completions: Record<string, string>; now: Date; locked: CompletedDays };
+/** What the daily goal is judged against: the completion dates, the current moment, the locked days, and the Board. */
+type GoalContext = { completions: Record<string, string>; now: Date; locked: CompletedDays; board: ActivityId[] };
+
+/**
+ * Today's Board (decision 0008). Before the first Selection it is the Activities played so far, less
+ * Finished quizzes that aren't Repeat due, so a new user's first round already counts.
+ */
+const boardFor = (now: Date, completions: Record<string, string>): ActivityId[] => {
+  const ids = boardActivityIds();
+  if (hasChosenBoard()) return ids;
+  return ids.filter((id) => !completions[id] || isRepeatDue(completions[id], now));
+};
 
 const goalContext = (now: Date, completions = readAllCompletions()): GoalContext =>
-  ({ completions, now, locked: readCompletedDays() });
+  ({ completions, now, locked: readCompletedDays(), board: boardFor(now, completions) });
 
-/** Mirrors isQuizHiddenFromBoard: a finished quiz is off the board until its repeat is due or it's shown again. */
-const isOnBoard = (activity: ActivityId, ctx: GoalContext) => {
-  if (activity === "flashcards") return true;
-  const completedAt = ctx.completions[activity];
-  return !completedAt || isRepeatDue(completedAt, ctx.now) || isQuizReinstated(activity);
-};
+const isOnBoard = (activity: ActivityId, ctx: GoalContext) => ctx.board.includes(activity);
 
 /**
  * A locked (already completed) day keeps the requirement it was completed against. Today
- * requires exactly what's on the board: the same visibility rule the board uses. Past
+ * requires exactly what's on the Board. Past
  * unlocked days fall back to the completion-date exemption, since the board's past state isn't stored.
  */
 const requiredActivitiesOn = (day: string, ctx: GoalContext): ActivityId[] => {
@@ -125,8 +131,9 @@ const requiredActivitiesOn = (day: string, ctx: GoalContext): ActivityId[] => {
   return live.filter((id) => !isExemptOn(id, day, ctx.completions));
 };
 
+/** A day with nothing required (an empty Board, briefly, after its last Activity is Finished) counts once any round was played. */
 const isDayComplete = (record: Set<ActivityId> | undefined, day: string, ctx: GoalContext) =>
-  !!ctx.locked[day] || (!!record && requiredActivitiesOn(day, ctx).every((id) => record.has(id)));
+  !!ctx.locked[day] || (!!record && record.size > 0 && requiredActivitiesOn(day, ctx).every((id) => record.has(id)));
 
 /** Locks today once it's complete, so its requirement can't grow afterwards. */
 const lockTodayIfComplete = (records: Records, ctx: GoalContext) => {
@@ -236,10 +243,11 @@ const readCounter = (records: Records, ctx: GoalContext): StreakCounter => {
 export const recordActivityToday = (activity: ActivityId, now = new Date()) => {
   if (typeof window === "undefined") return;
   const today = dayKey(now);
-  const ctx = goalContext(now);
   // Seed from the ledger as it stood before this round, so this round's day isn't counted twice.
-  const counter = readCounter(readRecords(), ctx);
+  const counter = readCounter(readRecords(), goalContext(now));
   mergeActivityDays([{ activity, day: today }]);
+  // Judged after the round is recorded: before the first Selection, playing an Activity puts it on the Board.
+  const ctx = goalContext(now);
   const alive = isAlive(counter, now);
   const records = readRecords();
   lockTodayIfComplete(records, ctx);

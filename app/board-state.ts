@@ -120,6 +120,17 @@ const hasFlashcardProgress = (): boolean => {
   }
 };
 
+/** Activity ids recorded on any day of the streak ledger. */
+const ledgerIds = (): Set<string> => {
+  try {
+    const parsed = JSON.parse(appStorage.getItem("spanish-quiz-streak-v2") ?? "{}") as unknown;
+    if (!isObject(parsed)) return new Set();
+    return new Set(Object.values(parsed).flatMap((ids) => (isStringArray(ids) ? ids : [])));
+  } catch {
+    return new Set();
+  }
+};
+
 /** Whether the user has any stored progress in an Activity. */
 export const hasPlayed = (id: ActivityId): boolean => (id === "flashcards" ? hasFlashcardProgress() : readHistory(id).length > 0);
 
@@ -129,7 +140,10 @@ export const hasPlayed = (id: ActivityId): boolean => (id === "flashcards" ? has
  */
 export const boardActivityIds = (): ActivityId[] => {
   const state = readBoardState();
-  if (!state) return REGISTRY_IDS.filter(hasPlayed);
+  if (!state) {
+    const ledger = ledgerIds();
+    return REGISTRY_IDS.filter((id) => ledger.has(id) || hasPlayed(id));
+  }
   return REGISTRY_IDS.filter((id) => state.onBoard.includes(id));
 };
 
