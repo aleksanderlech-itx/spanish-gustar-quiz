@@ -1,0 +1,130 @@
+/* Selection screen (decision 0008): first visit at / and later edits at /activities. */
+.activity-selection {
+  width: min(720px, 100%);
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+.activity-selection h1 {
+  margin: 4px 0 8px;
+  font-family: var(--font-display);
+  font-weight: var(--font-display-weight);
+  color: var(--ink);
+}
+
+.activity-selection-lead {
+  margin: 0 0 20px;
+  color: var(--muted);
+}
+
+.activity-selection-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.activity-selection-all,
+.activity-selection-save {
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.activity-selection-all {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+}
+
+.activity-selection-all:hover {
+  background: var(--primary-soft);
+}
+
+.activity-selection-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.activity-selection-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.activity-selection-row:has(input:checked) {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+
+.activity-selection-row input {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  flex: none;
+  accent-color: var(--primary);
+}
+
+.activity-selection-text {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.activity-selection-text span {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.activity-selection-text em {
+  color: var(--muted);
+  font-size: 13px;
+  font-style: normal;
+}
+
+.activity-selection-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.activity-selection-save {
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  color: var(--primary-ink);
+}
+
+.activity-selection-save:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.activity-selection-hint {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.activity-selection-all:focus-visible,
+.activity-selection-save:focus-visible,
+.activity-selection-row:has(input:focus-visible) {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}

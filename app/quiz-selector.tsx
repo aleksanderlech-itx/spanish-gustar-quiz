@@ -8,7 +8,9 @@ import { useTheme } from "./use-theme";
 import { orderBoard, type BoardTileProgress } from "./board";
 import { readStreakSummary, mergeActivityDays, dayKey, readFlashcardDaysReviewed, ACTIVITY_IDS, type StreakSummary } from "./streak";
 import { emptyQuizProgress, readQuizProgress, readDailyRoundProgress, type DailyRoundProgress, type QuizProgress } from "./quiz-progress";
-import { clearQuizCompletion, isQuizHiddenFromBoard, readQuizCompletion, markQuizCompleted } from "./quiz-completion";
+import { clearQuizCompletion, readQuizCompletion, markQuizCompleted } from "./quiz-completion";
+import { boardActivityIds, hasChosenBoard } from "./board-state";
+import ActivitySelection from "./activity-selection";
 import { isCompletionUnearned, type QuizResult } from "./quiz-logic";
 import { ROUND_SIZE as FLASHCARDS_ROUND_SIZE, MAX_BOX as MAX_FLASHCARD_BOX } from "./flashcards";
 import Drawer from "./drawer";
@@ -200,6 +202,9 @@ export default function QuizSelector() {
   const [streak, setStreak] = useState<StreakSummary>(EMPTY_STREAK);
   const [mistakeGroups, setMistakeGroups] = useState<NotebookGroup[]>([]);
   const [celebrating, setCelebrating] = useState(false);
+  // A new user (no Board yet) sees the Selection screen in place of the Board (decision 0008).
+  const [needsSelection, setNeedsSelection] = useState(false);
+  const [boardVersion, setBoardVersion] = useState(0);
 
   useEffect(() => {
     // Re-reads progress every time the board becomes visible again, not just on
@@ -223,8 +228,9 @@ export default function QuizSelector() {
         markQuizCompleted(id, progress.lastActivity ? new Date(progress.lastActivity) : new Date());
       }
     });
+    const onBoard = boardActivityIds();
     const nextItems: BoardItem[] = ACTIVITY_REGISTRY
-      .filter((entry) => entry.activityType === "flashcards" || !isQuizHiddenFromBoard(entry.id as QuizId))
+      .filter((entry) => onBoard.includes(entry.id))
       .map((entry) => entry.activityType === "flashcards"
         ? boardItem(entry, flashcards.progress, flashcards.daily)
         : boardItem(entry, progressById[entry.id as QuizId], readDailyRoundProgress(entry.id as QuizId)));
@@ -235,6 +241,7 @@ export default function QuizSelector() {
     // Browser storage is unavailable during the server render.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setItems(nextItems);
+    setNeedsSelection(!hasChosenBoard());
     // Temporary mistakes activities sit outside ACTIVITY_REGISTRY, so the streak and daily goal never see them.
     setMistakeGroups(readNotebookGroups());
     const summary = readStreakSummary();
@@ -242,7 +249,7 @@ export default function QuizSelector() {
     // Only right after the round that completed today: takeDayCelebration clears the flag either way.
     if (takeDayCelebration(dayKey(new Date())) && summary.completedToday) setCelebrating(true);
     setReady(true);
-  }, [open, drawerOpen]);
+  }, [open, drawerOpen, boardVersion]);
 
   useEffect(() => {
     document.body.classList.toggle("quiz-library-open", ready && open);
@@ -261,6 +268,14 @@ export default function QuizSelector() {
   const totalLogged = items.reduce((sum, item) => sum + item.completed, 0);
 
   if (!ready || !open) return null;
+
+  if (needsSelection) {
+    return (
+      <main className="quiz-library activity-selection-home">
+        <ActivitySelection mode="first" onDone={() => setBoardVersion((version) => version + 1)} />
+      </main>
+    );
+  }
 
   return (
     <main className="quiz-library board-home" aria-labelledby="quiz-library-title">
