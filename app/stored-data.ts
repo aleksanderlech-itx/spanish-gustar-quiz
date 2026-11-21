@@ -4,6 +4,7 @@ import { QUIZ_COMPLETION_STORAGE_KEYS } from "./quiz-completion.ts";
 import { NOTEBOOK_KEY } from "./notebook.ts";
 import { topicSettingsKey } from "./topic-settings.ts";
 import { appStorage } from "./storage.ts";
+import { BOARD_KEY, boardFromSchema1, isBoardStateShape } from "./board-state.ts";
 
 /**
  * One schema version for everything the app keeps in browser storage, the shape check for every
@@ -12,7 +13,7 @@ import { appStorage } from "./storage.ts";
  */
 
 /** The shapes the code reads today. Raise it by one, and add the step below, whenever a stored shape changes. */
-export const SCHEMA_VERSION = 1;
+export const SCHEMA_VERSION = 2;
 /** Holds the schema version of what is stored on this device. Missing means schema 1. */
 export const SCHEMA_VERSION_KEY = "spanish-quiz-schema-version";
 
@@ -21,6 +22,9 @@ export const FLASHCARD_PROGRESS_KEY = "spanish-flashcards-leitner-v2";
 export const FLASHCARD_LEGACY_KEY = "spanish-flashcards-progress-v1";
 export const FLASHCARD_DIFFICULTY_KEY = "spanish-flashcards-difficulty-v1";
 
+const [STREAK_KEY, FLASHCARD_DAYS_KEY, COMPLETED_DAYS_KEY, STREAK_COUNTER_KEY] = STREAK_STORAGE_KEYS;
+const [COMPLETION_KEY, REINSTATED_KEY] = QUIZ_COMPLETION_STORAGE_KEYS;
+
 /** Stored data as plain values: parsed JSON for JSON keys, the raw string for text keys. */
 export type StoreSnapshot = Record<string, unknown>;
 
@@ -28,7 +32,17 @@ export type StoreSnapshot = Record<string, unknown>;
  * Upgrade steps. `STEPS[n]` turns schema n data into schema n + 1. Each step is a pure function of the
  * snapshot, so the same step upgrades a device on page load and a backup on restore.
  */
-const STEPS: Record<number, (data: StoreSnapshot) => StoreSnapshot> = {};
+const STEPS: Record<number, (data: StoreSnapshot) => StoreSnapshot> = {
+  /** 1 to 2: the user-chosen Board (decision 0008). An existing user's Board is what their board showed
+   * that day; "show on main screen" choices fold into it and their key goes away. */
+  1: (data) => {
+    const rest = { ...data };
+    delete rest[REINSTATED_KEY];
+    if (rest[BOARD_KEY] !== undefined) return rest;
+    const board = boardFromSchema1(data, new Date());
+    return board ? { ...rest, [BOARD_KEY]: board } : rest;
+  },
+};
 
 type Guard = (value: unknown) => boolean;
 type KeySpec = { key: string; format: "json" | "text"; guard: Guard };
@@ -70,8 +84,6 @@ const GUARDS = {
   difficulty: (value: unknown) => value === "all" || value === "easy" || value === "medium" || value === "hard",
 };
 
-const [STREAK_KEY, FLASHCARD_DAYS_KEY, COMPLETED_DAYS_KEY, STREAK_COUNTER_KEY] = STREAK_STORAGE_KEYS;
-const [COMPLETION_KEY, REINSTATED_KEY] = QUIZ_COMPLETION_STORAGE_KEYS;
 
 /** Every key a backup carries and a reset clears, with its shape check. */
 export const BACKUP_KEYS: readonly KeySpec[] = [
@@ -85,7 +97,9 @@ export const BACKUP_KEYS: readonly KeySpec[] = [
   { key: COMPLETED_DAYS_KEY, format: "json", guard: GUARDS.dayLists },
   { key: STREAK_COUNTER_KEY, format: "json", guard: GUARDS.counter },
   { key: COMPLETION_KEY, format: "json", guard: GUARDS.completions },
+  // Schema 1 only: read from old backups so step 1 can fold it into the Board, never written again.
   { key: REINSTATED_KEY, format: "json", guard: GUARDS.reinstated },
+  { key: BOARD_KEY, format: "json", guard: isBoardStateShape },
   { key: NOTEBOOK_KEY, format: "json", guard: GUARDS.notebook },
 ];
 

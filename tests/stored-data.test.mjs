@@ -30,7 +30,16 @@ const {
 } = await import("../app/stored-data.ts");
 const { readNotebookEntries } = await import("../app/notebook.ts");
 const { readTopicSettings } = await import("../app/topic-settings.ts");
-const { readQuizCompletion, isQuizReinstated } = await import("../app/quiz-completion.ts");
+const { readQuizCompletion } = await import("../app/quiz-completion.ts");
+const { BOARD_KEY, readBoardState } = await import("../app/board-state.ts");
+const { ACTIVITY_REGISTRY } = await import("../app/activity-registry.ts");
+const ALL_IDS = ACTIVITY_REGISTRY.map((entry) => entry.id);
+const REINSTATED_KEY = "spanish-quiz-reinstated-v1";
+/** The fixture after the schema 2 step: the Board replaces the "show on main screen" choices. */
+const upgradedFixture = () => {
+  const { [REINSTATED_KEY]: _ignored, ...rest } = FIXTURE;
+  return rest;
+};
 const { readStreakSummary } = await import("../app/streak.ts");
 
 /** localStorage exactly as production wrote it in November 2026: schema 1, before any version key. */
@@ -46,6 +55,7 @@ const backupFileFromFixture = () => {
 test("the fixture covers every key a backup carries that today's app writes", () => {
   const stored = new Set(Object.keys(FIXTURE));
   for (const { key } of BACKUP_KEYS) {
+    if (key === BOARD_KEY) continue; // schema 2: not in a schema 1 device
     if (/-quiz-progress-v1$|-quiz-filters-v1$|-topic-settings-v1$/.test(key)) continue;
     assert.ok(stored.has(key), `fixture is missing ${key}`);
   }
@@ -57,18 +67,23 @@ test("a backup file taken from production today restores and the app reads it ba
   assert.equal(parsed.ok, true);
   applyBackup(parsed.data);
 
-  assert.deepEqual(snapshotOf(window.localStorage), FIXTURE);
+  const { [BOARD_KEY]: board, ...rest } = snapshotOf(window.localStorage);
+  assert.deepEqual(rest, upgradedFixture());
+  // Finished Por vs para was shown on the main screen again, so the Board keeps every Activity.
+  assert.deepEqual(JSON.parse(board), { onBoard: ALL_IDS, known: ALL_IDS, suggestion: null });
   assert.equal(window.localStorage.getItem(SCHEMA_VERSION_KEY), String(SCHEMA_VERSION));
   assert.equal(JSON.parse(window.localStorage.getItem("gustar-quiz-progress-v1")).length, 2);
   assert.deepEqual(readTopicSettings("gustar"), { roundLength: 10, mode: "choose" });
   assert.equal(readNotebookEntries().length, 1);
   assert.equal(readQuizCompletion("por-para"), "2026-11-02T12:00:00.000Z");
-  assert.equal(isQuizReinstated("por-para"), true);
+  assert.equal(readBoardState().onBoard.includes("por-para"), true);
   assert.equal(readStreakSummary(new Date("2026-11-20T09:00:00")).streak, 1);
 });
 
 test("export, reset, import restores every key exactly", () => {
   install({ local: FIXTURE });
+  upgradeStoredData();
+  const expected = snapshotOf(window.localStorage);
   const file = JSON.stringify(buildBackup(new Date("2026-11-21T10:00:00Z")));
   assert.equal(JSON.parse(file).version, SCHEMA_VERSION);
   resetStoredData();
@@ -76,7 +91,7 @@ test("export, reset, import restores every key exactly", () => {
   const parsed = parseBackup(file);
   assert.equal(parsed.ok, true);
   applyBackup(parsed.data);
-  assert.deepEqual(snapshotOf(window.localStorage), FIXTURE);
+  assert.deepEqual(snapshotOf(window.localStorage), expected);
 });
 
 test("a file with one key in the wrong shape is rejected and changes nothing", () => {
@@ -132,11 +147,37 @@ test("in test mode, restore and reset touch only test keys", () => {
   assert.equal(store.getItem(`sq_test_${SCHEMA_VERSION_KEY}`), String(SCHEMA_VERSION));
 });
 
-test("page load stamps a device without a version as current and leaves its data alone", () => {
+test("page load upgrades a schema 1 device: the Board is what it showed, the reinstated key goes", () => {
   const store = install({ local: FIXTURE });
   upgradeStoredData();
   assert.equal(store.getItem(SCHEMA_VERSION_KEY), String(SCHEMA_VERSION));
-  assert.deepEqual(snapshotOf(store), FIXTURE);
+  const { [BOARD_KEY]: board, ...rest } = snapshotOf(store);
+  assert.deepEqual(rest, upgradedFixture());
+  assert.deepEqual(JSON.parse(board).onBoard, ALL_IDS);
+});
+
+test("schema 1 to 2: a Finished quiz neither Repeat due nor shown again starts on the Shelf", () => {
+  const recent = new Date(Date.now() - 3 * 86_400_000).toISOString();
+  const old = new Date(Date.now() - 40 * 86_400_000).toISOString();
+  const store = install({ local: {
+    "gustar-quiz-progress-v1": FIXTURE["gustar-quiz-progress-v1"],
+    "spanish-quiz-completions-v1": JSON.stringify({ gustar: recent, "ser-estar": old, "por-para": recent }),
+    [REINSTATED_KEY]: JSON.stringify({ "por-para": true }),
+  } });
+  upgradeStoredData();
+  const board = JSON.parse(store.getItem(BOARD_KEY));
+  assert.equal(board.onBoard.includes("gustar"), false);
+  assert.equal(board.onBoard.includes("ser-estar"), true);
+  assert.equal(board.onBoard.includes("por-para"), true);
+  assert.equal(board.onBoard.includes("flashcards"), true);
+  assert.equal(store.getItem(REINSTATED_KEY), null);
+});
+
+test("schema 1 to 2: a device with no progress gets no Board, so its user sees the Selection screen", () => {
+  const store = install({ local: { "spanish-flashcards-difficulty-v1": "easy" } });
+  upgradeStoredData();
+  assert.equal(store.getItem(BOARD_KEY), null);
+  assert.equal(store.getItem(SCHEMA_VERSION_KEY), String(SCHEMA_VERSION));
 });
 
 test("page load leaves a device stamped with a newer version alone", () => {
