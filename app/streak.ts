@@ -59,15 +59,20 @@ const existedOn = (activity: ActivityId, day: string) => {
 
 type CompletedDays = Record<string, ActivityId[]>;
 
-const readCompletedDays = (): CompletedDays => {
+/**
+ * Locked days exactly as stored, unknown activity ids included. Activity ids are permanent
+ * (decision 0009): an id this build doesn't know (renamed, removed, or from a newer build)
+ * is kept on every write, so it is never erased from past days. Only the goal check filters.
+ */
+const readStoredCompletedDays = (): Record<string, string[]> => {
   if (typeof window === "undefined") return {};
   try {
     const raw = appStorage.getItem(COMPLETED_DAYS_KEY);
     const parsed = raw ? (JSON.parse(raw) as unknown) : {};
-    const days: CompletedDays = {};
+    const days: Record<string, string[]> = {};
     if (parsed && typeof parsed === "object") {
       for (const [day, activities] of Object.entries(parsed as Record<string, unknown>)) {
-        if (Array.isArray(activities)) days[day] = activities.filter(isActivityId);
+        if (Array.isArray(activities)) days[day] = activities.filter((id): id is string => typeof id === "string");
       }
     }
     return days;
@@ -76,8 +81,15 @@ const readCompletedDays = (): CompletedDays => {
   }
 };
 
+/** Locked days for the goal check: only activity ids this build knows. A locked day stays locked even if none are left. */
+const readCompletedDays = (): CompletedDays => {
+  const days: CompletedDays = {};
+  for (const [day, activities] of Object.entries(readStoredCompletedDays())) days[day] = activities.filter(isActivityId);
+  return days;
+};
+
 const lockCompletedDay = (day: string, required: ActivityId[]) => {
-  const days = readCompletedDays();
+  const days = readStoredCompletedDays();
   if (days[day]) return;
   days[day] = required;
   try {
@@ -125,17 +137,18 @@ const lockTodayIfComplete = (records: Records, ctx: GoalContext) => {
   ctx.locked = { ...ctx.locked, [today]: required };
 };
 
-const readRecords = (): Records => {
+/** The ledger exactly as stored, unknown activity ids included (see readStoredCompletedDays). */
+const readStoredRecords = (): Map<string, Set<string>> => {
   if (typeof window === "undefined") return new Map();
   try {
     const raw = appStorage.getItem(STREAK_KEY);
     const parsed = raw ? (JSON.parse(raw) as unknown) : {};
-    const records: Records = new Map();
+    const records = new Map<string, Set<string>>();
     if (parsed && typeof parsed === "object") {
       for (const [day, activities] of Object.entries(parsed as Record<string, unknown>)) {
         if (!Array.isArray(activities)) continue;
-        const valid = activities.filter(isActivityId);
-        if (valid.length) records.set(day, new Set(valid));
+        const ids = activities.filter((id): id is string => typeof id === "string");
+        if (ids.length) records.set(day, new Set(ids));
       }
     }
     return records;
@@ -144,9 +157,19 @@ const readRecords = (): Records => {
   }
 };
 
-const writeRecords = (records: Records) => {
+/** The ledger for the goal check: only activity ids this build knows. */
+const readRecords = (): Records => {
+  const records: Records = new Map();
+  readStoredRecords().forEach((ids, day) => {
+    const known = [...ids].filter(isActivityId);
+    if (known.length) records.set(day, new Set(known));
+  });
+  return records;
+};
+
+const writeRecords = (records: Map<string, Set<string>>) => {
   try {
-    const obj: Record<string, ActivityId[]> = {};
+    const obj: Record<string, string[]> = {};
     records.forEach((set, day) => { obj[day] = [...set]; });
     appStorage.setItem(STREAK_KEY, JSON.stringify(obj));
   } catch {
@@ -270,10 +293,10 @@ export const readFlashcardDaysReviewed = (): string[] => {
  */
 export const mergeActivityDays = (entries: Array<{ activity: ActivityId; day: string }>) => {
   if (typeof window === "undefined" || !entries.length) return;
-  const records = readRecords();
+  const records = readStoredRecords();
   let changed = false;
   for (const { activity, day } of entries) {
-    const set = records.get(day) ?? new Set<ActivityId>();
+    const set = records.get(day) ?? new Set<string>();
     if (set.has(activity)) continue;
     set.add(activity);
     records.set(day, set);

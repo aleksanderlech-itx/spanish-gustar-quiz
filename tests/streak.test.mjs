@@ -293,3 +293,37 @@ test("a celebration not seen on its day is dropped, not shown later", () => {
   assert.equal(takeDayCelebration(dayKey(hoursAfter(tuesday, 24))), false);
   assert.equal(takeDayCelebration(dayKey(tuesday)), false);
 });
+
+// --- Activity ids are permanent (decision 0009): unknown ids survive every write ---
+
+const LOCKED_DAYS_KEY = "spanish-quiz-completed-days-v1";
+const RETIRED = "retired-activity";
+
+test("a ledger and locked days holding an unknown activity id keep it after a read and write cycle", () => {
+  const monday = at("2026-10-05T10:00:00");
+  const sunday = daysAgo(monday, 1);
+  freshStart(1, at("2026-10-04T22:00:00"));
+  store.set(LEDGER_KEY, JSON.stringify({ [sunday]: [...requiredOn(at("2026-10-04T22:00:00")), RETIRED] }));
+  store.set(LOCKED_DAYS_KEY, JSON.stringify({ [sunday]: [RETIRED] }));
+
+  // Completing today writes both the ledger and the locked days back.
+  completeDay(monday);
+
+  const ledger = JSON.parse(store.get(LEDGER_KEY));
+  assert.ok(ledger[sunday].includes(RETIRED));
+  assert.ok(ledger[dayKey(monday)].length > 0);
+  const locked = JSON.parse(store.get(LOCKED_DAYS_KEY));
+  assert.deepEqual(locked[sunday], [RETIRED]);
+  assert.ok(locked[dayKey(monday)]);
+});
+
+test("a locked day whose activities are all unknown stays complete", () => {
+  const tuesday = at("2026-10-06T10:00:00");
+  const monday = daysAgo(tuesday, 1);
+  freshStart(1, at("2026-10-05T22:00:00"));
+  store.set(LEDGER_KEY, JSON.stringify({ [monday]: [RETIRED] }));
+  store.set(LOCKED_DAYS_KEY, JSON.stringify({ [monday]: [RETIRED] }));
+  const summary = readStreakSummary(tuesday);
+  assert.equal(summary.streak, 1);
+  assert.equal(summary.week[0].status, "done");
+});
