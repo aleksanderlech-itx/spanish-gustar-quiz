@@ -148,6 +148,11 @@
 
 /* Suggestion dialog over the Board. */
 .suggestion-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  height: fit-content;
+  overflow-y: auto;
   width: min(560px, calc(100vw - 32px));
   max-height: calc(100dvh - 32px);
   padding: 24px;

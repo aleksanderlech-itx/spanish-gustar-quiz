@@ -363,7 +363,7 @@ export default function QuizSelector() {
               <strong>{streak.streak}</strong>
               <div>
                 <span className="streak-label" lang="es">días seguidos</span>
-                <span className="streak-goal">Goal: a round in all {streak.todayTotal} activities · {streak.todayDone}/{streak.todayTotal} today</span>
+                <span className="streak-goal">Goal: a round in {streak.todayTotal === 1 ? "your 1 activity" : `all ${streak.todayTotal} activities`} · {streak.todayDone}/{streak.todayTotal} today</span>
               </div>
             </div>
           </div>
