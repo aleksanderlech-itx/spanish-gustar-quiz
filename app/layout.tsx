@@ -9,10 +9,12 @@ import "./activity-chrome.css";
 import "./test-mode.css";
 import "./mistakes.css";
 import "./activity-selection.css";
+import "./consent.css";
 import StoredDataUpgrade from "./stored-data-upgrade";
 import QuizSelector from "./quiz-selector";
 import TestMode from "./test-mode";
 import AnalyticsScripts from "./analytics-scripts";
+import ConsentBanner from "./consent-banner";
 import { SiteFooter } from "./site-footer";
 import { SITE_CONFIG } from "./site-config";
 import { isProductionHost } from "./is-production-host";
@@ -116,6 +118,7 @@ export default async function RootLayout({
         <QuizSelector />
         {children}
         <SiteFooter />
+        <ConsentBanner />
       </body>
     </html>
   );

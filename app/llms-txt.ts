@@ -24,6 +24,7 @@ const PAGES = [
   { path: "/", title: "Home", description: "Board of every activity with the learner's progress on each." },
   { path: "/how-to-use", title: "How to use", description: "How rounds, flashcards, progress, backups and the mistake notebook work." },
   { path: "/about", title: "About", description: "What the app is, who it is for, and how progress is stored." },
+  { path: "/privacy", title: "Privacy", description: "What is stored in the browser, which outside services are involved, and analytics only with consent." },
 ];
 
 const quizLine = (id: (typeof QUIZ_IDS)[number]): string => {

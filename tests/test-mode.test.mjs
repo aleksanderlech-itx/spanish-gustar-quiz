@@ -242,7 +242,8 @@ test("the indicator chip is a fixed overlay that cannot shift the layout", () =>
 
 test("analytics scripts are not loaded in test sessions", () => {
   const scripts = readFileSync(new URL("../app/analytics-scripts.tsx", import.meta.url), "utf8");
-  assert.match(scripts, /setEnabled\(!isTestMode\(\)\)/);
+  // Test sessions return before any consent check (decision 0012), so nothing loads either way.
+  assert.match(scripts, /if \(isTestMode\(\)\) return;/);
   assert.match(scripts, /if \(!enabled\) return null;/);
   const layout = readFileSync(new URL("../app/layout.tsx", import.meta.url), "utf8");
   assert.match(layout, /\{isProduction && <AnalyticsScripts /);
