@@ -1,0 +1,77 @@
+/* Analytics choice bar (decision 0012). Accept and Reject share one style so neither is favoured. */
+.consent-banner {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  left: 16px;
+  z-index: 40;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 16px;
+  border: 1px solid var(--border-ink);
+  border-radius: 14px;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--ink) 18%, transparent);
+}
+
+.consent-banner p {
+  flex: 1 1 320px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.consent-banner a {
+  color: var(--ink);
+}
+
+.consent-banner-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.consent-banner-actions button {
+  min-width: 110px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid var(--primary);
+  border-radius: 10px;
+  background: var(--primary);
+  color: var(--primary-ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.consent-banner-actions button:focus-visible,
+.consent-settings-link:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.consent-settings-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.site-footer .consent-settings-link {
+  color: var(--muted);
+  font-size: 13px;
+  text-underline-offset: 2px;
+}
+
+.site-footer .consent-settings-link:hover {
+  color: var(--primary);
+}
