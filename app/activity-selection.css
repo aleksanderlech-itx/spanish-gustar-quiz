@@ -319,3 +319,28 @@
     animation: none;
   }
 }
+
+/* Home page before the Board is ready (issue #144): an empty frame where the Board will appear. */
+.home-board-frame {
+  display: grid;
+  gap: 12px;
+  width: min(1120px, calc(100% - 32px));
+  margin: 24px auto;
+}
+
+.home-board-frame span {
+  display: block;
+  height: 120px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.home-board-frame span:first-child {
+  height: 220px;
+}
+
+/* Once the Board is on screen, the static home content goes, so the page keeps one h1. */
+.quiz-library-open .home-static {
+  display: none;
+}

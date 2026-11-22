@@ -198,6 +198,7 @@ Also verify the named examples: Nuria, médico, aviso, "Usted conoce", gustar ni
 | 10.5 | N | Search About, results screen, footer, Notes for Ko-fi wording | Tips only. No membership, tiers, member-only content or perks anywhere |
 | 10.6 | N | View page source on the home page, each activity, Notes and an article | Unique title and description per page. Canonical points to the page's own URL |
 | 10.7 | N | Open `/robots.txt`, `/llms.txt` and `/llms-full.txt` | All three load and are not empty. No need to check their content |
+| 10.8 | N | View the page source of `/` (not the inspector), or open `/` with JavaScript turned off | One `<h1>Spanish Quizzes</h1>`, a link to every activity on the board, and `WebSite` and `ItemList` JSON-LD. No "Gustar patterns" heading and no `codex-preview` meta. With JavaScript, the empty frame is replaced by the board and only one heading is visible. `/?quiz=ser-estar` still redirects to `/ser-vs-estar` |
 
 ## 10a. Privacy and analytics consent
 

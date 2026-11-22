@@ -5,32 +5,43 @@ import { readFile } from "node:fs/promises";
 const developmentPreviewMeta =
   /<meta(?=[^>]*\bname=["']codex-preview["'])(?=[^>]*\bcontent=["']development["'])[^>]*>/i;
 
-test("renders development preview metadata", async () => {
+const fetchHome = async (path = "/") => {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
+  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}-${Math.random()}`);
   const { default: worker } = await import(workerUrl.href);
-
-  const response = await worker.fetch(
-    new Request("http://localhost/", {
-      headers: { accept: "text/html" },
-    }),
-    {
-      ASSETS: {
-        fetch: async () => new Response("Not found", { status: 404 }),
-      },
-    },
-    {
-      waitUntil() {},
-      passThroughOnException() {},
-    },
+  return worker.fetch(
+    new Request(`http://localhost${path}`, { headers: { accept: "text/html" } }),
+    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+    { waitUntil() {}, passThroughOnException() {} },
   );
+};
 
+test("the served home page has one h1 naming the site, a link to every activity, and structured data (#144)", async () => {
+  const response = await fetchHome();
   assert.equal(response.status, 200);
-  assert.match(
-    response.headers.get("content-type") ?? "",
-    /^text\/html\b/i,
-  );
-  assert.match(await response.text(), developmentPreviewMeta);
+  assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
+  const html = await response.text();
+  const h1s = [...html.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/g)].map((match) => match[1]);
+  assert.deepEqual(h1s, ["Spanish Quizzes"]);
+  assert.doesNotMatch(html, /Gustar patterns<\/h1>/i);
+  const { ACTIVITY_REGISTRY } = await import("../app/activity-registry.ts");
+  for (const entry of ACTIVITY_REGISTRY) assert.match(html, new RegExp(`href="${entry.path}"`), entry.id);
+  const ld = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
+  const graph = ld.flatMap((item) => item["@graph"] ?? [item]);
+  assert.ok(graph.some((item) => item["@type"] === "WebSite" && item.url === "https://spanish-quizz.es"));
+  const list = graph.find((item) => item["@type"] === "ItemList");
+  assert.equal(list.itemListElement.length, ACTIVITY_REGISTRY.length);
+});
+
+test("the leftover codex-preview meta tag is gone", async () => {
+  const html = await (await fetchHome()).text();
+  assert.doesNotMatch(html, developmentPreviewMeta);
+});
+
+test("old /?quiz= links still redirect to the topic's own page", async () => {
+  const response = await fetchHome("/?quiz=ser-estar&play=1");
+  assert.equal(response.status, 308);
+  assert.match(response.headers.get("location") ?? "", /\/ser-vs-estar\?play=1$/);
 });
 
 test("mobile quiz design keeps the answer field and actions inside the viewport", async () => {
@@ -108,17 +119,13 @@ test("the flashcard word's font/color/size rule actually matches the DOM (the wo
   assert.match(flashcards, /className="flashcard-term-row">\s*<strong/);
 });
 
-test("page.tsx is a thin shell dispatching to topic detail, round, and flashcards", async () => {
+test("page.tsx is a server component with no legacy ?quiz= branches, and the Board hides it once ready", async () => {
   const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
-  assert.match(page, /if \(params\.get\("quiz"\) === "flashcards"\) return <Flashcards \/>;/);
-  assert.match(page, /if \(params\.get\("play"\) === "1"\) return <Round quizId=\{quizId\} \/>;/);
-  assert.match(page, /return <TopicDetail quizId=\{quizId\} \/>;/);
-  // Reads via the router-connected useSearchParams, not a one-shot window.location.search
-  // parse: the latter left page.tsx (and QuizSelector) stuck on stale screens after any
-  // client-side Link navigation (back button, verb chart, "back to board" all broke).
-  assert.match(page, /import \{ useSearchParams \} from "next\/navigation";/);
-  assert.doesNotMatch(page, /window\.location\.search/);
+  assert.doesNotMatch(page, /"use client"/);
+  assert.doesNotMatch(page, /useSearchParams|TopicDetail|Round|Flashcards|VerbChart/);
   assert.doesNotMatch(page, /const QUESTION_BANKS|const COMPLEX_QUESTIONS|TRANSLATIONS/);
+  const css = await readFile(new URL("../app/activity-selection.css", import.meta.url), "utf8");
+  assert.match(css, /\.quiz-library-open \.home-static \{\s*display: none;/);
 });
 
 test("QuizSelector re-derives its open state from the router on every render, not just at mount", async () => {
