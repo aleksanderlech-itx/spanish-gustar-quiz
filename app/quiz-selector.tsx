@@ -12,6 +12,7 @@ import { clearQuizCompletion, readQuizCompletion, markQuizCompleted } from "./qu
 import { addToBoard, boardActivityIds, createStarterBoard, hasChosenBoard, isFirstVisitSession, moveFinishedToShelf, newActivities, rankSuggestions, readBoardState, shelfEntries, type ShelfEntry } from "./board-state";
 import { TUTORIAL_OFFERED_KEY } from "./tutorials";
 import SuggestionDialog, { type SuggestionContent } from "./suggestion-dialog";
+import WelcomeDialog from "./welcome-dialog";
 import { isCompletionUnearned, type QuizResult } from "./quiz-logic";
 import { ROUND_SIZE as FLASHCARDS_ROUND_SIZE, MAX_BOX as MAX_FLASHCARD_BOX } from "./flashcards";
 import Drawer from "./drawer";
@@ -212,6 +213,8 @@ export default function QuizSelector() {
   const [celebrating, setCelebrating] = useState(false);
   // The Shelf shows below the Board only in a new user's first browser session; later it lives in the drawer.
   const [firstVisit, setFirstVisit] = useState(false);
+  // Only the Board load that creates the starter Board shows the welcome dialog (decision 0011).
+  const [welcoming, setWelcoming] = useState(false);
   const [boardVersion, setBoardVersion] = useState(0);
   const [suggestion, setSuggestion] = useState<SuggestionContent | null>(null);
   const [shelf, setShelf] = useState<ShelfEntry[]>([]);
@@ -241,8 +244,9 @@ export default function QuizSelector() {
       }
     });
     // A new user gets the starter Board (decision 0008). The welcome tutorial waits for the next visit.
+    let createdStarter = false;
     if (!hasChosenBoard()) {
-      createStarterBoard();
+      createdStarter = createStarterBoard();
       try {
         appSessionStorage.setItem(TUTORIAL_OFFERED_KEY, "1");
       } catch {
@@ -262,6 +266,7 @@ export default function QuizSelector() {
     // Browser storage is unavailable during the server render.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setItems(nextItems);
+    if (createdStarter) setWelcoming(true);
     setFirstVisit(isFirstVisitSession());
     const shelfNow = shelfEntries();
     setShelf(shelfNow);
@@ -312,6 +317,7 @@ export default function QuizSelector() {
     <main className="quiz-library board-home" aria-labelledby="quiz-library-title">
       <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)} returnFocusRef={hamburgerRef} />
       <TutorialModal />
+      <WelcomeDialog open={welcoming} onClose={() => setWelcoming(false)} />
       <SuggestionDialog content={suggestion} onAnswered={() => setBoardVersion((version) => version + 1)} />
       <DayCompleteDialog
         open={celebrating}

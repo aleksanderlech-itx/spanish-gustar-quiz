@@ -189,7 +189,7 @@ export default function HowToUsePage() {
           <h2>Choosing your activities</h2>
           <p>Your daily goal is a round in every activity on your board, so the board holds only what you choose. Everything else waits on your shelf, the first item in the menu.</p>
           <ul>
-            <li>Your first board holds Gustar, Por vs Para, Preterite vs Imperfect and Saber vs Conocer, plus any activity you already practised through a link. On that first visit the rest of the activities are listed below your board, under <UiLabel>On your shelf</UiLabel>.</li>
+            <li>Your first board holds Gustar, Por vs Para, Preterite vs Imperfect and Saber vs Conocer, plus any activity you already practised through a link. On that first visit a short welcome message points to the rest of the activities, listed below your board under <UiLabel>On your shelf</UiLabel>.</li>
             <li>Open the menu and select <UiLabel>On your shelf</UiLabel> to see every activity that is not on your board and <UiLabel>Add to board</UiLabel> to bring one in. To change the whole choice, select <UiLabel>Edit your activities</UiLabel> (also <UiLabel>Your activities</UiLabel> in the desktop sidebar). At least one activity stays on your board.</li>
             <li>When you finish every sentence in a topic, it moves to your shelf and the board suggests up to three activities to add. The one you just finished can be among them. Adding a finished topic starts its sentences over; your mistakes stay.</li>
             <li>A month after you finish a topic it is marked <UiLabel>Repeat due</UiLabel> on your shelf and suggested first. It does not come back on its own.</li>

@@ -195,9 +195,10 @@ export const chooseBoard = (ids: ActivityId[]) => {
 /**
  * A new user's first visit: the starter Board plus any Activity already played, and a session flag so the
  * Board shows the Shelf, expanded, for the rest of this browser session. Does nothing once a Board exists.
+ * Returns whether it created the Board: only that load shows the welcome dialog (decision 0011).
  */
-export const createStarterBoard = () => {
-  if (hasChosenBoard()) return;
+export const createStarterBoard = (): boolean => {
+  if (hasChosenBoard()) return false;
   const played = boardActivityIds();
   chooseBoard(REGISTRY_IDS.filter((id) => STARTER_BOARD.includes(id) || played.includes(id)));
   try {
@@ -205,6 +206,7 @@ export const createStarterBoard = () => {
   } catch {
     // Session storage blocked; the Shelf is then only in the drawer.
   }
+  return true;
 };
 
 /** Whether this browser session is the new user's first visit (the starter Board was created in it). */

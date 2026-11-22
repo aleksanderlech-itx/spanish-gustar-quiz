@@ -24,6 +24,11 @@ with a sensible set already chosen, and that the Shelf has one permanent home.
 4. The welcome tutorial is not offered on the first visit; it is offered from
    the next visit on.
 5. `/activities` stays the place to change the whole choice.
+6. On the Board load that creates the starter Board, and only then, a
+   welcome dialog says some activities were picked and where to change them
+   (the shelf below, Your activities, the menu). Its one button, "Got it",
+   scrolls to the shelf section and highlights its border for a few seconds;
+   with reduced motion the highlight does not animate.
 
 Everything else in 0008 stands.
 

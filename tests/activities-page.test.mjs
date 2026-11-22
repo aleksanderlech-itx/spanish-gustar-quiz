@@ -28,7 +28,7 @@ test("/activities is in neither the sitemap nor llms.txt", async () => {
 
 test("a new user gets the starter Board, the Shelf on the Board only in the first session, and no tutorial", async () => {
   const source = await readFile(new URL("../app/quiz-selector.tsx", import.meta.url), "utf8");
-  assert.match(source, /if \(!hasChosenBoard\(\)\) \{\s*createStarterBoard\(\);/);
+  assert.match(source, /if \(!hasChosenBoard\(\)\) \{\s*createdStarter = createStarterBoard\(\);/);
   assert.match(source, /appSessionStorage\.setItem\(TUTORIAL_OFFERED_KEY, "1"\)/);
   assert.match(source, /\{firstVisit && shelf\.length > 0 && \(\s*<details className="board-shelf" open>/);
   assert.doesNotMatch(source, /<ActivitySelection/);
@@ -45,4 +45,17 @@ test("the Shelf is the first row of the drawer, not part of Settings", async () 
 test("/activities saves with at least one ticked", async () => {
   const selection = await readFile(new URL("../app/activity-selection.tsx", import.meta.url), "utf8");
   assert.match(selection, /disabled=\{!checked\.size\}/);
+});
+
+test("the welcome dialog shows only on the load that creates the starter Board, then highlights the shelf", async () => {
+  const source = await readFile(new URL("../app/quiz-selector.tsx", import.meta.url), "utf8");
+  assert.match(source, /createdStarter = createStarterBoard\(\);/);
+  assert.match(source, /if \(createdStarter\) setWelcoming\(true\);/);
+  assert.match(source, /<WelcomeDialog open=\{welcoming\}/);
+  const dialog = await readFile(new URL("../app/welcome-dialog.tsx", import.meta.url), "utf8");
+  assert.match(dialog, /Welcome! We picked some activities to start/);
+  assert.match(dialog, />\s*Got it\s*</);
+  assert.match(dialog, /classList\.add\("board-shelf-highlight"\)/);
+  const css = await readFile(new URL("../app/activity-selection.css", import.meta.url), "utf8");
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\) \{\s*\.board-shelf-highlight \{\s*animation: none;/);
 });

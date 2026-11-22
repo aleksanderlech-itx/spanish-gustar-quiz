@@ -144,7 +144,8 @@ test("ids this build doesn't know stay in the stored Board but are not shown (de
 test("a new user's starter Board is Gustar, Por vs Para, Preterite vs Imperfect and Saber vs Conocer", () => {
   install();
   assert.deepEqual([...STARTER_BOARD].sort(), ["gustar", "por-para", "preterite-imperfect", "saber-conocer"]);
-  createStarterBoard();
+  assert.equal(createStarterBoard(), true, "the load that creates it shows the welcome dialog");
+  assert.equal(createStarterBoard(), false, "no later load does");
   assert.deepEqual([...boardActivityIds()].sort(), [...STARTER_BOARD].sort());
   assert.equal(isFirstVisitSession(), true);
   assert.deepEqual(readBoardState().known, ALL, "nothing is offered as New to a new user");
