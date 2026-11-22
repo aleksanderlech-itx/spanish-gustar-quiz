@@ -64,7 +64,8 @@ export default function AboutPage() {
           <h2>How your progress works</h2>
           <p>
             Everything runs in your browser. Your progress, filters and settings are saved locally on your device,
-            there is no account to create and no data leaves your browser unless you choose to back it up. You can
+            there is no account to create and your progress never leaves your browser unless you choose to back it up.
+            Analytics load only if you accept them; see <a href="/privacy">Privacy</a>. You can
             download a backup from the menu at any time, and load it again later or on another device.
           </p>
         </div>

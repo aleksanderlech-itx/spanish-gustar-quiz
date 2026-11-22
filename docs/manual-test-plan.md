@@ -58,7 +58,7 @@ Project rules and decisions: `docs/decisions/README.md` in the repo. This plan c
 | 2.11 | T | Chip menu > Exit test mode | `?test=1` removed, normal mode. Re-enter with `?test=1`: test data is still there |
 | 2.12 | T | Chip menu > Reset test data. First cancel, then confirm | Prompt reads "Delete all test progress? Your real progress is not affected." Cancel keeps data. Confirm clears test data only. Real progress intact |
 | 2.13 | T | Menu > Backup & restore > Download backup, then Settings > Reset all progress | Backup file name is `spanish-quiz-studio-test-backup.json` and holds test data only. Reset shows a test-specific confirmation and clears test data only |
-| 2.14 | T | DevTools network tab on load and during a round | No analytics scripts or events. In normal mode on production the analytics scripts load shortly after page load, so compare the two |
+| 2.14 | T | DevTools network tab on load and during a round | No analytics scripts or events, and no cookie bar. Compare with 10a.3 in normal mode |
 | 2.15 | T | DevTools > Application > Cookies | The only cookie is `spanish-quiz-theme` (the theme, shared with normal mode, see 2.17). Test mode adds no other cookie |
 | 2.16 | T | Block site storage in the browser, open `?test=1` | Chip reads "Test (not kept)" and its tooltip says test mode ends if you leave the page. Mode holds only while `?test=1` stays in the URL |
 | 2.17 | B | Switch theme (light or dark) in test mode | Same theme in normal mode. Theme is the one setting shared between modes |
@@ -198,6 +198,23 @@ Also verify the named examples: Nuria, médico, aviso, "Usted conoce", gustar ni
 | 10.5 | N | Search About, results screen, footer, Notes for Ko-fi wording | Tips only. No membership, tiers, member-only content or perks anywhere |
 | 10.6 | N | View page source on the home page, each activity, Notes and an article | Unique title and description per page. Canonical points to the page's own URL |
 | 10.7 | N | Open `/robots.txt`, `/llms.txt` and `/llms-full.txt` | All three load and are not empty. No need to check their content |
+
+## 10a. Privacy and analytics consent
+
+Normal mode, fresh profile (private window). Analytics only ever load on the production host; on a preview the bar works but no analytics request is made.
+
+| # | Mode | Step | Expected |
+|---|------|------|----------|
+| 10a.1 | N | Open `/` on a fresh profile | The first-visit welcome dialog shows first. After "Got it", the cookie bar appears at the bottom: text naming Google Analytics and Microsoft Clarity, a "Privacy" link, and "Reject" and "Accept" in the same style. It does not block the page |
+| 10a.2 | N | DevTools network tab before choosing | No request to googletagmanager.com, google-analytics.com or clarity.ms. No `_ga` or `_clck` cookie |
+| 10a.3 | N | Production only: "Accept" | The bar closes. Requests to googletagmanager.com and clarity.ms start without a reload. Reload: no bar |
+| 10a.4 | N | Footer "Cookie settings", then "Reject" | The bar reopens. After Reject the page reloads, the `_ga*`, `_gid` and `_clck`/`_clsk` cookies for this site are gone, and no analytics request is made |
+| 10a.5 | N | Fresh profile: "Reject" | No analytics request now or after reloads. The bar does not come back |
+| 10a.6 | N | Settings > Reset all progress | The analytics choice is kept: the bar does not reappear |
+| 10a.7 | N | Open `/privacy` | Names Aleksander Lech and spanish-quizzes@proton.me. Lists browser storage, the theme cookie, Google Analytics and Microsoft Clarity (after consent), Cloudflare, the Ko-fi button image, how to delete data, rights and the AEPD. Both "Cookie settings" buttons reopen the bar |
+| 10a.8 | N | Footer on every page type (board, topic, round, Notes, About) | "Privacy" and "Cookie settings" are present and work |
+| 10a.9 | N | `/sitemap.xml` and `/llms.txt` on production | Both list `/privacy` |
+| 10a.10 | T | Any page with `?test=1` | No cookie bar, no analytics requests |
 
 ## 11. Copy and UI
 

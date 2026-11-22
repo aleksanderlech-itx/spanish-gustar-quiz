@@ -83,6 +83,9 @@ content. Each links to the record that explains it.
 17. A change to a stored shape raises the schema version and adds an upgrade
     step and shape check in `app/stored-data.ts`. Every stored key is in its
     `BACKUP_KEYS`. See [0010](0010-stored-data-schema-and-migrations.md).
+18. No analytics, tracker or non-essential cookie loads before the visitor
+    chooses "Accept"; each one is listed on `/privacy`. See
+    [0012](0012-analytics-only-with-consent.md).
 
 ## Index
 
@@ -99,3 +102,4 @@ content. Each links to the record that explains it.
 | [0009](0009-activity-ids-are-permanent.md) | Activity ids are permanent | Accepted | 2026-11-21 |
 | [0010](0010-stored-data-schema-and-migrations.md) | One schema version for stored data, upgraded in one place | Accepted | 2026-11-21 |
 | [0011](0011-starter-board-and-shelf-in-drawer.md) | New users start with a starter Board; the Shelf lives in the drawer | Accepted | 2026-11-21 |
+| [0012](0012-analytics-only-with-consent.md) | Analytics load only with opt-in consent | Accepted | 2026-11-22 |

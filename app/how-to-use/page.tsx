@@ -179,6 +179,7 @@ export default function HowToUsePage() {
             <dt>Settings</dt><dd>Reset local progress on this device.</dd>
             <dt>Notes</dt><dd>Short grammar articles with links to related quiz topics.</dd>
           </dl>
+          <p>At the bottom of every page, <UiLabel>Privacy</UiLabel> explains what the app stores and which outside services it uses. <UiLabel>Cookie settings</UiLabel> lets you accept or reject analytics at any time; nothing is loaded until you accept.</p>
           <p>Use the theme icon at the top-right of a page, or the theme control in the home board&apos;s desktop sidebar, to change appearance without changing your learning data.</p>
         </div>
       </section>

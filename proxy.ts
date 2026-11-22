@@ -12,6 +12,7 @@ const SITEMAP_PATHS = [
   "/",
   "/how-to-use",
   "/about",
+  "/privacy",
   "/flashcards",
   ...Object.values(QUIZ_SLUGS).map((slug) => `/${slug}`),
   "/notes",
