@@ -126,13 +126,13 @@ Known behavior: the notebook keeps the newest 500 entries by last miss. Covered 
 
 ## 5a. Choosing activities (Board and Shelf)
 
-Terms: the board holds the activities the user chose; every other activity is on the shelf. A new user starts with the starter board. Use a fresh test session for 5a.1 to 5a.3 (chip menu > Reset test data first, then close the tab and open a new one).
+Terms: the board holds the activities the user chose; every other activity is on the shelf. A new user starts with the starter board. For 5a.1 to 5a.3, start each from a fresh test session: open `/?test=1`, then chip menu > Reset test data and confirm. The page reloads, and that reload is the new user's first visit, so stay in that tab. A new tab already counts as the next session.
 
 | # | Mode | Step | Expected |
 |---|------|------|----------|
-| 5a.1 | T | Fresh session: open `/` | The board opens directly with Gustar, Por vs Para, Preterite vs Imperfect and Saber vs Conocer. Below it, "On your shelf" is expanded and lists the other activities as "Not started". No welcome tutorial and no other dialog. The streak goal counts four activities |
+| 5a.1 | T | Fresh session (see above): the reloaded `/` | The board opens directly with Gustar, Por vs Para, Preterite vs Imperfect and Saber vs Conocer. Below it, "On your shelf" is expanded and lists the other activities as "Not started". No welcome tutorial and no other dialog. The streak goal counts four activities |
 | 5a.2 | T | In the same tab, open a topic and come back to `/`; then open `/` in a new tab | Same tab: the shelf section is still below the board. New tab: it is gone from the board, and the welcome tutorial is offered |
-| 5a.3 | T | Fresh session: open an activity link that is not in the starter set (for example `/present-perfect?test=1`), play one round, then open `/` | The board holds the four starter activities plus that one. That round counts for today's goal |
+| 5a.3 | T | Open `/present-perfect?test=1`, chip menu > Reset test data, play one round there, then open `/` in the same tab | The board holds the four starter activities plus that one. That round counts for today's goal |
 | 5a.3b | T | Menu | "On your shelf (N)" is the first row. Expanded: every activity not on the board with its status and "Add to board", then "Edit your activities". Settings holds only "Reset all progress" |
 | 5a.4 | T | Menu > Your activities (or "Your activities" in the desktop sidebar) | `/activities` opens ticked to match the board. Saving with nothing ticked is not possible. "Save" returns to the board with the new choice |
 | 5a.5 | T | Menu > On your shelf, press "Add to board" on one row, close the menu | It moves to the board and counts toward today's goal (unless today is already complete) |
