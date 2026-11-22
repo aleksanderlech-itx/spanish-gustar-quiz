@@ -130,9 +130,9 @@ test("QuizSelector re-derives its open state from the router on every render, no
   assert.doesNotMatch(quizSelector, /window\.location\.search/);
   // The board's progress numbers re-read from storage whenever it becomes visible
   // again (dependent on `open`), not only once at first mount, and also when the
-  // drawer opens or closes, so a Settings change (e.g. "show on main screen") shows
-  // up without a page reload.
-  assert.match(quizSelector, /\}, \[open, drawerOpen\]\);/);
+  // drawer opens or closes, so a Shelf change made in the drawer shows up without a
+  // page reload, and after a Selection or Suggestion changes the Board.
+  assert.match(quizSelector, /\}, \[open, drawerOpen, boardVersion\]\);/);
 });
 
 test("round screen commits one answer at a time, recolors options, and gates Next until answered", async () => {

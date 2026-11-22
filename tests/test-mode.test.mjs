@@ -30,6 +30,7 @@ const { recordMistakes, readNotebookEntries } = await import("../app/notebook.ts
 const { markQuizCompleted, readQuizCompletion } = await import("../app/quiz-completion.ts");
 const { readTopicSettings, writeTopicSettings } = await import("../app/topic-settings.ts");
 const { updateStoredProgress } = await import("../app/stored-progress.ts");
+const board = await import("../app/board-state.ts");
 
 const { TEST_KEY_PREFIX, TEST_MODE_FLAG_KEY } = storage;
 
@@ -97,6 +98,22 @@ test("a present continuous test session leaves every real key unchanged and writ
   writeTopicSettings("present-continuous", { roundLength: 5, mode: "choose" });
   assert.deepEqual(snapshot(localStorage, false), before);
   assert.ok(snapshot(localStorage, true)[`${TEST_KEY_PREFIX}present-continuous-quiz-progress-v1`], "the round was saved in the test namespace");
+});
+
+test("a Board test session (starter Board, Selection, Finished, Suggestion, Shelf add) leaves every real key unchanged", () => {
+  const realSeed = { ...REAL_SEED, "spanish-quiz-board-v1": JSON.stringify({ onBoard: ["gustar", "flashcards"], known: ["gustar"], suggestion: null }) };
+  const { localStorage } = install({ search: "?test=1", local: realSeed });
+  const before = snapshot(localStorage, false);
+  assert.equal(board.hasChosenBoard(), false, "a test session starts as a new user");
+  board.createStarterBoard();
+  board.chooseBoard(["ser-estar", "por-para"]);
+  markQuizCompleted("ser-estar", new Date("2026-11-07T08:00:00"));
+  board.moveFinishedToShelf("ser-estar");
+  board.answerSuggestion(board.newActivities(board.readBoardState()));
+  board.addToBoard(["ser-estar", "gustar"]);
+  board.removeFromBoard("por-para");
+  assert.deepEqual(snapshot(localStorage, false), before);
+  assert.ok(snapshot(localStorage, true)[`${TEST_KEY_PREFIX}spanish-quiz-board-v1`], "the Board was saved in the test namespace");
 });
 
 test("a real session leaves every test key unchanged", () => {

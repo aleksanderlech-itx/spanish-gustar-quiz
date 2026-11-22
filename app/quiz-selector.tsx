@@ -8,7 +8,11 @@ import { useTheme } from "./use-theme";
 import { orderBoard, type BoardTileProgress } from "./board";
 import { readStreakSummary, mergeActivityDays, dayKey, readFlashcardDaysReviewed, ACTIVITY_IDS, type StreakSummary } from "./streak";
 import { emptyQuizProgress, readQuizProgress, readDailyRoundProgress, type DailyRoundProgress, type QuizProgress } from "./quiz-progress";
-import { clearQuizCompletion, isQuizHiddenFromBoard, readQuizCompletion, markQuizCompleted } from "./quiz-completion";
+import { clearQuizCompletion, readQuizCompletion, markQuizCompleted } from "./quiz-completion";
+import { addToBoard, boardActivityIds, createStarterBoard, hasChosenBoard, isFirstVisitSession, moveFinishedToShelf, newActivities, rankSuggestions, readBoardState, shelfEntries, type ShelfEntry } from "./board-state";
+import { TUTORIAL_OFFERED_KEY } from "./tutorials";
+import SuggestionDialog, { type SuggestionContent } from "./suggestion-dialog";
+import WelcomeDialog from "./welcome-dialog";
 import { isCompletionUnearned, type QuizResult } from "./quiz-logic";
 import { ROUND_SIZE as FLASHCARDS_ROUND_SIZE, MAX_BOX as MAX_FLASHCARD_BOX } from "./flashcards";
 import Drawer from "./drawer";
@@ -17,7 +21,7 @@ import DayCompleteDialog from "./day-complete-dialog";
 import { takeDayCelebration } from "./day-celebration";
 import Logo from "./logo";
 import { SunIcon, MoonIcon } from "./theme-icons";
-import { appStorage } from "./storage";
+import { appSessionStorage, appStorage } from "./storage";
 import { readNotebookGroups, type NotebookGroup } from "./notebook";
 import { mistakesPath, mistakesTitle } from "./notebook-retry";
 
@@ -28,6 +32,13 @@ type BoardItem = BoardTileProgress & {
   noun: string;
   href: string;
   daily: DailyRoundProgress;
+};
+
+const SHELF_LABEL: Record<ShelfEntry["status"], string> = {
+  "repeat-due": "Repeat due",
+  "not-started": "Not started",
+  started: "In progress",
+  finished: "Finished",
 };
 
 const EMPTY_DAILY: DailyRoundProgress = { correct: 0, roundLength: 0, percent: 0, done: false };
@@ -200,12 +211,20 @@ export default function QuizSelector() {
   const [streak, setStreak] = useState<StreakSummary>(EMPTY_STREAK);
   const [mistakeGroups, setMistakeGroups] = useState<NotebookGroup[]>([]);
   const [celebrating, setCelebrating] = useState(false);
+  // The Shelf shows below the Board only in a new user's first browser session; later it lives in the drawer.
+  const [firstVisit, setFirstVisit] = useState(false);
+  // Only the Board load that creates the starter Board shows the welcome dialog (decision 0011).
+  const [welcoming, setWelcoming] = useState(false);
+  const [boardVersion, setBoardVersion] = useState(0);
+  const [suggestion, setSuggestion] = useState<SuggestionContent | null>(null);
+  const [shelf, setShelf] = useState<ShelfEntry[]>([]);
 
   useEffect(() => {
     // Re-reads progress every time the board becomes visible again, not just on
     // first mount, so returning from a round shows the round's updated numbers.
-    // Also re-reads when the drawer opens/closes, so a "show on main screen" choice
-    // made in Settings (drawer.tsx) appears on the board without a page reload.
+    // Also re-reads when the drawer opens/closes, so a Shelf change made in the drawer's
+    // Settings (drawer.tsx) appears on the board without a page reload, and after a
+    // Selection or Suggestion changes the Board (boardVersion).
     if (!open) return;
     const flashcards = readFlashcardProgress();
     const progressById = Object.fromEntries(QUIZ_IDS.map((id) => [id, readQuizProgress(id)])) as Record<QuizId, QuizProgress>;
@@ -221,10 +240,22 @@ export default function QuizSelector() {
       const progress = progressById[id];
       if (progress.completed > 0 && progress.due === 0 && progress.percent === 100 && !readQuizCompletion(id)) {
         markQuizCompleted(id, progress.lastActivity ? new Date(progress.lastActivity) : new Date());
+        moveFinishedToShelf(id);
       }
     });
+    // A new user gets the starter Board (decision 0008). The welcome tutorial waits for the next visit.
+    let createdStarter = false;
+    if (!hasChosenBoard()) {
+      createdStarter = createStarterBoard();
+      try {
+        appSessionStorage.setItem(TUTORIAL_OFFERED_KEY, "1");
+      } catch {
+        // Session storage blocked; the tutorial may be offered on this visit.
+      }
+    }
+    const onBoard = boardActivityIds();
     const nextItems: BoardItem[] = ACTIVITY_REGISTRY
-      .filter((entry) => entry.activityType === "flashcards" || !isQuizHiddenFromBoard(entry.id as QuizId))
+      .filter((entry) => onBoard.includes(entry.id))
       .map((entry) => entry.activityType === "flashcards"
         ? boardItem(entry, flashcards.progress, flashcards.daily)
         : boardItem(entry, progressById[entry.id as QuizId], readDailyRoundProgress(entry.id as QuizId)));
@@ -235,6 +266,26 @@ export default function QuizSelector() {
     // Browser storage is unavailable during the server render.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setItems(nextItems);
+    if (createdStarter) setWelcoming(true);
+    setFirstVisit(isFirstVisitSession());
+    const shelfNow = shelfEntries();
+    setShelf(shelfNow);
+    // The Suggestion: after a Finished event, once for New Activities, and whenever the Board is empty.
+    const boardState = readBoardState();
+    if (boardState) {
+      const fresh = newActivities(boardState);
+      const finished = boardState.suggestion?.finished ?? null;
+      const required = onBoard.length === 0;
+      setSuggestion(finished || fresh.length || required ? {
+        finished: finished && ACTIVITY_REGISTRY.some((entry) => entry.id === finished) ? finished as ActivityId : null,
+        fresh,
+        suggested: rankSuggestions(shelfNow.filter((entry) => !fresh.includes(entry.id)), finished)
+          .map((id) => ({ id, status: shelfNow.find((entry) => entry.id === id)!.status })),
+        required,
+      } : null);
+    } else {
+      setSuggestion(null);
+    }
     // Temporary mistakes activities sit outside ACTIVITY_REGISTRY, so the streak and daily goal never see them.
     setMistakeGroups(readNotebookGroups());
     const summary = readStreakSummary();
@@ -242,7 +293,7 @@ export default function QuizSelector() {
     // Only right after the round that completed today: takeDayCelebration clears the flag either way.
     if (takeDayCelebration(dayKey(new Date())) && summary.completedToday) setCelebrating(true);
     setReady(true);
-  }, [open, drawerOpen]);
+  }, [open, drawerOpen, boardVersion]);
 
   useEffect(() => {
     document.body.classList.toggle("quiz-library-open", ready && open);
@@ -266,6 +317,8 @@ export default function QuizSelector() {
     <main className="quiz-library board-home" aria-labelledby="quiz-library-title">
       <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)} returnFocusRef={hamburgerRef} />
       <TutorialModal />
+      <WelcomeDialog open={welcoming} onClose={() => setWelcoming(false)} />
+      <SuggestionDialog content={suggestion} onAnswered={() => setBoardVersion((version) => version + 1)} />
       <DayCompleteDialog
         open={celebrating}
         streak={streak.streak}
@@ -307,6 +360,7 @@ export default function QuizSelector() {
           <span className="board-nav-link board-nav-link-active" aria-current="page"><span className="board-nav-dot" aria-hidden="true" />Today&apos;s board</span>
           <button type="button" className="board-nav-link" onClick={() => setDrawerOpen(true)}><span className="board-nav-dot" aria-hidden="true" />Progress &amp; history</button>
           <button type="button" className="board-nav-link" onClick={() => setDrawerOpen(true)}><span className="board-nav-dot" aria-hidden="true" />Mistake notebook</button>
+          <a href="/activities" className="board-nav-link"><span className="board-nav-dot" aria-hidden="true" />Your activities</a>
           <a href="/how-to-use" className="board-nav-link"><span className="board-nav-dot" aria-hidden="true" />How to use</a>
           <a href="/notes" className="board-nav-link"><span className="board-nav-dot" aria-hidden="true" />Notes</a>
         </nav>
@@ -317,7 +371,7 @@ export default function QuizSelector() {
               <strong>{streak.streak}</strong>
               <div>
                 <span className="streak-label" lang="es">días seguidos</span>
-                <span className="streak-goal">Goal: a round in all {streak.todayTotal} activities · {streak.todayDone}/{streak.todayTotal} today</span>
+                <span className="streak-goal">Goal: a round in {streak.todayTotal === 1 ? "your 1 activity" : `all ${streak.todayTotal} activities`} · {streak.todayDone}/{streak.todayTotal} today</span>
               </div>
             </div>
           </div>
@@ -436,6 +490,40 @@ export default function QuizSelector() {
           );
         })}
       </section>
+
+        {firstVisit && shelf.length > 0 && (
+          <details className="board-shelf" open>
+            <summary>
+              <span className="eyebrow">On your shelf</span>
+              <span className="board-shelf-count">{shelf.length}</span>
+            </summary>
+            <p className="board-shelf-note">Not part of your daily goal. Add any of them back when you want.</p>
+            <ul className="board-shelf-list">
+              {shelf.map((entry) => {
+                const activity = ACTIVITY_REGISTRY.find((item) => item.id === entry.id);
+                return (
+                  <li key={entry.id} className="board-shelf-item">
+                    <span className="board-shelf-text">
+                      <strong>{activity?.title ?? entry.id}</strong>
+                      <span className={`board-tile-pill board-shelf-pill board-shelf-pill-${entry.status}`}>{SHELF_LABEL[entry.status]}</span>
+                      {(entry.status === "finished" || entry.status === "repeat-due") && (
+                        <span className="board-shelf-hint">Starts over when added; your mistakes stay.</span>
+                      )}
+                    </span>
+                    <button
+                      type="button"
+                      className="board-tile-pinned-alt"
+                      onClick={() => { addToBoard([entry.id]); setBoardVersion((version) => version + 1); }}
+                    >
+                      Add to board
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+            <a className="board-shelf-edit" href="/activities">Edit your activities</a>
+          </details>
+        )}
 
         {mistakeGroups.length > 0 && (
           <>

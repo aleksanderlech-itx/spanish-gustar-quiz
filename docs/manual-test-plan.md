@@ -1,6 +1,6 @@
 # Manual Test Plan: Spanish Quizzes
 
-Last updated: 2026-11-21. Target: production (https://spanish-quizz.es). Testing there is harmless: progress lives only in the tester's own browser, and test mode (`?test=1`) is isolated from real data.
+Last updated: 2026-11-21 (Board and Shelf, #117). Target: production (https://spanish-quizz.es). Testing there is harmless: progress lives only in the tester's own browser, and test mode (`?test=1`) is isolated from real data.
 
 Project rules and decisions: `docs/decisions/README.md` in the repo. This plan covers the app as of main at PR #130, including test mode (PR #121), the mistake notebook with retry mode (PR #124), reflexive verbs, the present perfect (#69), the present continuous (#70), the daily goal and day-complete dialog, and Notes for every activity.
 
@@ -119,9 +119,32 @@ Known behavior: the notebook keeps the newest 500 entries by last miss. Covered 
 | 5.3 | T | Complete today's round in every activity | The "¡Día completado!" dialog appears once, right after the round that completes the day. It shows activities done out of total and the streak in days. "¡Vamos!", Escape and a click outside all close it. It does not reappear on reload |
 | 5.4 | N | Trigger 5.3 while the welcome tutorial is open | The dialogs never stack. The day dialog waits until the tutorial closes |
 | 5.5 | T | Do a second round on the same day | Streak counts the day once. Week strip marks the day |
-| 5.6 | N | Optional, needs date control: day is completed, then a new activity appears | A completed day stays locked. The new activity counts from the next day |
-| 5.7 | T | Settings > Finished activities | Each completed topic shows "Done <date> · repeat from <date>", or "Repeat due" once that date passes. "Add to main screen" puts the topic back on the board, "Remove from main screen" takes it off again. With nothing finished: "No finished activities yet." Behavior matches the How to use page |
+| 5.6 | T | Complete the day, then add an activity to the board from the shelf | The completed day stays complete. The added activity counts from the next day |
+| 5.7 | T | Menu > On your shelf | Every activity not on the board is listed with "Not started", "In progress", "Finished" ("Done <date> · repeat from <date>") or "Repeat due". "Add to board" moves it to the board. With nothing on the shelf: "Every activity is on your board." "Edit your activities" opens the Selection screen. Behavior matches the How to use page |
 | 5.8 | T | Reload after each step above | Values persist |
+| 5.9 | T | Streak panel with one activity on the board | Reads "Goal: a round in your 1 activity"; with more, "Goal: a round in all N activities". N matches the tiles on the board |
+
+## 5a. Choosing activities (Board and Shelf)
+
+Terms: the board holds the activities the user chose; every other activity is on the shelf. A new user starts with the starter board. For 5a.1 to 5a.3, start each from a fresh test session: open `/?test=1`, then chip menu > Reset test data and confirm. The page reloads, and that reload is the new user's first visit, so stay in that tab. A new tab already counts as the next session.
+
+| # | Mode | Step | Expected |
+|---|------|------|----------|
+| 5a.1 | T | Fresh session (see above): the reloaded `/` | The board opens directly with Gustar, Por vs Para, Preterite vs Imperfect and Saber vs Conocer, under a "Welcome! We picked some activities to start" dialog with one "Got it" button. "Got it" (or Escape) closes it, scrolls to "On your shelf" below the board, expanded and listing the other activities as "Not started", and a band of colour travels around its border for about six seconds (a still highlighted border with reduced motion). No welcome tutorial. The streak goal counts four activities |
+| 5a.1b | T | Reload the page in the same tab | No welcome dialog again. The shelf is still expanded below the board |
+| 5a.2 | T | In the same tab, open a topic and come back to `/`; then open `/` in a new tab | Same tab: the shelf section is still below the board. New tab: it is gone from the board, and the welcome tutorial is offered |
+| 5a.3 | T | Open `/present-perfect?test=1`, chip menu > Reset test data, play one round there, then open `/` in the same tab | The board holds the four starter activities plus that one. That round counts for today's goal |
+| 5a.3b | T | Menu | "On your shelf (N)" is the first row. Expanded: every activity not on the board with its status and "Add to board", then "Edit your activities". Settings holds only "Reset all progress" |
+| 5a.4 | T | Menu > Your activities (or "Your activities" in the desktop sidebar) | `/activities` opens ticked to match the board. Saving with nothing ticked is not possible. "Save" returns to the board with the new choice |
+| 5a.5 | T | Menu > On your shelf, press "Add to board" on one row, close the menu | It moves to the board and counts toward today's goal (unless today is already complete) |
+| 5a.6 | T | Finish every sentence of a topic that is on the board (test mode hints make this quick), then return to the board | The topic left the board. A dialog "You finished <topic>" offers up to three activities, unticked, with "Add to board", "Not now" and "See all activities". The finished topic is listed last, only if fewer than three others exist |
+| 5a.7 | T | Answer 5a.6 with "Not now", reload | The dialog does not come back. The finished topic is on the shelf as "Finished" |
+| 5a.8 | T | Add the finished topic back to the board, open it | It starts its sentences over. Its mistakes are still in the notebook and its mistakes tile still shows |
+| 5a.9 | T | Make the board hold one topic and finish it | The dialog says the board is empty, has no "Not now", and Escape does not close it. Adding one activity closes it |
+| 5a.10 | T | With a topic on the shelf, open its link and finish a round | Results say it is on your shelf and the round was practice only, with "Add to your board". Pressing it confirms the topic is on your board |
+| 5a.11 | N | Open `/activities` and view the page source | `<meta name="robots" content="noindex, nofollow">` is present. `/sitemap.xml` and `/llms.txt` do not list `/activities` |
+| 5a.12 | B | Isolation: make Board changes in test mode, then open a tab without `?test=1` | The real board and shelf are unchanged |
+| 5a.13 | N | Existing user (real progress from before this release): open `/` | The board shows what it showed before the release: every activity except finished topics that were neither repeat due nor added back from Settings. No starter board is applied. The shelf is not shown below the board |
 
 ## 6. Flashcards
 

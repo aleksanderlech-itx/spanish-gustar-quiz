@@ -25,6 +25,12 @@ const daysAgo = (today, count) => {
 
 const fullDay = () => new Set(ACTIVITY_IDS);
 
+// An existing user's Board with every Activity on it, as the schema 2 upgrade gives them (decision 0008).
+const BOARD_KEY = "spanish-quiz-board-v1";
+const boardOf = (ids) => JSON.stringify({ onBoard: ids, known: ACTIVITY_IDS, suggestion: null });
+const everythingOnBoard = () => store.set(BOARD_KEY, boardOf(ACTIVITY_IDS));
+everythingOnBoard();
+
 test("currentStreak counts consecutive fully-completed days ending today", () => {
   const today = new Date("2026-08-25T12:00:00");
   const records = new Map([
@@ -84,16 +90,17 @@ test("weekBars reports partial completion counts for today", () => {
   assert.equal(todayBar.total, liveThen.length);
 });
 
-test("weekBars doesn't count a practised exempt activity toward today's bar", () => {
+test("weekBars doesn't count a practised Shelf activity toward today's bar", () => {
   const today = new Date("2026-08-25T12:00:00");
-  const exempt = ACTIVITY_IDS.find((id) => id !== "flashcards");
-  // Fully completed yesterday, so it's exempt today; practising it again must not fill the bar.
-  const completions = { [exempt]: new Date("2026-08-24T12:00:00").toISOString() };
+  const shelved = ACTIVITY_IDS.find((id) => id !== "flashcards");
+  store.set(BOARD_KEY, boardOf(ACTIVITY_IDS.filter((id) => id !== shelved)));
+  // Practising an Activity on the Shelf must not fill the bar.
   const done = ACTIVITY_IDS.filter((id) => id !== "flashcards");
   const records = new Map([[dayKey(today), new Set(done)]]);
-  const todayBar = weekBars(records, today, completions).find((day) => day.status === "today");
+  const todayBar = weekBars(records, today, {}).find((day) => day.status === "today");
   assert.ok(todayBar.doneCount < todayBar.total);
   assert.equal(todayBar.doneCount, todayBar.total - 1); // only flashcards is still missing
+  everythingOnBoard();
 });
 
 test("a newly introduced activity is not required on days before it went live", () => {
@@ -136,6 +143,7 @@ const requiredOn = (date) => ACTIVITY_REGISTRY
 const completeDay = (date) => requiredOn(date).forEach((id) => recordActivityToday(id, date));
 const freshStart = (count, lastCompletedAt) => {
   store.clear();
+  everythingOnBoard();
   store.set(STREAK_COUNTER_KEY, JSON.stringify({ count, lastCompletedDay: dayKey(lastCompletedAt) }));
 };
 
@@ -207,30 +215,29 @@ test("the banked count isn't recomputed from the ledger, so a newly required act
 // --- Daily goal = every activity on the board; a completed day stays completed ---
 
 const COMPLETIONS_KEY = "spanish-quiz-completions-v1";
-const REINSTATED_KEY = "spanish-quiz-reinstated-v1";
 
-test("today's goal counts a finished quiz that's shown on the board again", () => {
+test("today's goal is the Board: an Activity moved to the Shelf isn't required, one added back is", () => {
   const monday = at("2026-10-05T10:00:00");
   freshStart(4, monday);
   const quiz = requiredOn(monday).find((id) => id !== "flashcards");
-  store.set(COMPLETIONS_KEY, JSON.stringify({ [quiz]: at("2026-10-01T10:00:00").toISOString() }));
-  assert.equal(readStreakSummary(monday).todayTotal, requiredOn(monday).length - 1); // off the board: not required
-  store.set(REINSTATED_KEY, JSON.stringify({ [quiz]: true }));
-  assert.equal(readStreakSummary(monday).todayTotal, requiredOn(monday).length); // back on the board: required
+  store.set(BOARD_KEY, boardOf(ACTIVITY_IDS.filter((id) => id !== quiz)));
+  assert.equal(readStreakSummary(monday).todayTotal, requiredOn(monday).length - 1);
+  everythingOnBoard();
+  assert.equal(readStreakSummary(monday).todayTotal, requiredOn(monday).length);
 });
 
-test("an activity that appears after the day is completed doesn't undo it, and counts from the next day", () => {
+test("an Activity added after the day is completed doesn't undo it, and counts from the next day", () => {
   const monday = at("2026-10-05T10:00:00");
   freshStart(4, at("2026-10-04T22:00:00"));
   const quiz = requiredOn(monday).find((id) => id !== "flashcards");
-  store.set(COMPLETIONS_KEY, JSON.stringify({ [quiz]: at("2026-10-01T10:00:00").toISOString() }));
+  store.set(BOARD_KEY, boardOf(ACTIVITY_IDS.filter((id) => id !== quiz)));
   requiredOn(monday).filter((id) => id !== quiz).forEach((id) => recordActivityToday(id, monday));
   let summary = readStreakSummary(monday);
   assert.equal(summary.completedToday, true);
   assert.equal(summary.streak, 5);
 
-  // Later the same day the finished quiz is put back on the board.
-  store.set(REINSTATED_KEY, JSON.stringify({ [quiz]: true }));
+  // Later the same day it is added to the Board.
+  everythingOnBoard();
   const later = hoursAfter(monday, 2);
   summary = readStreakSummary(later);
   assert.equal(summary.completedToday, true);
@@ -245,6 +252,26 @@ test("an activity that appears after the day is completed doesn't undo it, and c
   assert.equal(summary.week[0].status, "done");
 });
 
+test("before the first Selection, today's goal is the Activities played so far", () => {
+  const monday = at("2026-10-05T10:00:00");
+  freshStart(0, at("2026-09-01T10:00:00"));
+  store.delete(BOARD_KEY);
+  recordActivityToday("gustar", monday);
+  const summary = readStreakSummary(monday);
+  assert.equal(summary.todayTotal, 1);
+  assert.equal(summary.completedToday, true);
+  assert.equal(summary.streak, 1);
+});
+
+test("an empty Board (its last Activity just Finished) completes the day only if a round was played", () => {
+  const monday = at("2026-10-05T10:00:00");
+  freshStart(2, at("2026-10-04T10:00:00"));
+  store.set(BOARD_KEY, boardOf([]));
+  assert.equal(readStreakSummary(monday).completedToday, false);
+  recordActivityToday("gustar", monday);
+  assert.equal(readStreakSummary(monday).completedToday, true);
+});
+
 // --- Backup/restore: the drawer's backup carries every streak and completion key ---
 
 test("restoring the streak and completion keys on a wiped device brings back the streak, week bars and finished quizzes", () => {
@@ -252,13 +279,14 @@ test("restoring the streak and completion keys on a wiped device brings back the
   freshStart(15, at("2026-10-04T07:00:00"));
   const quiz = requiredOn(monday).find((id) => id !== "flashcards");
   store.set(COMPLETIONS_KEY, JSON.stringify({ [quiz]: at("2026-10-01T10:00:00").toISOString() }));
+  store.set(BOARD_KEY, boardOf(ACTIVITY_IDS.filter((id) => id !== quiz))); // Finished: on the Shelf
   requiredOn(monday).filter((id) => id !== quiz).forEach((id) => recordActivityToday(id, monday));
   recordFlashcardDayReviewed(dayKey(monday));
   const tuesday = at("2026-10-06T09:00:00");
   const before = readStreakSummary(tuesday);
   assert.equal(before.streak, 16);
 
-  const backup = new Map([...STREAK_STORAGE_KEYS, ...QUIZ_COMPLETION_STORAGE_KEYS]
+  const backup = new Map([...STREAK_STORAGE_KEYS, ...QUIZ_COMPLETION_STORAGE_KEYS, BOARD_KEY]
     .filter((key) => store.has(key)).map((key) => [key, store.get(key)]));
   store.clear();
   backup.forEach((value, key) => store.set(key, value));

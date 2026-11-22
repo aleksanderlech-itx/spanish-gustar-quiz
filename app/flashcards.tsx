@@ -11,6 +11,7 @@ import HelpButton from "./help-modal";
 import { QUIZ_CONFIG, QUIZ_IDS, quizPath } from "./quiz-config";
 import { SITE_CONFIG } from "./site-config";
 import SupportPrompt from "./support-prompt";
+import AddToBoardOffer from "./add-to-board-offer";
 import { updateStoredProgress } from "./stored-progress";
 import { appStorage, isTestMode } from "./storage";
 
@@ -218,6 +219,7 @@ export default function Flashcards({ standalone = false }: { standalone?: boolea
       {finished ? (
         <>
           <section className="completion-card flashcard-complete"><p className="eyebrow">Session complete</p><h2>{totals.studied} of 500 verbs entered into the system</h2><p>{totals.due ? `${totals.due} due card${totals.due === 1 ? " is" : "s are"} ready for another session.` : "You are caught up. Return when the next box becomes due."}</p>{totals.due > 0 && <button type="button" className="primary" onClick={() => startRound(progress, pool, Date.now())}>Review due cards</button>}</section>
+          <AddToBoardOffer activityId="flashcards" />
           <SupportPrompt />
         </>
       ) : (

@@ -8,6 +8,7 @@ import "./editorial-polish.css";
 import "./activity-chrome.css";
 import "./test-mode.css";
 import "./mistakes.css";
+import "./activity-selection.css";
 import StoredDataUpgrade from "./stored-data-upgrade";
 import QuizSelector from "./quiz-selector";
 import TestMode from "./test-mode";

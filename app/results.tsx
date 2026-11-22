@@ -8,6 +8,7 @@ import SupportPrompt from "./support-prompt";
 import SiteHeader from "./site-header";
 import type { QuizId } from "./quiz-config";
 import { mistakesPath } from "./notebook-retry";
+import AddToBoardOffer from "./add-to-board-offer";
 
 export default function Results({
   quizId,
@@ -58,6 +59,8 @@ export default function Results({
         <div className="results-score-bar" aria-hidden="true"><span style={{ width: `${result.percent}%` }} /></div>
         {streakDays > 0 && <p className="results-streak-note">Streak extended to {streakDays} day{streakDays === 1 ? "" : "s"}.</p>}
       </section>
+
+      <AddToBoardOffer activityId={quizId} />
 
       {uniqueRules.length > 0 && (
         <section className="results-notebook">

@@ -1,6 +1,6 @@
 # 0008. The Board is chosen by the user
 
-- Status: Accepted
+- Status: Accepted; rules 2 and 4 amended by [0011](0011-starter-board-and-shelf-in-drawer.md)
 - Date: 2026-11-21
 - Source: design session on branch `claude/gifted-clarke-v47c3w`; replaces the specs in issue #117 and PR #99
 
@@ -48,6 +48,15 @@ wanted it back.
     the Selection screen again. Test mode keeps its own Board choice and starts
     at the Selection screen.
 12. Mistakes to retry tiles still appear for Shelf activities.
+
+13. Implementation (PR for #117): the Board lives in `spanish-quiz-board-v1`
+    (`app/board-state.ts`). Schema 2 (decision 0010) derives an existing
+    user's Board from what their board showed and removes the
+    `spanish-quiz-reinstated-v1` key; a device with no progress gets no Board
+    and its user sees the Selection screen. The welcome tutorial is not offered
+    on the visit that shows the first-visit Selection screen. A day with an
+    empty Board (its last activity just finished) counts once a round was
+    played that day.
 
 ## Consequences
 

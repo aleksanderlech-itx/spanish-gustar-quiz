@@ -7,6 +7,7 @@ import { availableQuestions, clearRegularHistory, filterQuestions, getMissedIds,
 import { QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config";
 import { recordActivityToday } from "./streak";
 import { markQuizCompleted, readQuizCompletion, repeatDueDate } from "./quiz-completion";
+import { moveFinishedToShelf } from "./board-state";
 import { readTopicSettings, type AnswerMode } from "./topic-settings";
 import { readQuizFilters } from "./quiz-filters";
 import { recordMistakes, ruleLabelFor } from "./notebook";
@@ -134,8 +135,8 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
             <h2>You&apos;ve completed every {quiz.title.replace(" Quiz", "")} sentence.</h2>
             <p>
               Your results are saved{completedAt ? ` (done ${new Date(completedAt).toLocaleDateString()})` : ""}.
-              This topic isn&apos;t required for today&apos;s goal anymore
-              {dueDate ? `. We'll suggest a repeat from ${dueDate.toLocaleDateString()}, but you can redo it any time.` : "."}
+              It has moved to your shelf, so it isn&apos;t part of today&apos;s goal
+              {dueDate ? `. It will be suggested for a repeat from ${dueDate.toLocaleDateString()}, and you can redo it any time.` : "."}
             </p>
             <div>
               {missedIds.length > 0 && <button type="button" className="primary" onClick={() => startRound(true, history)}>Practise the misses</button>}
@@ -206,7 +207,11 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
     // or not: that's the existing "you've completed every sentence" milestone. A review round
     // (practising misses) only reaches that milestone once it clears the last outstanding miss,
     // since the regular pool was already exhausted before the review round started.
-    if (regularPoolExhausted && (!practiceMissed || getMissedIds(next).length === 0)) markQuizCompleted(quizId);
+    if (regularPoolExhausted && (!practiceMissed || getMissedIds(next).length === 0)) {
+      markQuizCompleted(quizId);
+      // Finished: it moves to the Shelf and the Board offers a Suggestion (decision 0008).
+      moveFinishedToShelf(quizId);
+    }
     setMissedRules(rules);
     setLastResult(result);
     setFinished(true);
