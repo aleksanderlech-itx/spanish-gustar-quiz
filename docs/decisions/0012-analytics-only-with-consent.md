@@ -39,6 +39,9 @@ Clarity. The owner chose to keep both tools behind opt-in consent.
 - Visitors who reject or ignore the bar are not counted; analytics numbers drop.
 - Any new tracker, pixel or non-essential cookie must load only after consent,
   and be listed on `/privacy`.
-- The privacy page wording is a draft by the developer. It needs review by
-  someone qualified in privacy law before production, and again whenever the
-  third parties change.
+- The privacy page wording is a draft by the developer. On 2026-11-22 the
+  owner shipped it to production without a legal review, keeping the defaults:
+  no stated retention periods, the Ko-fi button image not gated by consent,
+  the theme cookie set without consent, and renewal after 12 months. A review
+  by someone qualified in privacy law is still recommended, and again
+  whenever the third parties change.
