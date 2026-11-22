@@ -56,6 +56,9 @@ test("the welcome dialog shows only on the load that creates the starter Board, 
   assert.match(dialog, /Welcome! We picked some activities to start/);
   assert.match(dialog, />\s*Got it\s*</);
   assert.match(dialog, /classList\.add\("board-shelf-highlight"\)/);
+  // Smooth in every browser (own animation), at once for reduced motion.
+  assert.match(dialog, /requestAnimationFrame\(step\)/);
+  assert.match(dialog, /prefers-reduced-motion: reduce\)"\)\.matches\) \{\s*window\.scrollTo\(\{ top: target, behavior: "instant" \}\);/);
   const css = await readFile(new URL("../app/activity-selection.css", import.meta.url), "utf8");
   assert.match(css, /\.board-shelf-highlight::before \{[^}]*animation: board-shelf-travel/s);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\) \{[^@]*\.board-shelf-highlight::before \{\s*content: none;\s*animation: none;/s);

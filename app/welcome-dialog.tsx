@@ -4,6 +4,32 @@ import { useEffect, useRef } from "react";
 
 /** How long the shelf section's highlight border runs after the dialog closes. */
 const HIGHLIGHT_MS = 6000;
+/** Length of the scroll down to the shelf. */
+const SCROLL_MS = 600;
+/** Space kept above the shelf section once it is scrolled into view. */
+const SCROLL_OFFSET = 16;
+
+const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
+
+/**
+ * Scrolls to an element with the app's own animation, so it is smooth whatever the browser's smooth
+ * scrolling setting. Users who asked for reduced motion go there at once.
+ */
+const scrollToElement = (element: HTMLElement) => {
+  const target = Math.max(0, element.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET);
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    window.scrollTo({ top: target, behavior: "instant" });
+    return;
+  }
+  const start = window.scrollY;
+  const startedAt = performance.now();
+  const step = (now: number) => {
+    const progress = Math.min(1, (now - startedAt) / SCROLL_MS);
+    window.scrollTo({ top: start + (target - start) * easeInOutCubic(progress), behavior: "instant" });
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+};
 
 /**
  * Shown once, on the Board load that creates a new user's starter Board (decision 0011): says some
@@ -21,8 +47,7 @@ export default function WelcomeDialog({ open, onClose }: { open: boolean; onClos
   const highlightShelf = () => {
     const shelf = document.querySelector<HTMLElement>(".board-shelf");
     if (shelf) {
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      shelf.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+      scrollToElement(shelf);
       shelf.classList.add("board-shelf-highlight");
       window.setTimeout(() => shelf.classList.remove("board-shelf-highlight"), HIGHLIGHT_MS);
     }
