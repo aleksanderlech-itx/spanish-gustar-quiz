@@ -27,8 +27,9 @@ with a sensible set already chosen, and that the Shelf has one permanent home.
 6. On the Board load that creates the starter Board, and only then, a
    welcome dialog says some activities were picked and where to change them
    (the shelf below, Your activities, the menu). Its one button, "Got it",
-   scrolls to the shelf section and highlights its border for a few seconds;
-   with reduced motion the highlight does not animate.
+   scrolls to the shelf section, where a band of colour travels around its
+   border for six seconds; with reduced motion the border is highlighted but
+   still.
 
 Everything else in 0008 stands.
 

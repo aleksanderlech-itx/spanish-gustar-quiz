@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 
 /** How long the shelf section's highlight border runs after the dialog closes. */
-const HIGHLIGHT_MS = 4000;
+const HIGHLIGHT_MS = 6000;
 
 /**
  * Shown once, on the Board load that creates a new user's starter Board (decision 0011): says some
