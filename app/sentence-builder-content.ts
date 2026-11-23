@@ -8,7 +8,7 @@ const examples = (ids: number[]): QuizExample[] => ids.map((id) => {
 });
 
 const groupList = (groups: readonly string[]) =>
-  `${groups.slice(0, -1).join(", ")} and ${groups[groups.length - 1]}`;
+  `${groups.slice(0, -1).join(", ")}, and ${groups[groups.length - 1]}`;
 
 /** The "How this works" section on Sentence Builder's page, in the same shape as the grammar quizzes'. */
 export const SENTENCE_BUILDER_CONTENT: QuizContent = {
