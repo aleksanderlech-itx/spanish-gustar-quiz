@@ -1349,6 +1349,147 @@ quiz-present-continuous,gerund or infinitive,Yo ___ a mis abuelos esta semana.,I
 quiz-present-continuous,gerund or infinitive,Nosotras ___ un piso nuevo en el centro.,We are looking for a new flat in the centre.,estamos buscando,"Nosotras takes estamos, and the search is in progress: estamos buscando. Estar is followed by the gerund.",ok,
 quiz-present-continuous,gerund or infinitive,Tú ___ mucho últimamente.,You are reading a lot lately.,estás leyendo,"Últimamente frames a current habit, so estás leyendo. Estar never takes the infinitive.",ok,
 quiz-present-continuous,gerund or infinitive,Vosotros ___ la cena en la cocina.,You all are making dinner in the kitchen.,estáis preparando,"Vosotros takes estáis, and the action in progress is a gerund: estáis preparando. Estar never takes the infinitive.",ok,
+sentence-builder,questions (basic),¿Dónde están los tenedores?,Where are the forks?,dónde / están / los tenedores,"Dónde opens the question and the verb están follows it straight away, before the subject los tenedores.",ok,
+sentence-builder,questions (basic),¿Dónde está el comedor?,Where's the dining room?,dónde / está / el comedor,"A question word like dónde comes first, then the verb está, then the subject el comedor.",ok,
+sentence-builder,questions (basic),¿Cómo estuvo tu cumpleaños?,How was your birthday?,cómo / estuvo / tu cumpleaños,Cómo opens the question and the verb estuvo comes next; the subject tu cumpleaños goes after the verb.,ok,
+sentence-builder,questions (basic),¿Dónde puse mis llaves?,Where did I put my keys?,dónde / puse / mis llaves,"After dónde the verb puse comes straight away, and the object mis llaves follows it.",ok,
+sentence-builder,questions (basic),¿Dónde encontraste esa muñeca?,Where did you find that doll?,dónde / encontraste / esa muñeca,Dónde goes first and the verb encontraste follows it; Spanish needs no helper verb like English did.,ok,
+sentence-builder,questions (basic),¿Qué huele tan bien?,What smells so good?,qué / huele / tan bien,"Qué is the subject here and opens the question; huele follows, then tan bien describes how.",ok,
+sentence-builder,questions (basic),¿Qué dice la placa roja?,What does the red plaque say?,qué / dice / la placa roja,Qué opens the question and the verb dice comes before its subject la placa roja.,ok,
+sentence-builder,questions (intermediate),¿Qué falda te gusta?,Which skirt do you like?,qué falda / te / gusta,"Qué falda stays together at the start, and te goes right before gusta, as in te gusta.",ok,
+sentence-builder,questions (intermediate),¿Quién te contó la historia?,Who told you the story?,quién / te / contó / la historia,"Quién opens the question, te sits right before contó, and the object la historia comes last.",ok,
+sentence-builder,questions (intermediate),¿Cómo se llama tu hermana?,What's your sister's name?,cómo / se llama / tu hermana,"Spanish asks how she is called: cómo first, then se llama, then the subject tu hermana.",ok,
+sentence-builder,questions (intermediate),¿Qué has hecho con mi hermana?,What have you done with my sister?,qué / has / hecho / con mi hermana,"Has and hecho never split: they follow qué together, and con mi hermana comes after them.",ok,
+sentence-builder,questions (intermediate),¿Por qué no llamaste una ambulancia?,Why didn't you call an ambulance?,por qué / no / llamaste / una ambulancia,"After por qué, no goes straight before the verb llamaste, never after it.",ok,
+sentence-builder,questions (intermediate),¿Qué quieres comer este fin de semana?,What do you want to eat this weekend?,qué / quieres / comer / este fin de semana,"Qué opens the question, then quieres and the infinitive comer; the time este fin de semana goes last.",ok,
+sentence-builder,questions (advanced),¿Cuál es el propósito de tu visita?,What's the purpose of your visit?,cuál / es / el propósito / de tu visita,"Cuál es opens the question, and de tu visita follows el propósito because it says whose purpose.",ok,
+sentence-builder,negatives (basic),No veo ninguna diferencia.,I don't see any difference.,no / veo / ninguna diferencia,No goes before veo and ninguna diferencia follows the verb; Spanish keeps no even with ninguna.,ok,
+sentence-builder,negatives (basic),Nadie comió el pastel.,No one ate the cake.,nadie / comió / el pastel,"When nadie comes before the verb comió, it replaces no: no extra negative is needed.",ok,
+sentence-builder,negatives (basic),No he encontrado nada.,I didn't find anything.,no / he / encontrado / nada,"No goes before he, and he encontrado stays together; nada comes after the verb.",ok,
+sentence-builder,negatives (basic),No tengo nada que hacer.,I have nothing to do.,no / tengo / nada / que hacer,"Spanish says no before tengo and nada after it; que hacer follows nada, as in nothing to do.",ok,
+sentence-builder,negatives (intermediate),Nunca he salido de Boston.,I've never left Boston.,nunca / he / salido / de Boston,"Nunca before the verb works alone, and it never splits he salido.",ok,
+sentence-builder,negatives (intermediate),Nadie nos dio nada.,No one gave us anything.,nadie / nos / dio / nada,"Nadie opens the sentence, nos sits right before dio, and nada follows the verb.",ok,
+sentence-builder,negatives (intermediate),Nadie te puede ayudar.,No one can help you.,nadie / te / puede / ayudar,"Te goes before the conjugated verb puede, and nadie at the start needs no no.",ok,
+sentence-builder,negatives (intermediate),Tom no está haciendo nada.,Tom isn't doing anything.,Tom / no / está / haciendo / nada,"No goes before está, the conjugated verb, and está haciendo stays together before nada.",ok,
+sentence-builder,negatives (intermediate),No necesito decirte nada.,I don't need to tell you anything.,no / necesito / decirte / nada,"No goes before necesito, and nada comes after decirte, closing the double negative.",ok,
+sentence-builder,negatives (intermediate),No hay nada en mi taza.,There's nothing in my cup.,"no / hay / nada / en mi taza
+en mi taza / no / hay / nada",No goes straight before hay and nada follows it; the place en mi taza can open or close the sentence.,ok,
+sentence-builder,negatives (intermediate),No sé nada de música.,I know nothing about music.,"no / sé / nada / de música
+de música / no / sé / nada",No comes before sé and nada after it; de música can go last or open the sentence.,ok,
+sentence-builder,negatives (intermediate),No sabe nada del plan.,He knows nothing about the plan.,"no / sabe / nada / del plan
+del plan / no / sabe / nada",No goes before sabe and nada after it; del plan can close or open the sentence.,ok,
+sentence-builder,negatives (advanced),Nunca he sido un buen nadador.,I've never been a good swimmer.,nunca / he / sido / un buen nadador,"Nunca goes before he, and he sido never splits; buen comes before nadador.",ok,
+sentence-builder,negatives (advanced),Yo no saqué ningún libro de la biblioteca.,I didn't take any books from the library.,yo / no / saqué / ningún libro / de la biblioteca,No sits before saqué and ningún libro follows the verb; de la biblioteca says where from.,ok,
+sentence-builder,prepositions (basic),Estoy muy cerca de Tom.,I'm very close to Tom.,estoy / muy / cerca de / Tom,"Cerca de works as one unit before the person, and muy goes right before cerca.",ok,
+sentence-builder,prepositions (basic),Tengo problemas con Tom.,I'm having problems with Tom.,"tengo / problemas / con Tom
+con Tom / tengo / problemas","Con always comes before the person it joins, con Tom, and that phrase can close or open the sentence.",ok,
+sentence-builder,prepositions (basic),Charla con tus amigos.,Chat with your friends.,charla / con / tus amigos,"The command charla comes first, and con goes right before tus amigos.",ok,
+sentence-builder,prepositions (basic),Él se casó con mi primo.,He married my cousin.,él / se casó / con / mi primo,"Spanish marries con someone: con goes right before mi primo, after se casó.",ok,
+sentence-builder,prepositions (basic),Cuelga tu toalla al lado de la mía.,Hang your towel next to mine.,cuelga / tu toalla / al lado de / la mía,"Al lado de stays together and comes right before la mía, after the object tu toalla.",ok,
+sentence-builder,prepositions (intermediate),Mantente lejos de ese lugar.,Stay away from that place.,mantente / lejos de / ese lugar,"Lejos de works as one unit before the place, ese lugar, after the command mantente.",ok,
+sentence-builder,prepositions (intermediate),No puedo esperar hasta el lunes.,I can't wait until Monday.,"no / puedo / esperar / hasta el lunes
+hasta el lunes / no / puedo / esperar","Hasta goes right before el lunes; that phrase can close or open the sentence, and no stays before puedo.",ok,
+sentence-builder,prepositions (intermediate),Tom está en su oficina con Mary.,Tom is in his office with Mary.,"Tom / está / en su oficina / con Mary
+Tom / está / con Mary / en su oficina",En su oficina and con Mary each keep the preposition first; the two phrases can swap places after está.,ok,
+sentence-builder,prepositions (intermediate),Mis amigos se fueron al cine sin mí.,My friends went to the movies without me.,"mis amigos / se fueron / al cine / sin mí
+mis amigos / se fueron / sin mí / al cine","Sin takes mí, not yo, and goes right before it; al cine and sin mí can swap after se fueron.",ok,
+sentence-builder,prepositions (intermediate),Ella quiere jugar al golf con él.,She wants to play golf with him.,"ella / quiere / jugar / al golf / con él
+ella / quiere / jugar / con él / al golf","Jugar takes a before the game, al golf; con él can come before or after it.",ok,
+sentence-builder,prepositions (intermediate),Estoy almorzando con mi hermana ahora.,I'm having lunch with my sister right now.,"estoy / almorzando / con mi hermana / ahora
+ahora / estoy / almorzando / con mi hermana
+estoy / almorzando / ahora / con mi hermana","Estoy almorzando stays together, con goes before mi hermana, and ahora can open, close or follow the verb.",ok,
+sentence-builder,prepositions (advanced),Sin agua no podemos existir.,"Without water, we cannot exist.","sin agua / no / podemos / existir
+no / podemos / existir / sin agua","Sin goes right before agua; sin agua can open or close the sentence, and no stays before podemos.",ok,
+sentence-builder,prepositions (advanced),Él no podía llevarse bien con sus vecinos.,He could not get along with his neighbors.,él / no / podía / llevarse bien / con sus vecinos,"Llevarse bien takes con before the people, con sus vecinos, and no stays before podía.",ok,
+sentence-builder,prepositions (intermediate),La decisión depende de ti.,It's up to you to decide.,la decisión / depende / de / ti,"Depender always takes de, right before the person: depende de ti, with ti, not tú.",ok,
+sentence-builder,object pronouns (basic),Me comí la carne.,I ate the meat.,me / comí / la carne,"Me goes right before the conjugated verb comí, and the object la carne follows it.",ok,
+sentence-builder,object pronouns (basic),Te eché de menos.,I missed you.,te / eché / de menos,"Te goes before eché, and de menos closes the expression echar de menos.",ok,
+sentence-builder,object pronouns (basic),Me invitaron a la fiesta.,I was invited to the party.,"me / invitaron / a la fiesta
+a la fiesta / me / invitaron","Me sits right before invitaron, and a la fiesta can close or open the sentence.",ok,
+sentence-builder,object pronouns (basic),No se lo digas.,Don't tell him.,no / se lo / digas,"In a negative command the pronouns go before the verb: no, then se lo, then digas.",ok,
+sentence-builder,object pronouns (basic),Lo guardo en el ático.,I keep it in the attic.,"lo / guardo / en el ático
+en el ático / lo / guardo","Lo goes right before guardo, and en el ático can close or open the sentence.",ok,
+sentence-builder,object pronouns (intermediate),Te deseo éxito en tu trabajo.,I wish you success in your work.,te / deseo / éxito / en tu trabajo,"Te goes before deseo, then the thing wished, éxito, then en tu trabajo.",ok,
+sentence-builder,object pronouns (intermediate),Te mostraré cómo se hace.,I'll show you how it's done.,te / mostraré / cómo / se hace,"Te goes before mostraré, and inside cómo se hace, se sits right before hace.",ok,
+sentence-builder,object pronouns (intermediate),Te diré el resto mañana.,I will tell you the rest tomorrow.,"te / diré / el resto / mañana
+mañana / te / diré / el resto
+te / diré / mañana / el resto",Te stays right before diré; mañana can close or open the sentence.,ok,
+sentence-builder,object pronouns (intermediate),Su profesor los elogió.,Their teacher praised them.,"su profesor / los / elogió
+los / elogió / su profesor",Los always sits right before elogió; the subject su profesor can come first or after the verb.,ok,
+sentence-builder,object pronouns (intermediate),Te voy a contar una historia interesante.,I'll tell you an interesting story.,te / voy a / contar / una historia interesante,"Te can go before voy a when it is a separate word, and contar keeps its object after it.",ok,
+sentence-builder,object pronouns (intermediate),Se lo explicaré a ella.,I will explain it to her.,"se lo / explicaré / a ella
+a ella / se lo / explicaré","Le turns into se before lo, and se lo sits before explicaré; a ella can close or open the sentence.",ok,
+sentence-builder,object pronouns (advanced),Él lo hizo todo por ella.,He did everything for her.,él / lo / hizo / todo / por ella,"Lo goes before hizo and todo follows the verb, repeating it; por ella comes last.",ok,
+sentence-builder,object pronouns (advanced),Tom le pasó a María una cerveza.,Tom handed Mary a beer.,"Tom / le / pasó / a María / una cerveza
+Tom / le / pasó / una cerveza / a María",Le goes before pasó and points to a María; the two objects can come in either order after the verb.,ok,
+sentence-builder,object pronouns (advanced),Tom le oculta sus preocupaciones a su esposa.,Tom hid his worries from his wife.,"Tom / le / oculta / sus preocupaciones / a su esposa
+Tom / le / oculta / a su esposa / sus preocupaciones",Le sits before oculta and points to a su esposa; the two objects can follow the verb in either order.,ok,
+sentence-builder,ser and estar (basic),Tom es mi dentista.,Tom is my dentist.,Tom / es / mi dentista,"Es links Tom to what he is, mi dentista: ser for identity and profession.",ok,
+sentence-builder,ser and estar (basic),Esta casa es famosa.,This house is famous.,esta casa / es / famosa,"The subject esta casa comes first, then es, then famosa: ser for a lasting quality.",ok,
+sentence-builder,ser and estar (basic),Eso no es cierto.,That isn't true.,eso / no / es / cierto,No goes right before es; Spanish never puts it after the verb as English does with isn't.,ok,
+sentence-builder,ser and estar (basic),Hoy es el gran día.,Today's the big day.,"hoy / es / el gran día
+el gran día / es / hoy","Es links hoy and el gran día, so either one can open the sentence; gran goes before día.",ok,
+sentence-builder,ser and estar (basic),La toalla es roja y blanca.,The towel is red and white.,la toalla / es / roja y blanca,"The subject la toalla comes first, then es, then the colours: ser for how something looks.",ok,
+sentence-builder,ser and estar (basic),Nuestro tiempo es limitado.,Our time is limited.,nuestro tiempo / es / limitado,"Nuestro tiempo is the subject, es follows it, and limitado describes it: ser for a defining trait.",ok,
+sentence-builder,ser and estar (intermediate),Este es un libro muy viejo.,This is a very old book.,este / es / un libro / muy viejo,"Este es opens the sentence, and muy viejo follows libro, since adjectives usually go after the noun.",ok,
+sentence-builder,ser and estar (intermediate),Los viajes espaciales son peligrosos.,Space travel is dangerous.,los viajes / espaciales / son / peligrosos,"Espaciales follows viajes, as adjectives usually do in Spanish, and son links the subject to peligrosos.",ok,
+sentence-builder,ser and estar (intermediate),No soy bueno en matemáticas.,I am not good at mathematics.,no / soy / bueno / en matemáticas,"No goes before soy, and Spanish says good en a subject: bueno en matemáticas.",ok,
+sentence-builder,ser and estar (intermediate),El cuarto de baño está a la derecha.,The bathroom is on the right.,el cuarto de baño / está / a la derecha,"Está gives the location of el cuarto de baño: estar for where things are, and a la derecha says where.",ok,
+sentence-builder,ser and estar (intermediate),Está embarazada de gemelos.,She's pregnant with twins.,está / embarazada / de gemelos,"Está opens the sentence because the subject is dropped, and embarazada takes de before gemelos.",ok,
+sentence-builder,ser and estar (intermediate),Mary está arriba con la bebé.,Mary is upstairs with the baby.,"Mary / está / arriba / con la bebé
+Mary / está / con la bebé / arriba",Está gives Mary's location; arriba and con la bebé can follow the verb in either order.,ok,
+sentence-builder,ser and estar (advanced),La comida no era tan buena.,The food wasn't that great.,la comida / no / era / tan buena,"No goes before era, and tan sits right before buena; ser describes what the food was like.",ok,
+sentence-builder,ser and estar (advanced),Las carreteras ya están cubiertas de nieve.,The roads are already covered with snow.,"las carreteras / ya / están / cubiertas / de nieve
+las carreteras / están / ya / cubiertas / de nieve",Están describes the state the roads are in; ya can come before or after están.,ok,
+sentence-builder,present and past (basic),Ayer estuve en Boston.,I was in Boston yesterday.,"ayer / estuve / en Boston
+estuve / en Boston / ayer
+estuve / ayer / en Boston","A time word like ayer can open the sentence, close it, or sit right after estuve.",ok,
+sentence-builder,present and past (basic),Ayer recibí mi sueldo.,I got my pay yesterday.,"ayer / recibí / mi sueldo
+recibí / mi sueldo / ayer
+recibí / ayer / mi sueldo","Ayer can open or close the sentence, or follow recibí; recibí always comes before mi sueldo.",ok,
+sentence-builder,present and past (basic),Todavía tengo muchas preguntas.,I still have a lot of questions.,"todavía / tengo / muchas preguntas
+tengo / todavía / muchas preguntas
+tengo / muchas preguntas / todavía","Todavía can go before tengo, right after it, or at the very end.",ok,
+sentence-builder,present and past (basic),Ella ya está casada.,She is already married.,"ella / ya / está / casada
+ella / está / ya / casada
+ella / está / casada / ya",Ya usually sits right before está; it can also follow the verb or close the sentence.,ok,
+sentence-builder,present and past (intermediate),Ella siempre viste de negro.,She is always dressed in black.,"ella / siempre / viste / de negro
+ella / viste / siempre / de negro
+ella / viste / de negro / siempre","Siempre goes right before viste, right after it, or at the end; ella stays first.",ok,
+sentence-builder,present and past (intermediate),Nosotros nos besamos anoche.,We kissed last night.,"nosotros / nos / besamos / anoche
+anoche / nosotros / nos / besamos
+nosotros / anoche / nos / besamos","Nos stays glued before besamos; the time anoche can close the sentence, open it or follow nosotros.",ok,
+sentence-builder,present and past (intermediate),Tom siempre habla sobre el trabajo.,Tom always talks about work.,"Tom / siempre / habla / sobre el trabajo
+Tom / habla / siempre / sobre el trabajo
+Tom / habla / sobre el trabajo / siempre","Siempre goes right before habla, right after it, or at the end; Tom stays first.",ok,
+sentence-builder,present and past (intermediate),Tom ya no necesitará eso.,Tom won't need that anymore.,Tom / ya no / necesitará / eso,"Ya no, meaning not anymore, goes right before the verb necesitará.",ok,
+sentence-builder,present and past (intermediate),Él ya no es miembro de nuestro club.,He is no longer a member of our club.,él / ya no / es / miembro / de nuestro club,Ya no goes right before es; de nuestro club follows miembro to say which group.,ok,
+sentence-builder,present and past (intermediate),Te he visto haciéndolo.,I've seen you doing that.,te / he / visto / haciéndolo,"Te goes before he, never between he and visto, which always stay together.",ok,
+sentence-builder,present and past (advanced),Mi hijo siempre ha sido muy independiente.,My son has always been very independent.,"mi hijo / siempre / ha / sido / muy independiente
+mi hijo / ha / sido / siempre / muy independiente
+mi hijo / ha / sido / muy independiente / siempre","Ha and sido never split, so siempre goes before ha or after sido, never between them.",ok,
+sentence-builder,present and past (advanced),Ella siempre estaba practicando el piano.,She was always practicing the piano.,"ella / siempre / estaba / practicando / el piano
+ella / estaba / siempre / practicando / el piano
+ella / estaba / practicando / el piano / siempre",Siempre goes before estaba or between estaba and practicando; el piano closes the sentence.,ok,
+sentence-builder,present and past (advanced),Siempre uso botas cuando llueve o nieva.,I always wear boots when it rains or snows.,"siempre / uso / botas / cuando / llueve o nieva
+uso / siempre / botas / cuando / llueve o nieva","The present uso describes a habit; siempre goes before uso or right after it, and cuando opens the second part.",ok,
+sentence-builder,present and past (advanced),Mis padres murieron cuando tenía cinco años.,Both of my parents died when I was five.,mis padres / murieron / cuando / tenía / cinco años,Murieron tells the finished event and tenía the background; Spanish has ages: tenía cinco años.,ok,
+sentence-builder,connectors (basic),Puedo ayudarte si quieres.,I can help you if you want me to.,puedo / ayudarte / si / quieres,Si opens the condition and goes right before quieres; the main part puedo ayudarte comes first.,ok,
+sentence-builder,connectors (basic),Preguntemos si es verdad.,Let's ask if it's true.,preguntemos / si / es / verdad,"Si introduces what we ask, so it comes right after preguntemos and before es verdad.",ok,
+sentence-builder,connectors (basic),Se casaron cuando eran jóvenes.,They married when they were young.,se casaron / cuando / eran / jóvenes,Cuando opens the second part and is followed by its verb eran.,ok,
+sentence-builder,connectors (basic),Necesito saber si estarán ahí.,I need to know if you'll be there.,necesito / saber / si / estarán / ahí,"Si introduces what you need to know, right after saber and before estarán.",ok,
+sentence-builder,connectors (intermediate),No puedo correr porque estoy muy cansado.,I can't run because I'm very tired.,no / puedo / correr / porque / estoy / muy cansado,"Porque introduces the reason after the main part, and its own verb estoy follows it.",ok,
+sentence-builder,connectors (intermediate),Ella es atractiva cuando se viste de blanco.,She is attractive when she is dressed in white.,ella / es / atractiva / cuando / se viste / de blanco,"Cuando starts the second part, and se viste comes right after it.",ok,
+sentence-builder,connectors (intermediate),El francés no es fácil pero es interesante.,"French isn't easy, but it's interesting.",el francés / no / es / fácil / pero / es / interesante,Pero joins the two parts and comes before the second es; no stays before the first es.,ok,
+sentence-builder,connectors (intermediate),No fui porque estaba enferma.,I didn't go because I was sick.,no / fui / porque / estaba / enferma,"No goes before fui, and porque introduces the reason, followed by its own verb estaba.",ok,
+sentence-builder,connectors (intermediate),Vine aquí cuando era un niño.,I came here when I was a kid.,vine / aquí / cuando / era / un niño,"Cuando opens the background part, and era comes right after it.",ok,
+sentence-builder,connectors (intermediate),Habla siempre como si supiera todo.,He always talks as if he knows everything.,"habla / siempre / como si / supiera / todo
+siempre / habla / como si / supiera / todo",Como si is followed by supiera; siempre can go before or after habla.,ok,
+sentence-builder,connectors (advanced),Eso es porque a ellos no les importa.,That's because they don't care.,"eso / es / porque / a ellos / no / les / importa
+eso / es / porque / no / les / importa / a ellos",No and les go right before importa; a ellos can come before them or at the end.,ok,
+sentence-builder,connectors (advanced),Tom apenas seguía vivo cuando lo encontramos.,Tom was barely alive when we found him.,Tom / apenas / seguía / vivo / cuando / lo / encontramos,"Cuando opens the second part, and lo sits right before encontramos.",ok,
+sentence-builder,connectors (advanced),Por eso debemos luchar.,That's why we must fight.,por eso / debemos / luchar,"Por eso, meaning that's why, opens the sentence; at the end it would mean for that instead.",ok,
+sentence-builder,connectors (advanced),Ese niño habla como si fuera un adulto.,That boy speaks as if he were an adult.,ese niño / habla / como si / fuera / un adulto,"Como si is always followed by a past subjunctive like fuera, right after habla.",ok,
 flashcard,rank 1,ser,to be (essential),,Quiero ser más paciente.,ok,I want to be more patient.
 flashcard,rank 2,estar,to be (state/location),,Voy a estar en casa esta tarde.,ok,I'm going to be home this afternoon.
 flashcard,rank 3,haber,to have; there to be,,Tiene que haber otra solución.,ok,There has to be another solution.

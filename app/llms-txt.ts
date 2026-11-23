@@ -1,4 +1,5 @@
 import { SITE_CONFIG } from "./site-config.ts";
+import { SENTENCE_BUILDER_DESCRIPTION, SENTENCE_BUILDER_PATH, SENTENCE_BUILDER_TITLE } from "./sentence-builder-config.ts";
 import { QUIZ_CONFIG, QUIZ_IDS, quizPath } from "./quiz-config.ts";
 import { ACTIVITY_REGISTRY } from "./activity-registry.ts";
 import { FLASHCARD_VERBS } from "./flashcards-data.ts";
@@ -43,6 +44,10 @@ export function buildLlmsTxt(): string {
     "## Quizzes",
     "",
     ...QUIZ_IDS.map(quizLine),
+    "",
+    "## Sentence Builder",
+    "",
+    `- [${SENTENCE_BUILDER_TITLE}](${absolute(SENTENCE_BUILDER_PATH)}): ${SENTENCE_BUILDER_DESCRIPTION} About 100 sentences on questions, negatives, prepositions, object pronouns, ser and estar, tenses and connectors.`,
     "",
     "## Flashcards",
     "",

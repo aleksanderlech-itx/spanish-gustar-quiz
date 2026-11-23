@@ -4,6 +4,7 @@ import test from "node:test";
 
 import { FLASHCARD_VERBS } from "../app/flashcards-data.ts";
 import { QUIZ_CONFIG, QUIZ_IDS } from "../app/quiz-config.ts";
+import { SENTENCE_BUILDER_ITEMS } from "../app/sentence-builder-data.ts";
 import { SOURCED_FLASHCARD_PAIRS } from "../app/sourced-flashcard-content.ts";
 import { SOURCED_QUIZ_PAIRS } from "../app/sourced-quiz-content.ts";
 
@@ -48,11 +49,20 @@ test("every runtime flashcard example comes from the sourced pair set without fa
 test("attribution manifest covers every sourced quiz and flashcard pair", async () => {
   const manifest = await readFile(new URL("../docs/content-attribution.csv", import.meta.url), "utf8");
   const lines = manifest.trimEnd().split("\n");
-  assert.equal(lines.length, 1 + QUIZ_TOTAL + FLASHCARD_VERBS.length);
+  assert.equal(lines.length, 1 + QUIZ_TOTAL + SENTENCE_BUILDER_ITEMS.length + FLASHCARD_VERBS.length);
   assert.match(lines[0], /^type,key,spanish,english,license,attribution,modified$/);
   assert.equal(
     lines.slice(1).filter((line) => line.includes("CC BY 2.0 France") || line.includes("CC BY 4.0")).length,
-    QUIZ_TOTAL + FLASHCARD_VERBS.length,
+    QUIZ_TOTAL + SENTENCE_BUILDER_ITEMS.length + FLASHCARD_VERBS.length,
   );
   assert.equal(lines.some((line) => line.includes("Project content")), false);
+});
+
+test("every Sentence Builder Item is in the attribution manifest with its corpus attribution", async () => {
+  const manifest = await readFile(new URL("../docs/content-attribution.csv", import.meta.url), "utf8");
+  for (const item of SENTENCE_BUILDER_ITEMS) {
+    const line = manifest.split("\n").find((row) => row.startsWith(`sentence-builder,${item.id},`));
+    assert.ok(line, `#${item.id} missing from the manifest`);
+    assert.ok(line.includes(item.attribution), `#${item.id} attribution`);
+  }
 });

@@ -5,6 +5,7 @@ import { createHash } from "node:crypto";
 import { resolve } from "node:path";
 
 import { QUIZ_CONFIG, QUIZ_IDS } from "../app/quiz-config.ts";
+import { SENTENCE_BUILDER_ITEMS } from "../app/sentence-builder-data.ts";
 import { FLASHCARD_VERBS } from "../app/flashcards-data.ts";
 import { CURATED_FLASHCARD_OVERRIDES } from "./curated-flashcard-overrides.mjs";
 import { CURATED_FLAGGED_QUIZ_OVERRIDES } from "./curated-flagged-quiz-overrides.mjs";
@@ -208,6 +209,15 @@ for (const [group, questions] of groups) {
   }
 }
 
+// Sentence Builder Items keep their pair in app/sentence-builder-data.ts (decision 0013). Each must be an
+// unchanged, allowed corpus row with the same attribution; it is then listed in the manifest.
+for (const item of SENTENCE_BUILDER_ITEMS) {
+  const row = corpusRows.find((candidate) => candidate.spanish === item.spanish && candidate.english === item.english);
+  if (!row) throw new Error(`sentence-builder #${item.id} is not an allowed corpus row: ${item.spanish}`);
+  if (row.attribution !== item.attribution) throw new Error(`sentence-builder #${item.id} attribution differs from the corpus`);
+  provenance.push({ type: "sentence-builder", key: item.id, spanish: row.spanish, english: row.english, attribution: row.attribution, license: "CC BY 2.0 France", modified: false });
+}
+
 const flashcardPairs = {};
 for (const card of FLASHCARD_VERBS) {
   const restored = RESTORED_FLASHCARD_PAIRS[card.spanish];
@@ -270,4 +280,4 @@ await writeFile(resolve("app/sourced-quiz-content.ts"), quizTs);
 await writeFile(resolve("app/sourced-flashcard-content.ts"), flashcardTs);
 await writeFile(resolve("docs/content-attribution.csv"), csv);
 await writeFile(resolve("public/content-attribution.csv"), csv);
-console.log(`Wrote ${Object.keys(quizPairs).length} quiz pairs and ${Object.keys(flashcardPairs).length} flashcard pairs.`);
+console.log(`Wrote ${Object.keys(quizPairs).length} quiz pairs, ${SENTENCE_BUILDER_ITEMS.length} Sentence Builder pairs and ${Object.keys(flashcardPairs).length} flashcard pairs.`);
