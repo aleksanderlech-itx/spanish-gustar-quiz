@@ -46,9 +46,6 @@ export const metadata: Metadata = {
     description: SITE_CONFIG.description,
     images: ["/og-image.png"],
   },
-  other: {
-    "codex-preview": "development",
-  },
   manifest: "/site.webmanifest",
   icons: {
     icon: [
