@@ -273,7 +273,7 @@ const Outro = ({ lesson, s }: { lesson: Lesson; s: number }) => (
   <AbsoluteFill style={{ justifyContent: "center", alignItems: "center", textAlign: "center", padding: `0 ${80 * s}px` }}>
     <Enter delay={0}><Mark size={150 * s} /></Enter>
     <Enter delay={6} style={{ marginTop: 40 * s }}><div style={{ fontFamily: T.display, fontSize: 92 * s, fontWeight: 600, lineHeight: 1.05, color: T.ink }}>{lesson.title}</div></Enter>
-    <Enter delay={12} style={{ marginTop: 22 * s }}><div style={{ fontFamily: T.body, fontSize: 44 * s, lineHeight: 1.35, color: T.muted }}>150 practice sentences<br />Choose or Type · Free, no sign-up</div></Enter>
+    <Enter delay={12} style={{ marginTop: 22 * s }}><div style={{ fontFamily: T.body, fontSize: 44 * s, lineHeight: 1.35, color: T.muted }}>About 150 practice sentences<br />Choose or Type · Free, no sign-up</div></Enter>
     <Enter delay={18} style={{ marginTop: 48 * s }}>
       <div style={{ padding: `${22 * s}px ${48 * s}px`, borderRadius: 20, background: T.primary, color: "#FFFFFF", fontFamily: T.body, fontSize: 52 * s, fontWeight: 800 }}>spanish-quizz.es</div>
     </Enter>
