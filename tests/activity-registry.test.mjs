@@ -44,3 +44,43 @@ test("resolveQuizId drives the ?quiz= route param, falling back to gustar", () =
   assert.equal(resolveQuizId("bogus"), "gustar");
   assert.equal(resolveQuizId("flashcards"), "gustar");
 });
+
+// --- Issue #151: each quiz declares its own behaviour in its config entry ---
+
+const registry = await import("../app/quiz-config.ts");
+const notebook = await import("../app/notebook.ts");
+
+test("every quiz declares choices, a rule label it owns, a chart and an icon", () => {
+  for (const id of registry.QUIZ_IDS) {
+    const quiz = registry.QUIZ_CONFIG[id];
+    assert.ok(quiz.choices === "pair" || quiz.choices === "pronoun-verb", `${id}: choices`);
+    assert.equal(typeof quiz.ruleLabel, "function", `${id}: ruleLabel`);
+    assert.equal(typeof quiz.ownsRule, "function", `${id}: ownsRule`);
+    assert.equal(typeof quiz.chart?.blocks, "function", `${id}: chart.blocks`);
+    assert.ok(["shared", "group", "group-or-shared"].includes(quiz.chart.sections), `${id}: chart.sections`);
+    assert.ok(["chart", "explainer"].includes(quiz.chart.link), `${id}: chart.link`);
+    assert.match(quiz.iconPath, /^[Mm]/, `${id}: iconPath`);
+  }
+});
+
+test("every question's rule label maps back to its own quiz, and no other quiz claims it", () => {
+  for (const id of registry.QUIZ_IDS) {
+    for (const question of registry.QUIZ_CONFIG[id].questions) {
+      const label = notebook.ruleLabelFor(question, id);
+      assert.equal(notebook.quizIdForRule(label), id, `${id} #${question.id}: ${label}`);
+      const claimants = registry.QUIZ_IDS.filter((other) => registry.QUIZ_CONFIG[other].ownsRule(label));
+      assert.deepEqual(claimants, [id], `${label} claimed by ${claimants.join(", ")}`);
+    }
+  }
+});
+
+test("every quiz's chart renders at least one row for the topic and for each group", () => {
+  for (const id of registry.QUIZ_IDS) {
+    const { chart, forms } = registry.QUIZ_CONFIG[id];
+    const groups = chart.sections === "shared" ? [""] : chart.sections === "group-or-shared" ? ["", ...Object.keys(forms)] : Object.keys(forms);
+    for (const group of groups) {
+      const blocks = chart.blocks(group, forms);
+      assert.ok(blocks.length > 0 && blocks.some((block) => block.rows.length > 0), `${id} chart for "${group}"`);
+    }
+  }
+});

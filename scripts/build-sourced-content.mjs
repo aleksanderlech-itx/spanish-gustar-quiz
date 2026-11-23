@@ -4,15 +4,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { resolve } from "node:path";
 
-import { ALL_QUESTIONS } from "../app/quiz-data.ts";
-import { SER_ESTAR_QUESTIONS } from "../app/ser-estar-data.ts";
-import { PRETERITE_IMPERFECT_QUESTIONS } from "../app/preterite-imperfect-data.ts";
-import { POR_PARA_QUESTIONS } from "../app/por-para-data.ts";
-import { OBJECT_PRONOUN_QUESTIONS } from "../app/object-pronouns-data.ts";
-import { SABER_CONOCER_QUESTIONS } from "../app/saber-conocer-data.ts";
-import { REFLEXIVE_VERB_QUESTIONS } from "../app/reflexive-verbs-data.ts";
-import { PRESENT_PERFECT_QUESTIONS } from "../app/present-perfect-data.ts";
-import { PRESENT_CONTINUOUS_QUESTIONS } from "../app/present-continuous-data.ts";
+import { QUIZ_CONFIG, QUIZ_IDS } from "../app/quiz-config.ts";
 import { FLASHCARD_VERBS } from "../app/flashcards-data.ts";
 import { CURATED_FLASHCARD_OVERRIDES } from "./curated-flashcard-overrides.mjs";
 import { CURATED_FLAGGED_QUIZ_OVERRIDES } from "./curated-flagged-quiz-overrides.mjs";
@@ -67,17 +59,8 @@ const corpusRows = corpusText
     "#12291569",
   ].some((id) => row.attribution.includes(id)));
 
-const groups = [
-  ["gustar", ALL_QUESTIONS],
-  ["ser-estar", SER_ESTAR_QUESTIONS],
-  ["preterite-imperfect", PRETERITE_IMPERFECT_QUESTIONS],
-  ["por-para", POR_PARA_QUESTIONS],
-  ["object-pronouns", OBJECT_PRONOUN_QUESTIONS],
-  ["saber-conocer", SABER_CONOCER_QUESTIONS],
-  ["reflexive-verbs", REFLEXIVE_VERB_QUESTIONS],
-  ["present-perfect", PRESENT_PERFECT_QUESTIONS],
-  ["present-continuous", PRESENT_CONTINUOUS_QUESTIONS],
-];
+// Every registered quiz, in registry order (issue #162): a new quiz is covered with no edit here.
+const groups = QUIZ_IDS.map((id) => [id, QUIZ_CONFIG[id].questions]);
 
 const fold = (value) => value.normalize("NFC").toLocaleLowerCase("es");
 const tokens = (value) => fold(value).match(/\p{L}+/gu) ?? [];
@@ -187,27 +170,24 @@ const RESTORED_PAIRS = {
   "present-continuous": ORIGINAL_PRESENT_CONTINUOUS_PAIRS,
 };
 
+// Hand-curated pairs per bank. A bank without curated pairs is simply absent.
+const CURATED_PAIRS = {
+  gustar: CURATED_QUIZ_OVERRIDES.gustar,
+  "preterite-imperfect": CURATED_QUIZ_OVERRIDES.preteriteImperfect,
+  "por-para": CURATED_POR_PARA_PAIRS,
+  "object-pronouns": CURATED_OBJECT_PRONOUN_PAIRS,
+  "saber-conocer": CURATED_SABER_CONOCER_PAIRS,
+};
+
 const quizPairs = {};
 const provenance = [];
 for (const [group, questions] of groups) {
   for (const question of questions) {
     const override = RESTORED_PAIRS[group]?.[question.id]
       ?? CURATED_FLAGGED_QUIZ_OVERRIDES[question.id]
-      ?? (group === "gustar"
-        ? CURATED_QUIZ_OVERRIDES.gustar[question.id]
-        : group === "preterite-imperfect"
-          ? CURATED_QUIZ_OVERRIDES.preteriteImperfect[question.id]
-          : group === "por-para"
-            ? CURATED_POR_PARA_PAIRS[question.id]
-            : group === "object-pronouns"
-              ? CURATED_OBJECT_PRONOUN_PAIRS[question.id]
-              : group === "saber-conocer"
-                ? CURATED_SABER_CONOCER_PAIRS[question.id]
-                : undefined);
+      ?? CURATED_PAIRS[group]?.[question.id];
     if (RESTORED_PAIRS[group]?.[question.id] && (
-      CURATED_FLAGGED_QUIZ_OVERRIDES[question.id]
-      ?? CURATED_QUIZ_OVERRIDES[group === "gustar" ? "gustar" : group === "preterite-imperfect" ? "preteriteImperfect" : ""]?.[question.id]
-      ?? (group === "object-pronouns" ? CURATED_OBJECT_PRONOUN_PAIRS : group === "saber-conocer" ? CURATED_SABER_CONOCER_PAIRS : {})[question.id]
+      CURATED_FLAGGED_QUIZ_OVERRIDES[question.id] ?? CURATED_PAIRS[group]?.[question.id]
     )) {
       throw new Error(`${group} #${question.id} is restored but still has a superseded override; remove it`);
     }

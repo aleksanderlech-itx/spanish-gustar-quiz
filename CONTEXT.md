@@ -5,8 +5,26 @@ A site for practising Spanish grammar through short daily rounds across several 
 ## Language
 
 **Activity**:
-One practice unit the user can put on their Board: a topic quiz or the verb flashcard deck.
+One practice unit the user can put on their Board: a topic quiz, the verb flashcard deck, or Sentence Builder.
 _Avoid_: topic (when meaning flashcards too), module
+
+**Activity type**:
+The format an Activity uses: fill-in-the-blank quiz, flashcards, or sentence building. Several Activities can share one type.
+_Avoid_: mode (that is the choose or type answer setting)
+
+**Sentence Builder**:
+The Activity where the learner sees an English prompt and puts shuffled Spanish Tokens in order. One Activity, its Items grouped by pattern (questions, negatives, pronouns and so on).
+
+**Token**:
+One piece a learner places in Sentence Builder: a word, or a fixed chunk such as "se lo" or "por favor". Punctuation and capital letters are never Tokens.
+_Avoid_: tile, chip, word (when it may be a chunk)
+
+**Accepted order**:
+A sequence of an Item's Tokens that counts as right. Each Item has one or more; any other order is wrong, and an order that is also correct Spanish must be listed.
+
+**Item**:
+One exercise in an Activity: a sentence in a quiz, a card in flashcards, a sentence to build in Sentence Builder. Its id never changes.
+_Avoid_: question (when meaning flashcards or Sentence Builder too)
 
 **Board**:
 The user's chosen set of Activities, shown on the home page. It always holds at least one Activity. Before the Starter Board exists, the Board is the set of Activities the user has played.
@@ -41,6 +59,8 @@ A round in every Activity on the Board today. Meeting it extends the streak.
 - Every **Activity** is on exactly one of the **Board** or the **Shelf**
 - A **Finished** **Activity** moves to the **Shelf** and triggers a **Suggestion**
 - The **Daily goal** is defined by what is on the **Board**
+- An **Activity** has one **Activity type**; **Sentence Builder** is the first **Activity** of its type
+- A **Sentence Builder** **Item** has an English prompt, its **Tokens** and one or more **Accepted orders**; an answer is right or wrong as a whole
 - Moving an **Activity** to the **Shelf** keeps its progress; adding a **Finished** **Activity** back to the **Board** starts its sentences over but keeps its past mistakes
 - Playing an **Activity** from the **Shelf** is practice only; it joins the **Board** only if the user adds it
 - A newly released **Activity** starts on the **Shelf** for users who already have a **Board** and is offered to them once as a New **Suggestion**

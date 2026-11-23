@@ -33,7 +33,7 @@ const presentOnlyHistory = (items: Result[], questions: Question[]) => items.fla
 
 export default function Round({ quizId, standalone = false }: { quizId: QuizId; standalone?: boolean }) {
   const quiz = QUIZ_CONFIG[quizId];
-  const { questions, forms, storageKey } = quiz;
+  const { questions, storageKey } = quiz;
 
   const [hydrated, setHydrated] = useState(false);
   const [history, setHistory] = useState<Result[]>([]);
@@ -71,7 +71,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
     setMode(topicSettings.mode);
     const selected = shuffle(pool).slice(0, topicSettings.roundLength);
     setRound(selected);
-    setChoiceSets(Object.fromEntries(selected.map((question) => [question.id, answerChoicesFor(question, forms)])));
+    setChoiceSets(Object.fromEntries(selected.map((question) => [question.id, answerChoicesFor(question, quizId)])));
     setAnswers(Array(selected.length).fill(null));
     setSubmitted(Array(selected.length).fill(false));
     setIndex(0);
@@ -164,7 +164,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
   const question = round[index];
   if (!question) return <main className="loading">Preparing your quiz…</main>;
 
-  const choices = choiceSets[question.id] ?? answerChoicesFor(question, forms);
+  const choices = choiceSets[question.id] ?? answerChoicesFor(question, quizId);
   const isSubmitted = submitted[index];
   const isLast = index === round.length - 1;
 

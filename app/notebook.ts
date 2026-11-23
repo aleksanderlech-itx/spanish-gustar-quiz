@@ -1,5 +1,5 @@
 import type { Question } from "./quiz-data";
-import type { QuizId } from "./quiz-config";
+import { QUIZ_CONFIG, QUIZ_IDS, type QuizId } from "./quiz-config.ts";
 import { appStorage } from "./storage.ts";
 
 /**
@@ -31,31 +31,12 @@ export const NOTEBOOK_VERSION = 2;
 /** Oldest misses are dropped beyond this, so storage stays bounded. */
 export const NOTEBOOK_CAP = 500;
 
-/** Short, stable label for the grammar point a missed question exercises. */
-export const ruleLabelFor = (question: Question, quizId: QuizId): string => {
-  if (quizId === "ser-estar") return "Ser vs estar";
-  if (quizId === "por-para") return "Por vs para";
-  if (quizId === "object-pronouns") return `Object pronouns: ${question.infinitive}`;
-  if (quizId === "saber-conocer") return `Saber vs conocer: ${question.infinitive}`;
-  if (quizId === "reflexive-verbs") return `Reflexive verbs: ${question.infinitive}`;
-  if (quizId === "present-perfect") return `Present perfect: ${question.infinitive}`;
-  if (quizId === "present-continuous") return `Present continuous: ${question.infinitive}`;
-  if (quizId === "preterite-imperfect") return question.tense === "preterite" ? "Preterite" : "Imperfect";
-  return `Gustar pattern: ${question.infinitive}`;
-};
+/** Short, stable label for the grammar point a missed question exercises: declared by each quiz (issue #151). */
+export const ruleLabelFor = (question: Question, quizId: QuizId): string => QUIZ_CONFIG[quizId].ruleLabel(question);
 
-/** The activity a rule label belongs to: the inverse of ruleLabelFor, used to migrate v1 entries. */
-export const quizIdForRule = (rule: string): QuizId => {
-  if (rule === "Ser vs estar") return "ser-estar";
-  if (rule === "Por vs para") return "por-para";
-  if (rule.startsWith("Object pronouns:")) return "object-pronouns";
-  if (rule.startsWith("Saber vs conocer:")) return "saber-conocer";
-  if (rule.startsWith("Reflexive verbs:")) return "reflexive-verbs";
-  if (rule.startsWith("Present perfect:")) return "present-perfect";
-  if (rule.startsWith("Present continuous:")) return "present-continuous";
-  if (rule === "Preterite" || rule === "Imperfect") return "preterite-imperfect";
-  return "gustar";
-};
+/** The activity a rule label belongs to: the inverse of ruleLabelFor, used to migrate v1 entries.
+ * A label no quiz claims falls back to gustar, as v1 did. */
+export const quizIdForRule = (rule: string): QuizId => QUIZ_IDS.find((id) => QUIZ_CONFIG[id].ownsRule(rule)) ?? "gustar";
 
 export const questionEntryId = (quizId: QuizId, questionId: number) => `q:${quizId}:${questionId}`;
 const ruleEntryId = (rule: string) => `rule:${rule}`;

@@ -2,11 +2,9 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { isProductionHost } from "./app/is-production-host";
 import { SITE_CONFIG } from "./app/site-config";
-import { QUIZ_SLUGS, type QuizId } from "./app/quiz-config";
+import { QUIZ_SLUGS, isQuizId } from "./app/quiz-config";
+import { NOTES_POSTS } from "./app/notes-posts";
 import { buildLlmsFullTxt, buildLlmsTxt } from "./app/llms-txt";
-
-const isQuizId = (value: string | null): value is QuizId =>
-  value === "gustar" || value === "ser-estar" || value === "preterite-imperfect" || value === "por-para" || value === "object-pronouns" || value === "saber-conocer" || value === "reflexive-verbs" || value === "present-perfect" || value === "present-continuous";
 
 const SITEMAP_PATHS = [
   "/",
@@ -16,16 +14,7 @@ const SITEMAP_PATHS = [
   "/flashcards",
   ...Object.values(QUIZ_SLUGS).map((slug) => `/${slug}`),
   "/notes",
-  "/notes/ser-vs-estar-mistakes",
-  "/notes/encantar-vs-gustar",
-  "/notes/gustar-mistakes",
-  "/notes/por-vs-para-mistakes",
-  "/notes/saber-vs-conocer-mistakes",
-  "/notes/preterite-vs-imperfect-signal-words",
-  "/notes/object-pronouns-mistakes",
-  "/notes/reflexive-verbs-mistakes",
-  "/notes/present-perfect-mistakes",
-  "/notes/present-continuous-mistakes",
+  ...NOTES_POSTS.map((post) => post.href),
 ];
 
 export function proxy(request: NextRequest) {

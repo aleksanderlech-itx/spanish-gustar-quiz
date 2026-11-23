@@ -4,17 +4,26 @@ import { readFile } from "node:fs/promises";
 import { PRETERITE_IMPERFECT_CONJUGATIONS, PRETERITE_IMPERFECT_REGULARITY } from "../app/preterite-imperfect-data.ts";
 import { SABER_CONOCER_CONJUGATIONS } from "../app/saber-conocer-data.ts";
 import { POR_PARA_CHART } from "../app/por-para-data.ts";
+import { REFLEXIVE_CHART } from "../app/reflexive-verbs-data.ts";
+import { PRESENT_PERFECT_CHART } from "../app/present-perfect-data.ts";
+import { PRESENT_CONTINUOUS_CHART } from "../app/present-continuous-data.ts";
 import { QUIZ_CONFIG } from "../app/quiz-config.ts";
 
-test("verb chart never fabricates a six-pronoun paradigm where the data doesn't have one", async () => {
-  const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
+test("verb chart never fabricates a six-pronoun paradigm where the data doesn't have one", () => {
   // Preterite/imperfect verbs get the real paradigm from PRETERITE_IMPERFECT_CONJUGATIONS.
-  assert.match(source, /const conjugations = PRETERITE_IMPERFECT_CONJUGATIONS\[infinitive\] \?\? \[\];/);
+  const verb = Object.keys(PRETERITE_IMPERFECT_CONJUGATIONS)[0];
+  const pi = QUIZ_CONFIG["preterite-imperfect"];
+  const [preterite, imperfect] = pi.chart.blocks(verb, pi.forms);
+  assert.deepEqual(preterite.rows.map((row) => row.form), PRETERITE_IMPERFECT_CONJUGATIONS[verb].map((c) => c.preterite));
+  assert.deepEqual(imperfect.rows.map((row) => row.form), PRETERITE_IMPERFECT_CONJUGATIONS[verb].map((c) => c.imperfect));
   // Gustar-pattern verbs are impersonal: a simple singular/plural block, not a fake "yo, tú..." table.
-  assert.match(source, /one thing \/ to do something/);
+  const gustar = QUIZ_CONFIG.gustar;
+  const [gustarBlock] = gustar.chart.blocks(Object.keys(gustar.forms)[0], gustar.forms);
+  assert.deepEqual(gustarBlock.rows.map((row) => row.pronoun), ["one thing / to do something", "several things"]);
   // Ser/estar compares two different verbs, not one conjugated across pronouns.
-  assert.match(source, /pronoun: "ser", form: ser/);
-  assert.match(source, /pronoun: "estar", form: estar/);
+  const serEstar = QUIZ_CONFIG["ser-estar"];
+  const [serEstarBlock] = serEstar.chart.blocks(Object.keys(serEstar.forms)[0], serEstar.forms);
+  assert.deepEqual(serEstarBlock.rows.map((row) => row.pronoun), ["ser", "estar"]);
 });
 
 test("verb chart highlights only the row currently speaking and clears it on end", async () => {
@@ -36,8 +45,12 @@ test("every preterite/imperfect verb has a regularity classification, and vice v
 });
 
 test("the regularity badge only renders for preterite/imperfect, never guessed for gustar or ser/estar", async () => {
+  for (const [id, quiz] of Object.entries(QUIZ_CONFIG)) {
+    if (id === "preterite-imperfect") assert.equal(quiz.chart.regularity, PRETERITE_IMPERFECT_REGULARITY);
+    else assert.equal(quiz.chart.regularity, undefined, id);
+  }
   const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
-  assert.match(source, /const regularityFor = \(quizId: QuizId, infinitive: string\) =>\s*quizId === "preterite-imperfect" \? PRETERITE_IMPERFECT_REGULARITY\[infinitive\] : undefined;/);
+  assert.match(source, /const regularityFor = \(group: string\) => quiz\.chart\.regularity\?\.\[group\];/);
 });
 
 test("saber/conocer chart has a full six-pronoun paradigm for both verbs in every tense it shows", () => {
@@ -49,29 +62,32 @@ test("saber/conocer chart has a full six-pronoun paradigm for both verbs in ever
   }
 });
 
-test("saber/conocer chart scopes to the question's tense: past-meaning gets preterite/imperfect, other usages present", async () => {
-  const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
-  assert.match(source, /infinitive === "past meaning" \? \(\["preterite", "imperfect"\] as const\)/);
-  assert.match(source, /: infinitive \? \(\["present"\] as const\)/);
+test("saber/conocer chart scopes to the question's tense: past-meaning gets preterite/imperfect, other usages present", () => {
+  const quiz = QUIZ_CONFIG["saber-conocer"];
+  const tenses = (group) => [...new Set(quiz.chart.blocks(group, quiz.forms).map((block) => block.tenseLabel.split(" · ")[1]))];
+  assert.deepEqual(tenses("past meaning"), ["preterite", "imperfect"]);
+  assert.deepEqual(tenses("facts"), ["present"]);
+  assert.deepEqual(tenses(""), ["present", "preterite", "imperfect"]);
+  assert.equal(quiz.chart.sections, "group-or-shared");
 });
 
-test("reflexive verbs chart is one shared section with the pronouns, a full paradigm and placement", async () => {
-  const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
-  assert.match(source, /quizId === "reflexive-verbs" \|\| quizId === "present-perfect" \|\| quizId === "present-continuous" \|\| quizId === "por-para" \? \[""\]/);
-  assert.match(source, /"reflexive-verbs": REFLEXIVE_CHART, "present-perfect": PRESENT_PERFECT_CHART/);
-  assert.match(source, /return charts\[quizId\]\.map\(/);
+test("reflexive verbs chart is one shared section with the pronouns, a full paradigm and placement", () => {
+  const quiz = QUIZ_CONFIG["reflexive-verbs"];
+  assert.equal(quiz.chart.sections, "shared");
+  assert.deepEqual(quiz.chart.blocks("", quiz.forms).map((block) => block.tenseLabel), REFLEXIVE_CHART.map((table) => table.title));
 });
 
-test("present perfect chart is one shared section with haber, regular and irregular participles and word order", async () => {
-  const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
-  assert.match(source, /if \(quizId === "reflexive-verbs" \|\| quizId === "present-perfect" \|\| quizId === "present-continuous"\) \{/);
-  assert.match(source, /import \{ PRESENT_PERFECT_CHART \} from "\.\/present-perfect-data"/);
+test("present perfect chart is one shared section with haber, regular and irregular participles and word order", () => {
+  const quiz = QUIZ_CONFIG["present-perfect"];
+  assert.equal(quiz.chart.sections, "shared");
+  assert.deepEqual(quiz.chart.blocks("", quiz.forms).map((block) => block.tenseLabel), PRESENT_PERFECT_CHART.map((table) => table.title));
 });
 
-test("por vs para shows usage examples, one sentence per usage, instead of a conjugation table", async () => {
-  const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
-  assert.match(source, /return POR_PARA_CHART\.map\(/);
-  assert.match(source, /quizId === "present-continuous" \|\| quizId === "por-para" \? \[""\]/);
+test("por vs para shows usage examples, one sentence per usage, instead of a conjugation table", () => {
+  const quiz = QUIZ_CONFIG["por-para"];
+  assert.equal(quiz.chart.sections, "shared");
+  assert.equal(quiz.chart.link, "explainer");
+  assert.deepEqual(quiz.chart.blocks("", quiz.forms).map((block) => block.tenseLabel), POR_PARA_CHART.map((table) => table.title));
   assert.equal(QUIZ_CONFIG["por-para"].chartLabel, "Usage examples");
   assert.deepEqual(POR_PARA_CHART.map((table) => table.title), ["Por looks back", "Para looks ahead"]);
   for (const [index, word] of [[0, "por"], [1, "para"]]) {
@@ -82,8 +98,8 @@ test("por vs para shows usage examples, one sentence per usage, instead of a con
   }
 });
 
-test("present continuous chart is one shared section with estar, regular and irregular gerunds and pronouns", async () => {
-  const source = await readFile(new URL("../app/verb-chart.tsx", import.meta.url), "utf8");
-  assert.match(source, /"present-continuous": PRESENT_CONTINUOUS_CHART/);
-  assert.match(source, /import \{ PRESENT_CONTINUOUS_CHART \} from "\.\/present-continuous-data"/);
+test("present continuous chart is one shared section with estar, regular and irregular gerunds and pronouns", () => {
+  const quiz = QUIZ_CONFIG["present-continuous"];
+  assert.equal(quiz.chart.sections, "shared");
+  assert.deepEqual(quiz.chart.blocks("", quiz.forms).map((block) => block.tenseLabel), PRESENT_CONTINUOUS_CHART.map((table) => table.title));
 });

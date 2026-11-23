@@ -61,7 +61,7 @@ export default function MistakesActivity({ quizId, initialRule = null }: { quizI
     if (!session.length) return;
     setMode(settings.mode);
     setItems(session);
-    setChoiceSets(Object.fromEntries(session.map((item) => [item.question.id, answerChoicesFor(item.question, quiz.forms)])));
+    setChoiceSets(Object.fromEntries(session.map((item) => [item.question.id, answerChoicesFor(item.question, quizId)])));
     setAnswers(Array(session.length).fill(null));
     setSubmitted(Array(session.length).fill(false));
     setIndex(0);
@@ -107,7 +107,7 @@ export default function MistakesActivity({ quizId, initialRule = null }: { quizI
         index={index}
         stepKeys={items.map((item) => item.question.id)}
         mode={mode}
-        choices={choiceSets[question.id] ?? answerChoicesFor(question, quiz.forms)}
+        choices={choiceSets[question.id] ?? answerChoicesFor(question, quizId)}
         picked={answers[index]}
         isSubmitted={isSubmitted}
         backHref={quizPath(quizId)}
