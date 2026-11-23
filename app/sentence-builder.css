@@ -1,0 +1,128 @@
+/* Sentence Builder (decision 0013): the answer line, the pool of Tokens and the feedback. */
+.sb-intro {
+  margin: 0 0 16px;
+  color: var(--muted);
+}
+
+.sb-prompt {
+  margin: 8px 0 14px;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(20px, 4.8vw, 26px);
+  line-height: 1.3;
+}
+
+.sb-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  min-height: 56px;
+  padding: 10px;
+  border: 2px dashed var(--line);
+  border-radius: 10px;
+  background: var(--paper);
+}
+
+.sb-line-correct {
+  border-style: solid;
+  border-color: var(--sage);
+}
+
+.sb-line-wrong {
+  border-style: solid;
+  border-color: var(--danger);
+}
+
+.sb-line-placeholder {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.sb-preview {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.sb-pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.sb-token {
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid var(--border-ink);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sb-token:hover:not(:disabled) {
+  background: var(--primary-soft);
+}
+
+.sb-token:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.sb-token-placed {
+  border-color: var(--primary);
+}
+
+.sb-token-placed:disabled {
+  cursor: default;
+  opacity: 1;
+}
+
+/* After a wrong answer: the learner's Tokens that are out of place. */
+.sb-token-misplaced {
+  border-color: var(--danger);
+  background: var(--danger-soft);
+}
+
+/* A placed Token keeps its slot in the pool, so the pool doesn't jump while building. */
+.sb-token-used {
+  visibility: hidden;
+}
+
+.sb-tools {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.sb-tools button {
+  min-height: 44px;
+}
+
+.sb-yours,
+.sb-correct {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 6px 0;
+  font-size: 17px;
+}
+
+.sb-yours span,
+.sb-correct span {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.sb-speak {
+  min-width: 36px;
+  min-height: 36px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}

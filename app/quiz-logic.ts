@@ -44,7 +44,7 @@ export const scoreRound = <T extends QuizQuestion>(round: T[], answers: string[]
   return { missedIds, score, percent: round.length ? Math.round((score / round.length) * 100) : 0 };
 };
 
-export const availableQuestions = <T extends QuizQuestion>(questions: T[], history: QuizResult[], missedOnly: boolean) => {
+export const availableQuestions = <T extends { id: number }>(questions: T[], history: QuizResult[], missedOnly: boolean) => {
   if (missedOnly) {
     const missed = new Set(getMissedIds(history));
     return questions.filter((question) => missed.has(question.id));

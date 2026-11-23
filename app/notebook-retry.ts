@@ -1,5 +1,6 @@
 import type { Question } from "./quiz-data";
-import { QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config.ts";
+import { type QuizId } from "./quiz-config.ts";
+import { findActivity, type ProgressActivityId } from "./activity-registry.ts";
 import { ruleLabelFor, type NotebookEntry } from "./notebook.ts";
 import { subtopicExplanation } from "./subtopic-explanations.ts";
 
@@ -73,7 +74,7 @@ export const retryExplanation = (quizId: QuizId, question: Question, answer: str
 };
 
 /** URL of an activity's temporary mistakes activity, optionally opened on one subtopic. */
-export const mistakesPath = (quizId: QuizId, rule?: string) =>
-  `${quizPath(quizId)}?mistakes=1${rule ? `&rule=${encodeURIComponent(rule)}` : ""}`;
+export const mistakesPath = (activityId: ProgressActivityId, rule?: string) =>
+  `${findActivity(activityId)?.path ?? "/"}?mistakes=1${rule ? `&rule=${encodeURIComponent(rule)}` : ""}`;
 
-export const mistakesTitle = (quizId: QuizId) => `${QUIZ_CONFIG[quizId].title.replace(" Quiz", "")}: mistakes`;
+export const mistakesTitle = (activityId: ProgressActivityId) => `${findActivity(activityId)?.title ?? activityId}: mistakes`;
