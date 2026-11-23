@@ -5,11 +5,9 @@ import Link from "next/link";
 import { FLASHCARD_VERBS, type FlashcardDifficulty, type FlashcardVerb } from "./flashcards-data";
 import { dayKey, recordActivityToday, recordFlashcardDayReviewed } from "./streak";
 import { speak } from "./speak";
-import { ActivityChips, ActivityFooter, SkipLink } from "./activity-chrome";
+import { ActivityChips, SkipLink } from "./activity-chrome";
 import SiteHeader from "./site-header";
 import HelpButton from "./help-modal";
-import { QUIZ_CONFIG, QUIZ_IDS, quizPath } from "./quiz-config";
-import { SITE_CONFIG } from "./site-config";
 import SupportPrompt from "./support-prompt";
 import AddToBoardOffer from "./add-to-board-offer";
 import { updateStoredProgress } from "./stored-progress";
@@ -282,25 +280,6 @@ export default function Flashcards({ standalone = false }: { standalone?: boolea
         </>
       )}
       </main>
-      {standalone && (
-        <ActivityFooter
-          columns={[
-            {
-              heading: "Grammar quizzes",
-              links: QUIZ_IDS.map((id) => ({ label: QUIZ_CONFIG[id].eyebrow, href: quizPath(id) })),
-            },
-            {
-              heading: "About",
-              links: [
-                { label: "How the flashcard boxes work", href: "/how-to-use#flashcards" },
-                { label: "Notes on Spanish grammar", href: "/notes" },
-                { label: "Contact", href: SITE_CONFIG.kofiUrl, external: true },
-              ],
-            },
-          ]}
-          bottomNote={<><strong>{SITE_CONFIG.name}</strong>: free Spanish grammar quizzes and spaced-repetition flashcards. Nothing to install, no account needed.</>}
-        />
-      )}
     </>
   );
 }

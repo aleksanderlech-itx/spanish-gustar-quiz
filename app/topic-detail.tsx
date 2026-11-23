@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { DEFAULT_CHART_LABEL, DEFAULT_FILTER_LABEL, QUIZ_CONFIG, QUIZ_IDS, type QuizId } from "./quiz-config";
+import { DEFAULT_CHART_LABEL, DEFAULT_FILTER_LABEL, QUIZ_CONFIG, type QuizId } from "./quiz-config";
 import { emptyQuizProgress, readQuizProgress, type QuizProgress } from "./quiz-progress";
 import { DEFAULT_SETTINGS, readTopicSettings, writeTopicSettings, type AnswerMode, type RoundLength } from "./topic-settings";
 import { filterQuestions, type QuizFilters } from "./quiz-logic";
@@ -10,10 +10,9 @@ import { DEFAULT_FILTERS, readQuizFilters, writeQuizFilters } from "./quiz-filte
 import { quizPath } from "./quiz-config";
 import TopicExplainer from "./topic-explainer";
 import { QUIZ_CONTENT } from "./quiz-content";
-import { ActivityChips, ActivityFooter, SkipLink } from "./activity-chrome";
+import { ActivityChips, SkipLink } from "./activity-chrome";
 import SiteHeader from "./site-header";
 import HelpButton from "./help-modal";
-import { SITE_CONFIG } from "./site-config";
 
 const ROUND_LENGTHS: RoundLength[] = [5, 10, 20];
 const LEVELS: Array<QuizFilters["level"]> = ["all", "basic", "intermediate", "advanced"];
@@ -174,30 +173,6 @@ export default function TopicDetail({ quizId, standalone = false }: { quizId: Qu
         </>
       )}
       </main>
-      {standalone && (
-        <ActivityFooter
-          columns={[
-            {
-              heading: "More quizzes",
-              links: [
-                ...QUIZ_IDS
-                  .filter((id) => id !== quizId)
-                  .map((id) => ({ label: QUIZ_CONFIG[id].eyebrow, href: quizPath(id) })),
-                { label: "Flashcards", href: "/flashcards" },
-              ],
-            },
-            {
-              heading: "About",
-              links: [
-                { label: "How the flashcard boxes work", href: "/how-to-use#flashcards" },
-                { label: "Notes on Spanish grammar", href: "/notes" },
-                { label: "Contact", href: SITE_CONFIG.kofiUrl, external: true },
-              ],
-            },
-          ]}
-          bottomNote={<><strong>{SITE_CONFIG.name}</strong>: free Spanish grammar quizzes and spaced-repetition flashcards. Nothing to install, no account needed.</>}
-        />
-      )}
     </>
   );
 }
