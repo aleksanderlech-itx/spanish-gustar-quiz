@@ -43,22 +43,6 @@ const SHELF_LABEL: Record<ShelfEntry["status"], string> = {
 
 const EMPTY_DAILY: DailyRoundProgress = { correct: 0, roundLength: 0, percent: 0, done: false };
 
-/** The first four paths match the approved Library reference exactly. */
-const TOPIC_ICON_PATHS: Record<QuizId, string> = {
-  "ser-estar": "m3 10 9-7 9 7M4 10h16M5 10v9m5-9v9m4-9v9m5-9v9M3 21h18",
-  gustar: "M20.8 8.6c0 4.1-5.1 8.4-8.8 11.2C8.3 17 3.2 12.7 3.2 8.6a5 5 0 0 1 8.8-3.2 5 5 0 0 1 8.8 3.2Z",
-  "por-para": "M12 3v18M4 7h14l3 3-3 3H4l-3-3 3-3Zm16 9H6l-3 3 3 3h14l3-3-3-3Z",
-  "preterite-imperfect": "M12 6c-3.2-2-6.3-2.3-10-1v14c3.7-1.3 6.8-1 10 1 3.2-2 6.3-2.3 10-1V5c-3.7-1.3-6.8-1-10 1Zm0 0v14",
-  "object-pronouns": "M4 12.5l5 5L20 7",
-  "saber-conocer": "M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3Z",
-  // A circular arrow: the action turns back on the subject.
-  "reflexive-verbs": "M20 12a8 8 0 1 1-2.3-5.7M20 4v4h-4",
-  // A clock hand landing on now: past actions that reach the present.
-  "present-perfect": "M12 3a9 9 0 1 0 9 9M12 7v5h5",
-  // A play arrow inside a circle: an action in progress right now.
-  "present-continuous": "M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M10 8.5v7l5.5-3.5z",
-};
-
 /** Two fanned, empty playing cards for the flashcard deck. The front card's fill is
  * set in CSS (scoped per tile variant) so it occludes the back card like a real fan
  * of cards, rather than showing both outlines crossing through each other. */
@@ -71,7 +55,7 @@ const FlashcardsIcon = () => (
 
 const BoardIcon = ({ id }: { id: ActivityId }) => (id === "flashcards" ? <FlashcardsIcon /> : (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d={TOPIC_ICON_PATHS[id]} />
+    <path d={QUIZ_CONFIG[id].iconPath} />
   </svg>
 ));
 

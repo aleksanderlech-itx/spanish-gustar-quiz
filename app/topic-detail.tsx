@@ -136,7 +136,7 @@ export default function TopicDetail({ quizId, standalone = false }: { quizId: Qu
 
       </details>
 
-      {quizId === "por-para" ? (
+      {quiz.chart.link === "explainer" ? (
         <a className="topic-chart-link" href={`#${quizId}-explainer-heading`}>
           <span className="board-icon" aria-hidden="true">▦</span>
           <span className="topic-chart-link-label">Por vs para, explained</span>

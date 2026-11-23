@@ -3,84 +3,21 @@
 import { useState } from "react";
 import Link from "next/link";
 import { QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config";
-import { PRETERITE_IMPERFECT_CONJUGATIONS, PRETERITE_IMPERFECT_REGULARITY } from "./preterite-imperfect-data";
-import { OBJECT_PRONOUN_CHART, type ObjectPronounType } from "./object-pronouns-data";
-import { SABER_CONOCER_CONJUGATIONS } from "./saber-conocer-data";
-import { REFLEXIVE_CHART } from "./reflexive-verbs-data";
-import { PRESENT_PERFECT_CHART } from "./present-perfect-data";
-import { PRESENT_CONTINUOUS_CHART } from "./present-continuous-data";
-import { POR_PARA_CHART } from "./por-para-data";
+import type { ChartRow } from "./chart-blocks";
 import { speak, speakQueue } from "./speak";
 
-type ChartRow = { pronoun: string; form: string };
-type ChartBlock = { tenseLabel: string; accent: "primary" | "sun"; rows: ChartRow[] };
-
-const SABER_CONOCER_VERB_LABELS = { saber: "Saber", conocer: "Conocer" } as const;
-
-/** Full six-pronoun paradigms only exist for preterite/imperfect verbs. Gustar-pattern
- * verbs are impersonal (they never conjugate for "yo, tú..."), and the ser/estar quiz
- * compares two different verbs rather than conjugating one: both get an honest,
- * simpler block instead of a fabricated pronoun table. */
-const blocksFor = (quizId: QuizId, infinitive: string, forms: Record<string, [string, string]>): ChartBlock[] => {
-  if (quizId === "preterite-imperfect") {
-    const conjugations = PRETERITE_IMPERFECT_CONJUGATIONS[infinitive] ?? [];
-    return [
-      { tenseLabel: "Preterite", accent: "primary", rows: conjugations.map((c) => ({ pronoun: c.subject, form: c.preterite })) },
-      { tenseLabel: "Imperfect", accent: "sun", rows: conjugations.map((c) => ({ pronoun: c.subject, form: c.imperfect })) },
-    ];
-  }
-  if (quizId === "ser-estar") {
-    const [ser, estar] = forms[infinitive] ?? ["ser", "estar"];
-    return [{ tenseLabel: "Present", accent: "primary", rows: [{ pronoun: "ser", form: ser }, { pronoun: "estar", form: estar }] }];
-  }
-  if (quizId === "object-pronouns") {
-    const rows = OBJECT_PRONOUN_CHART[infinitive as ObjectPronounType] ?? [];
-    return [{ tenseLabel: "Pronouns", accent: "primary", rows: rows.map((row) => ({ pronoun: row.label, form: row.form })) }];
-  }
-  if (quizId === "saber-conocer") {
-    // Past-meaning questions need the preterite/imperfect pair; every other usage is present.
-    // The topic-level chart (no single usage) shows all three tenses.
-    const tenses = infinitive === "past meaning" ? (["preterite", "imperfect"] as const)
-      : infinitive ? (["present"] as const)
-      : (["present", "preterite", "imperfect"] as const);
-    return tenses.flatMap((tense) => (["saber", "conocer"] as const).map((verb) => ({
-      tenseLabel: `${SABER_CONOCER_VERB_LABELS[verb]} · ${tense}`,
-      accent: verb === "saber" ? "primary" as const : "sun" as const,
-      rows: SABER_CONOCER_CONJUGATIONS.map((row) => ({ pronoun: row.subject, form: row[verb][tense] })),
-    })));
-  }
-  if (quizId === "reflexive-verbs" || quizId === "present-perfect" || quizId === "present-continuous") {
-    // Usage groups share one chart: reflexive pronouns, paradigm and placement; haber,
-    // regular and irregular participles and word order; or estar, gerunds and pronouns.
-    const charts = { "reflexive-verbs": REFLEXIVE_CHART, "present-perfect": PRESENT_PERFECT_CHART, "present-continuous": PRESENT_CONTINUOUS_CHART };
-    return charts[quizId].map((table, index) => ({
-      tenseLabel: table.title,
-      accent: index % 2 === 0 ? "primary" as const : "sun" as const,
-      rows: table.rows.map((row) => ({ pronoun: row.label, form: row.form })),
-    }));
-  }
-  if (quizId === "por-para") {
-    // Por and para don't conjugate: show one example sentence per usage instead of a table.
-    return POR_PARA_CHART.map((table, index) => ({
-      tenseLabel: table.title,
-      accent: index % 2 === 0 ? "primary" as const : "sun" as const,
-      rows: table.rows.map((row) => ({ pronoun: row.label, form: row.form })),
-    }));
-  }
-  const [singular, plural] = forms[infinitive] ?? ["", ""];
-  return [{ tenseLabel: "Present", accent: "primary", rows: [{ pronoun: "one thing / to do something", form: singular }, { pronoun: "several things", form: plural }] }];
+/** Which group sections the chart shows, by the quiz's declared `chart.sections` (issue #151). */
+const sectionsFor = (quizId: QuizId, group?: string): string[] => {
+  const { forms, chart } = QUIZ_CONFIG[quizId];
+  if (chart.sections === "shared") return [""];
+  if (group && forms[group]) return [group];
+  return chart.sections === "group-or-shared" ? [""] : Object.keys(forms);
 };
-
-/** Only preterite/imperfect has verified regular/irregular classification data: see the note above blocksFor. */
-const regularityFor = (quizId: QuizId, infinitive: string) =>
-  quizId === "preterite-imperfect" ? PRETERITE_IMPERFECT_REGULARITY[infinitive] : undefined;
 
 export default function VerbChart({ quizId, infinitive, onClose }: { quizId: QuizId; infinitive?: string; onClose?: () => void }) {
   const quiz = QUIZ_CONFIG[quizId];
-  // Saber vs conocer's "forms" are usage categories, not verbs: the topic-level chart is one
-  // section with both full paradigms rather than a repeat of them under every usage.
-  // Reflexive verbs', present perfect's and por vs para's groups share one chart, so those topics always render a single section.
-  const infinitives = quizId === "reflexive-verbs" || quizId === "present-perfect" || quizId === "present-continuous" || quizId === "por-para" ? [""] : infinitive && quiz.forms[infinitive] ? [infinitive] : quizId === "saber-conocer" ? [""] : Object.keys(quiz.forms);
+  const infinitives = sectionsFor(quizId, infinitive);
+  const regularityFor = (group: string) => quiz.chart.regularity?.[group];
   const [speakingKey, setSpeakingKey] = useState<string | null>(null);
 
   const speakRow = (key: string, text: string) => {
@@ -108,8 +45,8 @@ export default function VerbChart({ quizId, infinitive, onClose }: { quizId: Qui
           <Link className="round-back" href={quizPath(quizId)} aria-label="Back to topic"><span aria-hidden="true">←</span></Link>
         )}
         <h1>{infinitives.length === 1 && infinitives[0] ? infinitives[0] : quiz.title.replace(" Quiz", "")}</h1>
-        {infinitives.length === 1 && regularityFor(quizId, infinitives[0]) && (
-          <span className="verb-chart-regularity-badge">{regularityFor(quizId, infinitives[0])}</span>
+        {infinitives.length === 1 && regularityFor(infinitives[0]) && (
+          <span className="verb-chart-regularity-badge">{regularityFor(infinitives[0])}</span>
         )}
       </header>
 
@@ -118,10 +55,10 @@ export default function VerbChart({ quizId, infinitive, onClose }: { quizId: Qui
           {infinitives.length > 1 && (
             <h2 className="verb-chart-verb-heading">
               {inf}
-              {regularityFor(quizId, inf) && <span className="verb-chart-regularity-badge">{regularityFor(quizId, inf)}</span>}
+              {regularityFor(inf) && <span className="verb-chart-regularity-badge">{regularityFor(inf)}</span>}
             </h2>
           )}
-          {blocksFor(quizId, inf, quiz.forms).map((block) => {
+          {quiz.chart.blocks(inf, quiz.forms).map((block) => {
             const blockKey = `${inf}-${block.tenseLabel}`;
             return (
               <section className={`verb-chart-block verb-chart-block-${block.accent}`} key={blockKey}>
