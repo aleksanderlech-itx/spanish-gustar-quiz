@@ -19,6 +19,17 @@ test("/sentence-builder renders, and is in the sitemap and llms.txt", async () =
   assert.match(await (await get("http://spanish-quizz.es/llms.txt")).text(), /\/sentence-builder\)/);
 });
 
+test("/sentence-builder has a How this works section like every grammar quiz, with its FAQ as JSON-LD", async () => {
+  const html = await (await get("http://spanish-quizz.es/sentence-builder")).text();
+  assert.match(html, /id="sentence-builder-explainer-heading"[^>]*>How this works</);
+  assert.match(html, /Example sentences/);
+  assert.match(html, /"@type":"FAQPage"/);
+  const { SENTENCE_BUILDER_CONTENT } = await import("../app/sentence-builder-content.ts");
+  for (const text of [...SENTENCE_BUILDER_CONTENT.paragraphs, ...SENTENCE_BUILDER_CONTENT.faq.flatMap((item) => [item.question, item.answer])]) {
+    assert.doesNotMatch(text, /[\u2013\u2014]/, text);
+  }
+});
+
 test("Sentence Builder ships with its Notes article, listed on /notes and in the sitemap (Project rule 7)", async () => {
   const article = await get("http://spanish-quizz.es/notes/spanish-word-order");
   assert.equal(article.status, 200);

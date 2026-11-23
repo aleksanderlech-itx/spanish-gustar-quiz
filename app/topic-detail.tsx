@@ -9,6 +9,7 @@ import { filterQuestions, type QuizFilters } from "./quiz-logic";
 import { DEFAULT_FILTERS, readQuizFilters, writeQuizFilters } from "./quiz-filters";
 import { quizPath } from "./quiz-config";
 import TopicExplainer from "./topic-explainer";
+import { QUIZ_CONTENT } from "./quiz-content";
 import { ActivityChips, ActivityFooter, SkipLink } from "./activity-chrome";
 import SiteHeader from "./site-header";
 import HelpButton from "./help-modal";
@@ -158,7 +159,7 @@ export default function TopicDetail({ quizId, standalone = false }: { quizId: Qu
         )}
       </footer>
 
-      <TopicExplainer quizId={quizId} />
+      <TopicExplainer id={quizId} content={QUIZ_CONTENT[quizId]} />
 
       {standalone && (
         <>

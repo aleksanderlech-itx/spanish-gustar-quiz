@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SITE_CONFIG } from "../site-config";
 import SentenceBuilderPage from "../sentence-builder-page";
+import { SENTENCE_BUILDER_CONTENT } from "../sentence-builder-content";
 
 const TITLE = "Spanish Sentence Builder - Word Order Practice";
 const DESCRIPTION =
@@ -27,10 +28,21 @@ const jsonLd = {
   about: { "@type": "Thing", name: "Spanish word order" },
 };
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: SENTENCE_BUILDER_CONTENT.faq.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: { "@type": "Answer", text: item.answer },
+  })),
+};
+
 export default function SentenceBuilderRoute() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <SentenceBuilderPage />
     </>
   );

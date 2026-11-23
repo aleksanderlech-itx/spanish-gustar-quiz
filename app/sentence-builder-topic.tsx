@@ -11,6 +11,8 @@ import type { QuizFilters } from "./quiz-logic";
 import { ActivityChips, SkipLink } from "./activity-chrome";
 import SiteHeader from "./site-header";
 import HelpButton from "./help-modal";
+import TopicExplainer from "./topic-explainer";
+import { SENTENCE_BUILDER_CONTENT } from "./sentence-builder-content";
 
 const ROUND_LENGTHS: RoundLength[] = [5, 10, 20];
 const LEVELS: Array<QuizFilters["level"]> = ["all", "basic", "intermediate", "advanced"];
@@ -127,6 +129,8 @@ export default function SentenceBuilderTopic() {
             { label: "No sign-up", tone: "sage" },
           ]}
         />
+
+        <TopicExplainer id={SENTENCE_BUILDER_ID} content={SENTENCE_BUILDER_CONTENT} />
       </main>
     </>
   );
