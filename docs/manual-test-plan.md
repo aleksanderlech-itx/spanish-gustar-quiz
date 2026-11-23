@@ -39,7 +39,7 @@ Project rules and decisions: `docs/decisions/README.md` in the repo. This plan c
 | 1.3 | B | Open the menu (drawer) | Streak card, Progress & history, Weekly recap, Mistake notebook with count, Backup & restore and Settings render. Closes with the close button and Escape |
 | 1.4 | T | Start one round in every activity on the board | Each loads and finishes |
 | 1.5 | T | Open flashcards, an explanation, a translation and a conjugation chart | No broken views |
-| 1.6 | B | Footer links: About, Notes, Content sources, "Help build more quizzes" (Ko-fi). Menu links: How to use, Notes | Pages open without errors. Content sources jumps to that section of About. Ko-fi opens in a new tab |
+| 1.6 | B | Footer on every page type (board, topic, round, Flashcards, Sentence Builder, Notes, About, How to use, Privacy), on a wide screen and a phone | The same footer everywhere, once: an Activities list with every activity, then How to use, Notes on Spanish grammar, About, Content sources, "Help build more quizzes" (Ko-fi), then the site note with Privacy and Cookie settings. Every link opens without errors. Content sources jumps to that section of About. Ko-fi opens in a new tab. No page shows a second footer of its own |
 
 ## 2. Test mode
 
