@@ -103,3 +103,4 @@ content. Each links to the record that explains it.
 | [0010](0010-stored-data-schema-and-migrations.md) | One schema version for stored data, upgraded in one place | Accepted | 2026-11-21 |
 | [0011](0011-starter-board-and-shelf-in-drawer.md) | New users start with a starter Board; the Shelf lives in the drawer | Accepted | 2026-11-21 |
 | [0012](0012-analytics-only-with-consent.md) | Analytics load only with opt-in consent | Accepted | 2026-11-22 |
+| [0013](0013-sentence-builder.md) | Sentence Builder: one Activity, every Token in the answer, right or wrong as a whole | Accepted | 2026-11-23 |
