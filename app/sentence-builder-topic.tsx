@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { SENTENCE_BUILDER_GROUPS, SENTENCE_BUILDER_ITEMS } from "./sentence-builder-data";
-import { SENTENCE_BUILDER_FILTER_KEY, SENTENCE_BUILDER_ID, SENTENCE_BUILDER_PATH, SENTENCE_BUILDER_STORAGE_KEY } from "./sentence-builder-config";
+import { SENTENCE_BUILDER_DESCRIPTION, SENTENCE_BUILDER_FILTER_KEY, SENTENCE_BUILDER_ID, SENTENCE_BUILDER_PATH, SENTENCE_BUILDER_STORAGE_KEY } from "./sentence-builder-config";
 import { emptyQuizProgress, readHistoryProgress, type QuizProgress } from "./quiz-progress";
 import { DEFAULT_SETTINGS, readTopicSettings, writeTopicSettings, type RoundLength } from "./topic-settings";
 import { DEFAULT_FILTERS, readQuizFilters, writeQuizFilters } from "./quiz-filters";
@@ -122,6 +122,9 @@ export default function SentenceBuilderTopic() {
           )}
         </footer>
 
+        <TopicExplainer id={SENTENCE_BUILDER_ID} content={SENTENCE_BUILDER_CONTENT} />
+
+        <p className="activity-lede">{SENTENCE_BUILDER_DESCRIPTION}</p>
         <ActivityChips
           chips={[
             { label: "A1-B1", tone: "primary" },
@@ -129,8 +132,6 @@ export default function SentenceBuilderTopic() {
             { label: "No sign-up", tone: "sage" },
           ]}
         />
-
-        <TopicExplainer id={SENTENCE_BUILDER_ID} content={SENTENCE_BUILDER_CONTENT} />
       </main>
     </>
   );
