@@ -3,32 +3,16 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 import { FLASHCARD_VERBS } from "../app/flashcards-data.ts";
-import { OBJECT_PRONOUN_QUESTIONS } from "../app/object-pronouns-data.ts";
-import { POR_PARA_QUESTIONS } from "../app/por-para-data.ts";
-import { PRETERITE_IMPERFECT_QUESTIONS } from "../app/preterite-imperfect-data.ts";
-import { ALL_QUESTIONS } from "../app/quiz-data.ts";
-import { REFLEXIVE_VERB_QUESTIONS } from "../app/reflexive-verbs-data.ts";
-import { PRESENT_PERFECT_QUESTIONS } from "../app/present-perfect-data.ts";
-import { PRESENT_CONTINUOUS_QUESTIONS } from "../app/present-continuous-data.ts";
-import { SABER_CONOCER_QUESTIONS } from "../app/saber-conocer-data.ts";
-import { SER_ESTAR_QUESTIONS } from "../app/ser-estar-data.ts";
+import { QUIZ_CONFIG, QUIZ_IDS } from "../app/quiz-config.ts";
 import { SOURCED_FLASHCARD_PAIRS } from "../app/sourced-flashcard-content.ts";
 import { SOURCED_QUIZ_PAIRS } from "../app/sourced-quiz-content.ts";
 
-const quizzes = [
-  ALL_QUESTIONS,
-  SER_ESTAR_QUESTIONS,
-  PRETERITE_IMPERFECT_QUESTIONS,
-  POR_PARA_QUESTIONS,
-  OBJECT_PRONOUN_QUESTIONS,
-  SABER_CONOCER_QUESTIONS,
-  REFLEXIVE_VERB_QUESTIONS,
-  PRESENT_PERFECT_QUESTIONS,
-  PRESENT_CONTINUOUS_QUESTIONS,
-];
+// Every registered quiz (issue #162); totals are computed, never typed in.
+const quizzes = QUIZ_IDS.map((id) => QUIZ_CONFIG[id].questions);
+const QUIZ_TOTAL = quizzes.flat().length;
 
 test("every runtime quiz sentence and translation comes from the sourced pair set", () => {
-  assert.equal(Object.keys(SOURCED_QUIZ_PAIRS).length, 1350);
+  assert.equal(Object.keys(SOURCED_QUIZ_PAIRS).length, QUIZ_TOTAL);
   for (const question of quizzes.flat()) {
     const pair = SOURCED_QUIZ_PAIRS[question.id];
     assert.ok(pair, `missing sourced pair for #${question.id}`);
@@ -45,7 +29,7 @@ test("every runtime quiz sentence and translation comes from the sourced pair se
 });
 
 test("every runtime flashcard example comes from the sourced pair set without fallback templates", () => {
-  assert.equal(Object.keys(SOURCED_FLASHCARD_PAIRS).length, 500);
+  assert.equal(Object.keys(SOURCED_FLASHCARD_PAIRS).length, FLASHCARD_VERBS.length);
   const frames = new Set();
   for (const card of FLASHCARD_VERBS) {
     const pair = SOURCED_FLASHCARD_PAIRS[card.spanish];
@@ -64,11 +48,11 @@ test("every runtime flashcard example comes from the sourced pair set without fa
 test("attribution manifest covers every sourced quiz and flashcard pair", async () => {
   const manifest = await readFile(new URL("../docs/content-attribution.csv", import.meta.url), "utf8");
   const lines = manifest.trimEnd().split("\n");
-  assert.equal(lines.length, 1 + 1350 + 500);
+  assert.equal(lines.length, 1 + QUIZ_TOTAL + FLASHCARD_VERBS.length);
   assert.match(lines[0], /^type,key,spanish,english,license,attribution,modified$/);
   assert.equal(
     lines.slice(1).filter((line) => line.includes("CC BY 2.0 France") || line.includes("CC BY 4.0")).length,
-    1350 + 500,
+    QUIZ_TOTAL + FLASHCARD_VERBS.length,
   );
   assert.equal(lines.some((line) => line.includes("Project content")), false);
 });

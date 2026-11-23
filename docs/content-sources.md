@@ -26,8 +26,8 @@ The 500-verb ranking comes from FrequencyWords:
 
 Each unchanged Tatoeba row retains both sentence IDs and contributor names.
 Each original row names the project author and its CC BY 4.0 license. The public
-manifest records the source, license and modification status for all 1,400
-runtime sentence pairs. The corpus itself is research input and is not committed
+manifest records the source, license and modification status for every runtime
+sentence pair. The corpus itself is research input and is not committed
 to this repository.
 
 To regenerate, download the snapshot and run the generator on `spa.txt` (it

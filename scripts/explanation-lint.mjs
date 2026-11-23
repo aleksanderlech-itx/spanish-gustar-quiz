@@ -4,28 +4,14 @@
 
 import { fileURLToPath } from "node:url";
 
-import { ALL_QUESTIONS } from "../app/quiz-data.ts";
-import { SER_ESTAR_QUESTIONS } from "../app/ser-estar-data.ts";
-import { PRETERITE_IMPERFECT_QUESTIONS } from "../app/preterite-imperfect-data.ts";
-import { POR_PARA_QUESTIONS } from "../app/por-para-data.ts";
-import { OBJECT_PRONOUN_QUESTIONS } from "../app/object-pronouns-data.ts";
-import { SABER_CONOCER_QUESTIONS } from "../app/saber-conocer-data.ts";
-import { REFLEXIVE_VERB_QUESTIONS } from "../app/reflexive-verbs-data.ts";
-import { PRESENT_PERFECT_QUESTIONS } from "../app/present-perfect-data.ts";
-import { PRESENT_CONTINUOUS_QUESTIONS } from "../app/present-continuous-data.ts";
+import { QUIZ_CONFIG, QUIZ_IDS } from "../app/quiz-config.ts";
 
-export const TOPICS = [
-  { key: "gustar", questions: ALL_QUESTIONS, needsCue: true },
-  { key: "ser-estar", questions: SER_ESTAR_QUESTIONS, needsCue: true },
-  { key: "preterite-imperfect", questions: PRETERITE_IMPERFECT_QUESTIONS, needsCue: true },
-  // Por vs Para keeps its per-sentence explanations from #109.
-  { key: "por-para", questions: POR_PARA_QUESTIONS, needsCue: false },
-  { key: "object-pronouns", questions: OBJECT_PRONOUN_QUESTIONS, needsCue: true },
-  { key: "saber-conocer", questions: SABER_CONOCER_QUESTIONS, needsCue: true },
-  { key: "reflexive-verbs", questions: REFLEXIVE_VERB_QUESTIONS, needsCue: true },
-  { key: "present-perfect", questions: PRESENT_PERFECT_QUESTIONS, needsCue: true },
-  { key: "present-continuous", questions: PRESENT_CONTINUOUS_QUESTIONS, needsCue: true },
-];
+// Every registered quiz (issue #162): a new quiz is linted with no edit here.
+export const TOPICS = QUIZ_IDS.map((key) => ({
+  key,
+  questions: QUIZ_CONFIG[key].questions,
+  needsCue: QUIZ_CONFIG[key].explanationNeedsCue ?? true,
+}));
 
 export const MIN_LENGTH = 15;
 export const MAX_LENGTH = 200;
