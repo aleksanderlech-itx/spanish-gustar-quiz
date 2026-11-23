@@ -33,7 +33,8 @@ const { readTopicSettings } = await import("../app/topic-settings.ts");
 const { readQuizCompletion } = await import("../app/quiz-completion.ts");
 const { BOARD_KEY, readBoardState } = await import("../app/board-state.ts");
 const { ACTIVITY_REGISTRY } = await import("../app/activity-registry.ts");
-const ALL_IDS = ACTIVITY_REGISTRY.map((entry) => entry.id);
+// The Activities that existed at schema 1: an old device or backup is upgraded to exactly these.
+const ALL_IDS = ACTIVITY_REGISTRY.map((entry) => entry.id).filter((id) => id !== "sentence-builder");
 const REINSTATED_KEY = "spanish-quiz-reinstated-v1";
 /** The fixture after the schema 2 step: the Board replaces the "show on main screen" choices. */
 const upgradedFixture = () => {
@@ -57,6 +58,7 @@ test("the fixture covers every key a backup carries that today's app writes", ()
   const stored = new Set(Object.keys(FIXTURE));
   for (const { key } of BACKUP_KEYS) {
     if (key === BOARD_KEY) continue; // schema 2: not in a schema 1 device
+    if (key.startsWith("sentence-builder-")) continue; // Sentence Builder came after schema 1 (decision 0013)
     if (/-quiz-progress-v1$|-quiz-filters-v1$|-topic-settings-v1$/.test(key)) continue;
     assert.ok(stored.has(key), `fixture is missing ${key}`);
   }
@@ -155,6 +157,9 @@ test("page load upgrades a schema 1 device: the Board is what it showed, the rei
   const { [BOARD_KEY]: board, ...rest } = snapshotOf(store);
   assert.deepEqual(rest, upgradedFixture());
   assert.deepEqual(JSON.parse(board).onBoard, ALL_IDS);
+  // An Activity added after schema 1 is not put on the Board and stays New (Project rule 15).
+  assert.equal(JSON.parse(board).onBoard.includes("sentence-builder"), false);
+  assert.equal(JSON.parse(board).known.includes("sentence-builder"), false);
 });
 
 test("schema 1 to 2: a Finished quiz neither Repeat due nor shown again starts on the Shelf", () => {

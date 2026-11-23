@@ -1,4 +1,4 @@
-import type { QuizId } from "./quiz-config";
+import type { ProgressActivityId } from "./activity-registry";
 import { appStorage } from "./storage.ts";
 
 const COMPLETION_KEY = "spanish-quiz-completions-v1";
@@ -35,14 +35,14 @@ const writeCompletions = (completions: Completions) => {
 
 /** Marks every sentence in a quiz as done today. Overwrites any earlier completion, which pushes the repeat date out.
  * Moving it to the Shelf is the caller's job (`moveFinishedToShelf` in `app/board-state.ts`). */
-export const markQuizCompleted = (quizId: QuizId, date = new Date()) => {
+export const markQuizCompleted = (quizId: ProgressActivityId, date = new Date()) => {
   if (typeof window === "undefined") return;
   const completions = readCompletions();
   completions[quizId] = date.toISOString();
   writeCompletions(completions);
 };
 
-export const clearQuizCompletion = (quizId: QuizId) => {
+export const clearQuizCompletion = (quizId: ProgressActivityId) => {
   if (typeof window === "undefined") return;
   const completions = readCompletions();
   delete completions[quizId];
@@ -50,7 +50,7 @@ export const clearQuizCompletion = (quizId: QuizId) => {
 };
 
 /** ISO date the quiz was last fully completed, or null if it never has been (or was reset by a redo). */
-export const readQuizCompletion = (quizId: QuizId): string | null => readCompletions()[quizId] ?? null;
+export const readQuizCompletion = (quizId: ProgressActivityId): string | null => readCompletions()[quizId] ?? null;
 
 export const readAllCompletions = (): Completions => readCompletions();
 

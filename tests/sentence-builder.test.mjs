@@ -42,7 +42,7 @@ test("explanations follow the quality rules and name a cue from the sentence", (
     const { explanation, cue } = item;
     assert.ok(explanation.length >= 15 && explanation.length <= 200, `#${item.id} length`);
     assert.ok((explanation.match(/[.!?](\s|$)/g) ?? []).length <= 2, `#${item.id} sentences`);
-    assert.doesNotMatch(explanation, /[–—]/, `#${item.id} dash`);
+    assert.doesNotMatch(explanation, /[\u2013\u2014]/, `#${item.id} dash`);
     assert.doesNotMatch(explanation, /\balso (correct|works|possible)\b/i, `#${item.id} says another answer is correct`);
     const cueRegex = new RegExp(`(?<!\\p{L})${fold(cue).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?!\\p{L})`, "u");
     assert.match(fold(item.spanish), cueRegex, `#${item.id} cue not in sentence`);

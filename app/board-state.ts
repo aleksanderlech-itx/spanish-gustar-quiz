@@ -1,5 +1,5 @@
 import { ACTIVITY_REGISTRY, type ActivityId } from "./activity-registry.ts";
-import { QUIZ_CONFIG, isQuizId } from "./quiz-config.ts";
+import { findActivity } from "./activity-registry.ts";
 import { clearQuizCompletion, isRepeatDue, readAllCompletions } from "./quiz-completion.ts";
 import { appSessionStorage, appStorage } from "./storage.ts";
 
@@ -66,20 +66,39 @@ export const rankSuggestions = (shelf: ShelfEntry[], justFinished: string | null
  * except Finished quizzes that were neither Repeat due nor shown again from Settings. A device
  * with no progress at all has no Board yet, so its user gets the Selection screen.
  */
+/**
+ * The Activities that existed at schema 1, with their progress keys, frozen: an upgrade step describes the
+ * past, so an Activity added later (Sentence Builder) never lands on a Board rebuilt from an old backup,
+ * and is offered as New instead (Project rule 15).
+ */
+const SCHEMA_1_ACTIVITIES: ReadonlyArray<[string, string]> = [
+  ["gustar", "gustar-quiz-progress-v1"],
+  ["ser-estar", "ser-estar-quiz-progress-v1"],
+  ["preterite-imperfect", "preterite-imperfect-quiz-progress-v1"],
+  ["por-para", "por-para-quiz-progress-v1"],
+  ["object-pronouns", "object-pronouns-quiz-progress-v1"],
+  ["saber-conocer", "saber-conocer-quiz-progress-v1"],
+  ["reflexive-verbs", "reflexive-verbs-quiz-progress-v1"],
+  ["present-perfect", "present-perfect-quiz-progress-v1"],
+  ["present-continuous", "present-continuous-quiz-progress-v1"],
+  ["flashcards", FLASHCARD_PROGRESS_KEY],
+];
+
 export const boardFromSchema1 = (snapshot: Record<string, unknown>, now: Date): BoardState | null => {
   const completions = isObject(snapshot["spanish-quiz-completions-v1"]) ? snapshot["spanish-quiz-completions-v1"] : {};
   const reinstated = isObject(snapshot["spanish-quiz-reinstated-v1"]) ? snapshot["spanish-quiz-reinstated-v1"] : {};
-  const hasProgress = REGISTRY_IDS.some((id) => {
-    const value = snapshot[isQuizId(id) ? QUIZ_CONFIG[id].storageKey : FLASHCARD_PROGRESS_KEY];
+  const hasProgress = SCHEMA_1_ACTIVITIES.some(([, key]) => {
+    const value = snapshot[key];
     return Array.isArray(value) ? value.length > 0 : isObject(value) && Object.keys(value).length > 0;
   }) || (isObject(snapshot["spanish-quiz-streak-v2"]) && Object.keys(snapshot["spanish-quiz-streak-v2"]).length > 0);
   if (!hasProgress) return null;
-  const onBoard = REGISTRY_IDS.filter((id) => {
+  const ids = SCHEMA_1_ACTIVITIES.map(([id]) => id);
+  const onBoard = ids.filter((id) => {
     const completedAt = completions[id];
     if (typeof completedAt !== "string") return true;
     return isRepeatDue(completedAt, now) || reinstated[id] === true;
   });
-  return { onBoard: [...onBoard], known: [...REGISTRY_IDS], suggestion: null };
+  return { onBoard, known: ids, suggestion: null };
 };
 
 // --- Storage ---
@@ -106,10 +125,13 @@ const writeBoardState = (state: BoardState) => {
 /** Whether the user has made a Selection. Without one, the home page shows the Selection screen. */
 export const hasChosenBoard = (): boolean => readBoardState() !== null;
 
+/** An Activity's stored rounds, from its registry storage key. Flashcards has no rounds. */
 const readHistory = (id: ActivityId): unknown[] => {
-  if (!isQuizId(id)) return [];
+  if (id === "flashcards") return [];
   try {
-    const parsed = JSON.parse(appStorage.getItem(QUIZ_CONFIG[id].storageKey) ?? "[]") as unknown;
+    const key = findActivity(id)?.storageKey;
+    if (!key) return [];
+    const parsed = JSON.parse(appStorage.getItem(key) ?? "[]") as unknown;
     return Array.isArray(parsed) ? parsed : [];
   } catch {
     return [];
@@ -167,10 +189,11 @@ export const shelfEntries = (now = new Date()): ShelfEntry[] => {
 
 /** A Finished quiz added back starts its sentences over: regular rounds and the completion go, misses stay. */
 const restartIfFinished = (id: ActivityId) => {
-  if (!isQuizId(id) || !readAllCompletions()[id]) return;
+  const key = findActivity(id)?.storageKey;
+  if (id === "flashcards" || !key || !readAllCompletions()[id]) return;
   try {
     const kept = readHistory(id).filter((item) => isObject(item) && item.mode === "review");
-    appStorage.setItem(QUIZ_CONFIG[id].storageKey, JSON.stringify(kept));
+    appStorage.setItem(key, JSON.stringify(kept));
   } catch {
     // Storage blocked; the quiz opens on its finished screen, where "Redo the whole set" does the same.
   }

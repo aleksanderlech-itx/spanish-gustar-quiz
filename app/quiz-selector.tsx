@@ -2,12 +2,12 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
-import { QUIZ_CONFIG, QUIZ_IDS, type QuizId } from "./quiz-config";
-import { ACTIVITY_REGISTRY, type ActivityId, type ActivityRegistryEntry } from "./activity-registry";
+import { ACTIVITY_REGISTRY, PROGRESS_ACTIVITY_IDS, findActivity, type ActivityId, type ActivityRegistryEntry, type ProgressActivityId } from "./activity-registry";
 import { useTheme } from "./use-theme";
 import { orderBoard, type BoardTileProgress } from "./board";
 import { readStreakSummary, mergeActivityDays, dayKey, readFlashcardDaysReviewed, ACTIVITY_IDS, type StreakSummary } from "./streak";
-import { emptyQuizProgress, readQuizProgress, readDailyRoundProgress, type DailyRoundProgress, type QuizProgress } from "./quiz-progress";
+import { emptyQuizProgress, readDailyRoundProgressFor, readHistoryProgress, type DailyRoundProgress, type QuizProgress } from "./quiz-progress";
+import { progressItemsFor } from "./activity-items";
 import { clearQuizCompletion, readQuizCompletion, markQuizCompleted } from "./quiz-completion";
 import { addToBoard, boardActivityIds, createStarterBoard, hasChosenBoard, isFirstVisitSession, moveFinishedToShelf, newActivities, rankSuggestions, readBoardState, shelfEntries, type ShelfEntry } from "./board-state";
 import { TUTORIAL_OFFERED_KEY } from "./tutorials";
@@ -27,7 +27,7 @@ import { mistakesPath, mistakesTitle } from "./notebook-retry";
 
 type BoardItem = BoardTileProgress & {
   id: ActivityId;
-  kind: "quiz" | "deck";
+  kind: ActivityRegistryEntry["icon"];
   title: string;
   noun: string;
   href: string;
@@ -55,7 +55,7 @@ const FlashcardsIcon = () => (
 
 const BoardIcon = ({ id }: { id: ActivityId }) => (id === "flashcards" ? <FlashcardsIcon /> : (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d={QUIZ_CONFIG[id].iconPath} />
+    <path d={findActivity(id)?.iconPath} />
   </svg>
 ));
 
@@ -80,7 +80,7 @@ const boardItem = (entry: ActivityRegistryEntry, progress: QuizProgress, daily: 
   id: entry.id,
   kind: entry.icon,
   title: entry.title,
-  noun: entry.activityType === "flashcards" ? "card" : "question",
+  noun: entry.activityType === "flashcards" ? "card" : entry.activityType === "sentence-builder" ? "sentence" : "question",
   href: entry.path,
   daily,
   ...progress,
@@ -132,10 +132,12 @@ const readFlashcardProgress = (): { progress: Omit<BoardTileProgress, "id">; dai
   }
 };
 
-/** A quiz's stored round history; empty if it's missing or corrupt. */
-const readQuizHistory = (quizId: QuizId): QuizResult[] => {
+const storageKeyOf = (id: ProgressActivityId) => findActivity(id)?.storageKey ?? "";
+
+/** An Activity's stored round history; empty if it's missing or corrupt. */
+const readActivityHistory = (id: ProgressActivityId): QuizResult[] => {
   try {
-    const raw = appStorage.getItem(QUIZ_CONFIG[quizId].storageKey);
+    const raw = appStorage.getItem(storageKeyOf(id));
     const history = raw ? (JSON.parse(raw) as unknown) : [];
     return Array.isArray(history) ? (history as QuizResult[]) : [];
   } catch {
@@ -156,15 +158,13 @@ const dueBarFill = (percent: number) => (percent >= 90 ? "var(--sage)" : "var(--
 const backfillEntries = (): Array<{ activity: ActivityId; day: string }> => {
   const entries: Array<{ activity: ActivityId; day: string }> = [];
 
-  QUIZ_IDS.forEach((quizId) => {
+  PROGRESS_ACTIVITY_IDS.forEach((id) => {
     try {
-      const raw = appStorage.getItem(QUIZ_CONFIG[quizId].storageKey);
-      const history = raw ? (JSON.parse(raw) as QuizResult[]) : [];
-      history.filter((item) => item.mode !== "review").forEach((item) => {
-        entries.push({ activity: quizId, day: dayKey(new Date(item.date)) });
+      readActivityHistory(id).filter((item) => item.mode !== "review").forEach((item) => {
+        entries.push({ activity: id, day: dayKey(new Date(item.date)) });
       });
     } catch {
-      // Corrupt or unavailable history for this quiz; skip its backfill.
+      // Corrupt or unavailable history for this activity; skip its backfill.
     }
   });
 
@@ -189,7 +189,7 @@ export default function QuizSelector() {
   const hamburgerRef = useRef<HTMLButtonElement | null>(null);
   const [items, setItems] = useState<BoardItem[]>(() => ACTIVITY_REGISTRY.map((entry) => boardItem(
     entry,
-    emptyQuizProgress(entry.activityType === "flashcards" ? FLASHCARD_TOTAL : QUIZ_CONFIG[entry.id as QuizId].questions.length),
+    emptyQuizProgress(entry.activityType === "flashcards" ? FLASHCARD_TOTAL : progressItemsFor(entry.id as ProgressActivityId).length),
     EMPTY_DAILY,
   )));
   const [streak, setStreak] = useState<StreakSummary>(EMPTY_STREAK);
@@ -211,16 +211,16 @@ export default function QuizSelector() {
     // Selection or Suggestion changes the Board (boardVersion).
     if (!open) return;
     const flashcards = readFlashcardProgress();
-    const progressById = Object.fromEntries(QUIZ_IDS.map((id) => [id, readQuizProgress(id)])) as Record<QuizId, QuizProgress>;
+    const progressById = Object.fromEntries(PROGRESS_ACTIVITY_IDS.map((id) => [id, readHistoryProgress(storageKeyOf(id), progressItemsFor(id).length)])) as Record<ProgressActivityId, QuizProgress>;
     // Self-heal: a quiz fully mastered before this device ever recorded a completion timestamp
     // (e.g. its last outstanding miss was cleared by a review round, which used to skip the mark)
     // gets backfilled here, the same way the streak ledger backfills from history on every load.
     // Undo completions an older version saved when only the filtered sentences ran out.
-    QUIZ_IDS.forEach((id) => {
+    PROGRESS_ACTIVITY_IDS.forEach((id) => {
       const completedAt = readQuizCompletion(id);
-      if (completedAt && isCompletionUnearned(QUIZ_CONFIG[id].questions, readQuizHistory(id), completedAt)) clearQuizCompletion(id);
+      if (completedAt && isCompletionUnearned(progressItemsFor(id), readActivityHistory(id), completedAt)) clearQuizCompletion(id);
     });
-    QUIZ_IDS.forEach((id) => {
+    PROGRESS_ACTIVITY_IDS.forEach((id) => {
       const progress = progressById[id];
       if (progress.completed > 0 && progress.due === 0 && progress.percent === 100 && !readQuizCompletion(id)) {
         markQuizCompleted(id, progress.lastActivity ? new Date(progress.lastActivity) : new Date());
@@ -242,7 +242,7 @@ export default function QuizSelector() {
       .filter((entry) => onBoard.includes(entry.id))
       .map((entry) => entry.activityType === "flashcards"
         ? boardItem(entry, flashcards.progress, flashcards.daily)
-        : boardItem(entry, progressById[entry.id as QuizId], readDailyRoundProgress(entry.id as QuizId)));
+        : boardItem(entry, progressById[entry.id as ProgressActivityId], readDailyRoundProgressFor(entry.storageKey, entry.id)));
     // Backfill the whole streak ledger from the same ground truth the tiles just read, so
     // the streak panel can never under-report what the quiz/flashcard history already shows.
     mergeActivityDays(backfillEntries());
@@ -414,7 +414,7 @@ export default function QuizSelector() {
             <div className="board-tile-pinned-body">
               <h3>{featuredItem.title}</h3>
               <p className="board-tile-meta">
-                {featuredItem.completed} of {featuredItem.total} {featuredItem.noun}s studied · {featuredItem.percent}% complete{featuredItem.kind === "quiz" ? ` · ${featuredItem.accuracy}% accuracy` : ""}
+                {featuredItem.completed} of {featuredItem.total} {featuredItem.noun}s studied · {featuredItem.percent}% complete{featuredItem.kind !== "deck" ? ` · ${featuredItem.accuracy}% accuracy` : ""}
               </p>
             </div>
             <div className="board-feature-progress" role="progressbar" aria-label="Topic progress" aria-valuemin={0} aria-valuemax={100} aria-valuenow={featuredItem.percent}>
