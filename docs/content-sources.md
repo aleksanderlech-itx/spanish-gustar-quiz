@@ -24,6 +24,11 @@ The 500-verb ranking comes from FrequencyWords:
 - Source: https://github.com/hermitdave/FrequencyWords
 - Content license: CC BY-SA 4.0
 
+Sentence Builder Items (`app/sentence-builder-data.ts`) are unchanged Tatoeba
+rows chosen by hand; each keeps its attribution in the data file, and the
+generator checks every one against the corpus snapshot and lists it in the
+manifest.
+
 Each unchanged Tatoeba row retains both sentence IDs and contributor names.
 Each original row names the project author and its CC BY 4.0 license. The public
 manifest records the source, license and modification status for every runtime

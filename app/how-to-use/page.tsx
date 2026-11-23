@@ -81,7 +81,7 @@ export default function HowToUsePage() {
         <div className={styles.sectionBody}>
           <h2>What Spanish Quizzes is about</h2>
           <p>
-            Spanish Quizzes is a focused practice app for Spanish grammar and vocabulary. Pick a grammar topic from the home board, or practise common verbs with Spanish Verb Flashcards.
+            Spanish Quizzes is a focused practice app for Spanish grammar and vocabulary. Pick a grammar topic from the home board, put whole sentences in order in Sentence Builder, or practise common verbs with Spanish Verb Flashcards.
           </p>
           <p>
             The home board shows what is due, what you have studied, and your progress. Quiz rounds keep their own history, filters, and scores. Flashcards save each card&apos;s review box and next due date on this device.
@@ -142,8 +142,22 @@ export default function HowToUsePage() {
         </div>
       </section>
 
-      <section className={styles.section} id="interface">
+      <section className={styles.section} id="sentence-builder">
         <p className={styles.sectionNumber}>04</p>
+        <div className={styles.sectionBody}>
+          <h2>How to use Sentence Builder</h2>
+          <p>Sentence Builder practises word order: you see an English sentence and put the Spanish words in the right order. Choose a round length and, if you like, a difficulty or a pattern such as questions, negatives or object pronouns.</p>
+          <ul>
+            <li>Tap a word to add it to the end of your sentence. Tap a word in your sentence to send it back. <UiLabel>Undo</UiLabel> removes the last word and <UiLabel>Reset</UiLabel> clears them all; on a keyboard, Backspace undoes.</li>
+            <li>Some pieces are a few words that always go together, such as se lo or por favor. Capital letters and punctuation are added for you.</li>
+            <li><UiLabel>Check</UiLabel> is ready once every word is placed. The whole sentence is right or wrong; when Spanish allows more than one order, any of them counts.</li>
+            <li>After checking you see your sentence above the correct one, with misplaced words marked, the explanation and a speaker to hear it. Misses go to your mistake notebook, and a round counts toward your daily goal like a quiz round.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section className={styles.section} id="interface">
+        <p className={styles.sectionNumber}>05</p>
         <div className={styles.sectionBody}>
           <h2>What the interface elements mean</h2>
           <div className={styles.definitionGrid}>
@@ -185,7 +199,7 @@ export default function HowToUsePage() {
       </section>
 
       <section className={styles.section} id="your-board">
-        <p className={styles.sectionNumber}>05</p>
+        <p className={styles.sectionNumber}>06</p>
         <div className={styles.sectionBody}>
           <h2>Choosing your activities</h2>
           <p>Your daily goal is a round in every activity on your board, so the board holds only what you choose. Everything else waits on your shelf, the first item in the menu.</p>
@@ -201,7 +215,7 @@ export default function HowToUsePage() {
       </section>
 
       <section className={styles.section} id="backup">
-        <p className={styles.sectionNumber}>06</p>
+        <p className={styles.sectionNumber}>07</p>
         <div className={styles.sectionBody}>
           <h2>Backup and restore</h2>
           <p>Your learning progress is kept in browser storage on the device you are using. If you clear browser data or move to another browser or device, that local progress does not automatically follow you.</p>
@@ -215,7 +229,7 @@ export default function HowToUsePage() {
       </section>
 
       <section className={styles.section} id="mistakes">
-        <p className={styles.sectionNumber}>07</p>
+        <p className={styles.sectionNumber}>08</p>
         <div className={styles.sectionBody}>
           <h2>Mistake notebook</h2>
           <p>The Mistake notebook collects the grammar rules connected to incorrect quiz answers. It is designed for targeted review: instead of reading every rule again, you can see the areas that actually caused problems.</p>
@@ -225,7 +239,7 @@ export default function HowToUsePage() {
       </section>
 
       <section className={styles.section} id="tips">
-        <p className={styles.sectionNumber}>08</p>
+        <p className={styles.sectionNumber}>09</p>
         <div className={styles.sectionBody}>
           <h2>Useful practice tips</h2>
           <ul>

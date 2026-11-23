@@ -39,7 +39,7 @@ export default function AboutPage() {
           </p>
           <p>
             Spanish Quizzes is built around that idea. Instead of a full course it offers about 150 reviewed sentence pairs per
-            topic, an explanation for every answer, and a set of Spanish verb flashcards that use the Leitner system to
+            topic, an explanation for every answer, a Sentence Builder that has you put whole sentences in order, and a set of Spanish verb flashcards that use the Leitner system to
             bring back words you miss sooner and let the ones you already know fade into longer reviews.
           </p>
         </div>
