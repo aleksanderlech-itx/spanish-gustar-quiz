@@ -12,7 +12,7 @@ export const SENTENCE_BUILDER_DESCRIPTION = "Put shuffled Spanish words in order
 export const SENTENCE_BUILDER_STORAGE_KEY = "sentence-builder-progress-v1";
 export const SENTENCE_BUILDER_FILTER_KEY = "sentence-builder-filters-v1";
 /** Day the activity goes live; the daily goal only requires it from then on. Set to the release day. */
-export const SENTENCE_BUILDER_INTRODUCED_ON = "2026-11-30";
+export const SENTENCE_BUILDER_INTRODUCED_ON = "2026-11-24";
 /** Three stacked blocks: pieces put in order. */
 export const SENTENCE_BUILDER_ICON_PATH = "M4 5h9v4H4zM8 10h12v4H8zM4 15h7v4H4z";
 
