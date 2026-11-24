@@ -42,7 +42,7 @@ test("only the chosen activity's entries are used", () => {
 });
 
 test("a subtopic chip narrows the session to that subtopic", () => {
-  const doler = gustar.find((question) => question.infinitive === "doler");
+  const doler = gustar.find((question) => question.group === "doler");
   const entries = [questionEntry("gustar", gustar[0]), questionEntry("gustar", doler)];
   const session = buildRetrySession("gustar", entries, gustar, 10, "Gustar pattern: doler", identity);
   assert.deepEqual(session.map((item) => item.question.id), [doler.id]);
@@ -53,13 +53,13 @@ test("a legacy rule entry fills the session from its subtopic, credited to that 
   assert.equal(session.length, 5);
   assert.equal(new Set(session.map((item) => item.question.id)).size, 5);
   session.forEach((item) => {
-    assert.equal(item.question.infinitive, "doler");
+    assert.equal(item.question.group, "doler");
     assert.equal(item.entryId, "rule:Gustar pattern: doler");
   });
 });
 
 test("missed sentences come before legacy rule fill, and are never repeated by it", () => {
-  const doler = gustar.filter((question) => question.infinitive === "doler");
+  const doler = gustar.filter((question) => question.group === "doler");
   const entries = [ruleEntry("gustar", "Gustar pattern: doler"), questionEntry("gustar", doler[0])];
   const session = buildRetrySession("gustar", entries, gustar, 5, null, identity);
   assert.equal(session[0].entryId, `q:gustar:${doler[0].id}`);
@@ -72,7 +72,7 @@ test("an entry whose sentence no longer exists is skipped", () => {
 });
 
 test("a wrong retry explains with the answer given, the subtopic rule and the sentence's own explanation", () => {
-  const question = { ...saber.find((q) => q.infinitive === "places"), cue: "Barcelona", explanation: "Ir a Barcelona once is enough to say conozco." };
+  const question = { ...saber.find((q) => q.group === "places"), cue: "Barcelona", explanation: "Ir a Barcelona once is enough to say conozco." };
   const explanation = retryExplanation("saber-conocer", question, "sé");
   assert.equal(explanation.given, "You answered “sé”.");
   assert.equal(explanation.rule, "Barcelona is a place, and being familiar with a place uses conocer.");

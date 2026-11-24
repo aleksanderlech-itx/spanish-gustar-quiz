@@ -96,7 +96,7 @@ export default function RoundQuestion({
     };
   }, []);
 
-  const blankPlaceholder = question.blankHint ?? (quiz.showInfinitiveBlank === false ? "?" : question.infinitive);
+  const blankPlaceholder = question.blankHint ?? (quiz.showInfinitiveBlank === false ? "?" : question.group);
   const sentence = sentenceParts(question);
   const chartLabel = quiz.chartLabel ?? DEFAULT_CHART_LABEL;
   const isLast = index === total - 1;
@@ -168,7 +168,7 @@ export default function RoundQuestion({
             {isSubmitted ? sentence.answer : mode === "type" ? (typed || blankPlaceholder) : blankPlaceholder}
           </span>{sentence.after}
         </p>
-        <p className="round-translation" lang="en">{question.translations.en}</p>
+        <p className="round-translation" lang="en">{question.translation}</p>
       </section>
 
       <section className="round-answer-area">
@@ -245,7 +245,7 @@ export default function RoundQuestion({
 
       {showChart && (
         <div className="round-chart-overlay" role="dialog" aria-modal="true" aria-label={chartLabel}>
-          <VerbChart quizId={quizId} infinitive={question.infinitive} onClose={() => setShowChart(false)} />
+          <VerbChart quizId={quizId} infinitive={question.group} onClose={() => setShowChart(false)} />
         </div>
       )}
       </main>

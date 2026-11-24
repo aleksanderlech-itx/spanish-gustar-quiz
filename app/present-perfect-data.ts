@@ -9,7 +9,6 @@ export type PresentPerfectGroup = (typeof PRESENT_PERFECT_GROUPS)[number];
 
 /** Present of haber, the only auxiliary of the perfect, in person order. */
 export const HABER_PRESENT = ["he", "has", "ha", "hemos", "habéis", "han"] as const;
-const PLURAL_HABER = new Set<string>(["hemos", "habéis", "han"]);
 
 type Seed = readonly [
   /** Permanent question id. Never reuse or renumber: stored progress points at it. */
@@ -196,18 +195,12 @@ export const PRESENT_PERFECT_QUESTIONS: Question[] = seed.map(([id, group, befor
   id,
   before,
   after,
-  infinitive: group,
+  group,
   answer,
-  verbAnswer: answer,
-  objectPronoun: distractor,
+  distractors: [distractor],
   // Written per item in explanations-present-perfect.ts.
   explanation: "",
-  translations: { en, pl: "" },
-  subjectNumber: answer.split(" ").some((word) => PLURAL_HABER.has(word)) ? ("plural" as const) : ("singular" as const),
-  isActivity: false,
-  indirectObject: "",
-  // Haber is in the present; the shared Question type has no separate perfect tense.
-  tense: "present" as const,
+  translation: en,
   level,
   blankHint,
 })).map(applySourcedQuestionPair).map(withItemExplanation(PRESENT_PERFECT_EXPLANATIONS));

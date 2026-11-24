@@ -9,7 +9,6 @@ export type PresentContinuousGroup = (typeof PRESENT_CONTINUOUS_GROUPS)[number];
 
 /** Present of estar, the auxiliary of the continuous, in person order. */
 export const ESTAR_PRESENT = ["estoy", "estás", "está", "estamos", "estáis", "están"] as const;
-const PLURAL_ESTAR = new Set<string>(["estamos", "estáis", "están"]);
 
 type Seed = readonly [
   /** Permanent question id. Never reuse or renumber: stored progress points at it. */
@@ -198,18 +197,12 @@ export const PRESENT_CONTINUOUS_QUESTIONS: Question[] = seed.map(([id, group, be
   id,
   before,
   after,
-  infinitive: group,
+  group,
   answer,
-  verbAnswer: answer,
-  objectPronoun: distractor,
+  distractors: [distractor],
   // Written per item in explanations-present-continuous.ts.
   explanation: "",
-  translations: { en, pl: "" },
-  subjectNumber: answer.split(" ").some((word) => PLURAL_ESTAR.has(word)) ? ("plural" as const) : ("singular" as const),
-  isActivity: false,
-  indirectObject: "",
-  // Estar is in the present; the shared Question type has no separate continuous tense.
-  tense: "present" as const,
+  translation: en,
   level,
   blankHint,
 })).map(applySourcedQuestionPair).map(withItemExplanation(PRESENT_CONTINUOUS_EXPLANATIONS));

@@ -71,7 +71,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
     setMode(topicSettings.mode);
     const selected = shuffle(pool).slice(0, topicSettings.roundLength);
     setRound(selected);
-    setChoiceSets(Object.fromEntries(selected.map((question) => [question.id, answerChoicesFor(question, quizId)])));
+    setChoiceSets(Object.fromEntries(selected.map((question) => [question.id, answerChoicesFor(question)])));
     setAnswers(Array(selected.length).fill(null));
     setSubmitted(Array(selected.length).fill(false));
     setIndex(0);
@@ -164,7 +164,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
   const question = round[index];
   if (!question) return <main className="loading">Preparing your quiz…</main>;
 
-  const choices = choiceSets[question.id] ?? answerChoicesFor(question, quizId);
+  const choices = choiceSets[question.id] ?? answerChoicesFor(question);
   const isSubmitted = submitted[index];
   const isLast = index === round.length - 1;
 

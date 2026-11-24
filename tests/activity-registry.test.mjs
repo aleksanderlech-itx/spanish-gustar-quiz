@@ -50,10 +50,9 @@ test("resolveQuizId drives the ?quiz= route param, falling back to gustar", () =
 const registry = await import("../app/quiz-config.ts");
 const notebook = await import("../app/notebook.ts");
 
-test("every quiz declares choices, a rule label it owns, a chart and an icon", () => {
+test("every quiz declares a rule label it owns, a chart and an icon", () => {
   for (const id of registry.QUIZ_IDS) {
     const quiz = registry.QUIZ_CONFIG[id];
-    assert.ok(quiz.choices === "pair" || quiz.choices === "pronoun-verb", `${id}: choices`);
     assert.equal(typeof quiz.ruleLabel, "function", `${id}: ruleLabel`);
     assert.equal(typeof quiz.ownsRule, "function", `${id}: ownsRule`);
     assert.equal(typeof quiz.chart?.blocks, "function", `${id}: chart.blocks`);

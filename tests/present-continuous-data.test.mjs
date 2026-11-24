@@ -51,7 +51,7 @@ const SUBJECT_ESTAR = [
 ];
 
 const estarIn = (value) => words(value).find((word) => ESTAR_PRESENT.includes(word));
-const byGroup = (group) => PRESENT_CONTINUOUS_QUESTIONS.filter((question) => question.infinitive === group);
+const byGroup = (group) => PRESENT_CONTINUOUS_QUESTIONS.filter((question) => question.group === group);
 
 test("present continuous bank has 150 questions with stable ids 9001 to 9150", () => {
   assert.equal(PRESENT_CONTINUOUS_QUESTIONS.length, 150);
@@ -63,11 +63,11 @@ test("every question has its answer in the sentence, a translation, an explanati
   for (const question of PRESENT_CONTINUOUS_QUESTIONS) {
     assert.ok(question.answer.trim(), `#${question.id}: missing answer`);
     assert.equal(question.answer, fold(question.answer), `#${question.id}: answers are stored lower case`);
-    assert.ok(question.translations.en.trim(), `#${question.id}: missing translation`);
+    assert.ok(question.translation.trim(), `#${question.id}: missing translation`);
     assert.ok(question.explanation.trim(), `#${question.id}: missing explanation`);
     assert.ok(question.cue, `#${question.id}: missing cue`);
     assert.ok(question.blankHint, `#${question.id}: missing blank hint`);
-    assert.notEqual(fold(question.objectPronoun), fold(question.answer), `#${question.id}: distractor equals answer`);
+    assert.notEqual(fold(question.distractors[0]), fold(question.answer), `#${question.id}: distractor equals answer`);
     assert.equal(letters(SOURCED_QUIZ_PAIRS[question.id].spanish), letters(sentence(question)), `#${question.id}: shown sentence drifted from its pair`);
   }
 });
@@ -84,7 +84,7 @@ test("every estar answer is a present form of estar followed directly by the rig
 test("ser never forms the continuous in an answer, and the simple present is never a wrong option", () => {
   for (const question of PRESENT_CONTINUOUS_QUESTIONS) {
     assert.ok(!words(question.answer).some((word) => SER.includes(word)), `#${question.id}: ser in the answer`);
-    const distractor = words(question.objectPronoun);
+    const distractor = words(question.distractors[0]);
     if (estarIn(question.answer)) {
       // A one-word wrong option could be a valid simple present; every estar item's wrong option keeps an auxiliary.
       assert.equal(distractor.length, 2, `#${question.id}: wrong option should keep an auxiliary`);
@@ -113,10 +113,6 @@ test("coverage: every person of estar, every group and level, singular and plura
   for (const form of ESTAR_PRESENT) {
     const count = PRESENT_CONTINUOUS_QUESTIONS.filter((question) => estarIn(question.answer) === form).length;
     assert.ok(count >= 12, `only ${count} answers use ${form}`);
-  }
-  for (const question of PRESENT_CONTINUOUS_QUESTIONS.filter((item) => estarIn(item.answer))) {
-    const plural = ["estamos", "estáis", "están"].includes(estarIn(question.answer));
-    assert.equal(question.subjectNumber, plural ? "plural" : "singular", `#${question.id}: subjectNumber does not match`);
   }
   assert.deepEqual(Object.keys(PRESENT_CONTINUOUS_FORMS), [...PRESENT_CONTINUOUS_GROUPS]);
   for (const group of PRESENT_CONTINUOUS_GROUPS) assert.equal(byGroup(group).length, 30, `${group} should have 30 questions`);
@@ -156,7 +152,7 @@ test("pronoun placement: an attached pronoun takes an accent, a pronoun before e
     assert.ok(isPronounCluster(plain.slice(gerund.length)), `#${question.id}: ${question.answer} should end in object pronouns`);
     assert.notEqual(plain, question.answer, `#${question.id}: an attached pronoun needs a written accent`);
     assert.ok(estarIn(question.before), `#${question.id}: estar should be in the sentence before the blank`);
-    const distractor = fold(question.objectPronoun);
+    const distractor = fold(question.distractors[0]);
     const unaccented = distractor === plain;
     const pronounFirst = distractor.includes(" ") && isPronounCluster(distractor.split(" ")[0]);
     const wrongStem = !stripAccents(distractor).startsWith(gerund);
@@ -165,7 +161,7 @@ test("pronoun placement: an attached pronoun takes an accent, a pronoun before e
   for (const question of before) {
     const lastWord = words(question.before).at(-1);
     assert.ok(isPronounCluster(lastWord), `#${question.id}: a pronoun should come right before the blank`);
-    const [, distractorGerund] = fold(question.objectPronoun).split(" ");
+    const [, distractorGerund] = fold(question.distractors[0]).split(" ");
     const plain = stripAccents(distractorGerund);
     const gerund = gerundFor(question.blankHint);
     assert.ok(plain.startsWith(gerund) && isPronounCluster(plain.slice(gerund.length)), `#${question.id}: wrong option should repeat the pronoun on the gerund`);
@@ -179,10 +175,10 @@ test("gerund or infinitive: the infinitive answers take the gerund as the wrong 
   assert.ok(items.length - infinitives.length >= 12, "too few estar answers to contrast with");
   for (const question of infinitives) {
     assert.equal(question.answer, question.blankHint, `#${question.id}: the answer should be the infinitive`);
-    assert.equal(stripAccents(fold(question.objectPronoun)), stripAccents(`${gerundFor(question.blankHint)}${question.blankHint.endsWith("se") ? "se" : ""}`), `#${question.id}: the wrong option should be the gerund`);
+    assert.equal(stripAccents(fold(question.distractors[0])), stripAccents(`${gerundFor(question.blankHint)}${question.blankHint.endsWith("se") ? "se" : ""}`), `#${question.id}: the wrong option should be the gerund`);
   }
   for (const question of items.filter((item) => estarIn(item.answer))) {
-    const [, wrong] = fold(question.objectPronoun).split(" ");
+    const [, wrong] = fold(question.distractors[0]).split(" ");
     assert.equal(wrong, question.blankHint, `#${question.id}: the wrong option should be estar plus the infinitive`);
   }
 });

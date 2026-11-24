@@ -12,9 +12,21 @@ test("every question supplies the data required by the reusable interface", () =
   for (const question of ALL_QUESTIONS) {
     assert.ok(question.before.length || question.after.length);
     assert.ok(question.answer.trim());
-    assert.ok(question.infinitive.trim());
-    assert.ok(question.translations.en.trim());
+    assert.ok(question.group.trim());
+    assert.ok(question.translation.trim());
     assert.ok(question.explanation.trim());
     assert.match(question.answer, /^(me|te|le|nos|les)\s+\S+/);
+  }
+});
+
+test("Gustar's stored wrong options are the ones the round offered before #152", () => {
+  const PRONOUNS = ["me", "te", "le", "nos", "les"];
+  for (const question of ALL_QUESTIONS) {
+    // The pre-#152 rule: the answer, the right pronoun with the other verb form, then other pronouns.
+    const before = new Set([question.answer]);
+    const forms = VERB_FORMS[question.group];
+    before.add(`${question.objectPronoun} ${forms.find((form) => form !== question.verbAnswer) ?? question.verbAnswer}`);
+    PRONOUNS.filter((pronoun) => pronoun !== question.objectPronoun).forEach((pronoun) => before.add(`${pronoun} ${question.verbAnswer}`));
+    assert.deepEqual([question.answer, ...question.distractors], [...before].slice(0, 3), `#${question.id}`);
   }
 });

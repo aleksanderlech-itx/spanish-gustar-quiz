@@ -50,11 +50,11 @@ test("every question has its answer in the sentence, a translation, an explanati
   for (const question of PRESENT_PERFECT_QUESTIONS) {
     assert.ok(question.answer.trim(), `#${question.id}: missing answer`);
     assert.equal(question.answer, fold(question.answer), `#${question.id}: answers are stored lower case`);
-    assert.ok(question.translations.en.trim(), `#${question.id}: missing translation`);
+    assert.ok(question.translation.trim(), `#${question.id}: missing translation`);
     assert.ok(question.explanation.trim(), `#${question.id}: missing explanation`);
     assert.ok(question.cue, `#${question.id}: missing cue`);
     assert.ok(question.blankHint, `#${question.id}: missing blank hint`);
-    assert.notEqual(fold(question.objectPronoun), fold(question.answer), `#${question.id}: distractor equals answer`);
+    assert.notEqual(fold(question.distractors[0]), fold(question.answer), `#${question.id}: distractor equals answer`);
     assert.equal(letters(SOURCED_QUIZ_PAIRS[question.id].spanish), letters(sentence(question)), `#${question.id}: shown sentence drifted from its pair`);
   }
 });
@@ -73,9 +73,9 @@ test("tener is never the auxiliary in an answer, and the haber not tener group o
   for (const question of PRESENT_PERFECT_QUESTIONS) {
     assert.ok(!words(question.answer).some((word) => TENER.includes(word)), `#${question.id}: tener in the answer`);
   }
-  const contrast = PRESENT_PERFECT_QUESTIONS.filter((question) => question.infinitive === "haber not tener");
+  const contrast = PRESENT_PERFECT_QUESTIONS.filter((question) => question.group === "haber not tener");
   for (const question of contrast) {
-    const [tener, participle] = fold(question.objectPronoun).split(" ");
+    const [tener, participle] = fold(question.distractors[0]).split(" ");
     assert.ok(TENER.includes(tener), `#${question.id}: distractor should use tener`);
     assert.equal(participle, participleFor(question.blankHint), `#${question.id}: tener distractor should keep the right participle`);
     assert.equal(TENER.indexOf(tener), HABER_PRESENT.indexOf(haberIn(question.answer)), `#${question.id}: tener distractor should be the same person`);
@@ -96,16 +96,13 @@ test("coverage: every person of haber, singular and plural subjects, every group
     const count = PRESENT_PERFECT_QUESTIONS.filter((question) => haberIn(question.answer) === form).length;
     assert.ok(count >= 12, `only ${count} answers use ${form}`);
   }
-  for (const number of ["singular", "plural"]) {
-    assert.ok(PRESENT_PERFECT_QUESTIONS.filter((question) => question.subjectNumber === number).length >= 50, `too few ${number} subjects`);
-  }
-  for (const question of PRESENT_PERFECT_QUESTIONS) {
-    const plural = ["hemos", "habéis", "han"].includes(haberIn(question.answer));
-    assert.equal(question.subjectNumber, plural ? "plural" : "singular", `#${question.id}: subjectNumber does not match ${haberIn(question.answer)}`);
+  for (const plural of [false, true]) {
+    const count = PRESENT_PERFECT_QUESTIONS.filter((question) => ["hemos", "habéis", "han"].includes(haberIn(question.answer)) === plural).length;
+    assert.ok(count >= 50, `too few ${plural ? "plural" : "singular"} subjects`);
   }
   assert.deepEqual(Object.keys(PRESENT_PERFECT_FORMS), [...PRESENT_PERFECT_GROUPS]);
   for (const group of PRESENT_PERFECT_GROUPS) {
-    const count = PRESENT_PERFECT_QUESTIONS.filter((question) => question.infinitive === group).length;
+    const count = PRESENT_PERFECT_QUESTIONS.filter((question) => question.group === group).length;
     assert.ok(count >= 20, `${group} has only ${count} questions`);
   }
   for (const level of ["basic", "intermediate", "advanced"]) {
@@ -122,17 +119,17 @@ test("regular participles in -ado and -ido are balanced with common irregular pa
   for (const common of ["abierto", "dicho", "escrito", "hecho", "muerto", "puesto", "roto", "visto", "vuelto"]) {
     assert.ok(participles.includes(common), `irregular participle ${common} is missing`);
   }
-  for (const question of PRESENT_PERFECT_QUESTIONS.filter((item) => item.infinitive === "irregular participle")) {
+  for (const question of PRESENT_PERFECT_QUESTIONS.filter((item) => item.group === "irregular participle")) {
     assert.ok(IRREGULAR[question.blankHint], `#${question.id}: ${question.blankHint} is not irregular`);
   }
 });
 
 test("negatives and questions keep pronouns, no and adverbs before haber, and the distractor splits the verb", () => {
-  const items = PRESENT_PERFECT_QUESTIONS.filter((question) => question.infinitive === "negatives and questions");
+  const items = PRESENT_PERFECT_QUESTIONS.filter((question) => question.group === "negatives and questions");
   for (const question of items) {
     const tokens = fold(question.answer).split(" ");
     assert.ok(tokens.length >= 3, `#${question.id}: something should come before haber`);
-    const distractor = fold(question.objectPronoun).split(" ");
+    const distractor = fold(question.distractors[0]).split(" ");
     const haber = distractor.findIndex((word) => HABER_PRESENT.includes(word));
     assert.ok(haber >= 0 && haber < distractor.length - 2, `#${question.id}: distractor should put a word between haber and the participle`);
   }

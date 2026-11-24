@@ -75,7 +75,7 @@ const sampleQuestions = (questions: Question[]): Question[] =>
 const sampleLine = (question: Question): string => {
   const { before, after } = sentenceParts(question);
   const prompt = `${before}___${after}`;
-  const translation = question.translations.en ? ` (${question.translations.en})` : "";
+  const translation = question.translation ? ` (${question.translation})` : "";
   return `- ${prompt} → **${question.answer}**${translation} ${question.explanation}`;
 };
 

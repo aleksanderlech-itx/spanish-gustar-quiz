@@ -56,7 +56,7 @@ function flagDuplicates(rows, keyFn) {
 // ---- Quiz rows -------------------------------------------------------
 
 // example_english is blank for quiz rows: quiz questions only have one
-// English translation (translations.en), not a separate example sentence
+// English translation (translation), not a separate example sentence
 // and its translation like flashcards do.
 const HEADER = ["type", "topic", "spanish", "english", "answer_or_form", "explanation_or_example", "status", "example_english"];
 
@@ -68,9 +68,9 @@ function quizRows(questions, type) {
   );
   return questions.map((q, i) => {
     const spanish = sentences[i];
-    const missing = !q.answer?.trim() || !q.translations?.en?.trim() || !q.explanation?.trim();
+    const missing = !q.answer?.trim() || !q.translation?.trim() || !q.explanation?.trim();
     const status = missing ? "incomplete" : dupStatus[i];
-    return [type, q.infinitive, spanish, q.translations.en, q.answer, q.explanation, status, ""];
+    return [type, q.group, spanish, q.translation, q.answer, q.explanation, status, ""];
   });
 }
 

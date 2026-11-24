@@ -7,9 +7,9 @@ test("Por vs Para quiz uses original, complete question records", () => {
   assert.equal(new Set(POR_PARA_QUESTIONS.map((question) => question.id)).size, POR_PARA_QUESTIONS.length);
   for (const question of POR_PARA_QUESTIONS) {
     assert.match(question.answer, /^(por|para)$/);
-    assert.ok(question.objectPronoun);
-    assert.notEqual(question.answer, question.objectPronoun);
-    assert.ok(question.translations.en);
+    assert.ok(question.distractors[0]);
+    assert.notEqual(question.answer, question.distractors[0]);
+    assert.ok(question.translation);
     assert.ok(question.explanation);
   }
 });

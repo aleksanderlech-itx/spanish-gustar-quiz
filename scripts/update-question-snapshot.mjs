@@ -28,9 +28,9 @@ export const SNAPSHOT_URL = new URL("../tests/question-id-snapshot.json", import
  */
 export const sentenceOf = (question) => [
   `${question.before.trim()} [${question.answer}] ${question.after.trim()}`.trim(),
-  question.objectPronoun,
-  question.infinitive,
-  question.tense,
+  question.objectPronoun ?? question.distractors[0],
+  question.group,
+  question.tense ?? "present",
   question.level,
 ].join(" | ");
 

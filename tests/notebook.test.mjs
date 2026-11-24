@@ -6,28 +6,23 @@ const baseQuestion = {
   id: 1,
   before: "",
   after: "",
-  infinitive: "gustar",
+  group: "gustar",
   answer: "",
-  verbAnswer: "",
-  objectPronoun: "",
+  distractors: [],
   explanation: "",
-  translations: { en: "", pl: "" },
-  subjectNumber: "singular",
-  isActivity: false,
-  indirectObject: "",
-  tense: "present",
+  translation: "",
   level: "basic",
 };
 
 test("ruleLabelFor names the actual grammar point per quiz", () => {
-  assert.equal(ruleLabelFor({ ...baseQuestion, infinitive: "doler" }, "gustar"), "Gustar pattern: doler");
+  assert.equal(ruleLabelFor({ ...baseQuestion, group: "doler" }, "gustar"), "Gustar pattern: doler");
   assert.equal(ruleLabelFor(baseQuestion, "ser-estar"), "Ser vs estar");
   assert.equal(ruleLabelFor({ ...baseQuestion, tense: "preterite" }, "preterite-imperfect"), "Preterite");
   assert.equal(ruleLabelFor({ ...baseQuestion, tense: "imperfect" }, "preterite-imperfect"), "Imperfect");
-  assert.equal(ruleLabelFor({ ...baseQuestion, infinitive: "people" }, "saber-conocer"), "Saber vs conocer: people");
-  assert.equal(ruleLabelFor({ ...baseQuestion, infinitive: "placement" }, "reflexive-verbs"), "Reflexive verbs: placement");
-  assert.equal(ruleLabelFor({ ...baseQuestion, infinitive: "irregular participle" }, "present-perfect"), "Present perfect: irregular participle");
-  assert.equal(ruleLabelFor({ ...baseQuestion, infinitive: "irregular gerund" }, "present-continuous"), "Present continuous: irregular gerund");
+  assert.equal(ruleLabelFor({ ...baseQuestion, group: "people" }, "saber-conocer"), "Saber vs conocer: people");
+  assert.equal(ruleLabelFor({ ...baseQuestion, group: "placement" }, "reflexive-verbs"), "Reflexive verbs: placement");
+  assert.equal(ruleLabelFor({ ...baseQuestion, group: "irregular participle" }, "present-perfect"), "Present perfect: irregular participle");
+  assert.equal(ruleLabelFor({ ...baseQuestion, group: "irregular gerund" }, "present-continuous"), "Present continuous: irregular gerund");
 });
 
 // A browser stand-in so the notebook's storage reads and writes run unchanged.
@@ -93,7 +88,7 @@ test("corrupt or blocked storage never throws out of the notebook", () => {
 
 test("a missed sentence becomes one question entry with its subtopic and wrong answer", () => {
   installStorage();
-  recordMistakes("gustar", [{ question: { ...baseQuestion, id: 12, infinitive: "doler" }, answer: "me duelen" }], new Date("2026-10-16T08:00:00.000Z"));
+  recordMistakes("gustar", [{ question: { ...baseQuestion, id: 12, group: "doler" }, answer: "me duelen" }], new Date("2026-10-16T08:00:00.000Z"));
   assert.deepEqual(readNotebookEntries(), [{
     id: "q:gustar:12", kind: "question", quizId: "gustar", rule: "Gustar pattern: doler", questionId: 12,
     wrongAnswer: "me duelen", missCount: 1, lastMissedAt: "2026-10-16T08:00:00.000Z", retryCount: 0, retryCorrectCount: 0,
@@ -102,7 +97,7 @@ test("a missed sentence becomes one question entry with its subtopic and wrong a
 
 test("missing the same sentence again updates its entry instead of adding a duplicate", () => {
   installStorage();
-  const question = { ...baseQuestion, id: 12, infinitive: "doler" };
+  const question = { ...baseQuestion, id: 12, group: "doler" };
   recordMistakes("gustar", [{ question, answer: "me duelen" }], new Date("2026-10-16T08:00:00.000Z"));
   recordMistakes("gustar", [{ question, answer: "te duele" }], new Date("2026-10-17T08:00:00.000Z"));
   const entries = readNotebookEntries();

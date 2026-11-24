@@ -18,7 +18,7 @@ test("Saber vs Conocer quiz uses original, complete question records", () => {
   assert.equal(SABER_CONOCER_QUESTIONS.length, 150);
   assert.equal(new Set(SABER_CONOCER_QUESTIONS.map((question) => question.id)).size, SABER_CONOCER_QUESTIONS.length);
   for (const question of SABER_CONOCER_QUESTIONS) {
-    assert.ok(question.translations.en);
+    assert.ok(question.translation);
     assert.ok(question.explanation);
     assert.equal(question.blankHint, "saber / conocer", `#${question.id} must not reveal its usage in the blank`);
   }
@@ -27,7 +27,7 @@ test("Saber vs Conocer quiz uses original, complete question records", () => {
 test("each distractor is the other verb in the same person and tense", () => {
   for (const question of SABER_CONOCER_QUESTIONS) {
     assert.ok(counterpart.has(question.answer), `#${question.id}: ${question.answer} is not a saber/conocer form`);
-    assert.equal(question.objectPronoun, counterpart.get(question.answer), `#${question.id}: wrong distractor`);
+    assert.equal(question.distractors[0], counterpart.get(question.answer), `#${question.id}: wrong distractor`);
     assert.equal(question.tense, tenseOf.get(question.answer), `#${question.id}: tense doesn't match ${question.answer}`);
   }
 });
@@ -35,17 +35,17 @@ test("each distractor is the other verb in the same person and tense", () => {
 test("usage categories are all filterable and the past group is the only one outside the present", () => {
   assert.deepEqual(Object.keys(SABER_CONOCER_FORMS), [...SABER_CONOCER_USAGES]);
   for (const usage of SABER_CONOCER_USAGES) {
-    assert.ok(SABER_CONOCER_QUESTIONS.some((question) => question.infinitive === usage), `no questions for ${usage}`);
+    assert.ok(SABER_CONOCER_QUESTIONS.some((question) => question.group === usage), `no questions for ${usage}`);
   }
   for (const question of SABER_CONOCER_QUESTIONS) {
-    assert.equal(question.tense !== "present", question.infinitive === "past meaning", `#${question.id}: tense/usage mismatch`);
+    assert.equal(question.tense !== "present", question.group === "past meaning", `#${question.id}: tense/usage mismatch`);
   }
 });
 
 test("skills always use saber and people, places and familiarity always use conocer", () => {
   const saberForms = new Set(["saber", ...SABER_CONOCER_CONJUGATIONS.flatMap((row) => Object.values(row.saber))]);
   for (const question of SABER_CONOCER_QUESTIONS) {
-    if (question.infinitive === "facts" || question.infinitive === "skills") assert.ok(saberForms.has(question.answer), `#${question.id}`);
-    if (["people", "places", "familiarity"].includes(question.infinitive)) assert.ok(!saberForms.has(question.answer), `#${question.id}`);
+    if (question.group === "facts" || question.group === "skills") assert.ok(saberForms.has(question.answer), `#${question.id}`);
+    if (["people", "places", "familiarity"].includes(question.group)) assert.ok(!saberForms.has(question.answer), `#${question.id}`);
   }
 });

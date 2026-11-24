@@ -43,13 +43,15 @@ test("every quiz question has all required fields populated", () => {
     for (const question of questions) {
       assert.ok(question.before.length || question.after.length, `${name} #${question.id}: missing prompt text`);
       assert.ok(question.answer.trim(), `${name} #${question.id}: missing answer`);
-      assert.ok(question.infinitive.trim(), `${name} #${question.id}: missing infinitive`);
+      assert.ok(question.group.trim(), `${name} #${question.id}: missing group`);
       assert.ok(question.explanation.trim(), `${name} #${question.id}: missing explanation`);
-      assert.ok(question.translations.en.trim(), `${name} #${question.id}: missing English translation`);
-      assert.ok(question.objectPronoun.trim(), `${name} #${question.id}: missing objectPronoun/distractor`);
-      assert.notEqual(question.answer, question.objectPronoun, `${name} #${question.id}: answer and distractor are identical`);
-      assert.ok(["singular", "plural"].includes(question.subjectNumber), `${name} #${question.id}: invalid subjectNumber`);
-      assert.ok(["present", "preterite", "imperfect"].includes(question.tense), `${name} #${question.id}: invalid tense`);
+      assert.ok(question.translation.trim(), `${name} #${question.id}: missing English translation`);
+      assert.ok(question.distractors.length >= 1, `${name} #${question.id}: no wrong option`);
+      for (const distractor of question.distractors) {
+        assert.ok(distractor.trim(), `${name} #${question.id}: empty wrong option`);
+        assert.notEqual(distractor, question.answer, `${name} #${question.id}: a wrong option equals the answer`);
+      }
+      assert.ok(question.tense === undefined || ["present", "preterite", "imperfect"].includes(question.tense), `${name} #${question.id}: invalid tense`);
       assert.ok(["basic", "intermediate", "advanced"].includes(question.level), `${name} #${question.id}: invalid level`);
     }
   }

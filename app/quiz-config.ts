@@ -57,19 +57,16 @@ type QuizConfigEntry = {
   backupName: string;
   sources: Array<{ label: string; href: string }>;
   rule: ReturnType<typeof ruleForTense>;
-  /** Whether the blank shows the question's infinitive before it's answered.
+  /** Whether the blank shows the question's group (its infinitive, for most quizzes) before it's answered.
    * Defaults to true: set false only when the answer isn't a form of that
    * single infinitive (e.g. gustar's answer is a pronoun + conjugated verb). */
   showInfinitiveBlank?: boolean;
-  /** Label for the second filter, which matches each question's `infinitive`.
+  /** Label for the second filter, which matches each question's `group`.
    * Defaults to "Verb" / "All verbs"; set when that field holds something else. */
   filterLabel?: { label: string; all: string };
   /** Name of the reference chart linked from the topic page and the round's
    * "Stuck?" button. Defaults to "Verb conjugation chart". */
   chartLabel?: string;
-  /** Answer options in choice mode: "pair" offers the answer and the question's wrong option; "pronoun-verb"
-   * mixes indirect object pronouns and the verb's other form (gustar patterns). */
-  choices: "pair" | "pronoun-verb";
   /** The mistake notebook's label for the grammar point a missed question exercises. Stored in learners'
    * browsers, so a label must never change; `ownsRule` maps a stored label back to its quiz. */
   ruleLabel: (question: Question) => string;
@@ -106,8 +103,7 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     // The answer is a pronoun + conjugated verb (e.g. "me gusta"), not a form of the
     // bare infinitive shown here (e.g. "gustar"), so showing it in the blank would mislead.
     showInfinitiveBlank: false,
-    choices: "pronoun-verb",
-    ruleLabel: (question) => `Gustar pattern: ${question.infinitive}`,
+    ruleLabel: (question) => `Gustar pattern: ${question.group}`,
     ownsRule: (rule) => rule.startsWith("Gustar pattern:"),
     chart: { blocks: CHART_BLOCKS.gustar, sections: "group", link: "chart" },
     iconPath: "M20.8 8.6c0 4.1-5.1 8.4-8.8 11.2C8.3 17 3.2 12.7 3.2 8.6a5 5 0 0 1 8.8-3.2 5 5 0 0 1 8.8 3.2Z",
@@ -126,7 +122,6 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     backupName: "spanish-ser-estar-quiz-progress.json",
     sources: [{ label: "Instituto Cervantes: ser y estar", href: "https://cvc.cervantes.es/ensenanza/ese/programa_17/aprendiz_17.htm" }, { label: "Instituto Cervantes: actividad B1", href: "https://cvc.cervantes.es/ensenanza/actividades_ave/nivelii/ficha_20.htm" }],
     rule: { title: "Ser frames what something is. Estar frames how or where it is now.", body: "Use ser for identity, origin, material, time and defining qualities. Use estar for location, condition and a state linked to a situation.", singular: "La camisa es azul.", plural: "La camisa está mojada." },
-    choices: "pair",
     ruleLabel: () => "Ser vs estar",
     ownsRule: (rule) => rule === "Ser vs estar",
     chart: { blocks: CHART_BLOCKS.serEstar, sections: "group", link: "chart" },
@@ -146,7 +141,6 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     backupName: "spanish-preterite-imperfect-quiz-progress.json",
     sources: [],
     rule: { title: "Preterite completes the event. Imperfect describes the frame.", body: "Use preterite for completed actions, sequences, starts and changes. Use imperfect for habits, ongoing actions, background details and repeated past situations.", singular: "Ayer fui al mercado.", plural: "De niño iba al parque." },
-    choices: "pair",
     ruleLabel: (question) => (question.tense === "preterite" ? "Preterite" : "Imperfect"),
     ownsRule: (rule) => rule === "Preterite" || rule === "Imperfect",
     chart: { blocks: CHART_BLOCKS.preteriteImperfect, sections: "group", link: "chart", regularity: PRETERITE_IMPERFECT_REGULARITY },
@@ -167,7 +161,6 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     sources: [],
     chartLabel: "Usage examples",
     rule: { title: "Por looks back to the cause. Para looks ahead to the goal.", body: "Use por for cause, duration, exchange, means and movement through a place. Use para for purpose, recipients, deadlines and destinations.", singular: "Lo hice por ti.", plural: "Lo hice para ti." },
-    choices: "pair",
     ruleLabel: () => "Por vs para",
     ownsRule: (rule) => rule === "Por vs para",
     chart: { blocks: CHART_BLOCKS.porPara, sections: "shared", link: "explainer" },
@@ -188,13 +181,12 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     backupName: "spanish-object-pronouns-quiz-progress.json",
     sources: [],
     rule: { title: "Indirect before direct. Le and les become se.", body: "Put object pronouns before a conjugated verb, or attach them to a gerund or infinitive. With two pronouns, the indirect one goes first, and le or les turns into se before lo, la, los or las.", singular: "Le doy el libro → Se lo doy.", plural: "Les doy las llaves → Se las doy." },
-    // The blank holds pronouns, not a form of anything shown in `infinitive` (the pronoun type).
+    // The blank holds pronouns, not a form of anything shown in `group` (the pronoun type).
     showInfinitiveBlank: false,
     filterLabel: { label: "Pronoun type", all: "All pronoun types" },
     chartLabel: "Pronoun chart",
     introducedOn: "2026-09-23",
-    choices: "pair",
-    ruleLabel: (question) => `Object pronouns: ${question.infinitive}`,
+    ruleLabel: (question) => `Object pronouns: ${question.group}`,
     ownsRule: (rule) => rule.startsWith("Object pronouns:"),
     chart: { blocks: CHART_BLOCKS.objectPronouns, sections: "group", link: "chart" },
     iconPath: "M4 12.5l5 5L20 7",
@@ -215,8 +207,7 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     rule: { title: "Saber knows facts and skills. Conocer knows people, places and things.", body: "Use saber for information, before que, si or a question word, and with an infinitive for skills. Use conocer for people (with the personal a), places and familiarity with a work or field. In the preterite, supe means found out and conocí means met.", singular: "Sé dónde vive Ana.", plural: "Conozco a Ana." },
     filterLabel: { label: "Usage", all: "All usages" },
     introducedOn: "2026-10-02",
-    choices: "pair",
-    ruleLabel: (question) => `Saber vs conocer: ${question.infinitive}`,
+    ruleLabel: (question) => `Saber vs conocer: ${question.group}`,
     ownsRule: (rule) => rule.startsWith("Saber vs conocer:"),
     // Its groups are usages, not verbs: the topic-level chart is one section with both full paradigms.
     chart: { blocks: CHART_BLOCKS.saberConocer, sections: "group-or-shared", link: "chart" },
@@ -240,8 +231,7 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     chartLabel: "Reflexive chart",
     // Set to the production go-live day so the streak never requires this activity on earlier days.
     introducedOn: "2026-10-16",
-    choices: "pair",
-    ruleLabel: (question) => `Reflexive verbs: ${question.infinitive}`,
+    ruleLabel: (question) => `Reflexive verbs: ${question.group}`,
     ownsRule: (rule) => rule.startsWith("Reflexive verbs:"),
     chart: { blocks: CHART_BLOCKS.reflexive, sections: "shared", link: "chart" },
     // A circular arrow: the action turns back on the subject.
@@ -265,8 +255,7 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     chartLabel: "Perfect chart",
     // Set to the production go-live day so the streak never requires this activity on earlier days.
     introducedOn: "2026-11-01",
-    choices: "pair",
-    ruleLabel: (question) => `Present perfect: ${question.infinitive}`,
+    ruleLabel: (question) => `Present perfect: ${question.group}`,
     ownsRule: (rule) => rule.startsWith("Present perfect:"),
     chart: { blocks: CHART_BLOCKS.presentPerfect, sections: "shared", link: "chart" },
     // A clock hand landing on now: past actions that reach the present.
@@ -290,8 +279,7 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     chartLabel: "Continuous chart",
     // Set to the production go-live day so the streak never requires this activity on earlier days.
     introducedOn: "2026-11-07",
-    choices: "pair",
-    ruleLabel: (question) => `Present continuous: ${question.infinitive}`,
+    ruleLabel: (question) => `Present continuous: ${question.group}`,
     ownsRule: (rule) => rule.startsWith("Present continuous:"),
     chart: { blocks: CHART_BLOCKS.presentContinuous, sections: "shared", link: "chart" },
     // A play arrow inside a circle: an action in progress right now.

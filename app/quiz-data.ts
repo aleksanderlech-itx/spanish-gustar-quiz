@@ -3,28 +3,53 @@ import { applySourcedQuestionPair } from "./sourced-quiz-content.ts";
 import { withItemExplanation } from "./item-explanation.ts";
 import { GUSTAR_EXPLANATIONS } from "./explanations-gustar.ts";
 
+/**
+ * One fill-in-the-blank sentence: the shape every grammar quiz shares (issue #152). A quiz that needs
+ * more adds its own fields on top, as Gustar does with `GustarQuestion`.
+ */
 export type Question = {
   id: number;
   before: string;
   after: string;
-  infinitive: string;
   answer: string;
-  verbAnswer: string;
-  objectPronoun: string;
-  explanation: string;
-  translations: { en: string; pl: string };
-  subjectNumber: "singular" | "plural";
-  isActivity: boolean;
-  indirectObject: string;
-  tense: "present" | "preterite" | "imperfect";
+  /** The wrong options offered next to the answer in choice mode. */
+  distractors: string[];
+  /** The quiz's group (a verb, a usage, a pattern): filters, the notebook and the chart key on it. */
+  group: string;
   level: "basic" | "intermediate" | "advanced";
-  /** Shown in the empty blank instead of the infinitive, e.g. the bare gerund
-   * when the learner has to attach pronouns to it. */
-  blankHint?: string;
+  explanation: string;
+  /** The whole sentence in English. */
+  translation: string;
   /** The word or phrase in this sentence that decides the answer. It must appear
    * in the sentence and be named in the explanation (docs/explanation-quality.md). */
   cue?: string;
+  /** Shown in the empty blank instead of the group, e.g. the bare gerund
+   * when the learner has to attach pronouns to it. */
+  blankHint?: string;
+  /** Set only by quizzes whose sentences differ in tense. */
+  tense?: "present" | "preterite" | "imperfect";
 };
+
+/** A Gustar pattern sentence: the base question plus what its weak-area insights and explanations read. */
+export type GustarQuestion = Question & {
+  /** The indirect object pronoun in the answer: me, te, le, nos or les. */
+  objectPronoun: string;
+  /** The verb form in the answer: gusta, gustan, duele... */
+  verbAnswer: string;
+  subjectNumber: "singular" | "plural";
+  /** Whether the subject is an activity (an infinitive) rather than a noun. */
+  isActivity: boolean;
+};
+
+export const isGustarQuestion = (question: Question): question is GustarQuestion => "objectPronoun" in question;
+
+const PRONOUNS = ["me", "te", "le", "nos", "les"];
+
+/** Gustar's two wrong options: the right pronoun with the verb's other form, then the first other pronoun. */
+const gustarDistractors = (objectPronoun: string, verbAnswer: string, forms: [string, string]) => [
+  `${objectPronoun} ${forms.find((form) => form !== verbAnswer) ?? verbAnswer}`,
+  ...PRONOUNS.filter((pronoun) => pronoun !== objectPronoun).map((pronoun) => `${pronoun} ${verbAnswer}`),
+].filter((option, index, all) => option !== `${objectPronoun} ${verbAnswer}` && all.indexOf(option) === index).slice(0, 2);
 
 export const VERB_FORMS: Record<string, [string, string]> = {
   gustar: ["gusta", "gustan"],
@@ -70,7 +95,7 @@ export const QUESTION_BANKS: Record<string, Array<[id: number, before: string, a
   ]
 };
 
-const QUESTIONS: Question[] = Object.entries(QUESTION_BANKS).flatMap(([infinitive, rows]) =>
+const QUESTIONS: GustarQuestion[] = Object.entries(QUESTION_BANKS).flatMap(([infinitive, rows]) =>
   rows.map(([id, before, after, number, subject], index) => {
     const pronounMatch = before.match(/\b(me|te|le|nos|les)\b/i);
     const objectPronoun = pronounMatch?.[1]?.toLocaleLowerCase("es") ?? "";
@@ -82,20 +107,16 @@ const QUESTIONS: Question[] = Object.entries(QUESTION_BANKS).flatMap(([infinitiv
     id,
     before: promptBefore,
     after,
-    infinitive,
+    group: infinitive,
     answer: `${objectPronoun} ${verbAnswer}`,
+    distractors: gustarDistractors(objectPronoun, verbAnswer, VERB_FORMS[infinitive]),
     verbAnswer,
     objectPronoun,
     // Written per item in explanations-gustar.ts.
     explanation: "",
-    translations: {
-      en: TRANSLATIONS[id - 1],
-      pl: "",
-    },
+    translation: TRANSLATIONS[id - 1],
     subjectNumber: number === "s" ? "singular" : "plural",
     isActivity: subject.startsWith("the activity"),
-    indirectObject: objectPronoun,
-    tense: "present",
     level: (index < Math.ceil(rows.length / 3) ? "basic" : index < Math.ceil((rows.length * 2) / 3) ? "intermediate" : "advanced") as Question["level"],
     };
   })
