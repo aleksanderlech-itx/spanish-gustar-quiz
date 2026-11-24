@@ -21,11 +21,13 @@ create.
    developers build from). Her brief is `docs/design-brief.md`.
 2. Fixed principles: mobile first; light and dark as equals; accessibility
    (44px targets, visible focus, reduced motion, natural wrapping of Spanish);
-   the active exercise is the only strongly emphasised surface in a round; no
-   accounts; test-mode hints in every interface; one shared footer; Ko-fi for
+   no accounts; test-mode hints in every interface; one shared footer; Ko-fi for
    tips only; no analytics before consent.
 3. Everything else is open. The approved "Spanish Editorial Learning" look is
-   a starting point; she may propose a new direction with reasons.
+   a starting point; she may propose a new direction. This includes the rule
+   from 0002 and `UX-CONTRACT.md` that only the active exercise is strongly
+   elevated: it is no longer fixed. The interface feels too cluttered today,
+   and making it easier is an explicit aim.
 4. Project rule 4 (radius) is removed. Radius and shape are hers to define;
    the values in `DESIGN.md` apply until her system replaces them.
 5. Voice is open. Project rules 2 (no em or en dashes) and 3 (professional
@@ -33,8 +35,8 @@ create.
    them.
 6. PR #90 is closed without merging, so she inherits one approved reference
    rather than another competing one.
-7. Priorities, in order: round screen, Board/Shelf/drawer, first visit,
-   results and progress, Sentence Builder, new Activity types.
+7. Priorities, in order: Board/Shelf/drawer, first visit, results and
+   progress, round screen, Sentence Builder, new Activity types.
 
 ## Consequences
 
