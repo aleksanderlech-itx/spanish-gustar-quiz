@@ -1,5 +1,7 @@
 # Spanish Editorial Learning
 
+The designer's brief, with what is fixed and what is open, is [docs/design-brief.md](docs/design-brief.md) ([decision 0015](docs/decisions/0015-design-brief-fixed-and-open.md)). The values below describe the current look and apply until the designer's system replaces them.
+
 The approved light appearance is in [docs/design-system-gpt](docs/design-system-gpt/README.md). Its [reference](docs/design-system-gpt/reference.html) shows Library, Quiz, Flashcards, Results and Practice options. The specimen supplies visual hierarchy, not app data or behavior. The older [design-system](design-system/readme.md) and [docs/design.md](docs/design.md) remain historical references.
 
 ## Runtime ownership
