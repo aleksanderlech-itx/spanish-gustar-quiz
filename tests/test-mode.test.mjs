@@ -41,7 +41,7 @@ const snapshot = (store, wantTest) =>
 const runSession = () => {
   updateStoredProgress("gustar-quiz-progress-v1", () => [], (current) => [...current, { date: "2026-10-16T08:00:00.000Z", score: 4, percent: 80, questionIds: [1, 2, 3, 4, 5], answers: [], missedIds: [5], mode: "regular" }]);
   recordActivityToday("gustar", new Date("2026-10-16T08:00:00"));
-  recordMistakes("ser-estar", [{ question: { id: 2001, infinitive: "ser / estar", tense: "present" }, answer: "está" }]);
+  recordMistakes("ser-estar", [{ question: { id: 2001, group: "ser / estar", tense: "present" }, answer: "está" }]);
   markQuizCompleted("gustar", new Date("2026-10-16T08:00:00"));
   writeTopicSettings("gustar", { roundLength: 10, mode: "choose" });
 };
@@ -77,7 +77,7 @@ test("a present perfect test session leaves every real key unchanged and writes 
   const before = snapshot(localStorage, false);
   updateStoredProgress("present-perfect-quiz-progress-v1", () => [], (current) => [...current, { date: "2026-11-01T08:00:00.000Z", score: 5, percent: 100, questionIds: [8066, 8111, 8131, 8036, 8001], answers: [], missedIds: [], mode: "regular" }]);
   recordActivityToday("present-perfect", new Date("2026-11-01T08:00:00"));
-  recordMistakes("present-perfect", [{ question: { id: 8111, infinitive: "haber not tener", tense: "present" }, answer: "tengo dormido" }]);
+  recordMistakes("present-perfect", [{ question: { id: 8111, group: "haber not tener", tense: "present" }, answer: "tengo dormido" }]);
   markQuizCompleted("present-perfect", new Date("2026-11-01T08:00:00"));
   writeTopicSettings("present-perfect", { roundLength: 5, mode: "choose" });
   assert.deepEqual(snapshot(localStorage, false), before);
@@ -93,7 +93,7 @@ test("a present continuous test session leaves every real key unchanged and writ
   const before = snapshot(localStorage, false);
   updateStoredProgress("present-continuous-quiz-progress-v1", () => [], (current) => [...current, { date: "2026-11-07T08:00:00.000Z", score: 5, percent: 100, questionIds: [9031, 9061, 9091, 9121, 9001], answers: [], missedIds: [], mode: "regular" }]);
   recordActivityToday("present-continuous", new Date("2026-11-07T08:00:00"));
-  recordMistakes("present-continuous", [{ question: { id: 9061, infinitive: "irregular gerund", tense: "present" }, answer: "estoy leiendo" }]);
+  recordMistakes("present-continuous", [{ question: { id: 9061, group: "irregular gerund", tense: "present" }, answer: "estoy leiendo" }]);
   markQuizCompleted("present-continuous", new Date("2026-11-07T08:00:00"));
   writeTopicSettings("present-continuous", { roundLength: 5, mode: "choose" });
   assert.deepEqual(snapshot(localStorage, false), before);
@@ -187,12 +187,12 @@ test("a new tab without the parameter is normal mode and reads real data; the pa
   // New tab: no parameter, empty sessionStorage.
   install({ search: "", local: withTest });
   assert.equal(storage.isTestMode(), false);
-  assert.equal(readNotebookEntries()[0].rule, "Imperfect");
+  assert.equal(readNotebookEntries()[0].rule, "imperfect");
 
   // Back with the parameter: same test session.
   install({ search: "?test=1", local: withTest });
   assert.equal(storage.isTestMode(), true);
-  assert.equal(readNotebookEntries()[0].rule, "Ser vs estar");
+  assert.equal(readNotebookEntries()[0].rule, "ser-estar");
 });
 
 test("within one tab, test mode survives navigation that drops the parameter", () => {

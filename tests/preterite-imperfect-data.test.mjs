@@ -10,12 +10,12 @@ test("Preterite vs Imperfect quiz is generated from complete templates", () => {
   assert.ok(PRETERITE_IMPERFECT_QUESTIONS.some((question) => question.tense === "imperfect"));
 
   for (const question of PRETERITE_IMPERFECT_QUESTIONS) {
-    assert.ok(PRETERITE_IMPERFECT_CONJUGATIONS[question.infinitive], `${question.infinitive} chart missing`);
+    assert.ok(PRETERITE_IMPERFECT_CONJUGATIONS[question.group], `${question.group} chart missing`);
     assert.ok(question.answer);
-    assert.ok(question.objectPronoun);
-    assert.notEqual(question.answer, question.objectPronoun);
+    assert.ok(question.distractors[0]);
+    assert.notEqual(question.answer, question.distractors[0]);
     assert.doesNotMatch(question.answer, /^(preterite|imperfect)$/);
-    assert.ok(question.translations.en);
+    assert.ok(question.translation);
     assert.ok(question.explanation);
   }
 });

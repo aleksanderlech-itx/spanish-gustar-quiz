@@ -1,7 +1,8 @@
 import type { Question } from "./quiz-data";
-import { QUIZ_CONFIG, QUIZ_IDS, type QuizId } from "./quiz-config.ts";
+import { QUIZ_CONFIG, type QuizId } from "./quiz-config.ts";
 import type { ProgressActivityId } from "./activity-registry.ts";
-import { ownsSentenceBuilderRule, SENTENCE_BUILDER_ID } from "./sentence-builder-config.ts";
+import { SENTENCE_BUILDER_ID, sentenceBuilderRuleLabel } from "./sentence-builder-config.ts";
+import { ruleFromSchema2Label } from "./schema-2-labels.ts";
 import { appStorage } from "./storage.ts";
 
 /**
@@ -14,7 +15,7 @@ export type NotebookEntry = {
   kind: "question" | "rule";
   /** The Activity the entry belongs to (named quizId in stored data, so it never changes). */
   quizId: ProgressActivityId;
-  /** Subtopic label, the same text as the notebook chips. */
+  /** The rule key (decision 0015): the grammar point's group key, fixed for good. `ruleLabel` gives its text. */
   rule: string;
   questionId?: number;
   /** The most recent wrong answer given in a regular round. */
@@ -34,13 +35,16 @@ export const NOTEBOOK_VERSION = 2;
 /** Oldest misses are dropped beyond this, so storage stays bounded. */
 export const NOTEBOOK_CAP = 500;
 
-/** Short, stable label for the grammar point a missed question exercises: declared by each quiz (issue #151). */
-export const ruleLabelFor = (question: Question, quizId: QuizId): string => QUIZ_CONFIG[quizId].ruleLabel(question);
+/** The stable key of the grammar point a missed question exercises: declared by each quiz (issues #151, #158). */
+export const ruleKeyFor = (question: Question, quizId: QuizId): string => QUIZ_CONFIG[quizId].ruleKey(question);
 
-/** The activity a rule label belongs to: the inverse of ruleLabelFor, used to migrate v1 entries.
- * A label no quiz claims falls back to gustar, as v1 did. */
-export const quizIdForRule = (rule: string): ProgressActivityId =>
-  (ownsSentenceBuilderRule(rule) ? SENTENCE_BUILDER_ID : QUIZ_IDS.find((id) => QUIZ_CONFIG[id].ownsRule(rule))) ?? "gustar";
+/** The text shown for a rule key: notebook chips, the mistakes activity and the results screen. */
+export const ruleLabel = (activityId: ProgressActivityId, key: string): string =>
+  activityId === SENTENCE_BUILDER_ID ? sentenceBuilderRuleLabel(key) : QUIZ_CONFIG[activityId].ruleLabel(key);
+
+/** A stored rule from before schema 3, when the label was stored: its activity and key. A label no
+ * activity claims stays as it is, under gustar, as v1 did. */
+const ruleFromStoredLabel = (label: string) => ruleFromSchema2Label(label) ?? { activityId: "gustar" as const, key: label };
 
 export const questionEntryId = (activityId: ProgressActivityId, questionId: number) => `q:${activityId}:${questionId}`;
 const ruleEntryId = (rule: string) => `rule:${rule}`;
@@ -52,13 +56,14 @@ const migrateV1 = (raw: Record<string, unknown>): Record<string, NotebookEntry> 
   const entries: Record<string, NotebookEntry> = {};
   Object.entries(raw).forEach(([key, value]) => {
     const old = (value && typeof value === "object" ? value : {}) as { rule?: unknown; count?: unknown; lastMissedAt?: unknown };
-    const rule = typeof old.rule === "string" && old.rule ? old.rule : key;
-    const id = ruleEntryId(rule);
+    const label = typeof old.rule === "string" && old.rule ? old.rule : key;
+    const id = ruleEntryId(label);
+    const { activityId, key: ruleKey } = ruleFromStoredLabel(label);
     entries[id] = {
       id,
       kind: "rule",
-      quizId: quizIdForRule(rule),
-      rule,
+      quizId: activityId,
+      rule: ruleKey,
       missCount: Math.max(1, count(old.count)),
       lastMissedAt: typeof old.lastMissedAt === "string" ? old.lastMissedAt : new Date(0).toISOString(),
       retryCount: 0,
@@ -76,6 +81,19 @@ export const parseNotebook = (raw: string | null): Record<string, NotebookEntry>
   const stored = parsed as Partial<StoredNotebook>;
   if (stored.version === NOTEBOOK_VERSION && stored.entries && typeof stored.entries === "object") return stored.entries;
   return migrateV1(parsed as Record<string, unknown>);
+};
+
+/**
+ * Schema 2 to 3 (decision 0015): the stored notebook in whatever shape it is, with every rule label
+ * turned into its rule key. A rule that is already a key is left alone, so running it twice is harmless.
+ */
+export const upgradeNotebookToRuleKeys = (stored: unknown): StoredNotebook => {
+  const entries = parseNotebook(JSON.stringify(stored));
+  const upgraded = Object.fromEntries(Object.entries(entries).map(([id, entry]) => {
+    const fromLabel = ruleFromSchema2Label(entry.rule);
+    return [id, fromLabel && fromLabel.activityId === entry.quizId ? { ...entry, rule: fromLabel.key } : entry];
+  }));
+  return { version: NOTEBOOK_VERSION, entries: upgraded };
 };
 
 const readNotebook = (): Record<string, NotebookEntry> => {
@@ -119,9 +137,9 @@ export type Miss = { question: Question; answer: string };
  * notebook is updated in place (one more miss, the latest wrong answer) rather than added twice.
  */
 export const recordMistakes = (quizId: QuizId, misses: Miss[], now = new Date()) =>
-  recordItemMistakes(quizId, misses.map(({ question, answer }) => ({ id: question.id, rule: ruleLabelFor(question, quizId), answer })), now);
+  recordItemMistakes(quizId, misses.map(({ question, answer }) => ({ id: question.id, rule: ruleKeyFor(question, quizId), answer })), now);
 
-/** One missed Item of any Activity with rounds: its id, its rule label and the wrong answer given. */
+/** One missed Item of any Activity with rounds: its id, its rule key and the wrong answer given. */
 export type ItemMiss = { id: number; rule: string; answer: string };
 
 export const recordItemMistakes = (activityId: ProgressActivityId, misses: ItemMiss[], now = new Date()) => {
@@ -178,6 +196,7 @@ export const dismissEntry = (entryId: string) => {
   });
 };
 
+/** One activity's entries, and the rule keys they cover. */
 export type NotebookGroup = { quizId: ProgressActivityId; entries: NotebookEntry[]; rules: string[] };
 
 /** Entries grouped by activity, the group with the most recent miss first. Each group is one

@@ -84,6 +84,7 @@ Project rules and decisions: `docs/decisions/README.md` in the repo. This plan c
 | 3.15 | T | Present continuous: open the topic, filter by each usage group, play a round in Choose and in Type | Every group has questions. Choose shows two options. Type accepts the answer with accents (estáis, leyéndolo) |
 | 3.16 | T | Present continuous: open the continuous chart from the topic and during a question | One shared chart: estar in six persons, regular gerunds, irregular gerunds, pronouns. Title reads Present Continuous |
 | 3.17 | T | Present continuous with `?test=1`: finish a round using only the hints, then open the topic in a new tab without the parameter | The correct option is highlighted (Choose) or prefilled (Type). Real progress for the topic is unchanged |
+| 3.18 | T | Every quiz: open the second filter (Verb, Usage...) and a round in Choose (#152, #158) | Filter options read as before ("past meaning", "haber not tener", "ser / estar"), never with hyphens. Gustar offers three options, the others two, as before. The blank shows the same hint as before (e.g. "ser / estar"); chart titles and headings show the group names with spaces |
 
 ## 4. Mistake notebook and retry mode
 
@@ -107,6 +108,7 @@ Retry practice must never change the daily goal, streak, accuracy, weekly recap,
 | 4.14 | T | Reload and reopen the notebook | Entries and counts persist |
 | 4.15 | T | Backup, Reset all progress, Import backup | Notebook entries and counts restored |
 | 4.16 | T | Block storage, then miss a question | Quizzes keep working. No crash. The miss may not be saved |
+| 4.17 | N | Upgrade from schema 2 (decision 0015). On `main` before this release, or with a backup made before it: in Saber vs Conocer set the Usage filter to "past meaning" and miss a past-meaning sentence; in Present Perfect miss a "haber not tener" sentence. Then load this build (or import the backup) | The Usage filter still shows "past meaning" and selects the same sentences. The notebook chips read "Saber vs conocer: past meaning" and "Present perfect: haber not tener", one chip each, not split. Retrying each chip draws its own sentences. A link with `?mistakes=1&rule=Saber%20vs%20conocer%3A%20past%20meaning` still opens that chip |
 
 Known behavior: the notebook keeps the newest 500 entries by last miss. Covered by automated tests, not checked by hand.
 
@@ -187,6 +189,7 @@ Sentence Builder starts on the shelf for existing users and is not part of the s
 | 7.5 | N | Edit a backup file's `version` to `99` and import it | Shows "This file is from a newer version of Spanish Quizzes. Reload the page to update, then try again." Nothing changes |
 | 7.6 | N | Make progress in a quiz that is not in an older backup file, then import that file and confirm | The newer quiz's progress is cleared: the device matches the backup exactly, not a mix |
 | 7.7 | N | Import the same file twice in a row | The second import shows the prompt again (choosing the same file is not ignored) |
+| 7.9 | N | Import a backup made before this release (schema 2) whose filters and notebook use group names like "past meaning" | Imports without an error. Filters and notebook chips show the same names as before; the downloaded backup of the device now shows keys like `past-meaning` |
 | 7.8 | T | Import a backup while in test mode | Prompt reads "This replaces the test progress in this tab. Your real progress is not affected." Only test data changes. Real data untouched |
 
 ## 8. Storage resilience

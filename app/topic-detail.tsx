@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { DEFAULT_CHART_LABEL, DEFAULT_FILTER_LABEL, QUIZ_CONFIG, type QuizId } from "./quiz-config";
+import { DEFAULT_CHART_LABEL, DEFAULT_FILTER_LABEL, groupKeys, groupLabel, QUIZ_CONFIG, type QuizId } from "./quiz-config";
 import { emptyQuizProgress, readQuizProgress, type QuizProgress } from "./quiz-progress";
 import { DEFAULT_SETTINGS, readTopicSettings, writeTopicSettings, type AnswerMode, type RoundLength } from "./topic-settings";
 import { filterQuestions, type QuizFilters } from "./quiz-logic";
@@ -34,7 +34,7 @@ export default function TopicDetail({ quizId, standalone = false }: { quizId: Qu
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setProgress(readQuizProgress(quizId));
     setSettings(readTopicSettings(quizId));
-    setFilters(readQuizFilters(quiz.filterKey));
+    setFilters(readQuizFilters(quiz.filterKey, groupKeys(quizId)));
   }, [quizId, quiz.filterKey]);
 
   const updateSettings = (next: Partial<{ roundLength: RoundLength; mode: AnswerMode }>) => {
@@ -127,7 +127,7 @@ export default function TopicDetail({ quizId, standalone = false }: { quizId: Qu
             <span>{filterLabel.label}</span>
             <select value={filters.verb} onChange={(event) => updateFilters({ verb: event.target.value })}>
               <option value="all">{filterLabel.all}</option>
-              {Object.keys(quiz.forms).map((verb) => <option value={verb} key={verb}>{verb}</option>)}
+              {groupKeys(quizId).map((key) => <option value={key} key={key}>{groupLabel(quizId, key)}</option>)}
             </select>
           </label>
         </div>

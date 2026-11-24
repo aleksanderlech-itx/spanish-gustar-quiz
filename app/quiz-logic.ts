@@ -1,11 +1,12 @@
 export type QuizTense = "present" | "preterite" | "imperfect";
 export type QuizLevel = "basic" | "intermediate" | "advanced";
 
+/** What filtering and round logic read from a question: any quiz's question fits. */
 export type QuizQuestion = {
   id: number;
-  infinitive: string;
+  group: string;
   answer: string;
-  tense: QuizTense;
+  tense?: QuizTense;
   level: QuizLevel;
 };
 
@@ -30,7 +31,7 @@ export const normalizeAnswer = (value: string) => value.trim().toLocaleLowerCase
 export const filterQuestions = <T extends QuizQuestion>(questions: T[], filters: QuizFilters) =>
   questions.filter((question) =>
     (filters.level === "all" || question.level === filters.level) &&
-    (filters.verb === "all" || question.infinitive === filters.verb));
+    (filters.verb === "all" || question.group === filters.verb));
 
 export const getMissedIds = (items: QuizResult[]) => {
   const latest = new Map<number, boolean>();

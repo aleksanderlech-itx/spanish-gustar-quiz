@@ -65,7 +65,7 @@ test("saber/conocer chart has a full six-pronoun paradigm for both verbs in ever
 test("saber/conocer chart scopes to the question's tense: past-meaning gets preterite/imperfect, other usages present", () => {
   const quiz = QUIZ_CONFIG["saber-conocer"];
   const tenses = (group) => [...new Set(quiz.chart.blocks(group, quiz.forms).map((block) => block.tenseLabel.split(" · ")[1]))];
-  assert.deepEqual(tenses("past meaning"), ["preterite", "imperfect"]);
+  assert.deepEqual(tenses("past-meaning"), ["preterite", "imperfect"]);
   assert.deepEqual(tenses("facts"), ["present"]);
   assert.deepEqual(tenses(""), ["present", "preterite", "imperfect"]);
   assert.equal(quiz.chart.sections, "group-or-shared");

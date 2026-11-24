@@ -3,10 +3,10 @@ import test from "node:test";
 import { availableQuestions, filterQuestions, isCompletionUnearned, getMissedIds, restartSelectedHistory, ruleForTense, scoreRound } from "../app/quiz-logic.ts";
 
 const questions = [
-  { id: 1, infinitive: "gustar", answer: "gusta", tense: "present", level: "basic" },
-  { id: 2, infinitive: "gustar", answer: "gustan", tense: "present", level: "intermediate" },
-  { id: 3, infinitive: "doler", answer: "duelen", tense: "present", level: "advanced" },
-  { id: 4, infinitive: "gustar", answer: "gusta", tense: "present", level: "basic" },
+  { id: 1, group: "gustar", answer: "gusta", tense: "present", level: "basic" },
+  { id: 2, group: "gustar", answer: "gustan", tense: "present", level: "intermediate" },
+  { id: 3, group: "doler", answer: "duelen", tense: "present", level: "advanced" },
+  { id: 4, group: "gustar", answer: "gusta", tense: "present", level: "basic" },
 ];
 
 const history = [{

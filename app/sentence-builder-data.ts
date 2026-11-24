@@ -12,9 +12,9 @@ export const SENTENCE_BUILDER_GROUPS = [
   "questions",
   "negatives",
   "prepositions",
-  "object pronouns",
-  "ser and estar",
-  "present and past",
+  "object-pronouns",
+  "ser-and-estar",
+  "present-and-past",
   "connectors",
 ] as const;
 export type SentenceBuilderGroup = (typeof SENTENCE_BUILDER_GROUPS)[number];
@@ -513,7 +513,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10043,
-    group: "object pronouns",
+    group: "object-pronouns",
     level: "basic",
     english: "I ate the meat.",
     spanish: "Me comí la carne.",
@@ -524,7 +524,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10044,
-    group: "object pronouns",
+    group: "object-pronouns",
     level: "basic",
     english: "I missed you.",
     spanish: "Te eché de menos.",
@@ -535,7 +535,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10045,
-    group: "object pronouns",
+    group: "object-pronouns",
     level: "basic",
     english: "I was invited to the party.",
     spanish: "Me invitaron a la fiesta.",
@@ -547,7 +547,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10046,
-    group: "object pronouns",
+    group: "object-pronouns",
     level: "basic",
     english: "Don't tell him.",
     spanish: "No se lo digas.",
@@ -558,7 +558,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10047,
-    group: "object pronouns",
+    group: "object-pronouns",
     level: "basic",
     english: "I keep it in the attic.",
     spanish: "Lo guardo en el ático.",
@@ -570,7 +570,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10048,
-    group: "object pronouns",
+    group: "object-pronouns",
     level: "intermediate",
     english: "I wish you success in your work.",
     spanish: "Te deseo éxito en tu trabajo.",
@@ -581,7 +581,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10049,
-    group: "object pronouns",
+    group: "object-pronouns",
     level: "intermediate",
     english: "I'll show you how it's done.",
     spanish: "Te mostraré cómo se hace.",
@@ -592,7 +592,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10050,
-    group: "object pronouns",
+    group: "object-pronouns",
     level: "intermediate",
     english: "I will tell you the rest tomorrow.",
     spanish: "Te diré el resto mañana.",
@@ -604,7 +604,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10051,
-    group: "object pronouns",
+    group: "object-pronouns",
     level: "intermediate",
     english: "Their teacher praised them.",
     spanish: "Su profesor los elogió.",
@@ -616,7 +616,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10052,
-    group: "object pronouns",
+    group: "object-pronouns",
     level: "intermediate",
     english: "I'll tell you an interesting story.",
     spanish: "Te voy a contar una historia interesante.",
@@ -627,7 +627,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10053,
-    group: "object pronouns",
+    group: "object-pronouns",
     level: "intermediate",
     english: "I will explain it to her.",
     spanish: "Se lo explicaré a ella.",
@@ -639,7 +639,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10054,
-    group: "object pronouns",
+    group: "object-pronouns",
     level: "advanced",
     english: "He did everything for her.",
     spanish: "Él lo hizo todo por ella.",
@@ -650,7 +650,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10055,
-    group: "object pronouns",
+    group: "object-pronouns",
     level: "advanced",
     english: "Tom handed Mary a beer.",
     spanish: "Tom le pasó a María una cerveza.",
@@ -662,7 +662,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10056,
-    group: "object pronouns",
+    group: "object-pronouns",
     level: "advanced",
     english: "Tom hid his worries from his wife.",
     spanish: "Tom le oculta sus preocupaciones a su esposa.",
@@ -674,7 +674,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10057,
-    group: "ser and estar",
+    group: "ser-and-estar",
     level: "basic",
     english: "Tom is my dentist.",
     spanish: "Tom es mi dentista.",
@@ -685,7 +685,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10058,
-    group: "ser and estar",
+    group: "ser-and-estar",
     level: "basic",
     english: "This house is famous.",
     spanish: "Esta casa es famosa.",
@@ -696,7 +696,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10059,
-    group: "ser and estar",
+    group: "ser-and-estar",
     level: "basic",
     english: "That isn't true.",
     spanish: "Eso no es cierto.",
@@ -707,7 +707,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10060,
-    group: "ser and estar",
+    group: "ser-and-estar",
     level: "basic",
     english: "Today's the big day.",
     spanish: "Hoy es el gran día.",
@@ -719,7 +719,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10061,
-    group: "ser and estar",
+    group: "ser-and-estar",
     level: "basic",
     english: "The towel is red and white.",
     spanish: "La toalla es roja y blanca.",
@@ -730,7 +730,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10062,
-    group: "ser and estar",
+    group: "ser-and-estar",
     level: "basic",
     english: "Our time is limited.",
     spanish: "Nuestro tiempo es limitado.",
@@ -741,7 +741,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10063,
-    group: "ser and estar",
+    group: "ser-and-estar",
     level: "intermediate",
     english: "This is a very old book.",
     spanish: "Este es un libro muy viejo.",
@@ -752,7 +752,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10064,
-    group: "ser and estar",
+    group: "ser-and-estar",
     level: "intermediate",
     english: "Space travel is dangerous.",
     spanish: "Los viajes espaciales son peligrosos.",
@@ -763,7 +763,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10065,
-    group: "ser and estar",
+    group: "ser-and-estar",
     level: "intermediate",
     english: "I am not good at mathematics.",
     spanish: "No soy bueno en matemáticas.",
@@ -774,7 +774,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10066,
-    group: "ser and estar",
+    group: "ser-and-estar",
     level: "intermediate",
     english: "The bathroom is on the right.",
     spanish: "El cuarto de baño está a la derecha.",
@@ -785,7 +785,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10067,
-    group: "ser and estar",
+    group: "ser-and-estar",
     level: "intermediate",
     english: "She's pregnant with twins.",
     spanish: "Está embarazada de gemelos.",
@@ -796,7 +796,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10068,
-    group: "ser and estar",
+    group: "ser-and-estar",
     level: "intermediate",
     english: "Mary is upstairs with the baby.",
     spanish: "Mary está arriba con la bebé.",
@@ -808,7 +808,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10069,
-    group: "ser and estar",
+    group: "ser-and-estar",
     level: "advanced",
     english: "The food wasn't that great.",
     spanish: "La comida no era tan buena.",
@@ -819,7 +819,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10070,
-    group: "ser and estar",
+    group: "ser-and-estar",
     level: "advanced",
     english: "The roads are already covered with snow.",
     spanish: "Las carreteras ya están cubiertas de nieve.",
@@ -831,7 +831,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10071,
-    group: "present and past",
+    group: "present-and-past",
     level: "basic",
     english: "I was in Boston yesterday.",
     spanish: "Ayer estuve en Boston.",
@@ -843,7 +843,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10072,
-    group: "present and past",
+    group: "present-and-past",
     level: "basic",
     english: "I got my pay yesterday.",
     spanish: "Ayer recibí mi sueldo.",
@@ -855,7 +855,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10073,
-    group: "present and past",
+    group: "present-and-past",
     level: "basic",
     english: "I still have a lot of questions.",
     spanish: "Todavía tengo muchas preguntas.",
@@ -867,7 +867,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10074,
-    group: "present and past",
+    group: "present-and-past",
     level: "basic",
     english: "She is already married.",
     spanish: "Ella ya está casada.",
@@ -879,7 +879,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10075,
-    group: "present and past",
+    group: "present-and-past",
     level: "intermediate",
     english: "She is always dressed in black.",
     spanish: "Ella siempre viste de negro.",
@@ -891,7 +891,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10076,
-    group: "present and past",
+    group: "present-and-past",
     level: "intermediate",
     english: "We kissed last night.",
     spanish: "Nosotros nos besamos anoche.",
@@ -903,7 +903,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10077,
-    group: "present and past",
+    group: "present-and-past",
     level: "intermediate",
     english: "Tom always talks about work.",
     spanish: "Tom siempre habla sobre el trabajo.",
@@ -915,7 +915,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10078,
-    group: "present and past",
+    group: "present-and-past",
     level: "intermediate",
     english: "Tom won't need that anymore.",
     spanish: "Tom ya no necesitará eso.",
@@ -926,7 +926,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10079,
-    group: "present and past",
+    group: "present-and-past",
     level: "intermediate",
     english: "He is no longer a member of our club.",
     spanish: "Él ya no es miembro de nuestro club.",
@@ -937,7 +937,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10080,
-    group: "present and past",
+    group: "present-and-past",
     level: "intermediate",
     english: "I've seen you doing that.",
     spanish: "Te he visto haciéndolo.",
@@ -948,7 +948,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10081,
-    group: "present and past",
+    group: "present-and-past",
     level: "advanced",
     english: "My son has always been very independent.",
     spanish: "Mi hijo siempre ha sido muy independiente.",
@@ -960,7 +960,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10082,
-    group: "present and past",
+    group: "present-and-past",
     level: "advanced",
     english: "She was always practicing the piano.",
     spanish: "Ella siempre estaba practicando el piano.",
@@ -972,7 +972,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10083,
-    group: "present and past",
+    group: "present-and-past",
     level: "advanced",
     english: "I always wear boots when it rains or snows.",
     spanish: "Siempre uso botas cuando llueve o nieva.",
@@ -984,7 +984,7 @@ export const SENTENCE_BUILDER_ITEMS: SentenceBuilderItem[] = [
   },
   {
     id: 10084,
-    group: "present and past",
+    group: "present-and-past",
     level: "advanced",
     english: "Both of my parents died when I was five.",
     spanish: "Mis padres murieron cuando tenía cinco años.",

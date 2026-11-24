@@ -4,7 +4,7 @@ import { withItemExplanation } from "./item-explanation.ts";
 import { SABER_CONOCER_EXPLANATIONS } from "./explanations-saber-conocer.ts";
 
 /** Usage categories double as the topic's "Usage" filter values (stored in `infinitive`). */
-export const SABER_CONOCER_USAGES = ["facts", "skills", "people", "places", "familiarity", "past meaning"] as const;
+export const SABER_CONOCER_USAGES = ["facts", "skills", "people", "places", "familiarity", "past-meaning"] as const;
 export type SaberConocerUsage = (typeof SABER_CONOCER_USAGES)[number];
 
 type Tense = Question["tense"];
@@ -138,65 +138,61 @@ const seed: Seed[] = [
   [6115, "familiarity", "Mis alumnos ya", " el subjuntivo, pero no lo dominan.", "conocen", "saben", "My students are already familiar with the subjunctive, but they haven't mastered it.", "advanced"],
 
   // --- Past meaning: preterite conocer = met, preterite saber = found out ---
-  [6116, "past meaning", "Ayer", " a tu hermana en la fiesta.", "conocí", "supe", "Yesterday I met your sister at the party.", "intermediate", "preterite"],
-  [6117, "past meaning", "Mis padres se", " en la universidad.", "conocieron", "supieron", "My parents met at university.", "intermediate", "preterite"],
-  [6118, "past meaning", "¿Dónde", " tú a tu mejor amigo?", "conociste", "supiste", "Where did you meet your best friend?", "intermediate", "preterite"],
-  [6119, "past meaning", "El verano pasado", " Lisboa por primera vez.", "conocimos", "supimos", "Last summer we visited Lisbon for the first time.", "intermediate", "preterite"],
-  [6120, "past meaning", "Ana", " a su novio en un viaje a Italia.", "conoció", "supo", "Ana met her boyfriend on a trip to Italy.", "intermediate", "preterite"],
-  [6121, "past meaning", "Los niños", " al nuevo maestro el lunes.", "conocieron", "supieron", "The children met the new teacher on Monday.", "intermediate", "preterite"],
-  [6122, "past meaning", "Usted", " al presidente en 2019, ¿verdad?", "conoció", "supo", "You met the president in 2019, didn't you?", "advanced", "preterite"],
-  [6123, "past meaning", "Cuando fuimos a Perú,", " Machu Picchu.", "conocimos", "supimos", "When we went to Peru, we saw Machu Picchu.", "intermediate", "preterite"],
+  [6116, "past-meaning", "Ayer", " a tu hermana en la fiesta.", "conocí", "supe", "Yesterday I met your sister at the party.", "intermediate", "preterite"],
+  [6117, "past-meaning", "Mis padres se", " en la universidad.", "conocieron", "supieron", "My parents met at university.", "intermediate", "preterite"],
+  [6118, "past-meaning", "¿Dónde", " tú a tu mejor amigo?", "conociste", "supiste", "Where did you meet your best friend?", "intermediate", "preterite"],
+  [6119, "past-meaning", "El verano pasado", " Lisboa por primera vez.", "conocimos", "supimos", "Last summer we visited Lisbon for the first time.", "intermediate", "preterite"],
+  [6120, "past-meaning", "Ana", " a su novio en un viaje a Italia.", "conoció", "supo", "Ana met her boyfriend on a trip to Italy.", "intermediate", "preterite"],
+  [6121, "past-meaning", "Los niños", " al nuevo maestro el lunes.", "conocieron", "supieron", "The children met the new teacher on Monday.", "intermediate", "preterite"],
+  [6122, "past-meaning", "Usted", " al presidente en 2019, ¿verdad?", "conoció", "supo", "You met the president in 2019, didn't you?", "advanced", "preterite"],
+  [6123, "past-meaning", "Cuando fuimos a Perú,", " Machu Picchu.", "conocimos", "supimos", "When we went to Peru, we saw Machu Picchu.", "intermediate", "preterite"],
 
   // --- Past meaning: preterite saber = found out ---
-  [6124, "past meaning", "Ayer", " que te casas.", "supe", "conocí", "Yesterday I found out you're getting married.", "intermediate", "preterite"],
-  [6125, "past meaning", "¿Cuándo", " tú la noticia?", "supiste", "conociste", "When did you find out the news?", "intermediate", "preterite"],
-  [6126, "past meaning", "Ella", " la verdad al leer la carta.", "supo", "conoció", "She found out the truth when she read the letter.", "advanced", "preterite"],
-  [6127, "past meaning", "Nosotros", " el resultado esta mañana.", "supimos", "conocimos", "We found out the result this morning.", "intermediate", "preterite"],
-  [6128, "past meaning", "Mis padres", " lo del accidente por la radio.", "supieron", "conocieron", "My parents found out about the accident on the radio.", "advanced", "preterite"],
-  [6129, "past meaning", "Por fin", " dónde vivía mi amigo de la infancia.", "supe", "conocí", "I finally found out where my childhood friend lived.", "advanced", "preterite"],
-  [6130, "past meaning", "En ese momento, el detective", " quién era el ladrón.", "supo", "conoció", "At that moment, the detective found out who the thief was.", "advanced", "preterite"],
-  [6131, "past meaning", "¿Cómo", " vosotros que estaba enfermo?", "supisteis", "conocisteis", "How did you all find out I was sick?", "advanced", "preterite"],
-  [6132, "past meaning", "Ellos nunca", " por qué se cerró la tienda.", "supieron", "conocieron", "They never found out why the shop closed.", "advanced", "preterite"],
+  [6124, "past-meaning", "Ayer", " que te casas.", "supe", "conocí", "Yesterday I found out you're getting married.", "intermediate", "preterite"],
+  [6125, "past-meaning", "¿Cuándo", " tú la noticia?", "supiste", "conociste", "When did you find out the news?", "intermediate", "preterite"],
+  [6126, "past-meaning", "Ella", " la verdad al leer la carta.", "supo", "conoció", "She found out the truth when she read the letter.", "advanced", "preterite"],
+  [6127, "past-meaning", "Nosotros", " el resultado esta mañana.", "supimos", "conocimos", "We found out the result this morning.", "intermediate", "preterite"],
+  [6128, "past-meaning", "Mis padres", " lo del accidente por la radio.", "supieron", "conocieron", "My parents found out about the accident on the radio.", "advanced", "preterite"],
+  [6129, "past-meaning", "Por fin", " dónde vivía mi amigo de la infancia.", "supe", "conocí", "I finally found out where my childhood friend lived.", "advanced", "preterite"],
+  [6130, "past-meaning", "En ese momento, el detective", " quién era el ladrón.", "supo", "conoció", "At that moment, the detective found out who the thief was.", "advanced", "preterite"],
+  [6131, "past-meaning", "¿Cómo", " vosotros que estaba enfermo?", "supisteis", "conocisteis", "How did you all find out I was sick?", "advanced", "preterite"],
+  [6132, "past-meaning", "Ellos nunca", " por qué se cerró la tienda.", "supieron", "conocieron", "They never found out why the shop closed.", "advanced", "preterite"],
 
   // --- Past meaning: imperfect saber = knew (information or a skill) ---
-  [6133, "past meaning", "De niño, yo ya", " nadar.", "sabía", "conocía", "As a child, I already knew how to swim.", "intermediate", "imperfect"],
-  [6134, "past meaning", "Yo no", " que tenías un hermano.", "sabía", "conocía", "I didn't know you had a brother.", "intermediate", "imperfect"],
-  [6135, "past meaning", "Mi abuela", " tocar la guitarra.", "sabía", "conocía", "My grandmother knew how to play the guitar.", "intermediate", "imperfect"],
-  [6136, "past meaning", "¿Tú", " que el examen era hoy?", "sabías", "conocías", "Did you know the exam was today?", "intermediate", "imperfect"],
-  [6137, "past meaning", "Nosotros no", " dónde estaba el hotel.", "sabíamos", "conocíamos", "We didn't know where the hotel was.", "intermediate", "imperfect"],
-  [6138, "past meaning", "Todos", " la respuesta menos yo.", "sabían", "conocían", "Everyone knew the answer except me.", "intermediate", "imperfect"],
-  [6139, "past meaning", "Ella", " que iba a llover, por eso llevó paraguas.", "sabía", "conocía", "She knew it was going to rain, so she took an umbrella.", "advanced", "imperfect"],
-  [6140, "past meaning", "Usted ya", " lo que pasaba, ¿no?", "sabía", "conocía", "You already knew what was going on, didn't you?", "advanced", "imperfect"],
+  [6133, "past-meaning", "De niño, yo ya", " nadar.", "sabía", "conocía", "As a child, I already knew how to swim.", "intermediate", "imperfect"],
+  [6134, "past-meaning", "Yo no", " que tenías un hermano.", "sabía", "conocía", "I didn't know you had a brother.", "intermediate", "imperfect"],
+  [6135, "past-meaning", "Mi abuela", " tocar la guitarra.", "sabía", "conocía", "My grandmother knew how to play the guitar.", "intermediate", "imperfect"],
+  [6136, "past-meaning", "¿Tú", " que el examen era hoy?", "sabías", "conocías", "Did you know the exam was today?", "intermediate", "imperfect"],
+  [6137, "past-meaning", "Nosotros no", " dónde estaba el hotel.", "sabíamos", "conocíamos", "We didn't know where the hotel was.", "intermediate", "imperfect"],
+  [6138, "past-meaning", "Todos", " la respuesta menos yo.", "sabían", "conocían", "Everyone knew the answer except me.", "intermediate", "imperfect"],
+  [6139, "past-meaning", "Ella", " que iba a llover, por eso llevó paraguas.", "sabía", "conocía", "She knew it was going to rain, so she took an umbrella.", "advanced", "imperfect"],
+  [6140, "past-meaning", "Usted ya", " lo que pasaba, ¿no?", "sabía", "conocía", "You already knew what was going on, didn't you?", "advanced", "imperfect"],
 
   // --- Past meaning: imperfect conocer = knew (a person or place) ---
-  [6141, "past meaning", "En aquella época, yo", " a todos los vecinos.", "conocía", "sabía", "Back then, I knew all the neighbours.", "intermediate", "imperfect"],
-  [6142, "past meaning", "Mi padre", " muy bien la ciudad porque trabajó allí.", "conocía", "sabía", "My father knew the city very well because he worked there.", "intermediate", "imperfect"],
-  [6143, "past meaning", "¿Ya", " tú a Marcos antes de la boda?", "conocías", "sabías", "Did you already know Marcos before the wedding?", "advanced", "imperfect"],
-  [6144, "past meaning", "Nosotros no", " ese restaurante hasta ayer.", "conocíamos", "sabíamos", "We didn't know that restaurant until yesterday.", "intermediate", "imperfect"],
-  [6145, "past meaning", "Los estudiantes no", " al autor del libro.", "conocían", "sabían", "The students didn't know the author of the book.", "intermediate", "imperfect"],
-  [6146, "past meaning", "Ella", " Roma como la palma de su mano.", "conocía", "sabía", "She knew Rome like the back of her hand.", "intermediate", "imperfect"],
-  [6147, "past meaning", "Cuando era joven, Luis", " a muchos músicos.", "conocía", "sabía", "When he was young, Luis knew a lot of musicians.", "intermediate", "imperfect"],
+  [6141, "past-meaning", "En aquella época, yo", " a todos los vecinos.", "conocía", "sabía", "Back then, I knew all the neighbours.", "intermediate", "imperfect"],
+  [6142, "past-meaning", "Mi padre", " muy bien la ciudad porque trabajó allí.", "conocía", "sabía", "My father knew the city very well because he worked there.", "intermediate", "imperfect"],
+  [6143, "past-meaning", "¿Ya", " tú a Marcos antes de la boda?", "conocías", "sabías", "Did you already know Marcos before the wedding?", "advanced", "imperfect"],
+  [6144, "past-meaning", "Nosotros no", " ese restaurante hasta ayer.", "conocíamos", "sabíamos", "We didn't know that restaurant until yesterday.", "intermediate", "imperfect"],
+  [6145, "past-meaning", "Los estudiantes no", " al autor del libro.", "conocían", "sabían", "The students didn't know the author of the book.", "intermediate", "imperfect"],
+  [6146, "past-meaning", "Ella", " Roma como la palma de su mano.", "conocía", "sabía", "She knew Rome like the back of her hand.", "intermediate", "imperfect"],
+  [6147, "past-meaning", "Cuando era joven, Luis", " a muchos músicos.", "conocía", "sabía", "When he was young, Luis knew a lot of musicians.", "intermediate", "imperfect"],
 
   // --- Past meaning: contrasts ---
-  [6148, "past meaning", "Yo ya la", " de vista, pero ayer hablé con ella por primera vez.", "conocía", "sabía", "I already knew her by sight, but yesterday I talked to her for the first time.", "advanced", "imperfect"],
-  [6149, "past meaning", "Lo", " anoche, cuando me llamó su hermana.", "supe", "conocí", "I found out last night, when his sister called me.", "advanced", "preterite"],
-  [6150, "past meaning", "Nos", " en 2015 y desde entonces somos amigos.", "conocimos", "supimos", "We met in 2015 and we've been friends ever since.", "advanced", "preterite"],
+  [6148, "past-meaning", "Yo ya la", " de vista, pero ayer hablé con ella por primera vez.", "conocía", "sabía", "I already knew her by sight, but yesterday I talked to her for the first time.", "advanced", "imperfect"],
+  [6149, "past-meaning", "Lo", " anoche, cuando me llamó su hermana.", "supe", "conocí", "I found out last night, when his sister called me.", "advanced", "preterite"],
+  [6150, "past-meaning", "Nos", " en 2015 y desde entonces somos amigos.", "conocimos", "supimos", "We met in 2015 and we've been friends ever since.", "advanced", "preterite"],
 ];
 
 export const SABER_CONOCER_QUESTIONS: Question[] = seed.map(([id, usage, before, after, answer, alternateAnswer, en, level, tense = "present"]) => ({
   id,
   before,
   after,
-  infinitive: usage,
+  group: usage,
   answer,
-  verbAnswer: answer,
-  objectPronoun: alternateAnswer,
+  distractors: [alternateAnswer],
   // Written per item in explanations-saber-conocer.ts.
   explanation: "",
-  translations: { en, pl: "" },
-  subjectNumber: "singular",
-  isActivity: false,
-  indirectObject: "",
+  translation: en,
   tense,
   level,
   // The usage label would give the answer away, so the blank shows both verbs instead.
@@ -210,7 +206,7 @@ export const SABER_CONOCER_FORMS: Record<SaberConocerUsage, [string, string]> = 
   people: ["conozco a Ana", "conoce al profesor"],
   places: ["conozco Madrid", "conoces México"],
   familiarity: ["conozco este libro", "conoce la obra"],
-  "past meaning": ["supe = found out", "conocí = met"],
+  "past-meaning": ["supe = found out", "conocí = met"],
 };
 
 type ConjugatedTense = "present" | "preterite" | "imperfect";

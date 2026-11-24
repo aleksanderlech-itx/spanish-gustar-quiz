@@ -52,7 +52,7 @@ export const CHART_BLOCKS = {
   saberConocer: ((group) => {
     // Past-meaning questions need the preterite/imperfect pair; every other usage is present.
     // The topic-level chart (no single usage) shows all three tenses.
-    const tenses = group === "past meaning" ? (["preterite", "imperfect"] as const)
+    const tenses = group === "past-meaning" ? (["preterite", "imperfect"] as const)
       : group ? (["present"] as const)
       : (["present", "preterite", "imperfect"] as const);
     return tenses.flatMap((tense) => (["saber", "conocer"] as const).map((verb) => ({

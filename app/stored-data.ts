@@ -1,10 +1,12 @@
 import { QUIZ_CONFIG, QUIZ_IDS } from "./quiz-config.ts";
 import { STREAK_STORAGE_KEYS } from "./streak.ts";
 import { QUIZ_COMPLETION_STORAGE_KEYS } from "./quiz-completion.ts";
-import { NOTEBOOK_KEY } from "./notebook.ts";
+import { NOTEBOOK_KEY, upgradeNotebookToRuleKeys } from "./notebook.ts";
 import { topicSettingsKey } from "./topic-settings.ts";
 import { appStorage } from "./storage.ts";
 import { BOARD_KEY, boardFromSchema1, isBoardStateShape } from "./board-state.ts";
+import { groupKeyFromSchema2, SCHEMA_2_FILTER_KEYS } from "./schema-2-labels.ts";
+import type { ProgressActivityId } from "./activity-registry.ts";
 import { SENTENCE_BUILDER_FILTER_KEY, SENTENCE_BUILDER_ID, SENTENCE_BUILDER_STORAGE_KEY } from "./sentence-builder-config.ts";
 
 /**
@@ -14,7 +16,7 @@ import { SENTENCE_BUILDER_FILTER_KEY, SENTENCE_BUILDER_ID, SENTENCE_BUILDER_STOR
  */
 
 /** The shapes the code reads today. Raise it by one, and add the step below, whenever a stored shape changes. */
-export const SCHEMA_VERSION = 2;
+export const SCHEMA_VERSION = 3;
 /** Holds the schema version of what is stored on this device. Missing means schema 1. */
 export const SCHEMA_VERSION_KEY = "spanish-quiz-schema-version";
 
@@ -42,6 +44,19 @@ const STEPS: Record<number, (data: StoreSnapshot) => StoreSnapshot> = {
     if (rest[BOARD_KEY] !== undefined) return rest;
     const board = boardFromSchema1(data, new Date());
     return board ? { ...rest, [BOARD_KEY]: board } : rest;
+  },
+  /** 2 to 3: groups are stored by key, not by the text on screen (decision 0015). Saved filters and notebook
+   * rules turn their schema 2 labels into keys, read from the frozen copy in `schema-2-labels.ts`. */
+  2: (data) => {
+    const next = { ...data };
+    (Object.entries(SCHEMA_2_FILTER_KEYS) as Array<[ProgressActivityId, string]>).forEach(([activityId, filterKey]) => {
+      const filters = next[filterKey];
+      if (isObject(filters) && typeof filters.verb === "string") {
+        next[filterKey] = { ...filters, verb: groupKeyFromSchema2(activityId, filters.verb) };
+      }
+    });
+    if (next[NOTEBOOK_KEY] !== undefined) next[NOTEBOOK_KEY] = upgradeNotebookToRuleKeys(next[NOTEBOOK_KEY]);
+    return next;
   },
 };
 

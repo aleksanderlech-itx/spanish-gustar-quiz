@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config";
+import { groupLabel, QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config";
 import type { ChartRow } from "./chart-blocks";
 import { speak, speakQueue } from "./speak";
 
@@ -44,7 +44,7 @@ export default function VerbChart({ quizId, infinitive, onClose }: { quizId: Qui
         ) : (
           <Link className="round-back" href={quizPath(quizId)} aria-label="Back to topic"><span aria-hidden="true">←</span></Link>
         )}
-        <h1>{infinitives.length === 1 && infinitives[0] ? infinitives[0] : quiz.title.replace(" Quiz", "")}</h1>
+        <h1>{infinitives.length === 1 && infinitives[0] ? groupLabel(quizId, infinitives[0]) : quiz.title.replace(" Quiz", "")}</h1>
         {infinitives.length === 1 && regularityFor(infinitives[0]) && (
           <span className="verb-chart-regularity-badge">{regularityFor(infinitives[0])}</span>
         )}
@@ -54,7 +54,7 @@ export default function VerbChart({ quizId, infinitive, onClose }: { quizId: Qui
         <div className="verb-chart-verb" key={inf}>
           {infinitives.length > 1 && (
             <h2 className="verb-chart-verb-heading">
-              {inf}
+              {groupLabel(quizId, inf)}
               {regularityFor(inf) && <span className="verb-chart-regularity-badge">{regularityFor(inf)}</span>}
             </h2>
           )}

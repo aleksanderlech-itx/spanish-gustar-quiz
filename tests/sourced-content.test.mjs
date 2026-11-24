@@ -25,7 +25,7 @@ test("every runtime quiz sentence and translation comes from the sourced pair se
       `answer mismatch for #${question.id}`,
     );
     assert.equal(question.after, remainder.slice(question.answer.length).trimStart(), `suffix mismatch for #${question.id}`);
-    assert.equal(question.translations.en, pair.english);
+    assert.equal(question.translation, pair.english);
   }
 });
 

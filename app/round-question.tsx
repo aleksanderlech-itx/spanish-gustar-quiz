@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { type Question } from "./quiz-data";
 import { normalizeAnswer, sentenceParts } from "./quiz-logic";
-import { DEFAULT_CHART_LABEL, QUIZ_CONFIG, type QuizId } from "./quiz-config";
+import { DEFAULT_CHART_LABEL, groupLabel, QUIZ_CONFIG, type QuizId } from "./quiz-config";
 import type { AnswerMode } from "./topic-settings";
 import VerbChart from "./verb-chart";
 import { SkipLink } from "./activity-chrome";
@@ -96,7 +96,7 @@ export default function RoundQuestion({
     };
   }, []);
 
-  const blankPlaceholder = question.blankHint ?? (quiz.showInfinitiveBlank === false ? "?" : question.infinitive);
+  const blankPlaceholder = question.blankHint ?? (quiz.showInfinitiveBlank === false ? "?" : groupLabel(quizId, question.group));
   const sentence = sentenceParts(question);
   const chartLabel = quiz.chartLabel ?? DEFAULT_CHART_LABEL;
   const isLast = index === total - 1;
@@ -168,7 +168,7 @@ export default function RoundQuestion({
             {isSubmitted ? sentence.answer : mode === "type" ? (typed || blankPlaceholder) : blankPlaceholder}
           </span>{sentence.after}
         </p>
-        <p className="round-translation" lang="en">{question.translations.en}</p>
+        <p className="round-translation" lang="en">{question.translation}</p>
       </section>
 
       <section className="round-answer-area">
@@ -245,7 +245,7 @@ export default function RoundQuestion({
 
       {showChart && (
         <div className="round-chart-overlay" role="dialog" aria-modal="true" aria-label={chartLabel}>
-          <VerbChart quizId={quizId} infinitive={question.infinitive} onClose={() => setShowChart(false)} />
+          <VerbChart quizId={quizId} infinitive={question.group} onClose={() => setShowChart(false)} />
         </div>
       )}
       </main>

@@ -27,33 +27,35 @@ test("computeRecentRounds caps to the given limit", () => {
 });
 
 const gustarQuestion = (overrides) => ({
-  id: 1, before: "", after: "", infinitive: "doler", answer: "", verbAnswer: "", objectPronoun: "",
-  explanation: "", translations: { en: "", pl: "" }, subjectNumber: "singular", isActivity: false,
-  indirectObject: "me", tense: "present", level: "basic", ...overrides,
+  id: 1, before: "", after: "", group: "doler", answer: "", distractors: [], verbAnswer: "", objectPronoun: "me",
+  explanation: "", translation: "", subjectNumber: "singular", isActivity: false, level: "basic", ...overrides,
+});
+const pairQuestion = (overrides) => ({
+  id: 1, before: "", after: "", group: "ser / estar", answer: "", distractors: [""], explanation: "", translation: "", level: "basic", ...overrides,
 });
 
-test("computeWeakAreas records verb/tense/agreement/subject/pronoun for gustar, sorted by miss rate", () => {
-  const questions = [gustarQuestion({ id: 1 }), gustarQuestion({ id: 2, infinitive: "gustar" })];
+test("computeWeakAreas records group, agreement, subject and pronoun for gustar, sorted by miss rate", () => {
+  const questions = [gustarQuestion({ id: 1 }), gustarQuestion({ id: 2, group: "gustar" })];
   const history = [
     { date: "2026-08-01", percent: 0, mode: "regular", score: 0, questionIds: [1, 2], answers: ["", ""], missedIds: [1, 2] },
   ];
   const result = computeWeakAreas([{ quizId: "gustar", questions, history }]);
   const keys = result.map(([key]) => key);
   assert.ok(keys.includes("Verb: doler"));
-  assert.ok(keys.includes("Tense: present"));
   assert.ok(keys.includes("Agreement: singular"));
   assert.ok(keys.includes("Pronoun: me"));
+  assert.ok(!keys.some((key) => key.startsWith("Tense:")), "Gustar sentences have no tense of their own");
 });
 
-test("computeWeakAreas skips Agreement/Subject/Pronoun for ser-estar and preterite-imperfect (constant/misleading there)", () => {
-  const question = { ...gustarQuestion({ id: 1 }), infinitive: "ser / estar", indirectObject: "" };
+test("computeWeakAreas skips Agreement/Subject/Pronoun outside Gustar, and records tense only where a quiz has one", () => {
   const history = [
     { date: "2026-08-01", percent: 0, mode: "regular", score: 0, questionIds: [1], answers: [""], missedIds: [1] },
   ];
-  const result = computeWeakAreas([{ quizId: "ser-estar", questions: [question], history }]);
-  const keys = result.map(([key]) => key);
+  const keys = computeWeakAreas([{ quizId: "ser-estar", questions: [pairQuestion()], history }]).map(([key]) => key);
   assert.ok(keys.includes("Verb: ser / estar"));
-  assert.ok(!keys.some((key) => key.startsWith("Agreement:") || key.startsWith("Subject:") || key.startsWith("Pronoun:")));
+  assert.ok(!keys.some((key) => /^(Agreement|Subject|Pronoun|Tense):/.test(key)));
+  const preterite = computeWeakAreas([{ quizId: "preterite-imperfect", questions: [pairQuestion({ group: "tener", tense: "imperfect" })], history }]);
+  assert.ok(preterite.some(([key]) => key === "Tense: imperfect"));
 });
 
 test("computeWeakAreas excludes review-mode rounds, only correct-recall/misses do not appear without a miss", () => {

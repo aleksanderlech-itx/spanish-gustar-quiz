@@ -14,7 +14,8 @@ import path from "node:path";
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const exportsDir = path.join(rootDir, "exports");
 
-const { QUIZ_CONFIG, QUIZ_IDS } = await import("../app/quiz-config.ts");
+const { groupLabel, QUIZ_CONFIG, QUIZ_IDS } = await import("../app/quiz-config.ts");
+const { sentenceBuilderGroupLabel } = await import("../app/sentence-builder-config.ts");
 const { SENTENCE_BUILDER_ITEMS } = await import("../app/sentence-builder-data.ts");
 const { FLASHCARD_VERBS } = await import("../app/flashcards-data.ts");
 
@@ -56,11 +57,11 @@ function flagDuplicates(rows, keyFn) {
 // ---- Quiz rows -------------------------------------------------------
 
 // example_english is blank for quiz rows: quiz questions only have one
-// English translation (translations.en), not a separate example sentence
+// English translation (translation), not a separate example sentence
 // and its translation like flashcards do.
 const HEADER = ["type", "topic", "spanish", "english", "answer_or_form", "explanation_or_example", "status", "example_english"];
 
-function quizRows(questions, type) {
+function quizRows(questions, type, quizId) {
   const sentences = questions.map((q) => `${q.before} ___ ${q.after}`.trim());
   const dupStatus = flagDuplicates(
     questions.map((q, i) => ({ i, key: normalizeForDuplicateCheck(sentences[i]) })),
@@ -68,14 +69,14 @@ function quizRows(questions, type) {
   );
   return questions.map((q, i) => {
     const spanish = sentences[i];
-    const missing = !q.answer?.trim() || !q.translations?.en?.trim() || !q.explanation?.trim();
+    const missing = !q.answer?.trim() || !q.translation?.trim() || !q.explanation?.trim();
     const status = missing ? "incomplete" : dupStatus[i];
-    return [type, q.infinitive, spanish, q.translations.en, q.answer, q.explanation, status, ""];
+    return [type, groupLabel(quizId, q.group), spanish, q.translation, q.answer, q.explanation, status, ""];
   });
 }
 
 // One CSV per registered quiz, in registry order (issue #162): a new quiz is exported with no edit here.
-const quizExports = QUIZ_IDS.map((id) => ({ name: `quiz-${id}`, rows: quizRows(QUIZ_CONFIG[id].questions, `quiz-${id}`) }));
+const quizExports = QUIZ_IDS.map((id) => ({ name: `quiz-${id}`, rows: quizRows(QUIZ_CONFIG[id].questions, `quiz-${id}`, id) }));
 
 // ---- Sentence Builder rows ---------------------------------------------
 // For the owner's sample check (decision 0013): the canonical order and every other accepted order,
@@ -88,7 +89,7 @@ const sentenceBuilderDupStatus = flagDuplicates(
 const sentenceBuilderRows = SENTENCE_BUILDER_ITEMS.map((item, i) => {
   const orders = [item.tokens, ...(item.alsoAccepted ?? [])].map((order) => order.join(" / ")).join("\n");
   const missing = !item.explanation?.trim() || !item.english?.trim();
-  return ["sentence-builder", `${item.group} (${item.level})`, item.spanish, item.english, orders, item.explanation, missing ? "incomplete" : sentenceBuilderDupStatus[i], ""];
+  return ["sentence-builder", `${sentenceBuilderGroupLabel(item.group)} (${item.level})`, item.spanish, item.english, orders, item.explanation, missing ? "incomplete" : sentenceBuilderDupStatus[i], ""];
 });
 
 // ---- Flashcard rows ----------------------------------------------------

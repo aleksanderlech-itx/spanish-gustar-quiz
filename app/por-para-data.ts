@@ -190,21 +190,16 @@ export const POR_PARA_QUESTIONS: Question[] = seed.map(([id, before, after, answ
   id,
   before,
   after,
-  infinitive: "por / para",
+  group: "por-para",
   answer,
-  verbAnswer: answer,
-  objectPronoun: alternateAnswer,
+  distractors: [alternateAnswer],
   explanation,
-  translations: { en, pl: "" },
-  subjectNumber: "singular",
-  isActivity: false,
-  indirectObject: "",
-  tense: "present",
+  translation: en,
   level,
 })).map(applySourcedQuestionPair);
 
 export const POR_PARA_FORMS: Record<string, [string, string]> = {
-  "por / para": ["por", "para"],
+  "por-para": ["por", "para"],
 };
 
 /** Reference tables for the in-round "Usage examples": one example sentence per usage,

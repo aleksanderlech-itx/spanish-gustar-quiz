@@ -176,20 +176,15 @@ export const SER_ESTAR_QUESTIONS: Question[] = seed.map(([id, before, after, ans
   id,
   before,
   after,
-  infinitive: "ser / estar",
+  group: "ser-estar",
   answer,
-  verbAnswer: answer,
-  objectPronoun: alternateAnswer,
+  distractors: [alternateAnswer],
   // Written per item in explanations-ser-estar.ts.
   explanation: "",
-  translations: { en, pl: "" },
-  subjectNumber: "singular",
-  isActivity: false,
-  indirectObject: "",
-  tense: "present",
+  translation: en,
   level,
 })).map(applySourcedQuestionPair).map(withItemExplanation(SER_ESTAR_EXPLANATIONS));
 
 export const SER_ESTAR_FORMS: Record<string, [string, string]> = {
-  "ser / estar": ["ser", "estar"],
+  "ser-estar": ["ser", "estar"],
 };

@@ -2,9 +2,9 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { SENTENCE_BUILDER_ITEMS, type SentenceBuilderItem } from "./sentence-builder-data";
+import { SENTENCE_BUILDER_GROUPS, SENTENCE_BUILDER_ITEMS, type SentenceBuilderItem } from "./sentence-builder-data";
 import {
-  SENTENCE_BUILDER_FILTER_KEY, SENTENCE_BUILDER_ID, SENTENCE_BUILDER_PATH, SENTENCE_BUILDER_STORAGE_KEY, sentenceBuilderRuleLabel,
+  SENTENCE_BUILDER_FILTER_KEY, SENTENCE_BUILDER_ID, SENTENCE_BUILDER_PATH, SENTENCE_BUILDER_STORAGE_KEY, sentenceBuilderGroupLabel, sentenceBuilderRuleKey, sentenceBuilderRuleLabel,
 } from "./sentence-builder-config";
 import {
   isAccepted, isComplete, misplacedPositions, nextHintIndex, place, reset, sentenceFor, shuffledPool, tokensOf, undo, unplace,
@@ -18,7 +18,7 @@ import { recordActivityToday } from "./streak";
 import { markQuizCompleted, readQuizCompletion, repeatDueDate } from "./quiz-completion";
 import { moveFinishedToShelf } from "./board-state";
 import { readNotebookEntries, recordItemMistakes, recordRetry } from "./notebook";
-import { mistakesPath } from "./notebook-retry";
+import { mistakesPath, ruleKeyFromParam } from "./notebook-retry";
 import { appStorage, isTestMode } from "./storage";
 import { speak } from "./speak";
 import Results from "./results";
@@ -47,7 +47,7 @@ const shuffle = <T,>(items: T[]) => [...items].sort(() => Math.random() - 0.5);
 const toRound = (items: SentenceBuilderItem[]): RoundItem[] => items.map((item) => ({ item, pool: shuffledPool(item) }));
 
 const filteredItems = () => {
-  const filters = readQuizFilters(SENTENCE_BUILDER_FILTER_KEY);
+  const filters = readQuizFilters(SENTENCE_BUILDER_FILTER_KEY, SENTENCE_BUILDER_GROUPS);
   return SENTENCE_BUILDER_ITEMS.filter((item) =>
     (filters.level === "all" || item.level === filters.level) && (filters.verb === "all" || item.group === filters.verb));
 };
@@ -76,7 +76,7 @@ export default function SentenceBuilderRound({ retry = false, retryRule = null }
     const settings = readTopicSettings(SENTENCE_BUILDER_ID);
     let items: RoundItem[] = [];
     if (nextMode === "retry") {
-      const entries = readNotebookEntries().filter((entry) => entry.quizId === SENTENCE_BUILDER_ID && (!retryRule || entry.rule === retryRule));
+      const entries = readNotebookEntries().filter((entry) => entry.quizId === SENTENCE_BUILDER_ID && (!retryRule || entry.rule === ruleKeyFromParam(SENTENCE_BUILDER_ID, retryRule)));
       items = shuffle(entries).slice(0, settings.roundLength).flatMap((entry) => {
         const item = SENTENCE_BUILDER_ITEMS.find((candidate) => candidate.id === entry.questionId);
         return item ? [{ item, pool: shuffledPool(item), entryId: entry.id }] : [];
@@ -171,7 +171,7 @@ export default function SentenceBuilderRound({ retry = false, retryRule = null }
       setHistory(next);
       if (mode === "regular") {
         recordItemMistakes(SENTENCE_BUILDER_ID, misses.map(({ item: missed, answer }) => ({
-          id: missed.id, rule: sentenceBuilderRuleLabel(missed), answer: sentenceFor(missed, answer.order),
+          id: missed.id, rule: sentenceBuilderRuleKey(missed), answer: sentenceFor(missed, answer.order),
         })));
         recordActivityToday(SENTENCE_BUILDER_ID);
       }
@@ -223,7 +223,7 @@ export default function SentenceBuilderRound({ retry = false, retryRule = null }
       <Results
         quizId={SENTENCE_BUILDER_ID}
         result={finished}
-        missedRuleLabels={round.filter((entry) => finished.missedIds.includes(entry.item.id)).map((entry) => sentenceBuilderRuleLabel(entry.item))}
+        missedRuleLabels={round.filter((entry) => finished.missedIds.includes(entry.item.id)).map((entry) => sentenceBuilderRuleLabel(sentenceBuilderRuleKey(entry.item)))}
         hasMissedOverall={getMissedIds(history).length > 0}
         onPractiseMisses={() => startRound("review", history)}
         standalone
@@ -322,7 +322,7 @@ export default function SentenceBuilderRound({ retry = false, retryRule = null }
 
         <section className="round-question-card">
           <div className="round-question-top">
-            <p className="eyebrow-clay">{mode === "retry" ? "Mistakes retry" : mode === "review" ? "Practising misses" : `Sentence Builder · ${item.group}`}</p>
+            <p className="eyebrow-clay">{mode === "retry" ? "Mistakes retry" : mode === "review" ? "Practising misses" : `Sentence Builder · ${sentenceBuilderGroupLabel(item.group)}`}</p>
             <span className="round-level-badge">{LEVEL_BADGE[item.level]}</span>
           </div>
           <p className="sb-prompt" lang="en">{item.english}</p>

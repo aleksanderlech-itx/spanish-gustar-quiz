@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { readStreakSummary } from "./streak";
 import { isTestMode } from "./storage";
-import { readNotebookGroups, type NotebookGroup } from "./notebook";
+import { readNotebookGroups, ruleLabel, type NotebookGroup } from "./notebook";
 import { mistakesPath, mistakesTitle } from "./notebook-retry";
 import { QUIZ_CONFIG, QUIZ_IDS, type QuizId } from "./quiz-config";
 import type { QuizResult } from "./quiz-logic";
@@ -361,7 +361,7 @@ export default function Drawer({ open, onClose, returnFocusRef }: { open: boolea
                       </div>
                       <div className="mistakes-chip-row">
                         {group.rules.map((rule) => (
-                          <a className="mistakes-chip" key={rule} href={mistakesPath(group.quizId, rule)} onClick={onClose}>{rule}</a>
+                          <a className="mistakes-chip" key={rule} href={mistakesPath(group.quizId, rule)} onClick={onClose}>{ruleLabel(group.quizId, rule)}</a>
                         ))}
                       </div>
                     </div>

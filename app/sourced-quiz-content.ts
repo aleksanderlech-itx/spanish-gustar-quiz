@@ -2,7 +2,7 @@
 // Source and licensing details: docs/content-sources.md and docs/content-attribution.csv.
 
 type SourcedPair = { spanish: string; english: string };
-type SourceableQuestion = { id: number; answer: string; before: string; after: string; explanation: string; translations: { en: string; pl: string } };
+type SourceableQuestion = { id: number; answer: string; before: string; after: string; explanation: string; translation: string };
 
 export const SOURCED_QUIZ_PAIRS: Record<number, SourcedPair> = {
   "1": {
@@ -5420,7 +5420,7 @@ export function applySourcedQuestionPair<T extends SourceableQuestion>(question:
   // The item's own sentence: keep its blank position and explanation. Searching
   // for the answer would match an earlier, unrelated "La" in "¿La sopa? ... la come".
   if (sentenceKey(`${question.before} ${question.answer} ${question.after}`) === sentenceKey(pair.spanish)) {
-    return { ...question, before: question.before.trimEnd(), after: question.after.trimStart(), translations: { ...question.translations, en: pair.english } };
+    return { ...question, before: question.before.trimEnd(), after: question.after.trimStart(), translation: pair.english };
   }
   const escaped = question.answer.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const match = new RegExp(`(?<!\\p{L})${escaped}(?!\\p{L})`, "iu").exec(pair.spanish);
@@ -5430,6 +5430,6 @@ export function applySourcedQuestionPair<T extends SourceableQuestion>(question:
     before: pair.spanish.slice(0, match.index).trimEnd(),
     after: pair.spanish.slice(match.index + match[0].length).trimStart(),
     explanation: "",
-    translations: { ...question.translations, en: pair.english },
+    translation: pair.english,
   };
 }
