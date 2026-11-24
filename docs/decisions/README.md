@@ -48,8 +48,8 @@ content. Each links to the record that explains it.
 2. No em dashes or en dashes anywhere: copy, code comments, data, docs, UI
    text.
 3. Professional tone. No emoticons.
-4. UI border radius is reduced by 50% relative to the current design. Do not
-   apply full radius universally.
+4. Removed: radius and shape belong to the designer's system. See
+   [0015](0015-design-brief-fixed-and-open.md).
 5. Explanations are in English only. Use neutral standard Spanish; regional
    forms only when they are the point of the item, flagged in the PR.
 6. Do not hard-code the number of topics or a hand-written topic list in copy
@@ -108,3 +108,4 @@ content. Each links to the record that explains it.
 | [0012](0012-analytics-only-with-consent.md) | Analytics load only with opt-in consent | Accepted | 2026-11-22 |
 | [0013](0013-sentence-builder.md) | Sentence Builder: one Activity, every Token in the answer, right or wrong as a whole | Accepted | 2026-11-23 |
 | [0014](0014-one-shared-footer.md) | One footer, shared by every page | Accepted | 2026-11-23 |
+| [0015](0015-design-brief-fixed-and-open.md) | Design brief: what is fixed and what is open | Accepted | 2026-11-24 |
