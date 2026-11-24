@@ -187,12 +187,12 @@ test("a new tab without the parameter is normal mode and reads real data; the pa
   // New tab: no parameter, empty sessionStorage.
   install({ search: "", local: withTest });
   assert.equal(storage.isTestMode(), false);
-  assert.equal(readNotebookEntries()[0].rule, "Imperfect");
+  assert.equal(readNotebookEntries()[0].rule, "imperfect");
 
   // Back with the parameter: same test session.
   install({ search: "?test=1", local: withTest });
   assert.equal(storage.isTestMode(), true);
-  assert.equal(readNotebookEntries()[0].rule, "Ser vs estar");
+  assert.equal(readNotebookEntries()[0].rule, "ser-estar");
 });
 
 test("within one tab, test mode survives navigation that drops the parameter", () => {

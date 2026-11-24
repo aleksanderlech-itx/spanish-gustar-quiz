@@ -53,8 +53,8 @@ const notebook = await import("../app/notebook.ts");
 test("every quiz declares a rule label it owns, a chart and an icon", () => {
   for (const id of registry.QUIZ_IDS) {
     const quiz = registry.QUIZ_CONFIG[id];
+    assert.equal(typeof quiz.ruleKey, "function", `${id}: ruleKey`);
     assert.equal(typeof quiz.ruleLabel, "function", `${id}: ruleLabel`);
-    assert.equal(typeof quiz.ownsRule, "function", `${id}: ownsRule`);
     assert.equal(typeof quiz.chart?.blocks, "function", `${id}: chart.blocks`);
     assert.ok(["shared", "group", "group-or-shared"].includes(quiz.chart.sections), `${id}: chart.sections`);
     assert.ok(["chart", "explainer"].includes(quiz.chart.link), `${id}: chart.link`);
@@ -62,13 +62,30 @@ test("every quiz declares a rule label it owns, a chart and an icon", () => {
   }
 });
 
-test("every question's rule label maps back to its own quiz, and no other quiz claims it", () => {
+const { ruleFromSchema2Label } = await import("../app/schema-2-labels.ts");
+const KEY = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+
+test("every group and rule key is a fixed slug, and each has a label (decision 0015)", () => {
+  for (const id of registry.QUIZ_IDS) {
+    for (const key of registry.groupKeys(id)) {
+      assert.match(key, KEY, `${id}: group key ${key}`);
+      assert.ok(registry.groupLabel(id, key).trim(), `${id}: ${key} has no label`);
+    }
+    for (const question of registry.QUIZ_CONFIG[id].questions) {
+      assert.ok(registry.groupKeys(id).includes(question.group), `${id} #${question.id}: unknown group ${question.group}`);
+      const key = notebook.ruleKeyFor(question, id);
+      assert.match(key, KEY, `${id} #${question.id}: rule key ${key}`);
+      assert.ok(notebook.ruleLabel(id, key).trim());
+    }
+  }
+});
+
+test("each rule label shown today maps back to its own activity and key through the frozen schema 2 table", () => {
+  // Labels shown today equal the schema 2 labels; if a label is renamed later, this pins the old one instead.
   for (const id of registry.QUIZ_IDS) {
     for (const question of registry.QUIZ_CONFIG[id].questions) {
-      const label = notebook.ruleLabelFor(question, id);
-      assert.equal(notebook.quizIdForRule(label), id, `${id} #${question.id}: ${label}`);
-      const claimants = registry.QUIZ_IDS.filter((other) => registry.QUIZ_CONFIG[other].ownsRule(label));
-      assert.deepEqual(claimants, [id], `${label} claimed by ${claimants.join(", ")}`);
+      const key = notebook.ruleKeyFor(question, id);
+      assert.deepEqual(ruleFromSchema2Label(notebook.ruleLabel(id, key)), { activityId: id, key }, `${id} #${question.id}`);
     }
   }
 });

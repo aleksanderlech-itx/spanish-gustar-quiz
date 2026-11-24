@@ -190,7 +190,7 @@ export const POR_PARA_QUESTIONS: Question[] = seed.map(([id, before, after, answ
   id,
   before,
   after,
-  group: "por / para",
+  group: "por-para",
   answer,
   distractors: [alternateAnswer],
   explanation,
@@ -199,7 +199,7 @@ export const POR_PARA_QUESTIONS: Question[] = seed.map(([id, before, after, answ
 })).map(applySourcedQuestionPair);
 
 export const POR_PARA_FORMS: Record<string, [string, string]> = {
-  "por / para": ["por", "para"],
+  "por-para": ["por", "para"],
 };
 
 /** Reference tables for the in-round "Usage examples": one example sentence per usage,

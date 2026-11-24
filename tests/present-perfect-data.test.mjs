@@ -73,7 +73,7 @@ test("tener is never the auxiliary in an answer, and the haber not tener group o
   for (const question of PRESENT_PERFECT_QUESTIONS) {
     assert.ok(!words(question.answer).some((word) => TENER.includes(word)), `#${question.id}: tener in the answer`);
   }
-  const contrast = PRESENT_PERFECT_QUESTIONS.filter((question) => question.group === "haber not tener");
+  const contrast = PRESENT_PERFECT_QUESTIONS.filter((question) => question.group === "haber-not-tener");
   for (const question of contrast) {
     const [tener, participle] = fold(question.distractors[0]).split(" ");
     assert.ok(TENER.includes(tener), `#${question.id}: distractor should use tener`);
@@ -119,13 +119,13 @@ test("regular participles in -ado and -ido are balanced with common irregular pa
   for (const common of ["abierto", "dicho", "escrito", "hecho", "muerto", "puesto", "roto", "visto", "vuelto"]) {
     assert.ok(participles.includes(common), `irregular participle ${common} is missing`);
   }
-  for (const question of PRESENT_PERFECT_QUESTIONS.filter((item) => item.group === "irregular participle")) {
+  for (const question of PRESENT_PERFECT_QUESTIONS.filter((item) => item.group === "irregular-participle")) {
     assert.ok(IRREGULAR[question.blankHint], `#${question.id}: ${question.blankHint} is not irregular`);
   }
 });
 
 test("negatives and questions keep pronouns, no and adverbs before haber, and the distractor splits the verb", () => {
-  const items = PRESENT_PERFECT_QUESTIONS.filter((question) => question.group === "negatives and questions");
+  const items = PRESENT_PERFECT_QUESTIONS.filter((question) => question.group === "negatives-and-questions");
   for (const question of items) {
     const tokens = fold(question.answer).split(" ");
     assert.ok(tokens.length >= 3, `#${question.id}: something should come before haber`);

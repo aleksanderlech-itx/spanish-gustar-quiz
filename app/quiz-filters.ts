@@ -3,14 +3,18 @@ import { appStorage } from "./storage.ts";
 
 export const DEFAULT_FILTERS: QuizFilters = { level: "all", verb: "all" };
 
-/** Reuses each quiz's existing filterKey and {level, verb} shape from before the redesign. */
-export const readQuizFilters = (filterKey: string): QuizFilters => {
+/**
+ * Reuses each quiz's existing filterKey and {level, verb} shape from before the redesign. `verb` holds a
+ * group key (decision 0015); one that is not in `groups` (a group since removed) reads as "all".
+ */
+export const readQuizFilters = (filterKey: string, groups: readonly string[]): QuizFilters => {
   if (typeof window === "undefined") return DEFAULT_FILTERS;
   try {
     const raw = appStorage.getItem(filterKey);
     if (!raw) return DEFAULT_FILTERS;
     const parsed = JSON.parse(raw) as Partial<QuizFilters>;
-    return { level: parsed.level ?? "all", verb: parsed.verb ?? "all" };
+    const verb = typeof parsed.verb === "string" && groups.includes(parsed.verb) ? parsed.verb : "all";
+    return { level: parsed.level ?? "all", verb };
   } catch {
     return DEFAULT_FILTERS;
   }

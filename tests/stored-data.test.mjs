@@ -36,10 +36,12 @@ const { ACTIVITY_REGISTRY } = await import("../app/activity-registry.ts");
 // The Activities that existed at schema 1: an old device or backup is upgraded to exactly these.
 const ALL_IDS = ACTIVITY_REGISTRY.map((entry) => entry.id).filter((id) => id !== "sentence-builder");
 const REINSTATED_KEY = "spanish-quiz-reinstated-v1";
-/** The fixture after the schema 2 step: the Board replaces the "show on main screen" choices. */
+/** The fixture after every step: the Board replaces the "show on main screen" choices (schema 2), and the
+ * notebook stores rule keys instead of labels (schema 3, decision 0015). */
 const upgradedFixture = () => {
   const rest = { ...FIXTURE };
   delete rest[REINSTATED_KEY];
+  rest["spanish-quiz-notebook-v1"] = FIXTURE["spanish-quiz-notebook-v1"].replace('"rule":"Gustar pattern: encantar"', '"rule":"encantar"');
   return rest;
 };
 const { readStreakSummary } = await import("../app/streak.ts");

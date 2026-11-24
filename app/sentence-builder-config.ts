@@ -3,7 +3,7 @@ import type { SentenceBuilderItem } from "./sentence-builder-data.ts";
 /**
  * Sentence Builder's fixed identity: id, URL, storage keys and labels (decision 0013). Kept apart from the
  * Item data so the activity registry and storage code can import it without the sentences.
- * The id, keys and rule labels are stored in learners' browsers: never change them (decision 0009).
+ * The id, storage keys and group keys are stored in learners' browsers: never change them (decisions 0009, 0015).
  */
 export const SENTENCE_BUILDER_ID = "sentence-builder";
 export const SENTENCE_BUILDER_PATH = "/sentence-builder";
@@ -16,7 +16,14 @@ export const SENTENCE_BUILDER_INTRODUCED_ON = "2026-11-24";
 /** Three stacked blocks: pieces put in order. */
 export const SENTENCE_BUILDER_ICON_PATH = "M4 5h9v4H4zM8 10h12v4H8zM4 15h7v4H4z";
 
-const RULE_PREFIX = "Sentence Builder: ";
-/** The mistake notebook's label for an Item: its pattern group. */
-export const sentenceBuilderRuleLabel = (item: Pick<SentenceBuilderItem, "group">) => `${RULE_PREFIX}${item.group}`;
-export const ownsSentenceBuilderRule = (rule: string) => rule.startsWith(RULE_PREFIX);
+/** What a learner sees for each group key, where it differs from the key (decision 0015). */
+export const SENTENCE_BUILDER_GROUP_LABELS: Record<string, string> = {
+  "object-pronouns": "object pronouns",
+  "ser-and-estar": "ser and estar",
+  "present-and-past": "present and past",
+};
+export const sentenceBuilderGroupLabel = (key: string) => SENTENCE_BUILDER_GROUP_LABELS[key] ?? key;
+/** The mistake notebook's key for an Item: its group key, stored in learners' browsers (decision 0015). */
+export const sentenceBuilderRuleKey = (item: Pick<SentenceBuilderItem, "group">) => item.group;
+/** The text shown for a Sentence Builder rule key. */
+export const sentenceBuilderRuleLabel = (key: string) => `Sentence Builder: ${sentenceBuilderGroupLabel(key)}`;

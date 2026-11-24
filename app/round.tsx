@@ -4,13 +4,13 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { type Question } from "./quiz-data";
 import { availableQuestions, clearRegularHistory, filterQuestions, getMissedIds, scoreRound, type QuizResult } from "./quiz-logic";
-import { QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config";
+import { groupKeys, QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config";
 import { recordActivityToday } from "./streak";
 import { markQuizCompleted, readQuizCompletion, repeatDueDate } from "./quiz-completion";
 import { moveFinishedToShelf } from "./board-state";
 import { readTopicSettings, type AnswerMode } from "./topic-settings";
 import { readQuizFilters } from "./quiz-filters";
-import { recordMistakes, ruleLabelFor } from "./notebook";
+import { recordMistakes, ruleKeyFor, ruleLabel } from "./notebook";
 import Results from "./results";
 import RoundQuestion from "./round-question";
 import SiteHeader from "./site-header";
@@ -53,7 +53,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
   const missedIds = useMemo(() => getMissedIds(history), [history]);
 
   const startRound = (missedOnly: boolean, sourceHistory: Result[]) => {
-    const filteredQuestions = filterQuestions(questions, readQuizFilters(quiz.filterKey));
+    const filteredQuestions = filterQuestions(questions, readQuizFilters(quiz.filterKey, groupKeys(quizId)));
     let pool = availableQuestions(filteredQuestions, sourceHistory, missedOnly);
     if (missedOnly && pool.length === 0) {
       missedOnly = false;
@@ -187,7 +187,7 @@ export default function Round({ quizId, standalone = false }: { quizId: QuizId; 
     const { missedIds: missed, score, percent } = scoreRound(committed.map((c) => c.q), committed.map((c) => c.a));
     const missedSet = new Set(missed);
     const misses = committed.filter((c) => missedSet.has(c.q.id));
-    const rules = misses.map((c) => ruleLabelFor(c.q, quizId));
+    const rules = misses.map((c) => ruleLabel(quizId, ruleKeyFor(c.q, quizId)));
     recordMistakes(quizId, misses.map((c) => ({ question: c.q, answer: c.a })));
     const result: Result = {
       date: new Date().toISOString(),

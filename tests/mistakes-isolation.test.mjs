@@ -46,9 +46,9 @@ const SEED = {
   [NOTEBOOK_KEY]: JSON.stringify({
     version: 2,
     entries: {
-      "q:gustar:1": { id: "q:gustar:1", kind: "question", quizId: "gustar", rule: "Gustar pattern: gustar", questionId: 1, wrongAnswer: "me gustan", missCount: 1, lastMissedAt: "2026-10-16T08:00:00.000Z", retryCount: 0, retryCorrectCount: 0 },
-      "q:gustar:2": { id: "q:gustar:2", kind: "question", quizId: "gustar", rule: "Gustar pattern: gustar", questionId: 2, wrongAnswer: "me gusta", missCount: 1, lastMissedAt: "2026-10-16T08:00:00.000Z", retryCount: 0, retryCorrectCount: 0 },
-      "rule:Gustar pattern: doler": { id: "rule:Gustar pattern: doler", kind: "rule", quizId: "gustar", rule: "Gustar pattern: doler", missCount: 3, lastMissedAt: "2026-10-01T08:00:00.000Z", retryCount: 0, retryCorrectCount: 0 },
+      "q:gustar:1": { id: "q:gustar:1", kind: "question", quizId: "gustar", rule: "gustar", questionId: 1, wrongAnswer: "me gustan", missCount: 1, lastMissedAt: "2026-10-16T08:00:00.000Z", retryCount: 0, retryCorrectCount: 0 },
+      "q:gustar:2": { id: "q:gustar:2", kind: "question", quizId: "gustar", rule: "gustar", questionId: 2, wrongAnswer: "me gusta", missCount: 1, lastMissedAt: "2026-10-16T08:00:00.000Z", retryCount: 0, retryCorrectCount: 0 },
+      "rule:Gustar pattern: doler": { id: "rule:Gustar pattern: doler", kind: "rule", quizId: "gustar", rule: "doler", missCount: 3, lastMissedAt: "2026-10-01T08:00:00.000Z", retryCount: 0, retryCorrectCount: 0 },
     },
   }),
 };

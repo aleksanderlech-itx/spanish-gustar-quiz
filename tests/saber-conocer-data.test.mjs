@@ -38,7 +38,7 @@ test("usage categories are all filterable and the past group is the only one out
     assert.ok(SABER_CONOCER_QUESTIONS.some((question) => question.group === usage), `no questions for ${usage}`);
   }
   for (const question of SABER_CONOCER_QUESTIONS) {
-    assert.equal(question.tense !== "present", question.group === "past meaning", `#${question.id}: tense/usage mismatch`);
+    assert.equal(question.tense !== "present", question.group === "past-meaning", `#${question.id}: tense/usage mismatch`);
   }
 });
 

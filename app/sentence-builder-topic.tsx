@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { SENTENCE_BUILDER_GROUPS, SENTENCE_BUILDER_ITEMS } from "./sentence-builder-data";
-import { SENTENCE_BUILDER_DESCRIPTION, SENTENCE_BUILDER_FILTER_KEY, SENTENCE_BUILDER_ID, SENTENCE_BUILDER_PATH, SENTENCE_BUILDER_STORAGE_KEY } from "./sentence-builder-config";
+import { sentenceBuilderGroupLabel, SENTENCE_BUILDER_DESCRIPTION, SENTENCE_BUILDER_FILTER_KEY, SENTENCE_BUILDER_ID, SENTENCE_BUILDER_PATH, SENTENCE_BUILDER_STORAGE_KEY } from "./sentence-builder-config";
 import { emptyQuizProgress, readHistoryProgress, type QuizProgress } from "./quiz-progress";
 import { DEFAULT_SETTINGS, readTopicSettings, writeTopicSettings, type RoundLength } from "./topic-settings";
 import { DEFAULT_FILTERS, readQuizFilters, writeQuizFilters } from "./quiz-filters";
@@ -30,7 +30,7 @@ export default function SentenceBuilderTopic() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setProgress(readHistoryProgress(SENTENCE_BUILDER_STORAGE_KEY, SENTENCE_BUILDER_ITEMS.length));
     setRoundLength(readTopicSettings(SENTENCE_BUILDER_ID).roundLength);
-    setFilters(readQuizFilters(SENTENCE_BUILDER_FILTER_KEY));
+    setFilters(readQuizFilters(SENTENCE_BUILDER_FILTER_KEY, SENTENCE_BUILDER_GROUPS));
   }, []);
 
   const chooseLength = (length: RoundLength) => {
@@ -100,7 +100,7 @@ export default function SentenceBuilderTopic() {
                 <span>Pattern</span>
                 <select value={filters.verb} onChange={(event) => updateFilters({ verb: event.target.value })}>
                   <option value="all">All patterns</option>
-                  {SENTENCE_BUILDER_GROUPS.map((group) => <option value={group} key={group}>{capital(group)}</option>)}
+                  {SENTENCE_BUILDER_GROUPS.map((group) => <option value={group} key={group}>{capital(sentenceBuilderGroupLabel(group))}</option>)}
                 </select>
               </label>
             </div>

@@ -16,7 +16,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 
-import { QUIZ_CONFIG, QUIZ_IDS } from "../app/quiz-config.ts";
+import { groupLabel, QUIZ_CONFIG, QUIZ_IDS } from "../app/quiz-config.ts";
 
 export const SNAPSHOT_URL = new URL("../tests/question-id-snapshot.json", import.meta.url);
 
@@ -26,17 +26,17 @@ export const SNAPSHOT_URL = new URL("../tests/question-id-snapshot.json", import
  * comes from the generated pair and the rest from the seed, and both are joined by id, so the line
  * changes when either side moves to another id.
  */
-export const sentenceOf = (question) => [
+export const sentenceOf = (question, quizId) => [
   `${question.before.trim()} [${question.answer}] ${question.after.trim()}`.trim(),
   question.objectPronoun ?? question.distractors[0],
-  question.group,
+  groupLabel(quizId, question.group),
   question.tense ?? "present",
   question.level,
 ].join(" | ");
 
 /** Every current question as { id: sentence }, in id order. */
 export const currentSentences = () => Object.fromEntries(
-  QUIZ_IDS.flatMap((quizId) => QUIZ_CONFIG[quizId].questions.map((question) => [question.id, sentenceOf(question)]))
+  QUIZ_IDS.flatMap((quizId) => QUIZ_CONFIG[quizId].questions.map((question) => [question.id, sentenceOf(question, quizId)]))
     .sort((a, b) => a[0] - b[0]),
 );
 

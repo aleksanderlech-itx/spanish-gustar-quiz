@@ -6,8 +6,8 @@ import { QUIZ_CONFIG, quizPath, type QuizId } from "./quiz-config";
 import { normalizeAnswer, sentenceParts } from "./quiz-logic";
 import { readTopicSettings, type AnswerMode } from "./topic-settings";
 import { answerChoicesFor } from "./answer-choices";
-import { dismissEntry, readNotebookEntries, recordRetry, type NotebookEntry } from "./notebook";
-import { buildRetrySession, mistakesTitle, retryExplanation, type RetryItem } from "./notebook-retry";
+import { dismissEntry, readNotebookEntries, recordRetry, ruleLabel, type NotebookEntry } from "./notebook";
+import { buildRetrySession, mistakesTitle, retryExplanation, ruleKeyFromParam, type RetryItem } from "./notebook-retry";
 import RoundQuestion from "./round-question";
 import SiteHeader from "./site-header";
 
@@ -27,7 +27,7 @@ export default function MistakesActivity({ quizId, initialRule = null }: { quizI
 
   const [hydrated, setHydrated] = useState(false);
   const [entries, setEntries] = useState<NotebookEntry[]>([]);
-  const [rule, setRule] = useState<string | null>(initialRule);
+  const [rule, setRule] = useState<string | null>(() => ruleKeyFromParam(quizId, initialRule));
   const [roundLength, setRoundLength] = useState(5);
   const [phase, setPhase] = useState<Phase>("overview");
   const [items, setItems] = useState<RetryItem[]>([]);
@@ -177,9 +177,9 @@ export default function MistakesActivity({ quizId, initialRule = null }: { quizI
           {rules.length > 1 && (
             <div className="mistakes-chip-row" role="group" aria-label="Subtopic">
               <button type="button" className="mistakes-chip" aria-pressed={!activeRule} onClick={() => setRule(null)}>All ({entries.length})</button>
-              {rules.map((label) => (
-                <button type="button" key={label} className="mistakes-chip" aria-pressed={activeRule === label} onClick={() => setRule(label)}>
-                  {label} ({entries.filter((entry) => entry.rule === label).length})
+              {rules.map((key) => (
+                <button type="button" key={key} className="mistakes-chip" aria-pressed={activeRule === key} onClick={() => setRule(key)}>
+                  {ruleLabel(quizId, key)} ({entries.filter((entry) => entry.rule === key).length})
                 </button>
               ))}
             </div>
@@ -192,7 +192,7 @@ export default function MistakesActivity({ quizId, initialRule = null }: { quizI
               return (
                 <li key={entry.id} className="mistakes-entry">
                   <div className="mistakes-entry-body">
-                    <p className="mistakes-entry-rule">{entry.rule}</p>
+                    <p className="mistakes-entry-rule">{ruleLabel(quizId, entry.rule)}</p>
                     {sentence ? (
                       <p className="mistakes-entry-sentence" lang="es">{sentence.before}<strong>{sentence.answer}</strong>{sentence.after}</p>
                     ) : (
@@ -203,7 +203,7 @@ export default function MistakesActivity({ quizId, initialRule = null }: { quizI
                       Missed {times(entry.missCount)} · Retried {times(entry.retryCount)}{entry.retryCount ? `, ${entry.retryCorrectCount} correct` : ""}
                     </p>
                   </div>
-                  <button type="button" className="mistakes-dismiss" onClick={() => dismiss(entry.id)} aria-label={`Dismiss ${entry.rule}${sentence ? `: ${question?.before} ${question?.answer} ${question?.after}` : ""}`}>
+                  <button type="button" className="mistakes-dismiss" onClick={() => dismiss(entry.id)} aria-label={`Dismiss ${ruleLabel(quizId, entry.rule)}${sentence ? `: ${question?.before} ${question?.answer} ${question?.after}` : ""}`}>
                     Dismiss
                   </button>
                 </li>

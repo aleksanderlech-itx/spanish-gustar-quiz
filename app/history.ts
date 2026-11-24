@@ -1,5 +1,5 @@
 import { isGustarQuestion, type Question } from "./quiz-data.ts";
-import type { QuizId } from "./quiz-config";
+import { groupLabel, type QuizId } from "./quiz-config.ts";
 import type { QuizResult } from "./quiz-logic";
 
 export type RecentRound = { quizTitle: string; date: string; percent: number; mode?: "regular" | "review" };
@@ -32,13 +32,13 @@ export const computeWeakAreas = (
     totals.set(key, value);
   };
 
-  byQuiz.forEach(({ questions, history }) => {
+  byQuiz.forEach(({ quizId, questions, history }) => {
     const regularHistory = history.filter((item) => item.mode !== "review");
     regularHistory.forEach((result) => result.questionIds.forEach((id) => {
       const question = questions.find((q) => q.id === id);
       if (!question) return;
       const missed = result.missedIds.includes(id);
-      record(`Verb: ${question.group}`, missed);
+      record(`Verb: ${groupLabel(quizId, question.group)}`, missed);
       if (question.tense) record(`Tense: ${question.tense}`, missed);
       if (isGustarQuestion(question)) {
         record(`Agreement: ${question.subjectNumber}`, missed);

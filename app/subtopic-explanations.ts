@@ -30,10 +30,10 @@ export function subtopicExplanation(quizId: QuizId, question: Question): string 
         ? "Por looks back: cause, exchange, duration, means or movement through a place."
         : "Para looks ahead: purpose, recipient, deadline or destination.";
     case "object-pronouns":
-      if (question.group === "direct object") {
+      if (question.group === "direct-object") {
         return `${cue} is what the verb acts on, the direct object, so ${question.answer} copies its gender and number.`;
       }
-      if (question.group === "indirect object") {
+      if (question.group === "indirect-object") {
         return `${cue} is who receives or is affected, the indirect object, so ${question.answer}.`;
       }
       return `${cue} sets the pair: indirect before direct, and le or les becomes se before lo, la, los or las.`;
@@ -44,30 +44,30 @@ export function subtopicExplanation(quizId: QuizId, question: Question): string 
         people: "is a person, and knowing a person uses conocer with the personal a.",
         places: "is a place, and being familiar with a place uses conocer.",
         familiarity: "is a work, field or thing you are familiar with, so conocer.",
-        "past meaning": "sets the past meaning: preterite saber means found out, preterite conocer means met.",
+        "past-meaning": "sets the past meaning: preterite saber means found out, preterite conocer means met.",
       };
       return `${cue} ${rule[question.group] ?? "decides between saber and conocer."}`;
     }
     case "reflexive-verbs": {
       const rule: Record<string, string> = {
-        "meaning change": "decides whether the plain verb or the reflexive one fits, since se changes the meaning.",
+        "meaning-change": "decides whether the plain verb or the reflexive one fits, since se changes the meaning.",
         placement: "decides where the pronoun goes: before a conjugated verb, or on the end of an infinitive or gerund.",
       };
       return `${cue} ${rule[question.group] ?? "shows who does the action to themselves, so the reflexive pronoun matches that subject."}`;
     }
     case "present-perfect": {
       const rule: Record<string, string> = {
-        "irregular participle": "sets the perfect, and this verb has an irregular participle that does not end in -ado or -ido.",
-        "haber not tener": "sets the perfect, which is always haber plus the participle. Tener never forms it.",
-        "negatives and questions": "sets the perfect. Pronouns, no and adverbs go before haber, never between haber and the participle.",
+        "irregular-participle": "sets the perfect, and this verb has an irregular participle that does not end in -ado or -ido.",
+        "haber-not-tener": "sets the perfect, which is always haber plus the participle. Tener never forms it.",
+        "negatives-and-questions": "sets the perfect. Pronouns, no and adverbs go before haber, never between haber and the participle.",
       };
       return `${cue} ${rule[question.group] ?? "sets the perfect: the present of haber that matches the subject, then the participle."}`;
     }
     case "present-continuous": {
       const rule: Record<string, string> = {
-        "irregular gerund": "sets an action in progress, and this verb has an irregular gerund: e to i, o to u, or y.",
-        "pronoun placement": "decides where the pronoun goes: before estar, or attached to the gerund with an accent, never both.",
-        "gerund or infinitive": "decides the form: estar plus the gerund for an action in progress, the infinitive after a preposition or as a noun.",
+        "irregular-gerund": "sets an action in progress, and this verb has an irregular gerund: e to i, o to u, or y.",
+        "pronoun-placement": "decides where the pronoun goes: before estar, or attached to the gerund with an accent, never both.",
+        "gerund-or-infinitive": "decides the form: estar plus the gerund for an action in progress, the infinitive after a preposition or as a noun.",
       };
       return `${cue} ${rule[question.group] ?? "sets an action in progress: the present of estar that matches the subject, then the gerund."}`;
     }

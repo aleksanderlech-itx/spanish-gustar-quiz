@@ -1,7 +1,8 @@
 import type { Question } from "./quiz-data";
 import { type QuizId } from "./quiz-config.ts";
 import { findActivity, type ProgressActivityId } from "./activity-registry.ts";
-import { ruleLabelFor, type NotebookEntry } from "./notebook.ts";
+import { ruleKeyFor, type NotebookEntry } from "./notebook.ts";
+import { ruleFromSchema2Label } from "./schema-2-labels.ts";
 import { subtopicExplanation } from "./subtopic-explanations.ts";
 
 /** One question in a retry session and the notebook entry its answer is credited to. */
@@ -37,7 +38,7 @@ export const buildRetrySession = (
   const used = new Set(session.map((item) => item.question.id));
   const pools = shuffle(inScope.filter((entry) => entry.kind === "rule")).map((entry) => ({
     entryId: entry.id,
-    pool: shuffle(questions.filter((question) => !used.has(question.id) && ruleLabelFor(question, quizId) === entry.rule)),
+    pool: shuffle(questions.filter((question) => !used.has(question.id) && ruleKeyFor(question, quizId) === entry.rule)),
   }));
 
   while (session.length < length && pools.some((item) => item.pool.length)) {
@@ -73,7 +74,15 @@ export const retryExplanation = (quizId: QuizId, question: Question, answer: str
   };
 };
 
-/** URL of an activity's temporary mistakes activity, optionally opened on one subtopic. */
+/** The rule key a `rule=` link names. Links made before schema 3 carry the rule's label instead, which maps
+ * through the frozen schema 2 labels (decision 0015). */
+export const ruleKeyFromParam = (activityId: ProgressActivityId, param: string | null): string | null => {
+  if (!param) return null;
+  const fromLabel = ruleFromSchema2Label(param);
+  return fromLabel && fromLabel.activityId === activityId ? fromLabel.key : param;
+};
+
+/** URL of an activity's temporary mistakes activity, optionally opened on one rule key. */
 export const mistakesPath = (activityId: ProgressActivityId, rule?: string) =>
   `${findActivity(activityId)?.path ?? "/"}?mistakes=1${rule ? `&rule=${encodeURIComponent(rule)}` : ""}`;
 

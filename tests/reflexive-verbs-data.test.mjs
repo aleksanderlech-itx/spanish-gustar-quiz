@@ -44,7 +44,7 @@ test("usage groups are all filterable and balanced across levels", () => {
 
 test("outside the meaning-change group every answer carries a reflexive pronoun, unless one already sits before the helper verb", () => {
   for (const question of REFLEXIVE_VERB_QUESTIONS) {
-    if (question.group === "meaning change") continue;
+    if (question.group === "meaning-change") continue;
     const pronounBeforeHelper = PRONOUNS.some((pronoun) => fold(question.before).split(/\s+/).includes(pronoun) || fold(question.before).startsWith(`¿${pronoun} `));
     if (pronounBeforeHelper) {
       assert.ok(!hasReflexivePronoun(question.answer), `#${question.id}: pronoun doubled`);
@@ -56,7 +56,7 @@ test("outside the meaning-change group every answer carries a reflexive pronoun,
 });
 
 test("meaning-change items show both verbs in the blank and include plain (non-reflexive) answers", () => {
-  const items = REFLEXIVE_VERB_QUESTIONS.filter((question) => question.group === "meaning change");
+  const items = REFLEXIVE_VERB_QUESTIONS.filter((question) => question.group === "meaning-change");
   for (const question of items) {
     assert.match(question.blankHint, /^\p{L}+ \/ \p{L}+se$/u, `#${question.id}: blank should read "plain / reflexive"`);
     assert.notEqual(hasReflexivePronoun(question.answer), hasReflexivePronoun(question.distractors[0]), `#${question.id}: one option must be reflexive, the other plain`);

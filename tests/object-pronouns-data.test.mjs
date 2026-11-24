@@ -7,9 +7,9 @@ const byType = (type) => OBJECT_PRONOUN_QUESTIONS.filter((question) => question.
 
 // A standalone pronoun cluster, or pronouns attached to the end of a gerund/infinitive.
 const PATTERNS = {
-  "direct object": { standalone: /^(me|te|lo|la|nos|los|las)$/, attached: /(me|te|lo|la|nos|los|las)$/ },
-  "indirect object": { standalone: /^(me|te|le|nos|les)$/, attached: /(me|te|le|nos|les)$/ },
-  "double pronouns": { standalone: /^(me|te|se|nos) (lo|la|los|las)$/, attached: /(me|te|se|nos)(lo|la|los|las)$/ },
+  "direct-object": { standalone: /^(me|te|lo|la|nos|los|las)$/, attached: /(me|te|lo|la|nos|los|las)$/ },
+  "indirect-object": { standalone: /^(me|te|le|nos|les)$/, attached: /(me|te|le|nos|les)$/ },
+  "double-pronouns": { standalone: /^(me|te|se|nos) (lo|la|los|las)$/, attached: /(me|te|se|nos)(lo|la|los|las)$/ },
 };
 
 test("Object pronouns quiz has 150 questions with stable, unique IDs", () => {
@@ -65,7 +65,7 @@ test("pronoun attachment is practised with gerunds and infinitives, with the acc
   assert.ok(attached.some((question) => question.blankHint.endsWith("ndo")), "no gerund attachment items");
   assert.ok(attached.some((question) => question.blankHint.endsWith("r")), "no infinitive attachment items");
   for (const question of attached) {
-    const pronounCount = question.group === "double pronouns" ? 2 : 1;
+    const pronounCount = question.group === "double-pronouns" ? 2 : 1;
     // A gerund always gains a written accent; an infinitive only does with two pronouns.
     const needsAccent = question.blankHint.endsWith("ndo") || pronounCount === 2;
     assert.equal(/[áéíóú]/.test(question.answer), needsAccent, `#${question.id}: accent on "${question.answer}"`);
@@ -73,7 +73,7 @@ test("pronoun attachment is practised with gerunds and infinitives, with the acc
 });
 
 test("double pronouns explicitly practise le/les becoming se, and never accept le lo / les la", () => {
-  const doubles = byType("double pronouns");
+  const doubles = byType("double-pronouns");
   const seItems = doubles.filter((question) => /^se |se(lo|la|los|las)$/.test(stripAccents(question.answer)));
   assert.ok(seItems.length >= 25, `only ${seItems.length} se-replacement items`);
   for (const question of OBJECT_PRONOUN_QUESTIONS) {

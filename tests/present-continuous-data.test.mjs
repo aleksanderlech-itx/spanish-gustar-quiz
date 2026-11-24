@@ -122,14 +122,14 @@ test("coverage: every person of estar, every group and level, singular and plura
 });
 
 test("regular groups use only regular -ando or -iendo gerunds, and the irregular group only irregular ones", () => {
-  for (const question of byGroup("regular -ando")) {
+  for (const question of byGroup("regular-ando")) {
     assert.match(question.blankHint, /ar$/u, `#${question.id}: ${question.blankHint} is not an -ar verb`);
   }
-  for (const question of byGroup("regular -iendo")) {
+  for (const question of byGroup("regular-iendo")) {
     assert.match(question.blankHint, /[ei]r$/u, `#${question.id}: ${question.blankHint} is not an -er or -ir verb`);
     assert.ok(isRegular(question.blankHint), `#${question.id}: ${question.blankHint} has an irregular gerund`);
   }
-  const irregular = byGroup("irregular gerund");
+  const irregular = byGroup("irregular-gerund");
   for (const question of irregular) {
     assert.ok(!isRegular(question.blankHint), `#${question.id}: ${question.blankHint} has a regular gerund`);
   }
@@ -141,7 +141,7 @@ test("regular groups use only regular -ando or -iendo gerunds, and the irregular
 });
 
 test("pronoun placement: an attached pronoun takes an accent, a pronoun before estar is never repeated", () => {
-  const items = byGroup("pronoun placement");
+  const items = byGroup("pronoun-placement");
   const attached = items.filter((question) => !estarIn(question.answer));
   const before = items.filter((question) => estarIn(question.answer));
   assert.ok(attached.length >= 12 && before.length >= 12, "both placements should be well represented");
@@ -169,7 +169,7 @@ test("pronoun placement: an attached pronoun takes an accent, a pronoun before e
 });
 
 test("gerund or infinitive: the infinitive answers take the gerund as the wrong option, and vice versa", () => {
-  const items = byGroup("gerund or infinitive");
+  const items = byGroup("gerund-or-infinitive");
   const infinitives = items.filter((question) => !estarIn(question.answer));
   assert.ok(infinitives.length >= 12, `only ${infinitives.length} infinitive answers`);
   assert.ok(items.length - infinitives.length >= 12, "too few estar answers to contrast with");

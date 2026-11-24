@@ -67,10 +67,14 @@ type QuizConfigEntry = {
   /** Name of the reference chart linked from the topic page and the round's
    * "Stuck?" button. Defaults to "Verb conjugation chart". */
   chartLabel?: string;
-  /** The mistake notebook's label for the grammar point a missed question exercises. Stored in learners'
-   * browsers, so a label must never change; `ownsRule` maps a stored label back to its quiz. */
-  ruleLabel: (question: Question) => string;
-  ownsRule: (rule: string) => boolean;
+  /** What a learner sees for each group key, where it differs from the key (decision 0015). Keys are stored in
+   * learners' browsers and never change; a label can change freely. */
+  groupLabels?: Record<string, string>;
+  /** The mistake notebook's key for the grammar point a missed question exercises: stored in learners'
+   * browsers, so a key never changes (decision 0015). Usually the question's group. */
+  ruleKey: (question: Question) => string;
+  /** The text shown for a rule key: the notebook chip and the mistakes activity's title. */
+  ruleLabel: (ruleKey: string) => string;
   chart: ChartSpec;
   /** Whether each explanation must quote its sentence's cue (docs/explanation-quality.md). Defaults to true;
    * por vs para keeps its per-sentence explanations from #109. */
@@ -80,6 +84,21 @@ type QuizConfigEntry = {
   /** Local day key (YYYY-MM-DD) the activity went live in production. The daily streak
    * only requires it from this day on, so adding an activity never breaks past days. */
   introducedOn?: string;
+};
+
+/** A notebook label of the form "Prefix: group label". */
+const prefixed = (prefix: string, labels: Record<string, string> = {}) => (key: string) => `${prefix}: ${labels[key] ?? key}`;
+
+const OBJECT_PRONOUN_LABELS = { "direct-object": "direct object", "indirect-object": "indirect object", "double-pronouns": "double pronouns" };
+const SABER_CONOCER_LABELS = { "past-meaning": "past meaning" };
+const REFLEXIVE_LABELS = { "daily-routine": "daily routine", "meaning-change": "meaning change" };
+const PRESENT_PERFECT_LABELS = {
+  "regular-ado": "regular -ado", "regular-ido": "regular -ido", "irregular-participle": "irregular participle",
+  "haber-not-tener": "haber not tener", "negatives-and-questions": "negatives and questions",
+};
+const PRESENT_CONTINUOUS_LABELS = {
+  "regular-ando": "regular -ando", "regular-iendo": "regular -iendo", "irregular-gerund": "irregular gerund",
+  "pronoun-placement": "pronoun placement", "gerund-or-infinitive": "gerund or infinitive",
 };
 
 export const DEFAULT_FILTER_LABEL = { label: "Verb", all: "All verbs" };
@@ -103,8 +122,8 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     // The answer is a pronoun + conjugated verb (e.g. "me gusta"), not a form of the
     // bare infinitive shown here (e.g. "gustar"), so showing it in the blank would mislead.
     showInfinitiveBlank: false,
-    ruleLabel: (question) => `Gustar pattern: ${question.group}`,
-    ownsRule: (rule) => rule.startsWith("Gustar pattern:"),
+    ruleKey: (question) => question.group,
+    ruleLabel: prefixed("Gustar pattern"),
     chart: { blocks: CHART_BLOCKS.gustar, sections: "group", link: "chart" },
     iconPath: "M20.8 8.6c0 4.1-5.1 8.4-8.8 11.2C8.3 17 3.2 12.7 3.2 8.6a5 5 0 0 1 8.8-3.2 5 5 0 0 1 8.8 3.2Z",
   },
@@ -122,8 +141,9 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     backupName: "spanish-ser-estar-quiz-progress.json",
     sources: [{ label: "Instituto Cervantes: ser y estar", href: "https://cvc.cervantes.es/ensenanza/ese/programa_17/aprendiz_17.htm" }, { label: "Instituto Cervantes: actividad B1", href: "https://cvc.cervantes.es/ensenanza/actividades_ave/nivelii/ficha_20.htm" }],
     rule: { title: "Ser frames what something is. Estar frames how or where it is now.", body: "Use ser for identity, origin, material, time and defining qualities. Use estar for location, condition and a state linked to a situation.", singular: "La camisa es azul.", plural: "La camisa está mojada." },
+    groupLabels: { "ser-estar": "ser / estar" },
+    ruleKey: () => "ser-estar",
     ruleLabel: () => "Ser vs estar",
-    ownsRule: (rule) => rule === "Ser vs estar",
     chart: { blocks: CHART_BLOCKS.serEstar, sections: "group", link: "chart" },
     iconPath: "m3 10 9-7 9 7M4 10h16M5 10v9m5-9v9m4-9v9m5-9v9M3 21h18",
   },
@@ -141,8 +161,8 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     backupName: "spanish-preterite-imperfect-quiz-progress.json",
     sources: [],
     rule: { title: "Preterite completes the event. Imperfect describes the frame.", body: "Use preterite for completed actions, sequences, starts and changes. Use imperfect for habits, ongoing actions, background details and repeated past situations.", singular: "Ayer fui al mercado.", plural: "De niño iba al parque." },
-    ruleLabel: (question) => (question.tense === "preterite" ? "Preterite" : "Imperfect"),
-    ownsRule: (rule) => rule === "Preterite" || rule === "Imperfect",
+    ruleKey: (question) => (question.tense === "preterite" ? "preterite" : "imperfect"),
+    ruleLabel: (key) => (key === "preterite" ? "Preterite" : "Imperfect"),
     chart: { blocks: CHART_BLOCKS.preteriteImperfect, sections: "group", link: "chart", regularity: PRETERITE_IMPERFECT_REGULARITY },
     iconPath: "M12 6c-3.2-2-6.3-2.3-10-1v14c3.7-1.3 6.8-1 10 1 3.2-2 6.3-2.3 10-1V5c-3.7-1.3-6.8-1-10 1Zm0 0v14",
   },
@@ -161,8 +181,9 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     sources: [],
     chartLabel: "Usage examples",
     rule: { title: "Por looks back to the cause. Para looks ahead to the goal.", body: "Use por for cause, duration, exchange, means and movement through a place. Use para for purpose, recipients, deadlines and destinations.", singular: "Lo hice por ti.", plural: "Lo hice para ti." },
+    groupLabels: { "por-para": "por / para" },
+    ruleKey: () => "por-para",
     ruleLabel: () => "Por vs para",
-    ownsRule: (rule) => rule === "Por vs para",
     chart: { blocks: CHART_BLOCKS.porPara, sections: "shared", link: "explainer" },
     explanationNeedsCue: false,
     iconPath: "M12 3v18M4 7h14l3 3-3 3H4l-3-3 3-3Zm16 9H6l-3 3 3 3h14l3-3-3-3Z",
@@ -186,8 +207,9 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     filterLabel: { label: "Pronoun type", all: "All pronoun types" },
     chartLabel: "Pronoun chart",
     introducedOn: "2026-09-23",
-    ruleLabel: (question) => `Object pronouns: ${question.group}`,
-    ownsRule: (rule) => rule.startsWith("Object pronouns:"),
+    groupLabels: OBJECT_PRONOUN_LABELS,
+    ruleKey: (question) => question.group,
+    ruleLabel: prefixed("Object pronouns", OBJECT_PRONOUN_LABELS),
     chart: { blocks: CHART_BLOCKS.objectPronouns, sections: "group", link: "chart" },
     iconPath: "M4 12.5l5 5L20 7",
   },
@@ -207,8 +229,9 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     rule: { title: "Saber knows facts and skills. Conocer knows people, places and things.", body: "Use saber for information, before que, si or a question word, and with an infinitive for skills. Use conocer for people (with the personal a), places and familiarity with a work or field. In the preterite, supe means found out and conocí means met.", singular: "Sé dónde vive Ana.", plural: "Conozco a Ana." },
     filterLabel: { label: "Usage", all: "All usages" },
     introducedOn: "2026-10-02",
-    ruleLabel: (question) => `Saber vs conocer: ${question.group}`,
-    ownsRule: (rule) => rule.startsWith("Saber vs conocer:"),
+    groupLabels: SABER_CONOCER_LABELS,
+    ruleKey: (question) => question.group,
+    ruleLabel: prefixed("Saber vs conocer", SABER_CONOCER_LABELS),
     // Its groups are usages, not verbs: the topic-level chart is one section with both full paradigms.
     chart: { blocks: CHART_BLOCKS.saberConocer, sections: "group-or-shared", link: "chart" },
     iconPath: "M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3Z",
@@ -231,8 +254,9 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     chartLabel: "Reflexive chart",
     // Set to the production go-live day so the streak never requires this activity on earlier days.
     introducedOn: "2026-10-16",
-    ruleLabel: (question) => `Reflexive verbs: ${question.group}`,
-    ownsRule: (rule) => rule.startsWith("Reflexive verbs:"),
+    groupLabels: REFLEXIVE_LABELS,
+    ruleKey: (question) => question.group,
+    ruleLabel: prefixed("Reflexive verbs", REFLEXIVE_LABELS),
     chart: { blocks: CHART_BLOCKS.reflexive, sections: "shared", link: "chart" },
     // A circular arrow: the action turns back on the subject.
     iconPath: "M20 12a8 8 0 1 1-2.3-5.7M20 4v4h-4",
@@ -255,8 +279,9 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     chartLabel: "Perfect chart",
     // Set to the production go-live day so the streak never requires this activity on earlier days.
     introducedOn: "2026-11-01",
-    ruleLabel: (question) => `Present perfect: ${question.group}`,
-    ownsRule: (rule) => rule.startsWith("Present perfect:"),
+    groupLabels: PRESENT_PERFECT_LABELS,
+    ruleKey: (question) => question.group,
+    ruleLabel: prefixed("Present perfect", PRESENT_PERFECT_LABELS),
     chart: { blocks: CHART_BLOCKS.presentPerfect, sections: "shared", link: "chart" },
     // A clock hand landing on now: past actions that reach the present.
     iconPath: "M12 3a9 9 0 1 0 9 9M12 7v5h5",
@@ -279,8 +304,9 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     chartLabel: "Continuous chart",
     // Set to the production go-live day so the streak never requires this activity on earlier days.
     introducedOn: "2026-11-07",
-    ruleLabel: (question) => `Present continuous: ${question.group}`,
-    ownsRule: (rule) => rule.startsWith("Present continuous:"),
+    groupLabels: PRESENT_CONTINUOUS_LABELS,
+    ruleKey: (question) => question.group,
+    ruleLabel: prefixed("Present continuous", PRESENT_CONTINUOUS_LABELS),
     chart: { blocks: CHART_BLOCKS.presentContinuous, sections: "shared", link: "chart" },
     // A play arrow inside a circle: an action in progress right now.
     iconPath: "M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M10 8.5v7l5.5-3.5z",
@@ -299,3 +325,9 @@ export const isQuizId = (value: string | null | undefined): value is QuizId =>
 /** Resolves a `?quiz=` param to a known quiz id, falling back when it's missing or unknown. */
 export const resolveQuizId = (value: string | null | undefined, fallback: QuizId = "gustar"): QuizId =>
   isQuizId(value) ? value : fallback;
+
+/** What a learner sees for a quiz's group key: its label, or the key itself where they are the same. */
+export const groupLabel = (quizId: QuizId, key: string): string => QUIZ_CONFIG[quizId].groupLabels?.[key] ?? key;
+
+/** The quiz's group keys, in the order its filter and chart list them. */
+export const groupKeys = (quizId: QuizId): string[] => Object.keys(QUIZ_CONFIG[quizId].forms);
