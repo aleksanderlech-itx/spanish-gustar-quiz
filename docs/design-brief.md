@@ -92,7 +92,7 @@ equivalent hint that appears only in test mode.
 
 ## Fixed and open
 
-Nine principles are fixed. Everything not on this list is open, including
+Eight principles are fixed. Everything not on this list is open, including
 layout, type, color, shape, motion, illustration, navigation and voice.
 
 **Fixed**
@@ -102,25 +102,22 @@ layout, type, color, shape, motion, illustration, navigation and voice.
 2. **Light and dark are equals.** Every screen and state is designed in both.
 3. **Accessible.** Touch targets at least 44px, a visible keyboard focus
    state, reduced-motion support, and Spanish sentences that wrap naturally.
-4. **The exercise comes first.** During a round, the active exercise is the
-   one strongly emphasised surface; everything around it stays quiet.
-5. **No accounts.** No sign-in, no profile, no sync. Progress stays on the
+4. **No accounts.** No sign-in, no profile, no sync. Progress stays on the
    device.
-6. **Test mode in every interface.** Wherever there is a right answer, test
+5. **Test mode in every interface.** Wherever there is a right answer, test
    mode shows it, by color only and readable in both themes. Normal mode shows
    nothing extra.
-7. **One footer** on every page, listing the Activities automatically.
-8. **Ko-fi for tips only.** No paywall, tiers or member content, in the design
+6. **One footer** on every page, listing the Activities automatically.
+7. **Ko-fi for tips only.** No paywall, tiers or member content, in the design
    or in the copy.
-9. **Privacy first.** No analytics or tracking until the visitor accepts the
+8. **Privacy first.** No analytics or tracking until the visitor accepts the
    cookie bar.
 
 **Open: yours to define**
 
 - **The visual language.** The approved look today is "Spanish Editorial
   Learning": warm paper, teal, Literata for headings and Spanish, Atkinson
-  Hyperlegible for controls. Keep it, evolve it or replace it, and explain
-  why.
+  Hyperlegible for controls. Keep it, evolve it or replace it.
 - **Corner radius and shape.** There is no radius rule any more. Today's
   values (14px cards, 10px controls) are a starting point.
 - **Voice and personality.** The current voice is plain and tutor-like: no
@@ -132,26 +129,26 @@ layout, type, color, shape, motion, illustration, navigation and voice.
   are where they are for historical reasons. You may move things around.
 - **Motion, illustration and celebration moments**, within the reduced-motion
   principle.
+- **Make the interface easier**: it feels too cluttered now.
 
 ## Priorities
 
-Start with the round screen, because every Activity uses it. New Activity
-types come last. The known problems below are starting points; how you solve
-them is up to you.
+Start with the Board, Shelf and drawer. New Activity types come last. The
+known problems below are starting points; how you solve them is up to you.
 
-1. **Round screen.**
+1. **Board, Shelf and drawer.** These shipped on 22 November and were built
+   feature by feature, never designed as a whole.
+2. **First visit.** The welcome dialog, the Starter Board and the home page
+   are what a beginner on a phone sees first.
+3. **Results and progress.** The score, the misses, the streak, the daily goal
+   and the "¡Día completado!" card.
+4. **Round screen.**
     - The action buttons scroll out of view in Choose mode; they should stay
       reachable (issue #96).
     - Learners cannot look back at sentences they already answered in this
       round (issue #104).
     - Screen readers get no spoken feedback after an answer, and focus gets
       lost (issue #143).
-2. **Board, Shelf and drawer.** These shipped on 22 November and were built
-   feature by feature, never designed as a whole.
-3. **First visit.** The welcome dialog, the Starter Board and the home page
-   are what a beginner on a phone sees first.
-4. **Results and progress.** The score, the misses, the streak, the daily goal
-   and the "¡Día completado!" card.
 5. **Sentence Builder.** Its tap-to-place interaction shipped on 24 November.
 6. **New Activity types.** Missing Letters is next in development, then Idioms
    (flashcards) and the subjunctive.
@@ -232,3 +229,11 @@ them in your designs keeps everyone aligned. The full glossary is
   tester checks
 - [`design-system/`](../design-system/readme.md) and
   [`docs/design.md`](design.md): older proposals, for comparison only
+
+**Reference files in the shared doc**
+
+The shared doc carries copies, so the designer does not need repository
+access: a reference pack PDF (glossary, `DESIGN.md`, the approved design
+system's foundations, components and dark palette, the UX contract, the
+project rules and the manual test plan), and screenshots of the approved light
+reference (five views) and dark reference (six panels).
