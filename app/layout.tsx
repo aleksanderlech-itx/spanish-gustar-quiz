@@ -10,6 +10,8 @@ import "./test-mode.css";
 import "./mistakes.css";
 import "./activity-selection.css";
 import "./consent.css";
+import "./site-footer.css";
+import "./sentence-builder.css";
 import StoredDataUpgrade from "./stored-data-upgrade";
 import QuizSelector from "./quiz-selector";
 import TestMode from "./test-mode";

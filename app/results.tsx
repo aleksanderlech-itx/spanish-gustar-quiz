@@ -6,7 +6,7 @@ import type { QuizResult } from "./quiz-logic";
 import { readStreakSummary } from "./streak";
 import SupportPrompt from "./support-prompt";
 import SiteHeader from "./site-header";
-import type { QuizId } from "./quiz-config";
+import type { ProgressActivityId } from "./activity-registry";
 import { mistakesPath } from "./notebook-retry";
 import AddToBoardOffer from "./add-to-board-offer";
 
@@ -18,7 +18,7 @@ export default function Results({
   onPractiseMisses,
   standalone = false,
 }: {
-  quizId: QuizId;
+  quizId: ProgressActivityId;
   result: QuizResult;
   missedRuleLabels: string[];
   hasMissedOverall: boolean;

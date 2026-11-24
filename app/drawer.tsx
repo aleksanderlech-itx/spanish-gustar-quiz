@@ -14,6 +14,7 @@ import { addToBoard, hasChosenBoard, shelfEntries, type ShelfStatus } from "./bo
 import Logo from "./logo";
 import KofiButton from "./kofi-button";
 import { appStorage } from "./storage";
+import { SENTENCE_BUILDER_STORAGE_KEY, SENTENCE_BUILDER_TITLE } from "./sentence-builder-config";
 import { applyBackup, buildBackup, FLASHCARD_PROGRESS_KEY, parseBackup, resetStoredData } from "./stored-data";
 
 const WEEK_MS = 7 * 86_400_000;
@@ -43,7 +44,18 @@ const readAllQuizHistories = (): QuizHistoryEntry[] => QUIZ_IDS.map((id) => {
   }
 });
 
-const readGlobalStats = (byQuiz: QuizHistoryEntry[]): GlobalStats => {
+/** Sentence Builder's stored rounds; empty if missing or unreadable. */
+const readSentenceBuilderHistory = (): QuizResult[] => {
+  try {
+    const raw = appStorage.getItem(SENTENCE_BUILDER_STORAGE_KEY);
+    const parsed = raw ? (JSON.parse(raw) as unknown) : [];
+    return Array.isArray(parsed) ? (parsed as QuizResult[]) : [];
+  } catch {
+    return [];
+  }
+};
+
+const readGlobalStats = (byQuiz: Array<{ history: QuizResult[] }>): GlobalStats => {
   const now = Date.now();
   let totalRounds = 0;
   let totalPercentSum = 0;
@@ -169,10 +181,12 @@ export default function Drawer({ open, onClose, returnFocusRef }: { open: boolea
   useEffect(() => {
     if (!open) return;
     const byQuiz = readAllQuizHistories();
+    // Stats and recent rounds count every activity with rounds; weak areas read quiz-only fields.
+    const allRounds = [...byQuiz, { title: SENTENCE_BUILDER_TITLE, history: readSentenceBuilderHistory() }];
     // Browser storage is unavailable during the server render; this only runs once the drawer opens.
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setStats(readGlobalStats(byQuiz));
-    setRecentRounds(computeRecentRounds(byQuiz));
+    setStats(readGlobalStats(allRounds));
+    setRecentRounds(computeRecentRounds(allRounds));
     setWeakAreas(computeWeakAreas(byQuiz));
     setStreakDays(readStreakSummary().streak);
     const groups = readNotebookGroups();

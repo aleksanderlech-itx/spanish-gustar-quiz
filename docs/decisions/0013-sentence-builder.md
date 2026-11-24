@@ -55,6 +55,15 @@ progress and content and are costly to change once learners have history.
 8. **Built after #151 and #162**, so the new type is registered through the
    activity configuration instead of new branches.
 
+9. **Settled while building (PR for #72).** An Accepted order is correct Spanish
+   for the English prompt: an order that changes the meaning (por eso at the
+   end) or needs a comma to be correct is not accepted, since punctuation is
+   never a Token. Items are unchanged Tatoeba rows kept in
+   `app/sentence-builder-data.ts` with their attribution; the content generator
+   checks each against the corpus snapshot and lists it in the manifest.
+   Regional forms (vos, vosotros, gafas, enfadarse) are avoided (Project rule 5).
+   `SENTENCE_BUILDER_INTRODUCED_ON` is set to the production release day.
+
 ## Consequences
 
 - Stored progress records whole-Item results, the same shape as the quizzes.

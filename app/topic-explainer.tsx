@@ -1,13 +1,11 @@
-import { QUIZ_CONTENT } from "./quiz-content";
-import type { QuizId } from "./quiz-config";
+import type { QuizContent } from "./quiz-content";
 import styles from "./topic-explainer.module.css";
 
-export default function TopicExplainer({ quizId }: { quizId: QuizId }) {
-  const content = QUIZ_CONTENT[quizId];
-
+/** The "How this works" section of an Activity's page. `id` names the heading so a link can jump to it. */
+export default function TopicExplainer({ id, content }: { id: string; content: QuizContent }) {
   return (
-    <section className={styles.wrap} aria-labelledby={`${quizId}-explainer-heading`}>
-      <h2 className={styles.heading} id={`${quizId}-explainer-heading`}>How this works</h2>
+    <section className={styles.wrap} aria-labelledby={`${id}-explainer-heading`}>
+      <h2 className={styles.heading} id={`${id}-explainer-heading`}>How this works</h2>
       {content.paragraphs.map((paragraph, index) => (
         <p className={styles.paragraph} key={index}>{paragraph}</p>
       ))}

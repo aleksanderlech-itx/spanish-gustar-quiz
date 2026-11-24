@@ -1,6 +1,6 @@
 # Manual Test Plan: Spanish Quizzes
 
-Last updated: 2026-11-21 (Board and Shelf, #117). Target: production (https://spanish-quizz.es). Testing there is harmless: progress lives only in the tester's own browser, and test mode (`?test=1`) is isolated from real data.
+Last updated: 2026-11-23 (Sentence Builder, #72). Target: production (https://spanish-quizz.es). Testing there is harmless: progress lives only in the tester's own browser, and test mode (`?test=1`) is isolated from real data.
 
 Project rules and decisions: `docs/decisions/README.md` in the repo. This plan covers the app as of main at PR #130, including test mode (PR #121), the mistake notebook with retry mode (PR #124), reflexive verbs, the present perfect (#69), the present continuous (#70), the daily goal and day-complete dialog, and Notes for every activity.
 
@@ -39,7 +39,7 @@ Project rules and decisions: `docs/decisions/README.md` in the repo. This plan c
 | 1.3 | B | Open the menu (drawer) | Streak card, Progress & history, Weekly recap, Mistake notebook with count, Backup & restore and Settings render. Closes with the close button and Escape |
 | 1.4 | T | Start one round in every activity on the board | Each loads and finishes |
 | 1.5 | T | Open flashcards, an explanation, a translation and a conjugation chart | No broken views |
-| 1.6 | B | Footer links: About, Notes, Content sources, "Help build more quizzes" (Ko-fi). Menu links: How to use, Notes | Pages open without errors. Content sources jumps to that section of About. Ko-fi opens in a new tab |
+| 1.6 | B | Footer on every page type (board, topic, round, Flashcards, Sentence Builder, Notes, About, How to use, Privacy), on a wide screen and a phone | The same footer everywhere, once: an Activities list with every activity, then How to use, Notes on Spanish grammar, About, Content sources, "Help build more quizzes" (Ko-fi), then the site note with Privacy and Cookie settings. Every link opens without errors. Content sources jumps to that section of About. Ko-fi opens in a new tab. No page shows a second footer of its own |
 
 ## 2. Test mode
 
@@ -145,6 +145,26 @@ Terms: the board holds the activities the user chose; every other activity is on
 | 5a.11 | N | Open `/activities` and view the page source | `<meta name="robots" content="noindex, nofollow">` is present. `/sitemap.xml` and `/llms.txt` do not list `/activities` |
 | 5a.12 | B | Isolation: make Board changes in test mode, then open a tab without `?test=1` | The real board and shelf are unchanged |
 | 5a.13 | N | Existing user (real progress from before this release): open `/` | The board shows what it showed before the release: every activity except finished topics that were neither repeat due nor added back from Settings. No starter board is applied. The shelf is not shown below the board |
+
+## 5b. Sentence Builder
+
+Sentence Builder starts on the shelf for existing users and is not part of the starter board. Add it from Menu > On your shelf first, or open `/sentence-builder` directly.
+
+| # | Mode | Step | Expected |
+|---|------|------|----------|
+| 5b.1 | B | Existing board (real or test data from before this release): open `/` | A one-time dialog offers Sentence Builder as New, unticked. "Not now" leaves it on the shelf and the dialog does not return |
+| 5b.2 | T | Open `/sentence-builder` | Progress ring "0 of N sentences", round length 5, 10 or 20, filters Difficulty and Pattern (questions, negatives, prepositions, object pronouns, ser and estar, present and past, connectors), the selected count updates, a link "Spanish word order, explained", then the Start button, a "How this works" section with example sentences and "Questions people ask", and the description and chips (A1-B1, About 100 sentences, No sign-up) at the bottom, laid out like a grammar quiz page |
+| 5b.3 | T | Start a round | English prompt, an empty answer line "Tap the words below in order", the words below as buttons. In test mode the next correct word is outlined in green (colour only, readable in light and dark). Normal mode: no outline |
+| 5b.4 | T | Tap words; tap a placed word; Undo; Reset; Backspace on a keyboard | A tapped word moves to the end of the line and keeps its slot empty in the pool. A tapped placed word goes back. Undo and Reset have side padding like other secondary buttons. Undo removes the last, Reset clears all, Backspace undoes. Check stays disabled ("Place all N words") until every word is placed |
+| 5b.5 | T | Build a sentence in the wrong order and Check | "Not quite", the line turns red, misplaced words are marked, "Yours" shows your sentence above "Correct", then the explanation and a speaker button that reads the sentence |
+| 5b.6 | T | Follow the hints and Check | "Correct". Capitals and punctuation (¿ ? ¡ ! .) are added automatically |
+| 5b.7 | T | Find an Item with two accepted orders (for example "Ayer estuve en Boston" / "Estuve en Boston ayer") and build the second order | Counted as correct |
+| 5b.8 | T | Finish a round | Results screen as for quizzes. The miss appears in the mistake notebook and as a "Sentence Builder: mistakes" tile under Mistakes to retry; retrying it does not change progress or the daily goal |
+| 5b.9 | T | With Sentence Builder on the board, finish a round | The day counts it like a quiz round; the tile shows "x/y today" |
+| 5b.10 | T | Keyboard only: Tab through the words, Enter or Space to place, Backspace to undo, Enter on Check | Every step works; a screen reader announces "Placed: word. n of m." |
+| 5b.11 | B | Isolation: play in test mode, then open a tab without `?test=1` | Real Sentence Builder progress, notebook and streak are unchanged |
+| 5b.12 | N | Open `exports/sentence-builder.csv` in the repo | One row per sentence with every accepted order. Owner sample check before release: read about 20 rows and confirm the Spanish is natural and no other correct order is missing |
+| 5b.13 | N | Open `/notes/spanish-word-order` | The article loads, is listed on `/notes`, and links to Sentence Builder |
 
 ## 6. Flashcards
 

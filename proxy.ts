@@ -4,6 +4,7 @@ import { isProductionHost } from "./app/is-production-host";
 import { SITE_CONFIG } from "./app/site-config";
 import { QUIZ_SLUGS, isQuizId } from "./app/quiz-config";
 import { NOTES_POSTS } from "./app/notes-posts";
+import { SENTENCE_BUILDER_PATH } from "./app/sentence-builder-config";
 import { buildLlmsFullTxt, buildLlmsTxt } from "./app/llms-txt";
 
 const SITEMAP_PATHS = [
@@ -13,6 +14,7 @@ const SITEMAP_PATHS = [
   "/privacy",
   "/flashcards",
   ...Object.values(QUIZ_SLUGS).map((slug) => `/${slug}`),
+  SENTENCE_BUILDER_PATH,
   "/notes",
   ...NOTES_POSTS.map((post) => post.href),
 ];

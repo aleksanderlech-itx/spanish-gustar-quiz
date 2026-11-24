@@ -15,6 +15,7 @@ const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const exportsDir = path.join(rootDir, "exports");
 
 const { QUIZ_CONFIG, QUIZ_IDS } = await import("../app/quiz-config.ts");
+const { SENTENCE_BUILDER_ITEMS } = await import("../app/sentence-builder-data.ts");
 const { FLASHCARD_VERBS } = await import("../app/flashcards-data.ts");
 
 const QUIZ_TARGET = 150;
@@ -76,6 +77,20 @@ function quizRows(questions, type) {
 // One CSV per registered quiz, in registry order (issue #162): a new quiz is exported with no edit here.
 const quizExports = QUIZ_IDS.map((id) => ({ name: `quiz-${id}`, rows: quizRows(QUIZ_CONFIG[id].questions, `quiz-${id}`) }));
 
+// ---- Sentence Builder rows ---------------------------------------------
+// For the owner's sample check (decision 0013): the canonical order and every other accepted order,
+// one per line in answer_or_form, so a missing valid order is easy to spot.
+
+const sentenceBuilderDupStatus = flagDuplicates(
+  SENTENCE_BUILDER_ITEMS.map((item) => ({ key: normalizeForDuplicateCheck(item.spanish) })),
+  (r) => r.key,
+);
+const sentenceBuilderRows = SENTENCE_BUILDER_ITEMS.map((item, i) => {
+  const orders = [item.tokens, ...(item.alsoAccepted ?? [])].map((order) => order.join(" / ")).join("\n");
+  const missing = !item.explanation?.trim() || !item.english?.trim();
+  return ["sentence-builder", `${item.group} (${item.level})`, item.spanish, item.english, orders, item.explanation, missing ? "incomplete" : sentenceBuilderDupStatus[i], ""];
+});
+
 // ---- Flashcard rows ----------------------------------------------------
 
 const flashcardDupStatus = flagDuplicates(
@@ -95,10 +110,11 @@ const flashcardRows = FLASHCARD_VERBS.map((card, i) => {
 await mkdir(exportsDir, { recursive: true });
 
 for (const { name, rows } of quizExports) await writeFile(path.join(exportsDir, `${name}.csv`), toCsv(HEADER, rows));
+await writeFile(path.join(exportsDir, "sentence-builder.csv"), toCsv(HEADER, sentenceBuilderRows));
 await writeFile(path.join(exportsDir, "flashcards.csv"), toCsv(HEADER, flashcardRows));
 await writeFile(
   path.join(exportsDir, "all-content.csv"),
-  toCsv(HEADER, [...quizExports.flatMap(({ rows }) => rows), ...flashcardRows]),
+  toCsv(HEADER, [...quizExports.flatMap(({ rows }) => rows), ...sentenceBuilderRows, ...flashcardRows]),
 );
 
 // ---- Audit summary --------------------------------------------------------
@@ -120,6 +136,8 @@ function report(label, rows, target) {
 console.log("Content export written to exports/*.csv\n");
 console.log(`=== Quiz datasets (target: about ${QUIZ_TARGET} each, ${quizExports.reduce((sum, { rows }) => sum + rows.length, 0)} total) ===`);
 for (const { name, rows } of quizExports) report(name, rows, QUIZ_TARGET);
+
+report("sentence-builder", sentenceBuilderRows);
 
 console.log("\n=== Flashcards (target: 500, all with real examples) ===");
 const generic = countStatus(flashcardRows, "generic-fallback");

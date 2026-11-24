@@ -4,6 +4,11 @@ export type NotesPost = { href: string; title: string; excerpt: string };
 
 export const NOTES_POSTS: NotesPost[] = [
   {
+    href: "/notes/spanish-word-order",
+    title: "Spanish word order: questions, negatives and pronouns",
+    excerpt: "Where no, object pronouns, question words and haber go, and where Spanish lets the order move.",
+  },
+  {
     href: "/notes/present-continuous-mistakes",
     title: "4 mistakes learners make with the present continuous",
     excerpt: "Estoy leyendo, not soy leyendo. The four slips that keep showing up with estar and the gerund.",

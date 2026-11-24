@@ -11,14 +11,11 @@ export const emptyQuizProgress = (total: number): QuizProgress => ({
   completed: 0, total, percent: 0, due: 0, mastered: 0, accuracy: 0, lastActivity: null,
 });
 
-/** Derives board/topic-detail progress from the grammar quiz's own stored history: no new storage shape. */
-export const readQuizProgress = (quizId: QuizId): QuizProgress => {
-  const quiz = QUIZ_CONFIG[quizId];
-  const total = quiz.questions.length;
+/** Board and topic progress from an Activity's own stored rounds: no new storage shape. */
+export const readHistoryProgress = (storageKey: string, total: number): QuizProgress => {
   if (typeof window === "undefined") return emptyQuizProgress(total);
-
   try {
-    const raw = appStorage.getItem(quiz.storageKey);
+    const raw = appStorage.getItem(storageKey);
     const history = raw ? (JSON.parse(raw) as QuizResult[]) : [];
     const regular = history.filter((item) => item.mode !== "review");
     const completed = new Set(regular.flatMap((item) => item.questionIds)).size;
@@ -41,6 +38,10 @@ export const readQuizProgress = (quizId: QuizId): QuizProgress => {
   }
 };
 
+/** Derives board/topic-detail progress from the grammar quiz's own stored history. */
+export const readQuizProgress = (quizId: QuizId): QuizProgress =>
+  readHistoryProgress(QUIZ_CONFIG[quizId].storageKey, QUIZ_CONFIG[quizId].questions.length);
+
 export type DailyRoundProgress = { correct: number; roundLength: number; percent: number; done: boolean };
 
 /**
@@ -49,14 +50,17 @@ export type DailyRoundProgress = { correct: number; roundLength: number; percent
  * that round (correct / round length); `done` is true once any regular round is finished
  * today, whatever the score, since finishing the round is what meets the goal.
  */
-export const readDailyRoundProgress = (quizId: QuizId): DailyRoundProgress => {
-  const roundLength = readTopicSettings(quizId).roundLength;
+export const readDailyRoundProgress = (quizId: QuizId): DailyRoundProgress =>
+  readDailyRoundProgressFor(QUIZ_CONFIG[quizId].storageKey, quizId);
+
+/** Today's round for any Activity with rounds: its storage key, and the id its round length is saved under. */
+export const readDailyRoundProgressFor = (storageKey: string, settingsId: string): DailyRoundProgress => {
+  const roundLength = readTopicSettings(settingsId).roundLength;
   const empty: DailyRoundProgress = { correct: 0, roundLength, percent: 0, done: false };
   if (typeof window === "undefined") return empty;
 
   try {
-    const quiz = QUIZ_CONFIG[quizId];
-    const raw = appStorage.getItem(quiz.storageKey);
+    const raw = appStorage.getItem(storageKey);
     const history = raw ? (JSON.parse(raw) as QuizResult[]) : [];
     const today = dayKey(new Date());
     const todaysRounds = history.filter((item) => item.mode !== "review" && dayKey(new Date(item.date)) === today);

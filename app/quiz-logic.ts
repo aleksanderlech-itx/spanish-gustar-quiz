@@ -44,7 +44,7 @@ export const scoreRound = <T extends QuizQuestion>(round: T[], answers: string[]
   return { missedIds, score, percent: round.length ? Math.round((score / round.length) * 100) : 0 };
 };
 
-export const availableQuestions = <T extends QuizQuestion>(questions: T[], history: QuizResult[], missedOnly: boolean) => {
+export const availableQuestions = <T extends { id: number }>(questions: T[], history: QuizResult[], missedOnly: boolean) => {
   if (missedOnly) {
     const missed = new Set(getMissedIds(history));
     return questions.filter((question) => missed.has(question.id));
@@ -59,7 +59,7 @@ export const availableQuestions = <T extends QuizQuestion>(questions: T[], histo
  * such a completion: regular rounds up to the completion date that don't cover the full set. A set
  * redone after completing has no regular rounds left from before that date, so it's left alone.
  */
-export const isCompletionUnearned = <T extends QuizQuestion>(questions: T[], history: QuizResult[], completedAt: string) => {
+export const isCompletionUnearned = <T extends { id: number }>(questions: T[], history: QuizResult[], completedAt: string) => {
   const before = history.filter((item) => item.mode !== "review" && item.date <= completedAt);
   if (!before.length) return false;
   const answered = new Set(before.flatMap((item) => item.questionIds));

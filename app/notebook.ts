@@ -1,5 +1,7 @@
 import type { Question } from "./quiz-data";
 import { QUIZ_CONFIG, QUIZ_IDS, type QuizId } from "./quiz-config.ts";
+import type { ProgressActivityId } from "./activity-registry.ts";
+import { ownsSentenceBuilderRule, SENTENCE_BUILDER_ID } from "./sentence-builder-config.ts";
 import { appStorage } from "./storage.ts";
 
 /**
@@ -10,7 +12,8 @@ import { appStorage } from "./storage.ts";
 export type NotebookEntry = {
   id: string;
   kind: "question" | "rule";
-  quizId: QuizId;
+  /** The Activity the entry belongs to (named quizId in stored data, so it never changes). */
+  quizId: ProgressActivityId;
   /** Subtopic label, the same text as the notebook chips. */
   rule: string;
   questionId?: number;
@@ -36,9 +39,10 @@ export const ruleLabelFor = (question: Question, quizId: QuizId): string => QUIZ
 
 /** The activity a rule label belongs to: the inverse of ruleLabelFor, used to migrate v1 entries.
  * A label no quiz claims falls back to gustar, as v1 did. */
-export const quizIdForRule = (rule: string): QuizId => QUIZ_IDS.find((id) => QUIZ_CONFIG[id].ownsRule(rule)) ?? "gustar";
+export const quizIdForRule = (rule: string): ProgressActivityId =>
+  (ownsSentenceBuilderRule(rule) ? SENTENCE_BUILDER_ID : QUIZ_IDS.find((id) => QUIZ_CONFIG[id].ownsRule(rule))) ?? "gustar";
 
-export const questionEntryId = (quizId: QuizId, questionId: number) => `q:${quizId}:${questionId}`;
+export const questionEntryId = (activityId: ProgressActivityId, questionId: number) => `q:${activityId}:${questionId}`;
 const ruleEntryId = (rule: string) => `rule:${rule}`;
 
 const count = (value: unknown) => (typeof value === "number" && Number.isFinite(value) && value > 0 ? Math.floor(value) : 0);
@@ -114,21 +118,27 @@ export type Miss = { question: Question; answer: string };
  * Records a regular round's misses, written at round submission. A sentence already in the
  * notebook is updated in place (one more miss, the latest wrong answer) rather than added twice.
  */
-export const recordMistakes = (quizId: QuizId, misses: Miss[], now = new Date()) => {
+export const recordMistakes = (quizId: QuizId, misses: Miss[], now = new Date()) =>
+  recordItemMistakes(quizId, misses.map(({ question, answer }) => ({ id: question.id, rule: ruleLabelFor(question, quizId), answer })), now);
+
+/** One missed Item of any Activity with rounds: its id, its rule label and the wrong answer given. */
+export type ItemMiss = { id: number; rule: string; answer: string };
+
+export const recordItemMistakes = (activityId: ProgressActivityId, misses: ItemMiss[], now = new Date()) => {
   if (!misses.length) return;
   const at = now.toISOString();
   updateNotebook((notebook) => {
-    misses.forEach(({ question, answer }) => {
-      const id = questionEntryId(quizId, question.id);
+    misses.forEach(({ id: itemId, rule, answer }) => {
+      const id = questionEntryId(activityId, itemId);
       const existing = notebook[id];
       notebook[id] = existing
         ? { ...existing, wrongAnswer: answer, missCount: existing.missCount + 1, lastMissedAt: at }
         : {
           id,
           kind: "question",
-          quizId,
-          rule: ruleLabelFor(question, quizId),
-          questionId: question.id,
+          quizId: activityId,
+          rule,
+          questionId: itemId,
           wrongAnswer: answer,
           missCount: 1,
           lastMissedAt: at,
@@ -168,12 +178,12 @@ export const dismissEntry = (entryId: string) => {
   });
 };
 
-export type NotebookGroup = { quizId: QuizId; entries: NotebookEntry[]; rules: string[] };
+export type NotebookGroup = { quizId: ProgressActivityId; entries: NotebookEntry[]; rules: string[] };
 
 /** Entries grouped by activity, the group with the most recent miss first. Each group is one
  * temporary mistakes activity, shown only while it has entries. */
 export const groupByActivity = (entries: NotebookEntry[]): NotebookGroup[] => {
-  const groups = new Map<QuizId, NotebookEntry[]>();
+  const groups = new Map<ProgressActivityId, NotebookEntry[]>();
   [...entries]
     .sort((a, b) => b.lastMissedAt.localeCompare(a.lastMissedAt))
     .forEach((entry) => groups.set(entry.quizId, [...(groups.get(entry.quizId) ?? []), entry]));

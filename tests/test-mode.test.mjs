@@ -116,6 +116,31 @@ test("a Board test session (starter Board, Selection, Finished, Suggestion, Shel
   assert.ok(snapshot(localStorage, true)[`${TEST_KEY_PREFIX}spanish-quiz-board-v1`], "the Board was saved in the test namespace");
 });
 
+test("a Sentence Builder test session leaves every real key unchanged and writes only test keys", async () => {
+  const { recordItemMistakes } = await import("../app/notebook.ts");
+  const { writeQuizFilters } = await import("../app/quiz-filters.ts");
+  const realSeed = { ...REAL_SEED, "sentence-builder-progress-v1": JSON.stringify([{ date: "2026-11-20T08:00:00.000Z", score: 4, percent: 80, questionIds: [10001, 10002, 10003, 10004, 10005], answers: [], missedIds: [10003], mode: "regular" }]) };
+  const { localStorage } = install({ search: "?test=1", local: realSeed });
+  const before = snapshot(localStorage, false);
+  updateStoredProgress("sentence-builder-progress-v1", () => [], (current) => [...current, { date: "2026-11-23T08:00:00.000Z", score: 5, percent: 100, questionIds: [10006, 10007, 10008, 10009, 10010], answers: [], missedIds: [], mode: "regular" }]);
+  recordActivityToday("sentence-builder", new Date("2026-11-23T08:00:00"));
+  recordItemMistakes("sentence-builder", [{ id: 10006, rule: "Sentence Builder: questions", answer: "¿Qué huele bien tan?" }]);
+  markQuizCompleted("sentence-builder", new Date("2026-11-23T08:00:00"));
+  writeTopicSettings("sentence-builder", { roundLength: 10, mode: "choose" });
+  writeQuizFilters("sentence-builder-filters-v1", { level: "basic", verb: "questions" });
+  assert.deepEqual(snapshot(localStorage, false), before);
+  assert.ok(snapshot(localStorage, true)[`${TEST_KEY_PREFIX}sentence-builder-progress-v1`], "the round was saved in the test namespace");
+});
+
+test("the Sentence Builder hint is gated on test mode and coloured only", () => {
+  const round = readFileSync(new URL("../app/sentence-builder-round.tsx", import.meta.url), "utf8");
+  assert.match(round, /const hint = testMode && item && !checked \? nextHintIndex\(item, placed\) : null;/);
+  assert.match(round, /\$\{hint === tokenIndex \? " sb-token-test-hint" : ""\}/);
+  const css = readFileSync(new URL("../app/test-mode.css", import.meta.url), "utf8");
+  const rule = css.match(/\.sb-token-test-hint \{([^}]*)\}/)[1];
+  assert.doesNotMatch(rule, /content:/, "colour only, no label");
+});
+
 test("a real session leaves every test key unchanged", () => {
   const testSeed = { [`${TEST_KEY_PREFIX}spanish-quiz-notebook-v1`]: JSON.stringify({ Preterite: { rule: "Preterite", count: 1, lastMissedAt: "2026-10-05T08:00:00.000Z" } }) };
   const { localStorage } = install({ local: testSeed });

@@ -5,6 +5,7 @@ import { NOTEBOOK_KEY } from "./notebook.ts";
 import { topicSettingsKey } from "./topic-settings.ts";
 import { appStorage } from "./storage.ts";
 import { BOARD_KEY, boardFromSchema1, isBoardStateShape } from "./board-state.ts";
+import { SENTENCE_BUILDER_FILTER_KEY, SENTENCE_BUILDER_ID, SENTENCE_BUILDER_STORAGE_KEY } from "./sentence-builder-config.ts";
 
 /**
  * One schema version for everything the app keeps in browser storage, the shape check for every
@@ -90,6 +91,9 @@ export const BACKUP_KEYS: readonly KeySpec[] = [
   ...QUIZ_IDS.map((id): KeySpec => ({ key: QUIZ_CONFIG[id].storageKey, format: "json", guard: GUARDS.quizHistory })),
   ...QUIZ_IDS.map((id): KeySpec => ({ key: QUIZ_CONFIG[id].filterKey, format: "json", guard: GUARDS.settings })),
   ...QUIZ_IDS.map((id): KeySpec => ({ key: topicSettingsKey(id), format: "json", guard: GUARDS.settings })),
+  { key: SENTENCE_BUILDER_STORAGE_KEY, format: "json", guard: GUARDS.quizHistory },
+  { key: SENTENCE_BUILDER_FILTER_KEY, format: "json", guard: GUARDS.settings },
+  { key: topicSettingsKey(SENTENCE_BUILDER_ID), format: "json", guard: GUARDS.settings },
   { key: FLASHCARD_PROGRESS_KEY, format: "json", guard: GUARDS.flashcards },
   { key: FLASHCARD_DIFFICULTY_KEY, format: "text", guard: GUARDS.difficulty },
   { key: STREAK_KEY, format: "json", guard: GUARDS.dayLists },

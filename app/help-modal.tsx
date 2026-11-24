@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { tutorialHref, type TutorialId } from "./tutorials";
 
-export type HelpTopic = "topic-detail" | "round" | "flashcards";
+export type HelpTopic = "topic-detail" | "round" | "flashcards" | "sentence-builder";
 
 type HelpContent = { title: string; points: string[]; guideHref: string; tutorial: TutorialId };
 
@@ -31,6 +31,18 @@ export const HELP_CONTENT: Record<HelpTopic, HelpContent> = {
       "Your score is saved when you finish the last question.",
     ],
     guideHref: "/how-to-use#quizzes",
+    tutorial: "how-to-use",
+  },
+  "sentence-builder": {
+    title: "Building a sentence",
+    points: [
+      "Read the English, then tap the Spanish words in the order they go. Each tap adds a word to the end of your sentence.",
+      "Tap a word in your sentence to send it back. Undo removes the last word, Reset clears them all. On a keyboard, Backspace undoes.",
+      "Capital letters and punctuation are added for you: just put the words in order.",
+      "Check is ready once every word is placed. Some sentences have more than one right order, and any of them counts.",
+      "After checking, read the explanation and press the speaker to hear the sentence. Misses are saved to your mistake notebook.",
+    ],
+    guideHref: "/how-to-use#sentence-builder",
     tutorial: "how-to-use",
   },
   flashcards: {
