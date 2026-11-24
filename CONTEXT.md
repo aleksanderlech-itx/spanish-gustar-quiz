@@ -26,6 +26,17 @@ A sequence of an Item's Tokens that counts as right. Each Item has one or more; 
 One exercise in an Activity: a sentence in a quiz, a card in flashcards, a sentence to build in Sentence Builder. Its id never changes.
 _Avoid_: question (when meaning flashcards or Sentence Builder too)
 
+**Group**:
+A set of an Activity's Items that practise one thing: a verb in Gustar, a usage in Saber vs Conocer, a pattern in Sentence Builder. The learner filters by Group, and a mistake is filed under one.
+_Avoid_: infinitive (most Groups are not verbs), subtopic, category
+
+**Group label**:
+The text a learner sees for a Group ("past meaning"). It can change at any time; what is stored is the Group's fixed key ("past-meaning").
+
+**Rule**:
+The grammar point a mistake is filed under in the notebook. Usually the Item's Group; in Preterite vs Imperfect it is the tense.
+_Avoid_: subtopic label (the label is only how a Rule is shown)
+
 **Board**:
 The user's chosen set of Activities, shown on the home page. It always holds at least one Activity. Before the Starter Board exists, the Board is the set of Activities the user has played.
 _Avoid_: dashboard, library
@@ -60,6 +71,7 @@ A round in every Activity on the Board today. Meeting it extends the streak.
 - A **Finished** **Activity** moves to the **Shelf** and triggers a **Suggestion**
 - The **Daily goal** is defined by what is on the **Board**
 - An **Activity** has one **Activity type**; **Sentence Builder** is the first **Activity** of its type
+- Every **Item** belongs to one **Group**; renaming a **Group label** changes nothing a learner has stored
 - A **Sentence Builder** **Item** has an English prompt, its **Tokens** and one or more **Accepted orders**; an answer is right or wrong as a whole
 - Moving an **Activity** to the **Shelf** keeps its progress; adding a **Finished** **Activity** back to the **Board** starts its sentences over but keeps its past mistakes
 - Playing an **Activity** from the **Shelf** is practice only; it joins the **Board** only if the user adds it

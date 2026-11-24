@@ -89,6 +89,9 @@ content. Each links to the record that explains it.
 19. Every page has the same footer, rendered only by the layout. Activities in
     it come from the registry; never add a page's own footer or a hand-written
     activity list. See [0014](0014-one-shared-footer.md).
+20. Store a group, or any value a learner's browser keeps, by a fixed key,
+    never by the text shown; the label lives in config. See
+    [0015](0015-group-keys-not-labels.md).
 
 ## Index
 
@@ -108,3 +111,4 @@ content. Each links to the record that explains it.
 | [0012](0012-analytics-only-with-consent.md) | Analytics load only with opt-in consent | Accepted | 2026-11-22 |
 | [0013](0013-sentence-builder.md) | Sentence Builder: one Activity, every Token in the answer, right or wrong as a whole | Accepted | 2026-11-23 |
 | [0014](0014-one-shared-footer.md) | One footer, shared by every page | Accepted | 2026-11-23 |
+| [0015](0015-group-keys-not-labels.md) | Groups are stored by key, never by the text on screen | Accepted | 2026-11-24 |
