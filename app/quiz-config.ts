@@ -315,6 +315,8 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     rule: { title: "After si, never the conditional or the future.", body: "A real condition takes si plus the present, then the future, the present or an order. An imagined one takes si plus the imperfect subjunctive, then the conditional. A past that did not happen takes si plus hubiera and the participle, then habría and the participle. The conditional on its own makes a request polite.", singular: "Si tengo tiempo, iré.", plural: "Si tuviera tiempo, iría." },
     filterLabel: { label: "Usage", all: "All usages" },
     chartLabel: "Conditionals chart",
+    // Set to the production go-live day so the streak never requires this activity on earlier days.
+    introducedOn: "2026-11-28",
     choices: "pair",
     ruleLabel: (question) => `Conditionals: ${question.infinitive}`,
     ownsRule: (rule) => rule.startsWith("Conditionals:"),
