@@ -89,6 +89,16 @@ content. Each links to the record that explains it.
 19. Every page has the same footer, rendered only by the layout. Activities in
     it come from the registry; never add a page's own footer or a hand-written
     activity list. See [0014](0014-one-shared-footer.md).
+20. Tutorial video captions come only from `app/tutorials.ts`; a step change
+    re-renders and commits `public/tutorials/` in the same PR. See
+    [0016](0016-tutorial-and-launch-videos.md).
+21. Every new activity gets a 35-second launch lesson as a Reel and a feed
+    post. Its PR adds the lesson slides and its entries in
+    `tutorial-videos/SOCIAL-POSTS.md`. See
+    [0016](0016-tutorial-and-launch-videos.md).
+22. A launch post goes out only once its activity is live in production. A
+    late release moves its posts by the same days; an early release keeps
+    the planned dates. See [0016](0016-tutorial-and-launch-videos.md).
 
 ## Index
 
@@ -108,3 +118,4 @@ content. Each links to the record that explains it.
 | [0012](0012-analytics-only-with-consent.md) | Analytics load only with opt-in consent | Accepted | 2026-11-22 |
 | [0013](0013-sentence-builder.md) | Sentence Builder: one Activity, every Token in the answer, right or wrong as a whole | Accepted | 2026-11-23 |
 | [0014](0014-one-shared-footer.md) | One footer, shared by every page | Accepted | 2026-11-23 |
+| [0016](0016-tutorial-and-launch-videos.md) | Tutorial videos and activity launch posts | Accepted | 2026-11-23 |
