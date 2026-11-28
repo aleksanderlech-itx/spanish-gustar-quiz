@@ -34,7 +34,9 @@ const { readQuizCompletion } = await import("../app/quiz-completion.ts");
 const { BOARD_KEY, readBoardState } = await import("../app/board-state.ts");
 const { ACTIVITY_REGISTRY } = await import("../app/activity-registry.ts");
 // The Activities that existed at schema 1: an old device or backup is upgraded to exactly these.
-const ALL_IDS = ACTIVITY_REGISTRY.map((entry) => entry.id).filter((id) => id !== "sentence-builder");
+// Activities added after schema 1 never land on a Board rebuilt from it (Project rule 15).
+const AFTER_SCHEMA_1 = ["sentence-builder", "conditionals"];
+const ALL_IDS = ACTIVITY_REGISTRY.map((entry) => entry.id).filter((id) => !AFTER_SCHEMA_1.includes(id));
 const REINSTATED_KEY = "spanish-quiz-reinstated-v1";
 /** The fixture after the schema 2 step: the Board replaces the "show on main screen" choices. */
 const upgradedFixture = () => {
@@ -158,8 +160,10 @@ test("page load upgrades a schema 1 device: the Board is what it showed, the rei
   assert.deepEqual(rest, upgradedFixture());
   assert.deepEqual(JSON.parse(board).onBoard, ALL_IDS);
   // An Activity added after schema 1 is not put on the Board and stays New (Project rule 15).
-  assert.equal(JSON.parse(board).onBoard.includes("sentence-builder"), false);
-  assert.equal(JSON.parse(board).known.includes("sentence-builder"), false);
+  for (const id of AFTER_SCHEMA_1) {
+    assert.equal(JSON.parse(board).onBoard.includes(id), false, `${id} is not put on the Board`);
+    assert.equal(JSON.parse(board).known.includes(id), false, `${id} stays New`);
+  }
 });
 
 test("schema 1 to 2: a Finished quiz neither Repeat due nor shown again starts on the Shelf", () => {

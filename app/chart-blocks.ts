@@ -5,6 +5,7 @@ import { REFLEXIVE_CHART } from "./reflexive-verbs-data.ts";
 import { PRESENT_PERFECT_CHART } from "./present-perfect-data.ts";
 import { PRESENT_CONTINUOUS_CHART } from "./present-continuous-data.ts";
 import { POR_PARA_CHART } from "./por-para-data.ts";
+import { CONDITIONALS_CHART } from "./conditionals-data.ts";
 
 /**
  * The reference chart of each quiz, as data its config entry points to (issue #151). Full six-pronoun
@@ -19,7 +20,7 @@ export type ChartBlocks = (group: string, forms: Forms) => ChartBlock[];
 
 const alternate = (index: number) => (index % 2 === 0 ? "primary" as const : "sun" as const);
 
-/** Usage groups that share one set of tables (reflexive, perfect, continuous, por vs para). */
+/** Usage groups that share one set of tables (reflexive, perfect, continuous, por vs para, conditionals). */
 const sharedTables = (tables: Array<{ title: string; rows: Array<{ label: string; form: string }> }>): ChartBlocks => () =>
   tables.map((table, index) => ({
     tenseLabel: table.title,
@@ -66,4 +67,5 @@ export const CHART_BLOCKS = {
   presentContinuous: sharedTables(PRESENT_CONTINUOUS_CHART),
   // Por and para don't conjugate: one example sentence per usage instead of a table.
   porPara: sharedTables(POR_PARA_CHART),
+  conditionals: sharedTables(CONDITIONALS_CHART),
 };

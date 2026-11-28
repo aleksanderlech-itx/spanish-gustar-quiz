@@ -275,4 +275,31 @@ export const QUIZ_CONTENT: Record<QuizId, QuizContent> = {
       },
     ],
   },
+  conditionals: {
+    paragraphs: [
+      "A Spanish conditional sentence has two halves: the si clause, which sets the condition, and the result. The tense in the si clause tells the listener how likely the condition is, and the result follows from it. The one rule that never bends: after si, Spanish never uses the conditional or the future. Si tendría and si tendré are mistakes in every region.",
+      "A real condition, something that can easily happen, takes si plus the present: si tengo tiempo, iré. The result is the future, the present or an order. An imagined condition, something unlikely or contrary to fact, takes si plus the imperfect subjunctive: si tuviera tiempo, iría. The result is the conditional, built on the whole infinitive plus -ía.",
+      "A condition about the past that did not happen takes si plus hubiera and the participle: si hubiera tenido tiempo, habría ido. The result is habría plus the participle. Twelve common verbs shorten their stem in the conditional: podría, tendría, haría, diría, querría, sabría, saldría, vendría, pondría, habría, cabría, valdría.",
+      "The conditional also works without si, to make a request or a wish polite: ¿podrías ayudarme?, me gustaría un café, querría reservar una mesa. This quiz has about 150 sentences split into real conditions, the imperfect subjunctive, the regular conditional, irregular conditional stems, the past unreal and the polite conditional, with an explanation for every answer.",
+    ],
+    examples: sourcedExamples([11002, 11026, 11076, 11101, 11116, 11131]),
+    faq: [
+      {
+        question: "Can I use the conditional after si?",
+        answer: "No. After si, Spanish uses the present for a real condition, the imperfect subjunctive for an imagined one and hubiera plus the participle for the past. The conditional goes in the other half of the sentence: si tuviera dinero, viajaría.",
+      },
+      {
+        question: "How do I know if a condition is real or imagined?",
+        answer: "Ask whether it can easily happen. Si llueve mañana is a real possibility, so the present. Si yo fuera tú or si tuviera alas cannot be true, so the imperfect subjunctive. The rest of the sentence usually gives it away.",
+      },
+      {
+        question: "Which verbs are irregular in the conditional?",
+        answer: "Twelve common ones change their stem, the same stem as in the future: poder gives podría, tener tendría, hacer haría, decir diría, querer querría, saber sabría, salir saldría, venir vendría, poner pondría, haber habría, caber cabría and valer valdría. The -ía endings never change.",
+      },
+      {
+        question: "Is hubiera also correct instead of habría in the result?",
+        answer: "Yes. Si hubiera sabido, habría venido and si hubiera sabido, hubiera venido are both standard. The quiz asks for habría in the result so that the two halves stay easy to tell apart, and never marks hubiera there as wrong.",
+      },
+    ],
+  },
 };

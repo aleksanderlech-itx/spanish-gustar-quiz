@@ -100,6 +100,34 @@ test("a present continuous test session leaves every real key unchanged and writ
   assert.ok(snapshot(localStorage, true)[`${TEST_KEY_PREFIX}present-continuous-quiz-progress-v1`], "the round was saved in the test namespace");
 });
 
+test("a conditionals test session leaves every real key unchanged and writes only test keys", () => {
+  const realSeed = {
+    ...REAL_SEED,
+    "conditionals-quiz-progress-v1": JSON.stringify([{ date: "2026-11-27T08:00:00.000Z", score: 4, percent: 80, questionIds: [11001, 11026, 11056, 11076, 11101], answers: [], missedIds: [11076], mode: "regular" }]),
+  };
+  const { localStorage } = install({ search: "?test=1", local: realSeed });
+  const before = snapshot(localStorage, false);
+  assert.equal(readTopicSettings("conditionals").mode, "choose", "test mode starts in choice mode");
+  updateStoredProgress("conditionals-quiz-progress-v1", () => [], (current) => [...current, { date: "2026-11-28T08:00:00.000Z", score: 5, percent: 100, questionIds: [11002, 11027, 11057, 11077, 11131], answers: [], missedIds: [], mode: "regular" }]);
+  recordActivityToday("conditionals", new Date("2026-11-28T08:00:00"));
+  recordMistakes("conditionals", [{ question: { id: 11026, infinitive: "imperfect subjunctive", tense: "present" }, answer: "tendría" }]);
+  markQuizCompleted("conditionals", new Date("2026-11-28T08:00:00"));
+  writeTopicSettings("conditionals", { roundLength: 5, mode: "choose" });
+  assert.deepEqual(snapshot(localStorage, false), before);
+  assert.ok(snapshot(localStorage, true)[`${TEST_KEY_PREFIX}conditionals-quiz-progress-v1`], "the round was saved in the test namespace");
+});
+
+test("conditionals choice mode offers the answer the test hint highlights, plus one different wrong option", async () => {
+  const { QUIZ_CONFIG } = await import("../app/quiz-config.ts");
+  // "pair" choices are exactly [answer, objectPronoun] (app/answer-choices.ts), and round-question.tsx
+  // highlights the option equal to question.answer only in test mode.
+  assert.equal(QUIZ_CONFIG.conditionals.choices, "pair");
+  for (const question of QUIZ_CONFIG.conditionals.questions) {
+    assert.ok(question.answer && question.objectPronoun, `#${question.id}: two options`);
+    assert.notEqual(question.objectPronoun, question.answer, `#${question.id}: the highlighted answer is offered once`);
+  }
+});
+
 test("a Board test session (starter Board, Selection, Finished, Suggestion, Shelf add) leaves every real key unchanged", () => {
   const realSeed = { ...REAL_SEED, "spanish-quiz-board-v1": JSON.stringify({ onBoard: ["gustar", "flashcards"], known: ["gustar"], suggestion: null }) };
   const { localStorage } = install({ search: "?test=1", local: realSeed });

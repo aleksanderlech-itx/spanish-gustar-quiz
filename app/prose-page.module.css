@@ -290,6 +290,65 @@
   margin: 0;
 }
 
+/* A compact comparison table inside a section (Notes). Scrolls on its own on narrow screens. */
+.tableWrap {
+  overflow-x: auto;
+  margin: 12px 0;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid var(--border-ink);
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.table th,
+.table td {
+  padding: 10px 12px;
+  border: 1px solid var(--border-ink);
+  text-align: left;
+  vertical-align: top;
+}
+
+.table th {
+  font-weight: 800;
+}
+
+.tableNote {
+  display: block;
+  font-weight: 400;
+}
+
+/* On narrow screens a stacked table shows each row as a block, every cell labelled. */
+@media (max-width: 700px) {
+  .stacked thead {
+    display: none;
+  }
+
+  .stacked tr,
+  .stacked th,
+  .stacked td {
+    display: block;
+  }
+
+  .stacked tr + tr {
+    border-top: 2px solid var(--border-ink);
+  }
+
+  .stacked th,
+  .stacked td {
+    border: 0;
+    padding: 6px 12px;
+  }
+
+  .stacked td::before {
+    content: attr(data-label) ": ";
+    font-weight: 800;
+  }
+}
+
 .footer {
   display: flex;
   align-items: center;

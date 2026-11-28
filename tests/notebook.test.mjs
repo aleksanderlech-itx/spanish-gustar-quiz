@@ -28,6 +28,7 @@ test("ruleLabelFor names the actual grammar point per quiz", () => {
   assert.equal(ruleLabelFor({ ...baseQuestion, infinitive: "placement" }, "reflexive-verbs"), "Reflexive verbs: placement");
   assert.equal(ruleLabelFor({ ...baseQuestion, infinitive: "irregular participle" }, "present-perfect"), "Present perfect: irregular participle");
   assert.equal(ruleLabelFor({ ...baseQuestion, infinitive: "irregular gerund" }, "present-continuous"), "Present continuous: irregular gerund");
+  assert.equal(ruleLabelFor({ ...baseQuestion, infinitive: "past unreal" }, "conditionals"), "Conditionals: past unreal");
 });
 
 // A browser stand-in so the notebook's storage reads and writes run unchanged.
@@ -70,6 +71,7 @@ test("quizIdForRule inverts ruleLabelFor for every activity", () => {
   assert.equal(quizIdForRule("Reflexive verbs: placement"), "reflexive-verbs");
   assert.equal(quizIdForRule("Present perfect: haber not tener"), "present-perfect");
   assert.equal(quizIdForRule("Present continuous: pronoun placement"), "present-continuous");
+  assert.equal(quizIdForRule("Conditionals: polite conditional"), "conditionals");
   assert.equal(quizIdForRule("Imperfect"), "preterite-imperfect");
   assert.equal(quizIdForRule("Gustar pattern: interesar"), "gustar");
 });

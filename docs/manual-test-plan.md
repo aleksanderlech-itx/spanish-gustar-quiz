@@ -1,6 +1,6 @@
 # Manual Test Plan: Spanish Quizzes
 
-Last updated: 2026-11-23 (Sentence Builder, #72). Target: production (https://spanish-quizz.es). Testing there is harmless: progress lives only in the tester's own browser, and test mode (`?test=1`) is isolated from real data.
+Last updated: 2026-11-28 (Conditionals, off-roadmap). Target: production (https://spanish-quizz.es). Testing there is harmless: progress lives only in the tester's own browser, and test mode (`?test=1`) is isolated from real data.
 
 Project rules and decisions: `docs/decisions/README.md` in the repo. This plan covers the app as of main at PR #130, including test mode (PR #121), the mistake notebook with retry mode (PR #124), reflexive verbs, the present perfect (#69), the present continuous (#70), the daily goal and day-complete dialog, and Notes for every activity.
 
@@ -165,6 +165,21 @@ Sentence Builder starts on the shelf for existing users and is not part of the s
 | 5b.11 | B | Isolation: play in test mode, then open a tab without `?test=1` | Real Sentence Builder progress, notebook and streak are unchanged |
 | 5b.12 | N | Open `exports/sentence-builder.csv` in the repo | One row per sentence with every accepted order. Owner sample check before release: read about 20 rows and confirm the Spanish is natural and no other correct order is missing |
 | 5b.13 | N | Open `/notes/spanish-word-order` | The article loads, is listed on `/notes`, and links to Sentence Builder |
+
+## 5c. Conditionals
+
+Conditionals starts on the shelf for existing users and is not part of the starter board. Add it from Menu > On your shelf first, or open `/conditionals` directly.
+
+| # | Mode | Step | Expected |
+|---|------|------|----------|
+| 5c.1 | B | Existing board: open `/` | A one-time dialog offers Conditionals as New, unticked. "Not now" leaves it on the shelf and the dialog does not return |
+| 5c.2 | T | Open `/conditionals` | Level band B1-B2, "About 150 sentences", Usage filter with six groups (real condition, imperfect subjunctive, regular conditional, irregular conditional, past unreal, polite conditional), six example sentences, four questions under "Questions people ask" |
+| 5c.3 | T | Filter by each usage group and play a round in Choose and in Type | Every group has questions. Choose shows two options. Type accepts two-word answers with accents (hubiéramos tenido, se quedarán) |
+| 5c.4 | T | Open the conditionals chart from the topic and during a question | One shared chart: the three types, imperfect subjunctive in -ra, the conditional, twelve irregular stems, polite requests. No vosotros rows, no -se forms. Title reads Conditionals |
+| 5c.5 | T | Miss one sentence on purpose | The notebook chip reads "Conditionals: <group>", for example "Conditionals: past unreal" |
+| 5c.6 | B | With `?test=1`: finish a round using only the hints, then open `/conditionals` in a new tab without the parameter | The correct option is highlighted (Choose) or prefilled (Type). Real progress for the topic is unchanged |
+| 5c.7 | N | Open `/notes/conditionals-mistakes` | The article loads, is listed on `/notes`, shows the three types and the twelve stems as tables (each scrolls on its own at phone width, the page does not), and links to the quiz |
+| 5c.8 | N | Owner grammar review before merge: read the spot-check list and the flagged items in the PR | Every flagged item is accepted or rewritten |
 
 ## 6. Flashcards
 

@@ -7,12 +7,13 @@ import { SABER_CONOCER_FORMS, SABER_CONOCER_QUESTIONS } from "./saber-conocer-da
 import { REFLEXIVE_FORMS, REFLEXIVE_VERB_QUESTIONS } from "./reflexive-verbs-data.ts";
 import { PRESENT_PERFECT_FORMS, PRESENT_PERFECT_QUESTIONS } from "./present-perfect-data.ts";
 import { PRESENT_CONTINUOUS_FORMS, PRESENT_CONTINUOUS_QUESTIONS } from "./present-continuous-data.ts";
+import { CONDITIONALS_FORMS, CONDITIONALS_QUESTIONS } from "./conditionals-data.ts";
 import { ruleForTense } from "./quiz-logic.ts";
 import { CHART_BLOCKS, type ChartBlocks } from "./chart-blocks.ts";
 import { PRETERITE_IMPERFECT_REGULARITY } from "./preterite-imperfect-data.ts";
 import type { Question } from "./quiz-data";
 
-export type QuizId = "gustar" | "ser-estar" | "preterite-imperfect" | "por-para" | "object-pronouns" | "saber-conocer" | "reflexive-verbs" | "present-perfect" | "present-continuous";
+export type QuizId = "gustar" | "ser-estar" | "preterite-imperfect" | "por-para" | "object-pronouns" | "saber-conocer" | "reflexive-verbs" | "present-perfect" | "present-continuous" | "conditionals";
 
 /** Each quiz's own crawlable URL, so every topic canonicalizes to itself instead of
  * every `?quiz=` variant resolving to the same root page. */
@@ -26,6 +27,7 @@ export const QUIZ_SLUGS: Record<QuizId, string> = {
   "reflexive-verbs": "reflexive-verbs",
   "present-perfect": "present-perfect",
   "present-continuous": "present-continuous",
+  conditionals: "conditionals",
 };
 
 export const quizPath = (quizId: QuizId): string => `/${QUIZ_SLUGS[quizId]}`;
@@ -296,6 +298,31 @@ export const QUIZ_CONFIG: Record<QuizId, QuizConfigEntry> = {
     chart: { blocks: CHART_BLOCKS.presentContinuous, sections: "shared", link: "chart" },
     // A play arrow inside a circle: an action in progress right now.
     iconPath: "M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M10 8.5v7l5.5-3.5z",
+  },
+  conditionals: {
+    title: "Conditionals Quiz",
+    eyebrow: "Conditionals",
+    heading: "Real, imagined or too late.",
+    copy: "Practise si clauses with the present, the imperfect subjunctive and hubiera, the conditional and its irregular stems, and polite requests.",
+    description: "Practise Spanish conditional sentences with about 150 sentences covering real conditions, imagined conditions with the imperfect subjunctive, the conditional and its irregular stems, past conditions with hubiera and habría, and polite requests, with an explanation for every answer.",
+    levelBand: "B1-B2",
+    questions: CONDITIONALS_QUESTIONS,
+    forms: CONDITIONALS_FORMS,
+    storageKey: "conditionals-quiz-progress-v1",
+    filterKey: "conditionals-quiz-filters-v1",
+    backupName: "spanish-conditionals-quiz-progress.json",
+    sources: [],
+    rule: { title: "After si, never the conditional or the future.", body: "A real condition takes si plus the present, then the future, the present or an order. An imagined one takes si plus the imperfect subjunctive, then the conditional. A past that did not happen takes si plus hubiera and the participle, then habría and the participle. The conditional on its own makes a request polite.", singular: "Si tengo tiempo, iré.", plural: "Si tuviera tiempo, iría." },
+    filterLabel: { label: "Usage", all: "All usages" },
+    chartLabel: "Conditionals chart",
+    // Set to the production go-live day so the streak never requires this activity on earlier days.
+    introducedOn: "2026-11-28",
+    choices: "pair",
+    ruleLabel: (question) => `Conditionals: ${question.infinitive}`,
+    ownsRule: (rule) => rule.startsWith("Conditionals:"),
+    chart: { blocks: CHART_BLOCKS.conditionals, sections: "shared", link: "chart" },
+    // A path that forks in two: if one thing happens, then another.
+    iconPath: "M6 21V12a6 6 0 0 1 6-6h6M6 12a6 6 0 0 0 6 6h6M15 3l3 3-3 3M15 15l3 3-3 3",
   },
 };
 

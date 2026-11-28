@@ -7,6 +7,7 @@ import { POR_PARA_CHART } from "../app/por-para-data.ts";
 import { REFLEXIVE_CHART } from "../app/reflexive-verbs-data.ts";
 import { PRESENT_PERFECT_CHART } from "../app/present-perfect-data.ts";
 import { PRESENT_CONTINUOUS_CHART } from "../app/present-continuous-data.ts";
+import { CONDITIONALS_CHART } from "../app/conditionals-data.ts";
 import { QUIZ_CONFIG } from "../app/quiz-config.ts";
 
 test("verb chart never fabricates a six-pronoun paradigm where the data doesn't have one", () => {
@@ -102,4 +103,17 @@ test("present continuous chart is one shared section with estar, regular and irr
   const quiz = QUIZ_CONFIG["present-continuous"];
   assert.equal(quiz.chart.sections, "shared");
   assert.deepEqual(quiz.chart.blocks("", quiz.forms).map((block) => block.tenseLabel), PRESENT_CONTINUOUS_CHART.map((table) => table.title));
+});
+
+test("conditionals chart is one shared section: the three types, -ra subjunctive, conditional, irregular stems, polite", () => {
+  const quiz = QUIZ_CONFIG.conditionals;
+  assert.equal(quiz.chart.sections, "shared");
+  assert.equal(quiz.chartLabel, "Conditionals chart");
+  assert.deepEqual(quiz.chart.blocks("", quiz.forms).map((block) => block.tenseLabel), CONDITIONALS_CHART.map((table) => table.title));
+  for (const table of CONDITIONALS_CHART) {
+    for (const row of table.rows) {
+      assert.doesNotMatch(row.label, /vosotr/u, `${table.title}: no vosotros`);
+      assert.doesNotMatch(row.form, /se\b|ses\b|semos\b|sen\b/u, `${table.title}: no -se forms in ${row.form}`);
+    }
+  }
 });

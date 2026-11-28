@@ -4,6 +4,11 @@ export type NotesPost = { href: string; title: string; excerpt: string };
 
 export const NOTES_POSTS: NotesPost[] = [
   {
+    href: "/notes/conditionals-mistakes",
+    title: "Spanish conditionals: si clauses and 4 common mistakes",
+    excerpt: "Si tuviera, not si tendría. The three kinds of si clause in one table, the polite conditional, the twelve irregular stems and the slips that keep coming back.",
+  },
+  {
     href: "/notes/spanish-word-order",
     title: "Spanish word order: questions, negatives and pronouns",
     excerpt: "Where no, object pronouns, question words and haber go, and where Spanish lets the order move.",
