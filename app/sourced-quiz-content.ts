@@ -5804,6 +5804,126 @@ export const SOURCED_QUIZ_PAIRS: Record<number, SourcedPair> = {
   "11100": {
     "spanish": "Esta casa valdría mucho más si tuviera piscina.",
     "english": "This house would be worth much more if it had a pool."
+  },
+  "11101": {
+    "spanish": "Si hubieras salido antes, habrías llegado a tiempo.",
+    "english": "If you had left earlier, you would have arrived on time."
+  },
+  "11102": {
+    "spanish": "Si hubiera estudiado más la semana pasada, habría aprobado el examen.",
+    "english": "If I had studied more last week, I would have passed the exam."
+  },
+  "11103": {
+    "spanish": "Te habríamos llamado si hubiéramos tenido tu número.",
+    "english": "We would have called you if we had had your number."
+  },
+  "11104": {
+    "spanish": "Si mis padres hubieran llegado a tiempo, habrían visto el principio de la película.",
+    "english": "If my parents had arrived on time, they would have seen the beginning of the film."
+  },
+  "11105": {
+    "spanish": "Si tú me hubieras dicho la verdad aquel día, no me habría enfadado.",
+    "english": "If you had told me the truth that day, I wouldn't have got angry."
+  },
+  "11106": {
+    "spanish": "Ella habría ganado la carrera si no se hubiera caído en la última curva.",
+    "english": "She would have won the race if she hadn't fallen on the last bend."
+  },
+  "11107": {
+    "spanish": "Si el año pasado hubiéramos comprado aquel piso, habríamos ahorrado mucho dinero.",
+    "english": "If we had bought that flat last year, we would have saved a lot of money."
+  },
+  "11108": {
+    "spanish": "Si usted hubiera rellenado el formulario, le habrían devuelto el dinero.",
+    "english": "If you had filled in the form, they would have given you your money back."
+  },
+  "11109": {
+    "spanish": "No habrías perdido las llaves si las hubieras dejado en su sitio.",
+    "english": "You wouldn't have lost the keys if you had left them in their place."
+  },
+  "11110": {
+    "spanish": "Si ayer hubiera sonado el despertador, no habría llegado tarde.",
+    "english": "If the alarm clock had gone off yesterday, I wouldn't have been late."
+  },
+  "11111": {
+    "spanish": "Si los bomberos no hubieran actuado tan rápido, el fuego habría destruido el edificio.",
+    "english": "If the firefighters hadn't acted so quickly, the fire would have destroyed the building."
+  },
+  "11112": {
+    "spanish": "Habríamos visto el eclipse si no hubiera estado nublado.",
+    "english": "We would have seen the eclipse if it hadn't been cloudy."
+  },
+  "11113": {
+    "spanish": "Si hubiéramos llevado el mapa, no nos habríamos perdido en la montaña.",
+    "english": "If we had taken the map, we wouldn't have got lost in the mountains."
+  },
+  "11114": {
+    "spanish": "Si ellas hubieran ido a la reunión, habrían conocido al nuevo director.",
+    "english": "If they had gone to the meeting, they would have met the new director."
+  },
+  "11115": {
+    "spanish": "Yo te habría ayudado si me lo hubieras pedido antes.",
+    "english": "I would have helped you if you had asked me earlier."
+  },
+  "11116": {
+    "spanish": "Si hubieras salido antes, no habrías perdido el tren.",
+    "english": "If you had left earlier, you wouldn't have missed the train."
+  },
+  "11117": {
+    "spanish": "Si hubiera sabido que estabas enfermo, habría ido a verte.",
+    "english": "If I had known you were ill, I would have gone to see you."
+  },
+  "11118": {
+    "spanish": "Nosotros habríamos llegado antes si no hubiera habido tanto tráfico.",
+    "english": "We would have arrived earlier if there hadn't been so much traffic."
+  },
+  "11119": {
+    "spanish": "Si el equipo hubiera jugado mejor el domingo, habría ganado el partido.",
+    "english": "If the team had played better on Sunday, it would have won the match."
+  },
+  "11120": {
+    "spanish": "Si me hubieras avisado, habría preparado la cena para ti también.",
+    "english": "If you had told me, I would have made dinner for you too."
+  },
+  "11121": {
+    "spanish": "Ustedes habrían aprovechado la oferta si hubieran leído el correo.",
+    "english": "You would have taken advantage of the offer if you had read the email."
+  },
+  "11122": {
+    "spanish": "Si hubiéramos reservado mesa, habríamos cenado en ese restaurante tan famoso.",
+    "english": "If we had booked a table, we would have had dinner at that famous restaurant."
+  },
+  "11123": {
+    "spanish": "Si mi abuela hubiera vivido más años, habría conocido a sus bisnietos.",
+    "english": "If my grandmother had lived longer, she would have met her great-grandchildren."
+  },
+  "11124": {
+    "spanish": "Tú habrías aprobado el examen si hubieras estudiado un poco más.",
+    "english": "You would have passed the exam if you had studied a bit more."
+  },
+  "11125": {
+    "spanish": "Si los niños se hubieran acostado antes, habrían dormido mejor anoche.",
+    "english": "If the children had gone to bed earlier, they would have slept better last night."
+  },
+  "11126": {
+    "spanish": "Si hubieras visto la película, te habría gustado mucho.",
+    "english": "If you had seen the film, you would have liked it a lot."
+  },
+  "11127": {
+    "spanish": "Yo habría comprado otro coche si hubiera tenido más dinero.",
+    "english": "I would have bought another car if I had had more money."
+  },
+  "11128": {
+    "spanish": "Si ella hubiera aceptado aquel trabajo, se habría mudado a Madrid.",
+    "english": "If she had accepted that job, she would have moved to Madrid."
+  },
+  "11129": {
+    "spanish": "Si hubiéramos salido de casa a las ocho, habríamos tomado el primer tren.",
+    "english": "If we had left home at eight, we would have caught the first train."
+  },
+  "11130": {
+    "spanish": "Ellos habrían hecho más fotos si no se les hubiera roto la cámara.",
+    "english": "They would have taken more photos if their camera hadn't broken."
   }
 };
 
