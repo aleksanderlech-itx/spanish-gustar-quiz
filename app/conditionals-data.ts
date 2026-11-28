@@ -103,6 +103,28 @@ const seed: readonly Seed[] = [
   [11053, "imperfect subjunctive", "Si", "más horas, estaría de mejor humor.", "durmiera", "dormiría", "If I slept more hours, I would be in a better mood.", "advanced", "dormir"],
   [11054, "imperfect subjunctive", "Mi abuela sería feliz si", "a verla más a menudo.", "fuéramos", "iríamos", "My grandmother would be happy if we went to see her more often.", "advanced", "ir"],
   [11055, "imperfect subjunctive", "Si tú me", "la verdad, te perdonaría.", "dijeras", "dirías", "If you told me the truth, I would forgive you.", "advanced", "decir"],
+
+  // --- regular conditional ---
+  [11056, "regular conditional", "Si vivieras más cerca, te", "más a menudo.", "visitaría", "visitaré", "If you lived closer, I would visit you more often.", "basic", "visitar"],
+  [11057, "regular conditional", "Si tuviera un jardín,", "tomates y lechugas.", "plantaría", "plantaré", "If I had a garden, I would grow tomatoes and lettuces.", "intermediate", "plantar"],
+  [11058, "regular conditional", "Nosotros", "más si el gimnasio estuviera cerca.", "entrenaríamos", "entrenaremos", "We would train more if the gym were nearby.", "intermediate", "entrenar"],
+  [11059, "regular conditional", "Si ganara la lotería,", "un viaje alrededor del mundo.", "organizaría", "organizaré", "If I won the lottery, I would organise a trip around the world.", "intermediate", "organizar"],
+  [11060, "regular conditional", "Si mi hermana supiera conducir,", "al trabajo en coche.", "iría", "irá", "If my sister knew how to drive, she would go to work by car.", "basic", "ir"],
+  [11061, "regular conditional", "Tú", "mejor si apagaras el móvil por la noche.", "dormirías", "dormirás", "You would sleep better if you switched off your phone at night.", "intermediate", "dormir"],
+  [11062, "regular conditional", "Si hiciera buen tiempo,", "en la terraza.", "comeríamos", "comeremos", "If the weather were nice, we would eat on the terrace.", "basic", "comer"],
+  [11063, "regular conditional", "Si los hoteles fueran más baratos, más turistas", "la ciudad.", "visitarían", "visitarán", "If the hotels were cheaper, more tourists would visit the city.", "intermediate", "visitar"],
+  [11064, "regular conditional", "Yo", "más libros si tuviera más tiempo libre.", "leería", "leeré", "I would read more books if I had more free time.", "basic", "leer"],
+  [11065, "regular conditional", "Si usted probara este plato, le", ".", "encantaría", "encantará", "If you tried this dish, you would love it.", "intermediate", "encantar"],
+  [11066, "regular conditional", "Si ellos hablaran español,", "mejor con sus vecinos.", "se entenderían", "se entenderán", "If they spoke Spanish, they would get on better with their neighbours.", "intermediate", "entenderse"],
+  [11067, "regular conditional", "Mi padre", "antes si no tuviera tanto trabajo.", "se jubilaría", "se jubilará", "My father would retire earlier if he didn't have so much work.", "advanced", "jubilarse"],
+  [11068, "regular conditional", "Si estudiaras medicina,", "una excelente doctora.", "serías", "serás", "If you studied medicine, you would be an excellent doctor.", "basic", "ser"],
+  [11069, "regular conditional", "Si el museo abriera los lunes, lo", "hoy.", "veríamos", "veremos", "If the museum opened on Mondays, we would see it today.", "intermediate", "ver"],
+  [11070, "regular conditional", "Ustedes", "dinero si compraran los billetes por internet.", "ahorrarían", "ahorrarán", "You would save money if you bought the tickets online.", "intermediate", "ahorrar"],
+  [11071, "regular conditional", "Si yo fuera el alcalde,", "más parques en la ciudad.", "construiría", "construiré", "If I were the mayor, I would build more parks in the city.", "intermediate", "construir"],
+  [11072, "regular conditional", "Si tuviéramos más espacio,", "a toda la familia en Navidad.", "invitaríamos", "invitaremos", "If we had more space, we would invite the whole family at Christmas.", "intermediate", "invitar"],
+  [11073, "regular conditional", "¿Me", "si te lo pidiera?", "ayudarías", "ayudarás", "Would you help me if I asked you?", "basic", "ayudar"],
+  [11074, "regular conditional", "Si no lloviera tanto, mi madre", "más en el jardín.", "trabajaría", "trabajará", "If it didn't rain so much, my mother would work more in the garden.", "basic", "trabajar"],
+  [11075, "regular conditional", "Si pudieras cambiar algo de tu vida, ¿qué", "?", "cambiarías", "cambiarás", "If you could change something in your life, what would you change?", "intermediate", "cambiar"],
 ];
 
 /** A conjugated form counts as plural when its verb ends in -mos or -n (tendríamos, hubieran ido). */
