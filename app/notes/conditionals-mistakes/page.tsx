@@ -58,17 +58,17 @@ export default function ConditionalsMistakesPost() {
         <div className={styles.sectionBody}>
           <h2>The three types</h2>
           <div className={styles.tableWrap}>
-            <table className={styles.table}>
+            <table className={`${styles.table} ${styles.stacked}`}>
               <thead>
                 <tr><th scope="col">Type</th><th scope="col">Si clause</th><th scope="col">Result</th><th scope="col">Example</th></tr>
               </thead>
               <tbody>
                 {TYPES.map((row) => (
                   <tr key={row.type}>
-                    <th scope="row">{row.type}<br />{row.meaning}</th>
-                    <td>{row.si}</td>
-                    <td>{row.result}</td>
-                    <td lang="es">{row.example}</td>
+                    <th scope="row">{row.type}<span className={styles.tableNote}>{row.meaning}</span></th>
+                    <td data-label="Si clause">{row.si}</td>
+                    <td data-label="Result">{row.result}</td>
+                    <td data-label="Example" lang="es">{row.example}</td>
                   </tr>
                 ))}
               </tbody>
