@@ -16,6 +16,7 @@ import { CURATED_SABER_CONOCER_PAIRS } from "./curated-saber-conocer-all.mjs";
 import { ORIGINAL_REFLEXIVE_VERB_PAIRS } from "./original-reflexive-verbs-pairs.mjs";
 import { ORIGINAL_PRESENT_PERFECT_PAIRS } from "./original-present-perfect-pairs.mjs";
 import { ORIGINAL_PRESENT_CONTINUOUS_PAIRS } from "./original-present-continuous-pairs.mjs";
+import { ORIGINAL_CONDITIONALS_PAIRS } from "./original-conditionals-pairs.mjs";
 import { PINNED_CORPUS_PAIRS } from "./pinned-corpus-pairs.mjs";
 import { RESTORED_GUSTAR_PAIRS } from "./restored-gustar-pairs.mjs";
 import { RESTORED_SER_ESTAR_PAIRS } from "./restored-ser-estar-pairs.mjs";
@@ -169,6 +170,8 @@ const RESTORED_PAIRS = {
   "present-perfect": ORIGINAL_PRESENT_PERFECT_PAIRS,
   // Written for this bank from the start (#70), so every pair is original content.
   "present-continuous": ORIGINAL_PRESENT_CONTINUOUS_PAIRS,
+  // Written for this bank from the start (off-roadmap, approved 2026-11-28), so every pair is original content.
+  conditionals: ORIGINAL_CONDITIONALS_PAIRS,
 };
 
 // Hand-curated pairs per bank. A bank without curated pairs is simply absent.

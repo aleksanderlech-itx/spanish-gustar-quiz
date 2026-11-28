@@ -70,6 +70,8 @@ export function subtopicExplanation(quizId: QuizId, question: Question): string 
       };
       return `${cue} ${rule[question.infinitive] ?? "sets an action in progress: the present of estar that matches the subject, then the gerund."}`;
     }
+    case "conditionals":
+      return `${cue} decides the form: after si, never the conditional or the future.`;
   }
 }
 
