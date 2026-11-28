@@ -125,6 +125,33 @@ const seed: readonly Seed[] = [
   [11073, "regular conditional", "¿Me", "si te lo pidiera?", "ayudarías", "ayudarás", "Would you help me if I asked you?", "basic", "ayudar"],
   [11074, "regular conditional", "Si no lloviera tanto, mi madre", "más en el jardín.", "trabajaría", "trabajará", "If it didn't rain so much, my mother would work more in the garden.", "basic", "trabajar"],
   [11075, "regular conditional", "Si pudieras cambiar algo de tu vida, ¿qué", "?", "cambiarías", "cambiarás", "If you could change something in your life, what would you change?", "intermediate", "cambiar"],
+
+  // --- irregular conditional ---
+  [11076, "irregular conditional", "Yo", "ir a la fiesta si tuviera tiempo.", "podría", "podería", "I would be able to go to the party if I had time.", "basic", "poder"],
+  [11077, "irregular conditional", "Si estudiaras más,", "aprobar todas las asignaturas.", "podrías", "poderías", "If you studied more, you could pass all your subjects.", "basic", "poder"],
+  [11078, "irregular conditional", "Mis hermanos", "venir el sábado si no trabajaran.", "podrían", "poderían", "My brothers could come on Saturday if they weren't working.", "intermediate", "poder"],
+  [11079, "irregular conditional", "Si viviéramos en el campo,", "más tiempo libre.", "tendríamos", "teneríamos", "If we lived in the countryside, we would have more free time.", "intermediate", "tener"],
+  [11080, "irregular conditional", "Si mi padre dejara de fumar,", "más energía.", "tendría", "tenería", "If my father stopped smoking, he would have more energy.", "basic", "tener"],
+  [11081, "irregular conditional", "Tú no", "tantos problemas si escucharas a tus padres.", "tendrías", "tendrás", "You wouldn't have so many problems if you listened to your parents.", "intermediate", "tener"],
+  [11082, "irregular conditional", "Si tuviera más tiempo,", "deporte todos los días.", "haría", "hacería", "If I had more time, I would do sport every day.", "basic", "hacer"],
+  [11083, "irregular conditional", "Si hubiera nieve,", "un muñeco de nieve en el jardín.", "haríamos", "haceríamos", "If there were snow, we would make a snowman in the garden.", "intermediate", "hacer"],
+  [11084, "irregular conditional", "¿Qué", "ustedes si perdieran el último tren?", "harían", "hacerían", "What would you do if you missed the last train?", "intermediate", "hacer"],
+  [11085, "irregular conditional", "Si yo fuera tú, le", "la verdad.", "diría", "deciría", "If I were you, I would tell him the truth.", "intermediate", "decir"],
+  [11086, "irregular conditional", "Si alguien te ofreciera ese trabajo, ¿qué le", "?", "dirías", "decirías", "If someone offered you that job, what would you say to them?", "intermediate", "decir"],
+  [11087, "irregular conditional", "Si pudiera elegir,", "vivir cerca del mar.", "querría", "querería", "If I could choose, I would want to live near the sea.", "intermediate", "querer"],
+  [11088, "irregular conditional", "Mis hijos", "un perro si tuviéramos un jardín más grande.", "querrían", "quererían", "My children would want a dog if we had a bigger garden.", "advanced", "querer"],
+  [11089, "irregular conditional", "Si leyeras el manual,", "cómo funciona la máquina.", "sabrías", "saberías", "If you read the manual, you would know how the machine works.", "intermediate", "saber"],
+  [11090, "irregular conditional", "Si los alumnos repasaran en casa,", "las respuestas del examen.", "sabrían", "saberían", "If the students revised at home, they would know the answers in the exam.", "intermediate", "saber"],
+  [11091, "irregular conditional", "Yo", "más temprano si el autobús pasara antes.", "saldría", "saliría", "I would leave earlier if the bus came sooner.", "intermediate", "salir"],
+  [11092, "irregular conditional", "Si no lloviera,", "a dar un paseo.", "saldríamos", "saliríamos", "If it weren't raining, we would go out for a walk.", "basic", "salir"],
+  [11093, "irregular conditional", "Si te invitara a mi casa, ¿", "?", "vendrías", "venirías", "If I invited you to my house, would you come?", "intermediate", "venir"],
+  [11094, "irregular conditional", "Mis abuelos", "más a menudo si viviéramos más cerca.", "vendrían", "venirían", "My grandparents would come more often if we lived closer.", "intermediate", "venir"],
+  [11095, "irregular conditional", "Si tuviera un vestido rojo, me lo", "para la boda.", "pondría", "ponería", "If I had a red dress, I would wear it to the wedding.", "intermediate", "poner"],
+  [11096, "irregular conditional", "Si hiciera frío, los niños se", "el abrigo.", "pondrían", "ponerían", "If it were cold, the children would put their coats on.", "basic", "poner"],
+  [11097, "irregular conditional", "En esta calle", "más tiendas si hubiera más turistas.", "habría", "habería", "There would be more shops in this street if there were more tourists.", "advanced", "haber"],
+  [11098, "irregular conditional", "Si el concierto fuera gratis,", "mucha más gente.", "habría", "habería", "If the concert were free, there would be many more people.", "intermediate", "haber"],
+  [11099, "irregular conditional", "Si el coche fuera más grande,", "todos en él.", "cabríamos", "caberíamos", "If the car were bigger, we would all fit in it.", "advanced", "caber"],
+  [11100, "irregular conditional", "Esta casa", "mucho más si tuviera piscina.", "valdría", "valería", "This house would be worth much more if it had a pool.", "advanced", "valer"],
 ];
 
 /** A conjugated form counts as plural when its verb ends in -mos or -n (tendríamos, hubieran ido). */

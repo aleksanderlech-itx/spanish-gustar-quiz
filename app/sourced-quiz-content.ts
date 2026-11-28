@@ -5704,6 +5704,106 @@ export const SOURCED_QUIZ_PAIRS: Record<number, SourcedPair> = {
   "11075": {
     "spanish": "Si pudieras cambiar algo de tu vida, ¿qué cambiarías?",
     "english": "If you could change something in your life, what would you change?"
+  },
+  "11076": {
+    "spanish": "Yo podría ir a la fiesta si tuviera tiempo.",
+    "english": "I would be able to go to the party if I had time."
+  },
+  "11077": {
+    "spanish": "Si estudiaras más, podrías aprobar todas las asignaturas.",
+    "english": "If you studied more, you could pass all your subjects."
+  },
+  "11078": {
+    "spanish": "Mis hermanos podrían venir el sábado si no trabajaran.",
+    "english": "My brothers could come on Saturday if they weren't working."
+  },
+  "11079": {
+    "spanish": "Si viviéramos en el campo, tendríamos más tiempo libre.",
+    "english": "If we lived in the countryside, we would have more free time."
+  },
+  "11080": {
+    "spanish": "Si mi padre dejara de fumar, tendría más energía.",
+    "english": "If my father stopped smoking, he would have more energy."
+  },
+  "11081": {
+    "spanish": "Tú no tendrías tantos problemas si escucharas a tus padres.",
+    "english": "You wouldn't have so many problems if you listened to your parents."
+  },
+  "11082": {
+    "spanish": "Si tuviera más tiempo, haría deporte todos los días.",
+    "english": "If I had more time, I would do sport every day."
+  },
+  "11083": {
+    "spanish": "Si hubiera nieve, haríamos un muñeco de nieve en el jardín.",
+    "english": "If there were snow, we would make a snowman in the garden."
+  },
+  "11084": {
+    "spanish": "¿Qué harían ustedes si perdieran el último tren?",
+    "english": "What would you do if you missed the last train?"
+  },
+  "11085": {
+    "spanish": "Si yo fuera tú, le diría la verdad.",
+    "english": "If I were you, I would tell him the truth."
+  },
+  "11086": {
+    "spanish": "Si alguien te ofreciera ese trabajo, ¿qué le dirías?",
+    "english": "If someone offered you that job, what would you say to them?"
+  },
+  "11087": {
+    "spanish": "Si pudiera elegir, querría vivir cerca del mar.",
+    "english": "If I could choose, I would want to live near the sea."
+  },
+  "11088": {
+    "spanish": "Mis hijos querrían un perro si tuviéramos un jardín más grande.",
+    "english": "My children would want a dog if we had a bigger garden."
+  },
+  "11089": {
+    "spanish": "Si leyeras el manual, sabrías cómo funciona la máquina.",
+    "english": "If you read the manual, you would know how the machine works."
+  },
+  "11090": {
+    "spanish": "Si los alumnos repasaran en casa, sabrían las respuestas del examen.",
+    "english": "If the students revised at home, they would know the answers in the exam."
+  },
+  "11091": {
+    "spanish": "Yo saldría más temprano si el autobús pasara antes.",
+    "english": "I would leave earlier if the bus came sooner."
+  },
+  "11092": {
+    "spanish": "Si no lloviera, saldríamos a dar un paseo.",
+    "english": "If it weren't raining, we would go out for a walk."
+  },
+  "11093": {
+    "spanish": "Si te invitara a mi casa, ¿vendrías?",
+    "english": "If I invited you to my house, would you come?"
+  },
+  "11094": {
+    "spanish": "Mis abuelos vendrían más a menudo si viviéramos más cerca.",
+    "english": "My grandparents would come more often if we lived closer."
+  },
+  "11095": {
+    "spanish": "Si tuviera un vestido rojo, me lo pondría para la boda.",
+    "english": "If I had a red dress, I would wear it to the wedding."
+  },
+  "11096": {
+    "spanish": "Si hiciera frío, los niños se pondrían el abrigo.",
+    "english": "If it were cold, the children would put their coats on."
+  },
+  "11097": {
+    "spanish": "En esta calle habría más tiendas si hubiera más turistas.",
+    "english": "There would be more shops in this street if there were more tourists."
+  },
+  "11098": {
+    "spanish": "Si el concierto fuera gratis, habría mucha más gente.",
+    "english": "If the concert were free, there would be many more people."
+  },
+  "11099": {
+    "spanish": "Si el coche fuera más grande, cabríamos todos en él.",
+    "english": "If the car were bigger, we would all fit in it."
+  },
+  "11100": {
+    "spanish": "Esta casa valdría mucho más si tuviera piscina.",
+    "english": "This house would be worth much more if it had a pool."
   }
 };
 
