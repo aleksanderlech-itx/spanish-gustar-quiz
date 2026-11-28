@@ -290,6 +290,32 @@
   margin: 0;
 }
 
+/* A compact comparison table inside a section (Notes). Scrolls on its own on narrow screens. */
+.tableWrap {
+  overflow-x: auto;
+  margin: 12px 0;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid var(--border-ink);
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.table th,
+.table td {
+  padding: 10px 12px;
+  border: 1px solid var(--border-ink);
+  text-align: left;
+  vertical-align: top;
+}
+
+.table th {
+  font-weight: 800;
+}
+
 .footer {
   display: flex;
   align-items: center;
