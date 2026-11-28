@@ -1,5 +1,6 @@
 import type { Question } from "./quiz-data";
 import type { QuizId } from "./quiz-config";
+import { IRREGULAR_CONDITIONAL_STEMS } from "./conditionals-data.ts";
 
 // Fallback explanations, one rule per subtopic, that name the item's cue when it
 // has one. Every quiz item has its own explanation (app/explanations-<topic>.ts);
@@ -70,8 +71,19 @@ export function subtopicExplanation(quizId: QuizId, question: Question): string 
       };
       return `${cue} ${rule[question.infinitive] ?? "sets an action in progress: the present of estar that matches the subject, then the gerund."}`;
     }
-    case "conditionals":
-      return `${cue} decides the form: after si, never the conditional or the future.`;
+    case "conditionals": {
+      const stem = IRREGULAR_CONDITIONAL_STEMS[question.blankHint ?? ""];
+      const stemNote = stem ? ` ${capitalize(question.blankHint ?? "")} becomes ${stem}-.` : "";
+      const rule: Record<string, string> = {
+        "real condition": "shows a real, likely condition: si plus the present, then the future, the present or an order. After si, never the future or the conditional.",
+        "imperfect subjunctive": "shows the condition is imagined: si plus the imperfect subjunctive, then the conditional. After si, never the conditional.",
+        "regular conditional": "sets an imagined condition, so the result is the conditional: the whole infinitive plus -ía.",
+        "irregular conditional": `sets an imagined condition, so the result is the conditional.${stemNote}`,
+        "past unreal": "points to a past that did not happen: si plus hubiera and the participle, then habría and the participle. After si, never the conditional.",
+        "polite conditional": `makes this a request or a wish, and the conditional makes it polite.${stemNote}`,
+      };
+      return `${cue} ${rule[question.infinitive] ?? "decides the form: after si, never the conditional or the future."}`;
+    }
   }
 }
 
