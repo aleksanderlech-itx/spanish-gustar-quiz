@@ -184,6 +184,28 @@ const seed: readonly Seed[] = [
   [11128, "past unreal", "Si ella hubiera aceptado aquel trabajo, se", "a Madrid.", "habría mudado", "habería mudado", "If she had accepted that job, she would have moved to Madrid.", "advanced", "mudarse"],
   [11129, "past unreal", "Si hubiéramos salido de casa a las ocho,", "el primer tren.", "habríamos tomado", "habremos tomado", "If we had left home at eight, we would have caught the first train.", "intermediate", "tomar"],
   [11130, "past unreal", "Ellos", "más fotos si no se les hubiera roto la cámara.", "habrían hecho", "haberían hecho", "They would have taken more photos if their camera hadn't broken.", "advanced", "hacer"],
+
+  // --- polite conditional ---
+  [11131, "polite conditional", "Perdone, ¿", "decirme dónde está la estación?", "podría", "podería", "Excuse me, could you tell me where the station is?", "basic", "poder"],
+  [11132, "polite conditional", "Oye, ¿", "cerrar la ventana, por favor?", "podrías", "poderías", "Hey, could you close the window, please?", "basic", "poder"],
+  [11133, "polite conditional", "Disculpen, ¿", "hablar un poco más despacio?", "podrían", "poderían", "Excuse me, could you speak a little more slowly?", "intermediate", "poder"],
+  [11134, "polite conditional", "Mamá, ¿me", "ayudar con los deberes?", "podrías", "poderías", "Mum, could you help me with my homework?", "basic", "poder"],
+  [11135, "polite conditional", "Buenos días,", "reservar una mesa para cuatro personas.", "querría", "querería", "Good morning, I would like to book a table for four.", "intermediate", "querer"],
+  [11136, "polite conditional", "Perdone,", "hablar con el director, por favor.", "querríamos", "quereríamos", "Excuse me, we would like to speak to the director, please.", "intermediate", "querer"],
+  [11137, "polite conditional", "Perdona, ¿", "un bolígrafo?", "tendrías", "tenerías", "Sorry, would you have a pen?", "basic", "tener"],
+  [11138, "polite conditional", "Disculpe, ¿", "un momento para responder unas preguntas?", "tendría", "tenería", "Excuse me, would you have a moment to answer a few questions?", "intermediate", "tener"],
+  [11139, "polite conditional", "Perdone, ¿", "decirme a qué hora sale el próximo tren?", "sabría", "sabería", "Excuse me, would you know what time the next train leaves?", "intermediate", "saber"],
+  [11140, "polite conditional", "Oye, ¿", "explicarme este ejercicio?", "sabrías", "saberías", "Hey, would you know how to explain this exercise to me?", "intermediate", "saber"],
+  [11141, "polite conditional", "Cariño, ¿me", "un favor?", "harías", "hacerías", "Darling, would you do me a favour?", "basic", "hacer"],
+  [11142, "polite conditional", "Perdona, ¿me", "tu número de teléfono?", "dirías", "decirías", "Sorry, would you tell me your phone number?", "intermediate", "decir"],
+  [11143, "polite conditional", "Te propongo cenar juntos. ¿Te", "bien el jueves?", "vendría", "veniría", "I suggest we have dinner together. Would Thursday suit you?", "advanced", "venir"],
+  [11144, "polite conditional", "Camarero, me", "un café con leche, por favor.", "gustaría", "gustarían", "Waiter, I would like a white coffee, please.", "basic", "gustar"],
+  [11145, "polite conditional", "Buenas tardes, nos", "ver la carta de vinos.", "gustaría", "gustarían", "Good afternoon, we would like to see the wine list.", "intermediate", "gustar"],
+  [11146, "polite conditional", "Señora, ¿le", "esperar un momento en la sala?", "importaría", "importarían", "Madam, would you mind waiting a moment in the waiting room?", "intermediate", "importar"],
+  [11147, "polite conditional", "Me", "ir contigo al concierto, pero tengo que trabajar.", "encantaría", "encantarían", "I would love to go to the concert with you, but I have to work.", "intermediate", "encantar"],
+  [11148, "polite conditional", "Señor Martínez, ¿", "usted firmar aquí, por favor?", "podría", "podería", "Mr Martínez, could you sign here, please?", "intermediate", "poder"],
+  [11149, "polite conditional", "Perdonen, ¿", "ustedes un minuto para hacer una encuesta?", "tendrían", "tenerían", "Excuse me, would you have a minute to do a survey?", "advanced", "tener"],
+  [11150, "polite conditional", "Disculpe, ¿", "usted dejar un mensaje?", "querría", "querería", "Excuse me, would you like to leave a message?", "advanced", "querer"],
 ];
 
 /** A conjugated form counts as plural when its verb ends in -mos or -n (tendríamos, hubieran ido). */

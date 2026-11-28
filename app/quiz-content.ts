@@ -282,7 +282,7 @@ export const QUIZ_CONTENT: Record<QuizId, QuizContent> = {
       "A condition about the past that did not happen takes si plus hubiera and the participle: si hubiera tenido tiempo, habría ido. The result is habría plus the participle. Twelve common verbs shorten their stem in the conditional: podría, tendría, haría, diría, querría, sabría, saldría, vendría, pondría, habría, cabría, valdría.",
       "The conditional also works without si, to make a request or a wish polite: ¿podrías ayudarme?, me gustaría un café, querría reservar una mesa. This quiz has about 150 sentences split into real conditions, the imperfect subjunctive, the regular conditional, irregular conditional stems, the past unreal and the polite conditional, with an explanation for every answer.",
     ],
-    examples: [],
+    examples: sourcedExamples([11002, 11026, 11076, 11101, 11116, 11131]),
     faq: [
       {
         question: "Can I use the conditional after si?",

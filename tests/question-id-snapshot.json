@@ -1480,6 +1480,26 @@
     "11127": "Yo [habría comprado] otro coche si hubiera tenido más dinero. | habré comprado | past unreal | present | intermediate",
     "11128": "Si ella hubiera aceptado aquel trabajo, se [habría mudado] a Madrid. | habería mudado | past unreal | present | advanced",
     "11129": "Si hubiéramos salido de casa a las ocho, [habríamos tomado] el primer tren. | habremos tomado | past unreal | present | intermediate",
-    "11130": "Ellos [habrían hecho] más fotos si no se les hubiera roto la cámara. | haberían hecho | past unreal | present | advanced"
+    "11130": "Ellos [habrían hecho] más fotos si no se les hubiera roto la cámara. | haberían hecho | past unreal | present | advanced",
+    "11131": "Perdone, ¿ [podría] decirme dónde está la estación? | podería | polite conditional | present | basic",
+    "11132": "Oye, ¿ [podrías] cerrar la ventana, por favor? | poderías | polite conditional | present | basic",
+    "11133": "Disculpen, ¿ [podrían] hablar un poco más despacio? | poderían | polite conditional | present | intermediate",
+    "11134": "Mamá, ¿me [podrías] ayudar con los deberes? | poderías | polite conditional | present | basic",
+    "11135": "Buenos días, [querría] reservar una mesa para cuatro personas. | querería | polite conditional | present | intermediate",
+    "11136": "Perdone, [querríamos] hablar con el director, por favor. | quereríamos | polite conditional | present | intermediate",
+    "11137": "Perdona, ¿ [tendrías] un bolígrafo? | tenerías | polite conditional | present | basic",
+    "11138": "Disculpe, ¿ [tendría] un momento para responder unas preguntas? | tenería | polite conditional | present | intermediate",
+    "11139": "Perdone, ¿ [sabría] decirme a qué hora sale el próximo tren? | sabería | polite conditional | present | intermediate",
+    "11140": "Oye, ¿ [sabrías] explicarme este ejercicio? | saberías | polite conditional | present | intermediate",
+    "11141": "Cariño, ¿me [harías] un favor? | hacerías | polite conditional | present | basic",
+    "11142": "Perdona, ¿me [dirías] tu número de teléfono? | decirías | polite conditional | present | intermediate",
+    "11143": "Te propongo cenar juntos. ¿Te [vendría] bien el jueves? | veniría | polite conditional | present | advanced",
+    "11144": "Camarero, me [gustaría] un café con leche, por favor. | gustarían | polite conditional | present | basic",
+    "11145": "Buenas tardes, nos [gustaría] ver la carta de vinos. | gustarían | polite conditional | present | intermediate",
+    "11146": "Señora, ¿le [importaría] esperar un momento en la sala? | importarían | polite conditional | present | intermediate",
+    "11147": "Me [encantaría] ir contigo al concierto, pero tengo que trabajar. | encantarían | polite conditional | present | intermediate",
+    "11148": "Señor Martínez, ¿ [podría] usted firmar aquí, por favor? | podería | polite conditional | present | intermediate",
+    "11149": "Perdonen, ¿ [tendrían] ustedes un minuto para hacer una encuesta? | tenerían | polite conditional | present | advanced",
+    "11150": "Disculpe, ¿ [querría] usted dejar un mensaje? | querería | polite conditional | present | advanced"
   }
 }
